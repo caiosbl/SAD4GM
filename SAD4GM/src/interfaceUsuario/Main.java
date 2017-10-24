@@ -1,11 +1,23 @@
 package interfaceUsuario;
 
+import java.util.Scanner;
+
+import usuario.Usuario;
+
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println(opcoesGerais());
-		
+		Scanner sc = new Scanner (System.in);
 
+		System.out.println("Nome:");
+		String nome = sc.nextLine();
+		System.out.println("Id:");
+		String id = sc.nextLine();
+		System.out.println("Auditor:");
+		String auditor = sc.nextLine();
+		
+		Usuario usuario = new Usuario(nome, id, auditor);
+		
 	}
 	
 	public static String opcoesGerais() {

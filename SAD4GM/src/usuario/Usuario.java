@@ -8,12 +8,12 @@ public class Usuario {
 	private String id;
 	private String auditor;
 
-	public Usuario(String nome, String id, String supervisor) {
+	public Usuario(String nome, String id, String auditor) {
 		ValidaUsuario.validaNome(nome);
 		this.nome = nome;
 		ValidaUsuario.validaId(id);
 		this.id = id;
-		ValidaUsuario.validaSupervisor(supervisor);
+		ValidaUsuario.validaAuditor(auditor);
 		this.auditor = auditor;
 	}
 
@@ -40,7 +40,7 @@ public class Usuario {
 	}
 
 	public void setAuditor(String auditor) {
-		ValidaUsuario.validaSupervisor(auditor);
+		ValidaUsuario.validaAuditor(auditor);
 		this.auditor = auditor;
 	}
 
