@@ -19,10 +19,10 @@ public class ValidaUsuario {
 		}
 	}
 
-	public static void validaSupervisor(String supervisor) {
-		if (supervisor == null) {
+	public static void validaAuditor(String auditor) {
+		if (auditor == null) {
 			throw new NullPointerException();
-		} else if (supervisor.trim().equals("")) {
+		} else if (auditor.trim().equals("")) {
 			throw new IllegalArgumentException("Nome Inválido!");
 		}
 	}
