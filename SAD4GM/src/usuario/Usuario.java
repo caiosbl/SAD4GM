@@ -22,6 +22,7 @@ public class Usuario {
 	}
 
 	public void setNome(String nome) {
+		ValidaUsuario.validaNome(nome);
 		this.nome = nome;
 	}
 
@@ -30,6 +31,7 @@ public class Usuario {
 	}
 
 	public void setId(String id) {
+		ValidaUsuario.validaId(id);
 		this.id = id;
 	}
 
@@ -38,6 +40,7 @@ public class Usuario {
 	}
 
 	public void setSupervisor(String supervisor) {
+		ValidaUsuario.validaSupervisor(supervisor);
 		this.supervisor = supervisor;
 	}
 
@@ -72,7 +75,5 @@ public class Usuario {
 			return false;
 		return true;
 	}
-	
-	
 
 }
