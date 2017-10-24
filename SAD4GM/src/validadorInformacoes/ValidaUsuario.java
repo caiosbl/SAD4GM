@@ -1,6 +1,6 @@
 package validadorInformacoes;
 
-public class validaUsuario {
+public class ValidaUsuario {
 
 	public static void validaNome(String nome) {
 		if (nome == null) {

@@ -1,5 +1,7 @@
 package usuario;
 
+import validadorInformacoes.ValidaUsuario;
+
 public class Usuario {
 
 	private String nome;
@@ -7,8 +9,11 @@ public class Usuario {
 	private String supervisor;
 
 	public Usuario(String nome, String id, String supervisor) {
+		ValidaUsuario.validaNome(nome);
 		this.nome = nome;
+		ValidaUsuario.validaId(id);
 		this.id = id;
+		ValidaUsuario.validaSupervisor(supervisor);
 		this.supervisor = supervisor;
 	}
 
