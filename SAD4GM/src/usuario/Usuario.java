@@ -6,7 +6,7 @@ public class Usuario {
 
 	private String nome;
 	private String id;
-	private String supervisor;
+	private String auditor;
 
 	public Usuario(String nome, String id, String supervisor) {
 		ValidaUsuario.validaNome(nome);
@@ -14,7 +14,7 @@ public class Usuario {
 		ValidaUsuario.validaId(id);
 		this.id = id;
 		ValidaUsuario.validaSupervisor(supervisor);
-		this.supervisor = supervisor;
+		this.auditor = auditor;
 	}
 
 	public String getNome() {
@@ -35,19 +35,19 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public String getSupervisor() {
-		return supervisor;
+	public String getAuditor() {
+		return auditor;
 	}
 
-	public void setSupervisor(String supervisor) {
-		ValidaUsuario.validaSupervisor(supervisor);
-		this.supervisor = supervisor;
+	public void setAuditor(String auditor) {
+		ValidaUsuario.validaSupervisor(auditor);
+		this.auditor = auditor;
 	}
 
 	@Override
 	public String toString() {
 		return "DADOS DO USUÁRIO:" + System.lineSeparator() + "Usuário: " + nome + System.lineSeparator() + "Id: " + id
-				+ System.lineSeparator() + "Supervisor: " + supervisor;
+				+ System.lineSeparator() + "Supervisor: " + auditor;
 
 	}
 

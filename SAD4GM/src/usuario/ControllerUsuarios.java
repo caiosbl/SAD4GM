@@ -45,8 +45,8 @@ public class ControllerUsuarios {
 			removerUsuario(id);
 			usuarios.put(usuarioTemporario.getId(), usuarioTemporario);
 			break;
-		case "supervisor":
-			usuario.setSupervisor(novoValor);
+		case "auditor":
+			usuario.setAuditor(novoValor);
 
 		default:
 			throw new RuntimeException("Novo valor inválido!");
