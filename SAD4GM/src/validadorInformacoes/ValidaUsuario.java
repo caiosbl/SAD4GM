@@ -1,5 +1,12 @@
 package validadorInformacoes;
 
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
+
 public class ValidaUsuario {
 
 	public static void validaNome(String nome) {

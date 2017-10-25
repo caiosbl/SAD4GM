@@ -1,6 +1,15 @@
 package sistema;
 
 import usuario.ControllerUsuarios;
+import usuario.Usuario;
+
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 
 public class Sistema {
 
@@ -10,7 +19,7 @@ public class Sistema {
 		this.cUsuarios = new ControllerUsuarios();
 	}
 
-	// Funções de Usuário
+	// Funções de Usuário (CARB - [CADASTRAR ATUALIZAR REMOVER BUSCAR])
 
 	// 1 - Cadastrar um Usuário
 
@@ -83,6 +92,23 @@ public class Sistema {
 			return "USUÁRIO REMOVIDO COM SUCESSO!";
 		} catch (RuntimeException e) {
 			return "USUÁRIO INVÁLIDO!";
+		}
+	}
+
+	// 4 - Buscar um Usuário
+
+	/*
+	 * Função Local, a ser utilizada somente nesta classe. O método tenta buscar um
+	 * Usuário através de seu ID, caso ele não exista, uma exceção é lançada, vale
+	 * salientar que tal exceção deverá ser capturada pelos métodos que utilizarem
+	 * esta função. Caso o usuário seja encontrado, ele é retornado.
+	 */
+	private Usuario buscarUsuario(String id) {
+
+		try {
+			return cUsuarios.buscaUsuario(id);
+		} catch (RuntimeException e) {
+			throw new RuntimeException("USUÁRIO INVÁLIDO");
 		}
 	}
 
