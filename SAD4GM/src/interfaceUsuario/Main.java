@@ -1,10 +1,12 @@
 package interfaceUsuario;
 
+import usuario.enums.AtributosUsuario;
 
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("Sem interface por enquanto!");
+		AtributosUsuario atr = AtributosUsuario.valueOf("NOME");
+		System.out.println(atr.getValor());
 	}
 
 }

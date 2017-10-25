@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.management.RuntimeErrorException;
 
+import usuario.enums.AtributosUsuario;
+
 public class ControllerUsuarios {
 	private Map<String, Usuario> mapaUsuarios;
 
@@ -14,7 +16,7 @@ public class ControllerUsuarios {
 
 	private void validaId(String id) {
 		if (!mapaUsuarios.containsKey(id)) {
-			throw new RuntimeErrorException(null, "Usuário Não Cadastrado!");
+			throw new RuntimeErrorException(null, "USUÁRIO NÃO CADASTRADO!");
 		}
 	}
 
@@ -29,48 +31,50 @@ public class ControllerUsuarios {
 
 	}
 
-	public boolean atualizaUsuario(String id, String dado, String novoValor) {
+	public void atualizaUsuario(String id, String dado, String novoValor) {
 		validaId(id);
 
 		Usuario usuario = mapaUsuarios.get(id);
-		boolean status = false;
 
-		switch (dado.toLowerCase()) {
+		final AtributosUsuario atributo ;
+		try{
+			atributo = AtributosUsuario.valueOf(dado.toUpperCase());
+		}
+		catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException("DADO A SER ATUALIZADO INVÁLIDO!");
+		}
 
-		case "nome":
+		switch (atributo) {
+
+		case NOME:
 			try {
 				usuario.setNome(novoValor);
-				status = true;
 			} catch (Exception e) {
-				status = false;
+				throw new IllegalArgumentException("NOVO NOME INVÁLIDO!");
 			}
 			break;
 
-		case "id":
+		case ID:
 			Usuario usuarioTemporario = usuario;
 			try {
 				usuarioTemporario.setId(novoValor);
-				status = true;
 				removerUsuario(id);
 				mapaUsuarios.put(usuarioTemporario.getId(), usuarioTemporario);
 			} catch (Exception e) {
-				status = false;
+				throw new IllegalArgumentException ("NOVO ID INVÁLIDO!");
 			}
-
 			break;
-		case "auditor":
+			
+		case AUDITOR:
 			try {
 				usuario.setAuditor(novoValor);
-				status = true;
 			} catch (Exception e) {
-				status = false;
+				throw new IllegalArgumentException("NOVO AUDITOR INVÁLIDO");
 			}
+			break;
 
-		default:
-			throw new RuntimeException("Novo valor inválido!");
 		}
 
-		return status;
 
 	}
 
