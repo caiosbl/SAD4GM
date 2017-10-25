@@ -1,8 +1,5 @@
 package interfaceUsuario;
 
-import java.util.Scanner;
-
-import usuario.Usuario;
 
 public class Main {
 

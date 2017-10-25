@@ -6,57 +6,77 @@ import java.util.Map;
 import javax.management.RuntimeErrorException;
 
 public class ControllerUsuarios {
-	private Map<String, Usuario> usuarios;
+	private Map<String, Usuario> mapaUsuarios;
 
 	public ControllerUsuarios() {
-		this.usuarios = new HashMap<>();
+		this.mapaUsuarios = new HashMap<>();
 	}
 
 	private void validaId(String id) {
-		if (!usuarios.containsKey(id)) {
+		if (!mapaUsuarios.containsKey(id)) {
 			throw new RuntimeErrorException(null, "Usuário Não Cadastrado!");
 		}
 	}
 
-	public void adicionaUsuario(String nome, String id, String supervisor) {
-		Usuario usuario = new Usuario(nome, id, supervisor);
-		usuarios.put(usuario.getId(), usuario);
+	public void adicionaUsuario(String nome, String id, String auditor) {
+		Usuario usuario = new Usuario(nome, id, auditor);
+		mapaUsuarios.put(usuario.getId(), usuario);
 	}
 
 	public Usuario buscaUsuario(String id) {
 		validaId(id);
-		return usuarios.get(id);
+		return mapaUsuarios.get(id);
 
 	}
 
-	public void atualizaUsuario(String id, String dado, String novoValor) {
+	public boolean atualizaUsuario(String id, String dado, String novoValor) {
 		validaId(id);
 
-		Usuario usuario = usuarios.get(id);
+		Usuario usuario = mapaUsuarios.get(id);
+		boolean status = false;
 
 		switch (dado.toLowerCase()) {
 
 		case "nome":
-			usuario.setNome(novoValor);
+			try {
+				usuario.setNome(novoValor);
+				status = true;
+			} catch (Exception e) {
+				status = false;
+			}
 			break;
+
 		case "id":
 			Usuario usuarioTemporario = usuario;
-			usuarioTemporario.setId(novoValor);
-			removerUsuario(id);
-			usuarios.put(usuarioTemporario.getId(), usuarioTemporario);
+			try {
+				usuarioTemporario.setId(novoValor);
+				status = true;
+				removerUsuario(id);
+				mapaUsuarios.put(usuarioTemporario.getId(), usuarioTemporario);
+			} catch (Exception e) {
+				status = false;
+			}
+
 			break;
 		case "auditor":
-			usuario.setAuditor(novoValor);
+			try {
+				usuario.setAuditor(novoValor);
+				status = true;
+			} catch (Exception e) {
+				status = false;
+			}
 
 		default:
 			throw new RuntimeException("Novo valor inválido!");
 		}
 
+		return status;
+
 	}
 
 	public void removerUsuario(String id) {
 		validaId(id);
-		usuarios.remove(id);
+		mapaUsuarios.remove(id);
 	}
 
 }
