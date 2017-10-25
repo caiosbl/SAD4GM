@@ -1,6 +1,14 @@
 package usuario;
 
 import java.util.HashMap;
+
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 import java.util.Map;
 
 import javax.management.RuntimeErrorException;
@@ -36,11 +44,10 @@ public class ControllerUsuarios {
 
 		Usuario usuario = mapaUsuarios.get(id);
 
-		final AtributosUsuario atributo ;
-		try{
+		final AtributosUsuario atributo;
+		try {
 			atributo = AtributosUsuario.valueOf(dado.toUpperCase());
-		}
-		catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException("DADO A SER ATUALIZADO INVÁLIDO!");
 		}
 
@@ -61,10 +68,10 @@ public class ControllerUsuarios {
 				removerUsuario(id);
 				mapaUsuarios.put(usuarioTemporario.getId(), usuarioTemporario);
 			} catch (Exception e) {
-				throw new IllegalArgumentException ("NOVO ID INVÁLIDO!");
+				throw new IllegalArgumentException("NOVO ID INVÁLIDO!");
 			}
 			break;
-			
+
 		case AUDITOR:
 			try {
 				usuario.setAuditor(novoValor);
@@ -74,7 +81,6 @@ public class ControllerUsuarios {
 			break;
 
 		}
-
 
 	}
 

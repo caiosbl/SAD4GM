@@ -1,6 +1,12 @@
 package interfaceUsuario;
 
-import usuario.enums.AtributosUsuario;
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 
 public class Main {
 

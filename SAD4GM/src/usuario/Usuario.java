@@ -2,6 +2,14 @@ package usuario;
 
 import validadorInformacoes.ValidaUsuario;
 
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
+
 public class Usuario {
 
 	private String nome;
