@@ -15,7 +15,7 @@ public class ValidaUsuario {
 		if (id == null) {
 			throw new NullPointerException();
 		} else if (id.trim().equals("")) {
-			throw new IllegalArgumentException("Nome Inválido!");
+			throw new IllegalArgumentException("ID Inválido!");
 		}
 	}
 
@@ -23,7 +23,7 @@ public class ValidaUsuario {
 		if (auditor == null) {
 			throw new NullPointerException();
 		} else if (auditor.trim().equals("")) {
-			throw new IllegalArgumentException("Nome Inválido!");
+			throw new IllegalArgumentException("Auditor Inválido!");
 		}
 	}
 

@@ -47,7 +47,7 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "DADOS DO USUÁRIO:" + System.lineSeparator() + "Usuário: " + nome + System.lineSeparator() + "Id: " + id
-				+ System.lineSeparator() + "Supervisor: " + auditor;
+				+ System.lineSeparator() + "Auditor: " + auditor;
 
 	}
 
