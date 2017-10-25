@@ -1,12 +1,12 @@
-package fachada;
+package sistema;
 
 import usuario.ControllerUsuarios;
 
-public class Fachada {
+public class Sistema {
 
 	private ControllerUsuarios cUsuarios;
 
-	public Fachada() {
+	public Sistema() {
 		this.cUsuarios = new ControllerUsuarios();
 	}
 
