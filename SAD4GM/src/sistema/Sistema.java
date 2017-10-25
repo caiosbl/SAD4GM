@@ -69,4 +69,21 @@ public class Sistema {
 		}
 	}
 
+	// 3 - Remover um Usuário
+
+	/*
+	 * Verifica através do ID se o usuário existe. Caso esse não exista, uma
+	 * mensagem é retornada informando que o usuário é inválido.
+	 * 
+	 * Caso contrário, o usuário é removido, e uma mensafem de sucesso é retornada.
+	 */
+	public String removerUsuario(String id) {
+		try {
+			cUsuarios.removerUsuario(id);
+			return "USUÁRIO REMOVIDO COM SUCESSO!";
+		} catch (RuntimeException e) {
+			return "USUÁRIO INVÁLIDO!";
+		}
+	}
+
 }
