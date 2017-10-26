@@ -1,11 +1,18 @@
 package interfaceSistema;
 
 import java.util.Scanner;
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 
 import sistema.Sistema;
 
 public class FuncoesInterfaceUsuario {
-	
+
 	public static String opcoes() {
 		String opcoes = "SELECIONE UMA OPÇÃO: " + System.lineSeparator() + "1 - CADASTRAR UM USUÁRIO"
 				+ System.lineSeparator() + "2 - ATUALIZAR UM USUÁRIO" + System.lineSeparator()
