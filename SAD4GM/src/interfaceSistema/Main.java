@@ -28,6 +28,8 @@ public class Main {
 			selectOpcao(sistema, entrada);
 
 		} while (!entrada.equals("3"));
+		
+		sc.close();
 	}
 
 	public static String opcoesGerais() {
