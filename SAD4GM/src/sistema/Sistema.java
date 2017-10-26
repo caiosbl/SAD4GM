@@ -111,5 +111,15 @@ public class Sistema {
 			throw new RuntimeException("USUÁRIO INVÁLIDO");
 		}
 	}
+	
+	public String buscaDadosUsuario(String id) {
+		try {
+			String dados = buscarUsuario(id).toString();
+			return dados;
+		}
+		catch(RuntimeException e) {
+			return e.getMessage();
+		}
+	}
 
 }
