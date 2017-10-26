@@ -1,4 +1,4 @@
-package interfaceUsuario;
+package interfaceSistema;
 
 import java.util.Scanner;
 
@@ -27,7 +27,7 @@ public class Main {
 			System.out.println();
 			selectOpcao(sistema, entrada);
 
-		} while (!entrada.equals("5"));
+		} while (!entrada.equals("3"));
 	}
 
 	public static String opcoesGerais() {
@@ -48,9 +48,11 @@ public class Main {
 			FuncoesInterfaceUsuario.selectOpcao(opcaoSecundaria, sistema);
 
 			break;
+		case "3":
+			break;
 
 		default:
-			System.out.println(System.lineSeparator() + "OPÇÃO INVÁLIDA" + System.lineSeparator());
+			System.out.println("OPÇÃO INVÁLIDA!" + System.lineSeparator());
 			break;
 		}
 	}

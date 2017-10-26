@@ -1,4 +1,4 @@
-package interfaceUsuario;
+package interfaceSistema;
 
 import java.util.Scanner;
 
