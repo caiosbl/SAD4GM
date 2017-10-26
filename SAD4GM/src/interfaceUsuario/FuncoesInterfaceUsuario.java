@@ -5,6 +5,7 @@ import java.util.Scanner;
 import sistema.Sistema;
 
 public class FuncoesInterfaceUsuario {
+	
 	public static String opcoes() {
 		String opcoes = "SELECIONE UMA OPÇÃO: " + System.lineSeparator() + "1 - CADASTRAR UM USUÁRIO"
 				+ System.lineSeparator() + "2 - ATUALIZAR UM USUÁRIO" + System.lineSeparator()
@@ -12,6 +13,26 @@ public class FuncoesInterfaceUsuario {
 				+ "5 - SAIR" + System.lineSeparator();
 
 		return opcoes;
+	}
+
+	public static void selectOpcao(String opcao, Sistema sistema) {
+		switch (opcao) {
+		case "1":
+			cadastraUsuario(sistema);
+			break;
+		case "2":
+			atualizaUsuario(sistema);
+			break;
+		case "3":
+			removeUsuario(sistema);
+			break;
+		case "4":
+			buscaUsuario(sistema);
+			break;
+		default:
+			System.out.println(System.lineSeparator() + "OPÇÃO INVÁLIDA " + System.lineSeparator());
+			break;
+		}
 	}
 
 	public static void cadastraUsuario(Sistema sistema) {

@@ -21,30 +21,36 @@ public class Main {
 		String entrada = "";
 
 		do {
-			System.out.println(FuncoesInterfaceUsuario.opcoes());
+			System.out.println(opcoesGerais());
 			System.out.print("OPÇÃO: ");
 			entrada = sc.nextLine();
-			selectOpcao(entrada, sistema);
+			System.out.println();
+			selectOpcao(sistema, entrada);
 
 		} while (!entrada.equals("5"));
 	}
 
-	public static void selectOpcao(String opcao, Sistema sistema) {
-		switch (opcao) {
+	public static String opcoesGerais() {
+		String quebraLinha = System.lineSeparator();
+		String opcoes = quebraLinha + "SELECIONE UMA OPÇÃO: " + quebraLinha + "1 - OPÇÕES DE USUÁRIO" + quebraLinha
+				+ "2 - OPÇÕES DE MÁQUINAS" + quebraLinha + "3 - SAIR" + quebraLinha;
+
+		return opcoes;
+	}
+
+	public static void selectOpcao(Sistema sistema, String opcaoPrimaria) {
+		switch (opcaoPrimaria) {
 		case "1":
-			FuncoesInterfaceUsuario.cadastraUsuario(sistema);
+			Scanner sc = new Scanner(System.in);
+			System.out.println(FuncoesInterfaceUsuario.opcoes());
+			System.out.print("OPÇÃO: ");
+			String opcaoSecundaria = sc.nextLine();
+			FuncoesInterfaceUsuario.selectOpcao(opcaoSecundaria, sistema);
+
 			break;
-		case "2":
-			FuncoesInterfaceUsuario.atualizaUsuario(sistema);
-			break;
-		case "3":
-			FuncoesInterfaceUsuario.removeUsuario(sistema);
-			break;
-		case "4":
-			FuncoesInterfaceUsuario.buscaUsuario(sistema);
-			break;
+
 		default:
-			System.out.println(System.lineSeparator() + "OPÇÃO INVÁLIDA " + System.lineSeparator());
+			System.out.println(System.lineSeparator() + "OPÇÃO INVÁLIDA" + System.lineSeparator());
 			break;
 		}
 	}
