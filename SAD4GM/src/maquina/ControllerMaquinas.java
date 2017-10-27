@@ -24,6 +24,12 @@ public class ControllerMaquinas {
 	
 	private void verificaCodigo(int codigo) {
 		if(mapaDeMaquinas.containsKey(codigo)) {
+			throw new RuntimeErrorException(null, "CÓDIGO DE MÁQUINA JÁ CADASTRADA!");
+		}
+	}
+	
+	private void validaCodigo(int codigo) {
+		if(!mapaDeMaquinas.containsKey(codigo)) {
 			throw new RuntimeErrorException(null, "MÁQUINA NÃO CADASTRADA!");
 		}
 	}
@@ -32,6 +38,11 @@ public class ControllerMaquinas {
 		verificaCodigo(codigo);
 		Maquina maquina = new Maquina(nome, codigo, descricao);
 		mapaDeMaquinas.put(maquina.getCodigo(), maquina);
+	}
+	
+	public void removerMaquina(int codigo) {
+		validaCodigo(codigo);
+		mapaDeMaquinas.remove(codigo);
 	}
 
 }
