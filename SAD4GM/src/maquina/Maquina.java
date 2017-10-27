@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import maquina.subsistema.Subsistema;
+import validadorInformacoes.ValidaMaquina;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -21,8 +22,11 @@ public class Maquina {
 	private Map<String,Subsistema> mapaDeSubsistemas;
 	
 	public Maquina(String nome, int codigo, String descricao) {
+		ValidaMaquina.validaNome(nome);
 		this.nome = nome;
+		ValidaMaquina.validaCodigo(codigo);
 		this.codigo = codigo;
+		ValidaMaquina.validaDescricao(descricao);
 		this.descricao = descricao;
 		this.mapaDeSubsistemas = new HashMap<>();
 	}
