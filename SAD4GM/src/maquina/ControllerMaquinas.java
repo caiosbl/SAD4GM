@@ -3,6 +3,8 @@ package maquina;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.management.RuntimeErrorException;
+
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
@@ -12,15 +14,24 @@ import java.util.Map;
 
 public class ControllerMaquinas {
 
-	private Map<String, Maquina> mapaDeMaquinas;
+	private Map<Integer, Maquina> mapaDeMaquinas;
+
+
 
 	public ControllerMaquinas() {
 		this.mapaDeMaquinas = new HashMap<>();
 	}
 	
-	public void adicionaMaquina() {
-		Maquina maquina = new Maquina();
-		mapaDeMaquinas.put("Nome", maquina);
+	private void verificaCodigo(int codigo) {
+		if(mapaDeMaquinas.containsKey(codigo)) {
+			throw new RuntimeErrorException(null, "MÁQUINA NÃO CADASTRADA!");
+		}
+	}
+	
+	public void adicionaMaquina(String nome, int codigo, String descricao) {
+		verificaCodigo(codigo);
+		Maquina maquina = new Maquina(nome, codigo, descricao);
+		mapaDeMaquinas.put(maquina.getCodigo(), maquina);
 	}
 
 }

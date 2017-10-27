@@ -131,8 +131,8 @@ public class Sistema {
 	// 1 - Adicionar Máquinas
 	// Esboço
 	
-	public void adicionaMaquina() {
-		cMaquinas.adicionaMaquina();
+	public void adicionaMaquina(String nome, int codigo, String descricao) {
+		cMaquinas.adicionaMaquina(nome,codigo,descricao);
 	}
 
 }
