@@ -11,13 +11,16 @@ import java.util.Map;
  */
 
 public class ControllerMaquinas {
-	
-	Map mapaDeMaquinas;
-	
+
+	private Map<String, Maquina> mapaDeMaquinas;
+
 	public ControllerMaquinas() {
 		this.mapaDeMaquinas = new HashMap<>();
 	}
 	
-	
+	public void adicionaMaquina() {
+		Maquina maquina = new Maquina();
+		mapaDeMaquinas.put("Nome", maquina);
+	}
 
 }
