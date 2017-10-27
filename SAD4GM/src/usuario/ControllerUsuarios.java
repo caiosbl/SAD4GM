@@ -27,8 +27,15 @@ public class ControllerUsuarios {
 			throw new RuntimeErrorException(null, "USUÁRIO NÃO CADASTRADO!");
 		}
 	}
+	
+	private void verificaId(String id) {
+		if (mapaUsuarios.containsKey(id)) {
+			throw new RuntimeErrorException(null, "USUÁRIO JÁ CADASTRADO!");
+		}
+	}
 
 	public void adicionaUsuario(String nome, String id, String auditor) {
+		verificaId(id);
 		Usuario usuario = new Usuario(nome, id, auditor);
 		mapaUsuarios.put(usuario.getId(), usuario);
 	}

@@ -1,5 +1,6 @@
 package sistema;
 
+import maquina.ControllerMaquinas;
 import usuario.ControllerUsuarios;
 import usuario.Usuario;
 
@@ -14,9 +15,11 @@ import usuario.Usuario;
 public class Sistema {
 
 	private ControllerUsuarios cUsuarios;
+	private ControllerMaquinas cMaquinas;
 
 	public Sistema() {
 		this.cUsuarios = new ControllerUsuarios();
+		this.cMaquinas = new ControllerMaquinas();
 	}
 
 	// Funções de Usuário (CARB - [CADASTRAR ATUALIZAR REMOVER BUSCAR])
@@ -120,6 +123,16 @@ public class Sistema {
 		catch(RuntimeException e) {
 			return e.getMessage();
 		}
+	}
+	
+	
+	// Funções de Máquinas
+	
+	// 1 - Adicionar Máquinas
+	// Esboço
+	
+	public void adicionaMaquina() {
+		cMaquinas.adicionaMaquina();
 	}
 
 }
