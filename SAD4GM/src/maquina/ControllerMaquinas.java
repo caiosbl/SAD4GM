@@ -5,6 +5,10 @@ import java.util.Map;
 
 import javax.management.RuntimeErrorException;
 
+import maquina.enums.AtributosMaquina;
+import usuario.Usuario;
+import usuario.enums.AtributosUsuario;
+
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
@@ -43,6 +47,20 @@ public class ControllerMaquinas {
 	public void removerMaquina(int codigo) {
 		validaCodigo(codigo);
 		mapaDeMaquinas.remove(codigo);
+	}
+	
+	public void atualizarMaquina(int codigo, String dado,String novoValor) {
+		validaCodigo(codigo);
+
+		Maquina maquina = mapaDeMaquinas.get(codigo);
+
+		final AtributosMaquina atributo;
+		
+		try {
+			atributo = AtributosMaquina.valueOf(dado.toUpperCase());
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException("DADO A SER ATUALIZADO INVÁLIDO!");
+		}
 	}
 
 }
