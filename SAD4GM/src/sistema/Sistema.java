@@ -238,7 +238,16 @@ public class Sistema {
 			throw new RuntimeException("MÁQUINA INEXISTENTE!");
 		}
 		return maquina;
+	}
 
+	public String buscarDadosMaquina(String codigo) {
+		String dados;
+		try {
+			dados = buscarMaquina(codigo).toString();
+		} catch (RuntimeException e) {
+			return e.getMessage();
+		}
+		return dados;
 	}
 
 }
