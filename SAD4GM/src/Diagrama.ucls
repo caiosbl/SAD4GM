@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="usuario.ControllerUsuarios" project="SAD4GM" 
-    file="/SAD4GM/src/usuario/ControllerUsuarios.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="controllers.ControllerUsuarios" project="SAD4GM" 
+    file="/SAD4GM/src/controllers/ControllerUsuarios.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="469" y="409"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="maquina.ControllerMaquinas" project="SAD4GM" 
-    file="/SAD4GM/src/maquina/ControllerMaquinas.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="controllers.ControllerMaquinas" project="SAD4GM" 
+    file="/SAD4GM/src/controllers/ControllerMaquinas.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="168" width="187" x="678" y="328"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -47,35 +47,51 @@
     </display>  
   </class>  
   <association id="6">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="7" name="cUsuarios"/>      
-      <multiplicity id="8" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="9">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="10" name="cMaquinas"/>      
-      <multiplicity id="11" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="12">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="13" name="mapaUsuarios"/>      
-      <multiplicity id="14" minimum="0" maximum="2147483647"/>    
+      <attribute id="7" name="mapaUsuarios">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="8" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="15">    
+  <association id="9">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="16" name="mapaDeMaquinas"/>      
-      <multiplicity id="17" minimum="0" maximum="2147483647"/>    
+      <attribute id="10" name="mapaDeMaquinas">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="11" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="12">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="13" name="cUsuarios">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="15">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="16" name="cMaquinas">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="17" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

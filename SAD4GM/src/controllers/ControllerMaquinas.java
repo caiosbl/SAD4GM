@@ -1,8 +1,10 @@
-package maquina;
+package controllers;
 
 import java.util.HashMap;
 import java.util.Map;
 import javax.management.RuntimeErrorException;
+
+import maquina.Maquina;
 import maquina.enums.AtributosMaquina;
 
 /**
@@ -44,10 +46,7 @@ public class ControllerMaquinas {
 	}
 
 	public void atualizarMaquina(int codigo, String dado, String novoValor) {
-		validaCodigo(codigo);
-
-		Maquina maquina = mapaDeMaquinas.get(codigo);
-
+		Maquina maquina = buscaMaquina(codigo);
 		final AtributosMaquina atributo;
 
 		try {
@@ -80,6 +79,11 @@ public class ControllerMaquinas {
 			break;
 
 		}
+	}
+
+	public Maquina buscaMaquina(int codigo) {
+		validaCodigo(codigo);
+		return mapaDeMaquinas.get(codigo);
 	}
 
 }
