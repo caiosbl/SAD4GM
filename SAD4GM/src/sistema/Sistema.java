@@ -5,8 +5,7 @@ import controllers.ControllerUsuarios;
 import usuario.Usuario;
 
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -114,25 +113,37 @@ public class Sistema {
 			throw new RuntimeException("USUÁRIO INVÁLIDO");
 		}
 	}
-	
+
 	public String buscaDadosUsuario(String id) {
 		try {
 			String dados = buscarUsuario(id).toString();
 			return dados;
-		}
-		catch(RuntimeException e) {
+		} catch (RuntimeException e) {
 			return e.getMessage();
 		}
 	}
-	
-	
+
 	// Funções de Máquinas
-	
-	// 1 - Adicionar Máquinas
-	// Esboço
-	
-	public void adicionaMaquina(String nome, int codigo, String descricao) {
-		cMaquinas.adicionaMaquina(nome,codigo,descricao);
+
+	// 1 - Adicionar Máquina
+	/*
+	 * Tenta cadastrar uma Máquina. A Operação terá sucesso se todos os dados forem
+	 * Válidos. Caso algum dado seja inválido, a função captura a exceção, a qual
+	 * foi lançada na classe ValidaMaquina e retorna uma mensagem informando qual o
+	 * dado inválido.
+	 */
+
+	public String adicionaMaquina(String nome, int codigo, String descricao) {
+		String status;
+		try {
+			cMaquinas.adicionaMaquina(nome, codigo, descricao);
+			status = "MÁQUINA CADASTRADA COM SUCESSO!";
+		} catch (NullPointerException e) {
+			status = e.getMessage();
+		} catch (IllegalArgumentException e) {
+			status = e.getMessage();
+		}
+		return status;
 	}
 
 }
