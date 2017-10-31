@@ -188,6 +188,12 @@ public class Sistema {
 	}
 
 	// 3 - Remover uma Máquina
+	/*
+	 * A função verifica se o código é válido, caso não seja é retornada uma
+	 * mensagem de erro, posteriormente é verificado se o código é de cadastrado, em
+	 * caso negativa também é retornada uma mensagem de erro, em caso positivo é
+	 * retornada uma mensagem de sucesso informando que a máquina foi removida.
+	 */
 
 	public String removerMaquina(String codigo) {
 		int codigoInt;
