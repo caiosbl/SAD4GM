@@ -4,6 +4,7 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 import controllers.ControllerMaquinas;
 import controllers.ControllerUsuarios;
+import maquina.Maquina;
 import usuario.Usuario;
 
 /**
@@ -212,6 +213,41 @@ public class Sistema {
 		}
 
 		return status;
+	}
+
+	// 4 - Buscar uma Máquina
+	/*
+	 * É feita a validação se o código é válido, caso não seja uma exceção é lançada
+	 * com erro de código inválido, caso seja válido, é feita a busca pela máquina,
+	 * caso esta não exista uma outra exceção é lançada informando o erro de
+	 * inexistência, caso positivo a máquina é retornada.
+	 */
+
+	private Maquina buscarMaquina(String codigo) {
+		int codigoInt;
+		Maquina maquina;
+		try {
+			codigoInt = Integer.parseInt(codigo);
+		} catch (ParseException e) {
+			throw new RuntimeException("CÓDIGO INVÁLIDO!");
+		}
+
+		try {
+			maquina = cMaquinas.buscaMaquina(codigoInt);
+		} catch (RuntimeException e) {
+			throw new RuntimeException("MÁQUINA INEXISTENTE!");
+		}
+		return maquina;
+	}
+
+	public String buscarDadosMaquina(String codigo) {
+		String dados;
+		try {
+			dados = buscarMaquina(codigo).toString();
+		} catch (RuntimeException e) {
+			return e.getMessage();
+		}
+		return dados;
 	}
 
 }
