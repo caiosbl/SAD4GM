@@ -187,4 +187,31 @@ public class Sistema {
 		return status;
 	}
 
+	// 3 - Remover uma Máquina
+	/*
+	 * A função verifica se o código é válido, caso não seja é retornada uma
+	 * mensagem de erro, posteriormente é verificado se o código é de cadastrado, em
+	 * caso negativa também é retornada uma mensagem de erro, em caso positivo é
+	 * retornada uma mensagem de sucesso informando que a máquina foi removida.
+	 */
+
+	public String removerMaquina(String codigo) {
+		int codigoInt;
+		String status;
+		try {
+			codigoInt = Integer.parseInt(codigo);
+		} catch (ParseException e) {
+			return "CÓDIGO INVÁLIDO";
+		}
+
+		try {
+			cMaquinas.removerMaquina(codigoInt);
+			status = "MÁQUINA REMOVIDA COM SUCESSO!";
+		} catch (RuntimeException e) {
+			status = e.getMessage();
+		}
+
+		return status;
+	}
+
 }
