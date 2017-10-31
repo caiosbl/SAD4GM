@@ -1,7 +1,7 @@
 package sistema;
 
-import maquina.ControllerMaquinas;
-import usuario.ControllerUsuarios;
+import controllers.ControllerMaquinas;
+import controllers.ControllerUsuarios;
 import usuario.Usuario;
 
 /**

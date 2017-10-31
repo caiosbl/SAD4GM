@@ -1,4 +1,4 @@
-package usuario;
+package controllers;
 
 import java.util.HashMap;
 
@@ -13,6 +13,7 @@ import java.util.Map;
 
 import javax.management.RuntimeErrorException;
 
+import usuario.Usuario;
 import usuario.enums.AtributosUsuario;
 
 public class ControllerUsuarios {

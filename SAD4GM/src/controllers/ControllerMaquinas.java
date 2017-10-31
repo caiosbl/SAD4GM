@@ -1,8 +1,10 @@
-package maquina;
+package controllers;
 
 import java.util.HashMap;
 import java.util.Map;
 import javax.management.RuntimeErrorException;
+
+import maquina.Maquina;
 import maquina.enums.AtributosMaquina;
 
 /**
