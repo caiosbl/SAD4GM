@@ -44,10 +44,7 @@ public class ControllerMaquinas {
 	}
 
 	public void atualizarMaquina(int codigo, String dado, String novoValor) {
-		validaCodigo(codigo);
-
-		Maquina maquina = mapaDeMaquinas.get(codigo);
-
+		Maquina maquina = buscaMaquina(codigo);
 		final AtributosMaquina atributo;
 
 		try {
@@ -80,6 +77,11 @@ public class ControllerMaquinas {
 			break;
 
 		}
+	}
+
+	public Maquina buscaMaquina(int codigo) {
+		validaCodigo(codigo);
+		return mapaDeMaquinas.get(codigo);
 	}
 
 }
