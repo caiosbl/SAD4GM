@@ -1,12 +1,13 @@
 package sistema;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+
 import controllers.ControllerMaquinas;
 import controllers.ControllerUsuarios;
 import usuario.Usuario;
 
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -114,25 +115,76 @@ public class Sistema {
 			throw new RuntimeException("USUÁRIO INVÁLIDO");
 		}
 	}
-	
+
 	public String buscaDadosUsuario(String id) {
 		try {
 			String dados = buscarUsuario(id).toString();
 			return dados;
-		}
-		catch(RuntimeException e) {
+		} catch (RuntimeException e) {
 			return e.getMessage();
 		}
 	}
-	
-	
+
 	// Funções de Máquinas
-	
-	// 1 - Adicionar Máquinas
-	// Esboço
-	
-	public void adicionaMaquina(String nome, int codigo, String descricao) {
-		cMaquinas.adicionaMaquina(nome,codigo,descricao);
+
+	// 1 - Adicionar Máquina
+	/*
+	 * Tenta cadastrar uma Máquina. A Operação terá sucesso se todos os dados forem
+	 * Válidos. Caso algum dado seja inválido, a função captura a exceção, a qual
+	 * foi lançada na classe ValidaMaquina e retorna uma mensagem informando qual o
+	 * dado inválido.
+	 */
+
+	public String adicionaMaquina(String nome, String codigo, String descricao) {
+		String status;
+		int codigoInt;
+
+		try {
+			codigoInt = Integer.parseInt(codigo);
+		} catch (ParseException e) {
+			return "CÓDIGO INVÁLIDO!";
+		}
+
+		try {
+			cMaquinas.adicionaMaquina(nome, codigoInt, descricao);
+			status = "MÁQUINA CADASTRADA COM SUCESSO!";
+		} catch (NullPointerException e) {
+			status = e.getMessage();
+		} catch (IllegalArgumentException e) {
+			status = e.getMessage();
+		}
+		return status;
+	}
+
+	// 2 - Atualizar uma Máquina
+	/*
+	 * Tenta validar o código da máquina, caso o código seja inválido ou não esteja
+	 * cadastrado, é retornada uma mensagem de erro, que é lançada na classe
+	 * ControllerMaquinas, posteriormente é feita a tentativa de mudança do dado
+	 * informada pelo usuário, caso o usuário informe um dado inválido a ser
+	 * atualizado é retornada uma mensagem de erro, caso contrário, é feita a
+	 * validação do novo dado, caso este seja inválido uma mensagem de erro é
+	 * retornado, caso seja válido o dado é atualizado e uma mensagem de sucesso
+	 * reteornada.
+	 * 
+	 */
+	public String atualizarMaquina(String codigo, String dado, String novoValor) {
+		int codigoInt;
+		String status;
+
+		try {
+			codigoInt = Integer.parseInt(codigo);
+		} catch (ParseException e) {
+			return "CÓDIGO INVÁLIDO!";
+		}
+
+		try {
+			cMaquinas.atualizarMaquina(codigoInt, dado, novoValor);
+			status = "MÁQUINA ATUALIZADA COM SUCESSO!";
+		} catch (RuntimeException e) {
+			status = e.getMessage();
+		}
+		return status;
 	}
 
 }
