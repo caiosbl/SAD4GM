@@ -187,4 +187,25 @@ public class Sistema {
 		return status;
 	}
 
+	// 3 - Remover uma Máquina
+
+	public String removerMaquina(String codigo) {
+		int codigoInt;
+		String status;
+		try {
+			codigoInt = Integer.parseInt(codigo);
+		} catch (ParseException e) {
+			return "CÓDIGO INVÁLIDO";
+		}
+
+		try {
+			cMaquinas.removerMaquina(codigoInt);
+			status = "MÁQUINA REMOVIDA COM SUCESSO!";
+		} catch (RuntimeException e) {
+			status = e.getMessage();
+		}
+
+		return status;
+	}
+
 }
