@@ -2,12 +2,8 @@ package maquina;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.management.RuntimeErrorException;
-
 import maquina.enums.AtributosMaquina;
-import usuario.Usuario;
-import usuario.enums.AtributosUsuario;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -66,13 +62,23 @@ public class ControllerMaquinas {
 
 			break;
 		case CÓDIGO:
+			Maquina maquinaTemporaria = maquina;
+			int novoCodigo;
+			try {
+				novoCodigo = Integer.parseInt(novoValor);
+			} catch (Exception e) {
+				throw new IllegalArgumentException("NOVO CÓDIGO INVÁLIDO");
+			}
+
+			maquinaTemporaria.setCodigo(novoCodigo);
+			mapaDeMaquinas.remove(codigo);
+			mapaDeMaquinas.put(maquinaTemporaria.getCodigo(), maquinaTemporaria);
 			break;
 
 		case DESCRIÇÃO:
+			maquina.setDescricao(novoValor);
 			break;
 
-		default:
-			break;
 		}
 	}
 
