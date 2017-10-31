@@ -217,6 +217,10 @@ public class Sistema {
 
 	// 4 - Buscar uma Máquina
 	/*
+	 * É feita a validação se o código é válido, caso não seja uma exceção é lançada
+	 * com erro de código inválido, caso seja válido, é feita a busca pela máquina,
+	 * caso esta não exista uma outra exceção é lançada informando o erro de
+	 * inexistência, caso positivo a máquina é retornada.
 	 */
 
 	private Maquina buscarMaquina(String codigo) {
