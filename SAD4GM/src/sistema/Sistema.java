@@ -1,5 +1,7 @@
 package sistema;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+
 import controllers.ControllerMaquinas;
 import controllers.ControllerUsuarios;
 import usuario.Usuario;
@@ -133,14 +135,53 @@ public class Sistema {
 	 * dado inválido.
 	 */
 
-	public String adicionaMaquina(String nome, int codigo, String descricao) {
+	public String adicionaMaquina(String nome, String codigo, String descricao) {
 		String status;
+		int codigoInt;
+
 		try {
-			cMaquinas.adicionaMaquina(nome, codigo, descricao);
+			codigoInt = Integer.parseInt(codigo);
+		} catch (ParseException e) {
+			return "CÓDIGO INVÁLIDO!";
+		}
+
+		try {
+			cMaquinas.adicionaMaquina(nome, codigoInt, descricao);
 			status = "MÁQUINA CADASTRADA COM SUCESSO!";
 		} catch (NullPointerException e) {
 			status = e.getMessage();
 		} catch (IllegalArgumentException e) {
+			status = e.getMessage();
+		}
+		return status;
+	}
+
+	// 2 - Atualizar uma Máquina
+	/*
+	 * Tenta validar o código da máquina, caso o código seja inválido ou não esteja
+	 * cadastrado, é retornada uma mensagem de erro, que é lançada na classe
+	 * ControllerMaquinas, posteriormente é feita a tentativa de mudança do dado
+	 * informada pelo usuário, caso o usuário informe um dado inválido a ser
+	 * atualizado é retornada uma mensagem de erro, caso contrário, é feita a
+	 * validação do novo dado, caso este seja inválido uma mensagem de erro é
+	 * retornado, caso seja válido o dado é atualizado e uma mensagem de sucesso
+	 * reteornada.
+	 * 
+	 */
+	public String atualizarMaquina(String codigo, String dado, String novoValor) {
+		int codigoInt;
+		String status;
+
+		try {
+			codigoInt = Integer.parseInt(codigo);
+		} catch (ParseException e) {
+			return "CÓDIGO INVÁLIDO!";
+		}
+
+		try {
+			cMaquinas.atualizarMaquina(codigoInt, dado, novoValor);
+			status = "MÁQUINA ATUALIZADA COM SUCESSO!";
+		} catch (RuntimeException e) {
 			status = e.getMessage();
 		}
 		return status;
