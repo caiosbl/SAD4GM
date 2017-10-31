@@ -126,7 +126,7 @@ public class Sistema {
 		}
 	}
 
-	// Funções de Máquinas
+	// Funções de Máquinas (AARB - [ADICIONA ATUALIZA REMOVE BUSCA])
 
 	// 1 - Adicionar Máquina
 	/*
