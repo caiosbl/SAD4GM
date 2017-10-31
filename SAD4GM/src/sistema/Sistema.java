@@ -4,6 +4,7 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 import controllers.ControllerMaquinas;
 import controllers.ControllerUsuarios;
+import maquina.Maquina;
 import usuario.Usuario;
 
 /**
@@ -212,6 +213,28 @@ public class Sistema {
 		}
 
 		return status;
+	}
+
+	// 4 - Buscar uma Máquina
+	/*
+	 */
+
+	private Maquina buscarMaquina(String codigo) {
+		int codigoInt;
+		Maquina maquina;
+		try {
+			codigoInt = Integer.parseInt(codigo);
+		} catch (ParseException e) {
+			throw new RuntimeException("CÓDIGO INVÁLIDO!");
+		}
+
+		try {
+			maquina = cMaquinas.buscaMaquina(codigoInt);
+		} catch (RuntimeException e) {
+			throw new RuntimeException("MÁQUINA INEXISTENTE!");
+		}
+		return maquina;
+
 	}
 
 }
