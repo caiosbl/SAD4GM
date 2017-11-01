@@ -9,6 +9,7 @@ import java.util.Scanner;
  *
  */
 
+import interfaceSistema.enumsOpcoes.OpcoesUsuario;
 import sistema.Sistema;
 
 public class FuncoesInterfaceUsuario {
@@ -23,6 +24,7 @@ public class FuncoesInterfaceUsuario {
 	}
 
 	public static void selectOpcao(String opcao, Sistema sistema) {
+
 		switch (opcao) {
 		case "1":
 			cadastraUsuario(sistema);
@@ -40,7 +42,6 @@ public class FuncoesInterfaceUsuario {
 			break;
 		default:
 			System.out.println(System.lineSeparator() + "OPÇÃO INVÁLIDA " + System.lineSeparator());
-			break;
 		}
 	}
 
