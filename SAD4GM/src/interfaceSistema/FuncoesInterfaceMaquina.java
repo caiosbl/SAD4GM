@@ -28,6 +28,8 @@ public class FuncoesInterfaceMaquina {
 		case "4":
 			buscaMaquina(sistema);
 			break;
+		case "5":
+			break;
 		default:
 			System.out.println(System.lineSeparator() + "OPÇÃO INVÁLIDA " + System.lineSeparator());
 			break;

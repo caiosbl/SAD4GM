@@ -28,7 +28,7 @@ public class Main {
 			selectOpcao(sistema, entrada);
 
 		} while (!entrada.equals("3"));
-		
+
 		sc.close();
 	}
 
@@ -50,6 +50,14 @@ public class Main {
 			FuncoesInterfaceUsuario.selectOpcao(opcaoSecundaria, sistema);
 
 			break;
+
+		case "2":
+			sc = new Scanner(System.in);
+			System.out.println(FuncoesInterfaceMaquina.opcoes());
+			System.out.print("OPÇÃO: ");
+			opcaoSecundaria = sc.nextLine();
+			FuncoesInterfaceMaquina.selectOpcao(opcaoSecundaria, sistema);
+
 		case "3":
 			break;
 
@@ -58,6 +66,5 @@ public class Main {
 			break;
 		}
 	}
-	
 
 }
