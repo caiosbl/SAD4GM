@@ -46,6 +46,9 @@ public class Sistema {
 		} catch (IllegalArgumentException e) {
 			status = e.getMessage();
 		}
+		catch(RuntimeException e) {
+			status = e.getMessage();
+		}
 		return status;
 	}
 
@@ -160,6 +163,9 @@ public class Sistema {
 		} catch (NullPointerException e) {
 			status = e.getMessage();
 		} catch (IllegalArgumentException e) {
+			status = e.getMessage();
+		}
+		catch(RuntimeException e) {
 			status = e.getMessage();
 		}
 		return status;
