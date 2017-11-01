@@ -36,6 +36,8 @@ public class FuncoesInterfaceUsuario {
 		case "4":
 			buscaUsuario(sistema);
 			break;
+		case "5":
+			break;
 		default:
 			System.out.println(System.lineSeparator() + "OPÇÃO INVÁLIDA " + System.lineSeparator());
 			break;
