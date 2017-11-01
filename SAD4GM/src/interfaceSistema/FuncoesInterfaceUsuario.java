@@ -9,7 +9,6 @@ import java.util.Scanner;
  *
  */
 
-import interfaceSistema.enumsOpcoes.OpcoesUsuario;
 import sistema.Sistema;
 
 public class FuncoesInterfaceUsuario {
@@ -42,6 +41,7 @@ public class FuncoesInterfaceUsuario {
 			break;
 		default:
 			System.out.println(System.lineSeparator() + "OPÇÃO INVÁLIDA " + System.lineSeparator());
+			break;
 		}
 	}
 
