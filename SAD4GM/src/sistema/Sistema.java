@@ -142,7 +142,7 @@ public class Sistema {
 
 		try {
 			codigoInt = Integer.parseInt(codigo);
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			return "CÓDIGO INVÁLIDO!";
 		}
 

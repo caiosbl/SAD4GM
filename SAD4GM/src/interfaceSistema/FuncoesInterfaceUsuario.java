@@ -23,6 +23,7 @@ public class FuncoesInterfaceUsuario {
 	}
 
 	public static void selectOpcao(String opcao, Sistema sistema) {
+
 		switch (opcao) {
 		case "1":
 			cadastraUsuario(sistema);
