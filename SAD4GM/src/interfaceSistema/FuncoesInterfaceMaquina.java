@@ -9,7 +9,7 @@ public class FuncoesInterfaceMaquina {
 		String opcoes = "SELECIONE UMA OPÇÃO: " + System.lineSeparator() + "1 - CADASTRAR UMA MÁQUINA"
 				+ System.lineSeparator() + "2 - ATUALIZAR UMA MÁQUINA" + System.lineSeparator()
 				+ "3 - REMOVER UMA MÁQUINA" + System.lineSeparator() + "4 - BUSCAR UMA MÁQUINA" + System.lineSeparator()
-				+ "5 - SAIR" + System.lineSeparator();
+				+ "5 - LISTAR MÁQUINAS" + System.lineSeparator() + "6 - SAIR" + System.lineSeparator();
 
 		return opcoes;
 	}
@@ -29,6 +29,9 @@ public class FuncoesInterfaceMaquina {
 			buscaMaquina(sistema);
 			break;
 		case "5":
+			System.out.println(sistema.listarMaquinas());
+			break;
+		case "6":
 			break;
 		default:
 			System.out.println(System.lineSeparator() + "OPÇÃO INVÁLIDA " + System.lineSeparator());

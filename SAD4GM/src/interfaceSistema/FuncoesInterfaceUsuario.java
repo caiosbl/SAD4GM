@@ -17,7 +17,7 @@ public class FuncoesInterfaceUsuario {
 		String opcoes = "SELECIONE UMA OPÇÃO: " + System.lineSeparator() + "1 - CADASTRAR UM USUÁRIO"
 				+ System.lineSeparator() + "2 - ATUALIZAR UM USUÁRIO" + System.lineSeparator()
 				+ "3 - REMOVER UM USUÁRIO" + System.lineSeparator() + "4 - BUSCAR UM USUÁRIO" + System.lineSeparator()
-				+ "5 - SAIR" + System.lineSeparator();
+				+ "5 - LISTAR USUÁRIOS" + System.lineSeparator() + "6 - SAIR" + System.lineSeparator();
 
 		return opcoes;
 	}
@@ -38,6 +38,9 @@ public class FuncoesInterfaceUsuario {
 			buscaUsuario(sistema);
 			break;
 		case "5":
+			System.out.println(sistema.listarUsuarios());
+			break;
+		case "6":
 			break;
 		default:
 			System.out.println(System.lineSeparator() + "OPÇÃO INVÁLIDA " + System.lineSeparator());

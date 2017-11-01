@@ -86,4 +86,18 @@ public class ControllerMaquinas {
 		return mapaDeMaquinas.get(codigo);
 	}
 
+	public String listaMaquinas() {
+		String quebraLinha = System.lineSeparator();
+		String listagem = "MÁQUINAS CADASTRADAS: " + quebraLinha;
+
+		for (Integer chave : mapaDeMaquinas.keySet()) {
+			listagem += quebraLinha;
+			listagem += mapaDeMaquinas.get(chave).toString();
+			listagem += quebraLinha;
+		}
+
+		return listagem;
+
+	}
+
 }
