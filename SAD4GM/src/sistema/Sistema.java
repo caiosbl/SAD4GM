@@ -24,7 +24,7 @@ public class Sistema {
 		this.cMaquinas = new ControllerMaquinas();
 	}
 
-	// Funções de Usuário (CARB - [CADASTRAR ATUALIZAR REMOVER BUSCAR])
+	// Funções de Usuário (CARBL - [CADASTRAR ATUALIZAR REMOVER BUSCAR LISTAR])
 
 	// 1 - Cadastrar um Usuário
 
@@ -124,6 +124,14 @@ public class Sistema {
 		} catch (RuntimeException e) {
 			return e.getMessage();
 		}
+	}
+
+	// 5 - Listar Usuários
+	/*
+	 * Lista os usuários cadastrados.
+	 */
+	public String listarUsuarios() {
+		return cUsuarios.listarUsuarios();
 	}
 
 	// Funções de Máquinas (AARB - [ADICIONA ATUALIZA REMOVE BUSCA])
@@ -248,6 +256,14 @@ public class Sistema {
 			return e.getMessage();
 		}
 		return dados;
+	}
+
+	// - 5 Listar Máquinas
+	/*
+	 * Lista as máquinas cadastradas.
+	 */
+	public String listarMaquinas() {
+		return cMaquinas.listaMaquinas();
 	}
 
 }

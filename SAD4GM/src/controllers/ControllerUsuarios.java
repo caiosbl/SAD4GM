@@ -28,7 +28,7 @@ public class ControllerUsuarios {
 			throw new RuntimeErrorException(null, "USUÁRIO NÃO CADASTRADO!");
 		}
 	}
-	
+
 	private void verificaId(String id) {
 		if (mapaUsuarios.containsKey(id)) {
 			throw new RuntimeErrorException(null, "USUÁRIO JÁ CADASTRADO!");
@@ -95,6 +95,19 @@ public class ControllerUsuarios {
 	public void removerUsuario(String id) {
 		validaId(id);
 		mapaUsuarios.remove(id);
+	}
+
+	public String listarUsuarios() {
+		String quebraLinha = System.lineSeparator();
+		String listagem = "USUÁRIOS CADASTRADOS: " + quebraLinha;
+
+		for (String chave : mapaUsuarios.keySet()) {
+			listagem += quebraLinha;
+			listagem += mapaUsuarios.get(chave).toString();
+			listagem += quebraLinha;
+		}
+
+		return listagem;
 	}
 
 }
