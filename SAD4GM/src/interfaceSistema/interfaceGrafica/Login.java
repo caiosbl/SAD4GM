@@ -67,7 +67,7 @@ public class Login extends JFrame {
 		mntmNewMenuItem.setBounds(59, 358, 231, 28);
 		contentPane.add(mntmNewMenuItem);
 		
-		menuItem = new JMenuItem("Cadastrar Usuário");
+		menuItem = new JMenuItem("Cadastrar Usu\u00E1rio");
 		menuItem.setFont(new Font("Verdana", Font.BOLD, 16));
 		menuItem.setBackground(new Color(0, 0, 102));
 		menuItem.setArmed(true);
@@ -89,7 +89,7 @@ public class Login extends JFrame {
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		JLabel label = new JLabel("Usuário:");
+		JLabel label = new JLabel("Usu\u00E1rio");
 		label.setFont(new Font("Verdana", Font.BOLD, 12));
 		label.setBounds(67, 74, 66, 25);
 		panel.add(label);
