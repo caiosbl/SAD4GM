@@ -57,6 +57,7 @@ public class Main {
 			System.out.print("OPÇÃO: ");
 			opcaoSecundaria = sc.nextLine();
 			FuncoesInterfaceMaquina.selectOpcao(opcaoSecundaria, sistema);
+			break;
 
 		case "3":
 			break;
