@@ -1,1 +1,5 @@
-create SCHEMA usuario
+update table usuario.tabela(
+NOME VARCHAR(10) NOT NULL,
+ID VARCHAR(10) NOT NULL,
+AUDITOR VARCHAR(10) NOT NULL
+);
