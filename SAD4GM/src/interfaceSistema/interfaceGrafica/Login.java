@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JMenuBar;
+import javax.swing.JPasswordField;
 
 public class Login extends JFrame {
 
@@ -21,7 +22,7 @@ public class Login extends JFrame {
 	private JMenuItem mntmNewMenuItem;
 	private JMenuItem menuItem;
 	private JTextField textField;
-	private JTextField textField_1;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -94,9 +95,8 @@ public class Login extends JFrame {
 		label.setBounds(67, 74, 66, 25);
 		panel.add(label);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(134, 108, 213, 20);
-		panel.add(textField_1);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(134, 108, 213, 20);
+		panel.add(passwordField);
 	}
 }
