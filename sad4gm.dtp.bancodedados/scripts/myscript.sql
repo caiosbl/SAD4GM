@@ -1,2 +1,2 @@
 alter table usuario.tabela
-add column senha INTEGER(8);
+add column senha INTEGER ;
