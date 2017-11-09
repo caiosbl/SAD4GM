@@ -1,5 +1,2 @@
-CREATE TABLE MYKILLERAPP.MyTabelle (
-         NOME VARCHAR(20) NOT NULL,
-         ID VARCHAR(20) NOT NULL,
-         AUDITOR VARCHAR(20) NOT NULL,
-    );
+alter table usuario.tabela
+add column senha INTEGER ;
