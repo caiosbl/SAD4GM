@@ -17,46 +17,51 @@ import java.sql.*;
 
 public class ConectaBancoDeDados {
 
-	public static void main(String[] args) {
-		Connection conn = null;
+	private boolean isConnected = false;
+	private Connection conn = null;
 
+	public boolean conectaDataBase() {
+		boolean status = false;
 		try {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 
 			conn = DriverManager
 					.getConnection("jdbc:derby:Sad4gmDatabase;create=true;user=caiosanches;password=mengohexa");
-			System.out.println("Conectado com sucesso...");
+			status = true;
+			isConnected = true;
 
 		} catch (ClassNotFoundException | SQLException Err) {
-			System.out.println("Erro ao tentar conectar em Bando de dados localdb... " + Err);
+			status = false;
 		}
-
-		// PROXIMO PASSO COM ERRO OU NÃO..
 
 		try {
 			if (conn == null) {
-				System.out.println("Criando bando de dados local...");
 				conn = DriverManager.getConnection("jdbc:derby:.\\Sad4gmDatabase;create=true;");
+				status = true;
+				isConnected = true;
 			}
 
-			Statement sql = conn.createStatement();
-
-			System.out.println("Banco de dados LocalDB criado com sucesso...");
-
-			/*
-			 * DAKI PRA BAIXO ANTES DE close() PODE MANIPULAR TODO O DERBY EM SQL
-			 * sql.executeUpdate("CREATE/INSERT/DELETE/ETC..."); PARA EXECUTAR COMANDOS QUE
-			 * ATUALIZEM A TABELA sql.executeQuery("SELECT..."); PARA OBTER DADOS DA TABELA
-			 * E IMPRIMIR A MATRIZ EM UM LOOPING
-			 */
-			
 			createDB(conn);
 			populateDB(conn);
 
 			conn.close();
 
 		} catch (Exception Err) {
-			System.out.println("Ocorreu um erro. " + Err);
+			status = false;
+		}
+		return status;
+	}
+
+	public boolean desconectaDataBase() throws SQLException {
+		if (!isConnected) {
+			return false;
+		}
+		try {
+			conn.close();
+			isConnected = false;
+			return true;
+		} catch (Exception e) {
+			return false;
 		}
 	}
 
