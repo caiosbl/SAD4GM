@@ -15,8 +15,7 @@ import org.apache.derby.tools.ij;
 
 import java.sql.*;
 
-//by Luiz R.
-public class Teste {
+public class ConectaBancoDeDados {
 
 	public static void main(String[] args) {
 		Connection conn = null;
