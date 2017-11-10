@@ -1,1 +1,1 @@
-INSERT INTO SAD4GM.usuario (nome,id,senha,auditor) VALUES ('Caio','Identificador',11818,'Lira');
+INSERT INTO sad4gm.usuario (nome,id,senha,auditor) VALUES ('Caio','Identificador',11818,'Lira');

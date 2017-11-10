@@ -1,87 +1,113 @@
 package bancoDeDados;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.ResultSetMetaData;
+import java.util.ArrayList;
 
+import org.apache.derby.tools.ij;
+
+import java.sql.*;
+
+//by Luiz R.
 public class Teste {
 
-	private static String dbURL = "jdbc:derby:myDB;create=true;user=sad4gm;password=mengohexa";
-	private static String tableName = "usuario";
-	// jdbc Connection
-	private static Connection conn = null;
-	private static Statement stmt = null;
-
 	public static void main(String[] args) {
-		createConnection();
-		insertUsuario("CAio", "Algum", 11, "Lira");;
-		selectRestaurants();
-		shutdown();
-	}
+		Connection conn = null;
 
-	private static void createConnection() {
 		try {
-			Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
-			// Get a connection
-			conn = DriverManager.getConnection(dbURL);
-		} catch (Exception except) {
-			except.printStackTrace();
+			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+
+			conn = DriverManager
+					.getConnection("jdbc:derby:Sad4gmDatabase;create=true;user=caiosanches;password=mengohexa");
+			System.out.println("Conectado com sucesso...");
+
+		} catch (ClassNotFoundException | SQLException Err) {
+			System.out.println("Erro ao tentar conectar em Bando de dados localdb... " + Err);
+		}
+
+		// PROXIMO PASSO COM ERRO OU NÃO..
+
+		try {
+			if (conn == null) {
+				System.out.println("Criando bando de dados local...");
+				conn = DriverManager.getConnection("jdbc:derby:.\\Sad4gmDatabase;create=true;");
+			}
+
+			Statement sql = conn.createStatement();
+
+			System.out.println("Banco de dados LocalDB criado com sucesso...");
+
+			/*
+			 * DAKI PRA BAIXO ANTES DE close() PODE MANIPULAR TODO O DERBY EM SQL
+			 * sql.executeUpdate("CREATE/INSERT/DELETE/ETC..."); PARA EXECUTAR COMANDOS QUE
+			 * ATUALIZEM A TABELA sql.executeQuery("SELECT..."); PARA OBTER DADOS DA TABELA
+			 * E IMPRIMIR A MATRIZ EM UM LOOPING
+			 */
+			
+			createDB(conn);
+			populateDB(conn);
+
+			conn.close();
+
+		} catch (Exception Err) {
+			System.out.println("Ocorreu um erro. " + Err);
 		}
 	}
 
-	private static void insertUsuario(String nome, String id, int senha, String auditor) {
+	private static boolean createDB(Connection conn) {
+		FileInputStream fileStream = null;
 		try {
-			stmt = conn.createStatement();
-			stmt.execute("insert into " + tableName + " values (" + "'" +  nome  + "'"+ "','" + id + "','" + senha +  "'," + auditor + ")");
-			stmt.close();
-		} catch (SQLException sqlExcept) {
-			sqlExcept.printStackTrace();
+			fileStream = new FileInputStream("./scripts/create.sql");
+			int result = ij.runScript(conn, fileStream, "UTF-8", System.out, "UTF-8");
+			System.out.println("Result code is: " + result);
+			if (result == 1) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (FileNotFoundException e) {
+			return false;
+		} catch (UnsupportedEncodingException e) {
+			return false;
+		} finally {
+			if (fileStream != null) {
+				try {
+					fileStream.close();
+				} catch (IOException e) {
+				}
+			}
 		}
 	}
 
-	private static void selectRestaurants() {
+	private static boolean populateDB(Connection conn) {
+		FileInputStream fileStream = null;
 		try {
-			stmt = conn.createStatement();
-			ResultSet results = stmt.executeQuery("select * from " + tableName);
-			ResultSetMetaData rsmd = results.getMetaData();
-			int numberCols = rsmd.getColumnCount();
-			for (int i = 1; i <= numberCols; i++) {
-				// print Column Names
-				System.out.print(rsmd.getColumnLabel(i) + "\t\t");
+			fileStream = new FileInputStream("./scripts/populate.sql");
+			int result = ij.runScript(conn, fileStream, "UTF-8", System.out, "UTF-8");
+			System.out.println("Result code is: " + result);
+			if (result == 1) {
+				return true;
+			} else {
+				return false;
 			}
-
-			System.out.println("\n-------------------------------------------------");
-
-			while (results.next()) {
-				String nome = results.getString(1);
-				String id = results.getString(2);
-				int senha = results.getInt(3);
-				String auditor = results.getString(4);
-				System.out.println(nome + "\t\t" + id + "\t\t" + senha+ "\t\t" + auditor);
+		} catch (FileNotFoundException e) {
+			return false;
+		} catch (UnsupportedEncodingException e) {
+			return false;
+		} finally {
+			if (fileStream != null) {
+				try {
+					fileStream.close();
+				} catch (IOException e) {
+				}
 			}
-			results.close();
-			stmt.close();
-		} catch (SQLException sqlExcept) {
-			sqlExcept.printStackTrace();
 		}
 	}
-
-	private static void shutdown() {
-		try {
-			if (stmt != null) {
-				stmt.close();
-			}
-			if (conn != null) {
-				DriverManager.getConnection(dbURL + ";shutdown=true");
-				conn.close();
-			}
-		} catch (SQLException sqlExcept) {
-
-		}
-
-	}
-
 }
