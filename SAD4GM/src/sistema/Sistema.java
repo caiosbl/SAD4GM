@@ -1,7 +1,10 @@
 package sistema;
 
+import java.sql.SQLException;
+
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
+import bancoDeDados.DataBaseTools;
 import controllers.ControllerMaquinas;
 import controllers.ControllerUsuarios;
 import maquina.Maquina;
@@ -18,10 +21,17 @@ public class Sistema {
 
 	private ControllerUsuarios cUsuarios;
 	private ControllerMaquinas cMaquinas;
+	private DataBaseTools dTools;
 
-	public Sistema() {
+	public Sistema() throws SQLException {
+
 		this.cUsuarios = new ControllerUsuarios();
 		this.cMaquinas = new ControllerMaquinas();
+		this.dTools = new DataBaseTools();
+
+		dTools.criaConexao();
+		dTools.fechaConexao();
+	
 	}
 
 	// Funções de Usuário (CARBL - [CADASTRAR ATUALIZAR REMOVER BUSCAR LISTAR])
@@ -39,14 +49,13 @@ public class Sistema {
 
 		String status;
 		try {
-			cUsuarios.adicionaUsuario(nome, id, auditor);
+			dTools.inserirUsuario(nome, id, auditor);
 			status = "USUÁRIO CADASTRADO COM SUCESSO!";
 		} catch (NullPointerException e) {
 			status = e.getMessage();
 		} catch (IllegalArgumentException e) {
 			status = e.getMessage();
-		}
-		catch(RuntimeException e) {
+		} catch (RuntimeException e) {
 			status = e.getMessage();
 		}
 		return status;
@@ -164,8 +173,7 @@ public class Sistema {
 			status = e.getMessage();
 		} catch (IllegalArgumentException e) {
 			status = e.getMessage();
-		}
-		catch(RuntimeException e) {
+		} catch (RuntimeException e) {
 			status = e.getMessage();
 		}
 		return status;

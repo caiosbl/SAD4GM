@@ -47,12 +47,23 @@ public class Entrada extends JFrame {
 	 * Create the frame.
 	 */
 	public Entrada() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JButton btnNovoUsurio = new JButton("Novo Usuário");
+		btnNovoUsurio.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNovoUsurio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrame myFrame = new JFrame();
+			}
+		});
+		btnNovoUsurio.setBounds(303, 253, 112, 35);
+		contentPane.add(btnNovoUsurio);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(221, 216, 194, 20);
@@ -91,15 +102,5 @@ public class Entrada extends JFrame {
 		btnEntrar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnEntrar.setBounds(143, 253, 112, 35);
 		contentPane.add(btnEntrar);
-		
-		JButton btnNovoUsurio = new JButton("Novo Usuário");
-		btnNovoUsurio.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNovoUsurio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JFrame myFrama = new JFrame();
-			}
-		});
-		btnNovoUsurio.setBounds(303, 253, 112, 35);
-		contentPane.add(btnNovoUsurio);
 	}
 }
