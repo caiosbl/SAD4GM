@@ -57,7 +57,7 @@ public class DataBaseTools {
 		}
 	}
 
-	public void inserirUsuario(String nome, String id, String auditor) {
+	public void inserirUsuario(String nome, String id,int senha, String auditor) {
 		criaConexao();
 		try {
 			
