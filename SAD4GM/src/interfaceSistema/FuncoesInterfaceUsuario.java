@@ -55,11 +55,13 @@ public class FuncoesInterfaceUsuario {
 		String nome = sc.nextLine();
 		System.out.print("ID: ");
 		String id = sc.nextLine();
+		System.out.print("Senha: ");
+		String senha = sc.nextLine();
 		System.out.print("Auditor: ");
 		String auditor = sc.nextLine();
 
 		System.out
-				.println(System.lineSeparator() + sistema.cadastrarUsuario(nome, id, auditor) + System.lineSeparator());
+				.println(System.lineSeparator() + sistema.cadastrarUsuario(nome, id,senha, auditor) + System.lineSeparator());
 
 	}
 
