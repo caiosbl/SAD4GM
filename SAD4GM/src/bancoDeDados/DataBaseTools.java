@@ -1,5 +1,6 @@
 package bancoDeDados;
 
+import java.beans.Statement;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class DataBaseTools {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static boolean criaTabelas(Connection conn) {
 		FileInputStream fileStream = null;
 		try {
@@ -59,19 +60,17 @@ public class DataBaseTools {
 	public void inserirUsuario(String nome, String id, String auditor) {
 		criaConexao();
 		try {
-			PreparedStatement ps = con.prepareStatement("INSERT INTO sad4gm.usuario (nome,id,senha,auditor) VALUES (" + nome +"," + id +","+auditor+")");
-
-			int result = ps.executeUpdate();
-
-			if (result > 0) {
-				System.out.println("Data Inserted");
-			} else {
-				System.out.println("Something happened");
-			}
+			
+			final String INSERIR = "INSERT INTO sad4gm.usuario (nome, id, senha,auditor) VALUES (?,?,?,?)";
+			PreparedStatement stmt = con.prepareStatement(INSERIR);
+			stmt.setString(1, nome);
+			stmt.setString(2, id);
+			stmt.setInt(3, 000);
+			stmt.setString(4, auditor);
+			stmt.execute();
+		
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			fechaConexao();
 		}
 	}
 
