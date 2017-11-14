@@ -30,8 +30,7 @@ public class Sistema {
 		this.dTools = new DataBaseTools();
 
 		dTools.criaConexao();
-		
-	
+
 	}
 
 	// Funções de Usuário (CARBL - [CADASTRAR ATUALIZAR REMOVER BUSCAR LISTAR])
@@ -45,11 +44,18 @@ public class Sistema {
 	 * dado inválido.
 	 */
 
-	public String cadastrarUsuario(String nome, String id, String auditor) {
+	public String cadastrarUsuario(String nome, String id, String senha, String auditor) {
 
 		String status;
+		int senhaInt;
+
 		try {
-			dTools.inserirUsuario(nome, id, auditor);
+			senhaInt = Integer.parseInt(senha);
+		} catch (Exception e) {
+			return "SENHA INVÁLIDA!";
+		}
+		try {
+			dTools.inserirUsuario(nome, id, senhaInt, auditor);
 			status = "USUÁRIO CADASTRADO COM SUCESSO!";
 		} catch (NullPointerException e) {
 			status = e.getMessage();
@@ -279,7 +285,7 @@ public class Sistema {
 	public String listarMaquinas() {
 		return cMaquinas.listaMaquinas();
 	}
-	
+
 	public void fechaConexao() {
 		dTools.fechaConexao();
 	}

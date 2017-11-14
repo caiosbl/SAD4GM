@@ -19,7 +19,7 @@ public class DataBaseTools {
 	public void criaConexao() {
 		try {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-			con = DriverManager.getConnection("jdbc:derby:Sad4gmDatabase");
+			con = DriverManager.getConnection("jdbc:derby:Sad4gmDatabase; create = true");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,7 +57,7 @@ public class DataBaseTools {
 		}
 	}
 
-	public void inserirUsuario(String nome, String id, String auditor) {
+	public void inserirUsuario(String nome, String id,int senha, String auditor) {
 		criaConexao();
 		try {
 			
@@ -65,7 +65,7 @@ public class DataBaseTools {
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
 			stmt.setString(1, nome);
 			stmt.setString(2, id);
-			stmt.setInt(3, 000);
+			stmt.setInt(3, senha);
 			stmt.setString(4, auditor);
 			stmt.execute();
 		
