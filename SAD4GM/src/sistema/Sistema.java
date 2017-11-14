@@ -30,7 +30,7 @@ public class Sistema {
 		this.dTools = new DataBaseTools();
 
 		dTools.criaConexao();
-		dTools.fechaConexao();
+		
 	
 	}
 
@@ -278,6 +278,10 @@ public class Sistema {
 	 */
 	public String listarMaquinas() {
 		return cMaquinas.listaMaquinas();
+	}
+	
+	public void fechaConexao() {
+		dTools.fechaConexao();
 	}
 
 }
