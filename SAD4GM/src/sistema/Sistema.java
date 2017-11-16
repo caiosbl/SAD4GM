@@ -38,8 +38,7 @@ public class Sistema {
 
 	public String atualizarUsuario(String id, String dado, String novoValor) {
 		try {
-			cUsuarios.atualizaUsuario(id, dado, novoValor);
-			return "USUÁRIO ATUALIZADO COM SUCESSO!";
+			return cUsuarios.atualizaNome(id,novoValor);
 		} catch (IllegalArgumentException e) {
 			return e.getMessage();
 		}

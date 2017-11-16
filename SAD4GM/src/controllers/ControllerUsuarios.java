@@ -61,7 +61,7 @@ public class ControllerUsuarios {
 
 	}
 
-	public String atualizaNomeUsuario(String id, String nome) {
+	public String atualizaNome(String id, String nome) {
 		String status;
 		try {
 			ValidaUsuario.validaNome(nome);
@@ -128,7 +128,6 @@ public class ControllerUsuarios {
 	}
 
 	public void removerUsuario(String id) {
-		validaId(id);
 		mapaUsuarios.remove(id);
 	}
 
