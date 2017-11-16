@@ -28,12 +28,6 @@ public class ControllerMaquinas {
 
 	}
 
-	private void validaCodigo(int codigo) {
-		if (!mapaDeMaquinas.containsKey(codigo)) {
-			throw new RuntimeErrorException(null, "MÁQUINA NÃO CADASTRADA!");
-		}
-	}
-
 	public String adicionaMaquina(String nome, String codigo, String descricao) {
 		int codigoInt;
 		String status;
@@ -63,7 +57,7 @@ public class ControllerMaquinas {
 	}
 
 	public void removerMaquina(int codigo) {
-		validaCodigo(codigo);
+
 		mapaDeMaquinas.remove(codigo);
 	}
 
@@ -104,7 +98,6 @@ public class ControllerMaquinas {
 	}
 
 	public Maquina buscaMaquina(int codigo) {
-		validaCodigo(codigo);
 		return mapaDeMaquinas.get(codigo);
 	}
 

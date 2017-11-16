@@ -100,15 +100,6 @@ public class Sistema {
 		return cUsuarios.listarUsuarios();
 	}
 
-	// Funções de Máquinas (AARB - [ADICIONA ATUALIZA REMOVE BUSCA])
-
-	// 1 - Adicionar Máquina
-	/*
-	 * Tenta cadastrar uma Máquina. A Operação terá sucesso se todos os dados forem
-	 * Válidos. Caso algum dado seja inválido, a função captura a exceção, a qual
-	 * foi lançada na classe ValidaMaquina e retorna uma mensagem informando qual o
-	 * dado inválido.
-	 */
 
 	public String adicionaMaquina(String nome, String codigo, String descricao) {
 		return cMaquinas.adicionaMaquina(nome, codigo, descricao);

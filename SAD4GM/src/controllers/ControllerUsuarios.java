@@ -27,18 +27,6 @@ public class ControllerUsuarios {
 		this.dTools = dTools;
 	}
 
-	private void validaId(String id) {
-		if (!mapaUsuarios.containsKey(id)) {
-			throw new RuntimeErrorException(null, "USUÁRIO NÃO CADASTRADO!");
-		}
-	}
-
-	private void verificaId(String id) {
-		if (mapaUsuarios.containsKey(id)) {
-			throw new RuntimeErrorException(null, "USUÁRIO JÁ CADASTRADO!");
-		}
-	}
-
 	public String adicionaUsuario(String nome, String id, String senha, String auditor) {
 
 		int senhaInt;
@@ -69,13 +57,33 @@ public class ControllerUsuarios {
 	}
 
 	public Usuario buscaUsuario(String id) {
-		validaId(id);
 		return mapaUsuarios.get(id);
 
 	}
 
+	public String atualizaNomeUsuario(String id, String nome) {
+		String status;
+		try {
+			ValidaUsuario.validaNome(nome);
+		} catch (IllegalArgumentException e) {
+			status = "Nome Inválido!";
+			return status;
+		} catch (NullPointerException e) {
+			status = "Nome nulo Inválido!";
+			return status;
+		}
+
+		try {
+			dTools.atualizarUsuario(nome, id);
+			status = "Nome Atualizado com Sucesso!";
+		} catch (Exception e) {
+			status = "Falha ao Atualizar Nome!";
+		}
+
+		return status;
+	}
+
 	public void atualizaUsuario(String id, String dado, String novoValor) {
-		validaId(id);
 
 		Usuario usuario = mapaUsuarios.get(id);
 

@@ -72,6 +72,20 @@ public class DataBaseTools {
 			e.printStackTrace();
 		}
 	}
+	
+	public void atualizarUsuario(String nome, String id) {
+		try {
+
+			final String INSERIR = "UPDATE  sad4gm.usuario SET nome = ? WHERE id = ?";
+			PreparedStatement stmt = con.prepareStatement(INSERIR);
+			stmt.setString(1, nome);
+			stmt.setString(2, id);
+			stmt.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void inserirMaquina(String nome, int codigo, String descricao) {
 		criaConexao();
