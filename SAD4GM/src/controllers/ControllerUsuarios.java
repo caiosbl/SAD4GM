@@ -13,14 +13,18 @@ import java.util.Map;
 
 import javax.management.RuntimeErrorException;
 
+import bancoDeDados.DataBaseTools;
 import usuario.Usuario;
 import usuario.enums.AtributosUsuario;
+import validadorInformacoes.ValidaUsuario;
 
 public class ControllerUsuarios {
 	private Map<String, Usuario> mapaUsuarios;
+	private DataBaseTools dTools;
 
-	public ControllerUsuarios() {
+	public ControllerUsuarios(DataBaseTools dTools) {
 		this.mapaUsuarios = new HashMap<>();
+		this.dTools = dTools;
 	}
 
 	private void validaId(String id) {
@@ -35,10 +39,33 @@ public class ControllerUsuarios {
 		}
 	}
 
-	public void adicionaUsuario(String nome, String id, String auditor) {
-		verificaId(id);
-		Usuario usuario = new Usuario(nome, id, auditor);
-		mapaUsuarios.put(usuario.getId(), usuario);
+	public String adicionaUsuario(String nome, String id, String senha, String auditor) {
+
+		int senhaInt;
+		String status;
+
+		try {
+			senhaInt = Integer.parseInt(senha);
+		} catch (Exception e) {
+			return "SENHA INVÁLIDA!";
+		}
+		try {
+			ValidaUsuario.validaNome(nome);
+			ValidaUsuario.validaId(id);
+			ValidaUsuario.validaAuditor(auditor);
+			dTools.inserirUsuario(nome, id, senhaInt, auditor);
+			status = "USUÁRIO CADASTRADO COM SUCESSO!";
+		} catch (NullPointerException e) {
+			status = e.getMessage();
+		} catch (IllegalArgumentException e) {
+			status = e.getMessage();
+		} catch (RuntimeException e) {
+			status = e.getMessage();
+		} catch (Exception e) {
+			status = e.getMessage();
+		}
+
+		return status;
 	}
 
 	public Usuario buscaUsuario(String id) {

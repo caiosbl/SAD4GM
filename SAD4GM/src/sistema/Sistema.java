@@ -24,69 +24,17 @@ public class Sistema {
 	private DataBaseTools dTools;
 
 	public Sistema() throws SQLException {
-
-		this.cUsuarios = new ControllerUsuarios();
-		this.cMaquinas = new ControllerMaquinas();
 		this.dTools = new DataBaseTools();
+		this.cUsuarios = new ControllerUsuarios(dTools);
+		this.cMaquinas = new ControllerMaquinas(dTools);
 
 		dTools.criaConexao();
 
 	}
 
-	// Funções de Usuário (CARBL - [CADASTRAR ATUALIZAR REMOVER BUSCAR LISTAR])
-
-	// 1 - Cadastrar um Usuário
-
-	/*
-	 * Tenta cadastrar um Usuário. A Operação terá sucesso se todos os dados forem
-	 * Válidos. Caso algum dado seja inválido, a função captura a exceção, a qual
-	 * foi lançada na classe ValidaUsuario e retorna uma mensagem informando qual o
-	 * dado inválido.
-	 */
-
 	public String cadastrarUsuario(String nome, String id, String senha, String auditor) {
-
-		String status;
-		int senhaInt;
-
-		try {
-			senhaInt = Integer.parseInt(senha);
-		} catch (Exception e) {
-			return "SENHA INVÁLIDA!";
-		}
-		try {
-			dTools.inserirUsuario(nome, id, senhaInt, auditor);
-			status = "USUÁRIO CADASTRADO COM SUCESSO!";
-		} catch (NullPointerException e) {
-			status = e.getMessage();
-		} catch (IllegalArgumentException e) {
-			status = e.getMessage();
-		} catch (RuntimeException e) {
-			status = e.getMessage();
-		}
-		return status;
+		return cUsuarios.adicionaUsuario(nome, id, senha, auditor);
 	}
-
-	// 2 - Atualizar um Usuário
-
-	/*
-	 * Tenta atualizar um dado do Usuário. Primeiro verifica através do ID se o
-	 * usuário existe. Caso o usuário não exista, o método retorna um mensagem
-	 * informando que o usuário é inválido, tal mensagem é lançada na classe
-	 * ControllerUsuarios, atráves de uma exceção, e aqui é capturada e retornada.
-	 * 
-	 * Posteriormente verifica se o dado escolhido a ser alterado é válido, caso não
-	 * seja é retornada uma mensagem informando que o dado é inválido. Tal mensagem
-	 * também é lançada através de exceção na classe ControllerUsuarios, e capturada
-	 * aqui e retornada.
-	 * 
-	 * Por fim verifica-se o novo valor dado, caso este seja inválido uma mensagem
-	 * também é retornada informando qual o dado é inválido.
-	 * 
-	 * Caso passe das verificações mencionadas anteriormente, o dado foi atualizado
-	 * com sucesso, e uma mensagem de Sucesso é retornada.
-	 * 
-	 */
 
 	public String atualizarUsuario(String id, String dado, String novoValor) {
 		try {
@@ -163,26 +111,7 @@ public class Sistema {
 	 */
 
 	public String adicionaMaquina(String nome, String codigo, String descricao) {
-		String status;
-		int codigoInt;
-
-		try {
-			codigoInt = Integer.parseInt(codigo);
-		} catch (Exception e) {
-			return "CÓDIGO INVÁLIDO!";
-		}
-
-		try {
-			cMaquinas.adicionaMaquina(nome, codigoInt, descricao);
-			status = "MÁQUINA CADASTRADA COM SUCESSO!";
-		} catch (NullPointerException e) {
-			status = e.getMessage();
-		} catch (IllegalArgumentException e) {
-			status = e.getMessage();
-		} catch (RuntimeException e) {
-			status = e.getMessage();
-		}
-		return status;
+		return cMaquinas.adicionaMaquina(nome, codigo, descricao);
 	}
 
 	// 2 - Atualizar uma Máquina

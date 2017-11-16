@@ -57,10 +57,9 @@ public class DataBaseTools {
 		}
 	}
 
-	public void inserirUsuario(String nome, String id,int senha, String auditor) {
-		criaConexao();
+	public void inserirUsuario(String nome, String id, int senha, String auditor) {
 		try {
-			
+
 			final String INSERIR = "INSERT INTO sad4gm.usuario (nome, id, senha,auditor) VALUES (?,?,?,?)";
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
 			stmt.setString(1, nome);
@@ -68,7 +67,23 @@ public class DataBaseTools {
 			stmt.setInt(3, senha);
 			stmt.setString(4, auditor);
 			stmt.execute();
-		
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void inserirMaquina(String nome, int codigo, String descricao) {
+		criaConexao();
+		try {
+
+			final String INSERIR = "INSERT INTO sad4gm.maquina (nome, codigo,descricao) VALUES (?,?,?)";
+			PreparedStatement stmt = con.prepareStatement(INSERIR);
+			stmt.setString(1, nome);
+			stmt.setInt(2, codigo);
+			stmt.setString(3, descricao);
+			stmt.execute();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
