@@ -13,42 +13,77 @@ import java.util.Map;
 
 import javax.management.RuntimeErrorException;
 
+import bancoDeDados.DataBaseTools;
 import usuario.Usuario;
 import usuario.enums.AtributosUsuario;
+import validadorInformacoes.ValidaUsuario;
 
 public class ControllerUsuarios {
 	private Map<String, Usuario> mapaUsuarios;
+	private DataBaseTools dTools;
 
-	public ControllerUsuarios() {
+	public ControllerUsuarios(DataBaseTools dTools) {
 		this.mapaUsuarios = new HashMap<>();
+		this.dTools = dTools;
 	}
 
-	private void validaId(String id) {
-		if (!mapaUsuarios.containsKey(id)) {
-			throw new RuntimeErrorException(null, "USUÁRIO NÃO CADASTRADO!");
+	public String adicionaUsuario(String nome, String id, String senha, String auditor) {
+
+		int senhaInt;
+		String status;
+
+		try {
+			senhaInt = Integer.parseInt(senha);
+		} catch (Exception e) {
+			return "SENHA INVÁLIDA!";
 		}
-	}
-
-	private void verificaId(String id) {
-		if (mapaUsuarios.containsKey(id)) {
-			throw new RuntimeErrorException(null, "USUÁRIO JÁ CADASTRADO!");
+		try {
+			ValidaUsuario.validaNome(nome);
+			ValidaUsuario.validaId(id);
+			ValidaUsuario.validaAuditor(auditor);
+			dTools.inserirUsuario(nome, id, senhaInt, auditor);
+			status = "USUÁRIO CADASTRADO COM SUCESSO!";
+		} catch (NullPointerException e) {
+			status = e.getMessage();
+		} catch (IllegalArgumentException e) {
+			status = e.getMessage();
+		} catch (RuntimeException e) {
+			status = e.getMessage();
+		} catch (Exception e) {
+			status = e.getMessage();
 		}
-	}
 
-	public void adicionaUsuario(String nome, String id, String auditor) {
-		verificaId(id);
-		Usuario usuario = new Usuario(nome, id, auditor);
-		mapaUsuarios.put(usuario.getId(), usuario);
+		return status;
 	}
 
 	public Usuario buscaUsuario(String id) {
-		validaId(id);
 		return mapaUsuarios.get(id);
 
 	}
 
+	public String atualizaNome(String id, String nome) {
+		String status;
+		try {
+			ValidaUsuario.validaNome(nome);
+		} catch (IllegalArgumentException e) {
+			status = "Nome Inválido!";
+			return status;
+		} catch (NullPointerException e) {
+			status = "Nome nulo Inválido!";
+			return status;
+		}
+
+		try {
+			dTools.atualizarUsuario(nome, id);
+			status = "Nome Atualizado com Sucesso!";
+		} catch (Exception e) {
+			status = "Falha ao Atualizar Nome!";
+		}
+
+		return status;
+	}
+
 	public void atualizaUsuario(String id, String dado, String novoValor) {
-		validaId(id);
 
 		Usuario usuario = mapaUsuarios.get(id);
 
@@ -93,7 +128,6 @@ public class ControllerUsuarios {
 	}
 
 	public void removerUsuario(String id) {
-		validaId(id);
 		mapaUsuarios.remove(id);
 	}
 
