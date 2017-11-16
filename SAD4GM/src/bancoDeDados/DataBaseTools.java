@@ -83,7 +83,7 @@ public class DataBaseTools {
 			stmt.execute();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new NullPointerException();
 		}
 	}
 
