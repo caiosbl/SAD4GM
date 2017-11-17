@@ -29,7 +29,7 @@ public class Sistema {
 		this.cUsuarios = new ControllerUsuarios(dTools);
 		this.cMaquinas = new ControllerMaquinas(dTools);
 		
-		dTools.verUsuario();
+		dTools.getUsuarioInfo();
 
 		
 

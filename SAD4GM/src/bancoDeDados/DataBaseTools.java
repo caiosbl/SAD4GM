@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 import org.apache.derby.tools.ij;
 
 public class DataBaseTools {
@@ -76,18 +78,44 @@ public class DataBaseTools {
 		}
 	}
 
-	public void verUsuario() throws SQLException {
-		PreparedStatement State = con.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE id = 'sdsd'");
+	public String getUsuarioInfo(String id) throws SQLException {
+		
+		if(!hasUsuario(id))
+			throw new RuntimeErrorException(null, "Usuário inexistente!");
+		
+		String infoUsuario = "";
+		
+		
+		PreparedStatement State = con.prepareStatement("SELECT DISTINCT nome,id,auditor FROM sad4gm.usuario WHERE id = 'sdsd'");
 		ResultSet ResSet = State.executeQuery();
 
 		while (ResSet.next()) {
-			String str = ResSet.getString(1);
-			System.out.println(str);
+			infoUsuario += ResSet.getString(1);
+			infoUsuario += ResSet.getString(2);
+			infoUsuario += ResSet.getString(3);
 		}
 
 	}
 
-	public void deletarUsuario(String id) {
+	private boolean hasUsuario(String id) throws SQLException {
+		boolean has;
+		PreparedStatement State = con.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE id = ?");
+		State.setString(1, id);
+		ResultSet ResSet = State.executeQuery();
+
+		if (ResSet.next())
+			has = true;
+		else
+			has = false;
+
+		return has;
+
+	}
+
+	public void deletarUsuario(String id) throws SQLException {
+		if (!hasUsuario(id))
+			throw new RuntimeErrorException(null, "Usuário não cadastrado!");
+
 		try {
 
 			final String INSERIR = "DELETE FROM sad4gm.usuario where id = ?";
@@ -100,7 +128,7 @@ public class DataBaseTools {
 		}
 	}
 
-	public void atualizarUsuario(String nome, String id) {
+	public void atualizarNomeUsuario(String nome, String id) {
 		try {
 
 			final String UPDATE = "UPDATE  sad4gm.usuario SET nome = ? WHERE id = ?";
