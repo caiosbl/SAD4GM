@@ -74,7 +74,7 @@ public class ControllerUsuarios {
 		}
 
 		try {
-			dTools.atualizarUsuario(nome, id);
+			dTools.setNomeUsuario(nome, id);
 			status = "Nome Atualizado com Sucesso!";
 		} catch (Exception e) {
 			status = "Falha ao Atualizar Nome!";

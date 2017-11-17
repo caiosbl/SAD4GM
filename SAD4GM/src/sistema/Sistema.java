@@ -25,10 +25,13 @@ public class Sistema {
 
 	public Sistema() throws SQLException {
 		this.dTools = new DataBaseTools();
+		dTools.criaConexao();
 		this.cUsuarios = new ControllerUsuarios(dTools);
 		this.cMaquinas = new ControllerMaquinas(dTools);
+		
+		dTools.getUsuarioInfo();
 
-		dTools.criaConexao();
+		
 
 	}
 
