@@ -138,7 +138,7 @@ public class DataBaseTools {
 			throw new NullPointerException();
 		}
 	}
-	
+
 	public void setIdUsuario(String id, String novoId) throws SQLException {
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -148,6 +148,23 @@ public class DataBaseTools {
 			final String UPDATE = "UPDATE  sad4gm.usuario SET id = ? WHERE id = ?";
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, novoId);
+			stmt.setString(2, id);
+			stmt.execute();
+
+		} catch (Exception e) {
+			throw new NullPointerException();
+		}
+	}
+
+	public void setAuditorUsuario(String id, String auditor) throws SQLException {
+		if (!hasUsuario(id))
+			throw new RuntimeErrorException(null, "Usuário inexistente!");
+
+		try {
+
+			final String UPDATE = "UPDATE  sad4gm.usuario SET auditor = ? WHERE id = ?";
+			PreparedStatement stmt = con.prepareStatement(UPDATE);
+			stmt.setString(1, auditor);
 			stmt.setString(2, id);
 			stmt.execute();
 
