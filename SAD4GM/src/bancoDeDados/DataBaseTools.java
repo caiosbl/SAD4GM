@@ -87,8 +87,8 @@ public class DataBaseTools {
 
 		try {
 
-			final String INSERIR = "DELETE FROM sad4gm.usuario where id = ?";
-			PreparedStatement stmt = con.prepareStatement(INSERIR);
+			final String DELETE = "DELETE FROM sad4gm.usuario where id = ?";
+			PreparedStatement stmt = con.prepareStatement(DELETE);
 			stmt.setString(1, id);
 			stmt.execute();
 
@@ -188,8 +188,10 @@ public class DataBaseTools {
 
 	}
 
-	public void inserirMaquina(String nome, int codigo, String descricao) {
-		criaConexao();
+	public void inserirMaquina(String nome, int codigo, String descricao) throws SQLException {
+		if (hasMaquina(codigo))
+			throw new RuntimeErrorException(null, "Código já cadastrado!");
+
 		try {
 
 			final String INSERIR = "INSERT INTO sad4gm.maquina (nome, codigo,descricao) VALUES (?,?,?)";
@@ -202,6 +204,36 @@ public class DataBaseTools {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void deletarMaquina(int codigo) throws SQLException {
+		if (!hasMaquina(codigo))
+			throw new RuntimeErrorException(null, "Máquina não cadastrada!");
+
+		try {
+
+			final String DELETE = "DELETE FROM sad4gm.maquina where codigo = ?";
+			PreparedStatement stmt = con.prepareStatement(DELETE);
+			stmt.setInt(1, codigo);
+			stmt.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private boolean hasMaquina(int codigo) throws SQLException {
+		boolean has;
+		PreparedStatement State = con.prepareStatement("SELECT nome FROM sad4gm.maquina WHERE codigo = ?");
+		State.setInt(1, codigo);
+		ResultSet ResSet = State.executeQuery();
+
+		if (ResSet.next())
+			has = true;
+		else
+			has = false;
+
+		return has;
 	}
 
 }
