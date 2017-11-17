@@ -8,7 +8,10 @@ import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.derby.tools.ij;
 
@@ -72,12 +75,36 @@ public class DataBaseTools {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public void verUsuario() throws SQLException {
+		PreparedStatement State = con.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE id = 'sdsd'");
+		ResultSet ResSet = State.executeQuery();
+
+		while (ResSet.next()) {
+			String str = ResSet.getString(1);
+			System.out.println(str);
+		}
+
+	}
+
+	public void deletarUsuario(String id) {
+		try {
+
+			final String INSERIR = "DELETE FROM sad4gm.usuario where id = ?";
+			PreparedStatement stmt = con.prepareStatement(INSERIR);
+			stmt.setString(1, id);
+			stmt.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void atualizarUsuario(String nome, String id) {
 		try {
 
-			final String INSERIR = "UPDATE  sad4gm.usuario SET nome = ? WHERE id = ?";
-			PreparedStatement stmt = con.prepareStatement(INSERIR);
+			final String UPDATE = "UPDATE  sad4gm.usuario SET nome = ? WHERE id = ?";
+			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, nome);
 			stmt.setString(2, id);
 			stmt.execute();
