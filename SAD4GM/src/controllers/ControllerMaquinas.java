@@ -1,14 +1,8 @@
 package controllers;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.management.RuntimeErrorException;
-
 import bancoDeDados.DataBaseTools;
-import maquina.Maquina;
-import maquina.enums.AtributosMaquina;
+
 import validadorInformacoes.ValidaMaquina;
-import validadorInformacoes.ValidaUsuario;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -19,11 +13,9 @@ import validadorInformacoes.ValidaUsuario;
 
 public class ControllerMaquinas {
 
-	private Map<Integer, Maquina> mapaDeMaquinas;
 	private DataBaseTools dTools;
 
 	public ControllerMaquinas(DataBaseTools dTools) {
-		this.mapaDeMaquinas = new HashMap<>();
 		this.dTools = dTools;
 
 	}
@@ -56,63 +48,106 @@ public class ControllerMaquinas {
 		return status;
 	}
 
-	public void removerMaquina(int codigo) {
-
-		mapaDeMaquinas.remove(codigo);
-	}
-
-	public void atualizarMaquina(int codigo, String dado, String novoValor) {
-		Maquina maquina = buscaMaquina(codigo);
-		final AtributosMaquina atributo;
+	public String removerMaquina(String codigo) {
+		String status;
+		int codigoInt;
 
 		try {
-			atributo = AtributosMaquina.valueOf(dado.toUpperCase());
-		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException("DADO A SER ATUALIZADO INVÁLIDO!");
+			codigoInt = Integer.parseInt(codigo);
+		} catch (Exception e) {
+			return "CÓDIGO INVÁLIDO!";
 		}
 
-		switch (atributo) {
-		case NOME:
-			maquina.setNome(novoValor);
-
-			break;
-		case CÓDIGO:
-			Maquina maquinaTemporaria = maquina;
-			int novoCodigo;
-			try {
-				novoCodigo = Integer.parseInt(novoValor);
-			} catch (Exception e) {
-				throw new IllegalArgumentException("NOVO CÓDIGO INVÁLIDO");
-			}
-
-			maquinaTemporaria.setCodigo(novoCodigo);
-			mapaDeMaquinas.remove(codigo);
-			mapaDeMaquinas.put(maquinaTemporaria.getCodigo(), maquinaTemporaria);
-			break;
-
-		case DESCRIÇÃO:
-			maquina.setDescricao(novoValor);
-			break;
-
-		}
-	}
-
-	public Maquina buscaMaquina(int codigo) {
-		return mapaDeMaquinas.get(codigo);
-	}
-
-	public String listaMaquinas() {
-		String quebraLinha = System.lineSeparator();
-		String listagem = "MÁQUINAS CADASTRADAS: " + quebraLinha;
-
-		for (Integer chave : mapaDeMaquinas.keySet()) {
-			listagem += quebraLinha;
-			listagem += mapaDeMaquinas.get(chave).toString();
-			listagem += quebraLinha;
+		try {
+			dTools.deletarMaquina(codigoInt);
+			status = "Máquina removida com sucesso!";
+		} catch (Exception e) {
+			status = e.getMessage();
 		}
 
-		return listagem;
-
+		return status;
 	}
 
+	public String setNomeMaquina(String codigo, String nome) {
+		String status;
+		int codigoInt;
+
+		try {
+			codigoInt = Integer.parseInt(codigo);
+		} catch (Exception e) {
+			return "CÓDIGO INVÁLIDO!";
+		}
+
+		try {
+			ValidaMaquina.validaNome(nome);
+			dTools.setNomeMaquina(codigoInt, nome);
+			status = "Nome atualizado com sucesso!";
+		} catch (Exception e) {
+			status = e.getMessage();
+		}
+
+		return status;
+	}
+
+	public String setCodigoMaquina(String codigo, String novoCodigo) {
+		String status;
+		int codigoInt;
+		int novoCodigoInt;
+
+		try {
+			codigoInt = Integer.parseInt(codigo);
+		} catch (Exception e) {
+			return "CÓDIGO INVÁLIDO!";
+		}
+
+		try {
+			novoCodigoInt = Integer.parseInt(novoCodigo);
+		} catch (Exception e) {
+			return "NOVO CÓDIGO INVÁLIDO!";
+		}
+
+		try {
+			ValidaMaquina.validaCodigo(novoCodigoInt);
+			dTools.setCodigoMaquina(codigoInt, novoCodigoInt);
+			status = "Código atualizado com sucesso!";
+		} catch (Exception e) {
+			status = e.getMessage();
+		}
+
+		return status;
+	}
+
+	public String setDescricaoMaquina(String codigo, String descricao) {
+		String status;
+		int codigoInt;
+
+		try {
+			codigoInt = Integer.parseInt(codigo);
+		} catch (Exception e) {
+			return "CÓDIGO INVÁLIDO!";
+		}
+
+		try {
+			ValidaMaquina.validaDescricao(descricao);
+			dTools.setDescricaoMaquina(codigoInt, descricao);
+			status = "Descrição atualizada com sucesso!";
+		} catch (Exception e) {
+			status = e.getMessage();
+		}
+
+		return status;
+	}
+
+	/*
+	 * 
+	 * public String listaMaquinas() { String quebraLinha = System.lineSeparator();
+	 * String listagem = "MÁQUINAS CADASTRADAS: " + quebraLinha;
+	 * 
+	 * for (Integer chave : mapaDeMaquinas.keySet()) { listagem += quebraLinha;
+	 * listagem += mapaDeMaquinas.get(chave).toString(); listagem += quebraLinha; }
+	 * 
+	 * return listagem;
+	 * 
+	 * }
+	 */
 }

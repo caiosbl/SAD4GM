@@ -25,14 +25,8 @@ public class Sistema {
 
 	public Sistema() throws SQLException {
 		this.dTools = new DataBaseTools();
-		dTools.criaConexao();
 		this.cUsuarios = new ControllerUsuarios(dTools);
 		this.cMaquinas = new ControllerMaquinas(dTools);
-		
-		dTools.getUsuarioInfo();
-
-		
-
 	}
 
 	public String cadastrarUsuario(String nome, String id, String senha, String auditor) {
