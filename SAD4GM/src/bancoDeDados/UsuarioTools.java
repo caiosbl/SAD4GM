@@ -50,36 +50,6 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public String getInfoUsuario(String id) throws SQLException {
-
-		if (!hasUsuario(id))
-			throw new RuntimeErrorException(null, "Usuário inexistente!");
-
-		String infoUsuario = "";
-
-		try {
-			criaConexao();
-			PreparedStatement state = super.con
-					.prepareStatement("SELECT DISTINCT nome,id,auditor FROM sad4gm.usuario WHERE id = ?");
-			state.setString(1, id);
-
-			ResultSet resSet = state.executeQuery();
-
-			while (resSet.next()) {
-				infoUsuario += resSet.getString(1);
-				infoUsuario += resSet.getString(2);
-				infoUsuario += resSet.getString(3);
-			}
-
-			fechaConexao();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return infoUsuario;
-
-	}
-
 	public void setNomeUsuario(String nome, String id) throws SQLException {
 
 		if (!hasUsuario(id))
@@ -96,7 +66,7 @@ public class UsuarioTools extends DataBaseTools {
 			fechaConexao();
 
 		} catch (Exception e) {
-			throw new NullPointerException();
+			e.printStackTrace();
 		}
 
 	}
@@ -117,7 +87,7 @@ public class UsuarioTools extends DataBaseTools {
 			fechaConexao();
 
 		} catch (Exception e) {
-			throw new NullPointerException();
+			e.printStackTrace();
 		}
 
 	}
@@ -138,8 +108,65 @@ public class UsuarioTools extends DataBaseTools {
 			fechaConexao();
 
 		} catch (Exception e) {
-			throw new NullPointerException();
+			e.printStackTrace();
 		}
+
+	}
+
+	public String getInfoUsuario(String id) throws SQLException {
+
+		if (!hasUsuario(id))
+			throw new RuntimeErrorException(null, "Usuário inexistente!");
+
+		String infoUsuario = "";
+		String quebraLinha = System.lineSeparator();
+
+		try {
+			criaConexao();
+			PreparedStatement state = super.con
+					.prepareStatement("SELECT DISTINCT nome,id,auditor FROM sad4gm.usuario WHERE id = ?");
+			state.setString(1, id);
+
+			ResultSet resSet = state.executeQuery();
+
+			while (resSet.next()) {
+				infoUsuario += "Nome: " + resSet.getString(1) + quebraLinha;
+				infoUsuario += "Id: " + resSet.getString(2) + quebraLinha;
+				infoUsuario += "Auditor: " + resSet.getString(3) + quebraLinha;
+			}
+
+			fechaConexao();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return infoUsuario;
+
+	}
+
+	public String listarUsuarios() {
+		String listagem = "";
+		String quebraLinha = System.lineSeparator();
+
+		try {
+			criaConexao();
+			PreparedStatement state = super.con.prepareStatement("SELECT * FROM sad4gm.usuario");
+
+			ResultSet resSet = state.executeQuery();
+
+			while (resSet.next()) {
+				listagem += "Nome: " + resSet.getString(1) + quebraLinha;
+				listagem += "Id: " + resSet.getString(2) + quebraLinha;
+				listagem += "Auditor: " + resSet.getString(3) + quebraLinha;
+				listagem += quebraLinha;
+			}
+
+			fechaConexao();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return listagem;
 
 	}
 

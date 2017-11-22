@@ -52,7 +52,7 @@ public class ControllerUsuarios {
 
 		return status;
 	}
-	
+
 	public String removerUsuario(String id) {
 		String status;
 		try {
@@ -64,9 +64,6 @@ public class ControllerUsuarios {
 
 		return status;
 	}
-	
-	
-
 
 	public String setNome(String id, String nome) {
 		String status;
@@ -89,7 +86,7 @@ public class ControllerUsuarios {
 
 		return status;
 	}
-	
+
 	public String setId(String id, String novoId) {
 		String status;
 		try {
@@ -111,7 +108,7 @@ public class ControllerUsuarios {
 
 		return status;
 	}
-	
+
 	public String setAuditor(String id, String auditor) {
 		String status;
 		try {
@@ -125,7 +122,8 @@ public class ControllerUsuarios {
 		}
 
 		try {
-			uTools.setAuditorUsuario(id, auditor);;
+			uTools.setAuditorUsuario(id, auditor);
+			;
 			status = "Auditor Atualizado com Sucesso!";
 		} catch (Exception e) {
 			status = "Falha ao Atualizar o Auditor!";
@@ -134,8 +132,17 @@ public class ControllerUsuarios {
 		return status;
 	}
 
-	
+	public String getInfoUsuario(String id) {
+		String info;
 
+		try {
+			info = uTools.getInfoUsuario(id);
+		} catch (Exception e) {
+			info = e.getMessage();
+		}
+
+		return info;
+	}
 
 	public String listarUsuarios() {
 		String quebraLinha = System.lineSeparator();

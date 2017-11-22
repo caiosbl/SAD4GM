@@ -137,6 +137,25 @@ public class ControllerMaquinas {
 		return status;
 	}
 
+	public String getInfoMaquina(String codigo) {
+		String info;
+		int codigoInt;
+
+		try {
+			codigoInt = Integer.parseInt(codigo);
+		} catch (Exception e) {
+			return "CÓDIGO INVÁLIDO!";
+		}
+
+		try {
+			info = mTools.getInfoMaquina(codigoInt);
+		} catch (Exception e) {
+			info = e.getMessage();
+		}
+
+		return info;
+	}
+
 	/*
 	 * 
 	 * public String listaMaquinas() { String quebraLinha = System.lineSeparator();

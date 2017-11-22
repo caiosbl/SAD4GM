@@ -23,11 +23,14 @@ public class Sistema {
 
 	private ControllerUsuarios cUsuarios;
 	private ControllerMaquinas cMaquinas;
-	private  UsuarioTools uTools;
+	private UsuarioTools uTools;
 	private MaquinaTools mTools;
 
 	public Sistema() throws SQLException {
-		
+
+		this.uTools = new UsuarioTools();
+		this.mTools = new MaquinaTools();
+
 		this.cUsuarios = new ControllerUsuarios(uTools);
 		this.cMaquinas = new ControllerMaquinas(mTools);
 	}
@@ -38,7 +41,7 @@ public class Sistema {
 
 	public String atualizarUsuario(String id, String dado, String novoValor) {
 		try {
-			return cUsuarios.setNome(id,novoValor);
+			return cUsuarios.setNome(id, novoValor);
 		} catch (IllegalArgumentException e) {
 			return e.getMessage();
 		}
@@ -98,7 +101,6 @@ public class Sistema {
 	public String listarUsuarios() {
 		return cUsuarios.listarUsuarios();
 	}
-
 
 	public String adicionaMaquina(String nome, String codigo, String descricao) {
 		return cMaquinas.adicionaMaquina(nome, codigo, descricao);
@@ -204,7 +206,5 @@ public class Sistema {
 	public String listarMaquinas() {
 		return cMaquinas.listaMaquinas();
 	}
-
-	
 
 }
