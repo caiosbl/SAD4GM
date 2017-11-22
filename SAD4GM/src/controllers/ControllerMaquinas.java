@@ -1,7 +1,7 @@
 package controllers;
 
 import bancoDeDados.DataBaseTools;
-
+import bancoDeDados.MaquinaTools;
 import validadorInformacoes.ValidaMaquina;
 
 /**
@@ -13,10 +13,10 @@ import validadorInformacoes.ValidaMaquina;
 
 public class ControllerMaquinas {
 
-	private DataBaseTools dTools;
+	private MaquinaTools mTools;
 
-	public ControllerMaquinas(DataBaseTools dTools) {
-		this.dTools = dTools;
+	public ControllerMaquinas(MaquinaTools mTools) {
+		this.mTools = mTools;
 
 	}
 
@@ -33,7 +33,7 @@ public class ControllerMaquinas {
 			ValidaMaquina.validaNome(nome);
 			ValidaMaquina.validaCodigo(codigoInt);
 			ValidaMaquina.validaDescricao(descricao);
-			dTools.inserirMaquina(nome, codigoInt, descricao);
+			mTools.inserirMaquina(nome, codigoInt, descricao);
 			status = "MÁQUINA CADASTRADA COM SUCESSO!";
 		} catch (NullPointerException e) {
 			status = e.getMessage();
@@ -59,7 +59,7 @@ public class ControllerMaquinas {
 		}
 
 		try {
-			dTools.deletarMaquina(codigoInt);
+			mTools.deletarMaquina(codigoInt);
 			status = "Máquina removida com sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -80,7 +80,7 @@ public class ControllerMaquinas {
 
 		try {
 			ValidaMaquina.validaNome(nome);
-			dTools.setNomeMaquina(codigoInt, nome);
+			mTools.setNomeMaquina(codigoInt, nome);
 			status = "Nome atualizado com sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -108,7 +108,7 @@ public class ControllerMaquinas {
 
 		try {
 			ValidaMaquina.validaCodigo(novoCodigoInt);
-			dTools.setCodigoMaquina(codigoInt, novoCodigoInt);
+			mTools.setCodigoMaquina(codigoInt, novoCodigoInt);
 			status = "Código atualizado com sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -129,7 +129,7 @@ public class ControllerMaquinas {
 
 		try {
 			ValidaMaquina.validaDescricao(descricao);
-			dTools.setDescricaoMaquina(codigoInt, descricao);
+			mTools.setDescricaoMaquina(codigoInt, descricao);
 			status = "Descrição atualizada com sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();

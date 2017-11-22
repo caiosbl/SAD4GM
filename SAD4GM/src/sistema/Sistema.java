@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 import bancoDeDados.DataBaseTools;
+import bancoDeDados.MaquinaTools;
+import bancoDeDados.UsuarioTools;
 import controllers.ControllerMaquinas;
 import controllers.ControllerUsuarios;
 import maquina.Maquina;
@@ -21,12 +23,13 @@ public class Sistema {
 
 	private ControllerUsuarios cUsuarios;
 	private ControllerMaquinas cMaquinas;
-	private DataBaseTools dTools;
+	private  UsuarioTools uTools;
+	private MaquinaTools mTools;
 
 	public Sistema() throws SQLException {
-		this.dTools = new DataBaseTools();
-		this.cUsuarios = new ControllerUsuarios(dTools);
-		this.cMaquinas = new ControllerMaquinas(dTools);
+		
+		this.cUsuarios = new ControllerUsuarios(uTools);
+		this.cMaquinas = new ControllerMaquinas(mTools);
 	}
 
 	public String cadastrarUsuario(String nome, String id, String senha, String auditor) {
@@ -202,8 +205,6 @@ public class Sistema {
 		return cMaquinas.listaMaquinas();
 	}
 
-	public void fechaConexao() {
-		dTools.fechaConexao();
-	}
+	
 
 }

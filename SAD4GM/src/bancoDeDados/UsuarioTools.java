@@ -16,7 +16,7 @@ public class UsuarioTools extends DataBaseTools {
 
 			final String INSERIR = "INSERT INTO sad4gm.usuario (nome, id, senha,auditor) VALUES (?,?,?,?)";
 			criaConexao();
-			PreparedStatement stmt = con.prepareStatement(INSERIR);
+			PreparedStatement stmt = super.con.prepareStatement(INSERIR);
 			stmt.setString(1, nome);
 			stmt.setString(2, id);
 			stmt.setInt(3, senha);
@@ -39,7 +39,7 @@ public class UsuarioTools extends DataBaseTools {
 
 			final String DELETE = "DELETE FROM sad4gm.usuario where id = ?";
 			criaConexao();
-			PreparedStatement stmt = con.prepareStatement(DELETE);
+			PreparedStatement stmt = super.con.prepareStatement(DELETE);
 			stmt.setString(1, id);
 			stmt.execute();
 			fechaConexao();
@@ -59,7 +59,7 @@ public class UsuarioTools extends DataBaseTools {
 
 		try {
 			criaConexao();
-			PreparedStatement State = con
+			PreparedStatement State = super.con
 					.prepareStatement("SELECT DISTINCT nome,id,auditor FROM sad4gm.usuario WHERE id = 'sdsd'");
 
 			ResultSet ResSet = State.executeQuery();
@@ -88,7 +88,7 @@ public class UsuarioTools extends DataBaseTools {
 
 			final String UPDATE = "UPDATE  sad4gm.usuario SET nome = ? WHERE id = ?";
 			criaConexao();
-			PreparedStatement stmt = con.prepareStatement(UPDATE);
+			PreparedStatement stmt = super.con.prepareStatement(UPDATE);
 			stmt.setString(1, nome);
 			stmt.setString(2, id);
 			stmt.execute();
@@ -109,7 +109,7 @@ public class UsuarioTools extends DataBaseTools {
 
 			final String UPDATE = "UPDATE  sad4gm.usuario SET id = ? WHERE id = ?";
 			criaConexao();
-			PreparedStatement stmt = con.prepareStatement(UPDATE);
+			PreparedStatement stmt = super.con.prepareStatement(UPDATE);
 			stmt.setString(1, novoId);
 			stmt.setString(2, id);
 			stmt.execute();
@@ -130,7 +130,7 @@ public class UsuarioTools extends DataBaseTools {
 
 			final String UPDATE = "UPDATE  sad4gm.usuario SET auditor = ? WHERE id = ?";
 			criaConexao();
-			PreparedStatement stmt = con.prepareStatement(UPDATE);
+			PreparedStatement stmt = super.con.prepareStatement(UPDATE);
 			stmt.setString(1, auditor);
 			stmt.setString(2, id);
 			stmt.execute();
@@ -145,7 +145,7 @@ public class UsuarioTools extends DataBaseTools {
 	private boolean hasUsuario(String id) throws SQLException {
 		boolean has;
 		criaConexao();
-		PreparedStatement State = con.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE id = ?");
+		PreparedStatement State = super.con.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE id = ?");
 		State.setString(1, id);
 		ResultSet ResSet = State.executeQuery();
 

@@ -14,17 +14,18 @@ import java.util.Map;
 import javax.management.RuntimeErrorException;
 
 import bancoDeDados.DataBaseTools;
+import bancoDeDados.UsuarioTools;
 import usuario.Usuario;
 import usuario.enums.AtributosUsuario;
 import validadorInformacoes.ValidaUsuario;
 
 public class ControllerUsuarios {
 	private Map<String, Usuario> mapaUsuarios;
-	private DataBaseTools dTools;
+	private UsuarioTools uTools;
 
-	public ControllerUsuarios(DataBaseTools dTools) {
+	public ControllerUsuarios(UsuarioTools uTools) {
 		this.mapaUsuarios = new HashMap<>();
-		this.dTools = dTools;
+		this.uTools = uTools;
 	}
 
 	public String adicionaUsuario(String nome, String id, String senha, String auditor) {
@@ -41,7 +42,7 @@ public class ControllerUsuarios {
 			ValidaUsuario.validaNome(nome);
 			ValidaUsuario.validaId(id);
 			ValidaUsuario.validaAuditor(auditor);
-			dTools.inserirUsuario(nome, id, senhaInt, auditor);
+			uTools.inserirUsuario(nome, id, senhaInt, auditor);
 			status = "USUÁRIO CADASTRADO COM SUCESSO!";
 		} catch (NullPointerException e) {
 			status = e.getMessage();
@@ -74,7 +75,7 @@ public class ControllerUsuarios {
 		}
 
 		try {
-			dTools.setNomeUsuario(nome, id);
+			uTools.setNomeUsuario(nome, id);
 			status = "Nome Atualizado com Sucesso!";
 		} catch (Exception e) {
 			status = "Falha ao Atualizar Nome!";
