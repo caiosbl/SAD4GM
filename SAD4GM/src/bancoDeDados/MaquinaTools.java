@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import javax.management.RuntimeErrorException;
 
 public class MaquinaTools extends DataBaseTools {
+
 	public void inserirMaquina(String nome, int codigo, String descricao) throws SQLException {
 		if (hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Código já cadastrado!");
@@ -103,6 +104,35 @@ public class MaquinaTools extends DataBaseTools {
 		} catch (Exception e) {
 			throw new NullPointerException();
 		}
+
+	}
+
+	public String getInfoMaquina(int codigo) throws SQLException {
+		if (!hasMaquina(codigo))
+			throw new RuntimeErrorException(null, "Máquina inexistente!");
+
+		String infoMaquina = "";
+
+		try {
+			criaConexao();
+			PreparedStatement state = super.con
+					.prepareStatement("SELECT DISTINCT nome,codigo,descricao FROM sad4gm.maquina WHERE codigo = ?");
+			state.setInt(1, codigo);
+
+			ResultSet resSet = state.executeQuery();
+
+			while (resSet.next()) {
+				infoMaquina += resSet.getString(1);
+				infoMaquina += resSet.getString(2);
+				infoMaquina += resSet.getString(3);
+			}
+
+			fechaConexao();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return infoMaquina;
 
 	}
 

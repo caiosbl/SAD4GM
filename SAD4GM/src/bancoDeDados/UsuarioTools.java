@@ -59,15 +59,16 @@ public class UsuarioTools extends DataBaseTools {
 
 		try {
 			criaConexao();
-			PreparedStatement State = super.con
-					.prepareStatement("SELECT DISTINCT nome,id,auditor FROM sad4gm.usuario WHERE id = 'sdsd'");
+			PreparedStatement state = super.con
+					.prepareStatement("SELECT DISTINCT nome,id,auditor FROM sad4gm.usuario WHERE id = ?");
+			state.setString(1, id);
 
-			ResultSet ResSet = State.executeQuery();
+			ResultSet resSet = state.executeQuery();
 
-			while (ResSet.next()) {
-				infoUsuario += ResSet.getString(1);
-				infoUsuario += ResSet.getString(2);
-				infoUsuario += ResSet.getString(3);
+			while (resSet.next()) {
+				infoUsuario += resSet.getString(1);
+				infoUsuario += resSet.getString(2);
+				infoUsuario += resSet.getString(3);
 			}
 
 			fechaConexao();

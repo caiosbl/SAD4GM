@@ -1,7 +1,5 @@
 package controllers;
 
-import java.util.HashMap;
-
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES
  * SISTEMA SAD4GM
@@ -16,15 +14,13 @@ import javax.management.RuntimeErrorException;
 import bancoDeDados.DataBaseTools;
 import bancoDeDados.UsuarioTools;
 import usuario.Usuario;
-import usuario.enums.AtributosUsuario;
 import validadorInformacoes.ValidaUsuario;
 
 public class ControllerUsuarios {
-	private Map<String, Usuario> mapaUsuarios;
+
 	private UsuarioTools uTools;
 
 	public ControllerUsuarios(UsuarioTools uTools) {
-		this.mapaUsuarios = new HashMap<>();
 		this.uTools = uTools;
 	}
 
@@ -56,13 +52,23 @@ public class ControllerUsuarios {
 
 		return status;
 	}
+	
+	public String removerUsuario(String id) {
+		String status;
+		try {
+			uTools.deletarUsuario(id);
+			status = "Máquina removida com sucesso!";
+		} catch (Exception e) {
+			status = e.getMessage();
+		}
 
-	public Usuario buscaUsuario(String id) {
-		return mapaUsuarios.get(id);
-
+		return status;
 	}
+	
+	
 
-	public String atualizaNome(String id, String nome) {
+
+	public String setNome(String id, String nome) {
 		String status;
 		try {
 			ValidaUsuario.validaNome(nome);
@@ -83,54 +89,53 @@ public class ControllerUsuarios {
 
 		return status;
 	}
-
-	public void atualizaUsuario(String id, String dado, String novoValor) {
-
-		Usuario usuario = mapaUsuarios.get(id);
-
-		final AtributosUsuario atributo;
+	
+	public String setId(String id, String novoId) {
+		String status;
 		try {
-			atributo = AtributosUsuario.valueOf(dado.toUpperCase());
+			ValidaUsuario.validaId(novoId);
 		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException("DADO A SER ATUALIZADO INVÁLIDO!");
+			status = "ID Inválido!";
+			return status;
+		} catch (NullPointerException e) {
+			status = "ID nulo Inválido!";
+			return status;
 		}
 
-		switch (atributo) {
-
-		case NOME:
-			try {
-				usuario.setNome(novoValor);
-			} catch (Exception e) {
-				throw new IllegalArgumentException("NOVO NOME INVÁLIDO!");
-			}
-			break;
-
-		case ID:
-			Usuario usuarioTemporario = usuario;
-			try {
-				usuarioTemporario.setId(novoValor);
-				removerUsuario(id);
-				mapaUsuarios.put(usuarioTemporario.getId(), usuarioTemporario);
-			} catch (Exception e) {
-				throw new IllegalArgumentException("NOVO ID INVÁLIDO!");
-			}
-			break;
-
-		case AUDITOR:
-			try {
-				usuario.setAuditor(novoValor);
-			} catch (Exception e) {
-				throw new IllegalArgumentException("NOVO AUDITOR INVÁLIDO");
-			}
-			break;
-
+		try {
+			uTools.setIdUsuario(id, novoId);
+			status = "ID Atualizado com Sucesso!";
+		} catch (Exception e) {
+			status = "Falha ao Atualizar o ID!";
 		}
 
+		return status;
+	}
+	
+	public String setAuditor(String id, String auditor) {
+		String status;
+		try {
+			ValidaUsuario.validaAuditor(auditor);
+		} catch (IllegalArgumentException e) {
+			status = "Auditor Inválido!";
+			return status;
+		} catch (NullPointerException e) {
+			status = "Auditor nulo Inválido!";
+			return status;
+		}
+
+		try {
+			uTools.setAuditorUsuario(id, auditor);;
+			status = "Auditor Atualizado com Sucesso!";
+		} catch (Exception e) {
+			status = "Falha ao Atualizar o Auditor!";
+		}
+
+		return status;
 	}
 
-	public void removerUsuario(String id) {
-		mapaUsuarios.remove(id);
-	}
+	
+
 
 	public String listarUsuarios() {
 		String quebraLinha = System.lineSeparator();

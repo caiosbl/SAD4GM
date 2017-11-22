@@ -1,6 +1,5 @@
 package controllers;
 
-import bancoDeDados.DataBaseTools;
 import bancoDeDados.MaquinaTools;
 import validadorInformacoes.ValidaMaquina;
 
@@ -68,7 +67,7 @@ public class ControllerMaquinas {
 		return status;
 	}
 
-	public String setNomeMaquina(String codigo, String nome) {
+	public String setNome(String codigo, String nome) {
 		String status;
 		int codigoInt;
 
@@ -89,7 +88,7 @@ public class ControllerMaquinas {
 		return status;
 	}
 
-	public String setCodigoMaquina(String codigo, String novoCodigo) {
+	public String setCodigo(String codigo, String novoCodigo) {
 		String status;
 		int codigoInt;
 		int novoCodigoInt;
@@ -117,7 +116,7 @@ public class ControllerMaquinas {
 		return status;
 	}
 
-	public String setDescricaoMaquina(String codigo, String descricao) {
+	public String setDescricao(String codigo, String descricao) {
 		String status;
 		int codigoInt;
 
