@@ -98,6 +98,6 @@ public class FuncoesInterfaceUsuario {
 		System.out.print("ID DO USUÁRIO: ");
 
 		String id = sc.nextLine();
-		System.out.println(System.lineSeparator() + sistema.buscaDadosUsuario(id) + System.lineSeparator());
+		System.out.println(System.lineSeparator() + sistema.getInfoUsuario(id) + System.lineSeparator());
 	}
 }
