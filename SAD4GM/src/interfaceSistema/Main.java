@@ -61,7 +61,6 @@ public class Main {
 			break;
 
 		case "3":
-			sistema.fechaConexao();
 			break;
 
 		default:

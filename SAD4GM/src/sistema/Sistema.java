@@ -86,7 +86,7 @@ public class Sistema {
 		return cMaquinas.getInfoMaquina(codigo);
 	}
 
-	public String listarMaquinas(String codigo) {
+	public String listarMaquinas() {
 		return cMaquinas.listarMaquinas();
 	}
 

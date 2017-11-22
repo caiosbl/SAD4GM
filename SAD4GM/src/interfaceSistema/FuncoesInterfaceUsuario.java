@@ -29,7 +29,7 @@ public class FuncoesInterfaceUsuario {
 			cadastraUsuario(sistema);
 			break;
 		case "2":
-			atualizaUsuario(sistema);
+			//atualizaUsuario(sistema);
 			break;
 		case "3":
 			removeUsuario(sistema);
@@ -65,21 +65,7 @@ public class FuncoesInterfaceUsuario {
 
 	}
 
-	public static void atualizaUsuario(Sistema sistema) {
-		System.out.println("ATUALIZAR UM USUÁRIO " + System.lineSeparator());
-
-		Scanner sc = new Scanner(System.in);
-		System.out.print("ID DO USUÁRIO: ");
-		String id = sc.nextLine();
-		System.out.print("DADO A SER ATUALIZADO [NOME,ID,AUDITOR]: ");
-		String dado = sc.nextLine();
-		System.out.print("NOVO VALOR DO DADO: ");
-		String novoValor = sc.nextLine();
-
-		System.out.println(
-				System.lineSeparator() + sistema.atualizarUsuario(id, dado, novoValor) + System.lineSeparator());
-
-	}
+	
 
 	public static void removeUsuario(Sistema sistema) {
 		System.out.println("REMOVER UM USUÁRIO " + System.lineSeparator());

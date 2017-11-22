@@ -20,7 +20,7 @@ public class FuncoesInterfaceMaquina {
 			cadastraMaquina(sistema);
 			break;
 		case "2":
-			atualizaMaquina(sistema);
+			//atualizaMaquina(sistema);
 			break;
 		case "3":
 			removeMaquina(sistema);
@@ -54,20 +54,7 @@ public class FuncoesInterfaceMaquina {
 
 	}
 
-	public static void atualizaMaquina(Sistema sistema) {
-		System.out.println("ATUALIZAR UMA MÁQUINA " + System.lineSeparator());
 
-		Scanner sc = new Scanner(System.in);
-		System.out.print("CÓDIGO DA MÁQUINA: ");
-		String codigo = sc.nextLine();
-		System.out.print("DADO A SER ATUALIZADO [NOME,CÓDIGO,DESCRIÇÃO]: ");
-		String dado = sc.nextLine();
-		System.out.print("NOVO VALOR DO DADO: ");
-		String novoValor = sc.nextLine();
-
-		System.out.println(
-				System.lineSeparator() + sistema.atualizarMaquina(codigo, dado, novoValor) + System.lineSeparator());
-	}
 
 	public static void removeMaquina(Sistema sistema) {
 		System.out.println("REMOVER UMA MÁQUINA " + System.lineSeparator());
@@ -86,7 +73,7 @@ public class FuncoesInterfaceMaquina {
 		System.out.print("CÓDIGO DA MÁQUINA: ");
 
 		String codigo = sc.nextLine();
-		System.out.println(System.lineSeparator() + sistema.buscarDadosMaquina(codigo) + System.lineSeparator());
+		System.out.println(System.lineSeparator() + sistema.getInfoMaquina(codigo) + System.lineSeparator());
 	}
 
 }
