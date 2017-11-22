@@ -7,13 +7,8 @@ package controllers;
  * @author caiosbl
  *
  */
-import java.util.Map;
 
-import javax.management.RuntimeErrorException;
-
-import bancoDeDados.DataBaseTools;
 import bancoDeDados.UsuarioTools;
-import usuario.Usuario;
 import validadorInformacoes.ValidaUsuario;
 
 public class ControllerUsuarios {
@@ -145,14 +140,12 @@ public class ControllerUsuarios {
 	}
 
 	public String listarUsuarios() {
-		String quebraLinha = System.lineSeparator();
-		String listagem = "USUÁRIOS CADASTRADOS: " + quebraLinha;
+		String listagem;
 
-		for (String chave : mapaUsuarios.keySet()) {
-			listagem += quebraLinha;
-			listagem += mapaUsuarios.get(chave).toString();
-			listagem += quebraLinha;
-		}
+		listagem = uTools.listarUsuarios();
+
+		if (listagem.equals(""))
+			listagem = "Nenhuma usuário cadastrado!";
 
 		return listagem;
 	}

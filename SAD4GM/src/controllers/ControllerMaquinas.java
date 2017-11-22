@@ -156,16 +156,15 @@ public class ControllerMaquinas {
 		return info;
 	}
 
-	/*
-	 * 
-	 * public String listaMaquinas() { String quebraLinha = System.lineSeparator();
-	 * String listagem = "MÁQUINAS CADASTRADAS: " + quebraLinha;
-	 * 
-	 * for (Integer chave : mapaDeMaquinas.keySet()) { listagem += quebraLinha;
-	 * listagem += mapaDeMaquinas.get(chave).toString(); listagem += quebraLinha; }
-	 * 
-	 * return listagem;
-	 * 
-	 * }
-	 */
+	public String listarMaquinas() {
+		String listagem;
+
+		listagem = mTools.listarMaquinas();
+
+		if (listagem.equals(""))
+			listagem = "Nenhuma máquina cadastrada!";
+
+		return listagem;
+	}
+
 }
