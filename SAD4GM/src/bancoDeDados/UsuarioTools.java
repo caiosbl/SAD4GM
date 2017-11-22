@@ -150,7 +150,7 @@ public class UsuarioTools extends DataBaseTools {
 
 		try {
 			criaConexao();
-			PreparedStatement state = super.con.prepareStatement("SELECT * FROM sad4gm.usuario");
+			PreparedStatement state = super.con.prepareStatement("SELECT nome,id,auditor FROM sad4gm.usuario");
 
 			ResultSet resSet = state.executeQuery();
 

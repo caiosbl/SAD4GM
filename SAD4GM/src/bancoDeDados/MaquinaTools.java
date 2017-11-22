@@ -112,6 +112,7 @@ public class MaquinaTools extends DataBaseTools {
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
 
 		String infoMaquina = "";
+		String quebraLinha = System.lineSeparator();
 
 		try {
 			criaConexao();
@@ -122,9 +123,10 @@ public class MaquinaTools extends DataBaseTools {
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
-				infoMaquina += resSet.getString(1);
-				infoMaquina += resSet.getString(2);
-				infoMaquina += resSet.getString(3);
+				infoMaquina += "Nome: " + resSet.getString(1) + quebraLinha;
+				infoMaquina += "Código: " + resSet.getString(2) + quebraLinha;
+				infoMaquina += "Descrição: " + resSet.getString(3) + quebraLinha;
+				infoMaquina += quebraLinha;
 			}
 
 			fechaConexao();
@@ -133,6 +135,32 @@ public class MaquinaTools extends DataBaseTools {
 		}
 
 		return infoMaquina;
+
+	}
+
+	public String listarMaquinas() {
+		String listagem = "";
+		String quebraLinha = System.lineSeparator();
+
+		try {
+			criaConexao();
+			PreparedStatement state = super.con.prepareStatement("SELECT nome,codigo,descricao FROM sad4gm.maquina");
+
+			ResultSet resSet = state.executeQuery();
+
+			while (resSet.next()) {
+				listagem += "Nome: " + resSet.getString(1) + quebraLinha;
+				listagem += "Código: " + resSet.getString(2) + quebraLinha;
+				listagem += "Descrição: " + resSet.getString(3) + quebraLinha;
+				listagem += quebraLinha;
+			}
+
+			fechaConexao();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return listagem;
 
 	}
 
