@@ -14,10 +14,11 @@ import sistema.Sistema;
 public class FuncoesInterfaceUsuario {
 
 	public static String opcoes() {
-		String opcoes = "SELECIONE UMA OPÇÃO: " + System.lineSeparator() + "1 - CADASTRAR UM USUÁRIO"
-				+ System.lineSeparator() + "2 - ATUALIZAR UM USUÁRIO" + System.lineSeparator()
-				+ "3 - REMOVER UM USUÁRIO" + System.lineSeparator() + "4 - BUSCAR UM USUÁRIO" + System.lineSeparator()
-				+ "5 - LISTAR USUÁRIOS" + System.lineSeparator() + "6 - SAIR" + System.lineSeparator();
+
+		String quebraLinha = System.lineSeparator();
+		String opcoes = "SELECIONE UMA OPÇÃO: " + quebraLinha + "1 - CADASTRAR UM USUÁRIO" + quebraLinha
+				+ "2 - ATUALIZAR NOME" + quebraLinha + "3 - REMOVER UM USUÁRIO" + quebraLinha + "4 - BUSCAR UM USUÁRIO"
+				+ quebraLinha + "5 - LISTAR USUÁRIOS" + quebraLinha + "6 - SAIR" + quebraLinha;
 
 		return opcoes;
 	}
@@ -29,13 +30,13 @@ public class FuncoesInterfaceUsuario {
 			cadastraUsuario(sistema);
 			break;
 		case "2":
-			//atualizaUsuario(sistema);
+			atualizarNome(sistema);
 			break;
 		case "3":
 			removeUsuario(sistema);
 			break;
 		case "4":
-			buscaUsuario(sistema);
+			getInfoUsuario(sistema);
 			break;
 		case "5":
 			System.out.println(sistema.listarUsuarios());
@@ -60,12 +61,10 @@ public class FuncoesInterfaceUsuario {
 		System.out.print("Auditor: ");
 		String auditor = sc.nextLine();
 
-		System.out
-				.println(System.lineSeparator() + sistema.cadastrarUsuario(nome, id,senha, auditor) + System.lineSeparator());
+		System.out.println(
+				System.lineSeparator() + sistema.cadastrarUsuario(nome, id, senha, auditor) + System.lineSeparator());
 
 	}
-
-	
 
 	public static void removeUsuario(Sistema sistema) {
 		System.out.println("REMOVER UM USUÁRIO " + System.lineSeparator());
@@ -78,12 +77,24 @@ public class FuncoesInterfaceUsuario {
 
 	}
 
-	public static void buscaUsuario(Sistema sistema) {
+	public static void getInfoUsuario(Sistema sistema) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("BUSCAR USUÁRIO" + System.lineSeparator());
 		System.out.print("ID DO USUÁRIO: ");
 
 		String id = sc.nextLine();
 		System.out.println(System.lineSeparator() + sistema.getInfoUsuario(id) + System.lineSeparator());
+	}
+
+	public static void atualizarNome(Sistema sistema) {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Atualizar Nome" + System.lineSeparator());
+		System.out.print("ID DO USUÁRIO: ");
+		String id = sc.nextLine();
+		System.out.print("NOVO NOME DO USUÁRIO: ");
+		String nome = sc.nextLine();
+		System.out.println(System.lineSeparator() + sistema.setNomeUsuario(id, nome) + System.lineSeparator());
+
 	}
 }

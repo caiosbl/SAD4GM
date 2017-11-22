@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import javax.management.RuntimeErrorException;
 
 public class UsuarioTools extends DataBaseTools {
+
 	public void inserirUsuario(String nome, String id, int senha, String auditor) throws SQLException {
 
 		if (hasUsuario(id))
@@ -22,6 +23,7 @@ public class UsuarioTools extends DataBaseTools {
 			stmt.setInt(3, senha);
 			stmt.setString(4, auditor);
 			stmt.execute();
+			stmt.close();
 			fechaConexao();
 
 		} catch (Exception e) {
@@ -42,6 +44,7 @@ public class UsuarioTools extends DataBaseTools {
 			PreparedStatement stmt = super.con.prepareStatement(DELETE);
 			stmt.setString(1, id);
 			stmt.execute();
+			stmt.close();
 			fechaConexao();
 
 		} catch (Exception e) {
@@ -63,6 +66,7 @@ public class UsuarioTools extends DataBaseTools {
 			stmt.setString(1, nome);
 			stmt.setString(2, id);
 			stmt.execute();
+			stmt.close();
 			fechaConexao();
 
 		} catch (Exception e) {
@@ -84,6 +88,7 @@ public class UsuarioTools extends DataBaseTools {
 			stmt.setString(1, novoId);
 			stmt.setString(2, id);
 			stmt.execute();
+			stmt.close();
 			fechaConexao();
 
 		} catch (Exception e) {
@@ -105,6 +110,7 @@ public class UsuarioTools extends DataBaseTools {
 			stmt.setString(1, auditor);
 			stmt.setString(2, id);
 			stmt.execute();
+			stmt.close();
 			fechaConexao();
 
 		} catch (Exception e) {
@@ -134,7 +140,7 @@ public class UsuarioTools extends DataBaseTools {
 				infoUsuario += "Id: " + resSet.getString(2) + quebraLinha;
 				infoUsuario += "Auditor: " + resSet.getString(3) + quebraLinha;
 			}
-
+			state.close();
 			fechaConexao();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -160,7 +166,7 @@ public class UsuarioTools extends DataBaseTools {
 				listagem += "Auditor: " + resSet.getString(3) + quebraLinha;
 				listagem += quebraLinha;
 			}
-
+			state.close();
 			fechaConexao();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -173,14 +179,15 @@ public class UsuarioTools extends DataBaseTools {
 	private boolean hasUsuario(String id) throws SQLException {
 		boolean has;
 		criaConexao();
-		PreparedStatement State = super.con.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE id = ?");
-		State.setString(1, id);
-		ResultSet ResSet = State.executeQuery();
+		PreparedStatement state = super.con.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE id = ?");
+		state.setString(1, id);
+		ResultSet ResSet = state.executeQuery();
 
 		if (ResSet.next())
 			has = true;
 		else
 			has = false;
+		state.close();
 		fechaConexao();
 
 		return has;

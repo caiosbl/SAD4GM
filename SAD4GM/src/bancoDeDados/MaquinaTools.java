@@ -21,6 +21,7 @@ public class MaquinaTools extends DataBaseTools {
 			stmt.setInt(2, codigo);
 			stmt.setString(3, descricao);
 			stmt.execute();
+			stmt.close();
 			fechaConexao();
 
 		} catch (Exception e) {
@@ -40,6 +41,7 @@ public class MaquinaTools extends DataBaseTools {
 			PreparedStatement stmt = con.prepareStatement(DELETE);
 			stmt.setInt(1, codigo);
 			stmt.execute();
+			stmt.close();
 			fechaConexao();
 
 		} catch (Exception e) {
@@ -60,6 +62,7 @@ public class MaquinaTools extends DataBaseTools {
 			stmt.setString(1, nome);
 			stmt.setInt(2, codigo);
 			stmt.execute();
+			stmt.close();
 			fechaConexao();
 
 		} catch (Exception e) {
@@ -80,6 +83,7 @@ public class MaquinaTools extends DataBaseTools {
 			stmt.setInt(1, novoCodigo);
 			stmt.setInt(2, codigo);
 			stmt.execute();
+			stmt.close();
 			fechaConexao();
 
 		} catch (Exception e) {
@@ -99,6 +103,7 @@ public class MaquinaTools extends DataBaseTools {
 			stmt.setString(1, descricao);
 			stmt.setInt(2, codigo);
 			stmt.execute();
+			stmt.close();
 			fechaConexao();
 
 		} catch (Exception e) {
@@ -128,6 +133,7 @@ public class MaquinaTools extends DataBaseTools {
 				infoMaquina += "Descrição: " + resSet.getString(3) + quebraLinha;
 				infoMaquina += quebraLinha;
 			}
+			state.close();
 
 			fechaConexao();
 		} catch (Exception e) {
@@ -155,6 +161,8 @@ public class MaquinaTools extends DataBaseTools {
 				listagem += quebraLinha;
 			}
 
+			state.close();
+
 			fechaConexao();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -167,14 +175,15 @@ public class MaquinaTools extends DataBaseTools {
 	private boolean hasMaquina(int codigo) throws SQLException {
 		boolean has;
 		criaConexao();
-		PreparedStatement State = con.prepareStatement("SELECT nome FROM sad4gm.maquina WHERE codigo = ?");
-		State.setInt(1, codigo);
-		ResultSet ResSet = State.executeQuery();
+		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.maquina WHERE codigo = ?");
+		state.setInt(1, codigo);
+		ResultSet ResSet = state.executeQuery();
 
 		if (ResSet.next())
 			has = true;
 		else
 			has = false;
+		state.close();
 		fechaConexao();
 
 		return has;

@@ -8,6 +8,7 @@ public class DataBaseTools {
 	protected Connection con;
 
 	protected void criaConexao() {
+	
 		try {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 			con = DriverManager.getConnection("jdbc:derby:Sad4gmDatabase; create = true");
@@ -18,6 +19,7 @@ public class DataBaseTools {
 
 	protected void fechaConexao() {
 		try {
+			if(con != null)
 			con.close();
 		} catch (Exception e) {
 			e.printStackTrace();
