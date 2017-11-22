@@ -1,7 +1,5 @@
 package controllers;
 
-import java.util.HashMap;
-
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES
  * SISTEMA SAD4GM
@@ -9,22 +7,16 @@ import java.util.HashMap;
  * @author caiosbl
  *
  */
-import java.util.Map;
 
-import javax.management.RuntimeErrorException;
-
-import bancoDeDados.DataBaseTools;
-import usuario.Usuario;
-import usuario.enums.AtributosUsuario;
+import bancoDeDados.UsuarioTools;
 import validadorInformacoes.ValidaUsuario;
 
 public class ControllerUsuarios {
-	private Map<String, Usuario> mapaUsuarios;
-	private DataBaseTools dTools;
 
-	public ControllerUsuarios(DataBaseTools dTools) {
-		this.mapaUsuarios = new HashMap<>();
-		this.dTools = dTools;
+	private UsuarioTools uTools;
+
+	public ControllerUsuarios(UsuarioTools uTools) {
+		this.uTools = uTools;
 	}
 
 	public String adicionaUsuario(String nome, String id, String senha, String auditor) {
@@ -41,7 +33,7 @@ public class ControllerUsuarios {
 			ValidaUsuario.validaNome(nome);
 			ValidaUsuario.validaId(id);
 			ValidaUsuario.validaAuditor(auditor);
-			dTools.inserirUsuario(nome, id, senhaInt, auditor);
+			uTools.inserirUsuario(nome, id, senhaInt, auditor);
 			status = "USUÁRIO CADASTRADO COM SUCESSO!";
 		} catch (NullPointerException e) {
 			status = e.getMessage();
@@ -56,12 +48,19 @@ public class ControllerUsuarios {
 		return status;
 	}
 
-	public Usuario buscaUsuario(String id) {
-		return mapaUsuarios.get(id);
+	public String removerUsuario(String id) {
+		String status;
+		try {
+			uTools.deletarUsuario(id);
+			status = "Máquina removida com sucesso!";
+		} catch (Exception e) {
+			status = e.getMessage();
+		}
 
+		return status;
 	}
 
-	public String atualizaNome(String id, String nome) {
+	public String setNome(String id, String nome) {
 		String status;
 		try {
 			ValidaUsuario.validaNome(nome);
@@ -74,7 +73,7 @@ public class ControllerUsuarios {
 		}
 
 		try {
-			dTools.setNomeUsuario(nome, id);
+			uTools.setNomeUsuario(nome, id);
 			status = "Nome Atualizado com Sucesso!";
 		} catch (Exception e) {
 			status = "Falha ao Atualizar Nome!";
@@ -83,63 +82,70 @@ public class ControllerUsuarios {
 		return status;
 	}
 
-	public void atualizaUsuario(String id, String dado, String novoValor) {
-
-		Usuario usuario = mapaUsuarios.get(id);
-
-		final AtributosUsuario atributo;
+	public String setId(String id, String novoId) {
+		String status;
 		try {
-			atributo = AtributosUsuario.valueOf(dado.toUpperCase());
+			ValidaUsuario.validaId(novoId);
 		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException("DADO A SER ATUALIZADO INVÁLIDO!");
+			status = "ID Inválido!";
+			return status;
+		} catch (NullPointerException e) {
+			status = "ID nulo Inválido!";
+			return status;
 		}
 
-		switch (atributo) {
-
-		case NOME:
-			try {
-				usuario.setNome(novoValor);
-			} catch (Exception e) {
-				throw new IllegalArgumentException("NOVO NOME INVÁLIDO!");
-			}
-			break;
-
-		case ID:
-			Usuario usuarioTemporario = usuario;
-			try {
-				usuarioTemporario.setId(novoValor);
-				removerUsuario(id);
-				mapaUsuarios.put(usuarioTemporario.getId(), usuarioTemporario);
-			} catch (Exception e) {
-				throw new IllegalArgumentException("NOVO ID INVÁLIDO!");
-			}
-			break;
-
-		case AUDITOR:
-			try {
-				usuario.setAuditor(novoValor);
-			} catch (Exception e) {
-				throw new IllegalArgumentException("NOVO AUDITOR INVÁLIDO");
-			}
-			break;
-
+		try {
+			uTools.setIdUsuario(id, novoId);
+			status = "ID Atualizado com Sucesso!";
+		} catch (Exception e) {
+			status = "Falha ao Atualizar o ID!";
 		}
 
+		return status;
 	}
 
-	public void removerUsuario(String id) {
-		mapaUsuarios.remove(id);
+	public String setAuditor(String id, String auditor) {
+		String status;
+		try {
+			ValidaUsuario.validaAuditor(auditor);
+		} catch (IllegalArgumentException e) {
+			status = "Auditor Inválido!";
+			return status;
+		} catch (NullPointerException e) {
+			status = "Auditor nulo Inválido!";
+			return status;
+		}
+
+		try {
+			uTools.setAuditorUsuario(id, auditor);
+			;
+			status = "Auditor Atualizado com Sucesso!";
+		} catch (Exception e) {
+			status = "Falha ao Atualizar o Auditor!";
+		}
+
+		return status;
+	}
+
+	public String getInfoUsuario(String id) {
+		String info;
+
+		try {
+			info = uTools.getInfoUsuario(id);
+		} catch (Exception e) {
+			info = e.getMessage();
+		}
+
+		return info;
 	}
 
 	public String listarUsuarios() {
-		String quebraLinha = System.lineSeparator();
-		String listagem = "USUÁRIOS CADASTRADOS: " + quebraLinha;
+		String listagem;
 
-		for (String chave : mapaUsuarios.keySet()) {
-			listagem += quebraLinha;
-			listagem += mapaUsuarios.get(chave).toString();
-			listagem += quebraLinha;
-		}
+		listagem = uTools.listarUsuarios();
+
+		if (listagem.equals(""))
+			listagem = "Nenhuma usuário cadastrado!";
 
 		return listagem;
 	}
