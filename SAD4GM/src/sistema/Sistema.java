@@ -59,6 +59,10 @@ public class Sistema {
 	public String listarUsuarios() {
 		return cUsuarios.listarUsuarios();
 	}
+	
+	public String validaIdAndSenhaUsuario(String id, String senha) throws SQLException {
+		return cUsuarios.validaIdAndSenha(id, senha);
+	}
 
 	// Funções de Máquina
 
@@ -86,7 +90,7 @@ public class Sistema {
 		return cMaquinas.getInfoMaquina(codigo);
 	}
 
-	public String listarMaquinas(String codigo) {
+	public String listarMaquinas() {
 		return cMaquinas.listarMaquinas();
 	}
 

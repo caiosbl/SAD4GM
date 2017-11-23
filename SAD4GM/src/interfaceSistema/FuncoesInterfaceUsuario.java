@@ -1,5 +1,6 @@
 package interfaceSistema;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
@@ -14,33 +15,39 @@ import sistema.Sistema;
 public class FuncoesInterfaceUsuario {
 
 	public static String opcoes() {
-		String opcoes = "SELECIONE UMA OPÇÃO: " + System.lineSeparator() + "1 - CADASTRAR UM USUÁRIO"
-				+ System.lineSeparator() + "2 - ATUALIZAR UM USUÁRIO" + System.lineSeparator()
-				+ "3 - REMOVER UM USUÁRIO" + System.lineSeparator() + "4 - BUSCAR UM USUÁRIO" + System.lineSeparator()
-				+ "5 - LISTAR USUÁRIOS" + System.lineSeparator() + "6 - SAIR" + System.lineSeparator();
+
+		String quebraLinha = System.lineSeparator();
+		String opcoes = "SELECIONE UMA OPÇÃO: " + quebraLinha + "1 - CADASTRAR UM USUÁRIO" + quebraLinha
+				+ "2 - ATUALIZAR NOME" + quebraLinha + "3 - Atualizar ID" + quebraLinha + "4 - Remover um Usuário"
+				+ quebraLinha + "5 - LISTAR USUÁRIOS" + quebraLinha + "6 - SAIR" + quebraLinha + "7 - Valida Usuário e Senha"
+				+ quebraLinha;
 
 		return opcoes;
 	}
 
-	public static void selectOpcao(String opcao, Sistema sistema) {
+	public static void selectOpcao(String opcao, Sistema sistema) throws SQLException {
 
 		switch (opcao) {
 		case "1":
 			cadastraUsuario(sistema);
 			break;
 		case "2":
-			atualizaUsuario(sistema);
+			atualizarNome(sistema);
 			break;
 		case "3":
-			removeUsuario(sistema);
+			atualizarId(sistema);
 			break;
 		case "4":
-			buscaUsuario(sistema);
+			removeUsuario(sistema);
 			break;
 		case "5":
 			System.out.println(sistema.listarUsuarios());
 			break;
 		case "6":
+			break;
+			
+		case "7":
+			valida(sistema);
 			break;
 		default:
 			System.out.println(System.lineSeparator() + "OPÇÃO INVÁLIDA " + System.lineSeparator());
@@ -60,24 +67,8 @@ public class FuncoesInterfaceUsuario {
 		System.out.print("Auditor: ");
 		String auditor = sc.nextLine();
 
-		System.out
-				.println(System.lineSeparator() + sistema.cadastrarUsuario(nome, id,senha, auditor) + System.lineSeparator());
-
-	}
-
-	public static void atualizaUsuario(Sistema sistema) {
-		System.out.println("ATUALIZAR UM USUÁRIO " + System.lineSeparator());
-
-		Scanner sc = new Scanner(System.in);
-		System.out.print("ID DO USUÁRIO: ");
-		String id = sc.nextLine();
-		System.out.print("DADO A SER ATUALIZADO [NOME,ID,AUDITOR]: ");
-		String dado = sc.nextLine();
-		System.out.print("NOVO VALOR DO DADO: ");
-		String novoValor = sc.nextLine();
-
 		System.out.println(
-				System.lineSeparator() + sistema.atualizarUsuario(id, dado, novoValor) + System.lineSeparator());
+				System.lineSeparator() + sistema.cadastrarUsuario(nome, id, senha, auditor) + System.lineSeparator());
 
 	}
 
@@ -92,12 +83,46 @@ public class FuncoesInterfaceUsuario {
 
 	}
 
-	public static void buscaUsuario(Sistema sistema) {
+	public static void getInfoUsuario(Sistema sistema) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("BUSCAR USUÁRIO" + System.lineSeparator());
 		System.out.print("ID DO USUÁRIO: ");
 
 		String id = sc.nextLine();
 		System.out.println(System.lineSeparator() + sistema.getInfoUsuario(id) + System.lineSeparator());
+	}
+
+	public static void atualizarNome(Sistema sistema) {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Atualizar Nome" + System.lineSeparator());
+		System.out.print("ID DO USUÁRIO: ");
+		String id = sc.nextLine();
+		System.out.print("NOVO NOME DO USUÁRIO: ");
+		String nome = sc.nextLine();
+		System.out.println(System.lineSeparator() + sistema.setNomeUsuario(id, nome) + System.lineSeparator());
+
+	}
+	
+	public static void atualizarId(Sistema sistema) {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("AtualizarID" + System.lineSeparator());
+		System.out.print("ID DO USUÁRIO: ");
+		String id = sc.nextLine();
+		System.out.print("NOVO ID DO USUÁRIO: ");
+		String novoId = sc.nextLine();
+		System.out.println(System.lineSeparator() + sistema.setIdUsuario(id, novoId) + System.lineSeparator());
+
+	}
+	
+	public static void valida(Sistema sistema) throws SQLException {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Valida Usuário e Senha" + System.lineSeparator());
+		System.out.print("ID DO USUÁRIO: ");
+		String id = sc.nextLine();
+		System.out.print("Senha: ");
+		String senha = sc.nextLine();
+		System.out.println(System.lineSeparator() + sistema.validaIdAndSenhaUsuario(id, senha) + System.lineSeparator());
 	}
 }

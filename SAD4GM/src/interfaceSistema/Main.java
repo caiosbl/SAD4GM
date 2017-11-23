@@ -41,7 +41,7 @@ public class Main {
 		return opcoes;
 	}
 
-	public static void selectOpcao(Sistema sistema, String opcaoPrimaria) {
+	public static void selectOpcao(Sistema sistema, String opcaoPrimaria) throws SQLException {
 		switch (opcaoPrimaria) {
 		case "1":
 			Scanner sc = new Scanner(System.in);
@@ -61,7 +61,6 @@ public class Main {
 			break;
 
 		case "3":
-			sistema.fechaConexao();
 			break;
 
 		default:

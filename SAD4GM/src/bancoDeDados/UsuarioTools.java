@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import javax.management.RuntimeErrorException;
 
 public class UsuarioTools extends DataBaseTools {
-	public void inserirUsuario(String nome, String id, int senha, String auditor) throws SQLException {
+
+	public static void inserirUsuario(String nome, String id, int senha, String auditor) throws SQLException {
 
 		if (hasUsuario(id))
 			throw new RuntimeErrorException(null, "ID já cadastrado!");
@@ -16,12 +17,13 @@ public class UsuarioTools extends DataBaseTools {
 
 			final String INSERIR = "INSERT INTO sad4gm.usuario (nome, id, senha,auditor) VALUES (?,?,?,?)";
 			criaConexao();
-			PreparedStatement stmt = super.con.prepareStatement(INSERIR);
+			PreparedStatement stmt = con.prepareStatement(INSERIR);
 			stmt.setString(1, nome);
 			stmt.setString(2, id);
 			stmt.setInt(3, senha);
 			stmt.setString(4, auditor);
 			stmt.execute();
+			stmt.close();
 			fechaConexao();
 
 		} catch (Exception e) {
@@ -30,7 +32,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public void deletarUsuario(String id) throws SQLException {
+	public static void deletarUsuario(String id) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário não cadastrado!");
@@ -39,9 +41,10 @@ public class UsuarioTools extends DataBaseTools {
 
 			final String DELETE = "DELETE FROM sad4gm.usuario where id = ?";
 			criaConexao();
-			PreparedStatement stmt = super.con.prepareStatement(DELETE);
+			PreparedStatement stmt = con.prepareStatement(DELETE);
 			stmt.setString(1, id);
 			stmt.execute();
+			stmt.close();
 			fechaConexao();
 
 		} catch (Exception e) {
@@ -50,7 +53,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public void setNomeUsuario(String nome, String id) throws SQLException {
+	public static void setNomeUsuario(String nome, String id) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -59,10 +62,11 @@ public class UsuarioTools extends DataBaseTools {
 
 			final String UPDATE = "UPDATE  sad4gm.usuario SET nome = ? WHERE id = ?";
 			criaConexao();
-			PreparedStatement stmt = super.con.prepareStatement(UPDATE);
+			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, nome);
 			stmt.setString(2, id);
 			stmt.execute();
+			stmt.close();
 			fechaConexao();
 
 		} catch (Exception e) {
@@ -71,7 +75,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public void setIdUsuario(String id, String novoId) throws SQLException {
+	public static void setIdUsuario(String id, String novoId) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -80,10 +84,11 @@ public class UsuarioTools extends DataBaseTools {
 
 			final String UPDATE = "UPDATE  sad4gm.usuario SET id = ? WHERE id = ?";
 			criaConexao();
-			PreparedStatement stmt = super.con.prepareStatement(UPDATE);
+			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, novoId);
 			stmt.setString(2, id);
 			stmt.execute();
+			stmt.close();
 			fechaConexao();
 
 		} catch (Exception e) {
@@ -92,7 +97,29 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public void setAuditorUsuario(String id, String auditor) throws SQLException {
+	public static void setSenhaUsuario(String id, int senha) throws SQLException {
+
+		if (!hasUsuario(id))
+			throw new RuntimeErrorException(null, "Usuário inexistente!");
+
+		try {
+
+			final String UPDATE = "UPDATE  sad4gm.usuario SET senha = ? WHERE id = ?";
+			criaConexao();
+			PreparedStatement stmt = con.prepareStatement(UPDATE);
+			stmt.setInt(1, senha);
+			stmt.setString(2, id);
+			stmt.execute();
+			stmt.close();
+			fechaConexao();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void setAuditorUsuario(String id, String auditor) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -101,10 +128,11 @@ public class UsuarioTools extends DataBaseTools {
 
 			final String UPDATE = "UPDATE  sad4gm.usuario SET auditor = ? WHERE id = ?";
 			criaConexao();
-			PreparedStatement stmt = super.con.prepareStatement(UPDATE);
+			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, auditor);
 			stmt.setString(2, id);
 			stmt.execute();
+			stmt.close();
 			fechaConexao();
 
 		} catch (Exception e) {
@@ -113,7 +141,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public String getInfoUsuario(String id) throws SQLException {
+	public static String getInfoUsuario(String id) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -123,7 +151,7 @@ public class UsuarioTools extends DataBaseTools {
 
 		try {
 			criaConexao();
-			PreparedStatement state = super.con
+			PreparedStatement state = con
 					.prepareStatement("SELECT DISTINCT nome,id,auditor FROM sad4gm.usuario WHERE id = ?");
 			state.setString(1, id);
 
@@ -134,7 +162,7 @@ public class UsuarioTools extends DataBaseTools {
 				infoUsuario += "Id: " + resSet.getString(2) + quebraLinha;
 				infoUsuario += "Auditor: " + resSet.getString(3) + quebraLinha;
 			}
-
+			state.close();
 			fechaConexao();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -144,13 +172,40 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public String listarUsuarios() {
+	public boolean validaIdAndSenha(String id, int senha) throws SQLException {
+		boolean valido = false;
+
+		if (!hasUsuario(id))
+			return false;
+		try {
+			criaConexao();
+			PreparedStatement state = con
+					.prepareStatement("SELECT DISTINCT nome FROM sad4gm.usuario WHERE id = ? AND senha =  ?");
+			state.setString(1, id);
+			state.setInt(2, senha);
+
+			ResultSet resSet = state.executeQuery();
+
+			if (resSet.next())
+				valido = true;
+
+			state.close();
+			fechaConexao();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return valido;
+
+	}
+
+	public static String listarUsuarios() {
 		String listagem = "";
 		String quebraLinha = System.lineSeparator();
 
 		try {
 			criaConexao();
-			PreparedStatement state = super.con.prepareStatement("SELECT nome,id,auditor FROM sad4gm.usuario");
+			PreparedStatement state = con.prepareStatement("SELECT nome,id,auditor FROM sad4gm.usuario");
 
 			ResultSet resSet = state.executeQuery();
 
@@ -160,7 +215,7 @@ public class UsuarioTools extends DataBaseTools {
 				listagem += "Auditor: " + resSet.getString(3) + quebraLinha;
 				listagem += quebraLinha;
 			}
-
+			state.close();
 			fechaConexao();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -170,17 +225,18 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	private boolean hasUsuario(String id) throws SQLException {
+	private static boolean hasUsuario(String id) throws SQLException {
 		boolean has;
 		criaConexao();
-		PreparedStatement State = super.con.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE id = ?");
-		State.setString(1, id);
-		ResultSet ResSet = State.executeQuery();
+		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE id = ?");
+		state.setString(1, id);
+		ResultSet resSet = state.executeQuery();
 
-		if (ResSet.next())
+		if (resSet.next())
 			has = true;
 		else
 			has = false;
+		state.close();
 		fechaConexao();
 
 		return has;
