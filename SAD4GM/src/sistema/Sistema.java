@@ -59,6 +59,10 @@ public class Sistema {
 	public String listarUsuarios() {
 		return cUsuarios.listarUsuarios();
 	}
+	
+	public String validaIdAndSenhaUsuario(String id, String senha) throws SQLException {
+		return cUsuarios.validaIdAndSenha(id, senha);
+	}
 
 	// Funções de Máquina
 

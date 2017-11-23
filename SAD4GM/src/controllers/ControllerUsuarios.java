@@ -1,5 +1,7 @@
 package controllers;
 
+import java.sql.SQLException;
+
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES
  * SISTEMA SAD4GM
@@ -148,6 +150,25 @@ public class ControllerUsuarios {
 			listagem = "Nenhuma usuário cadastrado!";
 
 		return listagem;
+	}
+	
+	
+	public String validaIdAndSenha(String id, String  senha) throws SQLException {
+		int senhaInt;
+		String status;
+
+		try {
+			senhaInt = Integer.parseInt(senha);
+		} catch (Exception e) {
+			return "SENHA INVÁLIDA!";
+		}
+		
+		if(uTools.validaIdAndSenha(id, senhaInt))
+			status = "Usuário e senha válida";
+		else
+			status = "Usuário ou senha inválida";
+		
+		return status;
 	}
 
 }

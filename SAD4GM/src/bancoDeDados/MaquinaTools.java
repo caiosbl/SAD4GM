@@ -8,7 +8,7 @@ import javax.management.RuntimeErrorException;
 
 public class MaquinaTools extends DataBaseTools {
 
-	public void inserirMaquina(String nome, int codigo, String descricao) throws SQLException {
+	public static void inserirMaquina(String nome, int codigo, String descricao) throws SQLException {
 		if (hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Código já cadastrado!");
 
@@ -30,7 +30,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	public void deletarMaquina(int codigo) throws SQLException {
+	public static void deletarMaquina(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina não cadastrada!");
 
@@ -50,7 +50,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	public void setNomeMaquina(int codigo, String nome) throws SQLException {
+	public static void setNomeMaquina(int codigo, String nome) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
 
@@ -71,7 +71,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	public void setCodigoMaquina(int codigo, int novoCodigo) throws SQLException {
+	public static void setCodigoMaquina(int codigo, int novoCodigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
 
@@ -91,7 +91,7 @@ public class MaquinaTools extends DataBaseTools {
 		}
 	}
 
-	public void setDescricaoMaquina(int codigo, String descricao) throws SQLException {
+	public static void setDescricaoMaquina(int codigo, String descricao) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
 
@@ -112,7 +112,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	public String getInfoMaquina(int codigo) throws SQLException {
+	public static String getInfoMaquina(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
 
@@ -121,7 +121,7 @@ public class MaquinaTools extends DataBaseTools {
 
 		try {
 			criaConexao();
-			PreparedStatement state = super.con
+			PreparedStatement state = con
 					.prepareStatement("SELECT DISTINCT nome,codigo,descricao FROM sad4gm.maquina WHERE codigo = ?");
 			state.setInt(1, codigo);
 
@@ -144,13 +144,13 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	public String listarMaquinas() {
+	public static String listarMaquinas() {
 		String listagem = "";
 		String quebraLinha = System.lineSeparator();
 
 		try {
 			criaConexao();
-			PreparedStatement state = super.con.prepareStatement("SELECT nome,codigo,descricao FROM sad4gm.maquina");
+			PreparedStatement state = con.prepareStatement("SELECT nome,codigo,descricao FROM sad4gm.maquina");
 
 			ResultSet resSet = state.executeQuery();
 
@@ -172,7 +172,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	private boolean hasMaquina(int codigo) throws SQLException {
+	private static boolean hasMaquina(int codigo) throws SQLException {
 		boolean has;
 		criaConexao();
 		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.maquina WHERE codigo = ?");
