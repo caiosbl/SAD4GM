@@ -1,5 +1,6 @@
 package bancoDeDados;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -225,7 +226,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public String getNomeUsuario(String id) throws SQLException {
+	public String getNomeUsuario(String id, Connection con) throws SQLException {
 		if (!hasUsuario(id))
 			return "Usuário Não Cadastrado";
 

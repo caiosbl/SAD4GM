@@ -140,7 +140,7 @@ public class MaquinaTools extends DataBaseTools {
 				infoMaquina += "Descrição: " + resSet.getString(3) + quebraLinha;
 				idUsuario = resSet.getString(4);
 
-				String infoUsuarioCadastrou = uTools.getNomeUsuario(idUsuario);
+				String infoUsuarioCadastrou = uTools.getNomeUsuario(idUsuario,con);
 				infoMaquina += "Cadastrada por: " + infoUsuarioCadastrou + quebraLinha;
 				infoMaquina += quebraLinha;
 			}
@@ -173,7 +173,7 @@ public class MaquinaTools extends DataBaseTools {
 				listagem += "Descrição: " + resSet.getString(3) + quebraLinha;
 				idUsuario = resSet.getString(4);
 
-				String infoUsuarioCadastrou = uTools.getNomeUsuario(idUsuario);
+				String infoUsuarioCadastrou = uTools.getNomeUsuario(idUsuario,con);
 				listagem += "Cadastrada por: " + infoUsuarioCadastrou + quebraLinha;
 				listagem += quebraLinha;
 			}
