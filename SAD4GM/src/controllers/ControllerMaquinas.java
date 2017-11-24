@@ -19,7 +19,7 @@ public class ControllerMaquinas {
 
 	}
 
-	public String adicionaMaquina(String nome, String codigo, String descricao) {
+	public String adicionaMaquina(String nome, String codigo, String descricao, String idUsuario) {
 		int codigoInt;
 		String status;
 
@@ -32,7 +32,7 @@ public class ControllerMaquinas {
 			ValidaMaquina.validaNome(nome);
 			ValidaMaquina.validaCodigo(codigoInt);
 			ValidaMaquina.validaDescricao(descricao);
-			mTools.inserirMaquina(nome, codigoInt, descricao);
+			mTools.inserirMaquina(nome, codigoInt, descricao, idUsuario);
 			status = "MÁQUINA CADASTRADA COM SUCESSO!";
 		} catch (NullPointerException e) {
 			status = e.getMessage();

@@ -1,5 +1,6 @@
 package bancoDeDados;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +9,7 @@ import javax.management.RuntimeErrorException;
 
 public class UsuarioTools extends DataBaseTools {
 
-	public static void inserirUsuario(String nome, String id, int senha, String auditor) throws SQLException {
+	public void inserirUsuario(String nome, String id, int senha, String auditor) throws SQLException {
 
 		if (hasUsuario(id))
 			throw new RuntimeErrorException(null, "ID já cadastrado!");
@@ -32,7 +33,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public static void deletarUsuario(String id) throws SQLException {
+	public void deletarUsuario(String id) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário não cadastrado!");
@@ -53,7 +54,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public static void setNomeUsuario(String nome, String id) throws SQLException {
+	public void setNomeUsuario(String nome, String id) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -75,7 +76,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public static void setIdUsuario(String id, String novoId) throws SQLException {
+	public void setIdUsuario(String id, String novoId) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -97,7 +98,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public static void setSenhaUsuario(String id, int senha) throws SQLException {
+	public void setSenhaUsuario(String id, int senha) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -119,7 +120,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public static void setAuditorUsuario(String id, String auditor) throws SQLException {
+	public void setAuditorUsuario(String id, String auditor) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -141,7 +142,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public static String getInfoUsuario(String id) throws SQLException {
+	public String getInfoUsuario(String id) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -199,7 +200,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public static String listarUsuarios() {
+	public String listarUsuarios() {
 		String listagem = "";
 		String quebraLinha = System.lineSeparator();
 
@@ -225,7 +226,32 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	private static boolean hasUsuario(String id) throws SQLException {
+	public String getNomeUsuario(String id, Connection con) throws SQLException {
+		if (!hasUsuario(id))
+			return "Usuário Não Cadastrado";
+
+		String descricao = "";
+		String quebraLinha = System.lineSeparator();
+
+		try {
+			PreparedStatement state = con.prepareStatement("SELECT DISTINCT nome FROM sad4gm.usuario WHERE id = ?");
+			state.setString(1, id);
+
+			ResultSet resSet = state.executeQuery();
+
+			if (resSet.next()) {
+				descricao += String.format("Nome: %s - ID: %s", resSet.getString(1), id) + quebraLinha;
+
+			}
+			state.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return descricao;
+	}
+
+	private boolean hasUsuario(String id) throws SQLException {
 		boolean has;
 		criaConexao();
 		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE id = ?");

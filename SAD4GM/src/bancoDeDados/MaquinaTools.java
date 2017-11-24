@@ -7,19 +7,25 @@ import java.sql.SQLException;
 import javax.management.RuntimeErrorException;
 
 public class MaquinaTools extends DataBaseTools {
+	private UsuarioTools uTools;
 
-	public static void inserirMaquina(String nome, int codigo, String descricao) throws SQLException {
+	public MaquinaTools() {
+		uTools = new UsuarioTools();
+	}
+
+	public void inserirMaquina(String nome, int codigo, String descricao, String idUsuario) throws SQLException {
 		if (hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Código já cadastrado!");
 
 		try {
 
-			final String INSERIR = "INSERT INTO sad4gm.maquina (nome, codigo,descricao) VALUES (?,?,?)";
+			final String INSERIR = "INSERT INTO sad4gm.maquina (nome, codigo,descricao,idusuario) VALUES (?,?,?,?)";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
 			stmt.setString(1, nome);
 			stmt.setInt(2, codigo);
 			stmt.setString(3, descricao);
+			stmt.setString(4, idUsuario);
 			stmt.execute();
 			stmt.close();
 			fechaConexao();
@@ -30,7 +36,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	public static void deletarMaquina(int codigo) throws SQLException {
+	public void deletarMaquina(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina não cadastrada!");
 
@@ -50,7 +56,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	public static void setNomeMaquina(int codigo, String nome) throws SQLException {
+	public void setNomeMaquina(int codigo, String nome) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
 
@@ -71,7 +77,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	public static void setCodigoMaquina(int codigo, int novoCodigo) throws SQLException {
+	public void setCodigoMaquina(int codigo, int novoCodigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
 
@@ -91,7 +97,7 @@ public class MaquinaTools extends DataBaseTools {
 		}
 	}
 
-	public static void setDescricaoMaquina(int codigo, String descricao) throws SQLException {
+	public void setDescricaoMaquina(int codigo, String descricao) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
 
@@ -112,25 +118,30 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	public static String getInfoMaquina(int codigo) throws SQLException {
+	public String getInfoMaquina(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
 
 		String infoMaquina = "";
 		String quebraLinha = System.lineSeparator();
+		String idUsuario = null;
 
 		try {
 			criaConexao();
-			PreparedStatement state = con
-					.prepareStatement("SELECT DISTINCT nome,codigo,descricao FROM sad4gm.maquina WHERE codigo = ?");
+			PreparedStatement state = con.prepareStatement(
+					"SELECT DISTINCT nome,codigo,descricao,idusuario FROM sad4gm.maquina WHERE codigo = ?");
 			state.setInt(1, codigo);
 
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
 				infoMaquina += "Nome: " + resSet.getString(1) + quebraLinha;
-				infoMaquina += "Código: " + resSet.getString(2) + quebraLinha;
+				infoMaquina += "Código: " + resSet.getInt(2) + quebraLinha;
 				infoMaquina += "Descrição: " + resSet.getString(3) + quebraLinha;
+				idUsuario = resSet.getString(4);
+
+				String infoUsuarioCadastrou = uTools.getNomeUsuario(idUsuario,con);
+				infoMaquina += "Cadastrada por: " + infoUsuarioCadastrou + quebraLinha;
 				infoMaquina += quebraLinha;
 			}
 			state.close();
@@ -144,25 +155,29 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	public static String listarMaquinas() {
+	public String listarMaquinas() {
 		String listagem = "";
 		String quebraLinha = System.lineSeparator();
+		String idUsuario = null;
 
 		try {
 			criaConexao();
-			PreparedStatement state = con.prepareStatement("SELECT nome,codigo,descricao FROM sad4gm.maquina");
+			PreparedStatement state = con
+					.prepareStatement("SELECT nome,codigo,descricao,idusuario FROM sad4gm.maquina");
 
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
 				listagem += "Nome: " + resSet.getString(1) + quebraLinha;
-				listagem += "Código: " + resSet.getString(2) + quebraLinha;
+				listagem += "Código: " + resSet.getInt(2) + quebraLinha;
 				listagem += "Descrição: " + resSet.getString(3) + quebraLinha;
+				idUsuario = resSet.getString(4);
+
+				String infoUsuarioCadastrou = uTools.getNomeUsuario(idUsuario,con);
+				listagem += "Cadastrada por: " + infoUsuarioCadastrou + quebraLinha;
 				listagem += quebraLinha;
 			}
-
 			state.close();
-
 			fechaConexao();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -172,7 +187,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	private static boolean hasMaquina(int codigo) throws SQLException {
+	private boolean hasMaquina(int codigo) throws SQLException {
 		boolean has;
 		criaConexao();
 		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.maquina WHERE codigo = ?");

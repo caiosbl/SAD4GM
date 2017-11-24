@@ -20,7 +20,7 @@ public class FuncoesInterfaceMaquina {
 			cadastraMaquina(sistema);
 			break;
 		case "2":
-			//atualizaMaquina(sistema);
+			// atualizaMaquina(sistema);
 			break;
 		case "3":
 			removeMaquina(sistema);
@@ -48,13 +48,13 @@ public class FuncoesInterfaceMaquina {
 		String codigo = sc.nextLine();
 		System.out.print("Descrição: ");
 		String descricao = sc.nextLine();
+		System.out.print("ID do Usuário: ");
+		String idUsuario = sc.nextLine();
 
-		System.out.println(
-				System.lineSeparator() + sistema.adicionaMaquina(nome, codigo, descricao) + System.lineSeparator());
+		System.out.println(System.lineSeparator() + sistema.adicionaMaquina(nome, codigo, descricao, idUsuario)
+				+ System.lineSeparator());
 
 	}
-
-
 
 	public static void removeMaquina(Sistema sistema) {
 		System.out.println("REMOVER UMA MÁQUINA " + System.lineSeparator());

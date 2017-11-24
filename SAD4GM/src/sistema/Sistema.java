@@ -59,15 +59,15 @@ public class Sistema {
 	public String listarUsuarios() {
 		return cUsuarios.listarUsuarios();
 	}
-	
+
 	public String validaIdAndSenhaUsuario(String id, String senha) throws SQLException {
 		return cUsuarios.validaIdAndSenha(id, senha);
 	}
 
 	// Funções de Máquina
 
-	public String adicionaMaquina(String nome, String codigo, String descricao) {
-		return cMaquinas.adicionaMaquina(nome, codigo, descricao);
+	public String adicionaMaquina(String nome, String codigo, String descricao, String idUsuario) {
+		return cMaquinas.adicionaMaquina(nome, codigo, descricao, idUsuario);
 	}
 
 	public String removerMaquina(String codigo) {
