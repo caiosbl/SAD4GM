@@ -2,10 +2,12 @@ package sistema;
 
 import java.sql.SQLException;
 
+import bancoDeDados.AdminTools;
 import bancoDeDados.MaquinaTools;
 import bancoDeDados.UsuarioTools;
 import controllers.ControllerMaquinas;
 import controllers.ControllerUsuarios;
+import validadorInformacoes.ValidaUsuario;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -20,14 +22,64 @@ public class Sistema {
 	private ControllerMaquinas cMaquinas;
 	private UsuarioTools uTools;
 	private MaquinaTools mTools;
+	private AdminTools admTools;
 
 	public Sistema() throws SQLException {
 
 		this.uTools = new UsuarioTools();
 		this.mTools = new MaquinaTools();
+		this.admTools = new AdminTools();
 
 		this.cUsuarios = new ControllerUsuarios(uTools);
 		this.cMaquinas = new ControllerMaquinas(mTools);
+	}
+
+	// Funções de Admin
+	
+	public String inserirAdmin(String nome,String senha,String id) {
+		int senhaInt;
+		String status;
+
+		try {
+			senhaInt = Integer.parseInt(senha);
+		} catch (Exception e) {
+			return "SENHA INVÁLIDA!";
+		}
+		try {
+			ValidaUsuario.validaNome(nome);
+			ValidaUsuario.validaId(id);
+			admTools.inserirAdmin(nome, senhaInt, id);
+			status = "Admin CADASTRADO COM SUCESSO!";
+			
+		} catch (NullPointerException e) {
+			status = e.getMessage();
+		} catch (IllegalArgumentException e) {
+			status = e.getMessage();
+		} catch (RuntimeException e) {
+			status = e.getMessage();
+		} catch (Exception e) {
+			status = e.getMessage();
+		}
+
+		return status;
+	}
+
+	public boolean autenticaAdmin(String id, String senha) throws SQLException {
+		int senhaInt;
+		boolean status;
+
+		try {
+			senhaInt = Integer.parseInt(senha);
+		} catch (Exception e) {
+			return false;
+		}
+
+		if (admTools.validaIdAndSenha(id, senhaInt))
+			status = true;
+		else
+			status = false;
+
+		return status;
 	}
 
 	// Funções de Usuário

@@ -55,9 +55,20 @@ public class FuncoesInterfaceUsuario {
 		}
 	}
 
-	public static void cadastraUsuario(Sistema sistema) {
+	public static void cadastraUsuario(Sistema sistema) throws SQLException {
 		System.out.println("CADASTRAR UM USUÁRIO" + System.lineSeparator());
+		
+		System.out.println(System.lineSeparator());
 		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Id do Admin: ");
+		String idAdmin = sc.nextLine();
+		System.out.println("Senha do Admin: ");
+		String senhaAdmin = sc.nextLine();
+		
+		if(sistema.autenticaAdmin(idAdmin, senhaAdmin)) {
+		
+		
 		System.out.print("Nome: ");
 		String nome = sc.nextLine();
 		System.out.print("ID: ");
@@ -69,6 +80,10 @@ public class FuncoesInterfaceUsuario {
 
 		System.out.println(
 				System.lineSeparator() + sistema.cadastrarUsuario(nome, id, senha, auditor) + System.lineSeparator());
+		}
+		else {
+			System.out.println("Usuário ou Senha Inválidos!");
+		}
 
 	}
 

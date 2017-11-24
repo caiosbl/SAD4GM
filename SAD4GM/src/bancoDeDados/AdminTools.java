@@ -31,10 +31,152 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
+	public void deletarAdmin(String id) throws SQLException {
+
+		if (!hasAdmin(id))
+			throw new RuntimeErrorException(null, "Administrador não cadastrado!");
+
+		try {
+
+			final String DELETE = "DELETE FROM sad4gm.admin where id = ?";
+			criaConexao();
+			PreparedStatement stmt = con.prepareStatement(DELETE);
+			stmt.setString(1, id);
+			stmt.execute();
+			stmt.close();
+			fechaConexao();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void setNomeAdmin(String nome, String id) throws SQLException {
+
+		if (!hasAdmin(id))
+			throw new RuntimeErrorException(null, "Usuário inexistente!");
+
+		try {
+
+			final String UPDATE = "UPDATE  sad4gm.admin SET nome = ? WHERE id = ?";
+			criaConexao();
+			PreparedStatement stmt = con.prepareStatement(UPDATE);
+			stmt.setString(1, nome);
+			stmt.setString(2, id);
+			stmt.execute();
+			stmt.close();
+			fechaConexao();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void setIdAdmin(String id, String novoId) throws SQLException {
+
+		if (!hasAdmin(id))
+			throw new RuntimeErrorException(null, "Usuário inexistente!");
+
+		try {
+
+			final String UPDATE = "UPDATE  sad4gm.admin SET id = ? WHERE id = ?";
+			criaConexao();
+			PreparedStatement stmt = con.prepareStatement(UPDATE);
+			stmt.setString(1, novoId);
+			stmt.setString(2, id);
+			stmt.execute();
+			stmt.close();
+			fechaConexao();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void setSenhaAdmin(String id, int senha) throws SQLException {
+
+		if (!hasAdmin(id))
+			throw new RuntimeErrorException(null, "Usuário inexistente!");
+
+		try {
+
+			final String UPDATE = "UPDATE  sad4gm.usuario SET senha = ? WHERE id = ?";
+			criaConexao();
+			PreparedStatement stmt = con.prepareStatement(UPDATE);
+			stmt.setInt(1, senha);
+			stmt.setString(2, id);
+			stmt.execute();
+			stmt.close();
+			fechaConexao();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public String getInfoAdmin(String id) throws SQLException {
+		if (!hasAdmin(id))
+			throw new RuntimeErrorException(null, "Admin inexistente!");
+
+		String infoAdmin = "";
+		String quebraLinha = System.lineSeparator();
+
+		try {
+			criaConexao();
+			PreparedStatement state = con.prepareStatement("SELECT DISTINCT nome,id FROM sad4gm.admin WHERE id = ?");
+			state.setString(1, id);
+
+			ResultSet resSet = state.executeQuery();
+
+			while (resSet.next()) {
+				infoAdmin += "Nome: " + resSet.getString(1) + quebraLinha;
+				infoAdmin += "Id: " + resSet.getString(2) + quebraLinha;
+			}
+			state.close();
+			fechaConexao();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return infoAdmin;
+
+	}
+
+	public boolean validaIdAndSenha(String id, int senha) throws SQLException {
+		boolean valido = false;
+
+		if (!hasAdmin(id))
+			return false;
+		try {
+			criaConexao();
+			PreparedStatement state = con
+					.prepareStatement("SELECT DISTINCT nome FROM sad4gm.admin WHERE id = ? AND senha =  ?");
+			state.setString(1, id);
+			state.setInt(2, senha);
+
+			ResultSet resSet = state.executeQuery();
+
+			if (resSet.next())
+				valido = true;
+
+			state.close();
+			fechaConexao();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return valido;
+
+	}
+
 	private boolean hasAdmin(String id) throws SQLException {
 		boolean has;
 		criaConexao();
-		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE id = ?");
+		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.admin WHERE id = ?");
 		state.setString(1, id);
 		ResultSet resSet = state.executeQuery();
 
