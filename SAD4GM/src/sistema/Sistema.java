@@ -2,6 +2,7 @@ package sistema;
 
 import java.sql.SQLException;
 
+import bancoDeDados.AdminTools;
 import bancoDeDados.MaquinaTools;
 import bancoDeDados.UsuarioTools;
 import controllers.ControllerMaquinas;
@@ -20,14 +21,36 @@ public class Sistema {
 	private ControllerMaquinas cMaquinas;
 	private UsuarioTools uTools;
 	private MaquinaTools mTools;
+	private AdminTools admTools;
 
 	public Sistema() throws SQLException {
 
 		this.uTools = new UsuarioTools();
 		this.mTools = new MaquinaTools();
+		this.admTools = new AdminTools();
 
 		this.cUsuarios = new ControllerUsuarios(uTools);
 		this.cMaquinas = new ControllerMaquinas(mTools);
+	}
+
+	// Funções de Admin
+
+	public String autenticaAdmin(String id, String senha) throws SQLException {
+		int senhaInt;
+		String status;
+
+		try {
+			senhaInt = Integer.parseInt(senha);
+		} catch (Exception e) {
+			return "SENHA INVÁLIDA!";
+		}
+
+		if (admTools.validaIdAndSenha(id, senhaInt))
+			status = "Usuário e senha válida";
+		else
+			status = "Usuário ou senha inválida";
+
+		return status;
 	}
 
 	// Funções de Usuário
