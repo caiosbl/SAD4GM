@@ -7,6 +7,7 @@ import bancoDeDados.MaquinaTools;
 import bancoDeDados.UsuarioTools;
 import controllers.ControllerMaquinas;
 import controllers.ControllerUsuarios;
+import validadorInformacoes.ValidaUsuario;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -34,8 +35,8 @@ public class Sistema {
 	}
 
 	// Funções de Admin
-
-	public String autenticaAdmin(String id, String senha) throws SQLException {
+	
+	public String inserirAdmin(String nome,String senha,String id) {
 		int senhaInt;
 		String status;
 
@@ -44,11 +45,39 @@ public class Sistema {
 		} catch (Exception e) {
 			return "SENHA INVÁLIDA!";
 		}
+		try {
+			ValidaUsuario.validaNome(nome);
+			ValidaUsuario.validaId(id);
+			admTools.inserirAdmin(nome, senhaInt, id);
+			status = "Admin CADASTRADO COM SUCESSO!";
+			
+		} catch (NullPointerException e) {
+			status = e.getMessage();
+		} catch (IllegalArgumentException e) {
+			status = e.getMessage();
+		} catch (RuntimeException e) {
+			status = e.getMessage();
+		} catch (Exception e) {
+			status = e.getMessage();
+		}
+
+		return status;
+	}
+
+	public boolean autenticaAdmin(String id, String senha) throws SQLException {
+		int senhaInt;
+		boolean status;
+
+		try {
+			senhaInt = Integer.parseInt(senha);
+		} catch (Exception e) {
+			return false;
+		}
 
 		if (admTools.validaIdAndSenha(id, senhaInt))
-			status = "Usuário e senha válida";
+			status = true;
 		else
-			status = "Usuário ou senha inválida";
+			status = false;
 
 		return status;
 	}

@@ -28,7 +28,7 @@ public class Main {
 			System.out.println();
 			selectOpcao(sistema, entrada);
 
-		} while (!entrada.equals("3"));
+		} while (!entrada.equals("4"));
 
 		sc.close();
 	}
@@ -36,7 +36,8 @@ public class Main {
 	public static String opcoesGerais() {
 		String quebraLinha = System.lineSeparator();
 		String opcoes = quebraLinha + "SELECIONE UMA OPÇÃO: " + quebraLinha + "1 - OPÇÕES DE USUÁRIO" + quebraLinha
-				+ "2 - OPÇÕES DE MÁQUINAS" + quebraLinha + "3 - SAIR" + quebraLinha;
+				+ "2 - OPÇÕES DE MÁQUINAS" + quebraLinha + "3 - OPÇÕES DE ADMIN" + quebraLinha + "4 - SAIR"
+				+ quebraLinha;
 
 		return opcoes;
 	}
@@ -61,6 +62,13 @@ public class Main {
 			break;
 
 		case "3":
+			sc = new Scanner(System.in);
+			System.out.println(FuncoesInterfaceAdmin.opcoes());
+			System.out.print("OPÇÃO: ");
+			opcaoSecundaria = sc.nextLine();
+			FuncoesInterfaceAdmin.selectOpcao(opcaoSecundaria, sistema);
+			break;
+		case "4":
 			break;
 
 		default:
