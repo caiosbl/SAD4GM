@@ -3,12 +3,12 @@ package bancoDeDados;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class DataBaseTools {
+public abstract class DataBaseTools {
 
-	protected static Connection con;
+	protected Connection con;
 
-	protected static void criaConexao() {
-	
+	protected void criaConexao() {
+
 		try {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 			con = DriverManager.getConnection("jdbc:derby:Sad4gmDatabase; create = true");
@@ -17,10 +17,10 @@ public class DataBaseTools {
 		}
 	}
 
-	protected static void fechaConexao() {
+	protected void fechaConexao() {
 		try {
-			if(con != null)
-			con.close();
+			if (con != null)
+				con.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
