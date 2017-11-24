@@ -31,6 +31,27 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
+	public void deletarAdmin(String id) throws SQLException {
+
+		if (!hasAdmin(id))
+			throw new RuntimeErrorException(null, "Administrador não cadastrado!");
+
+		try {
+
+			final String DELETE = "DELETE FROM sad4gm.admin where id = ?";
+			criaConexao();
+			PreparedStatement stmt = con.prepareStatement(DELETE);
+			stmt.setString(1, id);
+			stmt.execute();
+			stmt.close();
+			fechaConexao();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	public void setNomeAdmin(String nome, String id) throws SQLException {
 
 		if (!hasAdmin(id))
@@ -94,6 +115,34 @@ public class AdminTools extends DataBaseTools {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+	}
+
+	public String getInfoAdmin(String id) throws SQLException {
+		if (!hasAdmin(id))
+			throw new RuntimeErrorException(null, "Admin inexistente!");
+
+		String infoAdmin = "";
+		String quebraLinha = System.lineSeparator();
+
+		try {
+			criaConexao();
+			PreparedStatement state = con.prepareStatement("SELECT DISTINCT nome,id FROM sad4gm.admin WHERE id = ?");
+			state.setString(1, id);
+
+			ResultSet resSet = state.executeQuery();
+
+			while (resSet.next()) {
+				infoAdmin += "Nome: " + resSet.getString(1) + quebraLinha;
+				infoAdmin += "Id: " + resSet.getString(2) + quebraLinha;
+			}
+			state.close();
+			fechaConexao();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return infoAdmin;
 
 	}
 
