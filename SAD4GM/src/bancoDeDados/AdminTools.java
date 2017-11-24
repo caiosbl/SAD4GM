@@ -146,6 +146,33 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
+	public boolean validaIdAndSenha(String id, int senha) throws SQLException {
+		boolean valido = false;
+
+		if (!hasAdmin(id))
+			return false;
+		try {
+			criaConexao();
+			PreparedStatement state = con
+					.prepareStatement("SELECT DISTINCT nome FROM sad4gm.admin WHERE id = ? AND senha =  ?");
+			state.setString(1, id);
+			state.setInt(2, senha);
+
+			ResultSet resSet = state.executeQuery();
+
+			if (resSet.next())
+				valido = true;
+
+			state.close();
+			fechaConexao();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return valido;
+
+	}
+
 	private boolean hasAdmin(String id) throws SQLException {
 		boolean has;
 		criaConexao();

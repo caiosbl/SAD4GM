@@ -54,7 +54,7 @@ public class ControllerUsuarios {
 		String status;
 		try {
 			uTools.deletarUsuario(id);
-			status = "Usuário removida com sucesso!";
+			status = "Usuário removido com sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
 		}
