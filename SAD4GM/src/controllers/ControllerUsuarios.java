@@ -21,7 +21,7 @@ public class ControllerUsuarios {
 		this.uTools = uTools;
 	}
 
-	public String adicionaUsuario(String nome, String id, String senha, String auditor) {
+	public String inserir(String nome, String id, String senha, String auditor) {
 
 		int senhaInt;
 		String status;
@@ -35,7 +35,7 @@ public class ControllerUsuarios {
 			ValidaUsuario.validaNome(nome);
 			ValidaUsuario.validaId(id);
 			ValidaUsuario.validaAuditor(auditor);
-			uTools.inserirUsuario(nome, id, senhaInt, auditor);
+			uTools.inserir(nome, id, senhaInt, auditor);
 			status = "USUÁRIO CADASTRADO COM SUCESSO!";
 		} catch (NullPointerException e) {
 			status = e.getMessage();
@@ -50,10 +50,10 @@ public class ControllerUsuarios {
 		return status;
 	}
 
-	public String removerUsuario(String id) {
+	public String remover(String id) {
 		String status;
 		try {
-			uTools.deletarUsuario(id);
+			uTools.deletar(id);
 			status = "Usuário removido com sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -75,7 +75,7 @@ public class ControllerUsuarios {
 		}
 
 		try {
-			uTools.setNomeUsuario(nome, id);
+			uTools.setNome(nome, id);
 			status = "Nome Atualizado com Sucesso!";
 		} catch (Exception e) {
 			status = "Falha ao Atualizar Nome!";
@@ -97,7 +97,7 @@ public class ControllerUsuarios {
 		}
 
 		try {
-			uTools.setIdUsuario(id, novoId);
+			uTools.setId(id, novoId);
 			status = "ID Atualizado com Sucesso!";
 		} catch (Exception e) {
 			status = "Falha ao Atualizar o ID!";
@@ -119,7 +119,7 @@ public class ControllerUsuarios {
 		}
 
 		try {
-			uTools.setAuditorUsuario(id, auditor);
+			uTools.setAuditor(id, auditor);
 			;
 			status = "Auditor Atualizado com Sucesso!";
 		} catch (Exception e) {
@@ -129,11 +129,11 @@ public class ControllerUsuarios {
 		return status;
 	}
 
-	public String getInfoUsuario(String id) {
+	public String getInfo(String id) {
 		String info;
 
 		try {
-			info = uTools.getInfoUsuario(id);
+			info = uTools.getInfo(id);
 		} catch (Exception e) {
 			info = e.getMessage();
 		}
@@ -141,10 +141,10 @@ public class ControllerUsuarios {
 		return info;
 	}
 
-	public String listarUsuarios() {
+	public String listar() {
 		String listagem;
 
-		listagem = uTools.listarUsuarios();
+		listagem = uTools.listar();
 
 		if (listagem.equals(""))
 			listagem = "Nenhuma usuário cadastrado!";
@@ -153,7 +153,7 @@ public class ControllerUsuarios {
 	}
 	
 	
-	public String validaIdAndSenha(String id, String  senha) throws SQLException {
+	public String autentica(String id, String  senha) throws SQLException {
 		int senhaInt;
 		String status;
 
@@ -163,7 +163,7 @@ public class ControllerUsuarios {
 			return "SENHA INVÁLIDA!";
 		}
 		
-		if(uTools.validaIdAndSenha(id, senhaInt))
+		if(uTools.autenticador(id, senhaInt))
 			status = "Usuário e senha válida";
 		else
 			status = "Usuário ou senha inválida";

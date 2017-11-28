@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import bancoDeDados.AdminTools;
 import bancoDeDados.MaquinaTools;
 import bancoDeDados.UsuarioTools;
+import controllers.ControllerAdmins;
 import controllers.ControllerMaquinas;
 import controllers.ControllerUsuarios;
 import validadorInformacoes.ValidaUsuario;
@@ -20,6 +21,7 @@ public class Sistema {
 
 	private ControllerUsuarios cUsuarios;
 	private ControllerMaquinas cMaquinas;
+	private ControllerAdmins cAdmins;
 	private UsuarioTools uTools;
 	private MaquinaTools mTools;
 	private AdminTools admTools;
@@ -32,64 +34,27 @@ public class Sistema {
 
 		this.cUsuarios = new ControllerUsuarios(uTools);
 		this.cMaquinas = new ControllerMaquinas(mTools);
+		this.cAdmins = new ControllerAdmins(admTools);
 	}
 
 	// Funções de Admin
-	
-	public String inserirAdmin(String nome,String senha,String id) {
-		int senhaInt;
-		String status;
 
-		try {
-			senhaInt = Integer.parseInt(senha);
-		} catch (Exception e) {
-			return "SENHA INVÁLIDA!";
-		}
-		try {
-			ValidaUsuario.validaNome(nome);
-			ValidaUsuario.validaId(id);
-			admTools.inserirAdmin(nome, senhaInt, id);
-			status = "Admin CADASTRADO COM SUCESSO!";
-			
-		} catch (NullPointerException e) {
-			status = e.getMessage();
-		} catch (IllegalArgumentException e) {
-			status = e.getMessage();
-		} catch (RuntimeException e) {
-			status = e.getMessage();
-		} catch (Exception e) {
-			status = e.getMessage();
-		}
-
-		return status;
+	public String inserirAdmin(String nome, String senha, String id) {
+		return cAdmins.inserir(nome, senha, id);
 	}
 
 	public boolean autenticaAdmin(String id, String senha) throws SQLException {
-		int senhaInt;
-		boolean status;
-
-		try {
-			senhaInt = Integer.parseInt(senha);
-		} catch (Exception e) {
-			return false;
-		}
-
-		if (admTools.validaIdAndSenha(id, senhaInt))
-			status = true;
-		else
-			status = false;
-
-		return status;
+		return cAdmins.autentica(id, senha);
 	}
 
 	// Funções de Usuário
 
 	public String cadastrarUsuario(String nome, String id, String senha, String auditor) {
-		return cUsuarios.adicionaUsuario(nome, id, senha, auditor);
+		return cUsuarios.inserir(nome, id, senha, auditor);
 	}
 
 	public String removerUsuario(String id) {
-		return cUsuarios.removerUsuario(id);
+		return cUsuarios.remover(id);
 	}
 
 	public String setNomeUsuario(String id, String nome) {
@@ -105,25 +70,25 @@ public class Sistema {
 	}
 
 	public String getInfoUsuario(String id) {
-		return cUsuarios.getInfoUsuario(id);
+		return cUsuarios.getInfo(id);
 	}
 
 	public String listarUsuarios() {
-		return cUsuarios.listarUsuarios();
+		return cUsuarios.listar();
 	}
 
 	public String validaIdAndSenhaUsuario(String id, String senha) throws SQLException {
-		return cUsuarios.validaIdAndSenha(id, senha);
+		return cUsuarios.autentica(id, senha);
 	}
 
 	// Funções de Máquina
 
 	public String adicionaMaquina(String nome, String codigo, String descricao, String idUsuario) {
-		return cMaquinas.adicionaMaquina(nome, codigo, descricao, idUsuario);
+		return cMaquinas.inserir(nome, codigo, descricao, idUsuario);
 	}
 
 	public String removerMaquina(String codigo) {
-		return cMaquinas.removerMaquina(codigo);
+		return cMaquinas.remover(codigo);
 	}
 
 	public String setNomeMaquina(String codigo, String novoNome) {
@@ -139,11 +104,11 @@ public class Sistema {
 	}
 
 	public String getInfoMaquina(String codigo) {
-		return cMaquinas.getInfoMaquina(codigo);
+		return cMaquinas.getInfo(codigo);
 	}
 
 	public String listarMaquinas() {
-		return cMaquinas.listarMaquinas();
+		return cMaquinas.listar();
 	}
 
 }
