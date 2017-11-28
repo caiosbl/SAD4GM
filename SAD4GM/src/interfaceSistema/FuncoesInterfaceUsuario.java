@@ -138,6 +138,6 @@ public class FuncoesInterfaceUsuario {
 		String id = sc.nextLine();
 		System.out.print("Senha: ");
 		String senha = sc.nextLine();
-		System.out.println(System.lineSeparator() + sistema.validaIdAndSenhaUsuario(id, senha) + System.lineSeparator());
+		System.out.println(System.lineSeparator() + sistema.autenticaUsuario(id, senha) + System.lineSeparator());
 	}
 }

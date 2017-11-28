@@ -89,6 +89,10 @@ public class Sistema {
 		return cUsuarios.setAuditor(id, auditor);
 	}
 
+	public String setSenhaUsuario(String id, String senha) {
+		return cUsuarios.setSenha(id, senha);
+	}
+
 	public String getInfoUsuario(String id) {
 		return cUsuarios.getInfo(id);
 	}
@@ -97,7 +101,7 @@ public class Sistema {
 		return cUsuarios.listar();
 	}
 
-	public String validaIdAndSenhaUsuario(String id, String senha) throws SQLException {
+	public String autenticaUsuario(String id, String senha) throws SQLException {
 		return cUsuarios.autentica(id, senha);
 	}
 
