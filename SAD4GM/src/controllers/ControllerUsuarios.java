@@ -129,6 +129,26 @@ public class ControllerUsuarios {
 		return status;
 	}
 
+	public String setSenha(String id, String senha) {
+		String status;
+		int senhaInt;
+
+		try {
+			senhaInt = Integer.parseInt(senha);
+		} catch (Exception e) {
+			return "Senha Inválida!";
+		}
+
+		try {
+			uTools.setSenha(id, senhaInt);
+			status = "Senha Atualizada com Sucesso!";
+		} catch (Exception e) {
+			status = "Falha ao Atualizar a Senha!";
+		}
+
+		return status;
+	}
+
 	public String getInfo(String id) {
 		String info;
 
@@ -151,9 +171,8 @@ public class ControllerUsuarios {
 
 		return listagem;
 	}
-	
-	
-	public String autentica(String id, String  senha) throws SQLException {
+
+	public String autentica(String id, String senha) throws SQLException {
 		int senhaInt;
 		String status;
 
@@ -162,12 +181,12 @@ public class ControllerUsuarios {
 		} catch (Exception e) {
 			return "SENHA INVÁLIDA!";
 		}
-		
-		if(uTools.autenticador(id, senhaInt))
+
+		if (uTools.autenticador(id, senhaInt))
 			status = "Usuário e senha válida";
 		else
 			status = "Usuário ou senha inválida";
-		
+
 		return status;
 	}
 

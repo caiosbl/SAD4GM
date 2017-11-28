@@ -43,6 +43,26 @@ public class Sistema {
 		return cAdmins.inserir(nome, senha, id);
 	}
 
+	public String deletarAdmin(String id) {
+		return cAdmins.deletar(id);
+	}
+
+	public String setNomeAdmin(String nome, String id) {
+		return cAdmins.setNome(nome, id);
+	}
+
+	public String setIdAdmin(String id, String novoId) {
+		return cAdmins.setId(id, novoId);
+	}
+
+	public String setSenhaAdmin(String id, String senha) {
+		return cAdmins.setSenha(id, senha);
+	}
+
+	public String getInfoAdmin(String id) {
+		return cAdmins.getInfo(id);
+	}
+
 	public boolean autenticaAdmin(String id, String senha) throws SQLException {
 		return cAdmins.autentica(id, senha);
 	}
@@ -69,6 +89,10 @@ public class Sistema {
 		return cUsuarios.setAuditor(id, auditor);
 	}
 
+	public String setSenhaUsuario(String id, String senha) {
+		return cUsuarios.setSenha(id, senha);
+	}
+
 	public String getInfoUsuario(String id) {
 		return cUsuarios.getInfo(id);
 	}
@@ -77,7 +101,7 @@ public class Sistema {
 		return cUsuarios.listar();
 	}
 
-	public String validaIdAndSenhaUsuario(String id, String senha) throws SQLException {
+	public String autenticaUsuario(String id, String senha) throws SQLException {
 		return cUsuarios.autentica(id, senha);
 	}
 
