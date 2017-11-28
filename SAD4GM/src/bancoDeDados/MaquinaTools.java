@@ -13,7 +13,7 @@ public class MaquinaTools extends DataBaseTools {
 		uTools = new UsuarioTools();
 	}
 
-	public void inserirMaquina(String nome, int codigo, String descricao, String idUsuario) throws SQLException {
+	public void inserir(String nome, int codigo, String descricao, String idUsuario) throws SQLException {
 		if (hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Código já cadastrado!");
 
@@ -36,7 +36,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	public void deletarMaquina(int codigo) throws SQLException {
+	public void deletar(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina não cadastrada!");
 
@@ -56,7 +56,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	public void setNomeMaquina(int codigo, String nome) throws SQLException {
+	public void setNome(int codigo, String nome) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
 
@@ -77,7 +77,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	public void setCodigoMaquina(int codigo, int novoCodigo) throws SQLException {
+	public void setCodigo(int codigo, int novoCodigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
 
@@ -97,7 +97,7 @@ public class MaquinaTools extends DataBaseTools {
 		}
 	}
 
-	public void setDescricaoMaquina(int codigo, String descricao) throws SQLException {
+	public void setDescricao(int codigo, String descricao) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
 
@@ -118,7 +118,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	public String getInfoMaquina(int codigo) throws SQLException {
+	public String getInfo(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
 
@@ -140,7 +140,7 @@ public class MaquinaTools extends DataBaseTools {
 				infoMaquina += "Descrição: " + resSet.getString(3) + quebraLinha;
 				idUsuario = resSet.getString(4);
 
-				String infoUsuarioCadastrou = uTools.getNomeUsuario(idUsuario,con);
+				String infoUsuarioCadastrou = uTools.getNome(idUsuario, con);
 				infoMaquina += "Cadastrada por: " + infoUsuarioCadastrou + quebraLinha;
 				infoMaquina += quebraLinha;
 			}
@@ -155,7 +155,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	public String listarMaquinas() {
+	public String listar() {
 		String listagem = "";
 		String quebraLinha = System.lineSeparator();
 		String idUsuario = null;
@@ -173,7 +173,7 @@ public class MaquinaTools extends DataBaseTools {
 				listagem += "Descrição: " + resSet.getString(3) + quebraLinha;
 				idUsuario = resSet.getString(4);
 
-				String infoUsuarioCadastrou = uTools.getNomeUsuario(idUsuario,con);
+				String infoUsuarioCadastrou = uTools.getNome(idUsuario, con);
 				listagem += "Cadastrada por: " + infoUsuarioCadastrou + quebraLinha;
 				listagem += quebraLinha;
 			}

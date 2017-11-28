@@ -19,7 +19,7 @@ public class ControllerMaquinas {
 
 	}
 
-	public String adicionaMaquina(String nome, String codigo, String descricao, String idUsuario) {
+	public String inserir(String nome, String codigo, String descricao, String idUsuario) {
 		int codigoInt;
 		String status;
 
@@ -32,7 +32,7 @@ public class ControllerMaquinas {
 			ValidaMaquina.validaNome(nome);
 			ValidaMaquina.validaCodigo(codigoInt);
 			ValidaMaquina.validaDescricao(descricao);
-			mTools.inserirMaquina(nome, codigoInt, descricao, idUsuario);
+			mTools.inserir(nome, codigoInt, descricao, idUsuario);
 			status = "MÁQUINA CADASTRADA COM SUCESSO!";
 		} catch (NullPointerException e) {
 			status = e.getMessage();
@@ -47,7 +47,7 @@ public class ControllerMaquinas {
 		return status;
 	}
 
-	public String removerMaquina(String codigo) {
+	public String remover(String codigo) {
 		String status;
 		int codigoInt;
 
@@ -58,7 +58,7 @@ public class ControllerMaquinas {
 		}
 
 		try {
-			mTools.deletarMaquina(codigoInt);
+			mTools.deletar(codigoInt);
 			status = "Máquina removida com sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -79,7 +79,7 @@ public class ControllerMaquinas {
 
 		try {
 			ValidaMaquina.validaNome(nome);
-			mTools.setNomeMaquina(codigoInt, nome);
+			mTools.setNome(codigoInt, nome);
 			status = "Nome atualizado com sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -107,7 +107,7 @@ public class ControllerMaquinas {
 
 		try {
 			ValidaMaquina.validaCodigo(novoCodigoInt);
-			mTools.setCodigoMaquina(codigoInt, novoCodigoInt);
+			mTools.setCodigo(codigoInt, novoCodigoInt);
 			status = "Código atualizado com sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -128,7 +128,7 @@ public class ControllerMaquinas {
 
 		try {
 			ValidaMaquina.validaDescricao(descricao);
-			mTools.setDescricaoMaquina(codigoInt, descricao);
+			mTools.setDescricao(codigoInt, descricao);
 			status = "Descrição atualizada com sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -137,7 +137,7 @@ public class ControllerMaquinas {
 		return status;
 	}
 
-	public String getInfoMaquina(String codigo) {
+	public String getInfo(String codigo) {
 		String info;
 		int codigoInt;
 
@@ -148,7 +148,7 @@ public class ControllerMaquinas {
 		}
 
 		try {
-			info = mTools.getInfoMaquina(codigoInt);
+			info = mTools.getInfo(codigoInt);
 		} catch (Exception e) {
 			info = e.getMessage();
 		}
@@ -156,10 +156,10 @@ public class ControllerMaquinas {
 		return info;
 	}
 
-	public String listarMaquinas() {
+	public String listar() {
 		String listagem;
 
-		listagem = mTools.listarMaquinas();
+		listagem = mTools.listar();
 
 		if (listagem.equals(""))
 			listagem = "Nenhuma máquina cadastrada!";

@@ -9,7 +9,7 @@ import javax.management.RuntimeErrorException;
 
 public class UsuarioTools extends DataBaseTools {
 
-	public void inserirUsuario(String nome, String id, int senha, String auditor) throws SQLException {
+	public void inserir(String nome, String id, int senha, String auditor) throws SQLException {
 
 		if (hasUsuario(id))
 			throw new RuntimeErrorException(null, "ID já cadastrado!");
@@ -33,7 +33,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public void deletarUsuario(String id) throws SQLException {
+	public void deletar(String id) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário não cadastrado!");
@@ -54,7 +54,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public void setNomeUsuario(String nome, String id) throws SQLException {
+	public void setNome(String nome, String id) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -76,7 +76,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public void setIdUsuario(String id, String novoId) throws SQLException {
+	public void setId(String id, String novoId) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -98,7 +98,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public void setSenhaUsuario(String id, int senha) throws SQLException {
+	public void setSenha(String id, int senha) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -120,7 +120,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public void setAuditorUsuario(String id, String auditor) throws SQLException {
+	public void setAuditor(String id, String auditor) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -142,7 +142,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public String getInfoUsuario(String id) throws SQLException {
+	public String getInfo(String id) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -173,7 +173,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public boolean validaIdAndSenha(String id, int senha) throws SQLException {
+	public boolean autenticador(String id, int senha) throws SQLException {
 		boolean valido = false;
 
 		if (!hasUsuario(id))
@@ -200,7 +200,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public String listarUsuarios() {
+	public String listar() {
 		String listagem = "";
 		String quebraLinha = System.lineSeparator();
 
@@ -226,7 +226,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public String getNomeUsuario(String id, Connection con) throws SQLException {
+	public String getNome(String id, Connection con) throws SQLException {
 		if (!hasUsuario(id))
 			return "Usuário Não Cadastrado";
 

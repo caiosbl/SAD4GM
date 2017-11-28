@@ -48,7 +48,7 @@ public class Sistema {
 		try {
 			ValidaUsuario.validaNome(nome);
 			ValidaUsuario.validaId(id);
-			admTools.inserirAdmin(nome, senhaInt, id);
+			admTools.inserir(nome, senhaInt, id);
 			status = "Admin CADASTRADO COM SUCESSO!";
 			
 		} catch (NullPointerException e) {
@@ -74,7 +74,7 @@ public class Sistema {
 			return false;
 		}
 
-		if (admTools.validaIdAndSenha(id, senhaInt))
+		if (admTools.autentica(id, senhaInt))
 			status = true;
 		else
 			status = false;
@@ -85,11 +85,11 @@ public class Sistema {
 	// Funções de Usuário
 
 	public String cadastrarUsuario(String nome, String id, String senha, String auditor) {
-		return cUsuarios.adicionaUsuario(nome, id, senha, auditor);
+		return cUsuarios.inserir(nome, id, senha, auditor);
 	}
 
 	public String removerUsuario(String id) {
-		return cUsuarios.removerUsuario(id);
+		return cUsuarios.remover(id);
 	}
 
 	public String setNomeUsuario(String id, String nome) {
@@ -105,25 +105,25 @@ public class Sistema {
 	}
 
 	public String getInfoUsuario(String id) {
-		return cUsuarios.getInfoUsuario(id);
+		return cUsuarios.getInfo(id);
 	}
 
 	public String listarUsuarios() {
-		return cUsuarios.listarUsuarios();
+		return cUsuarios.listar();
 	}
 
 	public String validaIdAndSenhaUsuario(String id, String senha) throws SQLException {
-		return cUsuarios.validaIdAndSenha(id, senha);
+		return cUsuarios.autentica(id, senha);
 	}
 
 	// Funções de Máquina
 
 	public String adicionaMaquina(String nome, String codigo, String descricao, String idUsuario) {
-		return cMaquinas.adicionaMaquina(nome, codigo, descricao, idUsuario);
+		return cMaquinas.inserir(nome, codigo, descricao, idUsuario);
 	}
 
 	public String removerMaquina(String codigo) {
-		return cMaquinas.removerMaquina(codigo);
+		return cMaquinas.remover(codigo);
 	}
 
 	public String setNomeMaquina(String codigo, String novoNome) {
@@ -139,11 +139,11 @@ public class Sistema {
 	}
 
 	public String getInfoMaquina(String codigo) {
-		return cMaquinas.getInfoMaquina(codigo);
+		return cMaquinas.getInfo(codigo);
 	}
 
 	public String listarMaquinas() {
-		return cMaquinas.listarMaquinas();
+		return cMaquinas.listar();
 	}
 
 }

@@ -8,7 +8,7 @@ import javax.management.RuntimeErrorException;
 
 public class AdminTools extends DataBaseTools {
 
-	public void inserirAdmin(String nome, int senha, String id) throws SQLException {
+	public void inserir(String nome, int senha, String id) throws SQLException {
 
 		if (hasAdmin(id))
 			throw new RuntimeErrorException(null, "ID já cadastrado!");
@@ -31,7 +31,7 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public void deletarAdmin(String id) throws SQLException {
+	public void delete(String id) throws SQLException {
 
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Administrador não cadastrado!");
@@ -52,7 +52,7 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public void setNomeAdmin(String nome, String id) throws SQLException {
+	public void setNome(String nome, String id) throws SQLException {
 
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -74,7 +74,7 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public void setIdAdmin(String id, String novoId) throws SQLException {
+	public void setId(String id, String novoId) throws SQLException {
 
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -96,7 +96,7 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public void setSenhaAdmin(String id, int senha) throws SQLException {
+	public void setSenha(String id, int senha) throws SQLException {
 
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -118,7 +118,7 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public String getInfoAdmin(String id) throws SQLException {
+	public String getInfo(String id) throws SQLException {
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Admin inexistente!");
 
@@ -146,7 +146,7 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public boolean validaIdAndSenha(String id, int senha) throws SQLException {
+	public boolean autentica(String id, int senha) throws SQLException {
 		boolean valido = false;
 
 		if (!hasAdmin(id))
