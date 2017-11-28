@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import bancoDeDados.AdminTools;
 import bancoDeDados.MaquinaTools;
 import bancoDeDados.UsuarioTools;
+import controllers.ControllerAdmins;
 import controllers.ControllerMaquinas;
 import controllers.ControllerUsuarios;
 import validadorInformacoes.ValidaUsuario;
@@ -20,6 +21,7 @@ public class Sistema {
 
 	private ControllerUsuarios cUsuarios;
 	private ControllerMaquinas cMaquinas;
+	private ControllerAdmins cAdmins;
 	private UsuarioTools uTools;
 	private MaquinaTools mTools;
 	private AdminTools admTools;
@@ -32,54 +34,17 @@ public class Sistema {
 
 		this.cUsuarios = new ControllerUsuarios(uTools);
 		this.cMaquinas = new ControllerMaquinas(mTools);
+		this.cAdmins = new ControllerAdmins(admTools);
 	}
 
 	// Funções de Admin
-	
-	public String inserirAdmin(String nome,String senha,String id) {
-		int senhaInt;
-		String status;
 
-		try {
-			senhaInt = Integer.parseInt(senha);
-		} catch (Exception e) {
-			return "SENHA INVÁLIDA!";
-		}
-		try {
-			ValidaUsuario.validaNome(nome);
-			ValidaUsuario.validaId(id);
-			admTools.inserir(nome, senhaInt, id);
-			status = "Admin CADASTRADO COM SUCESSO!";
-			
-		} catch (NullPointerException e) {
-			status = e.getMessage();
-		} catch (IllegalArgumentException e) {
-			status = e.getMessage();
-		} catch (RuntimeException e) {
-			status = e.getMessage();
-		} catch (Exception e) {
-			status = e.getMessage();
-		}
-
-		return status;
+	public String inserirAdmin(String nome, String senha, String id) {
+		return cAdmins.inserir(nome, senha, id);
 	}
 
 	public boolean autenticaAdmin(String id, String senha) throws SQLException {
-		int senhaInt;
-		boolean status;
-
-		try {
-			senhaInt = Integer.parseInt(senha);
-		} catch (Exception e) {
-			return false;
-		}
-
-		if (admTools.autentica(id, senhaInt))
-			status = true;
-		else
-			status = false;
-
-		return status;
+		return cAdmins.autentica(id, senha);
 	}
 
 	// Funções de Usuário
