@@ -43,6 +43,26 @@ public class Sistema {
 		return cAdmins.inserir(nome, senha, id);
 	}
 
+	public String deletarAdmin(String id) {
+		return cAdmins.deletar(id);
+	}
+
+	public String setNomeAdmin(String nome, String id) {
+		return cAdmins.setNome(nome, id);
+	}
+
+	public String setIdAdmin(String id, String novoId) {
+		return cAdmins.setId(id, novoId);
+	}
+
+	public String setSenhaAdmin(String id, String senha) {
+		return cAdmins.setSenha(id, senha);
+	}
+
+	public String getInfoAdmin(String id) {
+		return cAdmins.getInfo(id);
+	}
+
 	public boolean autenticaAdmin(String id, String senha) throws SQLException {
 		return cAdmins.autentica(id, senha);
 	}
