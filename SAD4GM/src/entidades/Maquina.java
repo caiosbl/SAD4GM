@@ -1,10 +1,7 @@
-package maquina;
+package entidades;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import maquina.subsistema.Subsistema;
 import validadorInformacoes.ValidaMaquina;
+import validadorInformacoes.ValidaUsuario;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -18,17 +15,28 @@ public class Maquina {
 	private String nome;
 	private int codigo;
 	private String descricao;
+	private String idUsuario;
 
-	private Map<String, Subsistema> mapaDeSubsistemas;
-
-	public Maquina(String nome, int codigo, String descricao) {
+	public Maquina(String nome, String codigo, String descricao, String idUsuario) {
 		ValidaMaquina.validaNome(nome);
 		this.nome = nome;
-		ValidaMaquina.validaCodigo(codigo);
-		this.codigo = codigo;
+		this.codigo = parseCodigo(codigo);
 		ValidaMaquina.validaDescricao(descricao);
 		this.descricao = descricao;
-		this.mapaDeSubsistemas = new HashMap<>();
+		ValidaUsuario.validaId(idUsuario);
+		this.idUsuario = idUsuario;
+	}
+
+	public static int parseCodigo(String codigo) {
+		int codigoInt;
+
+		try {
+			codigoInt = Integer.parseInt(codigo);
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Código Inválido!");
+		}
+
+		return codigoInt;
 	}
 
 	public String getNome() {
@@ -56,6 +64,14 @@ public class Maquina {
 	public void setDescricao(String descricao) {
 		ValidaMaquina.validaDescricao(descricao);
 		this.descricao = descricao;
+	}
+
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	@Override

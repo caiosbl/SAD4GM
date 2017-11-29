@@ -1,6 +1,7 @@
 package controllers;
 
 import bancoDeDados.MaquinaTools;
+import entidades.Maquina;
 import validadorInformacoes.ValidaMaquina;
 
 /**
@@ -20,26 +21,18 @@ public class ControllerMaquinas {
 	}
 
 	public String inserir(String nome, String codigo, String descricao, String idUsuario) {
-		int codigoInt;
 		String status;
+		Maquina maquina;
 
 		try {
-			codigoInt = Integer.parseInt(codigo);
+			maquina = new Maquina(nome, codigo, descricao, idUsuario);
 		} catch (Exception e) {
-			return "CÓDIGO INVÁLIDO!";
+			return e.getMessage();
 		}
+
 		try {
-			ValidaMaquina.validaNome(nome);
-			ValidaMaquina.validaCodigo(codigoInt);
-			ValidaMaquina.validaDescricao(descricao);
-			mTools.inserir(nome, codigoInt, descricao, idUsuario);
-			status = "MÁQUINA CADASTRADA COM SUCESSO!";
-		} catch (NullPointerException e) {
-			status = e.getMessage();
-		} catch (IllegalArgumentException e) {
-			status = e.getMessage();
-		} catch (RuntimeException e) {
-			status = e.getMessage();
+			mTools.inserir(maquina);
+			status = "Máquina Inserida com Sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
 		}
@@ -52,9 +45,9 @@ public class ControllerMaquinas {
 		int codigoInt;
 
 		try {
-			codigoInt = Integer.parseInt(codigo);
+			codigoInt = Maquina.parseCodigo(codigo);
 		} catch (Exception e) {
-			return "CÓDIGO INVÁLIDO!";
+			return e.getMessage();
 		}
 
 		try {
