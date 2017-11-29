@@ -11,6 +11,7 @@ import java.sql.SQLException;
  */
 
 import bancoDeDados.UsuarioTools;
+import entidades.Usuario;
 import validadorInformacoes.ValidaUsuario;
 
 public class ControllerUsuarios {
@@ -23,26 +24,18 @@ public class ControllerUsuarios {
 
 	public String inserir(String nome, String id, String senha, String auditor) {
 
-		int senhaInt;
+		Usuario usuario;
 		String status;
 
 		try {
-			senhaInt = Integer.parseInt(senha);
+			usuario = new Usuario(nome, id, senha, auditor);
 		} catch (Exception e) {
-			return "SENHA INVÁLIDA!";
+			return e.getMessage();
 		}
+
 		try {
-			ValidaUsuario.validaNome(nome);
-			ValidaUsuario.validaId(id);
-			ValidaUsuario.validaAuditor(auditor);
-			uTools.inserir(nome, id, senhaInt, auditor);
-			status = "USUÁRIO CADASTRADO COM SUCESSO!";
-		} catch (NullPointerException e) {
-			status = e.getMessage();
-		} catch (IllegalArgumentException e) {
-			status = e.getMessage();
-		} catch (RuntimeException e) {
-			status = e.getMessage();
+			uTools.inserir(usuario);
+			status = "Usuário inserido com Sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
 		}
