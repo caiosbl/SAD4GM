@@ -165,20 +165,20 @@ public class ControllerUsuarios {
 		return listagem;
 	}
 
-	public String autentica(String id, String senha) throws SQLException {
+	public boolean autentica(String id, String senha) throws SQLException {
 		int senhaInt;
-		String status;
+		boolean status;
 
 		try {
 			senhaInt = Integer.parseInt(senha);
 		} catch (Exception e) {
-			return "SENHA INVÁLIDA!";
+			return false;
 		}
 
 		if (uTools.autenticador(id, senhaInt))
-			status = "Usuário e senha válida";
+			status = true;
 		else
-			status = "Usuário ou senha inválida";
+			status = false;
 
 		return status;
 	}

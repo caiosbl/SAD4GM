@@ -9,7 +9,6 @@ import controllers.ControllerAdmins;
 import controllers.ControllerMaquinas;
 import controllers.ControllerUsuarios;
 
-
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
@@ -26,7 +25,7 @@ public class Sistema {
 	private MaquinaTools mTools;
 	private AdminTools admTools;
 
-	public Sistema() throws SQLException {
+	public Sistema() {
 
 		this.uTools = new UsuarioTools();
 		this.mTools = new MaquinaTools();
@@ -101,7 +100,7 @@ public class Sistema {
 		return cUsuarios.listar();
 	}
 
-	public String autenticaUsuario(String id, String senha) throws SQLException {
+	public boolean autenticaUsuario(String id, String senha) throws SQLException {
 		return cUsuarios.autentica(id, senha);
 	}
 
