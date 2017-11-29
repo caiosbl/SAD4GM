@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 import javax.management.RuntimeErrorException;
 
+import entidades.Maquina;
+
 public class MaquinaTools extends DataBaseTools {
 	private UsuarioTools uTools;
 
@@ -13,8 +15,8 @@ public class MaquinaTools extends DataBaseTools {
 		uTools = new UsuarioTools();
 	}
 
-	public void inserir(String nome, int codigo, String descricao, String idUsuario) throws SQLException {
-		if (hasMaquina(codigo))
+	public void inserir(Maquina maquina) throws SQLException {
+		if (hasMaquina(maquina.getCodigo()))
 			throw new RuntimeErrorException(null, "Código já cadastrado!");
 
 		try {
@@ -22,10 +24,10 @@ public class MaquinaTools extends DataBaseTools {
 			final String INSERIR = "INSERT INTO sad4gm.maquina (nome, codigo,descricao,idusuario) VALUES (?,?,?,?)";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
-			stmt.setString(1, nome);
-			stmt.setInt(2, codigo);
-			stmt.setString(3, descricao);
-			stmt.setString(4, idUsuario);
+			stmt.setString(1, maquina.getNome());
+			stmt.setInt(2, maquina.getCodigo());
+			stmt.setString(3, maquina.getDescricao());
+			stmt.setString(4, maquina.getIdUsuario());
 			stmt.execute();
 			stmt.close();
 			fechaConexao();

@@ -7,11 +7,13 @@ import java.sql.SQLException;
 
 import javax.management.RuntimeErrorException;
 
+import entidades.Usuario;
+
 public class UsuarioTools extends DataBaseTools {
 
-	public void inserir(String nome, String id, int senha, String auditor) throws SQLException {
+	public void inserir(Usuario usuario) throws SQLException {
 
-		if (hasUsuario(id))
+		if (hasUsuario(usuario.getId()))
 			throw new RuntimeErrorException(null, "ID já cadastrado!");
 
 		try {
@@ -19,10 +21,10 @@ public class UsuarioTools extends DataBaseTools {
 			final String INSERIR = "INSERT INTO sad4gm.usuario (nome, id, senha,auditor) VALUES (?,?,?,?)";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
-			stmt.setString(1, nome);
-			stmt.setString(2, id);
-			stmt.setInt(3, senha);
-			stmt.setString(4, auditor);
+			stmt.setString(1, usuario.getNome());
+			stmt.setString(2, usuario.getId());
+			stmt.setInt(3, usuario.getSenha());
+			stmt.setString(4, usuario.getAuditor());
 			stmt.execute();
 			stmt.close();
 			fechaConexao();

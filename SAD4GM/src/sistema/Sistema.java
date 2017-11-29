@@ -8,7 +8,7 @@ import bancoDeDados.UsuarioTools;
 import controllers.ControllerAdmins;
 import controllers.ControllerMaquinas;
 import controllers.ControllerUsuarios;
-import validadorInformacoes.ValidaUsuario;
+
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
