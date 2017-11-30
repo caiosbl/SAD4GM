@@ -5,24 +5,33 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import sistema.Sistema;
+
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.HeadlessException;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class UsuarioOptions extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
+	private Sistema sistema = new Sistema();
 
 	/**
 	 * Launch the application.
@@ -60,7 +69,7 @@ public class UsuarioOptions extends JFrame {
 		JLabel lblSadgm = new JLabel("SAD4GM");
 		lblSadgm.setForeground(new Color(0, 0, 139));
 		lblSadgm.setFont(new Font("Tahoma", Font.BOLD, 37));
-		lblSadgm.setBounds(219, 11, 180, 67);
+		lblSadgm.setBounds(219, 11, 219, 90);
 		contentPane.add(lblSadgm);
 
 		textField = new JTextField();
@@ -84,40 +93,52 @@ public class UsuarioOptions extends JFrame {
 
 		JLabel lblUsurio = new JLabel("USUÁRIO\r\n");
 		lblUsurio.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblUsurio.setBounds(236, 130, 157, 53);
+		lblUsurio.setBounds(246, 128, 157, 53);
 		contentPane.add(lblUsurio);
 
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().equals(""))
-					JOptionPane.showMessageDialog(null,checkUsuarioSenhaPreenchidos());
+				if (isUserEmpty() && isPasswordEmpty())
+					JOptionPane.showMessageDialog(null, "Preencha os Campos ID e Senha!");
+				else if (isUserEmpty())
+					JOptionPane.showMessageDialog(null, "Preencha o Campo ID!");
+				else if (isPasswordEmpty())
+					JOptionPane.showMessageDialog(null, "Preencha o Campo Senha!");
+
+				else {
+					
+					String id = textField.getText();
+					String senha = String.valueOf(passwordField.getPassword());
+					
+					try {
+						if(sistema.autenticaUsuario(id, senha))
+							JOptionPane.showMessageDialog(null, "Login Aceito");
+						else
+							JOptionPane.showMessageDialog(null, "Usuário ou Senha Inválidos!");
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, "Falha na Conexão com o Banco de Dados!");
+						
+					} 
+
+				}
+
 			}
 		});
 		btnLogin.setForeground(new Color(0, 0, 0));
 		btnLogin.setBackground(new Color(255, 255, 255));
-		
-		
-		
-	
-		
-		
-		
-		
 
 		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnLogin.setBounds(273, 264, 100, 38);
+		btnLogin.setBounds(269, 264, 100, 38);
 		contentPane.add(btnLogin);
 	}
-	
-	private String checkUsuarioSenhaPreenchidos() {
-		String mensagem = "";
-		
-		if(textField.getText().equals(""))
-			mensagem += "Preencha o Campo Usuário";
-		if(passwordField.getPassword().length == 0)
-			mensagem += " e o  Campo Senha";
-		
-		return mensagem;
+
+	private boolean isUserEmpty() {
+		return textField.getText().equals("");
 	}
+
+	private boolean isPasswordEmpty() {
+		return passwordField.getPassword().length == 0;
+	}
+
 }
