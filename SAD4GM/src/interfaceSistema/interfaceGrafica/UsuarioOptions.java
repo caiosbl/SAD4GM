@@ -58,42 +58,39 @@ public class UsuarioOptions extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 621, 497);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(204, 204, 204));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(106, 179, 394, 2);
-		contentPane.add(separator);
-
-		JLabel lblSadgm = new JLabel("SAD4GM");
-		lblSadgm.setForeground(new Color(0, 0, 139));
-		lblSadgm.setFont(new Font("Tahoma", Font.BOLD, 37));
-		lblSadgm.setBounds(219, 11, 219, 90);
-		contentPane.add(lblSadgm);
-
 		textField = new JTextField();
-		textField.setBounds(231, 192, 180, 25);
+		textField.setBackground(Color.WHITE);
+		textField.setBounds(226, 198, 180, 25);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
 		JLabel lblId = new JLabel("ID:");
+		lblId.setForeground(new Color(0, 0, 51));
 		lblId.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblId.setBounds(187, 196, 46, 14);
+		lblId.setBounds(182, 202, 46, 14);
 		contentPane.add(lblId);
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(231, 228, 180, 25);
+		passwordField.setBackground(Color.WHITE);
+		passwordField.setBounds(226, 234, 180, 25);
 		contentPane.add(passwordField);
 
 		JLabel lblSenha = new JLabel("SENHA:");
+		lblSenha.setForeground(new Color(0, 0, 51));
 		lblSenha.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblSenha.setBounds(159, 232, 65, 14);
+		lblSenha.setBounds(154, 238, 65, 14);
 		contentPane.add(lblSenha);
 
-		JLabel lblUsurio = new JLabel("USUÁRIO\r\n");
+		JLabel lblUsurio = new JLabel("LOGIN ");
+		lblUsurio.setBackground(new Color(0, 0, 51));
+		lblUsurio.setForeground(new Color(0, 0, 51));
 		lblUsurio.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblUsurio.setBounds(246, 128, 157, 53);
+		lblUsurio.setBounds(264, 146, 90, 31);
 		contentPane.add(lblUsurio);
 
 		JButton btnLogin = new JButton("Login");
@@ -125,12 +122,35 @@ public class UsuarioOptions extends JFrame {
 
 			}
 		});
-		btnLogin.setForeground(new Color(0, 0, 0));
-		btnLogin.setBackground(new Color(255, 255, 255));
+		btnLogin.setForeground(Color.BLACK);
+		btnLogin.setBackground(Color.WHITE);
 
 		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnLogin.setBounds(269, 264, 100, 38);
+		btnLogin.setBounds(264, 270, 100, 38);
 		contentPane.add(btnLogin);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(10, 102, 582, 15);
+		contentPane.add(separator_1);
+		
+		JLabel label = new JLabel("DeSiDeS");
+		label.setForeground(Color.BLACK);
+		label.setFont(new Font("Tahoma", Font.BOLD, 28));
+		label.setBounds(222, 57, 141, 45);
+		contentPane.add(label);
+		
+		JLabel label_1 = new JLabel("SAD4GM");
+		label_1.setForeground(new Color(0, 0, 51));
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 37));
+		label_1.setBounds(200, 7, 210, 73);
+		contentPane.add(label_1);
+		
+		JLabel lblUsurio_1 = new JLabel("Usuário");
+		lblUsurio_1.setForeground(new Color(0, 0, 0));
+		lblUsurio_1.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblUsurio_1.setBackground(new Color(0, 0, 51));
+		lblUsurio_1.setBounds(474, 44, 118, 31);
+		contentPane.add(lblUsurio_1);
 	}
 
 	private boolean isUserEmpty() {
@@ -140,5 +160,4 @@ public class UsuarioOptions extends JFrame {
 	private boolean isPasswordEmpty() {
 		return passwordField.getPassword().length == 0;
 	}
-
 }
