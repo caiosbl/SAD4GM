@@ -6,8 +6,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import sistema.Sistema;
 
 import javax.swing.JLabel;
@@ -52,11 +50,12 @@ public class UsuarioLogin extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public UsuarioLogin() {
+		setToolTipText("Usuário Login");
 		setBorder(null);
 		setBounds(100, 100, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(204, 204, 204));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -175,6 +174,8 @@ public class UsuarioLogin extends JInternalFrame {
 		button.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button.setBackground(Color.WHITE);
 		contentPane.add(button);
+		
+	
 
 	}
 

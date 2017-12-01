@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 
 public class Entrada {
 
-	private JFrame frame;
+	private JFrame frmSadgm;
 
 	/**
 	 * Launch the application.
@@ -27,7 +27,7 @@ public class Entrada {
 			public void run() {
 				try {
 					Entrada window = new Entrada();
-					window.frame.setVisible(true);
+					window.frmSadgm.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -46,15 +46,17 @@ public class Entrada {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 621, 497);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSadgm = new JFrame();
+		frmSadgm.setTitle("SAD4GM");
+		frmSadgm.setResizable(false);
+		frmSadgm.setBounds(100, 100, 621, 497);
+		frmSadgm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSadgm.getContentPane().setLayout(null);
 
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Color.LIGHT_GRAY);
 		desktopPane.setBounds(0, 0, 605, 458);
-		frame.getContentPane().add(desktopPane);
+		frmSadgm.getContentPane().add(desktopPane);
 
 		JLabel label = new JLabel("Login:");
 		label.setForeground(new Color(0, 0, 51));
@@ -69,8 +71,6 @@ public class Entrada {
 				UsuarioLogin uOptions = new UsuarioLogin();
 				desktopPane.removeAll();
 				desktopPane.add(uOptions);
-
-				uOptions.setVisible(true);
 				uOptions.setPosicao();
 
 				try {
@@ -80,6 +80,9 @@ public class Entrada {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				uOptions.setVisible(true);
+			
 
 				uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
