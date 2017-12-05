@@ -14,10 +14,16 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.SystemColor;
 
 public class Entrada extends JFrame {
 
@@ -47,6 +53,22 @@ public class Entrada extends JFrame {
 	 * Create the frame.
 	 */
 	public Entrada() {
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (UnsupportedLookAndFeelException e) {
+		    // handle exception
+		} catch (ClassNotFoundException e) {
+		    // handle exception
+		} catch (InstantiationException e) {
+		    // handle exception
+		} catch (IllegalAccessException e) {
+		    // handle exception
+		}
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -62,11 +84,11 @@ public class Entrada extends JFrame {
 		setContentPane(contentPane);
 
 		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBackground(Color.LIGHT_GRAY);
+		desktopPane.setBackground(Color.GRAY);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 
 		JLabel label = new JLabel("Login:");
-		label.setForeground(new Color(0, 0, 51));
+		label.setForeground(SystemColor.inactiveCaptionBorder);
 		label.setFont(new Font("Tahoma", Font.BOLD, 24));
 		label.setBackground(Color.WHITE);
 		label.setBounds(234, 185, 99, 45);
@@ -100,13 +122,13 @@ public class Entrada extends JFrame {
 		desktopPane.add(button_1);
 
 		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setForeground(Color.BLACK);
+		label_1.setForeground(SystemColor.inactiveCaptionBorder);
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
 		label_1.setBounds(214, 67, 141, 45);
 		desktopPane.add(label_1);
 
 		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setForeground(new Color(0, 0, 51));
+		label_2.setForeground(SystemColor.inactiveCaptionBorder);
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
 		label_2.setBounds(190, 11, 210, 73);
 		desktopPane.add(label_2);

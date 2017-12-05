@@ -174,6 +174,35 @@ public class UsuarioTools extends DataBaseTools {
 		return infoUsuario;
 
 	}
+	
+	public String getNome(String id) throws SQLException {
+
+		if (!hasUsuario(id))
+			throw new RuntimeErrorException(null, "Usuário inexistente!");
+
+		String nome = "";
+	
+
+		try {
+			criaConexao();
+			PreparedStatement state = con
+					.prepareStatement("SELECT DISTINCT nome FROM sad4gm.usuario WHERE id = ?");
+			state.setString(1, id);
+
+			ResultSet resSet = state.executeQuery();
+
+			while (resSet.next()) {
+				nome =  resSet.getString(1) ;
+			}
+			state.close();
+			fechaConexao();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return nome;
+
+	}
 
 	public boolean autenticador(String id, int senha) throws SQLException {
 		boolean valido = false;

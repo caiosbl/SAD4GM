@@ -61,6 +61,8 @@ public class Sistema {
 	public String getInfoAdmin(String id) {
 		return cAdmins.getInfo(id);
 	}
+	
+
 
 	public boolean autenticaAdmin(String id, String senha) throws SQLException {
 		return cAdmins.autentica(id, senha);
@@ -94,6 +96,9 @@ public class Sistema {
 
 	public String getInfoUsuario(String id) {
 		return cUsuarios.getInfo(id);
+	}
+	public String getNomeUsuario(String id) {
+		return cUsuarios.getNome(id);
 	}
 
 	public String listarUsuarios() {
