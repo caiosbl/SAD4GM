@@ -153,6 +153,17 @@ public class ControllerUsuarios {
 
 		return info;
 	}
+	
+	public String getNome(String id) {
+		String nome;
+		try {
+			nome = uTools.getNome(id);
+		} catch (Exception e) {
+			nome = e.getMessage();
+		}
+
+		return nome;
+	}
 
 	public String listar() {
 		String listagem;
