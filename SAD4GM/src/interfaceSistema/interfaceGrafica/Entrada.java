@@ -1,8 +1,11 @@
 package interfaceSistema.interfaceGrafica;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -12,12 +15,17 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
-import java.beans.PropertyVetoException;
 import java.awt.event.ActionEvent;
+import java.awt.Image;
+import java.awt.Toolkit;
 
-public class Entrada {
+public class Entrada extends JFrame {
 
-	private JFrame frmSadgm;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7742771395792137094L;
+	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -26,8 +34,8 @@ public class Entrada {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Entrada window = new Entrada();
-					window.frmSadgm.setVisible(true);
+					Entrada frame = new Entrada();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -36,27 +44,26 @@ public class Entrada {
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public Entrada() {
-		initialize();
-	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frmSadgm = new JFrame();
-		frmSadgm.setTitle("SAD4GM");
-		frmSadgm.setResizable(false);
-		frmSadgm.setBounds(100, 100, 621, 497);
-		frmSadgm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmSadgm.getContentPane().setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("SAD4GM");
+		setResizable(false);
+		setBounds(100, 100, 621, 497);
+
+		Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("icon/icon.jpg");
+		this.setIconImage(iconeTitulo);
+
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Color.LIGHT_GRAY);
-		desktopPane.setBounds(0, 0, 605, 458);
-		frmSadgm.getContentPane().add(desktopPane);
+		contentPane.add(desktopPane, BorderLayout.CENTER);
 
 		JLabel label = new JLabel("Login:");
 		label.setForeground(new Color(0, 0, 51));
@@ -68,22 +75,9 @@ public class Entrada {
 		JButton button = new JButton("Usuário");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				UsuarioLogin uOptions = new UsuarioLogin();
-				desktopPane.removeAll();
-				desktopPane.add(uOptions);
-				uOptions.setPosicao();
-
-				try {
-					uOptions.setSelected(true);
-
-				} catch (PropertyVetoException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
+				UserLogin uOptions = new UserLogin();
+				dispose();
 				uOptions.setVisible(true);
-			
-
 				uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
@@ -121,4 +115,5 @@ public class Entrada {
 		separator.setBounds(10, 123, 582, 15);
 		desktopPane.add(separator);
 	}
+
 }
