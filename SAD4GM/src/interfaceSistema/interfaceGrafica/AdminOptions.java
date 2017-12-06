@@ -17,6 +17,12 @@ import java.awt.SystemColor;
 import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.event.MenuListener;
+import javax.swing.event.MenuEvent;
 
 public class AdminOptions extends JFrame {
 
@@ -76,48 +82,61 @@ public class AdminOptions extends JFrame {
 		btnMinhasInformaes.setBounds(53, 164, 181, 23);
 		desktopPane.add(btnMinhasInformaes);
 		
-		JButton button = new JButton("Minhas Informações");
-		button.setBounds(53, 137, 181, 23);
-		button.addActionListener(new ActionListener() {
+		JButton btnMinhasnInformaes = new JButton("Minhas  Informações");
+		btnMinhasnInformaes.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnMinhasnInformaes.setBounds(310, 58, 156, 60);
+		btnMinhasnInformaes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		desktopPane.add(button);
+		desktopPane.add(btnMinhasnInformaes);
 		
-		JMenu mnUsurio = new JMenu("Usuário");
-		mnUsurio.setBounds(53, 210, 105, 19);
-		desktopPane.add(mnUsurio);
+		
 		
 		JButton btnNewButton = new JButton("Inserir Usuário");
-		mnUsurio.add(btnNewButton);
+		btnNewButton.setBounds(36, 270, 170, 27);
+		desktopPane.add(btnNewButton);
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JButton btnVisualizarMquinas = new JButton("Remover Usuário");
-		mnUsurio.add(btnVisualizarMquinas);
+		btnVisualizarMquinas.setBounds(36, 297, 170, 27);
+		desktopPane.add(btnVisualizarMquinas);
+		btnVisualizarMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JButton btnInserirFuno = new JButton("Alterar Senha Usuário");
-		mnUsurio.add(btnInserirFuno);
+		btnInserirFuno.setBounds(36, 324, 170, 27);
+		desktopPane.add(btnInserirFuno);
+		btnInserirFuno.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JButton btnVerMquinas = new JButton("Alterar Usuário");
-		mnUsurio.add(btnVerMquinas);
+		btnVerMquinas.setBounds(36, 351, 170, 27);
+		desktopPane.add(btnVerMquinas);
+		btnVerMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JButton btnListarUsurios = new JButton("Listar Usuários");
-		mnUsurio.add(btnListarUsurios);
-		
-		JMenu mnMquinas = new JMenu("Máquinas");
-		mnMquinas.setBounds(53, 234, 105, 19);
-		desktopPane.add(mnMquinas);
+		btnListarUsurios.setBounds(36, 378, 170, 27);
+		desktopPane.add(btnListarUsurios);
+		btnListarUsurios.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JButton btnListarMquinas = new JButton("Listar Máquinas");
-		mnMquinas.add(btnListarMquinas);
+		btnListarMquinas.setBounds(350, 270, 156, 27);
+		desktopPane.add(btnListarMquinas);
+		btnListarMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JButton btnRemoverMquina = new JButton("Visualizar Máquina");
-		mnMquinas.add(btnRemoverMquina);
+		btnRemoverMquina.setBounds(350, 297, 156, 27);
+		desktopPane.add(btnRemoverMquina);
+		btnRemoverMquina.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JButton btnRemoverMquina_1 = new JButton("Remover Máquina");
-		mnMquinas.add(btnRemoverMquina_1);
+		btnRemoverMquina_1.setBounds(350, 324, 156, 27);
+		desktopPane.add(btnRemoverMquina_1);
+		btnRemoverMquina_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JButton btnAlterarMquina = new JButton("Alterar Máquina");
-		mnMquinas.add(btnAlterarMquina);
+		btnAlterarMquina.setBounds(350, 351, 156, 27);
+		desktopPane.add(btnAlterarMquina);
+		btnAlterarMquina.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnListarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
