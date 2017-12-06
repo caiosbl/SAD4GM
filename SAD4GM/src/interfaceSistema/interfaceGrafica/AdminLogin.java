@@ -143,6 +143,9 @@ public class AdminLogin extends JFrame {
 					try {
 						if (sistema.autenticaAdmin(id, senha)) {
 							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeAdmin(id) + "!");
+							AdminOptions admOptions = new AdminOptions();
+							dispose();
+							admOptions.setVisible(true);
 						} else {
 							JOptionPane.showMessageDialog(null, "ID ou Senha Inválidos!");
 							textField.setText("");

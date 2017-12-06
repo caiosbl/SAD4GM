@@ -66,65 +66,65 @@ public class UserLogin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
-		
+
 		JLabel label = new JLabel("SAD4GM");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.BOLD, 37));
 		label.setBounds(14, 13, 210, 73);
 		desktopPane.add(label);
-		
+
 		JLabel label_1 = new JLabel("DeSiDeS");
 		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
 		label_1.setBounds(24, 71, 141, 45);
 		desktopPane.add(label_1);
-		
+
 		JLabel label_2 = new JLabel("Usuário");
 		label_2.setForeground(Color.WHITE);
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 25));
 		label_2.setBackground(new Color(0, 0, 51));
 		label_2.setBounds(461, 53, 118, 31);
 		desktopPane.add(label_2);
-		
+
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 137, 582, 15);
 		desktopPane.add(separator);
-		
+
 		JLabel label_3 = new JLabel("LOGIN ");
 		label_3.setForeground(Color.WHITE);
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 25));
 		label_3.setBackground(new Color(0, 0, 51));
 		label_3.setBounds(264, 181, 90, 31);
 		desktopPane.add(label_3);
-		
+
 		textField = new JTextField();
-		
+
 		textField.setColumns(10);
 		textField.setBackground(Color.WHITE);
 		textField.setBounds(226, 233, 180, 25);
 		desktopPane.add(textField);
-		
+
 		passwordField = new JPasswordField();
 		passwordField.setBackground(Color.WHITE);
 		passwordField.setBounds(226, 269, 180, 25);
 		desktopPane.add(passwordField);
-		
+
 		JLabel label_4 = new JLabel("ID:");
 		label_4.setForeground(Color.WHITE);
 		label_4.setFont(new Font("Tahoma", Font.BOLD, 13));
 		label_4.setBounds(182, 237, 46, 14);
 		desktopPane.add(label_4);
-		
+
 		JLabel label_5 = new JLabel("SENHA:");
 		label_5.setForeground(Color.WHITE);
 		label_5.setFont(new Font("Tahoma", Font.BOLD, 13));
 		label_5.setBounds(154, 273, 65, 14);
 		desktopPane.add(label_5);
-		
+
 		JButton button = new JButton("Login");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -143,6 +143,9 @@ public class UserLogin extends JFrame {
 					try {
 						if (sistema.autenticaUsuario(id, senha)) {
 							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeUsuario(id) + "!");
+							UserOptions uOptions = new UserOptions();
+							dispose();
+							uOptions.setVisible(true);
 						} else {
 							JOptionPane.showMessageDialog(null, "ID ou Senha Inválidos!");
 							textField.setText("");
@@ -163,6 +166,7 @@ public class UserLogin extends JFrame {
 		button.setBounds(264, 305, 100, 38);
 		desktopPane.add(button);
 	}
+
 	private boolean isUserEmpty() {
 		return textField.getText().equals("");
 	}
