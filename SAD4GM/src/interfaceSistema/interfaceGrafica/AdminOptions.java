@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
-public class UserOptions extends JFrame {
+public class AdminOptions extends JFrame {
 
 	/**
 	 * 
@@ -30,7 +30,7 @@ public class UserOptions extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserOptions frame = new UserOptions();
+					AdminOptions frame = new AdminOptions();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,7 @@ public class UserOptions extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserOptions() {
+	public AdminOptions() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);

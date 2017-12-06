@@ -25,7 +25,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class UserLogin extends JFrame {
+public class AdminLogin extends JFrame {
 
 	/**
 	 * 
@@ -43,7 +43,7 @@ public class UserLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserLogin frame = new UserLogin();
+					AdminLogin frame = new AdminLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +55,7 @@ public class UserLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserLogin() {
+	public AdminLogin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -83,12 +83,12 @@ public class UserLogin extends JFrame {
 		label_1.setBounds(24, 71, 141, 45);
 		desktopPane.add(label_1);
 		
-		JLabel label_2 = new JLabel("Usuário");
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 25));
-		label_2.setBackground(new Color(0, 0, 51));
-		label_2.setBounds(461, 53, 118, 31);
-		desktopPane.add(label_2);
+		JLabel lblAdmin = new JLabel("Admin");
+		lblAdmin.setForeground(Color.WHITE);
+		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblAdmin.setBackground(new Color(0, 0, 51));
+		lblAdmin.setBounds(461, 53, 118, 31);
+		desktopPane.add(lblAdmin);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 137, 582, 15);
@@ -141,8 +141,8 @@ public class UserLogin extends JFrame {
 					String senha = String.valueOf(passwordField.getPassword());
 
 					try {
-						if (sistema.autenticaUsuario(id, senha)) {
-							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeUsuario(id) + "!");
+						if (sistema.autenticaAdmin(id, senha)) {
+							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeAdmin(id) + "!");
 						} else {
 							JOptionPane.showMessageDialog(null, "ID ou Senha Inválidos!");
 							textField.setText("");

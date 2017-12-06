@@ -111,7 +111,10 @@ public class Entrada extends JFrame {
 		JButton button_1 = new JButton("Admin");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Admin");
+				AdminLogin admLogin = new AdminLogin();
+				dispose();
+				admLogin.setVisible(true);
+				admLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button_1.setForeground(new Color(0, 0, 51));

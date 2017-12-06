@@ -62,6 +62,10 @@ public class Sistema {
 		return cAdmins.getInfo(id);
 	}
 	
+	public String getNomeAdmin(String id) {
+		return cAdmins.getNome(id);
+	}
+	
 
 
 	public boolean autenticaAdmin(String id, String senha) throws SQLException {

@@ -145,6 +145,35 @@ public class AdminTools extends DataBaseTools {
 		return infoAdmin;
 
 	}
+	
+	public String getNome(String id) throws SQLException {
+
+		if (!hasAdmin(id))
+			throw new RuntimeErrorException(null, "Usuário inexistente!");
+
+		String nome = "";
+	
+
+		try {
+			criaConexao();
+			PreparedStatement state = con
+					.prepareStatement("SELECT DISTINCT nome FROM sad4gm.admin WHERE id = ?");
+			state.setString(1, id);
+
+			ResultSet resSet = state.executeQuery();
+
+			while (resSet.next()) {
+				nome =  resSet.getString(1) ;
+			}
+			state.close();
+			fechaConexao();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return nome;
+
+	}
 
 	public boolean autentica(String id, int senha) throws SQLException {
 		boolean valido = false;
