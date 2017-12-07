@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import interfaceSistema.interfaceGrafica.management.AdminOptionsAdminManagement;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -144,9 +145,9 @@ public class AdminLogin extends JFrame {
 						if (sistema.autenticaAdmin(id, senha)) {
 							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeAdmin(id) + "!");
 							AdminOptions admOptions = new AdminOptions();
-							admOptions.setId(id);
 							dispose();
 							admOptions.setVisible(true);
+							admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						} else {
 							JOptionPane.showMessageDialog(null, "ID ou Senha Inválidos!");
 							textField.setText("");
