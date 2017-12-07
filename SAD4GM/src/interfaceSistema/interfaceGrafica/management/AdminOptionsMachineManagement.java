@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica;
+package interfaceSistema.interfaceGrafica.management;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

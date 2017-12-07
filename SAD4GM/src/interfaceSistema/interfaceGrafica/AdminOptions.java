@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import interfaceSistema.interfaceGrafica.management.AdminOptionsMachineManagement;
+import interfaceSistema.interfaceGrafica.management.AdminOptionsUserManagement;
+
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -14,6 +18,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+import javax.swing.JSeparator;
 
 
 public class AdminOptions extends JFrame {
@@ -70,15 +75,15 @@ public class AdminOptions extends JFrame {
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
 		desktopPane.add(label_2);
 		
-		JButton btnMinhasInformaes = new JButton("Alterar Senha");
-		btnMinhasInformaes.setBounds(361, 11, 181, 23);
-		desktopPane.add(btnMinhasInformaes);
-		
 		JButton btnGerenciarUsurios = new JButton("Gerenciar Usuários");
 		btnGerenciarUsurios.setBounds(68, 217, 175, 41);
 		btnGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnGerenciarUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				AdminOptionsUserManagement admUserOptions = new AdminOptionsUserManagement();
+				dispose();
+				admUserOptions.setVisible(true);
+				admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		desktopPane.add(btnGerenciarUsurios);
@@ -86,6 +91,10 @@ public class AdminOptions extends JFrame {
 		JButton btnGerenciarMquinas = new JButton("Gerenciar Máquinas");
 		btnGerenciarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				AdminOptionsMachineManagement admMachineOptions = new AdminOptionsMachineManagement();
+				dispose();
+				admMachineOptions.setVisible(true);
+				admMachineOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnGerenciarMquinas.setBounds(68, 262, 175, 41);
@@ -98,8 +107,21 @@ public class AdminOptions extends JFrame {
 		desktopPane.add(btnMinhasInformaes_1);
 		
 		JButton btnGerenciarAdmins = new JButton("Gerenciar Admins");
+		btnGerenciarAdmins.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnGerenciarAdmins.setBounds(68, 169, 175, 41);
 		btnGerenciarAdmins.setFont(new Font("Tahoma", Font.BOLD, 14));
 		desktopPane.add(btnGerenciarAdmins);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnLogout.setBounds(501, 33, 81, 27);
+		desktopPane.add(btnLogout);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(0, 111, 605, 12);
+		desktopPane.add(separator);
 	}
 }
