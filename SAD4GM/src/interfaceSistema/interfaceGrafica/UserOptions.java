@@ -61,7 +61,7 @@ public class UserOptions extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(53, 209, 167, 23);
+		btnNewButton.setBounds(53, 229, 181, 23);
 		desktopPane.add(btnNewButton);
 		
 		JLabel label_1 = new JLabel("DeSiDeS");
@@ -77,15 +77,19 @@ public class UserOptions extends JFrame {
 		desktopPane.add(label_2);
 		
 		JButton btnVisualizarMquinas = new JButton("Visualizar Máquinas");
-		btnVisualizarMquinas.setBounds(53, 268, 167, 23);
+		btnVisualizarMquinas.setBounds(53, 288, 181, 23);
 		desktopPane.add(btnVisualizarMquinas);
 		
 		JButton btnInserirFuno = new JButton("Inserir Função");
-		btnInserirFuno.setBounds(53, 239, 167, 23);
+		btnInserirFuno.setBounds(53, 259, 181, 23);
 		desktopPane.add(btnInserirFuno);
 		
-		JButton button = new JButton("Visualizar Máquinas");
-		button.setBounds(53, 298, 167, 23);
+		JButton btnMinhasInformaes = new JButton("Alterar Senha");
+		btnMinhasInformaes.setBounds(53, 195, 181, 23);
+		desktopPane.add(btnMinhasInformaes);
+		
+		JButton button = new JButton("Minhas Informações");
+		button.setBounds(53, 164, 181, 23);
 		desktopPane.add(button);
 	}
 }

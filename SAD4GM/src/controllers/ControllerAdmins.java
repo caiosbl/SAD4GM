@@ -113,6 +113,17 @@ public class ControllerAdmins {
 
 		return info;
 	}
+	
+	public String getNome(String id) {
+		String nome;
+		try {
+			nome = admTools.getNome(id);
+		} catch (Exception e) {
+			nome = e.getMessage();
+		}
+
+		return nome;
+	}
 
 	public boolean autentica(String id, String senha) throws SQLException {
 		int senhaInt;

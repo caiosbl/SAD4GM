@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -53,20 +52,20 @@ public class Entrada extends JFrame {
 	 */
 	public Entrada() {
 		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            break;
-		        }
-		    }
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
 		} catch (UnsupportedLookAndFeelException e) {
-		    // handle exception
+			// handle exception
 		} catch (ClassNotFoundException e) {
-		    // handle exception
+			// handle exception
 		} catch (InstantiationException e) {
-		    // handle exception
+			// handle exception
 		} catch (IllegalAccessException e) {
-		    // handle exception
+			// handle exception
 		}
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -111,7 +110,10 @@ public class Entrada extends JFrame {
 		JButton button_1 = new JButton("Admin");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Admin");
+				AdminLogin admLogin = new AdminLogin();
+				dispose();
+				admLogin.setVisible(true);
+				admLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button_1.setForeground(new Color(0, 0, 51));
