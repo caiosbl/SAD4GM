@@ -60,94 +60,46 @@ public class AdminOptions extends JFrame {
 		
 		JLabel label_1 = new JLabel("DeSiDeS");
 		label_1.setBounds(20, 60, 141, 45);
-		label_1.setForeground(Color.BLACK);
+		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
 		desktopPane.add(label_1);
 		
 		JLabel label_2 = new JLabel("SAD4GM");
 		label_2.setBounds(10, 11, 210, 73);
-		label_2.setForeground(new Color(0, 0, 51));
+		label_2.setForeground(Color.WHITE);
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
 		desktopPane.add(label_2);
 		
 		JButton btnMinhasInformaes = new JButton("Alterar Senha");
-		btnMinhasInformaes.setBounds(53, 164, 181, 23);
+		btnMinhasInformaes.setBounds(361, 11, 181, 23);
 		desktopPane.add(btnMinhasInformaes);
 		
-		JButton btnMinhasnInformaes = new JButton("Minhas  Informações");
-		btnMinhasnInformaes.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnMinhasnInformaes.setBounds(310, 58, 156, 60);
-		btnMinhasnInformaes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		desktopPane.add(btnMinhasnInformaes);
-		
-		
-		
-		JButton btnNewButton = new JButton("Inserir Usuário");
-		btnNewButton.setBounds(36, 270, 170, 27);
-		desktopPane.add(btnNewButton);
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
-		JButton btnVisualizarMquinas = new JButton("Remover Usuário");
-		btnVisualizarMquinas.setBounds(36, 297, 170, 27);
-		desktopPane.add(btnVisualizarMquinas);
-		btnVisualizarMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
-		JButton btnInserirFuno = new JButton("Alterar Senha Usuário");
-		btnInserirFuno.setBounds(36, 324, 170, 27);
-		desktopPane.add(btnInserirFuno);
-		btnInserirFuno.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
-		JButton btnVerMquinas = new JButton("Alterar Usuário");
-		btnVerMquinas.setBounds(36, 351, 170, 27);
-		desktopPane.add(btnVerMquinas);
-		btnVerMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
-		JButton btnListarUsurios = new JButton("Listar Usuários");
-		btnListarUsurios.setBounds(36, 378, 170, 27);
-		desktopPane.add(btnListarUsurios);
-		btnListarUsurios.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
-		JButton btnListarMquinas = new JButton("Listar Máquinas");
-		btnListarMquinas.setBounds(350, 270, 156, 27);
-		desktopPane.add(btnListarMquinas);
-		btnListarMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
-		JButton btnRemoverMquina = new JButton("Visualizar Máquina");
-		btnRemoverMquina.setBounds(350, 297, 156, 27);
-		desktopPane.add(btnRemoverMquina);
-		btnRemoverMquina.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
-		JButton btnRemoverMquina_1 = new JButton("Remover Máquina");
-		btnRemoverMquina_1.setBounds(350, 324, 156, 27);
-		desktopPane.add(btnRemoverMquina_1);
-		btnRemoverMquina_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
-		JButton btnAlterarMquina = new JButton("Alterar Máquina");
-		btnAlterarMquina.setBounds(350, 351, 156, 27);
-		desktopPane.add(btnAlterarMquina);
-		btnAlterarMquina.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnListarMquinas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnVerMquinas.addActionListener(new ActionListener() {
+		JButton btnGerenciarUsurios = new JButton("Gerenciar Usuários");
+		btnGerenciarUsurios.setBounds(68, 217, 175, 41);
+		btnGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnGerenciarUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnInserirFuno.addActionListener(new ActionListener() {
+		desktopPane.add(btnGerenciarUsurios);
+		
+		JButton btnGerenciarMquinas = new JButton("Gerenciar Máquinas");
+		btnGerenciarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnVisualizarMquinas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		btnGerenciarMquinas.setBounds(68, 262, 175, 41);
+		btnGerenciarMquinas.setFont(new Font("Tahoma", Font.BOLD, 14));
+		desktopPane.add(btnGerenciarMquinas);
+		
+		JButton btnMinhasInformaes_1 = new JButton("Minhas Informações");
+		btnMinhasInformaes_1.setBounds(68, 310, 175, 41);
+		btnMinhasInformaes_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		desktopPane.add(btnMinhasInformaes_1);
+		
+		JButton btnGerenciarAdmins = new JButton("Gerenciar Admins");
+		btnGerenciarAdmins.setBounds(68, 169, 175, 41);
+		btnGerenciarAdmins.setFont(new Font("Tahoma", Font.BOLD, 14));
+		desktopPane.add(btnGerenciarAdmins);
 	}
 }

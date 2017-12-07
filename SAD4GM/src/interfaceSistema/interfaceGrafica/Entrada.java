@@ -10,7 +10,6 @@ import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
 
-
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
@@ -53,20 +52,20 @@ public class Entrada extends JFrame {
 	 */
 	public Entrada() {
 		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            break;
-		        }
-		    }
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
 		} catch (UnsupportedLookAndFeelException e) {
-		    // handle exception
+			// handle exception
 		} catch (ClassNotFoundException e) {
-		    // handle exception
+			// handle exception
 		} catch (InstantiationException e) {
-		    // handle exception
+			// handle exception
 		} catch (IllegalAccessException e) {
-		    // handle exception
+			// handle exception
 		}
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
