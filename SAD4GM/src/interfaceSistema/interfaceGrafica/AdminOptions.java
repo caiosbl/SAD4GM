@@ -111,6 +111,7 @@ public class AdminOptions extends JFrame {
 		btnGerenciarAdmins.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminOptionsAdminManagement admAdminManagement = new AdminOptionsAdminManagement();
+				admAdminManagement.setAdmin(idAdmin);
 				dispose();
 				admAdminManagement.setVisible(true);
 				admAdminManagement.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -125,6 +126,14 @@ public class AdminOptions extends JFrame {
 		desktopPane.add(btnGerenciarAdmins);
 
 		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AdminLogin admLogin = new AdminLogin();
+				dispose();
+				admLogin.setVisible(true);
+				admLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnLogout.setBounds(501, 33, 81, 27);
 		desktopPane.add(btnLogout);

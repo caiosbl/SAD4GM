@@ -25,6 +25,7 @@ public class AdminOptionsAdminManagement extends JFrame {
 	 */
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
+	private String idAdmin;
 
 	/**
 	 * Launch the application.
@@ -122,6 +123,7 @@ public class AdminOptionsAdminManagement extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminOptions admOptions = new AdminOptions();
+				admOptions.setId(idAdmin);
 				dispose();
 				admOptions.setVisible(true);
 				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -142,5 +144,9 @@ public class AdminOptionsAdminManagement extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
+	}
+	
+	public void setAdmin(String id) {
+		this.idAdmin = id;
 	}
 }
