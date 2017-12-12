@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica;
+package interfaceSistema.interfaceGrafica.Admin;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -6,11 +6,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import interfaceSistema.interfaceGrafica.management.AdminOptionsAdminManagement;
-import interfaceSistema.interfaceGrafica.management.AdminOptionsMachineManagement;
-import interfaceSistema.interfaceGrafica.management.AdminOptionsUserManagement;
-
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -105,6 +100,15 @@ public class AdminOptions extends JFrame {
 		desktopPane.add(btnGerenciarMquinas);
 
 		JButton btnMinhasInformaes_1 = new JButton("Minhas Informações");
+		btnMinhasInformaes_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AdminMyInfo admMyInfo = new AdminMyInfo();
+				admMyInfo.setId(idAdmin);
+				dispose();
+				admMyInfo.setVisible(true);
+				admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnMinhasInformaes_1.setBounds(68, 310, 175, 41);
 		btnMinhasInformaes_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		desktopPane.add(btnMinhasInformaes_1);
@@ -146,6 +150,6 @@ public class AdminOptions extends JFrame {
 	}
 	
 	public void setId(String id) {
-		this.idAdmin = id;
+		this.idAdmin = "9898";
 	}
 }
