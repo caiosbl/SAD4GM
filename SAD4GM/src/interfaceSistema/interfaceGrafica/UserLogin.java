@@ -143,7 +143,7 @@ public class UserLogin extends JFrame {
 					try {
 						if (sistema.autenticaUsuario(id, senha)) {
 							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeUsuario(id) + "!");
-							UserOptions uOptions = new UserOptions();
+							UserOptions uOptions = new UserOptions(id);
 							dispose();
 							uOptions.setVisible(true);
 							uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -166,7 +166,7 @@ public class UserLogin extends JFrame {
 		button.setBackground(Color.WHITE);
 		button.setBounds(264, 305, 100, 38);
 		desktopPane.add(button);
-		
+
 		JButton button_1 = new JButton("Voltar");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
