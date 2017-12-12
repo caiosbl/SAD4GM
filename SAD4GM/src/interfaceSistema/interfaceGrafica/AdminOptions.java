@@ -82,6 +82,7 @@ public class AdminOptions extends JFrame {
 		btnGerenciarUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdminOptionsUserManagement admUserOptions = new AdminOptionsUserManagement();
+				admUserOptions.setAdmin(idAdmin);
 				dispose();
 				admUserOptions.setVisible(true);
 				admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -93,6 +94,7 @@ public class AdminOptions extends JFrame {
 		btnGerenciarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminOptionsMachineManagement admMachineOptions = new AdminOptionsMachineManagement();
+				admMachineOptions.setId(idAdmin);
 				dispose();
 				admMachineOptions.setVisible(true);
 				admMachineOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

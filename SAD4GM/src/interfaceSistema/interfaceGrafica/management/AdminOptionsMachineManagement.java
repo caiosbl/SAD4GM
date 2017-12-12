@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import interfaceSistema.interfaceGrafica.AdminOptions;
+
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -22,6 +25,7 @@ public class AdminOptionsMachineManagement extends JFrame {
 	 */
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
+	private String idAdmin;
 
 	/**
 	 * Launch the application.
@@ -116,6 +120,11 @@ public class AdminOptionsMachineManagement extends JFrame {
 		desktopPane.add(btnVoltar);
 		btnVerMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				AdminOptions admOptions = new AdminOptions();
+				admOptions.setId(idAdmin);
+				dispose();
+				admOptions.setVisible(true);
+				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnInserirFuno.addActionListener(new ActionListener() {
@@ -130,5 +139,9 @@ public class AdminOptionsMachineManagement extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
+	}
+	
+	public void setId(String id) {
+		this.idAdmin = id;
 	}
 }
