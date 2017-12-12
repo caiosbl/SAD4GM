@@ -27,23 +27,12 @@ public class AdminOptionsMachineManagement extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AdminOptionsMachineManagement frame = new AdminOptionsMachineManagement();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public AdminOptionsMachineManagement() {
+	public AdminOptionsMachineManagement(String id) {
+		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -110,8 +99,8 @@ public class AdminOptionsMachineManagement extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminOptions admOptions = new AdminOptions();
-				admOptions.setId(idAdmin);
+				AdminOptions admOptions = new AdminOptions(idAdmin);
+
 				dispose();
 				admOptions.setVisible(true);
 				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -122,8 +111,8 @@ public class AdminOptionsMachineManagement extends JFrame {
 		desktopPane.add(btnVoltar);
 		btnVerMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminOptions admOptions = new AdminOptions();
-				admOptions.setId(idAdmin);
+				AdminOptions admOptions = new AdminOptions(idAdmin);
+
 				dispose();
 				admOptions.setVisible(true);
 				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -143,7 +132,4 @@ public class AdminOptionsMachineManagement extends JFrame {
 		});
 	}
 
-	public void setId(String id) {
-		this.idAdmin = id;
-	}
 }

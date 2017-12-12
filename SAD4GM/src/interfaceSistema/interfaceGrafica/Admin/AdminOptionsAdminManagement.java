@@ -27,23 +27,13 @@ public class AdminOptionsAdminManagement extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AdminOptionsAdminManagement frame = new AdminOptionsAdminManagement();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public AdminOptionsAdminManagement() {
+	public AdminOptionsAdminManagement(String id) {
+		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -119,8 +109,8 @@ public class AdminOptionsAdminManagement extends JFrame {
 		JButton button = new JButton("Voltar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminOptions admOptions = new AdminOptions();
-				admOptions.setId(idAdmin);
+				AdminOptions admOptions = new AdminOptions(idAdmin);
+			
 				dispose();
 				admOptions.setVisible(true);
 				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -143,7 +133,5 @@ public class AdminOptionsAdminManagement extends JFrame {
 		});
 	}
 	
-	public void setAdmin(String id) {
-		this.idAdmin = id;
-	}
+
 }

@@ -6,9 +6,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -28,23 +31,12 @@ public class AdminOptions extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AdminOptions frame = new AdminOptions();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public AdminOptions() {
+	public AdminOptions(String id) {
+		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -76,8 +68,7 @@ public class AdminOptions extends JFrame {
 		btnGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnGerenciarUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminOptionsUserManagement admUserOptions = new AdminOptionsUserManagement();
-				admUserOptions.setAdmin(idAdmin);
+				AdminOptionsUserManagement admUserOptions = new AdminOptionsUserManagement(idAdmin);
 				dispose();
 				admUserOptions.setVisible(true);
 				admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -88,8 +79,8 @@ public class AdminOptions extends JFrame {
 		JButton btnGerenciarMquinas = new JButton("Gerenciar Máquinas");
 		btnGerenciarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminOptionsMachineManagement admMachineOptions = new AdminOptionsMachineManagement();
-				admMachineOptions.setId(idAdmin);
+				AdminOptionsMachineManagement admMachineOptions = new AdminOptionsMachineManagement(idAdmin);
+				
 				dispose();
 				admMachineOptions.setVisible(true);
 				admMachineOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -102,8 +93,8 @@ public class AdminOptions extends JFrame {
 		JButton btnMinhasInformaes_1 = new JButton("Minhas Informações");
 		btnMinhasInformaes_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminMyInfo admMyInfo = new AdminMyInfo();
-				admMyInfo.setId(idAdmin);
+				AdminMyInfo admMyInfo = new AdminMyInfo(idAdmin);
+				
 				dispose();
 				admMyInfo.setVisible(true);
 				admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -116,14 +107,11 @@ public class AdminOptions extends JFrame {
 		JButton btnGerenciarAdmins = new JButton("Gerenciar Admins");
 		btnGerenciarAdmins.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminOptionsAdminManagement admAdminManagement = new AdminOptionsAdminManagement();
-				admAdminManagement.setAdmin(idAdmin);
+				AdminOptionsAdminManagement admAdminManagement = new AdminOptionsAdminManagement(idAdmin);
+	
 				dispose();
 				admAdminManagement.setVisible(true);
 				admAdminManagement.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-	
-				
 
 			}
 		});
@@ -147,9 +135,12 @@ public class AdminOptions extends JFrame {
 		JSeparator separator = new JSeparator();
 		separator.setBounds(0, 111, 605, 12);
 		desktopPane.add(separator);
+		
+
+
 	}
 	
-	public void setId(String id) {
-		this.idAdmin = "9898";
-	}
+
+
+
 }
