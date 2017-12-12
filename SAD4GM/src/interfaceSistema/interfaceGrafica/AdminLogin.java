@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import interfaceSistema.interfaceGrafica.management.AdminOptionsAdminManagement;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -146,6 +147,7 @@ public class AdminLogin extends JFrame {
 							AdminOptions admOptions = new AdminOptions();
 							dispose();
 							admOptions.setVisible(true);
+							admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						} else {
 							JOptionPane.showMessageDialog(null, "ID ou Senha Inválidos!");
 							textField.setText("");
@@ -165,6 +167,19 @@ public class AdminLogin extends JFrame {
 		button.setBackground(Color.WHITE);
 		button.setBounds(264, 305, 100, 38);
 		desktopPane.add(button);
+		
+		JButton button_1 = new JButton("Voltar");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Entrada entrada = new Entrada();
+				dispose();
+				entrada.setVisible(true);
+				entrada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		button_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		button_1.setBounds(479, 389, 100, 27);
+		desktopPane.add(button_1);
 	}
 	private boolean isUserEmpty() {
 		return textField.getText().equals("");
@@ -173,5 +188,4 @@ public class AdminLogin extends JFrame {
 	private boolean isPasswordEmpty() {
 		return passwordField.getPassword().length == 0;
 	}
-
 }
