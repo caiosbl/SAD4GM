@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+import javax.swing.JSeparator;
 
 public class UserOptions extends JFrame {
 
@@ -22,27 +23,18 @@ public class UserOptions extends JFrame {
 	 */
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
+	private String idUsuario;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UserOptions frame = new UserOptions();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public UserOptions() {
+	public UserOptions(String id) {
+		this.idUsuario = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -64,18 +56,6 @@ public class UserOptions extends JFrame {
 		btnNewButton.setBounds(53, 229, 181, 23);
 		desktopPane.add(btnNewButton);
 		
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setForeground(Color.BLACK);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		label_1.setBounds(20, 60, 141, 45);
-		desktopPane.add(label_1);
-		
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setForeground(new Color(0, 0, 51));
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		label_2.setBounds(10, 11, 210, 73);
-		desktopPane.add(label_2);
-		
 		JButton btnVisualizarMquinas = new JButton("Visualizar Máquinas");
 		btnVisualizarMquinas.setBounds(53, 288, 181, 23);
 		desktopPane.add(btnVisualizarMquinas);
@@ -91,5 +71,26 @@ public class UserOptions extends JFrame {
 		JButton button = new JButton("Minhas Informações");
 		button.setBounds(53, 164, 181, 23);
 		desktopPane.add(button);
+		
+		JLabel label = new JLabel("DeSiDeS");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Tahoma", Font.BOLD, 28));
+		label.setBounds(16, 67, 141, 45);
+		desktopPane.add(label);
+		
+		JLabel label_1 = new JLabel("SAD4GM");
+		label_1.setForeground(Color.WHITE);
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 37));
+		label_1.setBounds(6, 18, 210, 73);
+		desktopPane.add(label_1);
+		
+		JButton button_1 = new JButton("Logout");
+		button_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		button_1.setBounds(497, 40, 81, 27);
+		desktopPane.add(button_1);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(6, 116, 605, 12);
+		desktopPane.add(separator);
 	}
 }

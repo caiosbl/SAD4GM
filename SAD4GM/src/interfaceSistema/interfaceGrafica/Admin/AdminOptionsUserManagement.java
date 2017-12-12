@@ -1,7 +1,6 @@
 package interfaceSistema.interfaceGrafica.Admin;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -27,7 +26,6 @@ public class AdminOptionsUserManagement extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	
 
 	/**
 	 * Create the frame.
@@ -110,12 +108,12 @@ public class AdminOptionsUserManagement extends JFrame {
 		JSeparator separator = new JSeparator();
 		separator.setBounds(6, 107, 593, 12);
 		desktopPane.add(separator);
-		
+
 		JButton button = new JButton("Voltar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdminOptions admOptions = new AdminOptions(idAdmin);
-			
+
 				dispose();
 				admOptions.setVisible(true);
 				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -141,6 +139,5 @@ public class AdminOptionsUserManagement extends JFrame {
 			}
 		});
 	}
-	
-	
+
 }
