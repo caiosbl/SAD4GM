@@ -109,10 +109,15 @@ public class AdminOptionsMachineManagement extends JFrame {
 		JSeparator separator = new JSeparator();
 		separator.setBounds(6, 107, 593, 12);
 		desktopPane.add(separator);
-		
+
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				AdminOptions admOptions = new AdminOptions();
+				admOptions.setId(idAdmin);
+				dispose();
+				admOptions.setVisible(true);
+				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -140,7 +145,7 @@ public class AdminOptionsMachineManagement extends JFrame {
 			}
 		});
 	}
-	
+
 	public void setId(String id) {
 		this.idAdmin = id;
 	}
