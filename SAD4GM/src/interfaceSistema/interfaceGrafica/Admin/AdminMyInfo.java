@@ -97,19 +97,19 @@ public class AdminMyInfo extends JFrame {
 		lblNome.setForeground(Color.WHITE);
 		desktopPane.add(lblNome);
 
-		JTextPane txtpnDfdf = new JTextPane();
-		txtpnDfdf.setEditable(false);
+		JTextPane nome = new JTextPane();
+		nome.setEditable(false);
 
-		txtpnDfdf.setBounds(182, 196, 268, 24);
-		txtpnDfdf.setText(sistema.getNomeAdmin(this.idAdmin));
-		desktopPane.add(txtpnDfdf);
+		nome.setBounds(182, 196, 268, 24);
+		nome.setText(sistema.getNomeAdmin(this.idAdmin));
+		desktopPane.add(nome);
 
-		JTextPane textPane = new JTextPane();
-		textPane.setEditable(false);
+		JTextPane userID = new JTextPane();
+		userID.setEditable(false);
 
-		textPane.setBounds(182, 231, 268, 24);
-		textPane.setText(idAdmin);
-		desktopPane.add(textPane);
+		userID.setBounds(182, 231, 268, 24);
+		userID.setText(idAdmin);
+		desktopPane.add(userID);
 
 		JLabel lblId = new JLabel("ID:");
 		lblId.setBounds(154, 234, 55, 16);
@@ -129,6 +129,19 @@ public class AdminMyInfo extends JFrame {
 		btnAlterarSenha.setBounds(43, 381, 139, 27);
 		btnAlterarSenha.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnAlterarSenha);
+		
+		JButton btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				userID.setEditable(true);
+				nome.setEditable(true);
+			}
+		});
+		btnEditar.setBounds(182, 273, 90, 28);
+		desktopPane.add(btnEditar);
+		
+		JButton btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.setBounds(360, 273, 90, 28);
+		desktopPane.add(btnAtualizar);
 	}
-
 }
