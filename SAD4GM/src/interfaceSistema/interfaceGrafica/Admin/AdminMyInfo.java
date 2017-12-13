@@ -31,7 +31,6 @@ public class AdminMyInfo extends JFrame {
 	 * Launch the application.
 	 */
 
-
 	/**
 	 * Create the frame.
 	 */
@@ -119,11 +118,17 @@ public class AdminMyInfo extends JFrame {
 		desktopPane.add(lblId);
 
 		JButton btnAlterarSenha = new JButton("Alterar Senha");
+		btnAlterarSenha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AdminSetSenha admSetSenha = new AdminSetSenha(idAdmin);
+				dispose();
+				admSetSenha.setVisible(true);
+				admSetSenha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnAlterarSenha.setBounds(43, 381, 139, 27);
 		btnAlterarSenha.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnAlterarSenha);
 	}
-
-	
 
 }

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceSistema.interfaceGrafica.Admin.AdminLogin;
+import interfaceSistema.interfaceGrafica.User.UserLogin;
 
 import javax.swing.JDesktopPane;
 import java.awt.Color;

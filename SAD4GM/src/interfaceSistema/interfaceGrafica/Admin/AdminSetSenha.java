@@ -15,9 +15,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
-import javax.swing.JTextPane;
+
 
 import sistema.Sistema;
+import javax.swing.JPasswordField;
 
 public class AdminSetSenha extends JFrame {
 
@@ -28,11 +29,12 @@ public class AdminSetSenha extends JFrame {
 	private JPanel contentPane;
 	private String idAdmin;
 	private Sistema sistema = new Sistema();
+	private JPasswordField novaSenha;
+	private JPasswordField confirmacaoSenha;
 
 	/**
 	 * Launch the application.
 	 */
-
 
 	/**
 	 * Create the frame.
@@ -66,7 +68,7 @@ public class AdminSetSenha extends JFrame {
 		desktopPane.add(label_2);
 
 		JLabel lblGerenciarUsurios = new JLabel("ALTERAR");
-		lblGerenciarUsurios.setBounds(358, 24, 139, 37);
+		lblGerenciarUsurios.setBounds(370, 24, 139, 37);
 		lblGerenciarUsurios.setForeground(Color.WHITE);
 		lblGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
 		desktopPane.add(lblGerenciarUsurios);
@@ -79,10 +81,10 @@ public class AdminSetSenha extends JFrame {
 		button.setBounds(492, 381, 84, 27);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminOptions admOptions = new AdminOptions(idAdmin);
+				AdminMyInfo admMyInfo = new AdminMyInfo(idAdmin);
 				dispose();
-				admOptions.setVisible(true);
-				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				admMyInfo.setVisible(true);
+				admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -100,40 +102,33 @@ public class AdminSetSenha extends JFrame {
 		lblNome.setForeground(Color.WHITE);
 		desktopPane.add(lblNome);
 
-		JTextPane txtpnDfdf = new JTextPane();
-		txtpnDfdf.setBounds(241, 195, 268, 24);
-		txtpnDfdf.setEditable(false);
-		txtpnDfdf.setText(sistema.getNomeAdmin(this.idAdmin));
-		desktopPane.add(txtpnDfdf);
-
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(241, 230, 268, 24);
-		textPane.setEditable(false);
-		textPane.setText(idAdmin);
-		desktopPane.add(textPane);
-
 		JLabel lblId = new JLabel("Repita a nova Senha:");
-		lblId.setBounds(80, 233, 161, 16);
+		lblId.setBounds(80, 235, 161, 16);
 		lblId.setForeground(Color.WHITE);
 		lblId.setFont(new Font("SansSerif", Font.BOLD, 14));
 		desktopPane.add(lblId);
 
 		JButton btnAlterarSenha = new JButton("Alterar Senha");
+		btnAlterarSenha.setBounds(311, 267, 139, 27);
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(txtpnDfdf.getText().equals("") && textPane.getText().equals(""))
+				if (novaSenha.getPassword().length == 0 && confirmacaoSenha.getPassword().length == 0)
 					JOptionPane.showMessageDialog(null, "Preencha os campos com a Nova Senha!");
-				else if(txtpnDfdf.getText().equals(""))
-					JOptionPane.showMessageDialog(null, "Preencha o campo  Nova Senha!");
-				else if(textPane.getText().equals(""))
-					JOptionPane.showMessageDialog(null, "Preencha o campo vazio com a Nova Senha!");
+				else if (novaSenha.getPassword().length == 0)
+					JOptionPane.showMessageDialog(null, "Preencha o campo da Nova Senha!");
+				else if (confirmacaoSenha.getPassword().length == 0)
+					JOptionPane.showMessageDialog(null, "Preencha o campo de confirmação com a Nova Senha!");
 			}
 		});
-		btnAlterarSenha.setBounds(311, 267, 139, 27);
 		btnAlterarSenha.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnAlterarSenha);
+		
+		novaSenha = new JPasswordField();
+		novaSenha.setBounds(248, 193, 268, 28);
+		desktopPane.add(novaSenha);
+		
+		confirmacaoSenha = new JPasswordField();
+		confirmacaoSenha.setBounds(248, 228, 268, 28);
+		desktopPane.add(confirmacaoSenha);
 	}
-
-	
-
 }
