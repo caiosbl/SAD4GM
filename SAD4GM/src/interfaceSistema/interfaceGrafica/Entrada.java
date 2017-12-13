@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceSistema.interfaceGrafica.Admin.AdminLogin;
+import interfaceSistema.interfaceGrafica.User.UserLogin;
 
 import javax.swing.JDesktopPane;
 import java.awt.Color;
@@ -88,12 +89,12 @@ public class Entrada extends JFrame {
 		desktopPane.setBackground(Color.GRAY);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 
-		JLabel label = new JLabel("Login:");
-		label.setForeground(SystemColor.inactiveCaptionBorder);
-		label.setFont(new Font("Tahoma", Font.BOLD, 24));
-		label.setBackground(Color.WHITE);
-		label.setBounds(234, 185, 99, 45);
-		desktopPane.add(label);
+		JLabel lblEscolhaSeuTipo = new JLabel("Entrar como:");
+		lblEscolhaSeuTipo.setForeground(SystemColor.inactiveCaptionBorder);
+		lblEscolhaSeuTipo.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblEscolhaSeuTipo.setBackground(Color.WHITE);
+		lblEscolhaSeuTipo.setBounds(199, 204, 156, 29);
+		desktopPane.add(lblEscolhaSeuTipo);
 
 		JButton button = new JButton("Usuário");
 		button.addActionListener(new ActionListener() {
