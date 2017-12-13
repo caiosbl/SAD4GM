@@ -109,15 +109,33 @@ public class AdminSetSenha extends JFrame {
 		desktopPane.add(lblId);
 
 		JButton btnAlterarSenha = new JButton("Alterar Senha");
-		btnAlterarSenha.setBounds(311, 267, 139, 27);
+		btnAlterarSenha.setBounds(406, 268, 112, 27);
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (novaSenha.getPassword().length == 0 && confirmacaoSenha.getPassword().length == 0)
+				
+				String newPassword = new String(novaSenha.getPassword()).trim();
+				String confirmationPassword = new String(confirmacaoSenha.getPassword()).trim();
+				
+				if (isEmpty(newPassword) && isEmpty(confirmationPassword))
 					JOptionPane.showMessageDialog(null, "Preencha os campos com a Nova Senha!");
-				else if (novaSenha.getPassword().length == 0)
+				else if (isEmpty(newPassword))
 					JOptionPane.showMessageDialog(null, "Preencha o campo da Nova Senha!");
-				else if (confirmacaoSenha.getPassword().length == 0)
+				else if (isEmpty(confirmationPassword))
 					JOptionPane.showMessageDialog(null, "Preencha o campo de confirmação com a Nova Senha!");
+				else if (newPassword.length() < 6) {
+					JOptionPane.showMessageDialog(null, "Digite uma senha de no mínimo 6 digítos!");
+					novaSenha.setText("");
+					confirmacaoSenha.setText("");
+				}
+				
+				
+				else if (!newPassword.equals(confirmationPassword)) {
+					JOptionPane.showMessageDialog(null, "As senhas diferem, por favor insira uma senha válida e a repita!");
+					novaSenha.setText("");
+					confirmacaoSenha.setText("");
+				}
+				
+				
 			}
 		});
 		btnAlterarSenha.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -130,5 +148,17 @@ public class AdminSetSenha extends JFrame {
 		confirmacaoSenha = new JPasswordField();
 		confirmacaoSenha.setBounds(248, 228, 268, 28);
 		desktopPane.add(confirmacaoSenha);
+		
+		JLabel lblNewLabel = new JLabel("*Mínimo 6 digítos");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBounds(248, 263, 111, 16);
+		desktopPane.add(lblNewLabel);
+	}
+	
+	
+	
+	public boolean isEmpty(String password) {
+		return password.equals("");
 	}
 }
