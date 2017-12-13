@@ -7,6 +7,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -129,7 +131,7 @@ public class AdminMyInfo extends JFrame {
 		btnAlterarSenha.setBounds(43, 381, 139, 27);
 		btnAlterarSenha.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnAlterarSenha);
-		
+
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -139,8 +141,45 @@ public class AdminMyInfo extends JFrame {
 		});
 		btnEditar.setBounds(182, 273, 90, 28);
 		desktopPane.add(btnEditar);
-		
+
 		JButton btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				boolean has = false;
+
+				try {
+					has = sistema.hasId(userID.getText().trim());
+					if (nome.getText().trim().equals("")) {
+						JOptionPane.showMessageDialog(null, "Nome inválido");
+						nome.setText(sistema.getNomeAdmin(idAdmin));
+						userID.setText(idAdmin);
+					} else if (userID.getText().equals("") || userID.getText().length() < 4) {
+						JOptionPane.showMessageDialog(null, "ID inválido");
+						nome.setText(sistema.getNomeAdmin(idAdmin));
+						userID.setText(idAdmin);
+					} else if (has) {
+						JOptionPane.showMessageDialog(null, "ID já cadastrado!");
+						nome.setText(sistema.getNomeAdmin(idAdmin));
+						userID.setText(idAdmin);
+					}
+
+					else {
+						nome.setEditable(false);
+						userID.setEditable(false);
+						sistema.setIdAdmin(idAdmin, userID.getText().trim());
+						idAdmin = userID.getText().trim();
+						sistema.setNomeAdmin(nome.getText().trim(), idAdmin);
+						JOptionPane.showMessageDialog(null, "Dados atualizados com Sucesso!");
+
+					}
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "Falha na conexão com Banco de dados!");
+				}
+
+			}
+
+		});
 		btnAtualizar.setBounds(360, 273, 90, 28);
 		desktopPane.add(btnAtualizar);
 	}

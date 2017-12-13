@@ -200,7 +200,7 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	private boolean hasAdmin(String id) throws SQLException {
+	public boolean hasAdmin(String id) throws SQLException {
 		boolean has;
 		criaConexao();
 		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.admin WHERE id = ?");

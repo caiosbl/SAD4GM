@@ -71,6 +71,10 @@ public class Sistema {
 	public boolean autenticaAdmin(String id, String senha) throws SQLException {
 		return cAdmins.autentica(id, senha);
 	}
+	
+	public boolean hasId(String id) throws SQLException {
+		return cAdmins.hasAdmin(id);
+	}
 
 	// Funções de Usuário
 
