@@ -33,8 +33,8 @@ public class UserLogin extends JFrame {
 	 */
 	private static final long serialVersionUID = -1255872476730391091L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField user;
+	private JPasswordField password;
 	private Sistema sistema = new Sistema();
 
 	/**
@@ -102,17 +102,17 @@ public class UserLogin extends JFrame {
 		label_3.setBounds(264, 181, 90, 31);
 		desktopPane.add(label_3);
 
-		textField = new JTextField();
+		user = new JTextField();
 
-		textField.setColumns(10);
-		textField.setBackground(Color.WHITE);
-		textField.setBounds(226, 233, 180, 25);
-		desktopPane.add(textField);
+		user.setColumns(10);
+		user.setBackground(Color.WHITE);
+		user.setBounds(226, 233, 180, 25);
+		desktopPane.add(user);
 
-		passwordField = new JPasswordField();
-		passwordField.setBackground(Color.WHITE);
-		passwordField.setBounds(226, 269, 180, 25);
-		desktopPane.add(passwordField);
+		password = new JPasswordField();
+		password.setBackground(Color.WHITE);
+		password.setBounds(226, 269, 180, 25);
+		desktopPane.add(password);
 
 		JLabel label_4 = new JLabel("ID:");
 		label_4.setForeground(Color.WHITE);
@@ -129,17 +129,25 @@ public class UserLogin extends JFrame {
 		JButton button = new JButton("Login");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (isUserEmpty() && isPasswordEmpty())
+				String id = user.getText().trim();
+				String senha = new String(password.getPassword()).trim();
+				if (isUserEmpty(id) && isPasswordEmpty(senha))
 					JOptionPane.showMessageDialog(null, "Preencha os Campos ID e Senha!");
-				else if (isUserEmpty())
+				else if (isUserEmpty(id))
 					JOptionPane.showMessageDialog(null, "Preencha o Campo ID!");
-				else if (isPasswordEmpty())
+				else if (isPasswordEmpty(senha))
 					JOptionPane.showMessageDialog(null, "Preencha o Campo Senha!");
+				else if (id.length() < 4) {
+					JOptionPane.showMessageDialog(null, "Usuário Iválido!");
+					user.setText("");
+					password.setText("");
+				} else if (senha.length() < 6) {
+					JOptionPane.showMessageDialog(null, "Senha Iválida!");
+					user.setText("");
+					password.setText("");
+				}
 
 				else {
-
-					String id = textField.getText();
-					String senha = String.valueOf(passwordField.getPassword());
 
 					try {
 						if (sistema.autenticaUsuario(id, senha)) {
@@ -150,8 +158,8 @@ public class UserLogin extends JFrame {
 							uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						} else {
 							JOptionPane.showMessageDialog(null, "ID ou Senha Inválidos!");
-							textField.setText("");
-							passwordField.setText("");
+							user.setText("");
+							password.setText("");
 						}
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Falha na Conexão com o Banco de Dados!");
@@ -182,11 +190,11 @@ public class UserLogin extends JFrame {
 		desktopPane.add(button_1);
 	}
 
-	private boolean isUserEmpty() {
-		return textField.getText().equals("");
+	private boolean isUserEmpty(String user) {
+		return user.equals("");
 	}
 
-	private boolean isPasswordEmpty() {
-		return passwordField.getPassword().length == 0;
+	private boolean isPasswordEmpty(String password) {
+		return password.equals("");
 	}
 }
