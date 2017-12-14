@@ -103,7 +103,7 @@ public class AdminTools extends DataBaseTools {
 
 		try {
 
-			final String UPDATE = "UPDATE  sad4gm.usuario SET senha = ? WHERE id = ?";
+			final String UPDATE = "UPDATE  sad4gm.admin SET senha = ? WHERE id = ?";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setInt(1, senha);
@@ -200,7 +200,7 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	private boolean hasAdmin(String id) throws SQLException {
+	public boolean hasAdmin(String id) throws SQLException {
 		boolean has;
 		criaConexao();
 		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.admin WHERE id = ?");

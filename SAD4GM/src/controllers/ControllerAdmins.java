@@ -142,4 +142,8 @@ public class ControllerAdmins {
 
 		return status;
 	}
+	
+	public boolean hasAdmin(String id) throws SQLException {
+		return admTools.hasAdmin(id);
+	}
 }

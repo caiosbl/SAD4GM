@@ -16,7 +16,6 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
-
 import sistema.Sistema;
 import javax.swing.JPasswordField;
 
@@ -112,10 +111,10 @@ public class AdminSetSenha extends JFrame {
 		btnAlterarSenha.setBounds(406, 268, 112, 27);
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				String newPassword = new String(novaSenha.getPassword()).trim();
 				String confirmationPassword = new String(confirmacaoSenha.getPassword()).trim();
-				
+
 				if (isEmpty(newPassword) && isEmpty(confirmationPassword))
 					JOptionPane.showMessageDialog(null, "Preencha os campos com a Nova Senha!");
 				else if (isEmpty(newPassword))
@@ -127,37 +126,43 @@ public class AdminSetSenha extends JFrame {
 					novaSenha.setText("");
 					confirmacaoSenha.setText("");
 				}
-				
-				
+
 				else if (!newPassword.equals(confirmationPassword)) {
-					JOptionPane.showMessageDialog(null, "As senhas diferem, por favor insira uma senha válida e a repita!");
+					JOptionPane.showMessageDialog(null,
+							"As senhas diferem, por favor insira uma senha válida e a repita!");
 					novaSenha.setText("");
 					confirmacaoSenha.setText("");
 				}
-				
-				
+
+				else {
+					sistema.setSenhaAdmin(idAdmin, newPassword);
+					JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
+					AdminMyInfo admMyInfo = new AdminMyInfo(idAdmin);
+					dispose();
+					admMyInfo.setVisible(true);
+					admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				}
+
 			}
 		});
 		btnAlterarSenha.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnAlterarSenha);
-		
+
 		novaSenha = new JPasswordField();
 		novaSenha.setBounds(248, 193, 268, 28);
 		desktopPane.add(novaSenha);
-		
+
 		confirmacaoSenha = new JPasswordField();
 		confirmacaoSenha.setBounds(248, 228, 268, 28);
 		desktopPane.add(confirmacaoSenha);
-		
+
 		JLabel lblNewLabel = new JLabel("*Mínimo 6 digítos");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(248, 263, 111, 16);
 		desktopPane.add(lblNewLabel);
 	}
-	
-	
-	
+
 	public boolean isEmpty(String password) {
 		return password.equals("");
 	}
