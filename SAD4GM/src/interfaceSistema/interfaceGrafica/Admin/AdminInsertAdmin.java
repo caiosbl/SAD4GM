@@ -41,6 +41,7 @@ public class AdminInsertAdmin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+
 	public AdminInsertAdmin(String id) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,11 +125,16 @@ public class AdminInsertAdmin extends JFrame {
 
 				try {
 					has = sistema.hasId(newIdAdmin);
-					if (isEmpty(newUserName)) {
+					if (isEmpty(newUserName))
 						JOptionPane.showMessageDialog(null, "Insira um Nome!");
-					} else if (isEmpty(newIdAdmin)) {
+					else if (isEmpty(newIdAdmin))
 						JOptionPane.showMessageDialog(null, "Insira um ID!");
-					} else if (has) {
+					else if (newIdAdmin.length() < 4) {
+						JOptionPane.showMessageDialog(null, "Insira um ID de no mínimo 4 caracteres!");
+						idNewAdmin.setText("");
+					}
+
+					else if (has) {
 						JOptionPane.showMessageDialog(null, "ID já cadastrado!");
 						idNewAdmin.setText("");
 					}
@@ -159,7 +165,7 @@ public class AdminInsertAdmin extends JFrame {
 					else {
 						// sistema.setSenhaAdmin(idAdmin, newPassword);
 						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
-						AdminMyInfo admMyInfo = new AdminMyInfo(idAdmin);
+						AdminOptionsAdminManagement admMyInfo = new AdminOptionsAdminManagement(idAdmin);
 						dispose();
 						admMyInfo.setVisible(true);
 						admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
