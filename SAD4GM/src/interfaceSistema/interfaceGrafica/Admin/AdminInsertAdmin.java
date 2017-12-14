@@ -18,8 +18,9 @@ import javax.swing.JSeparator;
 
 import sistema.Sistema;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
-public class AdminSetSenha extends JFrame {
+public class AdminInsertAdmin extends JFrame {
 
 	/**
 	 * 
@@ -30,6 +31,8 @@ public class AdminSetSenha extends JFrame {
 	private Sistema sistema = new Sistema();
 	private JPasswordField novaSenha;
 	private JPasswordField confirmacaoSenha;
+	private JTextField nomeNewAdmin;
+	private JTextField idNewAdmin;
 
 	/**
 	 * Launch the application.
@@ -38,7 +41,8 @@ public class AdminSetSenha extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdminSetSenha(String id) {
+
+	public AdminInsertAdmin(String id) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -66,8 +70,8 @@ public class AdminSetSenha extends JFrame {
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
 		desktopPane.add(label_2);
 
-		JLabel lblGerenciarUsurios = new JLabel("ALTERAR");
-		lblGerenciarUsurios.setBounds(370, 24, 139, 37);
+		JLabel lblGerenciarUsurios = new JLabel("INSERIR");
+		lblGerenciarUsurios.setBounds(377, 24, 139, 37);
 		lblGerenciarUsurios.setForeground(Color.WHITE);
 		lblGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
 		desktopPane.add(lblGerenciarUsurios);
@@ -89,63 +93,85 @@ public class AdminSetSenha extends JFrame {
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(button);
 
-		JLabel lblInformaes = new JLabel("MINHA SENHA");
-		lblInformaes.setBounds(327, 60, 268, 37);
+		JLabel lblInformaes = new JLabel("ADMIN");
+		lblInformaes.setBounds(387, 60, 109, 37);
 		lblInformaes.setForeground(Color.WHITE);
 		lblInformaes.setFont(new Font("Tahoma", Font.BOLD, 30));
 		desktopPane.add(lblInformaes);
 
 		JLabel lblNome = new JLabel("Nova Senha:");
-		lblNome.setBounds(143, 198, 93, 16);
+		lblNome.setBounds(137, 230, 93, 16);
 		lblNome.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblNome.setForeground(Color.WHITE);
 		desktopPane.add(lblNome);
 
 		JLabel lblId = new JLabel("Repita a nova Senha:");
-		lblId.setBounds(80, 235, 161, 16);
+		lblId.setBounds(78, 267, 161, 16);
 		lblId.setForeground(Color.WHITE);
 		lblId.setFont(new Font("SansSerif", Font.BOLD, 14));
 		desktopPane.add(lblId);
 
-		JButton btnAlterarSenha = new JButton("Alterar Senha");
-		btnAlterarSenha.setBounds(406, 268, 112, 27);
+		JButton btnAlterarSenha = new JButton("Inserir");
+		btnAlterarSenha.setBounds(404, 300, 112, 27);
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
+				String newUserName = new String(nomeNewAdmin.getText().trim());
+				String newIdAdmin = new String(idNewAdmin.getText().trim());
+
 				String newPassword = new String(novaSenha.getPassword()).trim();
 				String confirmationPassword = new String(confirmacaoSenha.getPassword()).trim();
+				boolean has = false;
 
-				if (isEmpty(newPassword) && isEmpty(confirmationPassword))
-					JOptionPane.showMessageDialog(null, "Preencha os campos com a Nova Senha!");
-				else if (isEmpty(newPassword))
-					JOptionPane.showMessageDialog(null, "Preencha o campo da Nova Senha!");
-				else if (isEmpty(confirmationPassword))
-					JOptionPane.showMessageDialog(null, "Preencha o campo de confirmação com a Nova Senha!");
-				else if (newPassword.length() < 6) {
-					JOptionPane.showMessageDialog(null, "Digite uma senha de no mínimo 6 digítos!");
-					novaSenha.setText("");
-					confirmacaoSenha.setText("");
-				}
+				try {
+					has = sistema.hasId(newIdAdmin);
+					if (isEmpty(newUserName))
+						JOptionPane.showMessageDialog(null, "Insira um Nome!");
+					else if (isEmpty(newIdAdmin))
+						JOptionPane.showMessageDialog(null, "Insira um ID!");
+					else if (newIdAdmin.length() < 4) {
+						JOptionPane.showMessageDialog(null, "Insira um ID de no mínimo 4 caracteres!");
+						idNewAdmin.setText("");
+					}
 
-				else if (!newPassword.equals(confirmationPassword)) {
-					JOptionPane.showMessageDialog(null,
-							"As senhas diferem, por favor insira uma senha válida e a repita!");
-					novaSenha.setText("");
-					confirmacaoSenha.setText("");
-				} else if (!isNumber(newPassword)) {
-					JOptionPane.showMessageDialog(null,
-							"Por favor insira uma senha válidaw!");
-					novaSenha.setText("");
-					confirmacaoSenha.setText("");
-				}
+					else if (has) {
+						JOptionPane.showMessageDialog(null, "ID já cadastrado!");
+						idNewAdmin.setText("");
+					}
 
-				else {
-					sistema.setSenhaAdmin(idAdmin, newPassword);
-					JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
-					AdminMyInfo admMyInfo = new AdminMyInfo(idAdmin);
-					dispose();
-					admMyInfo.setVisible(true);
-					admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					else if (isEmpty(newPassword) && isEmpty(confirmationPassword))
+						JOptionPane.showMessageDialog(null, "Preencha os campos com a Nova Senha!");
+					else if (isEmpty(newPassword))
+						JOptionPane.showMessageDialog(null, "Preencha o campo da Nova Senha!");
+					else if (isEmpty(confirmationPassword))
+						JOptionPane.showMessageDialog(null, "Preencha o campo de confirmação com a Nova Senha!");
+					else if (newPassword.length() < 6) {
+						JOptionPane.showMessageDialog(null, "Digite uma senha de no mínimo 6 digítos!");
+						novaSenha.setText("");
+						confirmacaoSenha.setText("");
+					}
+
+					else if (!newPassword.equals(confirmationPassword)) {
+						JOptionPane.showMessageDialog(null,
+								"As senhas diferem, por favor insira uma senha válida e a repita!");
+						novaSenha.setText("");
+						confirmacaoSenha.setText("");
+					} else if (!isNumber(newPassword)) {
+						JOptionPane.showMessageDialog(null, "Por favor insira uma senha válida!");
+						novaSenha.setText("");
+						confirmacaoSenha.setText("");
+					}
+
+					else {
+						// sistema.setSenhaAdmin(idAdmin, newPassword);
+						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+						AdminOptionsAdminManagement admMyInfo = new AdminOptionsAdminManagement(idAdmin);
+						dispose();
+						admMyInfo.setVisible(true);
+						admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					}
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "Falha na conexão com o Banco de Dados!");
 				}
 
 			}
@@ -154,18 +180,40 @@ public class AdminSetSenha extends JFrame {
 		desktopPane.add(btnAlterarSenha);
 
 		novaSenha = new JPasswordField();
-		novaSenha.setBounds(248, 193, 268, 28);
+		novaSenha.setBounds(248, 225, 268, 28);
 		desktopPane.add(novaSenha);
 
 		confirmacaoSenha = new JPasswordField();
-		confirmacaoSenha.setBounds(248, 228, 268, 28);
+		confirmacaoSenha.setBounds(248, 260, 268, 28);
 		desktopPane.add(confirmacaoSenha);
 
 		JLabel lblNewLabel = new JLabel("*Mínimo 6 digítos");
+		lblNewLabel.setBounds(246, 295, 111, 16);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(248, 263, 111, 16);
 		desktopPane.add(lblNewLabel);
+
+		nomeNewAdmin = new JTextField();
+		nomeNewAdmin.setBounds(248, 157, 268, 28);
+		desktopPane.add(nomeNewAdmin);
+		nomeNewAdmin.setColumns(10);
+
+		JLabel lblNome_1 = new JLabel("Nome:");
+		lblNome_1.setBounds(183, 160, 44, 19);
+		lblNome_1.setForeground(Color.WHITE);
+		lblNome_1.setFont(new Font("SansSerif", Font.BOLD, 14));
+		desktopPane.add(lblNome_1);
+
+		idNewAdmin = new JTextField();
+		idNewAdmin.setColumns(10);
+		idNewAdmin.setBounds(248, 191, 268, 28);
+		desktopPane.add(idNewAdmin);
+
+		JLabel lblId_1 = new JLabel("ID:");
+		lblId_1.setForeground(Color.WHITE);
+		lblId_1.setFont(new Font("SansSerif", Font.BOLD, 14));
+		lblId_1.setBounds(208, 195, 18, 19);
+		desktopPane.add(lblId_1);
 	}
 
 	public boolean isEmpty(String password) {

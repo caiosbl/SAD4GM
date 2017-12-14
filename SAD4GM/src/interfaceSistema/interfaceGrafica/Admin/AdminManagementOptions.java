@@ -129,6 +129,11 @@ public class AdminOptionsAdminManagement extends JFrame {
 		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				AdminInsertAdmin admInsertAdmin = new AdminInsertAdmin(idAdmin);
+				
+				dispose();
+				admInsertAdmin.setVisible(true);
+				admInsertAdmin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 	}
