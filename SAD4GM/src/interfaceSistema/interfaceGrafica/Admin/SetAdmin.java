@@ -71,7 +71,7 @@ public class SetAdmin extends JFrame {
 		separator.setBounds(0, 111, 605, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("REMOVER");
+		JLabel lblRemover = new JLabel("ALTERAR");
 		lblRemover.setForeground(Color.WHITE);
 		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblRemover.setBounds(286, 23, 150, 37);
@@ -102,13 +102,13 @@ public class SetAdmin extends JFrame {
 		desktopPane.add(idField);
 		idField.setColumns(10);
 
-		JLabel lblIdDoAdmin = new JLabel("ID do Admin a ser removido:");
+		JLabel lblIdDoAdmin = new JLabel("ID do Admin a ser alterado:");
 		lblIdDoAdmin.setForeground(Color.WHITE);
 		lblIdDoAdmin.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblIdDoAdmin.setBounds(204, 224, 197, 19);
 		desktopPane.add(lblIdDoAdmin);
 
-		JButton btnRemover = new JButton("Remover");
+		JButton btnRemover = new JButton("Alterar");
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (idField.getText().trim().length() < 4) {
