@@ -84,10 +84,10 @@ public class AdminInsertAdmin extends JFrame {
 		button.setBounds(492, 381, 84, 27);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminMyInfo admMyInfo = new AdminMyInfo(idAdmin);
+				AdminOptions admOptions = new AdminOptions(idAdmin);
 				dispose();
-				admMyInfo.setVisible(true);
-				admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				admOptions.setVisible(true);
+				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -100,19 +100,19 @@ public class AdminInsertAdmin extends JFrame {
 		desktopPane.add(lblInformaes);
 
 		JLabel lblNome = new JLabel("Nova Senha:");
-		lblNome.setBounds(137, 230, 93, 16);
+		lblNome.setBounds(137, 239, 93, 16);
 		lblNome.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblNome.setForeground(Color.WHITE);
 		desktopPane.add(lblNome);
 
 		JLabel lblId = new JLabel("Repita a nova Senha:");
-		lblId.setBounds(78, 267, 161, 16);
+		lblId.setBounds(78, 276, 161, 16);
 		lblId.setForeground(Color.WHITE);
 		lblId.setFont(new Font("SansSerif", Font.BOLD, 14));
 		desktopPane.add(lblId);
 
 		JButton btnAlterarSenha = new JButton("Inserir");
-		btnAlterarSenha.setBounds(404, 300, 112, 27);
+		btnAlterarSenha.setBounds(404, 309, 112, 27);
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -124,7 +124,7 @@ public class AdminInsertAdmin extends JFrame {
 				boolean has = false;
 
 				try {
-					has = sistema.hasId(newIdAdmin);
+					has = sistema.hasIdAdmin(newIdAdmin);
 					if (isEmpty(newUserName))
 						JOptionPane.showMessageDialog(null, "Insira um Nome!");
 					else if (isEmpty(newIdAdmin))
@@ -163,9 +163,9 @@ public class AdminInsertAdmin extends JFrame {
 					}
 
 					else {
-						// sistema.setSenhaAdmin(idAdmin, newPassword);
+						sistema.inserirAdmin(newUserName, newPassword,newIdAdmin);
 						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
-						AdminOptionsAdminManagement admMyInfo = new AdminOptionsAdminManagement(idAdmin);
+						AdminManagementOptions admMyInfo = new AdminManagementOptions(idAdmin);
 						dispose();
 						admMyInfo.setVisible(true);
 						admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -180,16 +180,16 @@ public class AdminInsertAdmin extends JFrame {
 		desktopPane.add(btnAlterarSenha);
 
 		novaSenha = new JPasswordField();
-		novaSenha.setBounds(248, 225, 268, 28);
+		novaSenha.setBounds(248, 234, 268, 28);
 		desktopPane.add(novaSenha);
 
 		confirmacaoSenha = new JPasswordField();
-		confirmacaoSenha.setBounds(248, 260, 268, 28);
+		confirmacaoSenha.setBounds(248, 269, 268, 28);
 		desktopPane.add(confirmacaoSenha);
 
 		JLabel lblNewLabel = new JLabel("*Mínimo 6 digítos");
-		lblNewLabel.setBounds(246, 295, 111, 16);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel.setBounds(248, 303, 111, 16);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblNewLabel.setForeground(Color.WHITE);
 		desktopPane.add(lblNewLabel);
 
@@ -205,15 +205,27 @@ public class AdminInsertAdmin extends JFrame {
 		desktopPane.add(lblNome_1);
 
 		idNewAdmin = new JTextField();
-		idNewAdmin.setColumns(10);
 		idNewAdmin.setBounds(248, 191, 268, 28);
+		idNewAdmin.setColumns(10);
 		desktopPane.add(idNewAdmin);
 
 		JLabel lblId_1 = new JLabel("ID:");
+		lblId_1.setBounds(208, 195, 18, 19);
 		lblId_1.setForeground(Color.WHITE);
 		lblId_1.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblId_1.setBounds(208, 195, 18, 19);
 		desktopPane.add(lblId_1);
+		
+		JLabel label = new JLabel("*Só números");
+		label.setBounds(248, 315, 84, 16);
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		desktopPane.add(label);
+		
+		JLabel lblmnimoCaracteres = new JLabel("*Mínimo 4 caracteres");
+		lblmnimoCaracteres.setBounds(248, 220, 112, 14);
+		lblmnimoCaracteres.setForeground(Color.WHITE);
+		lblmnimoCaracteres.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		desktopPane.add(lblmnimoCaracteres);
 	}
 
 	public boolean isEmpty(String password) {

@@ -160,12 +160,18 @@ public class AdminSetSenha extends JFrame {
 		confirmacaoSenha = new JPasswordField();
 		confirmacaoSenha.setBounds(248, 228, 268, 28);
 		desktopPane.add(confirmacaoSenha);
-
-		JLabel lblNewLabel = new JLabel("*Mínimo 6 digítos");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(248, 263, 111, 16);
-		desktopPane.add(lblNewLabel);
+		
+		JLabel label = new JLabel("*Mínimo 6 digítos");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		label.setBounds(248, 268, 111, 16);
+		desktopPane.add(label);
+		
+		JLabel label_3 = new JLabel("*Só números");
+		label_3.setForeground(Color.WHITE);
+		label_3.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		label_3.setBounds(248, 280, 84, 16);
+		desktopPane.add(label_3);
 	}
 
 	public boolean isEmpty(String password) {

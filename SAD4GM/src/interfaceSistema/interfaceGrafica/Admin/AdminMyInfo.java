@@ -149,7 +149,7 @@ public class AdminMyInfo extends JFrame {
 				boolean has = false;
 
 				try {
-					has = sistema.hasId(userID.getText().trim());
+					has = sistema.hasIdAdmin(userID.getText().trim());
 					if (nome.getText().trim().equals("")) {
 						JOptionPane.showMessageDialog(null, "Nome inválido");
 						nome.setText(sistema.getNomeAdmin(idAdmin));
@@ -158,7 +158,7 @@ public class AdminMyInfo extends JFrame {
 						JOptionPane.showMessageDialog(null, "ID inválido");
 						nome.setText(sistema.getNomeAdmin(idAdmin));
 						userID.setText(idAdmin);
-					} else if (has) {
+					} else if (!userID.getText().trim().equals(idAdmin) && has) {
 						JOptionPane.showMessageDialog(null, "ID já cadastrado!");
 						nome.setText(sistema.getNomeAdmin(idAdmin));
 						userID.setText(idAdmin);

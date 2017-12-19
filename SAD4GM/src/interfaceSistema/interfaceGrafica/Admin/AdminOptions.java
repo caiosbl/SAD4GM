@@ -107,7 +107,7 @@ public class AdminOptions extends JFrame {
 		JButton btnGerenciarAdmins = new JButton("Gerenciar Admins");
 		btnGerenciarAdmins.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminOptionsAdminManagement admAdminManagement = new AdminOptionsAdminManagement(idAdmin);
+				AdminManagementOptions admAdminManagement = new AdminManagementOptions(idAdmin);
 	
 				dispose();
 				admAdminManagement.setVisible(true);
