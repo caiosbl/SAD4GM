@@ -72,7 +72,7 @@ public class Sistema {
 		return cAdmins.autentica(id, senha);
 	}
 	
-	public boolean hasId(String id) throws SQLException {
+	public boolean hasIdAdmin(String id) throws SQLException {
 		return cAdmins.hasAdmin(id);
 	}
 

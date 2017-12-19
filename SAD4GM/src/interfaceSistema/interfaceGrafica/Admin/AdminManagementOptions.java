@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
-public class AdminOptionsAdminManagement extends JFrame {
+public class AdminManagementOptions extends JFrame {
 
 	/**
 	 * 
@@ -27,12 +27,11 @@ public class AdminOptionsAdminManagement extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	
 
 	/**
 	 * Create the frame.
 	 */
-	public AdminOptionsAdminManagement(String id) {
+	public AdminManagementOptions(String id) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -105,12 +104,12 @@ public class AdminOptionsAdminManagement extends JFrame {
 		JSeparator separator = new JSeparator();
 		separator.setBounds(6, 107, 593, 12);
 		desktopPane.add(separator);
-		
+
 		JButton button = new JButton("Voltar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminOptions admOptions = new AdminOptions(idAdmin);
-			
+
 				dispose();
 				admOptions.setVisible(true);
 				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -125,18 +124,22 @@ public class AdminOptionsAdminManagement extends JFrame {
 		});
 		btnVisualizarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				AdminRemove admRemove = new AdminRemove(idAdmin);
+
+				dispose();
+				admRemove.setVisible(true);
+				admRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdminInsertAdmin admInsertAdmin = new AdminInsertAdmin(idAdmin);
-				
+
 				dispose();
 				admInsertAdmin.setVisible(true);
 				admInsertAdmin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 	}
-	
 
 }
