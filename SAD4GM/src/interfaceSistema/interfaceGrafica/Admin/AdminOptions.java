@@ -2,7 +2,6 @@ package interfaceSistema.interfaceGrafica.Admin;
 
 import java.awt.BorderLayout;
 
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
-
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -80,7 +78,7 @@ public class AdminOptions extends JFrame {
 		btnGerenciarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminOptionsMachineManagement admMachineOptions = new AdminOptionsMachineManagement(idAdmin);
-				
+
 				dispose();
 				admMachineOptions.setVisible(true);
 				admMachineOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -94,7 +92,7 @@ public class AdminOptions extends JFrame {
 		btnMinhasInformaes_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdminMyInfo admMyInfo = new AdminMyInfo(idAdmin);
-				
+
 				dispose();
 				admMyInfo.setVisible(true);
 				admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -108,7 +106,7 @@ public class AdminOptions extends JFrame {
 		btnGerenciarAdmins.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminManagementOptions admAdminManagement = new AdminManagementOptions(idAdmin);
-	
+
 				dispose();
 				admAdminManagement.setVisible(true);
 				admAdminManagement.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -135,12 +133,7 @@ public class AdminOptions extends JFrame {
 		JSeparator separator = new JSeparator();
 		separator.setBounds(0, 111, 605, 12);
 		desktopPane.add(separator);
-		
-
 
 	}
-	
-
-
 
 }
