@@ -133,8 +133,7 @@ public class AdminSetSenha extends JFrame {
 					novaSenha.setText("");
 					confirmacaoSenha.setText("");
 				} else if (!isNumber(newPassword)) {
-					JOptionPane.showMessageDialog(null,
-							"Por favor insira uma senha válidaw!");
+					JOptionPane.showMessageDialog(null, "Por favor insira uma senha válidaw!");
 					novaSenha.setText("");
 					confirmacaoSenha.setText("");
 				}
@@ -160,13 +159,13 @@ public class AdminSetSenha extends JFrame {
 		confirmacaoSenha = new JPasswordField();
 		confirmacaoSenha.setBounds(248, 228, 268, 28);
 		desktopPane.add(confirmacaoSenha);
-		
+
 		JLabel label = new JLabel("*Mínimo 6 digítos");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		label.setBounds(248, 268, 111, 16);
 		desktopPane.add(label);
-		
+
 		JLabel label_3 = new JLabel("*Só números");
 		label_3.setForeground(Color.WHITE);
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 9));

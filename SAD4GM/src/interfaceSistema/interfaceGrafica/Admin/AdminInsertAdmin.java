@@ -163,7 +163,7 @@ public class AdminInsertAdmin extends JFrame {
 					}
 
 					else {
-						sistema.inserirAdmin(newUserName, newPassword,newIdAdmin);
+						sistema.inserirAdmin(newUserName, newPassword, newIdAdmin);
 						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
 						AdminManagementOptions admMyInfo = new AdminManagementOptions(idAdmin);
 						dispose();
@@ -214,13 +214,13 @@ public class AdminInsertAdmin extends JFrame {
 		lblId_1.setForeground(Color.WHITE);
 		lblId_1.setFont(new Font("SansSerif", Font.BOLD, 14));
 		desktopPane.add(lblId_1);
-		
+
 		JLabel label = new JLabel("*Só números");
 		label.setBounds(248, 315, 84, 16);
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		desktopPane.add(label);
-		
+
 		JLabel lblmnimoCaracteres = new JLabel("*Mínimo 4 caracteres");
 		lblmnimoCaracteres.setBounds(248, 220, 112, 14);
 		lblmnimoCaracteres.setForeground(Color.WHITE);
