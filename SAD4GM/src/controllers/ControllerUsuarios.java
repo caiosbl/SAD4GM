@@ -193,5 +193,9 @@ public class ControllerUsuarios {
 
 		return status;
 	}
+	
+	public boolean hasUsuario(String id) throws SQLException {
+		return uTools.hasUsuario(id);
+	}
 
 }

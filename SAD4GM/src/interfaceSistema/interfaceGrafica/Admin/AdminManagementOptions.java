@@ -136,7 +136,7 @@ public class AdminManagementOptions extends JFrame {
 		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminInsertAdmin admInsertAdmin = new AdminInsertAdmin(idAdmin);
+				AdminInsert admInsertAdmin = new AdminInsert(idAdmin);
 
 				dispose();
 				admInsertAdmin.setVisible(true);

@@ -31,9 +31,9 @@ public class AdminInsertUser extends JFrame {
 	private Sistema sistema = new Sistema();
 	private JPasswordField novaSenha;
 	private JPasswordField confirmacaoSenha;
-	private JTextField nomeNewAdmin;
-	private JTextField idNewAdmin;
-	private JTextField textField;
+	private JTextField userName;
+	private JTextField auditorName;
+	private JTextField newIdUser;
 
 	/**
 	 * Launch the application.
@@ -85,10 +85,10 @@ public class AdminInsertUser extends JFrame {
 		button.setBounds(495, 418, 84, 27);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminOptions admOptions = new AdminOptions(idAdmin);
+				AdminOptionsUserManagement admOptionsUser = new AdminOptionsUserManagement(idAdmin);
 				dispose();
-				admOptions.setVisible(true);
-				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				admOptionsUser.setVisible(true);
+				admOptionsUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -117,35 +117,38 @@ public class AdminInsertUser extends JFrame {
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				String newUserName = new String(nomeNewAdmin.getText().trim());
-				String newIdAdmin = new String(idNewAdmin.getText().trim());
-
+				String newUserName = new String(userName.getText().trim());
+				String idUser = new String(newIdUser.getText().trim());
+				String auditor = new String(auditorName.getText().trim());
 				String newPassword = new String(novaSenha.getPassword()).trim();
 				String confirmationPassword = new String(confirmacaoSenha.getPassword()).trim();
+
 				boolean has = false;
 
 				try {
-					has = sistema.hasIdAdmin(newIdAdmin);
+					has = sistema.hasIdUsuario(idUser);
 					if (isEmpty(newUserName))
 						JOptionPane.showMessageDialog(null, "Insira um Nome!");
-					else if (isEmpty(newIdAdmin))
+					else if (isEmpty(idUser))
 						JOptionPane.showMessageDialog(null, "Insira um ID!");
-					else if (newIdAdmin.length() < 4) {
+					else if (isEmpty(auditor))
+						JOptionPane.showMessageDialog(null, "Insira o nome do Auditor!");
+					else if (idUser.length() < 4) {
 						JOptionPane.showMessageDialog(null, "Insira um ID de no mínimo 4 caracteres!");
-						idNewAdmin.setText("");
+						newIdUser.setText("");
 					}
 
 					else if (has) {
 						JOptionPane.showMessageDialog(null, "ID já cadastrado!");
-						idNewAdmin.setText("");
+						newIdUser.setText("");
 					}
 
 					else if (isEmpty(newPassword) && isEmpty(confirmationPassword))
-						JOptionPane.showMessageDialog(null, "Preencha os campos com a Nova Senha!");
+						JOptionPane.showMessageDialog(null, "Preencha os campos com a Senha!");
 					else if (isEmpty(newPassword))
-						JOptionPane.showMessageDialog(null, "Preencha o campo da Nova Senha!");
+						JOptionPane.showMessageDialog(null, "Preencha o campo da Senha!");
 					else if (isEmpty(confirmationPassword))
-						JOptionPane.showMessageDialog(null, "Preencha o campo de confirmação com a Nova Senha!");
+						JOptionPane.showMessageDialog(null, "Preencha o campo de confirmação com a Senha!");
 					else if (newPassword.length() < 6) {
 						JOptionPane.showMessageDialog(null, "Digite uma senha de no mínimo 6 digítos!");
 						novaSenha.setText("");
@@ -158,13 +161,13 @@ public class AdminInsertUser extends JFrame {
 						novaSenha.setText("");
 						confirmacaoSenha.setText("");
 					} else if (!isNumber(newPassword)) {
-						JOptionPane.showMessageDialog(null, "Por favor insira uma senha válida!");
+						JOptionPane.showMessageDialog(null, "Por favor insira uma senha numérica válida!");
 						novaSenha.setText("");
 						confirmacaoSenha.setText("");
 					}
 
 					else {
-						sistema.inserirAdmin(newUserName, newPassword, newIdAdmin);
+						sistema.cadastrarUsuario(newUserName, idUser, newPassword, auditor);
 						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
 						AdminManagementOptions admMyInfo = new AdminManagementOptions(idAdmin);
 						dispose();
@@ -194,27 +197,27 @@ public class AdminInsertUser extends JFrame {
 		lblNewLabel.setForeground(Color.WHITE);
 		desktopPane.add(lblNewLabel);
 
-		nomeNewAdmin = new JTextField();
-		nomeNewAdmin.setBounds(248, 157, 268, 28);
-		desktopPane.add(nomeNewAdmin);
-		nomeNewAdmin.setColumns(10);
+		userName = new JTextField();
+		userName.setBounds(251, 157, 268, 28);
+		desktopPane.add(userName);
+		userName.setColumns(10);
 
-		JLabel lblNome_1 = new JLabel("Nome:");
-		lblNome_1.setBounds(183, 160, 44, 19);
-		lblNome_1.setForeground(Color.WHITE);
-		lblNome_1.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(lblNome_1);
+		JLabel nome = new JLabel("Nome:");
+		nome.setBounds(183, 160, 44, 19);
+		nome.setForeground(Color.WHITE);
+		nome.setFont(new Font("SansSerif", Font.BOLD, 14));
+		desktopPane.add(nome);
 
-		idNewAdmin = new JTextField();
-		idNewAdmin.setBounds(248, 222, 268, 28);
-		idNewAdmin.setColumns(10);
-		desktopPane.add(idNewAdmin);
+		auditorName = new JTextField();
+		auditorName.setBounds(251, 231, 268, 28);
+		auditorName.setColumns(10);
+		desktopPane.add(auditorName);
 
-		JLabel lblId_1 = new JLabel("Auditor:");
-		lblId_1.setBounds(175, 227, 66, 19);
-		lblId_1.setForeground(Color.WHITE);
-		lblId_1.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(lblId_1);
+		JLabel auditor = new JLabel("Auditor:");
+		auditor.setBounds(175, 236, 66, 19);
+		auditor.setForeground(Color.WHITE);
+		auditor.setFont(new Font("SansSerif", Font.BOLD, 14));
+		desktopPane.add(auditor);
 
 		JLabel label = new JLabel("*Só números");
 		label.setBounds(251, 352, 84, 16);
@@ -223,21 +226,21 @@ public class AdminInsertUser extends JFrame {
 		desktopPane.add(label);
 
 		JLabel lblmnimoCaracteres = new JLabel("*Mínimo 4 caracteres");
-		lblmnimoCaracteres.setBounds(251, 250, 112, 14);
+		lblmnimoCaracteres.setBounds(426, 215, 112, 14);
 		lblmnimoCaracteres.setForeground(Color.WHITE);
 		lblmnimoCaracteres.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		desktopPane.add(lblmnimoCaracteres);
-		
-		textField = new JTextField();
-		textField.setBounds(248, 189, 268, 28);
-		textField.setColumns(10);
-		desktopPane.add(textField);
-		
-		JLabel lblId_2 = new JLabel("ID:");
-		lblId_2.setBounds(213, 192, 44, 19);
-		lblId_2.setForeground(Color.WHITE);
-		lblId_2.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(lblId_2);
+
+		newIdUser = new JTextField();
+		newIdUser.setBounds(251, 189, 268, 28);
+		newIdUser.setColumns(10);
+		desktopPane.add(newIdUser);
+
+		JLabel idUsuario = new JLabel("ID:");
+		idUsuario.setBounds(210, 192, 44, 19);
+		idUsuario.setForeground(Color.WHITE);
+		idUsuario.setFont(new Font("SansSerif", Font.BOLD, 14));
+		desktopPane.add(idUsuario);
 	}
 
 	public boolean isEmpty(String password) {
