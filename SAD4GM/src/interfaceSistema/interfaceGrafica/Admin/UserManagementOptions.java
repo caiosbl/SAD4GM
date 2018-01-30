@@ -69,23 +69,18 @@ public class UserManagementOptions extends JFrame {
 		desktopPane.add(btnVisualizarMquinas);
 		btnVisualizarMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JButton btnInserirFuno = new JButton("Alterar Senha Usuário");
-		btnInserirFuno.setBounds(25, 256, 228, 27);
-		desktopPane.add(btnInserirFuno);
-		btnInserirFuno.setFont(new Font("Tahoma", Font.BOLD, 12));
-
 		JButton btnVerMquinas = new JButton("Alterar Usuário");
-		btnVerMquinas.setBounds(25, 283, 228, 27);
+		btnVerMquinas.setBounds(25, 256, 228, 27);
 		desktopPane.add(btnVerMquinas);
 		btnVerMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		JButton btnListarUsurios = new JButton("Listar Usuários");
-		btnListarUsurios.setBounds(25, 311, 228, 27);
+		btnListarUsurios.setBounds(25, 283, 228, 27);
 		desktopPane.add(btnListarUsurios);
 		btnListarUsurios.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		JButton btnVerInformaesUsurio = new JButton("Ver Informações de Usuário");
-		btnVerInformaesUsurio.setBounds(25, 339, 228, 27);
+		btnVerInformaesUsurio.setBounds(25, 311, 228, 27);
 		btnVerInformaesUsurio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -124,10 +119,6 @@ public class UserManagementOptions extends JFrame {
 		desktopPane.add(button);
 		btnVerMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnInserirFuno.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		btnVisualizarMquinas.addActionListener(new ActionListener() {
