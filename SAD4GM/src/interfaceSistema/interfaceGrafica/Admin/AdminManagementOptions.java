@@ -120,6 +120,10 @@ public class AdminManagementOptions extends JFrame {
 		desktopPane.add(button);
 		btnInserirFuno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				SetAdminEntry setAdmEntry = new SetAdminEntry(idAdmin);
+				dispose();
+				setAdmEntry.setVisible(true);
+				setAdmEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVisualizarMquinas.addActionListener(new ActionListener() {
