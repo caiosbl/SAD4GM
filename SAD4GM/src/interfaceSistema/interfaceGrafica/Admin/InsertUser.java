@@ -20,7 +20,7 @@ import sistema.Sistema;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class AdminInsertUser extends JFrame {
+public class InsertUser extends JFrame {
 
 	/**
 	 * 
@@ -43,7 +43,7 @@ public class AdminInsertUser extends JFrame {
 	 * Create the frame.
 	 */
 
-	public AdminInsertUser(String id) {
+	public InsertUser(String id) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -85,7 +85,7 @@ public class AdminInsertUser extends JFrame {
 		button.setBounds(495, 418, 84, 27);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminOptionsUserManagement admOptionsUser = new AdminOptionsUserManagement(idAdmin);
+				UserManagementOptions admOptionsUser = new UserManagementOptions(idAdmin);
 				dispose();
 				admOptionsUser.setVisible(true);
 				admOptionsUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

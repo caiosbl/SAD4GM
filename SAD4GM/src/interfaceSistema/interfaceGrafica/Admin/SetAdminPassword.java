@@ -82,7 +82,7 @@ public class SetAdminPassword extends JFrame {
 		button.setBounds(492, 381, 84, 27);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminMyInfo admMyInfo = new AdminMyInfo(idAdmin);
+				MyInfo admMyInfo = new MyInfo(idAdmin);
 				dispose();
 				admMyInfo.setVisible(true);
 				admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -143,7 +143,7 @@ public class SetAdminPassword extends JFrame {
 				else {
 					sistema.setSenhaAdmin(idAlterar, newPassword);
 					JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
-					AdminMyInfo admMyInfo = new AdminMyInfo(idAdmin);
+					MyInfo admMyInfo = new MyInfo(idAdmin);
 					dispose();
 					admMyInfo.setVisible(true);
 					admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
