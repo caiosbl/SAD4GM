@@ -20,7 +20,7 @@ import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
 import javax.swing.JTextPane;
-import javax.swing.JScrollBar;
+
 import javax.swing.JScrollPane;
 
 public class AdminsList extends JFrame {
@@ -97,13 +97,13 @@ public class AdminsList extends JFrame {
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
 		button.setBounds(506, 388, 69, 23);
 		desktopPane.add(button);
-		
-				JTextPane textPane = new JTextPane();
-				textPane.setEditable(false);
-				JScrollPane jsp = new JScrollPane(textPane);
-				textPane.setText(sistema.getListagemAdm());
-				jsp.setBounds(84, 150, 345, 261);
-				desktopPane.add(jsp);
+
+		JTextPane textPane = new JTextPane();
+		textPane.setEditable(false);
+		JScrollPane jsp = new JScrollPane(textPane);
+		textPane.setText(sistema.getListagemAdm());
+		jsp.setBounds(84, 150, 345, 261);
+		desktopPane.add(jsp);
 
 	}
 }
