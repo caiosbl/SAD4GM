@@ -217,4 +217,26 @@ public class AdminTools extends DataBaseTools {
 		return has;
 
 	}
+
+	public String listarAdmins() {
+		String listagem = "";
+		String quebraLinha = System.lineSeparator();
+
+		try {
+			criaConexao();
+			PreparedStatement state = con.prepareStatement("SELECT DISTINCT nome,id FROM sad4gm.admin");
+
+			ResultSet resSet = state.executeQuery();
+
+			while (resSet.next()) {
+				listagem += String.format("Nome: %s - ID: %s", resSet.getString(1), resSet.getString(2)) + quebraLinha;
+			}
+			state.close();
+			fechaConexao();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return listagem;
+	}
 }
