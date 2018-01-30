@@ -122,7 +122,7 @@ public class AdminMyInfo extends JFrame {
 		JButton btnAlterarSenha = new JButton("Alterar Senha");
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminSetSenha admSetSenha = new AdminSetSenha(idAdmin);
+				AdminSetOwnPassword admSetSenha = new AdminSetOwnPassword(idAdmin);
 				dispose();
 				admSetSenha.setVisible(true);
 				admSetSenha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
