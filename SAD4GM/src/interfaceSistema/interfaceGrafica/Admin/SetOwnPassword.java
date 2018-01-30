@@ -19,7 +19,7 @@ import javax.swing.JSeparator;
 import sistema.Sistema;
 import javax.swing.JPasswordField;
 
-public class AdminSetOwnPassword extends JFrame {
+public class SetOwnPassword extends JFrame {
 
 	/**
 	 * 
@@ -38,7 +38,7 @@ public class AdminSetOwnPassword extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdminSetOwnPassword(String id) {
+	public SetOwnPassword(String id) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -80,7 +80,7 @@ public class AdminSetOwnPassword extends JFrame {
 		button.setBounds(492, 381, 84, 27);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminMyInfo admMyInfo = new AdminMyInfo(idAdmin);
+				MyInfo admMyInfo = new MyInfo(idAdmin);
 				dispose();
 				admMyInfo.setVisible(true);
 				admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -141,7 +141,7 @@ public class AdminSetOwnPassword extends JFrame {
 				else {
 					sistema.setSenhaAdmin(idAdmin, newPassword);
 					JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
-					AdminMyInfo admMyInfo = new AdminMyInfo(idAdmin);
+					MyInfo admMyInfo = new MyInfo(idAdmin);
 					dispose();
 					admMyInfo.setVisible(true);
 					admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

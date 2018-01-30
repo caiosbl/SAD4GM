@@ -152,7 +152,7 @@ public class AdminLogin extends JFrame {
 					try {
 						if (sistema.autenticaAdmin(id, senha)) {
 							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeAdmin(id) + "!");
-							AdminOptions admOptions = new AdminOptions(id);
+							Options admOptions = new Options(id);
 							// admOptions.setId(id);
 							dispose();
 							admOptions.setVisible(true);

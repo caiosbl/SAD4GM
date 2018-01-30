@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
-public class AdminOptions extends JFrame {
+public class Options extends JFrame {
 
 	/**
 	 * 
@@ -33,7 +33,7 @@ public class AdminOptions extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdminOptions(String id) {
+	public Options(String id) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -66,7 +66,7 @@ public class AdminOptions extends JFrame {
 		btnGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnGerenciarUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminOptionsUserManagement admUserOptions = new AdminOptionsUserManagement(idAdmin);
+				UserManagementOptions admUserOptions = new UserManagementOptions(idAdmin);
 				dispose();
 				admUserOptions.setVisible(true);
 				admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -77,7 +77,7 @@ public class AdminOptions extends JFrame {
 		JButton btnGerenciarMquinas = new JButton("Gerenciar Máquinas");
 		btnGerenciarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminOptionsMachineManagement admMachineOptions = new AdminOptionsMachineManagement(idAdmin);
+				MachineManagementOptions admMachineOptions = new MachineManagementOptions(idAdmin);
 
 				dispose();
 				admMachineOptions.setVisible(true);
@@ -91,7 +91,7 @@ public class AdminOptions extends JFrame {
 		JButton btnMinhasInformaes_1 = new JButton("Minhas Informações");
 		btnMinhasInformaes_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminMyInfo admMyInfo = new AdminMyInfo(idAdmin);
+				MyInfo admMyInfo = new MyInfo(idAdmin);
 
 				dispose();
 				admMyInfo.setVisible(true);

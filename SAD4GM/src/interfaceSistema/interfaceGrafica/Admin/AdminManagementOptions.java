@@ -107,7 +107,7 @@ public class AdminManagementOptions extends JFrame {
 		JButton button = new JButton("Voltar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminOptions admOptions = new AdminOptions(idAdmin);
+				Options admOptions = new Options(idAdmin);
 
 				dispose();
 				admOptions.setVisible(true);
