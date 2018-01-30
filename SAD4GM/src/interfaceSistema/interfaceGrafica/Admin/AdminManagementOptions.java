@@ -76,18 +76,17 @@ public class AdminManagementOptions extends JFrame {
 		btnInserirFuno.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		JButton btnListarUsurios = new JButton("Listar Admins");
+		btnListarUsurios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AdminsList admList = new AdminsList(idAdmin);
+				dispose();
+				admList.setVisible(true);
+				admList.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnListarUsurios.setBounds(25, 284, 228, 27);
 		desktopPane.add(btnListarUsurios);
 		btnListarUsurios.setFont(new Font("Tahoma", Font.BOLD, 12));
-
-		JButton btnVerInformaesUsurio = new JButton("Ver Informações de Admin");
-		btnVerInformaesUsurio.setBounds(25, 314, 228, 27);
-		btnVerInformaesUsurio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnVerInformaesUsurio.setFont(new Font("Tahoma", Font.BOLD, 12));
-		desktopPane.add(btnVerInformaesUsurio);
 
 		JLabel lblGerenciarUsurios = new JLabel("GERENCIADOR");
 		lblGerenciarUsurios.setBounds(329, 17, 227, 37);
@@ -98,7 +97,7 @@ public class AdminManagementOptions extends JFrame {
 		JLabel lblDeUsurios = new JLabel("DE ADMINS");
 		lblDeUsurios.setForeground(Color.WHITE);
 		lblDeUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblDeUsurios.setBounds(339, 53, 227, 37);
+		lblDeUsurios.setBounds(358, 49, 178, 37);
 		desktopPane.add(lblDeUsurios);
 
 		JSeparator separator = new JSeparator();
