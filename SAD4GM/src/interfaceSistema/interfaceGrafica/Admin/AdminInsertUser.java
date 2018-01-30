@@ -195,7 +195,7 @@ public class AdminInsertUser extends JFrame {
 		desktopPane.add(lblNewLabel);
 
 		nomeNewAdmin = new JTextField();
-		nomeNewAdmin.setBounds(248, 157, 268, 28);
+		nomeNewAdmin.setBounds(251, 157, 268, 28);
 		desktopPane.add(nomeNewAdmin);
 		nomeNewAdmin.setColumns(10);
 
@@ -206,12 +206,12 @@ public class AdminInsertUser extends JFrame {
 		desktopPane.add(lblNome_1);
 
 		idNewAdmin = new JTextField();
-		idNewAdmin.setBounds(248, 222, 268, 28);
+		idNewAdmin.setBounds(251, 231, 268, 28);
 		idNewAdmin.setColumns(10);
 		desktopPane.add(idNewAdmin);
 
 		JLabel lblId_1 = new JLabel("Auditor:");
-		lblId_1.setBounds(175, 227, 66, 19);
+		lblId_1.setBounds(175, 236, 66, 19);
 		lblId_1.setForeground(Color.WHITE);
 		lblId_1.setFont(new Font("SansSerif", Font.BOLD, 14));
 		desktopPane.add(lblId_1);
@@ -223,16 +223,16 @@ public class AdminInsertUser extends JFrame {
 		desktopPane.add(label);
 
 		JLabel lblmnimoCaracteres = new JLabel("*Mínimo 4 caracteres");
-		lblmnimoCaracteres.setBounds(251, 250, 112, 14);
+		lblmnimoCaracteres.setBounds(426, 214, 112, 14);
 		lblmnimoCaracteres.setForeground(Color.WHITE);
 		lblmnimoCaracteres.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		desktopPane.add(lblmnimoCaracteres);
-		
+
 		textField = new JTextField();
-		textField.setBounds(248, 189, 268, 28);
+		textField.setBounds(251, 189, 268, 28);
 		textField.setColumns(10);
 		desktopPane.add(textField);
-		
+
 		JLabel lblId_2 = new JLabel("ID:");
 		lblId_2.setBounds(213, 192, 44, 19);
 		lblId_2.setForeground(Color.WHITE);
