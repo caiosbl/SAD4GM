@@ -146,4 +146,8 @@ public class ControllerAdmins {
 	public boolean hasAdmin(String id) throws SQLException {
 		return admTools.hasAdmin(id);
 	}
+	
+	public String getListagemAdmins() {
+		return admTools.listarAdmins();
+	}
 }

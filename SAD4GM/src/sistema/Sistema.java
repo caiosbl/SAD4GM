@@ -75,6 +75,10 @@ public class Sistema {
 	public boolean hasIdAdmin(String id) throws SQLException {
 		return cAdmins.hasAdmin(id);
 	}
+	
+	public String getListagemAdm() {
+		return cAdmins.getListagemAdmins();
+	}
 
 	// Funções de Usuário
 
