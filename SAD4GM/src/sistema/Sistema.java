@@ -120,6 +120,10 @@ public class Sistema {
 	public boolean autenticaUsuario(String id, String senha) throws SQLException {
 		return cUsuarios.autentica(id, senha);
 	}
+	
+	public boolean hasIdUsuario(String id) throws SQLException {
+		return cUsuarios.hasUsuario(id);
+	}
 
 	// Funções de Máquina
 

@@ -282,7 +282,7 @@ public class UsuarioTools extends DataBaseTools {
 		return descricao;
 	}
 
-	private boolean hasUsuario(String id) throws SQLException {
+	public boolean hasUsuario(String id) throws SQLException {
 		boolean has;
 		criaConexao();
 		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE id = ?");

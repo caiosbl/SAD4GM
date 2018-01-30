@@ -20,7 +20,7 @@ import sistema.Sistema;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class AdminInsertAdmin extends JFrame {
+public class AdminInsert extends JFrame {
 
 	/**
 	 * 
@@ -42,7 +42,7 @@ public class AdminInsertAdmin extends JFrame {
 	 * Create the frame.
 	 */
 
-	public AdminInsertAdmin(String id) {
+	public AdminInsert(String id) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -140,11 +140,11 @@ public class AdminInsertAdmin extends JFrame {
 					}
 
 					else if (isEmpty(newPassword) && isEmpty(confirmationPassword))
-						JOptionPane.showMessageDialog(null, "Preencha os campos com a Nova Senha!");
+						JOptionPane.showMessageDialog(null, "Preencha os campos com a Senha!");
 					else if (isEmpty(newPassword))
-						JOptionPane.showMessageDialog(null, "Preencha o campo da Nova Senha!");
+						JOptionPane.showMessageDialog(null, "Preencha o campo da  Senha!");
 					else if (isEmpty(confirmationPassword))
-						JOptionPane.showMessageDialog(null, "Preencha o campo de confirmação com a Nova Senha!");
+						JOptionPane.showMessageDialog(null, "Preencha o campo de confirmação com a Senha!");
 					else if (newPassword.length() < 6) {
 						JOptionPane.showMessageDialog(null, "Digite uma senha de no mínimo 6 digítos!");
 						novaSenha.setText("");
@@ -157,7 +157,7 @@ public class AdminInsertAdmin extends JFrame {
 						novaSenha.setText("");
 						confirmacaoSenha.setText("");
 					} else if (!isNumber(newPassword)) {
-						JOptionPane.showMessageDialog(null, "Por favor insira uma senha válida!");
+						JOptionPane.showMessageDialog(null, "Por favor insira uma senha numérica válida!");
 						novaSenha.setText("");
 						confirmacaoSenha.setText("");
 					}
