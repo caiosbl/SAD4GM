@@ -174,25 +174,23 @@ public class UsuarioTools extends DataBaseTools {
 		return infoUsuario;
 
 	}
-	
+
 	public String getNome(String id) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
 
 		String nome = "";
-	
 
 		try {
 			criaConexao();
-			PreparedStatement state = con
-					.prepareStatement("SELECT DISTINCT nome FROM sad4gm.usuario WHERE id = ?");
+			PreparedStatement state = con.prepareStatement("SELECT DISTINCT nome FROM sad4gm.usuario WHERE id = ?");
 			state.setString(1, id);
 
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
-				nome =  resSet.getString(1) ;
+				nome = resSet.getString(1);
 			}
 			state.close();
 			fechaConexao();
@@ -203,7 +201,7 @@ public class UsuarioTools extends DataBaseTools {
 		return nome;
 
 	}
-	
+
 	public String getNome(String id, Connection con) throws SQLException {
 		if (!hasUsuario(id))
 			return "Usuário Não Cadastrado";
@@ -228,25 +226,23 @@ public class UsuarioTools extends DataBaseTools {
 
 		return descricao;
 	}
-	
+
 	public String getNomeAuditor(String id) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
 
 		String auditor = "";
-	
 
 		try {
 			criaConexao();
-			PreparedStatement state = con
-					.prepareStatement("SELECT DISTINCT auditor FROM sad4gm.usuario WHERE id = ?");
+			PreparedStatement state = con.prepareStatement("SELECT DISTINCT auditor FROM sad4gm.usuario WHERE id = ?");
 			state.setString(1, id);
 
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
-				auditor =  resSet.getString(1) ;
+				auditor = resSet.getString(1);
 			}
 			state.close();
 			fechaConexao();
@@ -291,15 +287,15 @@ public class UsuarioTools extends DataBaseTools {
 
 		try {
 			criaConexao();
-			PreparedStatement state = con.prepareStatement("SELECT nome,id,auditor FROM sad4gm.usuario");
+			PreparedStatement state = con.prepareStatement("SELECT DISTINCT nome,id,auditor FROM sad4gm.usuario");
 
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
-				listagem += "Nome: " + resSet.getString(1) + quebraLinha;
-				listagem += "Id: " + resSet.getString(2) + quebraLinha;
-				listagem += "Auditor: " + resSet.getString(3) + quebraLinha;
-				listagem += quebraLinha;
+				listagem += "----------------------------------------------------------------------------";
+				listagem += quebraLinha + String.format("Nome: %s", resSet.getString(1)) + quebraLinha
+						+ String.format("ID: %s", resSet.getString(2)) + quebraLinha
+						+ String.format("Auditor: %s", resSet.getString(3)) + quebraLinha;
 			}
 			state.close();
 			fechaConexao();
@@ -308,10 +304,7 @@ public class UsuarioTools extends DataBaseTools {
 		}
 
 		return listagem;
-
 	}
-
-	
 
 	public boolean hasUsuario(String id) throws SQLException {
 		boolean has;
