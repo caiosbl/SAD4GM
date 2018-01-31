@@ -119,6 +119,11 @@ public class UserManagementOptions extends JFrame {
 		desktopPane.add(button);
 		btnVerMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				SetUserEntry setUser = new SetUserEntry(idAdmin);
+
+				dispose();
+				setUser.setVisible(true);
+				setUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVisualizarMquinas.addActionListener(new ActionListener() {
