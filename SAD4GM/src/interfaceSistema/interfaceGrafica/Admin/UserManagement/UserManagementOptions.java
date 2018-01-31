@@ -96,6 +96,11 @@ public class UserManagementOptions extends JFrame {
 		btnVerInformaesUsurio.setBounds(25, 311, 228, 27);
 		btnVerInformaesUsurio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				UserInformationEntry uInformation = new UserInformationEntry(idAdmin);
+
+				dispose();
+				uInformation.setVisible(true);
+				uInformation.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVerInformaesUsurio.setFont(new Font("Tahoma", Font.BOLD, 12));
