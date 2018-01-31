@@ -169,10 +169,10 @@ public class InsertUser extends JFrame {
 					else {
 						sistema.cadastrarUsuario(newUserName, idUser, newPassword, auditor);
 						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
-						AdminManagementOptions admMyInfo = new AdminManagementOptions(idAdmin);
+						UserManagementOptions userOptions = new UserManagementOptions(idAdmin);
 						dispose();
-						admMyInfo.setVisible(true);
-						admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						userOptions.setVisible(true);
+						userOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Falha na conexão com o Banco de Dados!");

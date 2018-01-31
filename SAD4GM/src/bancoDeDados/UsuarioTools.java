@@ -203,6 +203,60 @@ public class UsuarioTools extends DataBaseTools {
 		return nome;
 
 	}
+	
+	public String getNome(String id, Connection con) throws SQLException {
+		if (!hasUsuario(id))
+			return "Usuário Não Cadastrado";
+
+		String descricao = "";
+		String quebraLinha = System.lineSeparator();
+
+		try {
+			PreparedStatement state = con.prepareStatement("SELECT DISTINCT nome FROM sad4gm.usuario WHERE id = ?");
+			state.setString(1, id);
+
+			ResultSet resSet = state.executeQuery();
+
+			if (resSet.next()) {
+				descricao += String.format("Nome: %s - ID: %s", resSet.getString(1), id) + quebraLinha;
+
+			}
+			state.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return descricao;
+	}
+	
+	public String getNomeAuditor(String id) throws SQLException {
+
+		if (!hasUsuario(id))
+			throw new RuntimeErrorException(null, "Usuário inexistente!");
+
+		String auditor = "";
+	
+
+		try {
+			criaConexao();
+			PreparedStatement state = con
+					.prepareStatement("SELECT DISTINCT auditor FROM sad4gm.usuario WHERE id = ?");
+			state.setString(1, id);
+
+			ResultSet resSet = state.executeQuery();
+
+			while (resSet.next()) {
+				auditor =  resSet.getString(1) ;
+			}
+			state.close();
+			fechaConexao();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return auditor;
+
+	}
 
 	public boolean autenticador(String id, int senha) throws SQLException {
 		boolean valido = false;
@@ -257,30 +311,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public String getNome(String id, Connection con) throws SQLException {
-		if (!hasUsuario(id))
-			return "Usuário Não Cadastrado";
-
-		String descricao = "";
-		String quebraLinha = System.lineSeparator();
-
-		try {
-			PreparedStatement state = con.prepareStatement("SELECT DISTINCT nome FROM sad4gm.usuario WHERE id = ?");
-			state.setString(1, id);
-
-			ResultSet resSet = state.executeQuery();
-
-			if (resSet.next()) {
-				descricao += String.format("Nome: %s - ID: %s", resSet.getString(1), id) + quebraLinha;
-
-			}
-			state.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return descricao;
-	}
+	
 
 	public boolean hasUsuario(String id) throws SQLException {
 		boolean has;

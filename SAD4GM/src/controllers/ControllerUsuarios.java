@@ -153,7 +153,7 @@ public class ControllerUsuarios {
 
 		return info;
 	}
-	
+
 	public String getNome(String id) {
 		String nome;
 		try {
@@ -163,6 +163,18 @@ public class ControllerUsuarios {
 		}
 
 		return nome;
+	}
+
+	public String getNomeAuditor(String id) {
+		String auditor;
+		try {
+			auditor = uTools.getNomeAuditor(id);
+		} catch (Exception e) {
+			auditor = e.getMessage();
+		}
+
+		return auditor;
+
 	}
 
 	public String listar() {
@@ -193,7 +205,7 @@ public class ControllerUsuarios {
 
 		return status;
 	}
-	
+
 	public boolean hasUsuario(String id) throws SQLException {
 		return uTools.hasUsuario(id);
 	}

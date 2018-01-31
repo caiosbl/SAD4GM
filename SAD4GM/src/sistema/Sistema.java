@@ -61,21 +61,19 @@ public class Sistema {
 	public String getInfoAdmin(String id) {
 		return cAdmins.getInfo(id);
 	}
-	
+
 	public String getNomeAdmin(String id) {
 		return cAdmins.getNome(id);
 	}
-	
-
 
 	public boolean autenticaAdmin(String id, String senha) throws SQLException {
 		return cAdmins.autentica(id, senha);
 	}
-	
+
 	public boolean hasIdAdmin(String id) throws SQLException {
 		return cAdmins.hasAdmin(id);
 	}
-	
+
 	public String getListagemAdm() {
 		return cAdmins.getListagemAdmins();
 	}
@@ -109,8 +107,13 @@ public class Sistema {
 	public String getInfoUsuario(String id) {
 		return cUsuarios.getInfo(id);
 	}
+
 	public String getNomeUsuario(String id) {
 		return cUsuarios.getNome(id);
+	}
+
+	public String getNomeAuditor(String id) {
+		return cUsuarios.getNomeAuditor(id);
 	}
 
 	public String listarUsuarios() {
@@ -120,7 +123,7 @@ public class Sistema {
 	public boolean autenticaUsuario(String id, String senha) throws SQLException {
 		return cUsuarios.autentica(id, senha);
 	}
-	
+
 	public boolean hasIdUsuario(String id) throws SQLException {
 		return cUsuarios.hasUsuario(id);
 	}

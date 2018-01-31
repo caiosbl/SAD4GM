@@ -84,7 +84,7 @@ public class AdminInsert extends JFrame {
 		button.setBounds(492, 381, 84, 27);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Options admOptions = new Options(idAdmin);
+				AdminManagementOptions admOptions = new AdminManagementOptions(idAdmin);
 				dispose();
 				admOptions.setVisible(true);
 				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
