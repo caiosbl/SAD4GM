@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin;
+package interfaceSistema.interfaceGrafica.Admin.UserManagement;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -19,7 +19,7 @@ import javax.swing.JTextPane;
 
 import sistema.Sistema;
 
-public class SetAdmin extends JFrame {
+public class SetUser extends JFrame {
 
 	/**
 	 * 
@@ -27,7 +27,7 @@ public class SetAdmin extends JFrame {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idAdmin;
-	private String idAlterar;
+	private String idUser;
 	private Sistema sistema = new Sistema();
 
 	/**
@@ -37,9 +37,9 @@ public class SetAdmin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SetAdmin(String id, String idAlterar) {
+	public SetUser(String id, String idUser) {
 		this.idAdmin = id;
-		this.idAlterar = idAlterar;
+		this.idUser = idUser;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -81,17 +81,17 @@ public class SetAdmin extends JFrame {
 		button.setBounds(492, 381, 84, 27);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetAdminEntry setAdminEntry = new SetAdminEntry(idAdmin);
+				SetUserEntry setUserEntry = new SetUserEntry(idAdmin);
 				dispose();
-				setAdminEntry.setVisible(true);
-				setAdminEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				setUserEntry.setVisible(true);
+				setUserEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(button);
 
-		JLabel lblInformaes = new JLabel("ADMIN");
-		lblInformaes.setBounds(331, 59, 268, 37);
+		JLabel lblInformaes = new JLabel("USUÁRIO");
+		lblInformaes.setBounds(315, 60, 144, 37);
 		lblInformaes.setForeground(Color.WHITE);
 		lblInformaes.setFont(new Font("Tahoma", Font.BOLD, 30));
 		desktopPane.add(lblInformaes);
@@ -106,14 +106,14 @@ public class SetAdmin extends JFrame {
 		nome.setEditable(false);
 
 		nome.setBounds(182, 196, 268, 24);
-		nome.setText(sistema.getNomeAdmin(this.idAlterar));
+		nome.setText(sistema.getNomeUsuario(this.idUser));
 		desktopPane.add(nome);
 
 		JTextPane userID = new JTextPane();
 		userID.setEditable(false);
 
 		userID.setBounds(182, 231, 268, 24);
-		userID.setText(idAlterar);
+		userID.setText(idUser);
 		desktopPane.add(userID);
 
 		JLabel lblId = new JLabel("ID:");
@@ -122,13 +122,25 @@ public class SetAdmin extends JFrame {
 		lblId.setFont(new Font("SansSerif", Font.BOLD, 14));
 		desktopPane.add(lblId);
 
+		JLabel lblAuditor = new JLabel("Auditor:");
+		lblAuditor.setForeground(Color.WHITE);
+		lblAuditor.setFont(new Font("SansSerif", Font.BOLD, 14));
+		lblAuditor.setBounds(117, 270, 55, 16);
+		desktopPane.add(lblAuditor);
+
+		JTextPane auditor = new JTextPane();
+		auditor.setText(sistema.getNomeAuditor(this.idUser));
+		auditor.setEditable(false);
+		auditor.setBounds(182, 267, 268, 24);
+		desktopPane.add(auditor);
+
 		JButton btnAlterarSenha = new JButton("Alterar Senha");
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetAdminPassword admSetSenha = new SetAdminPassword(idAdmin, idAlterar);
+				SetUserPassword setUserPassword = new SetUserPassword(idAdmin, idUser);
 				dispose();
-				admSetSenha.setVisible(true);
-				admSetSenha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				setUserPassword.setVisible(true);
+				setUserPassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnAlterarSenha.setBounds(43, 381, 139, 27);
@@ -140,9 +152,11 @@ public class SetAdmin extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				userID.setEditable(true);
 				nome.setEditable(true);
+				auditor.setEditable(true);
+
 			}
 		});
-		btnEditar.setBounds(182, 273, 90, 28);
+		btnEditar.setBounds(182, 302, 90, 28);
 		desktopPane.add(btnEditar);
 
 		JButton btnAtualizar = new JButton("Atualizar");
@@ -152,26 +166,35 @@ public class SetAdmin extends JFrame {
 				boolean has = false;
 
 				try {
-					has = sistema.hasIdAdmin(userID.getText().trim());
+					has = sistema.hasIdUsuario(userID.getText().trim());
 					if (nome.getText().trim().equals("")) {
 						JOptionPane.showMessageDialog(null, "Nome inválido");
-						nome.setText(sistema.getNomeAdmin(idAlterar));
-						userID.setText(idAlterar);
+						nome.setText(sistema.getNomeUsuario(idUser));
+						userID.setText(idUser);
+						auditor.setText(sistema.getNomeAuditor(idUser));
+					} else if (auditor.getText().trim().equals("")) {
+						JOptionPane.showMessageDialog(null, "Auditor inválido");
+						nome.setText(sistema.getNomeUsuario(idUser));
+						userID.setText(idUser);
+						auditor.setText(sistema.getNomeAuditor(idUser));
 					} else if (userID.getText().equals("") || userID.getText().length() < 4) {
 						JOptionPane.showMessageDialog(null, "ID inválido");
-						nome.setText(sistema.getNomeAdmin(idAlterar));
-						userID.setText(idAlterar);
-					} else if (!userID.getText().trim().equals(idAlterar) && has) {
+						nome.setText(sistema.getNomeAdmin(idUser));
+						userID.setText(idUser);
+						auditor.setText(sistema.getNomeAuditor(idUser));
+					} else if (!userID.getText().trim().equals(idUser) && has) {
 						JOptionPane.showMessageDialog(null, "ID já cadastrado!");
-						nome.setText(sistema.getNomeAdmin(idAlterar));
-						userID.setText(idAlterar);
+						nome.setText(sistema.getNomeAdmin(idUser));
+						userID.setText(idUser);
+						auditor.setText(sistema.getNomeAuditor(idUser));
 					}
 
 					else {
 						nome.setEditable(false);
 						userID.setEditable(false);
-						sistema.setIdAdmin(idAlterar, userID.getText().trim());
-						sistema.setNomeAdmin(nome.getText().trim(), idAlterar);
+						sistema.setIdUsuario(idUser, userID.getText().trim());
+						sistema.setNomeUsuario(nome.getText().trim(), idUser);
+						sistema.setAuditorUsuario(idUser, auditor.getText().trim());
 						JOptionPane.showMessageDialog(null, "Dados atualizados com Sucesso!");
 
 					}
@@ -182,7 +205,8 @@ public class SetAdmin extends JFrame {
 			}
 
 		});
-		btnAtualizar.setBounds(360, 273, 90, 28);
+		btnAtualizar.setBounds(360, 302, 90, 28);
 		desktopPane.add(btnAtualizar);
+
 	}
 }

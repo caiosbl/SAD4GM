@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin;
+package interfaceSistema.interfaceGrafica.Admin.AdminManagement;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
