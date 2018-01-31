@@ -183,7 +183,7 @@ public class ControllerUsuarios {
 		listagem = uTools.listar();
 
 		if (listagem.equals(""))
-			listagem = "Nenhuma usuário cadastrado!";
+			listagem = "Nenhum usuário cadastrado!";
 
 		return listagem;
 	}

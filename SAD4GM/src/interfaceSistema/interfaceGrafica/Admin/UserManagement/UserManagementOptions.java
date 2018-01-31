@@ -78,6 +78,16 @@ public class UserManagementOptions extends JFrame {
 		btnVerMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		JButton btnListarUsurios = new JButton("Listar Usuários");
+		btnListarUsurios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				UsersList uList = new UsersList(idAdmin);
+
+				dispose();
+				uList.setVisible(true);
+				uList.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnListarUsurios.setBounds(25, 283, 228, 27);
 		desktopPane.add(btnListarUsurios);
 		btnListarUsurios.setFont(new Font("Tahoma", Font.BOLD, 12));
