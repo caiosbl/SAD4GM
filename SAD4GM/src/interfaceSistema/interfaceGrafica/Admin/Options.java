@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import interfaceSistema.interfaceGrafica.Admin.AdminManagement.AdminManagementOptions;
+import interfaceSistema.interfaceGrafica.Admin.UserManagement.UserManagementOptions;
+
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;

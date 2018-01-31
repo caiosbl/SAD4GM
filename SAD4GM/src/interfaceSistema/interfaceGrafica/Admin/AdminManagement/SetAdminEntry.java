@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin;
+package interfaceSistema.interfaceGrafica.Admin.AdminManagement;
 
 import java.awt.BorderLayout;
 
@@ -21,7 +21,7 @@ import java.awt.SystemColor;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-public class UserRemove extends JFrame {
+public class SetAdminEntry extends JFrame {
 
 	/**
 	 * 
@@ -39,7 +39,7 @@ public class UserRemove extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserRemove(String id) {
+	public SetAdminEntry(String id) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -71,16 +71,16 @@ public class UserRemove extends JFrame {
 		separator.setBounds(0, 111, 605, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("REMOVER");
+		JLabel lblRemover = new JLabel("ALTERAR");
 		lblRemover.setForeground(Color.WHITE);
 		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblRemover.setBounds(286, 23, 150, 37);
 		desktopPane.add(lblRemover);
 
-		JLabel lblAdmin = new JLabel("USUÁRIO");
+		JLabel lblAdmin = new JLabel("ADMIN");
 		lblAdmin.setForeground(Color.WHITE);
 		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(292, 63, 144, 37);
+		lblAdmin.setBounds(308, 63, 109, 37);
 		desktopPane.add(lblAdmin);
 
 		JButton button = new JButton("Voltar");
@@ -98,47 +98,50 @@ public class UserRemove extends JFrame {
 		desktopPane.add(button);
 
 		idField = new JTextField();
-		idField.setBounds(200, 248, 246, 28);
+		idField.setBounds(200, 248, 206, 28);
 		desktopPane.add(idField);
 		idField.setColumns(10);
 
-		JLabel lblIdDoAdmin = new JLabel("ID DO USUÁRIO A SER REMOVIDO:");
+		JLabel lblIdDoAdmin = new JLabel("ID do Admin a ser alterado:");
 		lblIdDoAdmin.setForeground(Color.WHITE);
 		lblIdDoAdmin.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblIdDoAdmin.setBounds(204, 224, 236, 19);
+		lblIdDoAdmin.setBounds(204, 224, 197, 19);
 		desktopPane.add(lblIdDoAdmin);
 
-		JButton btnRemover = new JButton("Remover");
+		JButton btnRemover = new JButton("Alterar");
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (idField.getText().trim().length() < 4) {
 					JOptionPane.showMessageDialog(null, "ID Inválido!");
 					idField.setText("");
-				}  else {
+				} else if (idField.getText().trim().equals(idAdmin)) {
+					JOptionPane.showMessageDialog(null, "Por favor insira um ID diferente do seu!");
+					idField.setText("");
+				} else {
 					boolean has = false;
+
 					try {
-						has = sistema.hasIdUsuario(idField.getText().trim());
+						has = sistema.hasIdAdmin(idField.getText().trim());
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Falha na conexão com banco de dados!");
 					}
 
 					if (!has) {
-						JOptionPane.showMessageDialog(null, "Usuário inexistente!");
+						JOptionPane.showMessageDialog(null, "Admin inexistente!");
 						idField.setText("");
-					} else {
-						sistema.removerUsuario(idField.getText().trim());
-						JOptionPane.showMessageDialog(null, "Usuário removido com Sucesso!");
+					}
 
-						UserManagementOptions admUserOptions = new UserManagementOptions(idAdmin);
+					else {
+						SetAdmin setAdmin = new SetAdmin(idAdmin, idField.getText().trim());
 						dispose();
-						admUserOptions.setVisible(true);
-						admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						setAdmin.setVisible(true);
+						setAdmin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}
 				}
 			}
 		});
 		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnRemover.setBounds(350, 287, 95, 27);
+		btnRemover.setBounds(311, 280, 95, 27);
 		desktopPane.add(btnRemover);
 
 	}

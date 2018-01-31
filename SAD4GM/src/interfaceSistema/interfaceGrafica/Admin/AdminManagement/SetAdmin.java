@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin;
+package interfaceSistema.interfaceGrafica.Admin.AdminManagement;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -81,10 +81,10 @@ public class SetAdmin extends JFrame {
 		button.setBounds(492, 381, 84, 27);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminManagementOptions admOptions = new AdminManagementOptions(idAdmin);
+				SetAdminEntry setAdminEntry = new SetAdminEntry(idAdmin);
 				dispose();
-				admOptions.setVisible(true);
-				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				setAdminEntry.setVisible(true);
+				setAdminEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));

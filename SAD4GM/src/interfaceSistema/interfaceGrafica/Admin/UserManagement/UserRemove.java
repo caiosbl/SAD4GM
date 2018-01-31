@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin;
+package interfaceSistema.interfaceGrafica.Admin.UserManagement;
 
 import java.awt.BorderLayout;
 
@@ -21,7 +21,7 @@ import java.awt.SystemColor;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-public class AdminRemove extends JFrame {
+public class UserRemove extends JFrame {
 
 	/**
 	 * 
@@ -39,7 +39,7 @@ public class AdminRemove extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdminRemove(String id) {
+	public UserRemove(String id) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -77,20 +77,20 @@ public class AdminRemove extends JFrame {
 		lblRemover.setBounds(286, 23, 150, 37);
 		desktopPane.add(lblRemover);
 
-		JLabel lblAdmin = new JLabel("ADMIN");
+		JLabel lblAdmin = new JLabel("USUÁRIO");
 		lblAdmin.setForeground(Color.WHITE);
 		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(308, 63, 109, 37);
+		lblAdmin.setBounds(292, 63, 144, 37);
 		desktopPane.add(lblAdmin);
 
 		JButton button = new JButton("Voltar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
+				UserManagementOptions userOptions = new UserManagementOptions(idAdmin);
 
 				dispose();
-				admMOptions.setVisible(true);
-				admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				userOptions.setVisible(true);
+				userOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -98,14 +98,14 @@ public class AdminRemove extends JFrame {
 		desktopPane.add(button);
 
 		idField = new JTextField();
-		idField.setBounds(200, 248, 206, 28);
+		idField.setBounds(200, 248, 246, 28);
 		desktopPane.add(idField);
 		idField.setColumns(10);
 
-		JLabel lblIdDoAdmin = new JLabel("ID do Admin a ser removido:");
+		JLabel lblIdDoAdmin = new JLabel("ID DO USUÁRIO A SER REMOVIDO:");
 		lblIdDoAdmin.setForeground(Color.WHITE);
 		lblIdDoAdmin.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblIdDoAdmin.setBounds(204, 224, 197, 19);
+		lblIdDoAdmin.setBounds(204, 224, 236, 19);
 		desktopPane.add(lblIdDoAdmin);
 
 		JButton btnRemover = new JButton("Remover");
@@ -114,34 +114,31 @@ public class AdminRemove extends JFrame {
 				if (idField.getText().trim().length() < 4) {
 					JOptionPane.showMessageDialog(null, "ID Inválido!");
 					idField.setText("");
-				} else if (idField.getText().trim().equals(idAdmin)) {
-					JOptionPane.showMessageDialog(null, "Por favor insira um ID diferente do seu!");
-					idField.setText("");
-				} else {
+				}  else {
 					boolean has = false;
 					try {
-						has = sistema.hasIdAdmin(idField.getText().trim());
+						has = sistema.hasIdUsuario(idField.getText().trim());
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Falha na conexão com banco de dados!");
 					}
 
 					if (!has) {
-						JOptionPane.showMessageDialog(null, "Admin inexistente!");
+						JOptionPane.showMessageDialog(null, "Usuário inexistente!");
 						idField.setText("");
 					} else {
-						sistema.deletarAdmin(idField.getText().trim());
-						JOptionPane.showMessageDialog(null, "Admin removido com Sucesso!");
+						sistema.removerUsuario(idField.getText().trim());
+						JOptionPane.showMessageDialog(null, "Usuário removido com Sucesso!");
 
-						AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
+						UserManagementOptions admUserOptions = new UserManagementOptions(idAdmin);
 						dispose();
-						admMOptions.setVisible(true);
-						admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						admUserOptions.setVisible(true);
+						admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}
 				}
 			}
 		});
 		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnRemover.setBounds(311, 280, 95, 27);
+		btnRemover.setBounds(350, 287, 95, 27);
 		desktopPane.add(btnRemover);
 
 	}
