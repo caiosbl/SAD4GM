@@ -21,7 +21,7 @@ import javax.swing.JSeparator;
 
 import javax.swing.JTextPane;
 
-import javax.swing.JScrollPane;
+
 
 public class UserInformation extends JFrame {
 

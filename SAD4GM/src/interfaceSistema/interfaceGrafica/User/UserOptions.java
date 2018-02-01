@@ -23,7 +23,7 @@ public class UserOptions extends JFrame {
 	 */
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
-	private String idUsuario;
+	
 
 	/**
 	 * Launch the application.
@@ -34,7 +34,7 @@ public class UserOptions extends JFrame {
 	 * Create the frame.
 	 */
 	public UserOptions(String id) {
-		this.idUsuario = id;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);

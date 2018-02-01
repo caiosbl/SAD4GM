@@ -1,1 +1,1 @@
-delete from sad4gm.admin where id = '9898';
+delete from sad4gm.usuario where id = 'o23';
