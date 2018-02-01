@@ -21,7 +21,7 @@ import javax.swing.JSeparator;
 
 import javax.swing.JTextPane;
 
-import javax.swing.JScrollPane;
+
 
 public class UserInformation extends JFrame {
 
@@ -98,14 +98,12 @@ public class UserInformation extends JFrame {
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
 		button.setBounds(506, 388, 69, 23);
 		desktopPane.add(button);
-
+		
 		JTextPane textPane = new JTextPane();
-		textPane.setBackground(SystemColor.activeCaption);
-		textPane.setEditable(false);
-		JScrollPane jsp = new JScrollPane(textPane);
 		textPane.setText(sistema.getInfoUsuario(idUsuario));
-		jsp.setBounds(84, 150, 345, 261);
-		desktopPane.add(jsp);
-
+		textPane.setBackground(SystemColor.textInactiveText);
+		textPane.setBounds(116, 220, 394, 73);
+		desktopPane.add(textPane);
+	
 	}
 }

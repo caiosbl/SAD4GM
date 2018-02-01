@@ -102,7 +102,7 @@ public class UserRemove extends JFrame {
 		desktopPane.add(idField);
 		idField.setColumns(10);
 
-		JLabel lblIdDoAdmin = new JLabel("ID DO USUÁRIO A SER REMOVIDO:");
+		JLabel lblIdDoAdmin = new JLabel("ID do Usuário a ser Removido:");
 		lblIdDoAdmin.setForeground(Color.WHITE);
 		lblIdDoAdmin.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblIdDoAdmin.setBounds(204, 224, 236, 19);

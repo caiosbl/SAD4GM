@@ -8,10 +8,14 @@ import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.JSeparator;
 
 public class MachineManagementOptions extends JFrame {
@@ -31,6 +35,8 @@ public class MachineManagementOptions extends JFrame {
 	 * Create the frame.
 	 */
 	public MachineManagementOptions(String id) {
+		Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("icon/icon.jpg");
+		this.setIconImage(iconeTitulo);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");

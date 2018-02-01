@@ -161,9 +161,11 @@ public class UsuarioTools extends DataBaseTools {
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
+			
 				infoUsuario += "Nome: " + resSet.getString(1) + quebraLinha;
-				infoUsuario += "Id: " + resSet.getString(2) + quebraLinha;
+				infoUsuario += "ID: " + resSet.getString(2) + quebraLinha;
 				infoUsuario += "Auditor: " + resSet.getString(3) + quebraLinha;
+		
 			}
 			state.close();
 			fechaConexao();
