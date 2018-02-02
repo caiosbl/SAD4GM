@@ -19,7 +19,13 @@ import javax.swing.JSeparator;
 import sistema.Sistema;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 public class InsertUser extends JFrame {
 
 	/**

@@ -28,7 +28,13 @@ import java.awt.Toolkit;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import java.awt.Canvas;
-
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 public class Entrada extends JFrame {
 
 	/**

@@ -25,7 +25,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 public class UserLogin extends JFrame {
 
 	/**

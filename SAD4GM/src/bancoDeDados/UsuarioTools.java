@@ -9,6 +9,13 @@ import javax.management.RuntimeErrorException;
 
 import entidades.Usuario;
 
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
+
 public class UsuarioTools extends DataBaseTools {
 
 	public void inserir(Usuario usuario) throws SQLException {
@@ -161,11 +168,11 @@ public class UsuarioTools extends DataBaseTools {
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
-			
+
 				infoUsuario += "Nome: " + resSet.getString(1) + quebraLinha;
 				infoUsuario += "ID: " + resSet.getString(2) + quebraLinha;
 				infoUsuario += "Auditor: " + resSet.getString(3) + quebraLinha;
-		
+
 			}
 			state.close();
 			fechaConexao();

@@ -26,6 +26,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 public class AdminLogin extends JFrame {
 
 	/**
@@ -57,7 +64,7 @@ public class AdminLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public AdminLogin() {
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);

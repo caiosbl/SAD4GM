@@ -10,12 +10,12 @@ import controllers.ControllerMaquinas;
 import controllers.ControllerUsuarios;
 
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
  */
-
 public class Sistema {
 
 	private ControllerUsuarios cUsuarios;

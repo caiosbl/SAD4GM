@@ -3,6 +3,14 @@ package bancoDeDados;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
+
 public abstract class DataBaseTools {
 
 	protected Connection con;

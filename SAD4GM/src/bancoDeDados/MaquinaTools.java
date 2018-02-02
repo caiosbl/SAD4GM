@@ -1,12 +1,21 @@
 package bancoDeDados;
 
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.management.RuntimeErrorException;
 
 import entidades.Maquina;
+
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 
 public class MaquinaTools extends DataBaseTools {
 	private UsuarioTools uTools;

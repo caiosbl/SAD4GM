@@ -20,7 +20,13 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 
 import javax.swing.JSeparator;
-
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 public class UserManagementOptions extends JFrame {
 
 	/**
