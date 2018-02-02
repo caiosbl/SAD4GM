@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.SystemColor;
+import javax.swing.ImageIcon;
 
 public class Entrada extends JFrame {
 
@@ -93,7 +94,7 @@ public class Entrada extends JFrame {
 		lblEscolhaSeuTipo.setForeground(SystemColor.inactiveCaptionBorder);
 		lblEscolhaSeuTipo.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblEscolhaSeuTipo.setBackground(Color.WHITE);
-		lblEscolhaSeuTipo.setBounds(199, 204, 156, 29);
+		lblEscolhaSeuTipo.setBounds(224, 213, 156, 29);
 		desktopPane.add(lblEscolhaSeuTipo);
 
 		JButton button = new JButton("Usuário");
@@ -108,7 +109,7 @@ public class Entrada extends JFrame {
 		button.setForeground(new Color(0, 0, 51));
 		button.setFont(new Font("Tahoma", Font.BOLD, 11));
 		button.setBackground(Color.WHITE);
-		button.setBounds(104, 245, 161, 53);
+		button.setBounds(219, 312, 161, 53);
 		desktopPane.add(button);
 
 		JButton button_1 = new JButton("Admin");
@@ -123,24 +124,33 @@ public class Entrada extends JFrame {
 		button_1.setForeground(new Color(0, 0, 51));
 		button_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		button_1.setBackground(Color.WHITE);
-		button_1.setBounds(285, 245, 161, 53);
+		button_1.setBounds(219, 247, 161, 53);
 		desktopPane.add(button_1);
 
 		JLabel label_1 = new JLabel("DeSiDeS");
 		label_1.setForeground(SystemColor.inactiveCaptionBorder);
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		label_1.setBounds(214, 67, 141, 45);
+		label_1.setBounds(363, 66, 141, 45);
 		desktopPane.add(label_1);
 
 		JLabel label_2 = new JLabel("SAD4GM");
 		label_2.setForeground(SystemColor.inactiveCaptionBorder);
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		label_2.setBounds(190, 11, 210, 73);
+		label_2.setBounds(353, 24, 161, 45);
 		desktopPane.add(label_2);
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 123, 582, 15);
 		desktopPane.add(separator);
+		
+		ImageIcon img = new ImageIcon("C:\\\\Users\\\\caiol\\\\Desktop\\\\SAD4GM\\\\SAD4GM\\\\SAD4GM\\\\icon\\\\desides.png");
+		int largura = img.getIconWidth();
+        int altura = img.getIconHeight();
+        JLabel labelimg = new JLabel(img);
+        labelimg.setLocation(51, 37);
+        labelimg.setSize(largura, altura);
+        desktopPane.add(labelimg,RIGHT_ALIGNMENT);
+	
+		
 	}
-
 }
