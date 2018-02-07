@@ -127,6 +127,10 @@ public class Sistema {
 	public boolean hasIdUsuario(String id) throws SQLException {
 		return cUsuarios.hasUsuario(id);
 	}
+	
+	public boolean isUsuarioAtivo(String id) throws SQLException {
+		return cUsuarios.isAtivo(id);
+	}
 
 	// Funções de Máquina
 

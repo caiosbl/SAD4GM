@@ -124,7 +124,7 @@ public class SetUserEntry extends JFrame {
 					boolean has = false;
 
 					try {
-						has = sistema.hasIdUsuario(idField.getText().trim());
+						has = sistema.hasIdUsuario(idField.getText().trim()) && sistema.isUsuarioAtivo(idField.getText().trim());
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Falha na conexão com banco de dados!");
 					}

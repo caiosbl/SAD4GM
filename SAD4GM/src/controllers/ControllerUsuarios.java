@@ -215,5 +215,9 @@ public class ControllerUsuarios {
 	public boolean hasUsuario(String id) throws SQLException {
 		return uTools.hasUsuario(id);
 	}
+	
+	public boolean isAtivo(String id) throws SQLException {
+		return uTools.isAtivo(id);
+	}
 
 }

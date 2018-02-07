@@ -1,1 +1,3 @@
-delete from sad4gm.usuario where id = 'o23';
+UPDATE sad4gm.usuario
+SET ativo = 0
+WHERE id = 'caiosbl';

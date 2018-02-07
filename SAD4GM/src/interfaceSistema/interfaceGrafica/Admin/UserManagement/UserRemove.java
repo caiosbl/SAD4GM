@@ -20,9 +20,9 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -120,10 +120,11 @@ public class UserRemove extends JFrame {
 				if (idField.getText().trim().length() < 4) {
 					JOptionPane.showMessageDialog(null, "ID Inválido!");
 					idField.setText("");
-				}  else {
+				} else {
 					boolean has = false;
 					try {
-						has = sistema.hasIdUsuario(idField.getText().trim());
+						has = sistema.hasIdUsuario(idField.getText().trim())
+								&& sistema.isUsuarioAtivo(idField.getText().trim());
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Falha na conexão com banco de dados!");
 					}
