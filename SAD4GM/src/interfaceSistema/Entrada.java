@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica;
+package interfaceSistema;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import interfaceSistema.interfaceGrafica.Admin.AdminLogin;
-import interfaceSistema.interfaceGrafica.User.UserLogin;
+import interfaceSistema.Admin.AdminLogin;
+import interfaceSistema.User.Login;
 
 import javax.swing.JDesktopPane;
 import java.awt.Color;
@@ -27,8 +27,14 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
-import java.awt.Canvas;
 
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 public class Entrada extends JFrame {
 
 	/**
@@ -101,7 +107,7 @@ public class Entrada extends JFrame {
 		JButton button = new JButton("Usuário");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				UserLogin uOptions = new UserLogin();
+				Login uOptions = new Login();
 				dispose();
 				uOptions.setVisible(true);
 				uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -145,8 +151,7 @@ public class Entrada extends JFrame {
 		desktopPane.add(separator);
 		
 		ImageIcon img = new ImageIcon("C:\\\\Users\\\\caiol\\\\Desktop\\\\SAD4GM\\\\SAD4GM\\\\SAD4GM\\\\icon\\\\desides.png");
-		int largura = img.getIconWidth();
-        int altura = img.getIconHeight();
+	
         JLabel labelimg = new JLabel(img);
         labelimg.setLocation(51, 37);
         labelimg.setSize(119, 61);

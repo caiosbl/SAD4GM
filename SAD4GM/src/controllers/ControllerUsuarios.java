@@ -13,7 +13,13 @@ import java.sql.SQLException;
 import bancoDeDados.UsuarioTools;
 import entidades.Usuario;
 import validadorInformacoes.ValidaUsuario;
-
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 public class ControllerUsuarios {
 
 	private UsuarioTools uTools;
@@ -208,6 +214,10 @@ public class ControllerUsuarios {
 
 	public boolean hasUsuario(String id) throws SQLException {
 		return uTools.hasUsuario(id);
+	}
+	
+	public boolean isAtivo(String id) throws SQLException {
+		return uTools.isAtivo(id);
 	}
 
 }

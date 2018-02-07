@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin.UserManagement;
+package interfaceSistema.Admin.UserManagement;
 
 import java.awt.BorderLayout;
 
@@ -20,8 +20,14 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
-
-public class UserRemove extends JFrame {
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
+public class UserInformationEntry extends JFrame {
 
 	/**
 	 * 
@@ -39,7 +45,7 @@ public class UserRemove extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserRemove(String id) {
+	public UserInformationEntry(String id) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -71,26 +77,26 @@ public class UserRemove extends JFrame {
 		separator.setBounds(0, 111, 605, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("REMOVER");
+		JLabel lblRemover = new JLabel("VER INFORMAÇÕES");
 		lblRemover.setForeground(Color.WHITE);
 		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblRemover.setBounds(286, 23, 150, 37);
+		lblRemover.setBounds(221, 15, 297, 37);
 		desktopPane.add(lblRemover);
 
-		JLabel lblAdmin = new JLabel("USUÁRIO");
+		JLabel lblAdmin = new JLabel(" DE UM USUÁRIO");
 		lblAdmin.setForeground(Color.WHITE);
 		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(292, 63, 144, 37);
+		lblAdmin.setBounds(243, 47, 261, 37);
 		desktopPane.add(lblAdmin);
 
 		JButton button = new JButton("Voltar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserManagementOptions userOptions = new UserManagementOptions(idAdmin);
+				UserManagementOptions umgOptions = new UserManagementOptions(idAdmin);
 
 				dispose();
-				userOptions.setVisible(true);
-				userOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				umgOptions.setVisible(true);
+				umgOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -98,24 +104,25 @@ public class UserRemove extends JFrame {
 		desktopPane.add(button);
 
 		idField = new JTextField();
-		idField.setBounds(200, 248, 246, 28);
+		idField.setBounds(200, 248, 206, 28);
 		desktopPane.add(idField);
 		idField.setColumns(10);
 
-		JLabel lblIdDoAdmin = new JLabel("ID do Usuário a ser Removido:");
+		JLabel lblIdDoAdmin = new JLabel("ID do Usuário:");
 		lblIdDoAdmin.setForeground(Color.WHITE);
 		lblIdDoAdmin.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblIdDoAdmin.setBounds(204, 224, 236, 19);
+		lblIdDoAdmin.setBounds(250, 222, 98, 19);
 		desktopPane.add(lblIdDoAdmin);
 
-		JButton btnRemover = new JButton("Remover");
+		JButton btnRemover = new JButton("Visualizar");
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (idField.getText().trim().length() < 4) {
 					JOptionPane.showMessageDialog(null, "ID Inválido!");
 					idField.setText("");
-				}  else {
+				} else {
 					boolean has = false;
+
 					try {
 						has = sistema.hasIdUsuario(idField.getText().trim());
 					} catch (Exception e1) {
@@ -125,20 +132,19 @@ public class UserRemove extends JFrame {
 					if (!has) {
 						JOptionPane.showMessageDialog(null, "Usuário inexistente!");
 						idField.setText("");
-					} else {
-						sistema.removerUsuario(idField.getText().trim());
-						JOptionPane.showMessageDialog(null, "Usuário removido com Sucesso!");
+					}
 
-						UserManagementOptions admUserOptions = new UserManagementOptions(idAdmin);
+					else {
+						UserInformation userInformation = new UserInformation(idAdmin,idField.getText().trim());
 						dispose();
-						admUserOptions.setVisible(true);
-						admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						userInformation.setVisible(true);
+						userInformation.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}
 				}
 			}
 		});
 		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnRemover.setBounds(350, 287, 95, 27);
+		btnRemover.setBounds(311, 280, 95, 27);
 		desktopPane.add(btnRemover);
 
 	}

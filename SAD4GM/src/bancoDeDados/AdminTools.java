@@ -6,6 +6,14 @@ import java.sql.SQLException;
 
 import javax.management.RuntimeErrorException;
 
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
+
 public class AdminTools extends DataBaseTools {
 
 	public void inserir(String nome, int senha, String id) throws SQLException {

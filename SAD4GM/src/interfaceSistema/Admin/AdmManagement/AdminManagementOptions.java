@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin.AdminManagement;
+package interfaceSistema.Admin.AdmManagement;
 
 import java.awt.BorderLayout;
 
@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import interfaceSistema.interfaceGrafica.Admin.Options;
+import interfaceSistema.Admin.Options;
 
 import javax.swing.JDesktopPane;
 import java.awt.Color;
@@ -21,7 +21,13 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 
 import javax.swing.JSeparator;
-
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 public class AdminManagementOptions extends JFrame {
 
 	/**

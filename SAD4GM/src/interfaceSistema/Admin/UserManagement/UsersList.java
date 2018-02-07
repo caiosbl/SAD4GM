@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin.AdminManagement;
+package interfaceSistema.Admin.UserManagement;
 
 import java.awt.BorderLayout;
 
@@ -22,8 +22,14 @@ import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 
 import javax.swing.JScrollPane;
-
-public class AdminsList extends JFrame {
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
+public class UsersList extends JFrame {
 
 	/**
 	 * 
@@ -40,7 +46,7 @@ public class AdminsList extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdminsList(String id) {
+	public UsersList(String id) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -78,20 +84,20 @@ public class AdminsList extends JFrame {
 		lblRemover.setBounds(286, 23, 157, 37);
 		desktopPane.add(lblRemover);
 
-		JLabel lblAdmin = new JLabel("DOS ADMINS");
+		JLabel lblAdmin = new JLabel("DOS USUÁRIOS");
 		lblAdmin.setForeground(Color.WHITE);
 		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(264, 63, 202, 37);
+		lblAdmin.setBounds(249, 63, 237, 37);
 		desktopPane.add(lblAdmin);
 
 		JButton button = new JButton("Voltar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
+				UserManagementOptions uMOptions = new UserManagementOptions(idAdmin);
 
 				dispose();
-				admMOptions.setVisible(true);
-				admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				uMOptions.setVisible(true);
+				uMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -99,9 +105,10 @@ public class AdminsList extends JFrame {
 		desktopPane.add(button);
 
 		JTextPane textPane = new JTextPane();
+		textPane.setBackground(SystemColor.activeCaption);
 		textPane.setEditable(false);
 		JScrollPane jsp = new JScrollPane(textPane);
-		textPane.setText(sistema.getListagemAdm());
+		textPane.setText(sistema.listarUsuarios());
 		jsp.setBounds(84, 150, 345, 261);
 		desktopPane.add(jsp);
 

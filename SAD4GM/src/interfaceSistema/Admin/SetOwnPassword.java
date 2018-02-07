@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin;
+package interfaceSistema.Admin;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -18,7 +18,13 @@ import javax.swing.JSeparator;
 
 import sistema.Sistema;
 import javax.swing.JPasswordField;
-
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 public class SetOwnPassword extends JFrame {
 
 	/**

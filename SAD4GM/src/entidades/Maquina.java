@@ -4,7 +4,8 @@ import validadorInformacoes.ValidaMaquina;
 import validadorInformacoes.ValidaUsuario;
 
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
  * 
  * @author caiosbl
  *

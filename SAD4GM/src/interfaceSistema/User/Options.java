@@ -1,11 +1,11 @@
-package interfaceSistema.interfaceGrafica.User;
+package interfaceSistema.User;
 
 import java.awt.BorderLayout;
-
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -16,25 +16,29 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
-public class UserOptions extends JFrame {
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
+public class Options extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
-	
 
 	/**
 	 * Launch the application.
 	 */
 
-
 	/**
 	 * Create the frame.
 	 */
-	public UserOptions(String id) {
-		
+	public Options(String id) {
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -43,52 +47,65 @@ public class UserOptions extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
-		
+
 		JButton btnNewButton = new JButton("Inserir Máquina");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(53, 229, 181, 23);
+		btnNewButton.setBounds(53, 165, 181, 29);
 		desktopPane.add(btnNewButton);
-		
+
 		JButton btnVisualizarMquinas = new JButton("Visualizar Máquinas");
-		btnVisualizarMquinas.setBounds(53, 288, 181, 23);
+		btnVisualizarMquinas.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnVisualizarMquinas.setBounds(53, 226, 181, 29);
 		desktopPane.add(btnVisualizarMquinas);
-		
+
 		JButton btnInserirFuno = new JButton("Inserir Função");
-		btnInserirFuno.setBounds(53, 259, 181, 23);
+		btnInserirFuno.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnInserirFuno.setBounds(53, 195, 181, 29);
 		desktopPane.add(btnInserirFuno);
-		
+
 		JButton btnMinhasInformaes = new JButton("Alterar Senha");
-		btnMinhasInformaes.setBounds(53, 195, 181, 23);
+		btnMinhasInformaes.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnMinhasInformaes.setBounds(53, 359, 181, 29);
 		desktopPane.add(btnMinhasInformaes);
-		
+
 		JButton button = new JButton("Minhas Informações");
-		button.setBounds(53, 164, 181, 23);
+		button.setFont(new Font("Tahoma", Font.BOLD, 14));
+		button.setBounds(53, 327, 181, 29);
 		desktopPane.add(button);
-		
+
 		JLabel label = new JLabel("DeSiDeS");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.BOLD, 28));
 		label.setBounds(16, 67, 141, 45);
 		desktopPane.add(label);
-		
+
 		JLabel label_1 = new JLabel("SAD4GM");
 		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 37));
 		label_1.setBounds(6, 18, 210, 73);
 		desktopPane.add(label_1);
-		
+
 		JButton button_1 = new JButton("Logout");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login userLogin = new Login();
+				dispose();
+				userLogin.setVisible(true);
+				userLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		button_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		button_1.setBounds(497, 40, 81, 27);
 		desktopPane.add(button_1);
-		
+
 		JSeparator separator = new JSeparator();
 		separator.setBounds(6, 116, 605, 12);
 		desktopPane.add(separator);

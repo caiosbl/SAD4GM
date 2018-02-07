@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin;
+package interfaceSistema.Admin;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -18,7 +18,13 @@ import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 
 import sistema.Sistema;
-
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 public class MyInfo extends JFrame {
 
 	/**

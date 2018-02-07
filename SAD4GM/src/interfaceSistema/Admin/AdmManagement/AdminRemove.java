@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin.UserManagement;
+package interfaceSistema.Admin.AdmManagement;
 
 import java.awt.BorderLayout;
 
@@ -20,8 +20,14 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
-
-public class SetUserEntry extends JFrame {
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
+public class AdminRemove extends JFrame {
 
 	/**
 	 * 
@@ -39,7 +45,7 @@ public class SetUserEntry extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SetUserEntry(String id) {
+	public AdminRemove(String id) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -71,26 +77,26 @@ public class SetUserEntry extends JFrame {
 		separator.setBounds(0, 111, 605, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("ALTERAR");
+		JLabel lblRemover = new JLabel("REMOVER");
 		lblRemover.setForeground(Color.WHITE);
 		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblRemover.setBounds(286, 23, 150, 37);
 		desktopPane.add(lblRemover);
 
-		JLabel lblAdmin = new JLabel("USUÁRIO");
+		JLabel lblAdmin = new JLabel("ADMIN");
 		lblAdmin.setForeground(Color.WHITE);
 		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(286, 63, 144, 37);
+		lblAdmin.setBounds(308, 63, 109, 37);
 		desktopPane.add(lblAdmin);
 
 		JButton button = new JButton("Voltar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserManagementOptions umgOptions = new UserManagementOptions(idAdmin);
+				AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
 
 				dispose();
-				umgOptions.setVisible(true);
-				umgOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				admMOptions.setVisible(true);
+				admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -102,37 +108,40 @@ public class SetUserEntry extends JFrame {
 		desktopPane.add(idField);
 		idField.setColumns(10);
 
-		JLabel lblIdDoAdmin = new JLabel("ID do Usuário a ser alterado:");
+		JLabel lblIdDoAdmin = new JLabel("ID do Admin a ser removido:");
 		lblIdDoAdmin.setForeground(Color.WHITE);
 		lblIdDoAdmin.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblIdDoAdmin.setBounds(204, 224, 199, 19);
+		lblIdDoAdmin.setBounds(204, 224, 197, 19);
 		desktopPane.add(lblIdDoAdmin);
 
-		JButton btnRemover = new JButton("Alterar");
+		JButton btnRemover = new JButton("Remover");
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (idField.getText().trim().length() < 4) {
 					JOptionPane.showMessageDialog(null, "ID Inválido!");
 					idField.setText("");
+				} else if (idField.getText().trim().equals(idAdmin)) {
+					JOptionPane.showMessageDialog(null, "Por favor insira um ID diferente do seu!");
+					idField.setText("");
 				} else {
 					boolean has = false;
-
 					try {
-						has = sistema.hasIdUsuario(idField.getText().trim());
+						has = sistema.hasIdAdmin(idField.getText().trim());
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Falha na conexão com banco de dados!");
 					}
 
 					if (!has) {
-						JOptionPane.showMessageDialog(null, "Usuário inexistente!");
+						JOptionPane.showMessageDialog(null, "Admin inexistente!");
 						idField.setText("");
-					}
+					} else {
+						sistema.deletarAdmin(idField.getText().trim());
+						JOptionPane.showMessageDialog(null, "Admin removido com Sucesso!");
 
-					else {
-						SetUser setUser = new SetUser(idAdmin, idField.getText().trim());
+						AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
 						dispose();
-						setUser.setVisible(true);
-						setUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						admMOptions.setVisible(true);
+						admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}
 				}
 			}

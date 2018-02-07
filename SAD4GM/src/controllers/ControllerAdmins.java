@@ -5,6 +5,14 @@ import java.sql.SQLException;
 import bancoDeDados.AdminTools;
 import validadorInformacoes.ValidaUsuario;
 
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
+
 public class ControllerAdmins {
 	private AdminTools admTools;
 

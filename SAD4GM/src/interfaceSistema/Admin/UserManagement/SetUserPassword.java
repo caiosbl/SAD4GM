@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin.AdminManagement;
+package interfaceSistema.Admin.UserManagement;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -18,8 +18,14 @@ import javax.swing.JSeparator;
 
 import sistema.Sistema;
 import javax.swing.JPasswordField;
-
-public class SetAdminPassword extends JFrame {
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
+public class SetUserPassword extends JFrame {
 
 	/**
 	 * 
@@ -27,7 +33,7 @@ public class SetAdminPassword extends JFrame {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idAdmin;
-	private String idAlterar;
+	private String idUser;
 	private Sistema sistema = new Sistema();
 	private JPasswordField novaSenha;
 	private JPasswordField confirmacaoSenha;
@@ -39,9 +45,9 @@ public class SetAdminPassword extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SetAdminPassword(String id,String idAlterado) {
+	public SetUserPassword(String id,String idUsuario) {
 		this.idAdmin = id;
-		this.idAlterar = idAlterado;
+		this.idUser = idUsuario;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -82,10 +88,10 @@ public class SetAdminPassword extends JFrame {
 		button.setBounds(492, 381, 84, 27);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetAdmin setAdmin = new SetAdmin(idAdmin, idAlterado);
+				SetUser setUser = new SetUser(idAdmin, idUser);
 				dispose();
-				setAdmin.setVisible(true);
-				setAdmin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				setUser.setVisible(true);
+				setUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -141,12 +147,12 @@ public class SetAdminPassword extends JFrame {
 				}
 
 				else {
-					sistema.setSenhaAdmin(idAlterar, newPassword);
+					sistema.setSenhaUsuario(idUser, newPassword);
 					JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
-					SetAdmin setAdmin = new SetAdmin(idAdmin, idAlterado);
+					SetUser setUsuario = new SetUser(idAdmin, idUsuario);
 					dispose();
-					setAdmin.setVisible(true);
-					setAdmin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					setUsuario.setVisible(true);
+					setUsuario.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				}
 
 			}

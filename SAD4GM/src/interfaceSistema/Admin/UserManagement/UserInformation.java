@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin.UserManagement;
+package interfaceSistema.Admin.UserManagement;
 
 import java.awt.BorderLayout;
 
@@ -20,7 +20,13 @@ import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
 import javax.swing.JTextPane;
-
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
 
 
 public class UserInformation extends JFrame {

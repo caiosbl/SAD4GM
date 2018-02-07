@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.User;
+package interfaceSistema.User;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import interfaceSistema.interfaceGrafica.Entrada;
+import interfaceSistema.Entrada;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -25,8 +25,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
-public class UserLogin extends JFrame {
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
+public class Login extends JFrame {
 
 	/**
 	 * 
@@ -44,7 +50,7 @@ public class UserLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserLogin frame = new UserLogin();
+					Login frame = new Login();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +62,7 @@ public class UserLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserLogin() {
+	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -152,7 +158,7 @@ public class UserLogin extends JFrame {
 					try {
 						if (sistema.autenticaUsuario(id, senha)) {
 							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeUsuario(id) + "!");
-							UserOptions uOptions = new UserOptions(id);
+							Options uOptions = new Options(id);
 							dispose();
 							uOptions.setVisible(true);
 							uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
