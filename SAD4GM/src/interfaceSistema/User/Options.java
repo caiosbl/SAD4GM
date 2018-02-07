@@ -29,6 +29,7 @@ public class Options extends JFrame {
 	 */
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
+	private String idUsuario;
 
 	/**
 	 * Launch the application.
@@ -38,6 +39,7 @@ public class Options extends JFrame {
 	 * Create the frame.
 	 */
 	public Options(String id) {
+		this.idUsuario = id;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -77,6 +79,15 @@ public class Options extends JFrame {
 		desktopPane.add(btnMinhasInformaes);
 
 		JButton button = new JButton("Minhas Informações");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyInfo myInfo = new MyInfo(idUsuario);
+				dispose();
+				myInfo.setVisible(true);
+				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				
+			}
+		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 14));
 		button.setBounds(53, 327, 181, 29);
 		desktopPane.add(button);
