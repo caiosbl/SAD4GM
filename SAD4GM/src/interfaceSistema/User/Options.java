@@ -29,6 +29,7 @@ public class Options extends JFrame {
 	 */
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
+	private String idUsuario;
 
 	/**
 	 * Launch the application.
@@ -38,6 +39,7 @@ public class Options extends JFrame {
 	 * Create the frame.
 	 */
 	public Options(String id) {
+		this.idUsuario = id;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -71,14 +73,18 @@ public class Options extends JFrame {
 		btnInserirFuno.setBounds(53, 195, 181, 29);
 		desktopPane.add(btnInserirFuno);
 
-		JButton btnMinhasInformaes = new JButton("Alterar Senha");
-		btnMinhasInformaes.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnMinhasInformaes.setBounds(53, 359, 181, 29);
-		desktopPane.add(btnMinhasInformaes);
-
 		JButton button = new JButton("Minhas Informações");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyInfo myInfo = new MyInfo(idUsuario);
+				dispose();
+				myInfo.setVisible(true);
+				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+			}
+		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button.setBounds(53, 327, 181, 29);
+		button.setBounds(53, 256, 181, 29);
 		desktopPane.add(button);
 
 		JLabel label = new JLabel("DeSiDeS");

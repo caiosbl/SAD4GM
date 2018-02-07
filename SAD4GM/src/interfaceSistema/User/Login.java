@@ -144,11 +144,11 @@ public class Login extends JFrame {
 				else if (isPasswordEmpty(senha))
 					JOptionPane.showMessageDialog(null, "Preencha o Campo Senha!");
 				else if (id.length() < 4) {
-					JOptionPane.showMessageDialog(null, "Usuário Iválido!");
+					JOptionPane.showMessageDialog(null, "Usuário Inválido!");
 					user.setText("");
 					password.setText("");
 				} else if (senha.length() < 6) {
-					JOptionPane.showMessageDialog(null, "Senha Iválida!");
+					JOptionPane.showMessageDialog(null, "Senha Inválida!");
 					user.setText("");
 					password.setText("");
 				}

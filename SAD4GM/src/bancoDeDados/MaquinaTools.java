@@ -198,7 +198,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	}
 
-	private boolean hasMaquina(int codigo) throws SQLException {
+	public boolean hasMaquina(int codigo) throws SQLException {
 		boolean has;
 		criaConexao();
 		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.maquina WHERE codigo = ?");

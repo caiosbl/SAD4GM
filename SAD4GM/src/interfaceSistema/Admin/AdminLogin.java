@@ -146,11 +146,11 @@ public class AdminLogin extends JFrame {
 				else if (isPasswordEmpty(senha))
 					JOptionPane.showMessageDialog(null, "Preencha o Campo Senha!");
 				else if (id.length() < 4) {
-					JOptionPane.showMessageDialog(null, "Usuário Iválido!");
+					JOptionPane.showMessageDialog(null, "Usuário Inválido!");
 					user.setText("");
 					password.setText("");
 				} else if (senha.length() < 6) {
-					JOptionPane.showMessageDialog(null, "Senha Iválida!");
+					JOptionPane.showMessageDialog(null, "Senha Inválida!");
 					user.setText("");
 					password.setText("");
 				}
@@ -161,7 +161,7 @@ public class AdminLogin extends JFrame {
 						if (sistema.autenticaAdmin(id, senha)) {
 							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeAdmin(id) + "!");
 							Options admOptions = new Options(id);
-							// admOptions.setId(id);
+							
 							dispose();
 							admOptions.setVisible(true);
 							admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
