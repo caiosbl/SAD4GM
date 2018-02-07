@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import interfaceSistema.Admin.AdminManagement.AdminManagementOptions;
+import interfaceSistema.Admin.AdmManagement.AdminManagementOptions;
 import interfaceSistema.Admin.UserManagement.UserManagementOptions;
 
 import javax.swing.JDesktopPane;

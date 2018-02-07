@@ -1,4 +1,4 @@
-package interfaceSistema.Admin.AdminManagement;
+package interfaceSistema.Admin.AdmManagement;
 
 import java.awt.BorderLayout;
 
@@ -27,7 +27,7 @@ import javax.swing.JTextField;
  * @author caiosbl
  *
  */
-public class SetAdminEntry extends JFrame {
+public class AdminRemove extends JFrame {
 
 	/**
 	 * 
@@ -45,7 +45,7 @@ public class SetAdminEntry extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SetAdminEntry(String id) {
+	public AdminRemove(String id) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -77,7 +77,7 @@ public class SetAdminEntry extends JFrame {
 		separator.setBounds(0, 111, 605, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("ALTERAR");
+		JLabel lblRemover = new JLabel("REMOVER");
 		lblRemover.setForeground(Color.WHITE);
 		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblRemover.setBounds(286, 23, 150, 37);
@@ -108,13 +108,13 @@ public class SetAdminEntry extends JFrame {
 		desktopPane.add(idField);
 		idField.setColumns(10);
 
-		JLabel lblIdDoAdmin = new JLabel("ID do Admin a ser alterado:");
+		JLabel lblIdDoAdmin = new JLabel("ID do Admin a ser removido:");
 		lblIdDoAdmin.setForeground(Color.WHITE);
 		lblIdDoAdmin.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblIdDoAdmin.setBounds(204, 224, 197, 19);
 		desktopPane.add(lblIdDoAdmin);
 
-		JButton btnRemover = new JButton("Alterar");
+		JButton btnRemover = new JButton("Remover");
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (idField.getText().trim().length() < 4) {
@@ -125,7 +125,6 @@ public class SetAdminEntry extends JFrame {
 					idField.setText("");
 				} else {
 					boolean has = false;
-
 					try {
 						has = sistema.hasIdAdmin(idField.getText().trim());
 					} catch (Exception e1) {
@@ -135,13 +134,14 @@ public class SetAdminEntry extends JFrame {
 					if (!has) {
 						JOptionPane.showMessageDialog(null, "Admin inexistente!");
 						idField.setText("");
-					}
+					} else {
+						sistema.deletarAdmin(idField.getText().trim());
+						JOptionPane.showMessageDialog(null, "Admin removido com Sucesso!");
 
-					else {
-						SetAdmin setAdmin = new SetAdmin(idAdmin, idField.getText().trim());
+						AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
 						dispose();
-						setAdmin.setVisible(true);
-						setAdmin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						admMOptions.setVisible(true);
+						admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}
 				}
 			}

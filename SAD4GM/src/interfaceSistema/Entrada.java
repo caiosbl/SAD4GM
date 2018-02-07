@@ -27,7 +27,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
-import java.awt.Canvas;
+
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
  * SISTEMA SAD4GM
@@ -151,8 +151,7 @@ public class Entrada extends JFrame {
 		desktopPane.add(separator);
 		
 		ImageIcon img = new ImageIcon("C:\\\\Users\\\\caiol\\\\Desktop\\\\SAD4GM\\\\SAD4GM\\\\SAD4GM\\\\icon\\\\desides.png");
-		int largura = img.getIconWidth();
-        int altura = img.getIconHeight();
+	
         JLabel labelimg = new JLabel(img);
         labelimg.setLocation(51, 37);
         labelimg.setSize(119, 61);
