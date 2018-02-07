@@ -5,8 +5,7 @@ import entidades.Maquina;
 import validadorInformacoes.ValidaMaquina;
 
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -159,6 +158,11 @@ public class ControllerMaquinas {
 			listagem = "Nenhuma máquina cadastrada!";
 
 		return listagem;
+	}
+
+	public boolean hasMaquina(String codigo) {
+
+		return hasMaquina(codigo);
 	}
 
 }

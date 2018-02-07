@@ -10,8 +10,7 @@ import controllers.ControllerMaquinas;
 import controllers.ControllerUsuarios;
 
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -127,7 +126,7 @@ public class Sistema {
 	public boolean hasIdUsuario(String id) throws SQLException {
 		return cUsuarios.hasUsuario(id);
 	}
-	
+
 	public boolean isUsuarioAtivo(String id) throws SQLException {
 		return cUsuarios.isAtivo(id);
 	}
@@ -160,6 +159,10 @@ public class Sistema {
 
 	public String listarMaquinas() {
 		return cMaquinas.listar();
+	}
+
+	public boolean hasMaquina(String codigo) {
+		return cMaquinas.hasMaquina(codigo);
 	}
 
 }

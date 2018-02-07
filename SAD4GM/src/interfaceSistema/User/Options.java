@@ -73,11 +73,6 @@ public class Options extends JFrame {
 		btnInserirFuno.setBounds(53, 195, 181, 29);
 		desktopPane.add(btnInserirFuno);
 
-		JButton btnMinhasInformaes = new JButton("Alterar Senha");
-		btnMinhasInformaes.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnMinhasInformaes.setBounds(53, 359, 181, 29);
-		desktopPane.add(btnMinhasInformaes);
-
 		JButton button = new JButton("Minhas Informações");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -85,11 +80,11 @@ public class Options extends JFrame {
 				dispose();
 				myInfo.setVisible(true);
 				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				
+
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button.setBounds(53, 327, 181, 29);
+		button.setBounds(53, 256, 181, 29);
 		desktopPane.add(button);
 
 		JLabel label = new JLabel("DeSiDeS");
