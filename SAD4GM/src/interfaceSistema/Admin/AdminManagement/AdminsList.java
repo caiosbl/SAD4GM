@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin.UserManagement;
+package interfaceSistema.Admin.AdminManagement;
 
 import java.awt.BorderLayout;
 
@@ -20,6 +20,8 @@ import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
 import javax.swing.JTextPane;
+
+import javax.swing.JScrollPane;
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
  * SISTEMA SAD4GM
@@ -27,9 +29,7 @@ import javax.swing.JTextPane;
  * @author caiosbl
  *
  */
-
-
-public class UserInformation extends JFrame {
+public class AdminsList extends JFrame {
 
 	/**
 	 * 
@@ -37,7 +37,6 @@ public class UserInformation extends JFrame {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idAdmin;
-
 	private Sistema sistema = new Sistema();
 
 	/**
@@ -47,7 +46,7 @@ public class UserInformation extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserInformation(String id, String idUsuario) {
+	public AdminsList(String id) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -79,37 +78,38 @@ public class UserInformation extends JFrame {
 		separator.setBounds(0, 111, 605, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("INFORMAÇÃO ");
+		JLabel lblRemover = new JLabel("LISTAGEM");
 		lblRemover.setForeground(Color.WHITE);
 		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblRemover.setBounds(249, 32, 221, 37);
+		lblRemover.setBounds(286, 23, 157, 37);
 		desktopPane.add(lblRemover);
 
-		JLabel lblAdmin = new JLabel("DE UM USUÁRIO");
+		JLabel lblAdmin = new JLabel("DOS ADMINS");
 		lblAdmin.setForeground(Color.WHITE);
 		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(235, 63, 252, 37);
+		lblAdmin.setBounds(264, 63, 202, 37);
 		desktopPane.add(lblAdmin);
 
 		JButton button = new JButton("Voltar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserInformationEntry uInformation = new UserInformationEntry(idAdmin);
+				AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
 
 				dispose();
-				uInformation.setVisible(true);
-				uInformation.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				admMOptions.setVisible(true);
+				admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
 		button.setBounds(506, 388, 69, 23);
 		desktopPane.add(button);
-		
+
 		JTextPane textPane = new JTextPane();
-		textPane.setText(sistema.getInfoUsuario(idUsuario));
-		textPane.setBackground(SystemColor.textInactiveText);
-		textPane.setBounds(116, 220, 394, 73);
-		desktopPane.add(textPane);
-	
+		textPane.setEditable(false);
+		JScrollPane jsp = new JScrollPane(textPane);
+		textPane.setText(sistema.getListagemAdm());
+		jsp.setBounds(84, 150, 345, 261);
+		desktopPane.add(jsp);
+
 	}
 }

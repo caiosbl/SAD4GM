@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin;
+package interfaceSistema.Admin.AdminManagement;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -25,7 +25,7 @@ import javax.swing.JPasswordField;
  * @author caiosbl
  *
  */
-public class SetOwnPassword extends JFrame {
+public class SetAdminPassword extends JFrame {
 
 	/**
 	 * 
@@ -33,6 +33,7 @@ public class SetOwnPassword extends JFrame {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idAdmin;
+	private String idAlterar;
 	private Sistema sistema = new Sistema();
 	private JPasswordField novaSenha;
 	private JPasswordField confirmacaoSenha;
@@ -44,8 +45,9 @@ public class SetOwnPassword extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SetOwnPassword(String id) {
+	public SetAdminPassword(String id,String idAlterado) {
 		this.idAdmin = id;
+		this.idAlterar = idAlterado;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -86,10 +88,10 @@ public class SetOwnPassword extends JFrame {
 		button.setBounds(492, 381, 84, 27);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MyInfo admMyInfo = new MyInfo(idAdmin);
+				SetAdmin setAdmin = new SetAdmin(idAdmin, idAlterado);
 				dispose();
-				admMyInfo.setVisible(true);
-				admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				setAdmin.setVisible(true);
+				setAdmin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -114,7 +116,7 @@ public class SetOwnPassword extends JFrame {
 		desktopPane.add(lblId);
 
 		JButton btnAlterarSenha = new JButton("Alterar Senha");
-		btnAlterarSenha.setBounds(406, 268, 112, 27);
+		btnAlterarSenha.setBounds(406, 268, 117, 23);
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -139,18 +141,18 @@ public class SetOwnPassword extends JFrame {
 					novaSenha.setText("");
 					confirmacaoSenha.setText("");
 				} else if (!isNumber(newPassword)) {
-					JOptionPane.showMessageDialog(null, "Por favor insira uma senha válidaw!");
+					JOptionPane.showMessageDialog(null, "Por favor insira uma senha válida!");
 					novaSenha.setText("");
 					confirmacaoSenha.setText("");
 				}
 
 				else {
-					sistema.setSenhaAdmin(idAdmin, newPassword);
+					sistema.setSenhaAdmin(idAlterar, newPassword);
 					JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
-					MyInfo admMyInfo = new MyInfo(idAdmin);
+					SetAdmin setAdmin = new SetAdmin(idAdmin, idAlterado);
 					dispose();
-					admMyInfo.setVisible(true);
-					admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					setAdmin.setVisible(true);
+					setAdmin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				}
 
 			}

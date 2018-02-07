@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.User;
+package interfaceSistema.User;
 
 import java.awt.BorderLayout;
 

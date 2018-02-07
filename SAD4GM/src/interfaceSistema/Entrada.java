@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica;
+package interfaceSistema;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import interfaceSistema.interfaceGrafica.Admin.AdminLogin;
-import interfaceSistema.interfaceGrafica.User.UserLogin;
+import interfaceSistema.Admin.AdminLogin;
+import interfaceSistema.User.UserLogin;
 
 import javax.swing.JDesktopPane;
 import java.awt.Color;

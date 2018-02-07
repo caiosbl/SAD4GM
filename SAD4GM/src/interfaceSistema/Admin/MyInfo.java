@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin.UserManagement;
+package interfaceSistema.Admin;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -25,7 +25,7 @@ import sistema.Sistema;
  * @author caiosbl
  *
  */
-public class SetUser extends JFrame {
+public class MyInfo extends JFrame {
 
 	/**
 	 * 
@@ -33,7 +33,6 @@ public class SetUser extends JFrame {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idAdmin;
-	private String idUser;
 	private Sistema sistema = new Sistema();
 
 	/**
@@ -43,10 +42,8 @@ public class SetUser extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SetUser(String id, String idUser) {
+	public MyInfo(String id) {
 		this.idAdmin = id;
-		this.idUser = idUser;
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -73,8 +70,8 @@ public class SetUser extends JFrame {
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
 		desktopPane.add(label_2);
 
-		JLabel lblGerenciarUsurios = new JLabel("ALTERAR");
-		lblGerenciarUsurios.setBounds(315, 24, 139, 37);
+		JLabel lblGerenciarUsurios = new JLabel("MINHAS ");
+		lblGerenciarUsurios.setBounds(385, 24, 137, 37);
 		lblGerenciarUsurios.setForeground(Color.WHITE);
 		lblGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
 		desktopPane.add(lblGerenciarUsurios);
@@ -87,17 +84,17 @@ public class SetUser extends JFrame {
 		button.setBounds(492, 381, 84, 27);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetUserEntry setUserEntry = new SetUserEntry(idAdmin);
+				Options admOptions = new Options(idAdmin);
 				dispose();
-				setUserEntry.setVisible(true);
-				setUserEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				admOptions.setVisible(true);
+				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(button);
 
-		JLabel lblInformaes = new JLabel("USUÁRIO");
-		lblInformaes.setBounds(315, 60, 144, 37);
+		JLabel lblInformaes = new JLabel("INFORMAÇÕES");
+		lblInformaes.setBounds(331, 59, 268, 37);
 		lblInformaes.setForeground(Color.WHITE);
 		lblInformaes.setFont(new Font("Tahoma", Font.BOLD, 30));
 		desktopPane.add(lblInformaes);
@@ -112,14 +109,14 @@ public class SetUser extends JFrame {
 		nome.setEditable(false);
 
 		nome.setBounds(182, 196, 268, 24);
-		nome.setText(sistema.getNomeUsuario(this.idUser));
+		nome.setText(sistema.getNomeAdmin(this.idAdmin));
 		desktopPane.add(nome);
 
 		JTextPane userID = new JTextPane();
 		userID.setEditable(false);
 
 		userID.setBounds(182, 231, 268, 24);
-		userID.setText(idUser);
+		userID.setText(idAdmin);
 		desktopPane.add(userID);
 
 		JLabel lblId = new JLabel("ID:");
@@ -128,25 +125,13 @@ public class SetUser extends JFrame {
 		lblId.setFont(new Font("SansSerif", Font.BOLD, 14));
 		desktopPane.add(lblId);
 
-		JLabel lblAuditor = new JLabel("Auditor:");
-		lblAuditor.setForeground(Color.WHITE);
-		lblAuditor.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblAuditor.setBounds(117, 270, 55, 16);
-		desktopPane.add(lblAuditor);
-
-		JTextPane auditor = new JTextPane();
-		auditor.setText(sistema.getNomeAuditor(this.idUser));
-		auditor.setEditable(false);
-		auditor.setBounds(182, 267, 268, 24);
-		desktopPane.add(auditor);
-
 		JButton btnAlterarSenha = new JButton("Alterar Senha");
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetUserPassword setUserPassword = new SetUserPassword(idAdmin, idUser);
+				SetOwnPassword admSetSenha = new SetOwnPassword(idAdmin);
 				dispose();
-				setUserPassword.setVisible(true);
-				setUserPassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				admSetSenha.setVisible(true);
+				admSetSenha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnAlterarSenha.setBounds(43, 381, 139, 27);
@@ -158,11 +143,9 @@ public class SetUser extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				userID.setEditable(true);
 				nome.setEditable(true);
-				auditor.setEditable(true);
-
 			}
 		});
-		btnEditar.setBounds(182, 302, 90, 28);
+		btnEditar.setBounds(182, 273, 90, 28);
 		desktopPane.add(btnEditar);
 
 		JButton btnAtualizar = new JButton("Atualizar");
@@ -172,35 +155,27 @@ public class SetUser extends JFrame {
 				boolean has = false;
 
 				try {
-					has = sistema.hasIdUsuario(userID.getText().trim());
+					has = sistema.hasIdAdmin(userID.getText().trim());
 					if (nome.getText().trim().equals("")) {
 						JOptionPane.showMessageDialog(null, "Nome inválido");
-						nome.setText(sistema.getNomeUsuario(idUser));
-						userID.setText(idUser);
-						auditor.setText(sistema.getNomeAuditor(idUser));
-					} else if (auditor.getText().trim().equals("")) {
-						JOptionPane.showMessageDialog(null, "Auditor inválido");
-						nome.setText(sistema.getNomeUsuario(idUser));
-						userID.setText(idUser);
-						auditor.setText(sistema.getNomeAuditor(idUser));
+						nome.setText(sistema.getNomeAdmin(idAdmin));
+						userID.setText(idAdmin);
 					} else if (userID.getText().equals("") || userID.getText().length() < 4) {
 						JOptionPane.showMessageDialog(null, "ID inválido");
-						nome.setText(sistema.getNomeAdmin(idUser));
-						userID.setText(idUser);
-						auditor.setText(sistema.getNomeAuditor(idUser));
-					} else if (!userID.getText().trim().equals(idUser) && has) {
+						nome.setText(sistema.getNomeAdmin(idAdmin));
+						userID.setText(idAdmin);
+					} else if (!userID.getText().trim().equals(idAdmin) && has) {
 						JOptionPane.showMessageDialog(null, "ID já cadastrado!");
-						nome.setText(sistema.getNomeAdmin(idUser));
-						userID.setText(idUser);
-						auditor.setText(sistema.getNomeAuditor(idUser));
+						nome.setText(sistema.getNomeAdmin(idAdmin));
+						userID.setText(idAdmin);
 					}
 
 					else {
 						nome.setEditable(false);
 						userID.setEditable(false);
-						sistema.setIdUsuario(idUser, userID.getText().trim());
-						sistema.setNomeUsuario(nome.getText().trim(), idUser);
-						sistema.setAuditorUsuario(idUser, auditor.getText().trim());
+						sistema.setIdAdmin(idAdmin, userID.getText().trim());
+						idAdmin = userID.getText().trim();
+						sistema.setNomeAdmin(nome.getText().trim(), idAdmin);
 						JOptionPane.showMessageDialog(null, "Dados atualizados com Sucesso!");
 
 					}
@@ -211,8 +186,7 @@ public class SetUser extends JFrame {
 			}
 
 		});
-		btnAtualizar.setBounds(360, 302, 90, 28);
+		btnAtualizar.setBounds(360, 273, 90, 28);
 		desktopPane.add(btnAtualizar);
-
 	}
 }

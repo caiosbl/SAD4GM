@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.Admin.AdminManagement;
+package interfaceSistema.Admin.UserManagement;
 
 import java.awt.BorderLayout;
 
@@ -11,7 +11,6 @@ import sistema.Sistema;
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -19,7 +18,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
-import javax.swing.JTextField;
+
+import javax.swing.JTextPane;
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
  * SISTEMA SAD4GM
@@ -27,7 +27,9 @@ import javax.swing.JTextField;
  * @author caiosbl
  *
  */
-public class AdminRemove extends JFrame {
+
+
+public class UserInformation extends JFrame {
 
 	/**
 	 * 
@@ -35,7 +37,7 @@ public class AdminRemove extends JFrame {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idAdmin;
-	private JTextField idField;
+
 	private Sistema sistema = new Sistema();
 
 	/**
@@ -45,7 +47,7 @@ public class AdminRemove extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdminRemove(String id) {
+	public UserInformation(String id, String idUsuario) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -77,78 +79,37 @@ public class AdminRemove extends JFrame {
 		separator.setBounds(0, 111, 605, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("REMOVER");
+		JLabel lblRemover = new JLabel("INFORMAÇÃO ");
 		lblRemover.setForeground(Color.WHITE);
 		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblRemover.setBounds(286, 23, 150, 37);
+		lblRemover.setBounds(249, 32, 221, 37);
 		desktopPane.add(lblRemover);
 
-		JLabel lblAdmin = new JLabel("ADMIN");
+		JLabel lblAdmin = new JLabel("DE UM USUÁRIO");
 		lblAdmin.setForeground(Color.WHITE);
 		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(308, 63, 109, 37);
+		lblAdmin.setBounds(235, 63, 252, 37);
 		desktopPane.add(lblAdmin);
 
 		JButton button = new JButton("Voltar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
+				UserInformationEntry uInformation = new UserInformationEntry(idAdmin);
 
 				dispose();
-				admMOptions.setVisible(true);
-				admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				uInformation.setVisible(true);
+				uInformation.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBounds(506, 388, 65, 27);
+		button.setBounds(506, 388, 69, 23);
 		desktopPane.add(button);
-
-		idField = new JTextField();
-		idField.setBounds(200, 248, 206, 28);
-		desktopPane.add(idField);
-		idField.setColumns(10);
-
-		JLabel lblIdDoAdmin = new JLabel("ID do Admin a ser removido:");
-		lblIdDoAdmin.setForeground(Color.WHITE);
-		lblIdDoAdmin.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblIdDoAdmin.setBounds(204, 224, 197, 19);
-		desktopPane.add(lblIdDoAdmin);
-
-		JButton btnRemover = new JButton("Remover");
-		btnRemover.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (idField.getText().trim().length() < 4) {
-					JOptionPane.showMessageDialog(null, "ID Inválido!");
-					idField.setText("");
-				} else if (idField.getText().trim().equals(idAdmin)) {
-					JOptionPane.showMessageDialog(null, "Por favor insira um ID diferente do seu!");
-					idField.setText("");
-				} else {
-					boolean has = false;
-					try {
-						has = sistema.hasIdAdmin(idField.getText().trim());
-					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(null, "Falha na conexão com banco de dados!");
-					}
-
-					if (!has) {
-						JOptionPane.showMessageDialog(null, "Admin inexistente!");
-						idField.setText("");
-					} else {
-						sistema.deletarAdmin(idField.getText().trim());
-						JOptionPane.showMessageDialog(null, "Admin removido com Sucesso!");
-
-						AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
-						dispose();
-						admMOptions.setVisible(true);
-						admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					}
-				}
-			}
-		});
-		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnRemover.setBounds(311, 280, 95, 27);
-		desktopPane.add(btnRemover);
-
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setText(sistema.getInfoUsuario(idUsuario));
+		textPane.setBackground(SystemColor.textInactiveText);
+		textPane.setBounds(116, 220, 394, 73);
+		desktopPane.add(textPane);
+	
 	}
 }

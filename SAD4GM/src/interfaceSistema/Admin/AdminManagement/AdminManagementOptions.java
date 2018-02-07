@@ -1,9 +1,13 @@
-package interfaceSistema.interfaceGrafica.Admin;
+package interfaceSistema.Admin.AdminManagement;
 
 import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import interfaceSistema.Admin.Options;
+
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -17,8 +21,14 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 
 import javax.swing.JSeparator;
-
-public class MachineManagementOptions extends JFrame {
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
+ * SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
+public class AdminManagementOptions extends JFrame {
 
 	/**
 	 * 
@@ -34,7 +44,7 @@ public class MachineManagementOptions extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MachineManagementOptions(String id) {
+	public AdminManagementOptions(String id) {
 		Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("icon/icon.jpg");
 		this.setIconImage(iconeTitulo);
 		this.idAdmin = id;
@@ -64,26 +74,34 @@ public class MachineManagementOptions extends JFrame {
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
 		desktopPane.add(label_2);
 
-		JButton btnNewButton = new JButton("Listar Máquinas");
+		JButton btnNewButton = new JButton("Inserir Admin");
 		btnNewButton.setIcon(null);
 		btnNewButton.setBounds(25, 203, 228, 27);
 		desktopPane.add(btnNewButton);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JButton btnVisualizarMquinas = new JButton("Visualizar Máquina");
+		JButton btnVisualizarMquinas = new JButton("Remover Admin");
 		btnVisualizarMquinas.setBounds(25, 229, 228, 27);
 		desktopPane.add(btnVisualizarMquinas);
 		btnVisualizarMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JButton btnInserirFuno = new JButton("Remover Máquina");
+		JButton btnInserirFuno = new JButton("Alterar Admin");
 		btnInserirFuno.setBounds(25, 256, 228, 27);
 		desktopPane.add(btnInserirFuno);
 		btnInserirFuno.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JButton btnVerMquinas = new JButton("Alterar Máquina");
-		btnVerMquinas.setBounds(25, 283, 228, 27);
-		desktopPane.add(btnVerMquinas);
-		btnVerMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
+		JButton btnListarUsurios = new JButton("Listar Admins");
+		btnListarUsurios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AdminsList admList = new AdminsList(idAdmin);
+				dispose();
+				admList.setVisible(true);
+				admList.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		btnListarUsurios.setBounds(25, 284, 228, 27);
+		desktopPane.add(btnListarUsurios);
+		btnListarUsurios.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		JLabel lblGerenciarUsurios = new JLabel("GERENCIADOR");
 		lblGerenciarUsurios.setBounds(329, 17, 227, 37);
@@ -91,18 +109,18 @@ public class MachineManagementOptions extends JFrame {
 		lblGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
 		desktopPane.add(lblGerenciarUsurios);
 
-		JLabel lblDeUsurios = new JLabel("DE MÁQUINAS");
+		JLabel lblDeUsurios = new JLabel("DE ADMINS");
 		lblDeUsurios.setForeground(Color.WHITE);
 		lblDeUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblDeUsurios.setBounds(339, 53, 227, 37);
+		lblDeUsurios.setBounds(358, 49, 178, 37);
 		desktopPane.add(lblDeUsurios);
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(6, 107, 593, 12);
 		desktopPane.add(separator);
 
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.addActionListener(new ActionListener() {
+		JButton button = new JButton("Voltar");
+		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Options admOptions = new Options(idAdmin);
 
@@ -111,28 +129,33 @@ public class MachineManagementOptions extends JFrame {
 				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnVoltar.setBounds(511, 381, 65, 27);
-		desktopPane.add(btnVoltar);
-		btnVerMquinas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Options admOptions = new Options(idAdmin);
-
-				dispose();
-				admOptions.setVisible(true);
-				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-		});
+		button.setFont(new Font("Tahoma", Font.BOLD, 12));
+		button.setBounds(511, 381, 65, 27);
+		desktopPane.add(button);
 		btnInserirFuno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				SetAdminEntry setAdmEntry = new SetAdminEntry(idAdmin);
+				dispose();
+				setAdmEntry.setVisible(true);
+				setAdmEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVisualizarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				AdminRemove admRemove = new AdminRemove(idAdmin);
+
+				dispose();
+				admRemove.setVisible(true);
+				admRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				AdminInsert admInsertAdmin = new AdminInsert(idAdmin);
+
+				dispose();
+				admInsertAdmin.setVisible(true);
+				admInsertAdmin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 	}

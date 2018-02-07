@@ -1,4 +1,4 @@
-package interfaceSistema.interfaceGrafica.User;
+package interfaceSistema.Admin;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import interfaceSistema.interfaceGrafica.Entrada;
+import interfaceSistema.Entrada;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -25,6 +25,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
  * SISTEMA SAD4GM
@@ -32,7 +33,7 @@ import java.awt.event.ActionEvent;
  * @author caiosbl
  *
  */
-public class UserLogin extends JFrame {
+public class AdminLogin extends JFrame {
 
 	/**
 	 * 
@@ -50,7 +51,7 @@ public class UserLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserLogin frame = new UserLogin();
+					AdminLogin frame = new AdminLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +63,8 @@ public class UserLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserLogin() {
+	public AdminLogin() {
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -90,12 +92,12 @@ public class UserLogin extends JFrame {
 		label_1.setBounds(24, 71, 141, 45);
 		desktopPane.add(label_1);
 
-		JLabel label_2 = new JLabel("Usuário");
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 25));
-		label_2.setBackground(new Color(0, 0, 51));
-		label_2.setBounds(461, 53, 118, 31);
-		desktopPane.add(label_2);
+		JLabel lblAdmin = new JLabel("Admin");
+		lblAdmin.setForeground(Color.WHITE);
+		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblAdmin.setBackground(new Color(0, 0, 51));
+		lblAdmin.setBounds(461, 53, 118, 31);
+		desktopPane.add(lblAdmin);
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 137, 582, 15);
@@ -156,12 +158,13 @@ public class UserLogin extends JFrame {
 				else {
 
 					try {
-						if (sistema.autenticaUsuario(id, senha)) {
-							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeUsuario(id) + "!");
-							UserOptions uOptions = new UserOptions(id);
+						if (sistema.autenticaAdmin(id, senha)) {
+							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeAdmin(id) + "!");
+							Options admOptions = new Options(id);
+							// admOptions.setId(id);
 							dispose();
-							uOptions.setVisible(true);
-							uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+							admOptions.setVisible(true);
+							admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						} else {
 							JOptionPane.showMessageDialog(null, "ID ou Senha Inválidos!");
 							user.setText("");
@@ -184,7 +187,7 @@ public class UserLogin extends JFrame {
 
 		JButton button_1 = new JButton("Voltar");
 		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				Entrada entrada = new Entrada();
 				dispose();
 				entrada.setVisible(true);
