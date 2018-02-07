@@ -32,7 +32,7 @@ import java.awt.event.ActionEvent;
  * @author caiosbl
  *
  */
-public class UserLogin extends JFrame {
+public class Login extends JFrame {
 
 	/**
 	 * 
@@ -50,7 +50,7 @@ public class UserLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserLogin frame = new UserLogin();
+					Login frame = new Login();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +62,7 @@ public class UserLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserLogin() {
+	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -158,7 +158,7 @@ public class UserLogin extends JFrame {
 					try {
 						if (sistema.autenticaUsuario(id, senha)) {
 							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeUsuario(id) + "!");
-							UserOptions uOptions = new UserOptions(id);
+							Options uOptions = new Options(id);
 							dispose();
 							uOptions.setVisible(true);
 							uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -22,7 +22,7 @@ import javax.swing.JSeparator;
  * @author caiosbl
  *
  */
-public class UserOptions extends JFrame {
+public class Options extends JFrame {
 
 	/**
 	 * 
@@ -37,7 +37,7 @@ public class UserOptions extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserOptions(String id) {
+	public Options(String id) {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -53,27 +53,32 @@ public class UserOptions extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 
 		JButton btnNewButton = new JButton("Inserir Máquina");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(53, 229, 181, 23);
+		btnNewButton.setBounds(53, 165, 181, 29);
 		desktopPane.add(btnNewButton);
 
 		JButton btnVisualizarMquinas = new JButton("Visualizar Máquinas");
-		btnVisualizarMquinas.setBounds(53, 288, 181, 23);
+		btnVisualizarMquinas.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnVisualizarMquinas.setBounds(53, 226, 181, 29);
 		desktopPane.add(btnVisualizarMquinas);
 
 		JButton btnInserirFuno = new JButton("Inserir Função");
-		btnInserirFuno.setBounds(53, 259, 181, 23);
+		btnInserirFuno.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnInserirFuno.setBounds(53, 195, 181, 29);
 		desktopPane.add(btnInserirFuno);
 
 		JButton btnMinhasInformaes = new JButton("Alterar Senha");
-		btnMinhasInformaes.setBounds(53, 195, 181, 23);
+		btnMinhasInformaes.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnMinhasInformaes.setBounds(53, 359, 181, 29);
 		desktopPane.add(btnMinhasInformaes);
 
 		JButton button = new JButton("Minhas Informações");
-		button.setBounds(53, 164, 181, 23);
+		button.setFont(new Font("Tahoma", Font.BOLD, 14));
+		button.setBounds(53, 327, 181, 29);
 		desktopPane.add(button);
 
 		JLabel label = new JLabel("DeSiDeS");
@@ -91,7 +96,7 @@ public class UserOptions extends JFrame {
 		JButton button_1 = new JButton("Logout");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserLogin userLogin = new UserLogin();
+				Login userLogin = new Login();
 				dispose();
 				userLogin.setVisible(true);
 				userLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

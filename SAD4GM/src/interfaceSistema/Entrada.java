@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceSistema.Admin.AdminLogin;
-import interfaceSistema.User.UserLogin;
+import interfaceSistema.User.Login;
 
 import javax.swing.JDesktopPane;
 import java.awt.Color;
@@ -107,7 +107,7 @@ public class Entrada extends JFrame {
 		JButton button = new JButton("Usuário");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				UserLogin uOptions = new UserLogin();
+				Login uOptions = new Login();
 				dispose();
 				uOptions.setVisible(true);
 				uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
