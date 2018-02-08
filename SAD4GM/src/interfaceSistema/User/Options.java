@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import interfaceSistema.Admin.AdmManagement.AdminManagementOptions;
+
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -58,6 +60,10 @@ public class Options extends JFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				InsertMaquina insertMaquina = new InsertMaquina(idUsuario);
+				dispose();
+				insertMaquina.setVisible(true);
+				insertMaquina.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnNewButton.setBounds(53, 165, 181, 29);

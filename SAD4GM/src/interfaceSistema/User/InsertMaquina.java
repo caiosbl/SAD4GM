@@ -17,7 +17,6 @@ import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
 import sistema.Sistema;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
@@ -116,11 +115,12 @@ public class InsertMaquina extends JFrame {
 				boolean has = false;
 
 				try {
-					has = sistema.hasMaquina(codigo);
+
 					if (isEmpty(nome))
 						JOptionPane.showMessageDialog(null, "Insira um Nome!");
 					else if (isEmpty(codigo))
 						JOptionPane.showMessageDialog(null, "Insira um Código!");
+
 					else if (isEmpty(descricao))
 						JOptionPane.showMessageDialog(null, "Insira uma Descrição válida!");
 					else if (codigo.length() < 4) {
@@ -128,7 +128,9 @@ public class InsertMaquina extends JFrame {
 						code.setText("");
 					}
 
-					else if (has) {
+					
+
+					else if (!isEmpty(nome) && sistema.hasMaquina(codigo)) {
 						JOptionPane.showMessageDialog(null, "Código já cadastrado!");
 						code.setText("");
 					}
