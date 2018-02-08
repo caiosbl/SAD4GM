@@ -98,8 +98,8 @@ public class InsertMaquina extends JFrame {
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(button);
 
-		JLabel lblInformaes = new JLabel("USUÁRIO");
-		lblInformaes.setBounds(377, 60, 144, 37);
+		JLabel lblInformaes = new JLabel("MÁQUINA");
+		lblInformaes.setBounds(366, 60, 152, 37);
 		lblInformaes.setForeground(Color.WHITE);
 		lblInformaes.setFont(new Font("Tahoma", Font.BOLD, 30));
 		desktopPane.add(lblInformaes);
@@ -188,5 +188,4 @@ public class InsertMaquina extends JFrame {
 		return string.equals("");
 	}
 
-	
 }
