@@ -1,0 +1,28 @@
+1517938815599	Rename resource 'myscript.sql'
+1518005431303	Rename resource 'create.sql'
+1518005449188	Rename resource 'update.sql'
+1518008567101	Delete element
+1518008603136	Rename package 'interfaceSistema.interfaceGrafica'
+1518008693072	Rename package 'interfaceSistema.Admin.AdminManagement'
+1518010289348	Rename type 'UserOptions'
+1518010300392	Rename type 'UserLogin'
+1518010586120	Copy compilation unit
+1518010709196	Rename field 'idAdmin'
+1518010849630	Rename local variable 'admOptions'
+1518011250509	Copy compilation unit
+1518011274777	Rename field 'idAdmin'
+1518011402091	Rename local variable 'admSetSenha'
+1518011464220	Rename local variable 'userLogin'
+1518013091014	Copy compilation unit
+1518013119017	Rename type 'InsertUser'
+1518013360704	Rename local variable 'newUserName'
+1518013372960	Rename local variable 'idUser'
+1518013388188	Rename local variable 'auditor'
+1518013404512	Rename field 'userName'
+1518013416584	Rename field 'newIdUser'
+1518013425185	Rename field 'auditorName'
+1518013535943	Rename field 'idAdmin'
+1518013629112	Rename local variable 'admOptionsUser'
+1518013697203	Rename local variable 'password'
+1518113905825	Rename local variable 'admAdminManagement'
+1518116122649	Rename local variable 'admAdminManagement'

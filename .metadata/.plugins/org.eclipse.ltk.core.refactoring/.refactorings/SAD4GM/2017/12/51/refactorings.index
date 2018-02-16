@@ -1,0 +1,12 @@
+1513704409137	Copy compilation unit
+1513706119606	Rename local variable 'admOptions'
+1513706393064	Rename method 'hasId'
+1513706822201	Rename type 'AdminRemoveAdmin'
+1513708433905	Copy compilation unit
+1513708773178	Copy compilation unit
+1513709566663	Rename type 'AdminSetSenha'
+1513709591315	Rename type 'SetAdmin'
+1513709599082	Rename type 'AdminGetInfo'
+1513709621177	Copy compilation unit
+1513709635381	Rename type 'AdminSetOwnPassword2'
+1513709736534	Rename field 'idAlterado'
