@@ -1,0 +1,43 @@
+package interfaceSistema.interfaceGrafica;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+public class UsuarioLoginn extends JInternalFrame {
+	
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					UsuarioLoginn frame = new UsuarioLoginn();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public UsuarioLoginn() {
+		setBounds(100, 100, 621, 497);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(204, 204, 204));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+	}
+
+}
