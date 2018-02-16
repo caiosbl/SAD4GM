@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;lblInformaes&apos; in &apos;interfaceSistema.User.InsertMaquina.InsertMaquina(...)&apos; to &apos;lblInformacoes&apos;&#x0D;&#x0A;- Original project: &apos;SAD4GM&apos;&#x0D;&#x0A;- Original element: &apos;interfaceSistema.User.InsertMaquina.InsertMaquina(String).lblInformaes&apos;&#x0D;&#x0A;- Renamed element: &apos;lblInformaes&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;lblInformaes&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;interfaceSistema.User{InsertMaquina.java[InsertMaquina~InsertMaquina~QString;@lblInformaes!2860!2903!2867!2878!QJLabel;!0!false" name="lblInformacoes" references="true" stamp="1518801641367" version="1.0"/>
+</session>

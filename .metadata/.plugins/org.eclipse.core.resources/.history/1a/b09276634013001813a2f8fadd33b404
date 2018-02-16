@@ -127,7 +127,7 @@ public class InsertMaquina extends JFrame {
 						JOptionPane.showMessageDialog(null, "Insira um Código de no mínimo 4 digítos!");
 						code.setText("");
 					} else if (!isNumber(codigo)) {
-						JOptionPane.showMessageDialog(null, "Por favor insira um código numérico válido!");
+						JOptionPane.showMessageDialog(null, "Por favor insira um código númerico válido!");
 						code.setText("");
 					}
 

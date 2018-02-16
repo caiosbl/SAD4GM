@@ -124,10 +124,7 @@ public class InsertMaquina extends JFrame {
 						JOptionPane.showMessageDialog(null, "Insira uma Descrição válida!");
 
 					else if (codigo.length() < 4) {
-						JOptionPane.showMessageDialog(null, "Insira um Código de no mínimo 4 digítos!");
-						code.setText("");
-					} else if (!isNumber(codigo)) {
-						JOptionPane.showMessageDialog(null, "Por favor insira um código numérico válido!");
+						JOptionPane.showMessageDialog(null, "Insira um ID de no mínimo 4 caracteres!");
 						code.setText("");
 					}
 
@@ -190,18 +187,6 @@ public class InsertMaquina extends JFrame {
 
 	public boolean isEmpty(String string) {
 		return string.equals("");
-	}
-
-	public boolean isNumber(String password) {
-		boolean status = false;
-
-		try {
-			Integer.parseInt(password);
-			status = true;
-		} catch (Exception e) {
-			status = false;
-		}
-		return status;
 	}
 
 }

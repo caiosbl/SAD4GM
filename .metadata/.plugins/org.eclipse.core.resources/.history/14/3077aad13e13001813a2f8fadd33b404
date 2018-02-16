@@ -1,7 +1,5 @@
 package controllers;
 
-import java.sql.SQLException;
-
 import bancoDeDados.MaquinaTools;
 import entidades.Maquina;
 import validadorInformacoes.ValidaMaquina;
@@ -162,20 +160,9 @@ public class ControllerMaquinas {
 		return listagem;
 	}
 
-	public boolean hasMaquina(String codigo) throws SQLException {
+	public boolean hasMaquina(String codigo) {
 
-		int codigoInt;
-
-		try {
-			codigoInt = Integer.parseInt(codigo);
-		}
-
-		catch (Exception e) {
-			return true;
-		}
-
-		return mTools.hasMaquina(codigoInt);
-
+		return hasMaquina(codigo);
 	}
 
 }

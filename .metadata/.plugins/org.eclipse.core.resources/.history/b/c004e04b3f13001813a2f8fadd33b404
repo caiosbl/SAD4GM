@@ -161,7 +161,7 @@ public class Sistema {
 		return cMaquinas.listar();
 	}
 
-	public boolean hasMaquina(String codigo) throws SQLException {
+	public boolean hasMaquina(String codigo) {
 		return cMaquinas.hasMaquina(codigo);
 	}
 

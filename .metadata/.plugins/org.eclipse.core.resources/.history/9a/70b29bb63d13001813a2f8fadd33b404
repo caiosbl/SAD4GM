@@ -97,11 +97,11 @@ public class InsertMaquina extends JFrame {
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(button);
 
-		JLabel lblInformacoes = new JLabel("MÁQUINA");
-		lblInformacoes.setBounds(366, 60, 152, 37);
-		lblInformacoes.setForeground(Color.WHITE);
-		lblInformacoes.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblInformacoes);
+		JLabel lblInformaes = new JLabel("MÁQUINA");
+		lblInformaes.setBounds(366, 60, 152, 37);
+		lblInformaes.setForeground(Color.WHITE);
+		lblInformaes.setFont(new Font("Tahoma", Font.BOLD, 30));
+		desktopPane.add(lblInformaes);
 
 		JButton btnAlterarSenha = new JButton("Inserir");
 		btnAlterarSenha.setBounds(404, 318, 112, 27);
@@ -112,26 +112,25 @@ public class InsertMaquina extends JFrame {
 				String codigo = new String(code.getText().trim());
 				String descricao = new String(description.getText().trim());
 
+				boolean has = false;
+
 				try {
 
 					if (isEmpty(nome))
 						JOptionPane.showMessageDialog(null, "Insira um Nome!");
-
 					else if (isEmpty(codigo))
 						JOptionPane.showMessageDialog(null, "Insira um Código!");
 
 					else if (isEmpty(descricao))
 						JOptionPane.showMessageDialog(null, "Insira uma Descrição válida!");
-
 					else if (codigo.length() < 4) {
-						JOptionPane.showMessageDialog(null, "Insira um Código de no mínimo 4 digítos!");
-						code.setText("");
-					} else if (!isNumber(codigo)) {
-						JOptionPane.showMessageDialog(null, "Por favor insira um código numérico válido!");
+						JOptionPane.showMessageDialog(null, "Insira um ID de no mínimo 4 caracteres!");
 						code.setText("");
 					}
 
-					else if (sistema.hasMaquina(codigo)) {
+					
+
+					else if (!isEmpty(nome) && sistema.hasMaquina(codigo)) {
 						JOptionPane.showMessageDialog(null, "Código já cadastrado!");
 						code.setText("");
 					}
@@ -140,7 +139,6 @@ public class InsertMaquina extends JFrame {
 						sistema.adicionaMaquina(nome, codigo, descricao, idUsuario);
 						JOptionPane.showMessageDialog(null, "Máquina cadastrada com sucesso!");
 						Options userOptions = new Options(idUsuario);
-
 						dispose();
 						userOptions.setVisible(true);
 						userOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -190,18 +188,6 @@ public class InsertMaquina extends JFrame {
 
 	public boolean isEmpty(String string) {
 		return string.equals("");
-	}
-
-	public boolean isNumber(String password) {
-		boolean status = false;
-
-		try {
-			Integer.parseInt(password);
-			status = true;
-		} catch (Exception e) {
-			status = false;
-		}
-		return status;
 	}
 
 }
