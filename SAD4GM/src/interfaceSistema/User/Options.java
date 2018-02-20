@@ -6,8 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import interfaceSistema.Admin.AdmManagement.AdminManagementOptions;
-
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -69,12 +67,24 @@ public class Options extends JFrame {
 		btnNewButton.setBounds(53, 165, 181, 29);
 		desktopPane.add(btnNewButton);
 
-		JButton btnVisualizarMquinas = new JButton("Visualizar Máquinas");
+		JButton btnVisualizarMquinas = new JButton("Listar Máquinas");
+		btnVisualizarMquinas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MachinesList listarMaquinas = new MachinesList(idUsuario);
+				dispose();
+				listarMaquinas.setVisible(true);
+				listarMaquinas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnVisualizarMquinas.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnVisualizarMquinas.setBounds(53, 226, 181, 29);
 		desktopPane.add(btnVisualizarMquinas);
 
 		JButton btnInserirFuno = new JButton("Inserir Função");
+		btnInserirFuno.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnInserirFuno.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnInserirFuno.setBounds(53, 195, 181, 29);
 		desktopPane.add(btnInserirFuno);

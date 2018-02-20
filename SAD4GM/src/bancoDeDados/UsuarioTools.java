@@ -242,7 +242,7 @@ public class UsuarioTools extends DataBaseTools {
 			ResultSet resSet = state.executeQuery();
 
 			if (resSet.next()) {
-				descricao += String.format("Nome: %s - ID: %s", resSet.getString(1), id) + quebraLinha;
+				descricao += String.format("Nome: %s  %sID: %s", resSet.getString(1),quebraLinha, id) + quebraLinha;
 
 			}
 			state.close();

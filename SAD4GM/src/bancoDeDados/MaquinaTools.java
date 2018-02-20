@@ -178,13 +178,14 @@ public class MaquinaTools extends DataBaseTools {
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
+				listagem += "---------------------------------------------------------------------------" + quebraLinha;
 				listagem += "Nome: " + resSet.getString(1) + quebraLinha;
 				listagem += "Código: " + resSet.getInt(2) + quebraLinha;
 				listagem += "Descrição: " + resSet.getString(3) + quebraLinha;
 				idUsuario = resSet.getString(4);
 
 				String infoUsuarioCadastrou = uTools.getNome(idUsuario, con);
-				listagem += "Cadastrada por: " + infoUsuarioCadastrou + quebraLinha;
+				listagem += quebraLinha + "Cadastrada por: " + quebraLinha + infoUsuarioCadastrou + quebraLinha;
 				listagem += quebraLinha;
 			}
 			state.close();
