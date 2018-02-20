@@ -10,8 +10,7 @@ import javax.management.RuntimeErrorException;
 import entidades.Maquina;
 
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -139,8 +138,8 @@ public class MaquinaTools extends DataBaseTools {
 
 		try {
 			criaConexao();
-			PreparedStatement state = con.prepareStatement(
-					"SELECT DISTINCT nome,codigo,descricao,idusuario FROM sad4gm.maquina WHERE codigo = ?");
+			PreparedStatement state = con
+					.prepareStatement("SELECT  nome,codigo,descricao,idusuario FROM sad4gm.maquina WHERE codigo = ?");
 			state.setInt(1, codigo);
 
 			ResultSet resSet = state.executeQuery();

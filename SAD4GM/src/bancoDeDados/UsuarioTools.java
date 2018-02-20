@@ -44,15 +44,15 @@ public class UsuarioTools extends DataBaseTools {
 	}
 
 	public void deletar(String id) throws SQLException {
-		
+
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário não cadastrado!");
-		else if  (!isAtivo(id))
+		else if (!isAtivo(id))
 			throw new RuntimeErrorException(null, "Usuário inativo!");
 
 		try {
 
-			final String DELETE = "UPDATE sad4gm.usuario SET ativo = 0 where id = ?";
+			final String DELETE = "UPDATE sad4gm.usuario SET ativo = 0 where CAST(id AS VARCHAR(128)) = ?";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(DELETE);
 			stmt.setString(1, id);
@@ -70,12 +70,12 @@ public class UsuarioTools extends DataBaseTools {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
-		else if  (!isAtivo(id))
+		else if (!isAtivo(id))
 			throw new RuntimeErrorException(null, "Usuário inativo!");
 
 		try {
 
-			final String UPDATE = "UPDATE  sad4gm.usuario SET nome = ? WHERE id = ?";
+			final String UPDATE = "UPDATE  sad4gm.usuario SET nome = ? WHERE  CAST(id AS VARCHAR(128)) = ?";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, nome);
@@ -94,12 +94,12 @@ public class UsuarioTools extends DataBaseTools {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
-		else if  (!isAtivo(id))
+		else if (!isAtivo(id))
 			throw new RuntimeErrorException(null, "Usuário inativo!");
 
 		try {
 
-			final String UPDATE = "UPDATE  sad4gm.usuario SET id = ? WHERE id = ?";
+			final String UPDATE = "UPDATE  sad4gm.usuario SET id = ? WHERE  CAST(id AS VARCHAR(128)) = ?";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, novoId);
@@ -118,12 +118,12 @@ public class UsuarioTools extends DataBaseTools {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
-		else if  (!isAtivo(id))
+		else if (!isAtivo(id))
 			throw new RuntimeErrorException(null, "Usuário inativo!");
 
 		try {
 
-			final String UPDATE = "UPDATE  sad4gm.usuario SET senha = ? WHERE id = ?";
+			final String UPDATE = "UPDATE  sad4gm.usuario SET senha = ? WHERE  CAST(id AS VARCHAR(128)) = ?";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setInt(1, senha);
@@ -142,12 +142,12 @@ public class UsuarioTools extends DataBaseTools {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
-		else if  (!isAtivo(id))
+		else if (!isAtivo(id))
 			throw new RuntimeErrorException(null, "Usuário inativo!");
 
 		try {
 
-			final String UPDATE = "UPDATE  sad4gm.usuario SET auditor = ? WHERE id = ?";
+			final String UPDATE = "UPDATE  sad4gm.usuario SET auditor = ? WHERE  CAST(id AS VARCHAR(128)) = ?";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, auditor);
@@ -167,14 +167,13 @@ public class UsuarioTools extends DataBaseTools {
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
 
-
 		String infoUsuario = "";
 		String quebraLinha = System.lineSeparator();
 
 		try {
 			criaConexao();
-			PreparedStatement state = con
-					.prepareStatement("SELECT DISTINCT nome,id,auditor,ativo FROM sad4gm.usuario WHERE id = ?");
+			PreparedStatement state = con.prepareStatement(
+					"SELECT  nome,id,auditor,ativo FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ?");
 			state.setString(1, id);
 
 			ResultSet resSet = state.executeQuery();
@@ -184,10 +183,10 @@ public class UsuarioTools extends DataBaseTools {
 				infoUsuario += "Nome: " + resSet.getString(1) + quebraLinha;
 				infoUsuario += "ID: " + resSet.getString(2) + quebraLinha;
 				infoUsuario += "Auditor: " + resSet.getString(3) + quebraLinha;
-				if(resSet.getInt(4) == 1)
-					infoUsuario += "Ativo" + quebraLinha;
+				if (resSet.getInt(4) == 1)
+					infoUsuario += "Situação: Ativo" + quebraLinha;
 				else
-					infoUsuario +="Inativo" + quebraLinha;
+					infoUsuario += "Situação: Inativo" + quebraLinha;
 
 			}
 			state.close();
@@ -204,13 +203,13 @@ public class UsuarioTools extends DataBaseTools {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
-		
 
 		String nome = "";
 
 		try {
 			criaConexao();
-			PreparedStatement state = con.prepareStatement("SELECT DISTINCT nome FROM sad4gm.usuario WHERE id = ?");
+			PreparedStatement state = con
+					.prepareStatement("SELECT  nome FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ?");
 			state.setString(1, id);
 
 			ResultSet resSet = state.executeQuery();
@@ -236,7 +235,8 @@ public class UsuarioTools extends DataBaseTools {
 		String quebraLinha = System.lineSeparator();
 
 		try {
-			PreparedStatement state = con.prepareStatement("SELECT DISTINCT nome FROM sad4gm.usuario WHERE id = ?");
+			PreparedStatement state = con
+					.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ?");
 			state.setString(1, id);
 
 			ResultSet resSet = state.executeQuery();
@@ -262,7 +262,8 @@ public class UsuarioTools extends DataBaseTools {
 
 		try {
 			criaConexao();
-			PreparedStatement state = con.prepareStatement("SELECT DISTINCT auditor FROM sad4gm.usuario WHERE id = ?");
+			PreparedStatement state = con
+					.prepareStatement("SELECT  auditor FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ?");
 			state.setString(1, id);
 
 			ResultSet resSet = state.executeQuery();
@@ -285,12 +286,12 @@ public class UsuarioTools extends DataBaseTools {
 
 		if (!hasUsuario(id))
 			return false;
-		else if  (!isAtivo(id))
+		else if (!isAtivo(id))
 			return false;
 		try {
 			criaConexao();
-			PreparedStatement state = con
-					.prepareStatement("SELECT DISTINCT nome FROM sad4gm.usuario WHERE id = ? AND senha =  ?");
+			PreparedStatement state = con.prepareStatement(
+					"SELECT  nome FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ? AND senha =  ?");
 			state.setString(1, id);
 			state.setInt(2, senha);
 
@@ -315,7 +316,8 @@ public class UsuarioTools extends DataBaseTools {
 
 		try {
 			criaConexao();
-			PreparedStatement state = con.prepareStatement("SELECT DISTINCT nome,id,auditor FROM sad4gm.usuario WHERE ativo = 1");
+			PreparedStatement state = con
+					.prepareStatement("SELECT nome,id,auditor FROM sad4gm.usuario WHERE ativo = 1");
 
 			ResultSet resSet = state.executeQuery();
 
@@ -337,7 +339,8 @@ public class UsuarioTools extends DataBaseTools {
 	public boolean hasUsuario(String id) throws SQLException {
 		boolean has;
 		criaConexao();
-		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE id = ?");
+		PreparedStatement state = con
+				.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ?");
 		state.setString(1, id);
 		ResultSet resSet = state.executeQuery();
 
@@ -351,11 +354,12 @@ public class UsuarioTools extends DataBaseTools {
 		return has;
 
 	}
-	
+
 	public boolean isAtivo(String id) throws SQLException {
 		boolean has;
 		criaConexao();
-		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE id = ? AND ativo = 1");
+		PreparedStatement state = con
+				.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ? AND ativo = 1");
 		state.setString(1, id);
 		ResultSet resSet = state.executeQuery();
 

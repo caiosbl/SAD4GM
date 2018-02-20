@@ -5,5 +5,7 @@
 	<classpathentry kind="lib" path="lib/derby.jar"/>
 	<classpathentry kind="lib" path="lib/derbytools.jar"/>
 	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>
+	<classpathentry kind="lib" path="icon/desides.png"/>
+	<classpathentry kind="lib" path="icon/icon.jpg"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
