@@ -46,7 +46,7 @@ public class AdminTools extends DataBaseTools {
 
 		try {
 
-			final String DELETE = "DELETE FROM sad4gm.admin where id = ?";
+			final String DELETE = "DELETE FROM sad4gm.admin where CAST(id AS VARCHAR(128)) = ?";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(DELETE);
 			stmt.setString(1, id);
@@ -67,7 +67,7 @@ public class AdminTools extends DataBaseTools {
 
 		try {
 
-			final String UPDATE = "UPDATE  sad4gm.admin SET nome = ? WHERE id = ?";
+			final String UPDATE = "UPDATE  sad4gm.admin SET nome = ? WHERE CAST(id AS VARCHAR(128))= ?";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, nome);
@@ -89,7 +89,7 @@ public class AdminTools extends DataBaseTools {
 
 		try {
 
-			final String UPDATE = "UPDATE  sad4gm.admin SET id = ? WHERE id = ?";
+			final String UPDATE = "UPDATE  sad4gm.admin SET id = ? WHERE CAST(id AS VARCHAR(128))  = ?";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, novoId);
@@ -111,7 +111,7 @@ public class AdminTools extends DataBaseTools {
 
 		try {
 
-			final String UPDATE = "UPDATE  sad4gm.admin SET senha = ? WHERE id = ?";
+			final String UPDATE = "UPDATE  sad4gm.admin SET senha = ? WHERE CAST(id AS VARCHAR(128)) = ?";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setInt(1, senha);
@@ -135,7 +135,7 @@ public class AdminTools extends DataBaseTools {
 
 		try {
 			criaConexao();
-			PreparedStatement state = con.prepareStatement("SELECT DISTINCT nome,id FROM sad4gm.admin WHERE id = ?");
+			PreparedStatement state = con.prepareStatement("SELECT DISTINCT nome,id FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ?");
 			state.setString(1, id);
 
 			ResultSet resSet = state.executeQuery();
@@ -163,7 +163,7 @@ public class AdminTools extends DataBaseTools {
 
 		try {
 			criaConexao();
-			PreparedStatement state = con.prepareStatement("SELECT DISTINCT nome FROM sad4gm.admin WHERE id = ?");
+			PreparedStatement state = con.prepareStatement("SELECT DISTINCT nome FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ?");
 			state.setString(1, id);
 
 			ResultSet resSet = state.executeQuery();
@@ -189,7 +189,7 @@ public class AdminTools extends DataBaseTools {
 		try {
 			criaConexao();
 			PreparedStatement state = con
-					.prepareStatement("SELECT DISTINCT nome FROM sad4gm.admin WHERE id = ? AND senha =  ?");
+					.prepareStatement("SELECT DISTINCT nome FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) ? AND CAST(senha AS VARCHAR(128)) =  ?");
 			state.setString(1, id);
 			state.setInt(2, senha);
 
@@ -211,7 +211,7 @@ public class AdminTools extends DataBaseTools {
 	public boolean hasAdmin(String id) throws SQLException {
 		boolean has;
 		criaConexao();
-		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.admin WHERE id = ?");
+		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ?");
 		state.setString(1, id);
 		ResultSet resSet = state.executeQuery();
 
