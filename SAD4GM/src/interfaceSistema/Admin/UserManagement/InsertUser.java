@@ -106,14 +106,14 @@ public class InsertUser extends JFrame {
 		lblInformaes.setFont(new Font("Tahoma", Font.BOLD, 30));
 		desktopPane.add(lblInformaes);
 
-		JLabel lblNome = new JLabel("Nova Senha:");
-		lblNome.setBounds(140, 271, 93, 16);
+		JLabel lblNome = new JLabel("Senha:");
+		lblNome.setBounds(183, 270, 48, 19);
 		lblNome.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblNome.setForeground(Color.WHITE);
 		desktopPane.add(lblNome);
 
-		JLabel lblId = new JLabel("Repita a nova Senha:");
-		lblId.setBounds(81, 313, 161, 16);
+		JLabel lblId = new JLabel("Repita a Senha:");
+		lblId.setBounds(122, 310, 109, 19);
 		lblId.setForeground(Color.WHITE);
 		lblId.setFont(new Font("SansSerif", Font.BOLD, 14));
 		desktopPane.add(lblId);
