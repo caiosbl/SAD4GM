@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.management.RuntimeErrorException;
 
@@ -18,6 +20,8 @@ import entidades.Maquina;
 
 public class MaquinaTools extends DataBaseTools {
 	private UsuarioTools uTools;
+	private String data = "dd/MM/yyyy";
+	SimpleDateFormat formata = new SimpleDateFormat(data);
 
 	public MaquinaTools() {
 		uTools = new UsuarioTools();
@@ -29,13 +33,14 @@ public class MaquinaTools extends DataBaseTools {
 
 		try {
 
-			final String INSERIR = "INSERT INTO sad4gm.maquina (nome, codigo,descricao,idusuario) VALUES (?,?,?,?)";
+			final String INSERIR = "INSERT INTO sad4gm.maquina (nome, codigo,descricao,idusuario,dataInsercao) VALUES (?,?,?,?,?)";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
 			stmt.setString(1, maquina.getNome());
 			stmt.setInt(2, maquina.getCodigo());
 			stmt.setString(3, maquina.getDescricao());
 			stmt.setString(4, maquina.getIdUsuario());
+			stmt.setDate(5, java.sql.Date.valueOf(java.time.LocalDate.now()));
 			stmt.execute();
 			stmt.close();
 			fechaConexao();
@@ -135,11 +140,12 @@ public class MaquinaTools extends DataBaseTools {
 		String infoMaquina = "";
 		String quebraLinha = System.lineSeparator();
 		String idUsuario = null;
+		Date dataInsercao = null;
 
 		try {
 			criaConexao();
-			PreparedStatement state = con
-					.prepareStatement("SELECT  nome,codigo,descricao,idusuario FROM sad4gm.maquina WHERE codigo = ?");
+			PreparedStatement state = con.prepareStatement(
+					"SELECT  nome,codigo,descricao,idusuario,dataInsercao FROM sad4gm.maquina WHERE codigo = ?");
 			state.setInt(1, codigo);
 
 			ResultSet resSet = state.executeQuery();
@@ -149,9 +155,12 @@ public class MaquinaTools extends DataBaseTools {
 				infoMaquina += "Código: " + resSet.getInt(2) + quebraLinha;
 				infoMaquina += "Descrição: " + resSet.getString(3) + quebraLinha;
 				idUsuario = resSet.getString(4);
+				dataInsercao = resSet.getDate(5);
 
 				String infoUsuarioCadastrou = uTools.getNome(idUsuario, con);
 				infoMaquina += "Cadastrada por: " + infoUsuarioCadastrou + quebraLinha;
+				infoMaquina += resSet.getString(4) + quebraLinha;
+				infoMaquina += "Cadastrada em:" + formata.format(dataInsercao);
 				infoMaquina += quebraLinha;
 			}
 			state.close();
@@ -169,11 +178,12 @@ public class MaquinaTools extends DataBaseTools {
 		String listagem = "";
 		String quebraLinha = System.lineSeparator();
 		String idUsuario = null;
+		Date dataInsercao = null;
 
 		try {
 			criaConexao();
 			PreparedStatement state = con
-					.prepareStatement("SELECT nome,codigo,descricao,idusuario FROM sad4gm.maquina");
+					.prepareStatement("SELECT nome,codigo,descricao,idusuario,dataInsercao FROM sad4gm.maquina");
 
 			ResultSet resSet = state.executeQuery();
 
@@ -183,10 +193,13 @@ public class MaquinaTools extends DataBaseTools {
 				listagem += "Código: " + resSet.getInt(2) + quebraLinha;
 				listagem += "Descrição: " + resSet.getString(3) + quebraLinha;
 				idUsuario = resSet.getString(4);
+				dataInsercao = resSet.getDate(5);
 
 				String infoUsuarioCadastrou = uTools.getNome(idUsuario, con);
-				listagem += quebraLinha + "Cadastrada por: " + quebraLinha + infoUsuarioCadastrou + quebraLinha;
+				listagem += quebraLinha + "Cadastrada por: " + quebraLinha + infoUsuarioCadastrou;
+				listagem += "Cadastrada em: " + formata.format(dataInsercao);
 				listagem += quebraLinha;
+
 			}
 			state.close();
 			fechaConexao();
