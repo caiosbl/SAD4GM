@@ -1,11 +1,13 @@
 package bancoDeDados;
 
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -15,14 +17,53 @@ public abstract class DataBaseTools {
 
 	protected Connection con;
 
-	protected void criaConexao() {
+	protected void criaConexao() throws SQLException {
 
 		try {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+			con = DriverManager.getConnection("jdbc:derby:Sad4gmDatabase;");
+		} catch (Exception e) {
+			inicializaBancoDados();
+		}
+	}
+
+	private void inicializaBancoDados() throws SQLException {
+		try {
+			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 			con = DriverManager.getConnection("jdbc:derby:Sad4gmDatabase; create = true");
+
+			// Criando Schema
+			PreparedStatement inicializa = con.prepareStatement("create SCHEMA sad4gm");
+
+			// Criando Tabela Admin
+			inicializa.execute();
+			inicializa = con.prepareStatement("create table sad4gm.admin(\r\n" + "nome long VARCHAR,\r\n"
+					+ "id long VARCHAR,\r\n" + "senha long VARCHAR\r\n" + ")");
+			inicializa.execute();
+
+			// Inserindo Admin Default
+			inicializa = con.prepareStatement(
+					"INSERT INTO sad4gm.admin (nome,senha,id) VALUES ('Desides Admin','rootdesides','admin')");
+			inicializa.execute();
+
+			// Criando Tabela Usuário
+			inicializa = con.prepareStatement(
+					"create table sad4gm.usuario(\r\n" + "nome long VARCHAR,\r\n" + "id long VARCHAR,\r\n"
+							+ "senha INTEGER NOT NULL,\r\n" + "auditor long VARCHAR,\r\n" + "ativo INTEGER)");
+
+			inicializa.execute();
+
+			// Criando Tabela Máquinas
+
+			inicializa = con.prepareStatement("create table sad4gm.maquina(\r\n" + "nome VARCHAR(20) NOT NULL,\r\n"
+					+ "codigo INTEGER NOT NULL,\r\n" + "descricao VARCHAR(20)NOT NULL)");
+
+			inicializa.execute();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	protected void fechaConexao() {

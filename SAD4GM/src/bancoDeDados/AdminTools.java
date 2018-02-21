@@ -189,7 +189,7 @@ public class AdminTools extends DataBaseTools {
 		try {
 			criaConexao();
 			PreparedStatement state = con
-					.prepareStatement("SELECT  nome FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ? AND senha =  ?");
+					.prepareStatement("SELECT id FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ? AND CAST(senha AS VARCHAR(128)) =  ?");
 			state.setString(1, id);
 			state.setString(2, senha);
 

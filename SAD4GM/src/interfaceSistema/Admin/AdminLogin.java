@@ -27,8 +27,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -137,9 +136,9 @@ public class AdminLogin extends JFrame {
 		JButton button = new JButton("Login");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				String id = user.getText().trim();
-				String senha = new String(password.getPassword()).trim();
+				String senha = new String(password.getPassword());
 				if (isUserEmpty(id) && isPasswordEmpty(senha))
 					JOptionPane.showMessageDialog(null, "Preencha os Campos ID e Senha!");
 				else if (isUserEmpty(id))
@@ -159,10 +158,11 @@ public class AdminLogin extends JFrame {
 				else {
 
 					try {
+
 						if (sistema.autenticaAdmin(id, senha)) {
 							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeAdmin(id) + "!");
 							Options admOptions = new Options(id);
-							
+
 							dispose();
 							admOptions.setVisible(true);
 							admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

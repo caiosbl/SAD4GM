@@ -22,6 +22,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -63,6 +64,10 @@ public class Entrada extends JFrame {
 	 * Create the frame.
 	 */
 	public Entrada() {
+		Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("icon/icon.jpg");
+		this.setIconImage(iconeTitulo);
+		
+	
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
@@ -85,8 +90,7 @@ public class Entrada extends JFrame {
 		setResizable(false);
 		setBounds(100, 100, 621, 497);
 
-		Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("icon/icon.jpg");
-		this.setIconImage(iconeTitulo);
+		
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

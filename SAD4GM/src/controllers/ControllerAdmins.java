@@ -121,14 +121,8 @@ public class ControllerAdmins {
 	}
 
 	public boolean autentica(String id, String senha) throws SQLException {
-		boolean status;
+		return admTools.autentica(id, senha);
 
-		if (admTools.autentica(id, senha))
-			status = true;
-		else
-			status = false;
-
-		return status;
 	}
 
 	public boolean hasAdmin(String id) throws SQLException {

@@ -1,0 +1,13 @@
+create SCHEMA sad4gm;
+
+create table sad4gm.usuario(
+nome long VARCHAR,
+id long VARCHAR,
+senha INTEGER NOT NULL,
+auditor long VARCHAR;
+ativo INTEGER;
+
+create table sad4gm.maquina(
+nome VARCHAR(20) NOT NULL,
+codigo INTEGER NOT NULL,
+descricao VARCHAR(20)NOT NULL);
