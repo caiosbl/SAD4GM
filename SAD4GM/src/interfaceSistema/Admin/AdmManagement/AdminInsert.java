@@ -19,9 +19,9 @@ import javax.swing.JSeparator;
 import sistema.Sistema;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -152,7 +152,7 @@ public class AdminInsert extends JFrame {
 					else if (isEmpty(confirmationPassword))
 						JOptionPane.showMessageDialog(null, "Preencha o campo de confirmação com a Senha!");
 					else if (newPassword.length() < 6) {
-						JOptionPane.showMessageDialog(null, "Digite uma senha de no mínimo 6 digítos!");
+						JOptionPane.showMessageDialog(null, "Digite uma senha de no mínimo 6 caracteres!");
 						novaSenha.setText("");
 						confirmacaoSenha.setText("");
 					}
@@ -162,13 +162,7 @@ public class AdminInsert extends JFrame {
 								"As senhas diferem, por favor insira uma senha válida e a repita!");
 						novaSenha.setText("");
 						confirmacaoSenha.setText("");
-					} else if (!isNumber(newPassword)) {
-						JOptionPane.showMessageDialog(null, "Por favor insira uma senha numérica válida!");
-						novaSenha.setText("");
-						confirmacaoSenha.setText("");
-					}
-
-					else {
+					} else {
 						sistema.inserirAdmin(newUserName, newPassword, newIdAdmin);
 						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
 						AdminManagementOptions admMyInfo = new AdminManagementOptions(idAdmin);
@@ -193,7 +187,7 @@ public class AdminInsert extends JFrame {
 		confirmacaoSenha.setBounds(248, 269, 268, 28);
 		desktopPane.add(confirmacaoSenha);
 
-		JLabel lblNewLabel = new JLabel("*Mínimo 6 digítos");
+		JLabel lblNewLabel = new JLabel("*Mínimo 6 caracteres");
 		lblNewLabel.setBounds(248, 303, 111, 16);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblNewLabel.setForeground(Color.WHITE);
@@ -221,12 +215,6 @@ public class AdminInsert extends JFrame {
 		lblId_1.setFont(new Font("SansSerif", Font.BOLD, 14));
 		desktopPane.add(lblId_1);
 
-		JLabel label = new JLabel("*Só números");
-		label.setBounds(248, 315, 84, 16);
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		desktopPane.add(label);
-
 		JLabel lblmnimoCaracteres = new JLabel("*Mínimo 4 caracteres");
 		lblmnimoCaracteres.setBounds(248, 220, 112, 14);
 		lblmnimoCaracteres.setForeground(Color.WHITE);
@@ -238,15 +226,4 @@ public class AdminInsert extends JFrame {
 		return password.equals("");
 	}
 
-	public boolean isNumber(String password) {
-		boolean status = false;
-
-		try {
-			Integer.parseInt(password);
-			status = true;
-		} catch (Exception e) {
-			status = false;
-		}
-		return status;
-	}
 }

@@ -1,3 +1,3 @@
-ALTER TABLE sad4gm.maquina ADD dataInsercao  date;
+ALTER TABLE sad4gm.admin ADD senha  VARCHAR(200);
 
 

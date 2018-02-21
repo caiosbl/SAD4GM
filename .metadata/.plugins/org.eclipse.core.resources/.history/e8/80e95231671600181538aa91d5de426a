@@ -1,0 +1,1 @@
+ALTER TABLE sad4gm.maquina ADD nome  long VARCHAR;		

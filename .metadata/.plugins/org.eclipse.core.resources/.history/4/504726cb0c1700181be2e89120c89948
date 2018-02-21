@@ -1,0 +1,53 @@
+package bancoDeDados;
+
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+/**
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
+ * 
+ * @author caiosbl
+ *
+ */
+
+public abstract class DataBaseTools {
+
+	protected Connection con;
+
+	protected void criaConexao() throws SQLException {
+
+		try {
+			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+			con = DriverManager.getConnection("jdbc:derby:Sad4gmDatabase;");
+		} catch (Exception e) {
+			inicializaBancoDados();
+		}
+	}
+
+	private void inicializaBancoDados() throws SQLException {
+		try {
+			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+			con = DriverManager.getConnection("jdbc:derby:Sad4gmDatabase; create = true");
+
+			PreparedStatement inicializa = con.prepareStatement("create SCHEMA sad4gm;");
+
+			inicializa.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	protected void fechaConexao() {
+		try {
+			if (con != null)
+				con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

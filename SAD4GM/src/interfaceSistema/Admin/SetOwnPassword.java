@@ -18,9 +18,9 @@ import javax.swing.JSeparator;
 
 import sistema.Sistema;
 import javax.swing.JPasswordField;
+
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -128,7 +128,7 @@ public class SetOwnPassword extends JFrame {
 				else if (isEmpty(confirmationPassword))
 					JOptionPane.showMessageDialog(null, "Preencha o campo de confirmação com a Nova Senha!");
 				else if (newPassword.length() < 6) {
-					JOptionPane.showMessageDialog(null, "Digite uma senha de no mínimo 6 digítos!");
+					JOptionPane.showMessageDialog(null, "Digite uma senha de no mínimo 6 caracteres!");
 					novaSenha.setText("");
 					confirmacaoSenha.setText("");
 				}
@@ -136,10 +136,6 @@ public class SetOwnPassword extends JFrame {
 				else if (!newPassword.equals(confirmationPassword)) {
 					JOptionPane.showMessageDialog(null,
 							"As senhas diferem, por favor insira uma senha válida e a repita!");
-					novaSenha.setText("");
-					confirmacaoSenha.setText("");
-				} else if (!isNumber(newPassword)) {
-					JOptionPane.showMessageDialog(null, "Por favor insira uma senha válidaw!");
 					novaSenha.setText("");
 					confirmacaoSenha.setText("");
 				}
@@ -166,32 +162,15 @@ public class SetOwnPassword extends JFrame {
 		confirmacaoSenha.setBounds(248, 228, 268, 28);
 		desktopPane.add(confirmacaoSenha);
 
-		JLabel label = new JLabel("*Mínimo 6 digítos");
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		label.setBounds(248, 268, 111, 16);
-		desktopPane.add(label);
-
-		JLabel label_3 = new JLabel("*Só números");
-		label_3.setForeground(Color.WHITE);
-		label_3.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		label_3.setBounds(248, 280, 84, 16);
-		desktopPane.add(label_3);
+		JLabel lblmnimoCaracteres = new JLabel("*Mínimo 6 caracteres");
+		lblmnimoCaracteres.setForeground(Color.WHITE);
+		lblmnimoCaracteres.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblmnimoCaracteres.setBounds(248, 268, 111, 16);
+		desktopPane.add(lblmnimoCaracteres);
 	}
 
 	public boolean isEmpty(String password) {
 		return password.equals("");
 	}
 
-	public boolean isNumber(String password) {
-		boolean status = false;
-
-		try {
-			Integer.parseInt(password);
-			status = true;
-		} catch (Exception e) {
-			status = false;
-		}
-		return status;
-	}
 }

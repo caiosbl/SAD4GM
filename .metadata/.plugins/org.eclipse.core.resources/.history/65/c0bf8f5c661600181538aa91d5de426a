@@ -1,0 +1,1 @@
+delete from sad4gm.maquina where codigo = 122343434;
