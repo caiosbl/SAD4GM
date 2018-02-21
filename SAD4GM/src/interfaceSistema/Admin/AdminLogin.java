@@ -137,6 +137,7 @@ public class AdminLogin extends JFrame {
 		JButton button = new JButton("Login");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				String id = user.getText().trim();
 				String senha = new String(password.getPassword()).trim();
 				if (isUserEmpty(id) && isPasswordEmpty(senha))

@@ -1,2 +1,2 @@
-delete from sad4gm.maquina where codigo = 12121;
+delete from sad4gm.admin where CAST(id AS VARCHAR(128))= 'admin';
 

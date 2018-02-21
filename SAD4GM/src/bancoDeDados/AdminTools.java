@@ -16,7 +16,7 @@ import javax.management.RuntimeErrorException;
 
 public class AdminTools extends DataBaseTools {
 
-	public void inserir(String nome, int senha, String id) throws SQLException {
+	public void inserir(String nome, String senha, String id) throws SQLException {
 
 		if (hasAdmin(id))
 			throw new RuntimeErrorException(null, "ID já cadastrado!");
@@ -27,7 +27,7 @@ public class AdminTools extends DataBaseTools {
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
 			stmt.setString(1, nome);
-			stmt.setInt(2, senha);
+			stmt.setString(2, senha);
 			stmt.setString(3, id);
 			stmt.execute();
 			stmt.close();
@@ -104,7 +104,7 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public void setSenha(String id, int senha) throws SQLException {
+	public void setSenha(String id, String senha) throws SQLException {
 
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -114,7 +114,7 @@ public class AdminTools extends DataBaseTools {
 			final String UPDATE = "UPDATE  sad4gm.admin SET senha = ? WHERE CAST(id AS VARCHAR(128)) = ?";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
-			stmt.setInt(1, senha);
+			stmt.setString(1, senha);
 			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();
@@ -181,7 +181,7 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public boolean autentica(String id, int senha) throws SQLException {
+	public boolean autentica(String id, String senha) throws SQLException {
 		boolean valido = false;
 
 		if (!hasAdmin(id))
@@ -191,7 +191,7 @@ public class AdminTools extends DataBaseTools {
 			PreparedStatement state = con
 					.prepareStatement("SELECT  nome FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ? AND senha =  ?");
 			state.setString(1, id);
-			state.setInt(2, senha);
+			state.setString(2, senha);
 
 			ResultSet resSet = state.executeQuery();
 

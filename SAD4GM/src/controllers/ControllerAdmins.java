@@ -6,8 +6,7 @@ import bancoDeDados.AdminTools;
 import validadorInformacoes.ValidaUsuario;
 
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -21,18 +20,13 @@ public class ControllerAdmins {
 	}
 
 	public String inserir(String nome, String senha, String id) {
-		int senhaInt;
+
 		String status;
 
 		try {
-			senhaInt = Integer.parseInt(senha);
-		} catch (Exception e) {
-			return "SENHA INVÁLIDA!";
-		}
-		try {
 			ValidaUsuario.validaNome(nome);
 			ValidaUsuario.validaId(id);
-			admTools.inserir(nome, senhaInt, id);
+			admTools.inserir(nome, senha, id);
 			status = "Admin CADASTRADO COM SUCESSO!";
 
 		} catch (NullPointerException e) {
@@ -91,17 +85,10 @@ public class ControllerAdmins {
 
 	public String setSenha(String id, String senha) {
 		String status;
-		int senhaInt;
-
-		try {
-			senhaInt = Integer.parseInt(senha);
-		} catch (Exception e) {
-			return "Senha Inválida!";
-		}
 
 		try {
 
-			admTools.setSenha(id, senhaInt);
+			admTools.setSenha(id, senha);
 			status = "Senha alterada com Sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -121,7 +108,7 @@ public class ControllerAdmins {
 
 		return info;
 	}
-	
+
 	public String getNome(String id) {
 		String nome;
 		try {
@@ -134,27 +121,20 @@ public class ControllerAdmins {
 	}
 
 	public boolean autentica(String id, String senha) throws SQLException {
-		int senhaInt;
 		boolean status;
 
-		try {
-			senhaInt = Integer.parseInt(senha);
-		} catch (Exception e) {
-			return false;
-		}
-
-		if (admTools.autentica(id, senhaInt))
+		if (admTools.autentica(id, senha))
 			status = true;
 		else
 			status = false;
 
 		return status;
 	}
-	
+
 	public boolean hasAdmin(String id) throws SQLException {
 		return admTools.hasAdmin(id);
 	}
-	
+
 	public String getListagemAdmins() {
 		return admTools.listarAdmins();
 	}
