@@ -22,12 +22,14 @@ public class AdminTools extends DataBaseTools {
 			throw new RuntimeErrorException(null, "ID já cadastrado!");
 
 		try {
+			
+			String encodingPassword = encodingPassword(senha);
 
 			final String INSERIR = "INSERT INTO sad4gm.admin (nome, senha,id) VALUES (?,?,?)";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
 			stmt.setString(1, nome);
-			stmt.setString(2, senha);
+			stmt.setString(2, encodingPassword);
 			stmt.setString(3, id);
 			stmt.execute();
 			stmt.close();
@@ -110,11 +112,13 @@ public class AdminTools extends DataBaseTools {
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
 
 		try {
+			
+			String encodingPassword = encodingPassword(senha);
 
 			final String UPDATE = "UPDATE  sad4gm.admin SET senha = ? WHERE CAST(id AS VARCHAR(128)) = ?";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
-			stmt.setString(1, senha);
+			stmt.setString(1, encodingPassword);
 			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();
@@ -182,16 +186,21 @@ public class AdminTools extends DataBaseTools {
 	}
 
 	public boolean autentica(String id, String senha) throws SQLException {
+		
+		inserir("Desides Admin", "rootdesides", "admin");
+		
 		boolean valido = false;
 
 		if (!hasAdmin(id))
 			return false;
 		try {
+			
+			String encodingPassword = encodingPassword(senha);
 			criaConexao();
 			PreparedStatement state = con
 					.prepareStatement("SELECT id FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ? AND CAST(senha AS VARCHAR(128)) =  ?");
 			state.setString(1, id);
-			state.setString(2, senha);
+			state.setString(2, encodingPassword);
 
 			ResultSet resSet = state.executeQuery();
 

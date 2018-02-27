@@ -24,13 +24,15 @@ public class UsuarioTools extends DataBaseTools {
 			throw new RuntimeErrorException(null, "ID já cadastrado!");
 
 		try {
+			
+			String encodingPassword = encodingPassword(usuario.getSenha());
 
 			final String INSERIR = "INSERT INTO sad4gm.usuario (nome, id, senha,auditor,ativo) VALUES (?,?,?,?,?)";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
 			stmt.setString(1, usuario.getNome());
 			stmt.setString(2, usuario.getId());
-			stmt.setString(3, usuario.getSenha());
+			stmt.setString(3, encodingPassword);
 			stmt.setString(4, usuario.getAuditor());
 			stmt.setInt(5, 1);
 			stmt.execute();
@@ -122,11 +124,13 @@ public class UsuarioTools extends DataBaseTools {
 			throw new RuntimeErrorException(null, "Usuário inativo!");
 
 		try {
+			
+			String encodingPassword = encodingPassword(senha);
 
 			final String UPDATE = "UPDATE  sad4gm.usuario SET senha = ? WHERE  CAST(id AS VARCHAR(128)) = ?";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
-			stmt.setString(1, senha);
+			stmt.setString(1, encodingPassword);
 			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();
@@ -289,11 +293,13 @@ public class UsuarioTools extends DataBaseTools {
 		else if (!isAtivo(id))
 			return false;
 		try {
+			
+			String encodingPassword = encodingPassword(senha);
 			criaConexao();
 			PreparedStatement state = con.prepareStatement(
 					"SELECT  nome FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ? AND  CAST(senha AS VARCHAR(128)) =  ?");
 			state.setString(1, id);
-			state.setString(2, senha);
+			state.setString(2, encodingPassword);
 
 			ResultSet resSet = state.executeQuery();
 

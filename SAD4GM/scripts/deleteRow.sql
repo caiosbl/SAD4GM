@@ -1,2 +1,3 @@
-delete from sad4gm.admin where CAST(id AS VARCHAR(128))= 'admin';
+delete from sad4gm.usuario where CAST(id AS VARCHAR(128))= 'caiosbl';
+delete from sad4gm.usuario where CAST(id AS VARCHAR(128))= 'caiobdelira';
 
