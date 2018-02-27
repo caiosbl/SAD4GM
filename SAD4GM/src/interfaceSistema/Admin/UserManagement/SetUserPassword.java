@@ -130,7 +130,7 @@ public class SetUserPassword extends JFrame {
 				else if (isEmpty(confirmationPassword))
 					JOptionPane.showMessageDialog(null, "Preencha o campo de confirmação com a Nova Senha!");
 				else if (newPassword.length() < 6) {
-					JOptionPane.showMessageDialog(null, "Digite uma senha de no mínimo 6 digítos!");
+					JOptionPane.showMessageDialog(null, "Digite uma senha de no mínimo 6 caracteres!");
 					novaSenha.setText("");
 					confirmacaoSenha.setText("");
 				}
@@ -140,12 +140,7 @@ public class SetUserPassword extends JFrame {
 							"As senhas diferem, por favor insira uma senha válida e a repita!");
 					novaSenha.setText("");
 					confirmacaoSenha.setText("");
-				} else if (!isNumber(newPassword)) {
-					JOptionPane.showMessageDialog(null, "Por favor insira uma senha válida!");
-					novaSenha.setText("");
-					confirmacaoSenha.setText("");
-				}
-
+				} 
 				else {
 					sistema.setSenhaUsuario(idUser, newPassword);
 					JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
@@ -185,15 +180,5 @@ public class SetUserPassword extends JFrame {
 		return password.equals("");
 	}
 
-	public boolean isNumber(String password) {
-		boolean status = false;
-
-		try {
-			Integer.parseInt(password);
-			status = true;
-		} catch (Exception e) {
-			status = false;
-		}
-		return status;
-	}
+	
 }

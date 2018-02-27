@@ -30,7 +30,7 @@ public class UsuarioTools extends DataBaseTools {
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
 			stmt.setString(1, usuario.getNome());
 			stmt.setString(2, usuario.getId());
-			stmt.setInt(3, usuario.getSenha());
+			stmt.setString(3, usuario.getSenha());
 			stmt.setString(4, usuario.getAuditor());
 			stmt.setInt(5, 1);
 			stmt.execute();
@@ -114,7 +114,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public void setSenha(String id, int senha) throws SQLException {
+	public void setSenha(String id, String senha) throws SQLException {
 
 		if (!hasUsuario(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -126,7 +126,7 @@ public class UsuarioTools extends DataBaseTools {
 			final String UPDATE = "UPDATE  sad4gm.usuario SET senha = ? WHERE  CAST(id AS VARCHAR(128)) = ?";
 			criaConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
-			stmt.setInt(1, senha);
+			stmt.setString(1, senha);
 			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();
@@ -281,7 +281,7 @@ public class UsuarioTools extends DataBaseTools {
 
 	}
 
-	public boolean autenticador(String id, int senha) throws SQLException {
+	public boolean autenticador(String id, String senha) throws SQLException {
 		boolean valido = false;
 
 		if (!hasUsuario(id))
@@ -291,9 +291,9 @@ public class UsuarioTools extends DataBaseTools {
 		try {
 			criaConexao();
 			PreparedStatement state = con.prepareStatement(
-					"SELECT  nome FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ? AND senha =  ?");
+					"SELECT  nome FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ? AND  CAST(senha AS VARCHAR(128)) =  ?");
 			state.setString(1, id);
-			state.setInt(2, senha);
+			state.setString(2, senha);
 
 			ResultSet resSet = state.executeQuery();
 

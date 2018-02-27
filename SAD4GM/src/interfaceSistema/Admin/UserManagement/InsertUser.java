@@ -156,7 +156,7 @@ public class InsertUser extends JFrame {
 					else if (isEmpty(confirmationPassword))
 						JOptionPane.showMessageDialog(null, "Preencha o campo de confirmação com a Senha!");
 					else if (newPassword.length() < 6) {
-						JOptionPane.showMessageDialog(null, "Digite uma senha de no mínimo 6 digítos!");
+						JOptionPane.showMessageDialog(null, "Digite uma senha de no mínimo 6 caracteres!");
 						novaSenha.setText("");
 						confirmacaoSenha.setText("");
 					}
@@ -166,11 +166,7 @@ public class InsertUser extends JFrame {
 								"As senhas diferem, por favor insira uma senha válida e a repita!");
 						novaSenha.setText("");
 						confirmacaoSenha.setText("");
-					} else if (!isNumber(newPassword)) {
-						JOptionPane.showMessageDialog(null, "Por favor insira uma senha numérica válida!");
-						novaSenha.setText("");
-						confirmacaoSenha.setText("");
-					}
+					} 
 
 					else {
 						sistema.cadastrarUsuario(newUserName, idUser, newPassword, auditor);
@@ -197,7 +193,7 @@ public class InsertUser extends JFrame {
 		confirmacaoSenha.setBounds(251, 306, 268, 28);
 		desktopPane.add(confirmacaoSenha);
 
-		JLabel lblNewLabel = new JLabel("*Mínimo 6 digítos");
+		JLabel lblNewLabel = new JLabel("*Mínimo 6 Caracteres");
 		lblNewLabel.setBounds(251, 340, 111, 16);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblNewLabel.setForeground(Color.WHITE);
@@ -225,12 +221,6 @@ public class InsertUser extends JFrame {
 		auditor.setFont(new Font("SansSerif", Font.BOLD, 14));
 		desktopPane.add(auditor);
 
-		JLabel label = new JLabel("*Só números");
-		label.setBounds(251, 352, 84, 16);
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		desktopPane.add(label);
-
 		JLabel lblmnimoCaracteres = new JLabel("*Mínimo 4 caracteres");
 		lblmnimoCaracteres.setBounds(426, 215, 112, 14);
 		lblmnimoCaracteres.setForeground(Color.WHITE);
@@ -253,15 +243,5 @@ public class InsertUser extends JFrame {
 		return password.equals("");
 	}
 
-	public boolean isNumber(String password) {
-		boolean status = false;
-
-		try {
-			Integer.parseInt(password);
-			status = true;
-		} catch (Exception e) {
-			status = false;
-		}
-		return status;
-	}
+	
 }

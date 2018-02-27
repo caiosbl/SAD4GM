@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import interfaceSistema.Entrada;
+
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -118,10 +120,10 @@ public class Options extends JFrame {
 		JButton button_1 = new JButton("Logout");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Login userLogin = new Login();
+				Entrada entrada = new Entrada();
 				dispose();
-				userLogin.setVisible(true);
-				userLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				entrada.setVisible(true);
+				entrada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.BOLD, 12));

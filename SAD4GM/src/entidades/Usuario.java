@@ -12,7 +12,7 @@ public class Usuario {
 
 	private String nome;
 	private String id;
-	private int senha;
+	private String senha;
 	private String auditor;
 
 	public Usuario(String nome, String id, String senha, String auditor) {
@@ -20,22 +20,12 @@ public class Usuario {
 		this.nome = nome;
 		ValidaUsuario.validaId(id);
 		this.id = id;
-		this.senha = parseSenha(senha);
+		this.senha = senha;
 		ValidaUsuario.validaAuditor(auditor);
 		this.auditor = auditor;
 	}
 
-	private int parseSenha(String senha) {
-		int senhaInt;
-
-		try {
-			senhaInt = Integer.parseInt(senha);
-		} catch (Exception e) {
-			throw new IllegalArgumentException("Senha Inválida!");
-		}
-
-		return senhaInt;
-	}
+	
 
 	public String getNome() {
 		return nome;
@@ -53,11 +43,11 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public int getSenha() {
+	public String getSenha() {
 		return senha;
 	}
 
-	public void setSenha(int senha) {
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 

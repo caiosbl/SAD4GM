@@ -1,3 +1,3 @@
 
-ALTER TABLE sad4gm.admin DROP COLUMN senha;
+ALTER TABLE sad4gm.usuario DROP COLUMN senha;
 

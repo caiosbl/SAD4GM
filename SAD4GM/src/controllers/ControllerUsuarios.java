@@ -129,17 +129,10 @@ public class ControllerUsuarios {
 	}
 
 	public String setSenha(String id, String senha) {
-		String status;
-		int senhaInt;
-
+		
+String status;
 		try {
-			senhaInt = Integer.parseInt(senha);
-		} catch (Exception e) {
-			return "Senha Inválida!";
-		}
-
-		try {
-			uTools.setSenha(id, senhaInt);
+			uTools.setSenha(id, senha);
 			status = "Senha Atualizada com Sucesso!";
 		} catch (Exception e) {
 			status = "Falha ao Atualizar a Senha!";
@@ -195,16 +188,11 @@ public class ControllerUsuarios {
 	}
 
 	public boolean autentica(String id, String senha) throws SQLException {
-		int senhaInt;
 		boolean status;
 
-		try {
-			senhaInt = Integer.parseInt(senha);
-		} catch (Exception e) {
-			return false;
-		}
+	
 
-		if (uTools.autenticador(id, senhaInt))
+		if (uTools.autenticador(id, senha))
 			status = true;
 		else
 			status = false;

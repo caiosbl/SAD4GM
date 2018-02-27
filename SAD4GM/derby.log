@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Wed Feb 21 10:49:53 GFT 2018:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-0161-b8a0-ae71-0000037abf30 
-on database directory C:\Users\caiol\Desktop\SAD4GM\SAD4GM\SAD4GM\Sad4gmDatabase with class loader sun.misc.Launcher$AppClassLoader@6d06d69c 
-Loaded from file:/C:/Users/caiol/Desktop/SAD4GM/SAD4GM/SAD4GM/lib/derby.jar
+Tue Feb 27 14:55:17 BRT 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-0161-d867-7ecd-000002f811b0 
+on database directory C:\Users\Caio\Desktop\SAD4Gm\SAD4GM\SAD4GM\Sad4gmDatabase with class loader sun.misc.Launcher$AppClassLoader@6d06d69c 
+Loaded from file:/C:/Users/Caio/Desktop/SAD4Gm/SAD4GM/SAD4GM/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_161-b12
-user.dir=C:\Users\caiol\Desktop\SAD4GM\SAD4GM\SAD4GM
-os.name=Windows 10
+java.runtime.version=1.8.0_162-b12
+user.dir=C:\Users\Caio\Desktop\SAD4Gm\SAD4GM\SAD4GM
+os.name=Windows 8.1
 os.arch=amd64
-os.version=10.0
+os.version=6.3
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

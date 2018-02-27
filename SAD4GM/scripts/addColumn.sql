@@ -1,3 +1,3 @@
-ALTER TABLE sad4gm.admin ADD senha  VARCHAR(200);
+ALTER TABLE sad4gm.usuario ADD senha  VARCHAR(200);
 
 

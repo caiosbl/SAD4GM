@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import interfaceSistema.Entrada;
 import interfaceSistema.Admin.AdmManagement.AdminManagementOptions;
 import interfaceSistema.Admin.UserManagement.UserManagementOptions;
 
@@ -137,10 +138,10 @@ public class Options extends JFrame {
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminLogin admLogin = new AdminLogin();
+				Entrada entrada = new Entrada();
 				dispose();
-				admLogin.setVisible(true);
-				admLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				entrada.setVisible(true);
+				entrada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 12));
