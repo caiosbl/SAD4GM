@@ -1,6 +1,7 @@
 package bancoDeDados;
 
-import java.io.FileInputStream;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -49,7 +50,7 @@ public abstract class DataBaseTools {
 			// Criando Tabela Usuário
 			inicializa = con.prepareStatement(
 					"create table sad4gm.usuario(\r\n" + "nome long VARCHAR,\r\n" + "id long VARCHAR,\r\n"
-							+ "senha INTEGER NOT NULL,\r\n" + "auditor long VARCHAR,\r\n" + "ativo INTEGER)");
+							+ "senha VARCHAR(200),\r\n" + "auditor long VARCHAR,\r\n" + "ativo INTEGER)");
 
 			inicializa.execute();
 
@@ -64,6 +65,19 @@ public abstract class DataBaseTools {
 			e.printStackTrace();
 		}
 
+	}
+
+	public String encodingPassword(String password) throws UnsupportedEncodingException, Exception {
+		MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+		byte messageDigest[] = algorithm.digest(password.getBytes("UTF-8"));
+
+		StringBuilder hexString = new StringBuilder();
+		for (byte b : messageDigest) {
+			hexString.append(String.format("%02X", 0xFF & b));
+		}
+		String hashPassword = hexString.toString();
+
+		return hashPassword;
 	}
 
 	protected void fechaConexao() {
