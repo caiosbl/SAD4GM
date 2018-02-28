@@ -154,9 +154,9 @@ public class Entrada extends JFrame {
 		separator.setBounds(10, 123, 582, 15);
 		desktopPane.add(separator);
 		
-		ImageIcon img = new ImageIcon("C:\\\\Users\\\\caiol\\\\Desktop\\\\SAD4GM\\\\SAD4GM\\\\SAD4GM\\\\icon\\\\desides.png");
+		ImageIcon img = new ImageIcon("/icon/desides.png");
 	
-        JLabel labelimg = new JLabel(img);
+        JLabel labelimg = new JLabel(new ImageIcon("/icon/desides.png"));
         labelimg.setLocation(51, 37);
         labelimg.setSize(119, 61);
         desktopPane.add(labelimg,RIGHT_ALIGNMENT);

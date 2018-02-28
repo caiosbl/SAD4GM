@@ -67,6 +67,7 @@ public abstract class DataBaseTools {
 
 	}
 
+	// Criptografa as Senhas em SHA-2
 	public String encodingPassword(String password) throws UnsupportedEncodingException, Exception {
 		MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
 		byte messageDigest[] = algorithm.digest(password.getBytes("UTF-8"));

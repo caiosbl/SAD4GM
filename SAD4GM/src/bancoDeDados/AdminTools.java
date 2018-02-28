@@ -187,8 +187,6 @@ public class AdminTools extends DataBaseTools {
 
 	public boolean autentica(String id, String senha) throws SQLException {
 		
-		inserir("Desides Admin", "rootdesides", "admin");
-		
 		boolean valido = false;
 
 		if (!hasAdmin(id))
