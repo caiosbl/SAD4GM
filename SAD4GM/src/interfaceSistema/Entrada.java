@@ -28,6 +28,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
+import javax.swing.Box;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
@@ -101,11 +102,12 @@ public class Entrada extends JFrame {
 		desktopPane.setBackground(Color.GRAY);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 
-		JLabel lblEscolhaSeuTipo = new JLabel("LOGIN:");
+		JLabel lblEscolhaSeuTipo = new JLabel("");
+		lblEscolhaSeuTipo.setIcon(new ImageIcon(Entrada.class.getResource("/Resources/icon/login.png")));
 		lblEscolhaSeuTipo.setForeground(SystemColor.inactiveCaptionBorder);
 		lblEscolhaSeuTipo.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblEscolhaSeuTipo.setBackground(new Color(255, 255, 255));
-		lblEscolhaSeuTipo.setBounds(257, 223, 67, 22);
+		lblEscolhaSeuTipo.setBounds(216, 215, 123, 30);
 		desktopPane.add(lblEscolhaSeuTipo);
 
 		JButton button = new JButton("Usuário");
@@ -137,29 +139,15 @@ public class Entrada extends JFrame {
 		button_1.setBackground(SystemColor.activeCaption);
 		button_1.setBounds(210, 257, 161, 53);
 		desktopPane.add(button_1);
-
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setForeground(SystemColor.inactiveCaptionBorder);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		label_1.setBounds(281, 65, 141, 45);
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setForeground(SystemColor.inactiveCaptionBorder);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 50));
-		label_2.setBounds(235, 25, 218, 61);
-		desktopPane.add(label_2);
-
-		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 123, 582, 15);
-		desktopPane.add(separator);
 		
-		ImageIcon img = new ImageIcon("/icon/desides.png");
-	
-        JLabel labelimg = new JLabel(new ImageIcon("/icon/desides.png"));
-        labelimg.setLocation(51, 37);
-        labelimg.setSize(119, 61);
-        desktopPane.add(labelimg,RIGHT_ALIGNMENT);
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(Entrada.class.getResource("/Resources/icon/sadprovisorio.png")));
+		lblNewLabel.setBounds(110, 62, 373, 85);
+		desktopPane.add(lblNewLabel);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(140, 194, 311, 198);
+		desktopPane.add(panel);
 	
 		
 	}
