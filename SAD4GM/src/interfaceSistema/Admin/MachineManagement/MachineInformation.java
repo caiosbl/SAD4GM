@@ -108,7 +108,7 @@ public class MachineInformation extends JFrame {
 		JTextPane textPane = new JTextPane();
 		textPane.setText(sistema.getInfoMaquina(codigoMaquina));
 		textPane.setBackground(SystemColor.textInactiveText);
-		textPane.setBounds(116, 220, 394, 73);
+		textPane.setBounds(114, 162, 394, 191);
 		desktopPane.add(textPane);
 	
 	}

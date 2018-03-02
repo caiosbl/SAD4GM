@@ -132,6 +132,11 @@ public class MachineManagementOptions extends JFrame {
 		});
 		btnVisualizarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MachineInformationEntry machinesInformationEntry = new MachineInformationEntry(idAdmin);
+
+				dispose();
+				machinesInformationEntry.setVisible(true);
+				machinesInformationEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnNewButton.addActionListener(new ActionListener() {
