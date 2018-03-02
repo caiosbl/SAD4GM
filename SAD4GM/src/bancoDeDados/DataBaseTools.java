@@ -41,10 +41,13 @@ public abstract class DataBaseTools {
 			inicializa = con.prepareStatement("create table sad4gm.admin(\r\n" + "nome long VARCHAR,\r\n"
 					+ "id long VARCHAR,\r\n" + "senha long VARCHAR\r\n" + ")");
 			inicializa.execute();
+			
+			String senhaDefault = encodingPassword("rootdesides");
 
 			// Inserindo Admin Default
 			inicializa = con.prepareStatement(
-					"INSERT INTO sad4gm.admin (nome,senha,id) VALUES ('Desides Admin','rootdesides','admin')");
+					"INSERT INTO sad4gm.admin (nome,senha,id) VALUES ('Desides Admin',?,'admin')");
+			inicializa.setString(1, senhaDefault);
 			inicializa.execute();
 
 			// Criando Tabela Usuário
