@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import interfaceSistema.Entrada;
 import interfaceSistema.Admin.AdmManagement.AdminManagementOptions;
+import interfaceSistema.Admin.MachineManagement.MachineManagementOptions;
 import interfaceSistema.Admin.UserManagement.UserManagementOptions;
 
 import javax.swing.JDesktopPane;

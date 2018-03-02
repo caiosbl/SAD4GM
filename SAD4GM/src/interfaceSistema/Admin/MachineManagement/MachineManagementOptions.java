@@ -1,9 +1,12 @@
-package interfaceSistema.Admin;
+package interfaceSistema.Admin.MachineManagement;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import interfaceSistema.Admin.Options;
+
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -112,7 +115,7 @@ public class MachineManagementOptions extends JFrame {
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnVoltar.setBounds(511, 381, 65, 27);
+		btnVoltar.setBounds(484, 381, 92, 27);
 		desktopPane.add(btnVoltar);
 		btnVerMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -133,6 +136,12 @@ public class MachineManagementOptions extends JFrame {
 		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+
+				MachinesList machinesList = new MachinesList(idAdmin);
+
+				dispose();
+				machinesList.setVisible(true);
+				machinesList.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 	}
