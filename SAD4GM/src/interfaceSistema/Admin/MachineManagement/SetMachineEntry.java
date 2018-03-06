@@ -27,7 +27,7 @@ import javax.swing.JTextField;
  * @author caiosbl
  *
  */
-public class MachineRemove extends JFrame {
+public class SetMachineEntry extends JFrame {
 
 	/**
 	 * 
@@ -35,7 +35,7 @@ public class MachineRemove extends JFrame {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idAdmin;
-	private JTextField idField;
+	private JTextField codigo;
 	private Sistema sistema = new Sistema();
 
 	/**
@@ -45,7 +45,7 @@ public class MachineRemove extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MachineRemove(String id) {
+	public SetMachineEntry(String id) {
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -77,16 +77,16 @@ public class MachineRemove extends JFrame {
 		separator.setBounds(0, 111, 605, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("REMOVER");
+		JLabel lblRemover = new JLabel("ALTERAR");
 		lblRemover.setForeground(Color.WHITE);
 		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblRemover.setBounds(308, 32, 150, 37);
+		lblRemover.setBounds(286, 23, 150, 37);
 		desktopPane.add(lblRemover);
 
 		JLabel lblAdmin = new JLabel("MÁQUINA");
 		lblAdmin.setForeground(Color.WHITE);
 		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(308, 63, 152, 37);
+		lblAdmin.setBounds(286, 63, 152, 37);
 		desktopPane.add(lblAdmin);
 
 		JButton button = new JButton("Voltar");
@@ -103,49 +103,47 @@ public class MachineRemove extends JFrame {
 		button.setBounds(506, 388, 69, 23);
 		desktopPane.add(button);
 
-		idField = new JTextField();
-		idField.setBounds(200, 248, 206, 28);
-		desktopPane.add(idField);
-		idField.setColumns(10);
+		codigo = new JTextField();
+		codigo.setBounds(200, 248, 206, 28);
+		desktopPane.add(codigo);
+		codigo.setColumns(10);
 
-		JLabel lblIdDoAdmin = new JLabel("Código da Máquina a ser Removida:");
+		JLabel lblIdDoAdmin = new JLabel("Código da Máquina a ser alterada:");
 		lblIdDoAdmin.setForeground(Color.WHITE);
 		lblIdDoAdmin.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblIdDoAdmin.setBounds(173, 226, 252, 19);
+		lblIdDoAdmin.setBounds(179, 218, 239, 19);
 		desktopPane.add(lblIdDoAdmin);
 
-		JButton btnRemover = new JButton("Remover");
+		JButton btnRemover = new JButton("Alterar");
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (idField.getText().trim().length() < 4) {
+				if (codigo.getText().trim().length() < 4) {
 					JOptionPane.showMessageDialog(null, "Código Inválido!");
-					idField.setText("");
+					codigo.setText("");
 				}
-				
-				else if (!isNumber(idField.getText().trim())) {
+				else if(!isNumber(codigo.getText().trim())) {
 					JOptionPane.showMessageDialog(null, "Por favor insira um código numérico válido!");
-					idField.setText("");
-					
+					codigo.setText("");
 				}
 				else {
 					boolean has = false;
+
 					try {
-						has = sistema.hasMaquina(idField.getText().trim());
+						has = sistema.hasMaquina(codigo.getText().trim());
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Falha na conexão com banco de dados!");
 					}
 
 					if (!has) {
 						JOptionPane.showMessageDialog(null, "Máquina inexistente!");
-						idField.setText("");
-					} else {
-						sistema.removerMaquina(idField.getText().trim());
-						JOptionPane.showMessageDialog(null, "Máquina removida com Sucesso!");
+						codigo.setText("");
+					}
 
-						MachineManagementOptions admMOptions = new MachineManagementOptions(idAdmin);
+					else {
+						SetMachine setMachine = new SetMachine(idAdmin, codigo.getText().trim());
 						dispose();
-						admMOptions.setVisible(true);
-						admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						setMachine.setVisible(true);
+						setMachine.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}
 				}
 			}
@@ -155,7 +153,6 @@ public class MachineRemove extends JFrame {
 		desktopPane.add(btnRemover);
 
 	}
-	
 	
 	public boolean isNumber(String password) {
 		boolean status = false;
@@ -168,5 +165,4 @@ public class MachineRemove extends JFrame {
 		}
 		return status;
 	}
-
 }

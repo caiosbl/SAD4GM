@@ -149,7 +149,7 @@ public class Sistema {
 		return cMaquinas.setCodigo(codigo, novoCodigo);
 	}
 
-	public String setDescricaoMaquinas(String codigo, String descricao) {
+	public String setDescricaoMaquina(String codigo, String descricao) {
 		return cMaquinas.setDescricao(codigo, descricao);
 	}
 
@@ -163,6 +163,15 @@ public class Sistema {
 
 	public boolean hasMaquina(String codigo) throws SQLException {
 		return cMaquinas.hasMaquina(codigo);
+	}
+	
+	
+	public String getNomeMaquina(String codigo) {
+		return cMaquinas.getNome(codigo);
+	}
+	
+	public String getDescricaoMaquina(String codigo) {
+		return cMaquinas.getDescricao(codigo);
 	}
 
 }

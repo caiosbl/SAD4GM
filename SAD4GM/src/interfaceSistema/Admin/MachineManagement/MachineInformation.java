@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import sistema.Sistema;
@@ -20,14 +21,13 @@ import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
 import javax.swing.JTextPane;
+
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
  */
-
 
 public class MachineInformation extends JFrame {
 
@@ -102,14 +102,19 @@ public class MachineInformation extends JFrame {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBounds(506, 388, 69, 23);
+		button.setBounds(508, 406, 69, 23);
 		desktopPane.add(button);
-		
+
 		JTextPane textPane = new JTextPane();
 		textPane.setText(sistema.getInfoMaquina(codigoMaquina));
 		textPane.setBackground(SystemColor.textInactiveText);
 		textPane.setBounds(114, 162, 394, 191);
-		desktopPane.add(textPane);
-	
+
+		JScrollPane jsp = new JScrollPane(textPane);
+
+		jsp.setBounds(114, 162, 394, 229);
+		desktopPane.add(jsp);
+		
+
 	}
 }

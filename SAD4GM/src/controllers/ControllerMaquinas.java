@@ -2,6 +2,8 @@ package controllers;
 
 import java.sql.SQLException;
 
+import javax.management.RuntimeErrorException;
+
 import bancoDeDados.MaquinaTools;
 import entidades.Maquina;
 import validadorInformacoes.ValidaMaquina;
@@ -60,6 +62,61 @@ public class ControllerMaquinas {
 		}
 
 		return status;
+	}
+	
+	
+	public String getNome(String codigo) {
+		int codigoInt;
+
+		
+		try {
+			codigoInt = Integer.parseInt(codigo);
+		}
+		
+		catch(Exception e) {
+			throw new RuntimeErrorException(null, "Código Inválido!");
+			
+		}
+		
+		String nome;
+		
+		try {
+			nome = mTools.getNome(codigoInt);
+		}
+		catch (Exception e) {
+			throw new RuntimeErrorException(null,"Falha na conexão com Banco de Dados!");
+		}
+	
+		
+
+		return nome;
+	}
+	
+	public String getDescricao(String codigo) {
+		int codigoInt;
+
+		
+		try {
+			codigoInt = Integer.parseInt(codigo);
+		}
+		
+		catch(Exception e) {
+			throw new RuntimeErrorException(null, "Código Inválido!");
+			
+		}
+		
+		String descricao;
+		
+		try {
+			descricao = mTools.getDescricao(codigoInt);
+		}
+		catch (Exception e) {
+			throw new RuntimeErrorException(null,"Falha na conexão com Banco de Dados!");
+		}
+	
+		
+
+		return descricao;
 	}
 
 	public String setNome(String codigo, String nome) {
@@ -171,7 +228,7 @@ public class ControllerMaquinas {
 		}
 
 		catch (Exception e) {
-			return true;
+			throw new RuntimeErrorException(null, "Código não númerico!");
 		}
 
 		return mTools.hasMaquina(codigoInt);

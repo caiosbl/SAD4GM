@@ -119,11 +119,11 @@ public class MachineManagementOptions extends JFrame {
 		desktopPane.add(btnVoltar);
 		btnVerMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Options admOptions = new Options(idAdmin);
+				SetMachineEntry setMachine = new SetMachineEntry(idAdmin);
 
 				dispose();
-				admOptions.setVisible(true);
-				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				setMachine.setVisible(true);
+				setMachine.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnInserirFuno.addActionListener(new ActionListener() {
