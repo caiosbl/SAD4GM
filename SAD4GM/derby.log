@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Tue Mar 06 15:55:20 GFT 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-0161-fcaa-fe4f-000004efbd80 
+on database directory C:\Users\fjfca\Desktop\sad4\SAD4GM\SAD4GM\Sad4gmDatabase with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
+Loaded from file:/C:/Users/fjfca/Desktop/sad4/SAD4GM/SAD4GM/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_144-b01
+user.dir=C:\Users\fjfca\Desktop\sad4\SAD4GM\SAD4GM
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

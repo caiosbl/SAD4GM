@@ -16,19 +16,19 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.JSeparator;
+
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import java.awt.event.ActionListener;
-import java.net.URL;
+
 import java.awt.event.ActionEvent;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
-import javax.swing.Box;
+
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
@@ -123,7 +123,7 @@ public class Entrada extends JFrame {
 		button.setForeground(new Color(0, 0, 51));
 		button.setFont(new Font("Tahoma", Font.BOLD, 11));
 		button.setBackground(SystemColor.activeCaption);
-		button.setBounds(295, 266, 135, 53);
+		button.setBounds(295, 266, 124, 53);
 		desktopPane.add(button);
 
 		JButton button_1 = new JButton("");
