@@ -128,6 +128,11 @@ public class MachineManagementOptions extends JFrame {
 		});
 		btnInserirFuno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MachineRemove machineRemove = new MachineRemove(idAdmin);
+
+				dispose();
+				machineRemove.setVisible(true);
+				machineRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVisualizarMquinas.addActionListener(new ActionListener() {
