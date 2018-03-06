@@ -1,4 +1,4 @@
-package interfaceSistema.Admin.MachineManagement;
+package interfaceSistema.User;
 
 import java.awt.BorderLayout;
 
@@ -94,11 +94,11 @@ public class MachineInformation extends JFrame {
 		JButton button = new JButton("Voltar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MachineManagementOptions uInformation = new MachineManagementOptions(idAdmin);
+				Options options = new Options(idAdmin);
 
 				dispose();
-				uInformation.setVisible(true);
-				uInformation.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				options.setVisible(true);
+				options.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
