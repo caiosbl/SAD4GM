@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -95,6 +97,7 @@ public class MachineInformationEntry extends JFrame {
 				MachineManagementOptions umgOptions = new MachineManagementOptions(idAdmin);
 
 				dispose();
+				umgOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				umgOptions.setVisible(true);
 				umgOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -141,6 +144,7 @@ public class MachineInformationEntry extends JFrame {
 					else {
 						MachineInformation machineInformation = new MachineInformation(idAdmin,idField.getText().trim());
 						dispose();
+						machineInformation.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						machineInformation.setVisible(true);
 						machineInformation.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}

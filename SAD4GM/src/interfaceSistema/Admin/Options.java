@@ -12,7 +12,6 @@ import interfaceSistema.Admin.MachineManagement.MachineManagementOptions;
 import interfaceSistema.Admin.UserManagement.UserManagementOptions;
 
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 
 import java.awt.Font;
@@ -25,9 +24,10 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 
 import javax.swing.JSeparator;
+import javax.swing.ImageIcon;
+
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -49,10 +49,10 @@ public class Options extends JFrame {
 	 * Create the frame.
 	 */
 	public Options(String id) {
-		
+
 		Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("icon/icon.jpg");
 		this.setIconImage(iconeTitulo);
-		
+
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -66,77 +66,78 @@ public class Options extends JFrame {
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
-		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(20, 60, 141, 45);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(10, 11, 210, 73);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
-		JButton btnGerenciarUsurios = new JButton("Gerenciar Usuários");
-		btnGerenciarUsurios.setBounds(68, 217, 175, 41);
+		JButton btnGerenciarUsurios = new JButton("");
+		btnGerenciarUsurios.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/usermanager.png")));
+		btnGerenciarUsurios.setBounds(214, 207, 169, 88);
 		btnGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnGerenciarUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				UserManagementOptions admUserOptions = new UserManagementOptions(idAdmin);
 				dispose();
+				admUserOptions
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admUserOptions.setVisible(true);
 				admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
+		desktopPane.setLayout(null);
 		desktopPane.add(btnGerenciarUsurios);
 
-		JButton btnGerenciarMquinas = new JButton("Gerenciar Máquinas");
+		JButton btnGerenciarMquinas = new JButton("");
+		btnGerenciarMquinas.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/machinemanager.png")));
+		btnGerenciarMquinas.setBounds(395, 207, 175, 88);
 		btnGerenciarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MachineManagementOptions admMachineOptions = new MachineManagementOptions(idAdmin);
 
 				dispose();
+				admMachineOptions
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admMachineOptions.setVisible(true);
 				admMachineOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnGerenciarMquinas.setBounds(68, 262, 175, 41);
 		btnGerenciarMquinas.setFont(new Font("Tahoma", Font.BOLD, 14));
 		desktopPane.add(btnGerenciarMquinas);
 
-		JButton btnMinhasInformaes_1 = new JButton("Minhas Informações");
+		JButton btnMinhasInformaes_1 = new JButton("");
+		btnMinhasInformaes_1.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/myinformationicon.png")));
+		btnMinhasInformaes_1.setBounds(336, 54, 122, 27);
 		btnMinhasInformaes_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MyInfo admMyInfo = new MyInfo(idAdmin);
 
 				dispose();
+				admMyInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admMyInfo.setVisible(true);
 				admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnMinhasInformaes_1.setBounds(68, 310, 175, 41);
 		btnMinhasInformaes_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		desktopPane.add(btnMinhasInformaes_1);
 
-		JButton btnGerenciarAdmins = new JButton("Gerenciar Admins");
+		JButton btnGerenciarAdmins = new JButton("");
+		btnGerenciarAdmins.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/adminmanagerbutton.png")));
+		btnGerenciarAdmins.setBounds(31, 207, 175, 88);
 		btnGerenciarAdmins.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminManagementOptions admAdminManagement = new AdminManagementOptions(idAdmin);
 
 				dispose();
+				admAdminManagement
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admAdminManagement.setVisible(true);
 				admAdminManagement.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 			}
 		});
-		btnGerenciarAdmins.setBounds(68, 169, 175, 41);
 		btnGerenciarAdmins.setFont(new Font("Tahoma", Font.BOLD, 14));
 		desktopPane.add(btnGerenciarAdmins);
 
-		JButton btnLogout = new JButton("Logout");
+		JButton btnLogout = new JButton("");
+		btnLogout.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logouticon.png")));
+		btnLogout.setBounds(470, 54, 81, 27);
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Entrada entrada = new Entrada();
@@ -146,13 +147,21 @@ public class Options extends JFrame {
 			}
 		});
 		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnLogout.setBounds(501, 33, 81, 27);
 		desktopPane.add(btnLogout);
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 111, 605, 12);
+		separator.setBounds(0, 137, 605, 12);
 		desktopPane.add(separator);
 
-	}
+		JLabel label = new JLabel("");
+		label.setBounds(29, 40, 205, 74);
+		label.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/sad4logosmall.png")));
+		desktopPane.add(label);
 
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/adminescudo.png")));
+		lblNewLabel.setBounds(237, 33, 368, 414);
+		desktopPane.add(lblNewLabel);
+
+	}
 }

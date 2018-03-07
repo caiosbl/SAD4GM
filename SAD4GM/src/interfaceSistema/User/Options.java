@@ -66,7 +66,7 @@ public class Options extends JFrame {
 				insertMaquina.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnNewButton.setBounds(53, 165, 181, 29);
+		btnNewButton.setBounds(53, 182, 181, 29);
 		desktopPane.add(btnNewButton);
 
 		JButton btnVisualizarMquinas = new JButton("Listar Máquinas");
@@ -79,7 +79,7 @@ public class Options extends JFrame {
 			}
 		});
 		btnVisualizarMquinas.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnVisualizarMquinas.setBounds(53, 226, 181, 29);
+		btnVisualizarMquinas.setBounds(53, 302, 181, 29);
 		desktopPane.add(btnVisualizarMquinas);
 
 		JButton btnInserirFuno = new JButton("Inserir Função");
@@ -88,7 +88,7 @@ public class Options extends JFrame {
 			}
 		});
 		btnInserirFuno.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnInserirFuno.setBounds(53, 195, 181, 29);
+		btnInserirFuno.setBounds(53, 222, 181, 29);
 		desktopPane.add(btnInserirFuno);
 
 		JButton button = new JButton("Minhas Informações");
@@ -102,7 +102,7 @@ public class Options extends JFrame {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button.setBounds(53, 256, 181, 29);
+		button.setBounds(53, 342, 181, 29);
 		desktopPane.add(button);
 
 		JLabel label = new JLabel("DeSiDeS");
@@ -133,5 +133,18 @@ public class Options extends JFrame {
 		JSeparator separator = new JSeparator();
 		separator.setBounds(6, 116, 605, 12);
 		desktopPane.add(separator);
+		
+		JButton btnVerUmaMquina = new JButton("Ver uma Máquina");
+		btnVerUmaMquina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MachineInformationEntry verMaquina = new MachineInformationEntry(idUsuario);
+				dispose();
+				verMaquina.setVisible(true);
+				verMaquina.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		btnVerUmaMquina.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnVerUmaMquina.setBounds(53, 262, 181, 29);
+		desktopPane.add(btnVerUmaMquina);
 	}
 }

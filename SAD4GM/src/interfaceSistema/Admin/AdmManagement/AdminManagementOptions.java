@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -95,6 +96,7 @@ public class AdminManagementOptions extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				AdminsList admList = new AdminsList(idAdmin);
 				dispose();
+				admList.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admList.setVisible(true);
 				admList.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -125,6 +127,7 @@ public class AdminManagementOptions extends JFrame {
 				Options admOptions = new Options(idAdmin);
 
 				dispose();
+				admOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admOptions.setVisible(true);
 				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -136,6 +139,7 @@ public class AdminManagementOptions extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				SetAdminEntry setAdmEntry = new SetAdminEntry(idAdmin);
 				dispose();
+				setAdmEntry.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setAdmEntry.setVisible(true);
 				setAdmEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -145,6 +149,7 @@ public class AdminManagementOptions extends JFrame {
 				AdminRemove admRemove = new AdminRemove(idAdmin);
 
 				dispose();
+				admRemove.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admRemove.setVisible(true);
 				admRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -154,6 +159,8 @@ public class AdminManagementOptions extends JFrame {
 				AdminInsert admInsertAdmin = new AdminInsert(idAdmin);
 
 				dispose();
+				admInsertAdmin.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				admInsertAdmin.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admInsertAdmin.setVisible(true);
 				admInsertAdmin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}

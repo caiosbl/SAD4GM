@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -93,6 +95,7 @@ public class InsertUser extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				UserManagementOptions admOptionsUser = new UserManagementOptions(idAdmin);
 				dispose();
+				admOptionsUser.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admOptionsUser.setVisible(true);
 				admOptionsUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -173,6 +176,7 @@ public class InsertUser extends JFrame {
 						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
 						UserManagementOptions userOptions = new UserManagementOptions(idAdmin);
 						dispose();
+						userOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						userOptions.setVisible(true);
 						userOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}

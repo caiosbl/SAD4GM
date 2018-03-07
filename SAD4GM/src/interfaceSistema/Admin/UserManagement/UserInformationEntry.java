@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -95,6 +97,7 @@ public class UserInformationEntry extends JFrame {
 				UserManagementOptions umgOptions = new UserManagementOptions(idAdmin);
 
 				dispose();
+				umgOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				umgOptions.setVisible(true);
 				umgOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -137,6 +140,7 @@ public class UserInformationEntry extends JFrame {
 					else {
 						UserInformation userInformation = new UserInformation(idAdmin,idField.getText().trim());
 						dispose();
+						userInformation.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						userInformation.setVisible(true);
 						userInformation.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}

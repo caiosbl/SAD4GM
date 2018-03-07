@@ -3,6 +3,7 @@ package interfaceSistema.User;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JDesktopPane;
 import java.awt.Color;
@@ -18,6 +19,7 @@ import javax.swing.JSeparator;
 
 import sistema.Sistema;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -35,7 +37,7 @@ public class InsertMaquina extends JFrame {
 	private String idUsuario;
 	private Sistema sistema = new Sistema();
 	private JTextField name;
-	private JTextField description;
+	private JTextPane description;
 	private JTextField code;
 
 	/**
@@ -104,7 +106,7 @@ public class InsertMaquina extends JFrame {
 		desktopPane.add(lblInformacoes);
 
 		JButton btnAlterarSenha = new JButton("Inserir");
-		btnAlterarSenha.setBounds(404, 318, 112, 27);
+		btnAlterarSenha.setBounds(404, 333, 112, 27);
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -165,10 +167,17 @@ public class InsertMaquina extends JFrame {
 		nome.setFont(new Font("SansSerif", Font.BOLD, 14));
 		desktopPane.add(nome);
 
-		description = new JTextField();
+		description = new JTextPane();
+		description.setEditable(true);
 		description.setBounds(251, 231, 268, 75);
-		description.setColumns(10);
-		desktopPane.add(description);
+		
+		JScrollPane jsp = new JScrollPane(description);
+	
+		jsp.setBounds(251, 231, 268, 91);
+		desktopPane.add(jsp);
+	
+		
+		
 
 		JLabel auditor = new JLabel("Descrição:");
 		auditor.setBounds(168, 258, 74, 19);

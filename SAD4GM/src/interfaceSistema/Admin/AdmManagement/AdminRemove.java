@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -95,6 +97,7 @@ public class AdminRemove extends JFrame {
 				AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
 
 				dispose();
+				admMOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admMOptions.setVisible(true);
 				admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -140,6 +143,7 @@ public class AdminRemove extends JFrame {
 
 						AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
 						dispose();
+						admMOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						admMOptions.setVisible(true);
 						admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}

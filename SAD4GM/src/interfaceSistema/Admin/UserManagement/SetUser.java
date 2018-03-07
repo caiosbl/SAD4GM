@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -89,6 +91,7 @@ public class SetUser extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				SetUserEntry setUserEntry = new SetUserEntry(idAdmin);
 				dispose();
+				setUserEntry.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setUserEntry.setVisible(true);
 				setUserEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -145,6 +148,7 @@ public class SetUser extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				SetUserPassword setUserPassword = new SetUserPassword(idAdmin, idUser);
 				dispose();
+				setUserPassword.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setUserPassword.setVisible(true);
 				setUserPassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}

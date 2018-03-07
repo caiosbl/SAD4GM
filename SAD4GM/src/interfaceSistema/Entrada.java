@@ -16,19 +16,19 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.JSeparator;
+
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import java.awt.event.ActionListener;
-import java.net.URL;
+
 import java.awt.event.ActionEvent;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
-import javax.swing.Box;
+
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
@@ -65,8 +65,7 @@ public class Entrada extends JFrame {
 	 * Create the frame.
 	 */
 	public Entrada() {
-		Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("icon/icon.jpg");
-		this.setIconImage(iconeTitulo);
+		this.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 		
 	
 		try {
@@ -87,7 +86,7 @@ public class Entrada extends JFrame {
 		}
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("SAD4GM");
+		setTitle("Sad4GM - DESIDES");
 		setResizable(false);
 		setBounds(100, 100, 621, 497);
 
@@ -116,6 +115,7 @@ public class Entrada extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				Login uOptions = new Login();
 				dispose();
+				uOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				uOptions.setVisible(true);
 				uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -123,7 +123,7 @@ public class Entrada extends JFrame {
 		button.setForeground(new Color(0, 0, 51));
 		button.setFont(new Font("Tahoma", Font.BOLD, 11));
 		button.setBackground(SystemColor.activeCaption);
-		button.setBounds(295, 266, 135, 53);
+		button.setBounds(295, 266, 124, 53);
 		desktopPane.add(button);
 
 		JButton button_1 = new JButton("");
@@ -132,6 +132,7 @@ public class Entrada extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				AdminLogin admLogin = new AdminLogin();
 				dispose();
+				admLogin.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admLogin.setVisible(true);
 				admLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}

@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -86,6 +88,7 @@ public class MyInfo extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				Options admOptions = new Options(idAdmin);
 				dispose();
+				admOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admOptions.setVisible(true);
 				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -130,6 +133,8 @@ public class MyInfo extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				SetOwnPassword admSetSenha = new SetOwnPassword(idAdmin);
 				dispose();
+			
+				admSetSenha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admSetSenha.setVisible(true);
 				admSetSenha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}

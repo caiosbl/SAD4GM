@@ -70,6 +70,59 @@ public class MaquinaTools extends DataBaseTools {
 		}
 
 	}
+	
+	public String getNome(int codigo) throws SQLException {
+		if (!hasMaquina(codigo))
+			throw new RuntimeErrorException(null, "Máquina inexistente!");
+		
+		String nome = "";
+		
+		try {
+			criaConexao();
+			PreparedStatement state = con
+					.prepareStatement("SELECT nome FROM sad4gm.maquina WHERE  codigo = ?");
+			state.setInt(1, codigo);
+
+			ResultSet resSet = state.executeQuery();
+
+			if (resSet.next()) {
+				nome += resSet.getString(1);
+			}
+			state.close();
+			fechaConexao();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return nome;
+	}
+	
+	
+	public String getDescricao(int codigo) throws SQLException {
+		if (!hasMaquina(codigo))
+			throw new RuntimeErrorException(null, "Máquina inexistente!");
+		
+		String descricao = "";
+		
+		try {
+			criaConexao();
+			PreparedStatement state = con
+					.prepareStatement("SELECT descricao FROM sad4gm.maquina WHERE  codigo = ?");
+			state.setInt(1, codigo);
+
+			ResultSet resSet = state.executeQuery();
+
+			if (resSet.next()) {
+				descricao += resSet.getString(1);
+			}
+			state.close();
+			fechaConexao();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return descricao;
+	}
 
 	public void setNome(int codigo, String nome) throws SQLException {
 		if (!hasMaquina(codigo))
@@ -151,6 +204,7 @@ public class MaquinaTools extends DataBaseTools {
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
+				infoMaquina += "---------------------------------------------------------------------------" + quebraLinha;
 				infoMaquina += "Nome: " + resSet.getString(1) + quebraLinha;
 				infoMaquina += "Código: " + resSet.getInt(2) + quebraLinha;
 				infoMaquina += "Descrição: " + resSet.getString(3) + quebraLinha;
@@ -158,9 +212,8 @@ public class MaquinaTools extends DataBaseTools {
 				dataInsercao = resSet.getDate(5);
 
 				String infoUsuarioCadastrou = uTools.getNome(idUsuario, con);
-				infoMaquina += "Cadastrada por: " + infoUsuarioCadastrou + quebraLinha;
-				infoMaquina += resSet.getString(4) + quebraLinha;
-				infoMaquina += "Cadastrada em:" + formata.format(dataInsercao);
+				infoMaquina += quebraLinha + "Cadastrada por: " + quebraLinha + infoUsuarioCadastrou;
+				infoMaquina += "Cadastrada em: " + formata.format(dataInsercao);
 				infoMaquina += quebraLinha;
 			}
 			state.close();
