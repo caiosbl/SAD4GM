@@ -76,6 +76,7 @@ public class Options extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				UserManagementOptions admUserOptions = new UserManagementOptions(idAdmin);
 				dispose();
+				admUserOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admUserOptions.setVisible(true);
 				admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -91,6 +92,7 @@ public class Options extends JFrame {
 				MachineManagementOptions admMachineOptions = new MachineManagementOptions(idAdmin);
 
 				dispose();
+				admMachineOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admMachineOptions.setVisible(true);
 				admMachineOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -106,6 +108,7 @@ public class Options extends JFrame {
 				MyInfo admMyInfo = new MyInfo(idAdmin);
 
 				dispose();
+				admMyInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admMyInfo.setVisible(true);
 				admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -121,6 +124,7 @@ public class Options extends JFrame {
 				AdminManagementOptions admAdminManagement = new AdminManagementOptions(idAdmin);
 
 				dispose();
+				admAdminManagement.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admAdminManagement.setVisible(true);
 				admAdminManagement.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

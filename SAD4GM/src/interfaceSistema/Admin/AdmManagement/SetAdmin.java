@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -89,6 +91,7 @@ public class SetAdmin extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				SetAdminEntry setAdminEntry = new SetAdminEntry(idAdmin);
 				dispose();
+				setAdminEntry.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setAdminEntry.setVisible(true);
 				setAdminEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -133,6 +136,7 @@ public class SetAdmin extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				SetAdminPassword admSetSenha = new SetAdminPassword(idAdmin, idAlterar);
 				dispose();
+				admSetSenha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admSetSenha.setVisible(true);
 				admSetSenha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}

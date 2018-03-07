@@ -47,23 +47,12 @@ public class AdminLogin extends Entrada {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AdminLogin frame = new AdminLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
 	public AdminLogin() {
+	
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -128,6 +117,7 @@ public class AdminLogin extends Entrada {
 							Options admOptions = new Options(id);
 
 							dispose();
+							admOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 							admOptions.setVisible(true);
 							admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						} else {
