@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -95,6 +97,7 @@ public class UserRemove extends JFrame {
 				UserManagementOptions userOptions = new UserManagementOptions(idAdmin);
 
 				dispose();
+				userOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				userOptions.setVisible(true);
 				userOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -138,6 +141,7 @@ public class UserRemove extends JFrame {
 
 						UserManagementOptions admUserOptions = new UserManagementOptions(idAdmin);
 						dispose();
+						admUserOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						admUserOptions.setVisible(true);
 						admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}

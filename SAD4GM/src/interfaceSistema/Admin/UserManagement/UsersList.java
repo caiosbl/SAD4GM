@@ -13,6 +13,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -96,6 +98,7 @@ public class UsersList extends JFrame {
 				UserManagementOptions uMOptions = new UserManagementOptions(idAdmin);
 
 				dispose();
+				uMOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				uMOptions.setVisible(true);
 				uMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}

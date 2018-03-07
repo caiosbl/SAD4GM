@@ -149,6 +149,7 @@ public class AdminManagementOptions extends JFrame {
 				AdminRemove admRemove = new AdminRemove(idAdmin);
 
 				dispose();
+				admRemove.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admRemove.setVisible(true);
 				admRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}

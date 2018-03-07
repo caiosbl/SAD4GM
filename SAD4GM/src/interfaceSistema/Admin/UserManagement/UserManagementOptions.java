@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -96,6 +97,7 @@ public class UserManagementOptions extends JFrame {
 				UsersList uList = new UsersList(idAdmin);
 
 				dispose();
+				uList.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				uList.setVisible(true);
 				uList.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -111,6 +113,7 @@ public class UserManagementOptions extends JFrame {
 				UserInformationEntry uInformation = new UserInformationEntry(idAdmin);
 
 				dispose();
+				uInformation.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				uInformation.setVisible(true);
 				uInformation.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -140,6 +143,7 @@ public class UserManagementOptions extends JFrame {
 				Options admOptions = new Options(idAdmin);
 
 				dispose();
+				admOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admOptions.setVisible(true);
 				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -152,6 +156,7 @@ public class UserManagementOptions extends JFrame {
 				SetUserEntry setUser = new SetUserEntry(idAdmin);
 
 				dispose();
+				setUser.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setUser.setVisible(true);
 				setUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -161,6 +166,7 @@ public class UserManagementOptions extends JFrame {
 				UserRemove userRemove = new UserRemove(idAdmin);
 
 				dispose();
+				userRemove.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				userRemove.setVisible(true);
 				userRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -170,6 +176,7 @@ public class UserManagementOptions extends JFrame {
 				InsertUser admInsertUser = new InsertUser(idAdmin);
 
 				dispose();
+				admInsertUser.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admInsertUser.setVisible(true);
 				admInsertUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}

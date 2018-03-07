@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -90,6 +92,7 @@ public class SetUserPassword extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				SetUser setUser = new SetUser(idAdmin, idUser);
 				dispose();
+				setUser.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setUser.setVisible(true);
 				setUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -146,6 +149,7 @@ public class SetUserPassword extends JFrame {
 					JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
 					SetUser setUsuario = new SetUser(idAdmin, idUsuario);
 					dispose();
+					setUsuario.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 					setUsuario.setVisible(true);
 					setUsuario.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				}
