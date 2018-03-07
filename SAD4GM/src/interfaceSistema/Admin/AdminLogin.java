@@ -33,7 +33,7 @@ import javax.swing.ImageIcon;
  * @author caiosbl
  *
  */
-public class AdminLogin extends JFrame {
+public class AdminLogin extends Entrada {
 
 	/**
 	 * 
