@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -110,6 +111,7 @@ public class MachineManagementOptions extends JFrame {
 				Options admOptions = new Options(idAdmin);
 
 				dispose();
+				admOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admOptions.setVisible(true);
 				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -122,6 +124,7 @@ public class MachineManagementOptions extends JFrame {
 				SetMachineEntry setMachine = new SetMachineEntry(idAdmin);
 
 				dispose();
+				setMachine.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setMachine.setVisible(true);
 				setMachine.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -131,6 +134,7 @@ public class MachineManagementOptions extends JFrame {
 				MachineRemove machineRemove = new MachineRemove(idAdmin);
 
 				dispose();
+				machineRemove.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				machineRemove.setVisible(true);
 				machineRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -140,6 +144,7 @@ public class MachineManagementOptions extends JFrame {
 				MachineInformationEntry machinesInformationEntry = new MachineInformationEntry(idAdmin);
 
 				dispose();
+				machinesInformationEntry.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				machinesInformationEntry.setVisible(true);
 				machinesInformationEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -150,6 +155,7 @@ public class MachineManagementOptions extends JFrame {
 				MachinesList machinesList = new MachinesList(idAdmin);
 
 				dispose();
+				machinesList.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				machinesList.setVisible(true);
 				machinesList.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}

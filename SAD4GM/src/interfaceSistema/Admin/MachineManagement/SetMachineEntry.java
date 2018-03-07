@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -95,6 +97,7 @@ public class SetMachineEntry extends JFrame {
 				MachineManagementOptions machineOptions = new MachineManagementOptions(idAdmin);
 
 				dispose();
+				machineOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				machineOptions.setVisible(true);
 				machineOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -142,6 +145,7 @@ public class SetMachineEntry extends JFrame {
 					else {
 						SetMachine setMachine = new SetMachine(idAdmin, codigo.getText().trim());
 						dispose();
+						setMachine.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						setMachine.setVisible(true);
 						setMachine.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}

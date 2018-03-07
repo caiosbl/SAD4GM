@@ -1,7 +1,6 @@
 package interfaceSistema.Admin;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -52,7 +51,6 @@ public class AdminLogin extends Entrada {
 	 * Create the frame.
 	 */
 	public AdminLogin() {
-	
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -117,7 +115,8 @@ public class AdminLogin extends Entrada {
 							Options admOptions = new Options(id);
 
 							dispose();
-							admOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+							admOptions.setIconImage(
+									new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 							admOptions.setVisible(true);
 							admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						} else {
@@ -152,17 +151,17 @@ public class AdminLogin extends Entrada {
 		button_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		button_1.setBounds(479, 389, 100, 27);
 		desktopPane.add(button_1);
-		
+
 		JLabel adminAreaIcon = new JLabel("");
 		adminAreaIcon.setIcon(new ImageIcon(AdminLogin.class.getResource("/Resources/icon/adminareaicon.png")));
 		adminAreaIcon.setBounds(408, 8, 177, 126);
 		desktopPane.add(adminAreaIcon);
-		
+
 		JLabel sad4gmIcon = new JLabel("");
 		sad4gmIcon.setIcon(new ImageIcon(AdminLogin.class.getResource("/Resources/icon/sad4logosmall.png")));
 		sad4gmIcon.setBounds(29, 40, 205, 74);
 		desktopPane.add(sad4gmIcon);
-		
+
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(AdminLogin.class.getResource("/Resources/icon/loginformback.png")));
 		label.setBounds(135, 176, 313, 180);

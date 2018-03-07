@@ -14,6 +14,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -97,6 +99,7 @@ public class MachineInformation extends JFrame {
 				MachineManagementOptions uInformation = new MachineManagementOptions(idAdmin);
 
 				dispose();
+				uInformation.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				uInformation.setVisible(true);
 				uInformation.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}

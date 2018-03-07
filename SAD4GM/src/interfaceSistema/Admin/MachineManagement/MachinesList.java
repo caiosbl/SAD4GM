@@ -13,6 +13,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -96,6 +98,7 @@ public class MachinesList extends JFrame {
 				MachineManagementOptions machineManagmentOptions = new MachineManagementOptions(idAdmin);
 
 				dispose();
+				machineManagmentOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				machineManagmentOptions.setVisible(true);
 				machineManagmentOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}

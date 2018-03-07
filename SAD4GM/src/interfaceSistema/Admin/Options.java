@@ -12,7 +12,6 @@ import interfaceSistema.Admin.MachineManagement.MachineManagementOptions;
 import interfaceSistema.Admin.UserManagement.UserManagementOptions;
 
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 
 import java.awt.Font;
@@ -26,9 +25,9 @@ import java.awt.Toolkit;
 
 import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
+
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -50,10 +49,10 @@ public class Options extends JFrame {
 	 * Create the frame.
 	 */
 	public Options(String id) {
-		
+
 		Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("icon/icon.jpg");
 		this.setIconImage(iconeTitulo);
-		
+
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -76,7 +75,8 @@ public class Options extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				UserManagementOptions admUserOptions = new UserManagementOptions(idAdmin);
 				dispose();
-				admUserOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				admUserOptions
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admUserOptions.setVisible(true);
 				admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -92,7 +92,8 @@ public class Options extends JFrame {
 				MachineManagementOptions admMachineOptions = new MachineManagementOptions(idAdmin);
 
 				dispose();
-				admMachineOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				admMachineOptions
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admMachineOptions.setVisible(true);
 				admMachineOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -124,7 +125,8 @@ public class Options extends JFrame {
 				AdminManagementOptions admAdminManagement = new AdminManagementOptions(idAdmin);
 
 				dispose();
-				admAdminManagement.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				admAdminManagement
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admAdminManagement.setVisible(true);
 				admAdminManagement.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -150,12 +152,12 @@ public class Options extends JFrame {
 		JSeparator separator = new JSeparator();
 		separator.setBounds(0, 137, 605, 12);
 		desktopPane.add(separator);
-		
+
 		JLabel label = new JLabel("");
 		label.setBounds(29, 40, 205, 74);
 		label.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/sad4logosmall.png")));
 		desktopPane.add(label);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/adminescudo.png")));
 		lblNewLabel.setBounds(237, 33, 368, 414);
