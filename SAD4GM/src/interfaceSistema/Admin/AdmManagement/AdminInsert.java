@@ -66,31 +66,14 @@ public class AdminInsert extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(43, 62, 120, 34);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(21, 17, 161, 45);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
-		JLabel lblGerenciarUsurios = new JLabel("INSERIR");
-		lblGerenciarUsurios.setBounds(377, 24, 139, 37);
-		lblGerenciarUsurios.setForeground(Color.WHITE);
-		lblGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblGerenciarUsurios);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(6, 107, 593, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
-		JButton button = new JButton("Voltar");
-		button.setBounds(492, 381, 84, 27);
-		button.addActionListener(new ActionListener() {
+		JButton voltarButton = new JButton("");
+		voltarButton.setIcon(new ImageIcon(AdminInsert.class.getResource("/Resources/icon/voltabut.png")));
+		voltarButton.setBounds(477, 405, 93, 34);
+		voltarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdminManagementOptions admOptions = new AdminManagementOptions(idAdmin);
 				dispose();
@@ -99,29 +82,12 @@ public class AdminInsert extends JFrame {
 				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		desktopPane.add(button);
+		voltarButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+		desktopPane.add(voltarButton);
 
-		JLabel lblInformaes = new JLabel("ADMIN");
-		lblInformaes.setBounds(387, 60, 109, 37);
-		lblInformaes.setForeground(Color.WHITE);
-		lblInformaes.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblInformaes);
-
-		JLabel lblNome = new JLabel("Senha:");
-		lblNome.setBounds(183, 238, 48, 19);
-		lblNome.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblNome.setForeground(Color.WHITE);
-		desktopPane.add(lblNome);
-
-		JLabel lblId = new JLabel("Repita a Senha:");
-		lblId.setBounds(122, 273, 109, 19);
-		lblId.setForeground(Color.WHITE);
-		lblId.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(lblId);
-
-		JButton btnAlterarSenha = new JButton("Inserir");
-		btnAlterarSenha.setBounds(404, 309, 112, 27);
+		JButton btnAlterarSenha = new JButton("");
+		btnAlterarSenha.setIcon(new ImageIcon(AdminInsert.class.getResource("/Resources/icon/insertbutton.png")));
+		btnAlterarSenha.setBounds(387, 343, 109, 23);
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -184,11 +150,11 @@ public class AdminInsert extends JFrame {
 		desktopPane.add(btnAlterarSenha);
 
 		novaSenha = new JPasswordField();
-		novaSenha.setBounds(248, 234, 268, 28);
+		novaSenha.setBounds(237, 269, 268, 28);
 		desktopPane.add(novaSenha);
 
 		confirmacaoSenha = new JPasswordField();
-		confirmacaoSenha.setBounds(248, 269, 268, 28);
+		confirmacaoSenha.setBounds(237, 303, 268, 28);
 		desktopPane.add(confirmacaoSenha);
 
 		JLabel lblNewLabel = new JLabel("*Mínimo 6 caracteres");
@@ -198,36 +164,32 @@ public class AdminInsert extends JFrame {
 		desktopPane.add(lblNewLabel);
 
 		nomeNewAdmin = new JTextField();
-		nomeNewAdmin.setBounds(248, 157, 268, 28);
+		nomeNewAdmin.setBounds(237, 189, 268, 28);
 		desktopPane.add(nomeNewAdmin);
 		nomeNewAdmin.setColumns(10);
 
-		JLabel lblNome_1 = new JLabel("Nome:");
-		lblNome_1.setBounds(183, 160, 44, 19);
-		lblNome_1.setForeground(Color.WHITE);
-		lblNome_1.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(lblNome_1);
-
 		idNewAdmin = new JTextField();
-		idNewAdmin.setBounds(248, 191, 268, 28);
+		idNewAdmin.setBounds(237, 224, 268, 28);
 		idNewAdmin.setColumns(10);
 		desktopPane.add(idNewAdmin);
-
-		JLabel lblId_1 = new JLabel("ID:");
-		lblId_1.setBounds(208, 195, 18, 19);
-		lblId_1.setForeground(Color.WHITE);
-		lblId_1.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(lblId_1);
-
-		JLabel lblmnimoCaracteres = new JLabel("*Mínimo 4 caracteres");
-		lblmnimoCaracteres.setBounds(248, 220, 112, 14);
-		lblmnimoCaracteres.setForeground(Color.WHITE);
-		lblmnimoCaracteres.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		desktopPane.add(lblmnimoCaracteres);
+		
+		JLabel formBackground = new JLabel("");
+		formBackground.setIcon(new ImageIcon(AdminInsert.class.getResource("/Resources/icon/insertadminback.png")));
+		formBackground.setBounds(101, 161, 418, 230);
+		desktopPane.add(formBackground);
+		
+		JLabel sad4logo = new JLabel("");
+		sad4logo.setIcon(new ImageIcon(AdminInsert.class.getResource("/Resources/icon/sad4logosmall.png")));
+		sad4logo.setBounds(29, 40, 205, 74);
+		desktopPane.add(sad4logo);
+		
+		JLabel insertAdminBanner = new JLabel("");
+		insertAdminBanner.setIcon(new ImageIcon(AdminInsert.class.getResource("/Resources/icon/inseriradminback.png")));
+		insertAdminBanner.setBounds(248, 28, 339, 86);
+		desktopPane.add(insertAdminBanner);
 	}
 
 	public boolean isEmpty(String password) {
 		return password.equals("");
 	}
-
 }

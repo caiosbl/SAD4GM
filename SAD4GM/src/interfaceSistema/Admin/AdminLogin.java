@@ -139,7 +139,8 @@ public class AdminLogin extends Entrada {
 		button.setBounds(336, 306, 70, 25);
 		desktopPane.add(button);
 
-		JButton button_1 = new JButton("Voltar");
+		JButton button_1 = new JButton("");
+		button_1.setIcon(new ImageIcon(AdminLogin.class.getResource("/Resources/icon/voltabut.png")));
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Entrada entrada = new Entrada();
@@ -149,7 +150,7 @@ public class AdminLogin extends Entrada {
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button_1.setBounds(479, 389, 100, 27);
+		button_1.setBounds(479, 389, 93, 34);
 		desktopPane.add(button_1);
 
 		JLabel adminAreaIcon = new JLabel("");
