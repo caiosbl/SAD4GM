@@ -24,8 +24,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 import java.awt.event.ActionListener;
 
 import java.awt.event.ActionEvent;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 

@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import interfaceSistema.Admin.Options;
 
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
@@ -63,35 +62,27 @@ public class AdminManagementOptions extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(43, 62, 120, 34);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(21, 17, 161, 45);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
-		JButton btnNewButton = new JButton("Inserir Admin");
-		btnNewButton.setIcon(null);
-		btnNewButton.setBounds(25, 203, 228, 27);
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBounds(0, 163, 252, 78);
+		btnNewButton.setIcon(new ImageIcon(AdminManagementOptions.class.getResource("/Resources/icon/insertadminicon.png")));
 		desktopPane.add(btnNewButton);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JButton btnVisualizarMquinas = new JButton("Remover Admin");
-		btnVisualizarMquinas.setBounds(25, 229, 228, 27);
+		JButton btnVisualizarMquinas = new JButton("");
+		btnVisualizarMquinas.setBounds(0, 247, 252, 78);
+		btnVisualizarMquinas.setIcon(new ImageIcon(AdminManagementOptions.class.getResource("/Resources/icon/removeicon.png")));
 		desktopPane.add(btnVisualizarMquinas);
 		btnVisualizarMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		JButton btnInserirFuno = new JButton("Alterar Admin");
-		btnInserirFuno.setBounds(25, 256, 228, 27);
+		btnInserirFuno.setBounds(353, 163, 252, 78);
+		btnInserirFuno.setIcon(new ImageIcon(AdminManagementOptions.class.getResource("/Resources/icon/alteraradministrador.png")));
 		desktopPane.add(btnInserirFuno);
 		btnInserirFuno.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JButton btnListarUsurios = new JButton("Listar Admins");
+		JButton btnListarUsurios = new JButton("");
+		btnListarUsurios.setBounds(353, 247, 252, 78);
+		btnListarUsurios.setIcon(new ImageIcon(AdminManagementOptions.class.getResource("/Resources/icon/listadminicon.png")));
 		btnListarUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdminsList admList = new AdminsList(idAdmin);
@@ -101,27 +92,16 @@ public class AdminManagementOptions extends JFrame {
 				admList.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnListarUsurios.setBounds(25, 284, 228, 27);
 		desktopPane.add(btnListarUsurios);
 		btnListarUsurios.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JLabel lblGerenciarUsurios = new JLabel("GERENCIADOR");
-		lblGerenciarUsurios.setBounds(329, 17, 227, 37);
-		lblGerenciarUsurios.setForeground(Color.WHITE);
-		lblGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblGerenciarUsurios);
-
-		JLabel lblDeUsurios = new JLabel("DE ADMINS");
-		lblDeUsurios.setForeground(Color.WHITE);
-		lblDeUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblDeUsurios.setBounds(358, 49, 178, 37);
-		desktopPane.add(lblDeUsurios);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(6, 107, 593, 12);
+		separator.setBounds(0, 137, 605, 12);
 		desktopPane.add(separator);
 
-		JButton button = new JButton("Voltar");
+		JButton button = new JButton("");
+		button.setBounds(465, 383, 93, 34);
+		button.setIcon(new ImageIcon(AdminManagementOptions.class.getResource("/Resources/icon/voltabut.png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Options admOptions = new Options(idAdmin);
@@ -133,8 +113,17 @@ public class AdminManagementOptions extends JFrame {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBounds(511, 381, 65, 27);
 		desktopPane.add(button);
+		
+		JLabel sad4logo = new JLabel("");
+		sad4logo.setBounds(29, 40, 205, 74);
+		sad4logo.setIcon(new ImageIcon(AdminManagementOptions.class.getResource("/Resources/icon/sad4logosmall.png")));
+		desktopPane.add(sad4logo);
+		
+		JLabel gerenciadorname = new JLabel("");
+		gerenciadorname.setIcon(new ImageIcon(AdminManagementOptions.class.getResource("/Resources/icon/gerenciadoradminsname.png")));
+		gerenciadorname.setBounds(295, 40, 283, 72);
+		desktopPane.add(gerenciadorname);
 		btnInserirFuno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SetAdminEntry setAdmEntry = new SetAdminEntry(idAdmin);
@@ -166,5 +155,4 @@ public class AdminManagementOptions extends JFrame {
 			}
 		});
 	}
-
 }
