@@ -1,1 +1,0 @@
-ALTER TABLE sad4gm.maquina alter COLUMN descricao VARCHAR(400);
