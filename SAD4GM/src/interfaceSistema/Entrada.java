@@ -43,6 +43,7 @@ public class Entrada extends JFrame {
 	 */
 	private static final long serialVersionUID = -7742771395792137094L;
 	private JPanel contentPane;
+	@SuppressWarnings("unused")
 	private static ServerSocket s;
 
 	/**
