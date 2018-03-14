@@ -13,6 +13,7 @@ import interfaceSistema.User.Login;
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -22,7 +23,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import java.awt.event.ActionListener;
-
+import java.net.ServerSocket;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
@@ -42,11 +43,16 @@ public class Entrada extends JFrame {
 	 */
 	private static final long serialVersionUID = -7742771395792137094L;
 	private JPanel contentPane;
+	private static ServerSocket s;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		try {
+		    s = new ServerSocket(9581);
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -57,6 +63,10 @@ public class Entrada extends JFrame {
 				}
 			}
 		});
+		
+		} catch (Exception e) {
+		    JOptionPane.showMessageDialog(null, "A aplicação já está em execução!");
+		}
 	}
 
 	/**

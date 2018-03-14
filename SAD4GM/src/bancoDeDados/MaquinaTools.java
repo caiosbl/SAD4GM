@@ -34,7 +34,7 @@ public class MaquinaTools extends DataBaseTools {
 		try {
 
 			final String INSERIR = "INSERT INTO sad4gm.maquina (nome, codigo,descricao,idusuario,dataInsercao) VALUES (?,?,?,?,?)";
-			criaConexao();
+			openConnection();
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
 			stmt.setString(1, maquina.getNome());
 			stmt.setInt(2, maquina.getCodigo());
@@ -43,7 +43,7 @@ public class MaquinaTools extends DataBaseTools {
 			stmt.setDate(5, java.sql.Date.valueOf(java.time.LocalDate.now()));
 			stmt.execute();
 			stmt.close();
-			fechaConexao();
+			closeConnection();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,12 +58,12 @@ public class MaquinaTools extends DataBaseTools {
 		try {
 
 			final String DELETE = "DELETE FROM sad4gm.maquina where codigo = ?";
-			criaConexao();
+			openConnection();
 			PreparedStatement stmt = con.prepareStatement(DELETE);
 			stmt.setInt(1, codigo);
 			stmt.execute();
 			stmt.close();
-			fechaConexao();
+			closeConnection();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -78,7 +78,7 @@ public class MaquinaTools extends DataBaseTools {
 		String nome = "";
 		
 		try {
-			criaConexao();
+			openConnection();
 			PreparedStatement state = con
 					.prepareStatement("SELECT nome FROM sad4gm.maquina WHERE  codigo = ?");
 			state.setInt(1, codigo);
@@ -89,7 +89,7 @@ public class MaquinaTools extends DataBaseTools {
 				nome += resSet.getString(1);
 			}
 			state.close();
-			fechaConexao();
+			closeConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -105,7 +105,7 @@ public class MaquinaTools extends DataBaseTools {
 		String descricao = "";
 		
 		try {
-			criaConexao();
+			openConnection();
 			PreparedStatement state = con
 					.prepareStatement("SELECT descricao FROM sad4gm.maquina WHERE  codigo = ?");
 			state.setInt(1, codigo);
@@ -116,7 +116,7 @@ public class MaquinaTools extends DataBaseTools {
 				descricao += resSet.getString(1);
 			}
 			state.close();
-			fechaConexao();
+			closeConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -131,13 +131,13 @@ public class MaquinaTools extends DataBaseTools {
 		try {
 
 			final String UPDATE = "UPDATE  sad4gm.maquina SET nome = ? WHERE codigo = ?";
-			criaConexao();
+			openConnection();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, nome);
 			stmt.setInt(2, codigo);
 			stmt.execute();
 			stmt.close();
-			fechaConexao();
+			closeConnection();
 
 		} catch (Exception e) {
 			throw new NullPointerException();
@@ -152,13 +152,13 @@ public class MaquinaTools extends DataBaseTools {
 		try {
 
 			final String UPDATE = "UPDATE  sad4gm.maquina SET codigo = ? WHERE codigo = ?";
-			criaConexao();
+			openConnection();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setInt(1, novoCodigo);
 			stmt.setInt(2, codigo);
 			stmt.execute();
 			stmt.close();
-			fechaConexao();
+			closeConnection();
 
 		} catch (Exception e) {
 			throw new NullPointerException();
@@ -172,13 +172,13 @@ public class MaquinaTools extends DataBaseTools {
 		try {
 
 			final String UPDATE = "UPDATE  sad4gm.maquina SET descricao = ? WHERE codigo = ?";
-			criaConexao();
+			openConnection();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, descricao);
 			stmt.setInt(2, codigo);
 			stmt.execute();
 			stmt.close();
-			fechaConexao();
+			closeConnection();
 
 		} catch (Exception e) {
 			throw new NullPointerException();
@@ -196,7 +196,7 @@ public class MaquinaTools extends DataBaseTools {
 		Date dataInsercao = null;
 
 		try {
-			criaConexao();
+			openConnection();
 			PreparedStatement state = con.prepareStatement(
 					"SELECT  nome,codigo,descricao,idusuario,dataInsercao FROM sad4gm.maquina WHERE codigo = ?");
 			state.setInt(1, codigo);
@@ -218,7 +218,7 @@ public class MaquinaTools extends DataBaseTools {
 			}
 			state.close();
 
-			fechaConexao();
+			closeConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -234,7 +234,7 @@ public class MaquinaTools extends DataBaseTools {
 		Date dataInsercao = null;
 
 		try {
-			criaConexao();
+			openConnection();
 			PreparedStatement state = con
 					.prepareStatement("SELECT nome,codigo,descricao,idusuario,dataInsercao FROM sad4gm.maquina");
 
@@ -255,7 +255,7 @@ public class MaquinaTools extends DataBaseTools {
 
 			}
 			state.close();
-			fechaConexao();
+			closeConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -266,7 +266,7 @@ public class MaquinaTools extends DataBaseTools {
 
 	public boolean hasMaquina(int codigo) throws SQLException {
 		boolean has;
-		criaConexao();
+		openConnection();
 		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.maquina WHERE codigo = ?");
 		state.setInt(1, codigo);
 		ResultSet ResSet = state.executeQuery();
@@ -276,7 +276,7 @@ public class MaquinaTools extends DataBaseTools {
 		else
 			has = false;
 		state.close();
-		fechaConexao();
+		closeConnection();
 
 		return has;
 	}
