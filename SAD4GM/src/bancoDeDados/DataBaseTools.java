@@ -18,60 +18,74 @@ public abstract class DataBaseTools {
 
 	protected Connection con;
 
-	protected void criaConexao() throws SQLException {
+	protected void openConnection() throws SQLException {
 
 		try {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 			con = DriverManager.getConnection("jdbc:derby:Sad4gmDatabase;");
 		} catch (Exception e) {
-			inicializaBancoDados();
+			initDatabase();
 		}
 	}
 
-	private void inicializaBancoDados() throws SQLException {
+	private void initDatabase() throws SQLException {
 		try {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 			con = DriverManager.getConnection("jdbc:derby:Sad4gmDatabase; create = true");
 
-			// Criando Schema
-			PreparedStatement inicializa = con.prepareStatement("create SCHEMA sad4gm");
-
-			// Criando Tabela Admin
-			inicializa.execute();
-			inicializa = con.prepareStatement("create table sad4gm.admin(\r\n" + "nome long VARCHAR,\r\n"
-					+ "id long VARCHAR,\r\n" + "senha long VARCHAR\r\n" + ")");
-			inicializa.execute();
-			
-			String senhaDefault = encodingPassword("rootdesides");
-
-			// Inserindo Admin Default
-			inicializa = con.prepareStatement(
-					"INSERT INTO sad4gm.admin (nome,senha,id) VALUES ('Desides Admin',?,'admin')");
-			inicializa.setString(1, senhaDefault);
-			inicializa.execute();
-
-			// Criando Tabela Usuário
-			inicializa = con.prepareStatement(
-					"create table sad4gm.usuario(\r\n" + "nome long VARCHAR,\r\n" + "id long VARCHAR,\r\n"
-							+ "senha VARCHAR(200),\r\n" + "auditor long VARCHAR,\r\n" + "ativo INTEGER)");
-
-			inicializa.execute();
-
-			// Criando Tabela Máquinas
-
-			inicializa = con.prepareStatement("create table sad4gm.maquina(\r\n" + "nome VARCHAR(20) NOT NULL,\r\n"
-					+ "codigo INTEGER NOT NULL,\r\n" + "descricao VARCHAR(20)NOT NULL)");
-
-			inicializa.execute();
+	
+			createSchema(con);
+			createAdminTable(con);
+			insertAdminDefault(con);
+			createUserTable(con);
+			createMachineTable(con);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
+	
+	private void createSchema(Connection con) throws SQLException {
+		PreparedStatement statament = con.prepareStatement("create SCHEMA sad4gm");
+		statament.execute();
+	}
+
+	private void createAdminTable(Connection con) throws SQLException {
+		PreparedStatement statement = con.prepareStatement("create table sad4gm.admin(\r\n" + "nome long VARCHAR,\r\n"
+				+ "id long VARCHAR,\r\n" + "senha long VARCHAR\r\n" + ")");
+		statement.execute();
+	}
+
+	private void insertAdminDefault(Connection con) throws UnsupportedEncodingException, Exception {
+		String senhaDefault = encodePassword("rootdesides");
+
+		PreparedStatement statement = con
+				.prepareStatement("INSERT INTO sad4gm.admin (nome,senha,id) VALUES ('Desides Admin',?,'admin')");
+
+		statement.setString(1, senhaDefault);
+		statement.execute();
+	}
+
+	private void createUserTable(Connection con) throws SQLException {
+
+		PreparedStatement statement = con.prepareStatement("create table sad4gm.usuario(\r\n" + "nome long VARCHAR,\r\n"
+				+ "id long VARCHAR,\r\n" + "senha VARCHAR(200),\r\n" + "auditor long VARCHAR,\r\n" + "ativo INTEGER)");
+
+		statement.execute();
+	}
+	
+	private void createMachineTable(Connection con) throws SQLException {
+
+		PreparedStatement statement = con.prepareStatement(
+				"create table sad4gm.maquina(\r\n" + "nome long VARCHAR,\r\n" + "idusuario long VARCHAR,\r\n"
+						+ "datainsercao date,\r\n" + "codigo INTEGER NOT NULL,\r\n" + "descricao long VARCHAR)");
+
+		statement.execute();
+	}
 
 	// Criptografa as Senhas em SHA-2
-	public String encodingPassword(String password) throws UnsupportedEncodingException, Exception {
+	public String encodePassword(String password) throws UnsupportedEncodingException, Exception {
 		MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
 		byte messageDigest[] = algorithm.digest(password.getBytes("UTF-8"));
 
@@ -84,7 +98,7 @@ public abstract class DataBaseTools {
 		return hashPassword;
 	}
 
-	protected void fechaConexao() {
+	protected void closeConnection() {
 		try {
 			if (con != null)
 				con.close();
