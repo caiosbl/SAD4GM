@@ -26,7 +26,7 @@ public class ControllerAdmins {
 		try {
 			ValidaUsuario.validaNome(nome);
 			ValidaUsuario.validaId(id);
-			admTools.inserir(nome, senha, id);
+			admTools.insert(nome, senha, id);
 			status = "Admin CADASTRADO COM SUCESSO!";
 
 		} catch (NullPointerException e) {
@@ -60,7 +60,7 @@ public class ControllerAdmins {
 
 		try {
 			ValidaUsuario.validaNome(nome);
-			admTools.setNome(nome, id);
+			admTools.setName(nome, id);
 			status = "Nome alterado com Sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -88,7 +88,7 @@ public class ControllerAdmins {
 
 		try {
 
-			admTools.setSenha(id, senha);
+			admTools.setPassword(id, senha);
 			status = "Senha alterada com Sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -112,7 +112,7 @@ public class ControllerAdmins {
 	public String getNome(String id) {
 		String nome;
 		try {
-			nome = admTools.getNome(id);
+			nome = admTools.getName(id);
 		} catch (Exception e) {
 			nome = e.getMessage();
 		}
@@ -121,7 +121,7 @@ public class ControllerAdmins {
 	}
 
 	public boolean autentica(String id, String senha) throws SQLException {
-		return admTools.autentica(id, senha);
+		return admTools.authenticate(id, senha);
 
 	}
 
@@ -130,6 +130,6 @@ public class ControllerAdmins {
 	}
 
 	public String getListagemAdmins() {
-		return admTools.listarAdmins();
+		return admTools.listAdmins();
 	}
 }

@@ -70,17 +70,16 @@ public class MaquinaTools extends DataBaseTools {
 		}
 
 	}
-	
+
 	public String getNome(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
-		
+
 		String nome = "";
-		
+
 		try {
 			openConnection();
-			PreparedStatement state = con
-					.prepareStatement("SELECT nome FROM sad4gm.maquina WHERE  codigo = ?");
+			PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.maquina WHERE  codigo = ?");
 			state.setInt(1, codigo);
 
 			ResultSet resSet = state.executeQuery();
@@ -93,21 +92,19 @@ public class MaquinaTools extends DataBaseTools {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return nome;
 	}
-	
-	
+
 	public String getDescricao(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
-		
+
 		String descricao = "";
-		
+
 		try {
 			openConnection();
-			PreparedStatement state = con
-					.prepareStatement("SELECT descricao FROM sad4gm.maquina WHERE  codigo = ?");
+			PreparedStatement state = con.prepareStatement("SELECT descricao FROM sad4gm.maquina WHERE  codigo = ?");
 			state.setInt(1, codigo);
 
 			ResultSet resSet = state.executeQuery();
@@ -120,7 +117,7 @@ public class MaquinaTools extends DataBaseTools {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return descricao;
 	}
 
@@ -204,7 +201,8 @@ public class MaquinaTools extends DataBaseTools {
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
-				infoMaquina += "---------------------------------------------------------------------------" + quebraLinha;
+				infoMaquina += "---------------------------------------------------------------------------"
+						+ quebraLinha;
 				infoMaquina += "Nome: " + resSet.getString(1) + quebraLinha;
 				infoMaquina += "Código: " + resSet.getInt(2) + quebraLinha;
 				infoMaquina += "Descrição: " + resSet.getString(3) + quebraLinha;

@@ -6,10 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import interfaceSistema.Entrada;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -29,7 +29,7 @@ import javax.swing.JTextField;
  * @author caiosbl
  *
  */
-public class AdminRemove extends JFrame {
+public class AdminRemove extends Entrada {
 
 	/**
 	 * 
@@ -63,35 +63,12 @@ public class AdminRemove extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(20, 60, 141, 45);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(10, 11, 210, 73);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 111, 605, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("REMOVER");
-		lblRemover.setForeground(Color.WHITE);
-		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblRemover.setBounds(286, 23, 150, 37);
-		desktopPane.add(lblRemover);
-
-		JLabel lblAdmin = new JLabel("ADMIN");
-		lblAdmin.setForeground(Color.WHITE);
-		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(308, 63, 109, 37);
-		desktopPane.add(lblAdmin);
-
-		JButton button = new JButton("Voltar");
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(AdminRemove.class.getResource("/Resources/icon/voltabut.png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
@@ -103,7 +80,7 @@ public class AdminRemove extends JFrame {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBounds(506, 388, 65, 27);
+		button.setBounds(478, 398, 93, 34);
 		desktopPane.add(button);
 
 		idField = new JTextField();
@@ -111,13 +88,8 @@ public class AdminRemove extends JFrame {
 		desktopPane.add(idField);
 		idField.setColumns(10);
 
-		JLabel lblIdDoAdmin = new JLabel("ID do Admin a ser removido:");
-		lblIdDoAdmin.setForeground(Color.WHITE);
-		lblIdDoAdmin.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblIdDoAdmin.setBounds(204, 224, 197, 19);
-		desktopPane.add(lblIdDoAdmin);
-
-		JButton btnRemover = new JButton("Remover");
+		JButton btnRemover = new JButton("");
+		btnRemover.setIcon(new ImageIcon(AdminRemove.class.getResource("/Resources/icon/removebutton.png")));
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (idField.getText().trim().length() < 4) {
@@ -153,6 +125,21 @@ public class AdminRemove extends JFrame {
 		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnRemover.setBounds(311, 280, 95, 27);
 		desktopPane.add(btnRemover);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(AdminRemove.class.getResource("/Resources/icon/backremove.png")));
+		label.setBounds(145, 175, 313, 180);
+		desktopPane.add(label);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(AdminRemove.class.getResource("/Resources/icon/sad4logosmall.png")));
+		lblNewLabel.setBounds(29, 40, 205, 74);
+		desktopPane.add(lblNewLabel);
+		
+		JLabel removeAdminBanner = new JLabel("");
+		removeAdminBanner.setIcon(new ImageIcon(AdminRemove.class.getResource("/Resources/icon/removebanner.png")));
+		removeAdminBanner.setBounds(326, 36, 205, 78);
+		desktopPane.add(removeAdminBanner);
 
 	}
 }
