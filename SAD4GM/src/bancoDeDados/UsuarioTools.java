@@ -24,7 +24,7 @@ public class UsuarioTools extends DataBaseTools {
 			throw new RuntimeErrorException(null, "ID já cadastrado!");
 
 		try {
-			
+
 			String encodingPassword = encodePassword(usuario.getSenha());
 
 			final String INSERIR = "INSERT INTO sad4gm.usuario (nome, id, senha,auditor,ativo) VALUES (?,?,?,?,?)";
@@ -124,7 +124,7 @@ public class UsuarioTools extends DataBaseTools {
 			throw new RuntimeErrorException(null, "Usuário inativo!");
 
 		try {
-			
+
 			String encodingPassword = encodePassword(senha);
 
 			final String UPDATE = "UPDATE  sad4gm.usuario SET senha = ? WHERE  CAST(id AS VARCHAR(128)) = ?";
@@ -246,7 +246,7 @@ public class UsuarioTools extends DataBaseTools {
 			ResultSet resSet = state.executeQuery();
 
 			if (resSet.next()) {
-				descricao += String.format("Nome: %s  %sID: %s", resSet.getString(1),quebraLinha, id) + quebraLinha;
+				descricao += String.format("Nome: %s  %sID: %s", resSet.getString(1), quebraLinha, id) + quebraLinha;
 
 			}
 			state.close();
@@ -293,7 +293,7 @@ public class UsuarioTools extends DataBaseTools {
 		else if (!isAtivo(id))
 			return false;
 		try {
-			
+
 			String encodingPassword = encodePassword(senha);
 			openConnection();
 			PreparedStatement state = con.prepareStatement(

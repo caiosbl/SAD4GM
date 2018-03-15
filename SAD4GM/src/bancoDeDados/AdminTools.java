@@ -1,3 +1,4 @@
+
 package bancoDeDados;
 
 import java.sql.PreparedStatement;
@@ -7,8 +8,7 @@ import java.sql.SQLException;
 import javax.management.RuntimeErrorException;
 
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -16,19 +16,19 @@ import javax.management.RuntimeErrorException;
 
 public class AdminTools extends DataBaseTools {
 
-	public void inserir(String nome, String senha, String id) throws SQLException {
+	public void insert(String name, String password, String id) throws SQLException {
 
 		if (hasAdmin(id))
 			throw new RuntimeErrorException(null, "ID já cadastrado!");
 
 		try {
-			
-			String encodingPassword = encodePassword(senha);
+
+			String encodingPassword = encodePassword(password);
 
 			final String INSERIR = "INSERT INTO sad4gm.admin (nome, senha,id) VALUES (?,?,?)";
 			openConnection();
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
-			stmt.setString(1, nome);
+			stmt.setString(1, name);
 			stmt.setString(2, encodingPassword);
 			stmt.setString(3, id);
 			stmt.execute();
@@ -62,7 +62,7 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public void setNome(String nome, String id) throws SQLException {
+	public void setName(String name, String id) throws SQLException {
 
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -72,7 +72,7 @@ public class AdminTools extends DataBaseTools {
 			final String UPDATE = "UPDATE  sad4gm.admin SET nome = ? WHERE CAST(id AS VARCHAR(128))= ?";
 			openConnection();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
-			stmt.setString(1, nome);
+			stmt.setString(1, name);
 			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();
@@ -84,7 +84,7 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public void setId(String id, String novoId) throws SQLException {
+	public void setId(String id, String newId) throws SQLException {
 
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -94,7 +94,7 @@ public class AdminTools extends DataBaseTools {
 			final String UPDATE = "UPDATE  sad4gm.admin SET id = ? WHERE CAST(id AS VARCHAR(128))  = ?";
 			openConnection();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
-			stmt.setString(1, novoId);
+			stmt.setString(1, newId);
 			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();
@@ -106,13 +106,13 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public void setSenha(String id, String senha) throws SQLException {
+	public void setPassword(String id, String senha) throws SQLException {
 
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
 
 		try {
-			
+
 			String encodingPassword = encodePassword(senha);
 
 			final String UPDATE = "UPDATE  sad4gm.admin SET senha = ? WHERE CAST(id AS VARCHAR(128)) = ?";
@@ -135,18 +135,19 @@ public class AdminTools extends DataBaseTools {
 			throw new RuntimeErrorException(null, "Admin inexistente!");
 
 		String infoAdmin = "";
-		String quebraLinha = System.lineSeparator();
+		String breakLine = System.lineSeparator();
 
 		try {
 			openConnection();
-			PreparedStatement state = con.prepareStatement("SELECT  nome,id FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ?");
+			PreparedStatement state = con
+					.prepareStatement("SELECT  nome,id FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ?");
 			state.setString(1, id);
 
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
-				infoAdmin += "Nome: " + resSet.getString(1) + quebraLinha;
-				infoAdmin += "Id: " + resSet.getString(2) + quebraLinha;
+				infoAdmin += "Nome: " + resSet.getString(1) + breakLine;
+				infoAdmin += "Id: " + resSet.getString(2) + breakLine;
 			}
 			state.close();
 			closeConnection();
@@ -158,22 +159,23 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public String getNome(String id) throws SQLException {
+	public String getName(String id) throws SQLException {
 
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
 
-		String nome = "";
+		String name = "";
 
 		try {
 			openConnection();
-			PreparedStatement state = con.prepareStatement("SELECT  nome FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ?");
+			PreparedStatement state = con
+					.prepareStatement("SELECT  nome FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ?");
 			state.setString(1, id);
 
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
-				nome = resSet.getString(1);
+				name = resSet.getString(1);
 			}
 			state.close();
 			closeConnection();
@@ -181,29 +183,30 @@ public class AdminTools extends DataBaseTools {
 			e.printStackTrace();
 		}
 
-		return nome;
+		return name;
 
 	}
 
-	public boolean autentica(String id, String senha) throws SQLException {
-		
-		boolean valido = false;
+	public boolean authenticate(String id, String password) throws SQLException {
+
+		boolean valid = false;
 
 		if (!hasAdmin(id))
 			return false;
+		
 		try {
-			
-			String encodingPassword = encodePassword(senha);
+
+			String encodingPassword = encodePassword(password);
 			openConnection();
-			PreparedStatement state = con
-					.prepareStatement("SELECT id FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ? AND CAST(senha AS VARCHAR(128)) =  ?");
+			PreparedStatement state = con.prepareStatement(
+					"SELECT id FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ? AND CAST(senha AS VARCHAR(128)) =  ?");
 			state.setString(1, id);
 			state.setString(2, encodingPassword);
 
 			ResultSet resSet = state.executeQuery();
 
 			if (resSet.next())
-				valido = true;
+				valid = true;
 
 			state.close();
 			closeConnection();
@@ -211,14 +214,15 @@ public class AdminTools extends DataBaseTools {
 			e.printStackTrace();
 		}
 
-		return valido;
+		return valid;
 
 	}
 
 	public boolean hasAdmin(String id) throws SQLException {
 		boolean has;
 		openConnection();
-		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ?");
+		PreparedStatement state = con
+				.prepareStatement("SELECT nome FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ?");
 		state.setString(1, id);
 		ResultSet resSet = state.executeQuery();
 
@@ -233,9 +237,9 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public String listarAdmins() {
-		String listagem = "";
-		String quebraLinha = System.lineSeparator();
+	public String listAdmins() {
+		String list = "";
+		String breakLine = System.lineSeparator();
 
 		try {
 			openConnection();
@@ -244,9 +248,9 @@ public class AdminTools extends DataBaseTools {
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
-				listagem += "----------------------------------------------------------------------------";
-				listagem += quebraLinha + String.format("Nome: %s", resSet.getString(1)) + quebraLinha
-						+ String.format("ID: %s", resSet.getString(2)) + quebraLinha;
+				list += "----------------------------------------------------------------------------";
+				list += breakLine + String.format("Nome: %s", resSet.getString(1)) + breakLine
+						+ String.format("ID: %s", resSet.getString(2)) + breakLine;
 			}
 			state.close();
 			closeConnection();
@@ -254,6 +258,6 @@ public class AdminTools extends DataBaseTools {
 			e.printStackTrace();
 		}
 
-		return listagem;
+		return list;
 	}
 }

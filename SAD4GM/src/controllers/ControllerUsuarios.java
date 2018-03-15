@@ -2,14 +2,6 @@ package controllers;
 
 import java.sql.SQLException;
 
-/**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES
- * SISTEMA SAD4GM
- * 
- * @author caiosbl
- *
- */
-
 import bancoDeDados.UsuarioTools;
 import entidades.Usuario;
 import validadorInformacoes.ValidaUsuario;

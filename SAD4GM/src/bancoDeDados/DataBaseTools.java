@@ -33,7 +33,6 @@ public abstract class DataBaseTools {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 			con = DriverManager.getConnection("jdbc:derby:Sad4gmDatabase; create = true");
 
-	
 			createSchema(con);
 			createAdminTable(con);
 			insertAdminDefault(con);
@@ -45,7 +44,7 @@ public abstract class DataBaseTools {
 		}
 
 	}
-	
+
 	private void createSchema(Connection con) throws SQLException {
 		PreparedStatement statament = con.prepareStatement("create SCHEMA sad4gm");
 		statament.execute();
@@ -74,7 +73,7 @@ public abstract class DataBaseTools {
 
 		statement.execute();
 	}
-	
+
 	private void createMachineTable(Connection con) throws SQLException {
 
 		PreparedStatement statement = con.prepareStatement(
