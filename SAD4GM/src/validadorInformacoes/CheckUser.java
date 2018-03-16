@@ -7,9 +7,9 @@ package validadorInformacoes;
  *
  */
 
-public class ValidaUsuario {
+public class CheckUser {
 
-	public static void validaNome(String nome) {
+	public static void validateName(String nome) {
 		if (nome == null) {
 			throw new NullPointerException("NOME NULO INVÁLIDO!");
 		} else if (nome.trim().equals("")) {
@@ -18,7 +18,7 @@ public class ValidaUsuario {
 
 	}
 
-	public static void validaId(String id) {
+	public static void validateId(String id) {
 		if (id == null) {
 			throw new NullPointerException("ID NULO INVÁLIDO!");
 		} else if (id.trim().equals("")) {

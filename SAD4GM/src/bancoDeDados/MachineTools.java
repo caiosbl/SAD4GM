@@ -18,16 +18,16 @@ import entidades.Maquina;
  *
  */
 
-public class MaquinaTools extends DataBaseTools {
-	private UsuarioTools uTools;
+public class MachineTools extends DataBaseTools {
+	private UserTools uTools;
 	private String data = "dd/MM/yyyy";
 	SimpleDateFormat formata = new SimpleDateFormat(data);
 
-	public MaquinaTools() {
-		uTools = new UsuarioTools();
+	public MachineTools() {
+		uTools = new UserTools();
 	}
 
-	public void inserir(Maquina maquina) throws SQLException {
+	public void insert(Maquina maquina) throws SQLException {
 		if (hasMaquina(maquina.getCodigo()))
 			throw new RuntimeErrorException(null, "Código já cadastrado!");
 

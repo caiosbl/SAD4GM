@@ -1,7 +1,7 @@
 package entidades;
 
 import validadorInformacoes.ValidaMaquina;
-import validadorInformacoes.ValidaUsuario;
+import validadorInformacoes.CheckUser;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
@@ -24,7 +24,7 @@ public class Maquina {
 		this.codigo = parseCodigo(codigo);
 		ValidaMaquina.validaDescricao(descricao);
 		this.descricao = descricao;
-		ValidaUsuario.validaId(idUsuario);
+		CheckUser.validateId(idUsuario);
 		this.idUsuario = idUsuario;
 	}
 

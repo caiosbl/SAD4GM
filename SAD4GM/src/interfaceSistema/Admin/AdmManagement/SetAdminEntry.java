@@ -63,33 +63,9 @@ public class SetAdminEntry extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(20, 60, 141, 45);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(10, 11, 210, 73);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 111, 605, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
-
-		JLabel lblRemover = new JLabel("ALTERAR");
-		lblRemover.setForeground(Color.WHITE);
-		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblRemover.setBounds(286, 23, 150, 37);
-		desktopPane.add(lblRemover);
-
-		JLabel lblAdmin = new JLabel("ADMIN");
-		lblAdmin.setForeground(Color.WHITE);
-		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(308, 63, 109, 37);
-		desktopPane.add(lblAdmin);
 
 		JButton button = new JButton("Voltar");
 		button.addActionListener(new ActionListener() {
@@ -111,13 +87,8 @@ public class SetAdminEntry extends JFrame {
 		desktopPane.add(idField);
 		idField.setColumns(10);
 
-		JLabel lblIdDoAdmin = new JLabel("ID do Admin a ser alterado:");
-		lblIdDoAdmin.setForeground(Color.WHITE);
-		lblIdDoAdmin.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblIdDoAdmin.setBounds(204, 224, 197, 19);
-		desktopPane.add(lblIdDoAdmin);
-
-		JButton btnRemover = new JButton("Alterar");
+		JButton btnRemover = new JButton("");
+		btnRemover.setIcon(new ImageIcon(SetAdminEntry.class.getResource("/Resources/icon/alterarbutton.png")));
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (idField.getText().trim().length() < 4) {
@@ -151,8 +122,23 @@ public class SetAdminEntry extends JFrame {
 			}
 		});
 		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnRemover.setBounds(311, 280, 95, 27);
+		btnRemover.setBounds(332, 279, 74, 21);
 		desktopPane.add(btnRemover);
+		
+		JLabel sad4Logo = new JLabel("");
+		sad4Logo.setIcon(new ImageIcon(SetAdminEntry.class.getResource("/Resources/icon/sad4logosmall.png")));
+		sad4Logo.setBounds(29, 40, 205, 74);
+		desktopPane.add(sad4Logo);
+		
+		JLabel formBackground = new JLabel("");
+		formBackground.setIcon(new ImageIcon(SetAdminEntry.class.getResource("/Resources/icon/alteraradminformback.png")));
+		formBackground.setBounds(150, 171, 294, 184);
+		desktopPane.add(formBackground);
+		
+		JLabel banner = new JLabel("");
+		banner.setIcon(new ImageIcon(SetAdminEntry.class.getResource("/Resources/icon/alteraradminbanner.png")));
+		banner.setBounds(306, 27, 210, 87);
+		desktopPane.add(banner);
 
 	}
 }

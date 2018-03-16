@@ -2,9 +2,9 @@ package controllers;
 
 import java.sql.SQLException;
 
-import bancoDeDados.UsuarioTools;
+import bancoDeDados.UserTools;
 import entidades.Usuario;
-import validadorInformacoes.ValidaUsuario;
+import validadorInformacoes.CheckUser;
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
  * SISTEMA SAD4GM
@@ -12,11 +12,11 @@ import validadorInformacoes.ValidaUsuario;
  * @author caiosbl
  *
  */
-public class ControllerUsuarios {
+public class Users {
 
-	private UsuarioTools uTools;
+	private UserTools uTools;
 
-	public ControllerUsuarios(UsuarioTools uTools) {
+	public Users(UserTools uTools) {
 		this.uTools = uTools;
 	}
 
@@ -56,7 +56,7 @@ public class ControllerUsuarios {
 	public String setNome(String id, String nome) {
 		String status;
 		try {
-			ValidaUsuario.validaNome(nome);
+			CheckUser.validateName(nome);
 		} catch (IllegalArgumentException e) {
 			status = "Nome Inválido!";
 			return status;
@@ -78,7 +78,7 @@ public class ControllerUsuarios {
 	public String setId(String id, String novoId) {
 		String status;
 		try {
-			ValidaUsuario.validaId(novoId);
+			CheckUser.validateId(novoId);
 		} catch (IllegalArgumentException e) {
 			status = "ID Inválido!";
 			return status;
@@ -100,7 +100,7 @@ public class ControllerUsuarios {
 	public String setAuditor(String id, String auditor) {
 		String status;
 		try {
-			ValidaUsuario.validaAuditor(auditor);
+			CheckUser.validaAuditor(auditor);
 		} catch (IllegalArgumentException e) {
 			status = "Auditor Inválido!";
 			return status;
