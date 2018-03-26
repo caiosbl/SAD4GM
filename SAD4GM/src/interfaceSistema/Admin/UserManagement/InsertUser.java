@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -21,9 +20,9 @@ import javax.swing.JSeparator;
 import sistema.Sistema;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -67,62 +66,29 @@ public class InsertUser extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(43, 62, 120, 34);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(21, 17, 161, 45);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
-		JLabel lblGerenciarUsurios = new JLabel("INSERIR");
-		lblGerenciarUsurios.setBounds(377, 24, 139, 37);
-		lblGerenciarUsurios.setForeground(Color.WHITE);
-		lblGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblGerenciarUsurios);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(6, 107, 593, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
-		JButton button = new JButton("Voltar");
-		button.setBounds(495, 418, 84, 27);
-		button.addActionListener(new ActionListener() {
+		JButton voltarButton = new JButton("");
+		voltarButton.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/voltabut.png")));
+		voltarButton.setBounds(492, 428, 84, 27);
+		voltarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				UserManagementOptions admOptionsUser = new UserManagementOptions(idAdmin);
 				dispose();
-				admOptionsUser.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				admOptionsUser
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admOptionsUser.setVisible(true);
 				admOptionsUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		desktopPane.add(button);
+		voltarButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+		desktopPane.add(voltarButton);
 
-		JLabel lblInformaes = new JLabel("USUÁRIO");
-		lblInformaes.setBounds(377, 60, 144, 37);
-		lblInformaes.setForeground(Color.WHITE);
-		lblInformaes.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblInformaes);
-
-		JLabel lblNome = new JLabel("Senha:");
-		lblNome.setBounds(183, 270, 48, 19);
-		lblNome.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblNome.setForeground(Color.WHITE);
-		desktopPane.add(lblNome);
-
-		JLabel lblId = new JLabel("Repita a Senha:");
-		lblId.setBounds(122, 310, 109, 19);
-		lblId.setForeground(Color.WHITE);
-		lblId.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(lblId);
-
-		JButton btnAlterarSenha = new JButton("Inserir");
-		btnAlterarSenha.setBounds(407, 346, 112, 27);
+		JButton btnAlterarSenha = new JButton("");
+		btnAlterarSenha.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/insertbutton.png")));
+		btnAlterarSenha.setBounds(380, 364, 112, 21);
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -169,14 +135,15 @@ public class InsertUser extends JFrame {
 								"As senhas diferem, por favor insira uma senha válida e a repita!");
 						novaSenha.setText("");
 						confirmacaoSenha.setText("");
-					} 
+					}
 
 					else {
 						sistema.cadastrarUsuario(newUserName, idUser, newPassword, auditor);
 						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
 						UserManagementOptions userOptions = new UserManagementOptions(idAdmin);
 						dispose();
-						userOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+						userOptions.setIconImage(
+								new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						userOptions.setVisible(true);
 						userOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}
@@ -190,62 +157,46 @@ public class InsertUser extends JFrame {
 		desktopPane.add(btnAlterarSenha);
 
 		novaSenha = new JPasswordField();
-		novaSenha.setBounds(251, 266, 268, 28);
+		novaSenha.setBounds(224, 284, 268, 28);
 		desktopPane.add(novaSenha);
 
 		confirmacaoSenha = new JPasswordField();
-		confirmacaoSenha.setBounds(251, 306, 268, 28);
+		confirmacaoSenha.setBounds(224, 324, 268, 28);
 		desktopPane.add(confirmacaoSenha);
 
-		JLabel lblNewLabel = new JLabel("*Mínimo 6 Caracteres");
-		lblNewLabel.setBounds(251, 340, 111, 16);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		lblNewLabel.setForeground(Color.WHITE);
-		desktopPane.add(lblNewLabel);
-
 		userName = new JTextField();
-		userName.setBounds(251, 157, 268, 28);
+		userName.setBounds(224, 175, 268, 28);
 		desktopPane.add(userName);
 		userName.setColumns(10);
 
-		JLabel nome = new JLabel("Nome:");
-		nome.setBounds(183, 160, 44, 19);
-		nome.setForeground(Color.WHITE);
-		nome.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(nome);
-
 		auditorName = new JTextField();
-		auditorName.setBounds(251, 231, 268, 28);
+		auditorName.setBounds(224, 249, 268, 28);
 		auditorName.setColumns(10);
 		desktopPane.add(auditorName);
 
-		JLabel auditor = new JLabel("Auditor:");
-		auditor.setBounds(175, 236, 66, 19);
-		auditor.setForeground(Color.WHITE);
-		auditor.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(auditor);
-
-		JLabel lblmnimoCaracteres = new JLabel("*Mínimo 4 caracteres");
-		lblmnimoCaracteres.setBounds(426, 215, 112, 14);
-		lblmnimoCaracteres.setForeground(Color.WHITE);
-		lblmnimoCaracteres.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		desktopPane.add(lblmnimoCaracteres);
-
 		newIdUser = new JTextField();
-		newIdUser.setBounds(251, 189, 268, 28);
+		newIdUser.setBounds(224, 207, 268, 28);
 		newIdUser.setColumns(10);
 		desktopPane.add(newIdUser);
 
-		JLabel idUsuario = new JLabel("ID:");
-		idUsuario.setBounds(210, 192, 44, 19);
-		idUsuario.setForeground(Color.WHITE);
-		idUsuario.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(idUsuario);
+		JLabel sad4logo = new JLabel("");
+		sad4logo.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/sad4logosmall.png")));
+		sad4logo.setBounds(29, 40, 205, 74);
+		desktopPane.add(sad4logo);
+
+		JLabel formUser = new JLabel("");
+		formUser.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/forminsertuser.png")));
+		formUser.setBounds(95, 145, 434, 270);
+		desktopPane.add(formUser);
+
+		JLabel insertUser = new JLabel("");
+		insertUser.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/insertUserBanner.png")));
+		insertUser.setBounds(328, 25, 201, 94);
+		desktopPane.add(insertUser);
 	}
 
 	public boolean isEmpty(String password) {
 		return password.equals("");
 	}
 
-	
 }

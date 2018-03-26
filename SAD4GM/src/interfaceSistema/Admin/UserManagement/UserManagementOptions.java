@@ -8,7 +8,6 @@ import javax.swing.border.EmptyBorder;
 import interfaceSistema.Admin.Options;
 
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
@@ -21,9 +20,9 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 
 import javax.swing.JSeparator;
+
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -63,13 +62,15 @@ public class UserManagementOptions extends JFrame {
 		desktopPane.setLayout(null);
 
 		JButton insertUserButton = new JButton("");
-		insertUserButton.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/insertUser.png")));
+		insertUserButton
+				.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/insertUser.png")));
 		insertUserButton.setBounds(0, 154, 249, 73);
 		desktopPane.add(insertUserButton);
 		insertUserButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		JButton removeUserbutton = new JButton("");
-		removeUserbutton.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/removeuser.png")));
+		removeUserbutton
+				.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/removeuser.png")));
 		removeUserbutton.setBounds(0, 238, 249, 73);
 		desktopPane.add(removeUserbutton);
 		removeUserbutton.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -81,7 +82,8 @@ public class UserManagementOptions extends JFrame {
 		btnVerMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		JButton btnListarUsurios = new JButton("");
-		btnListarUsurios.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/listuser.png")));
+		btnListarUsurios
+				.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/listuser.png")));
 		btnListarUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -98,7 +100,8 @@ public class UserManagementOptions extends JFrame {
 		btnListarUsurios.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		JButton btnVerInformaesUsurio = new JButton("");
-		btnVerInformaesUsurio.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/userinfo.png")));
+		btnVerInformaesUsurio
+				.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/userinfo.png")));
 		btnVerInformaesUsurio.setBounds(0, 321, 249, 73);
 		btnVerInformaesUsurio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -132,14 +135,15 @@ public class UserManagementOptions extends JFrame {
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
 		button.setBounds(487, 394, 94, 37);
 		desktopPane.add(button);
-		
+
 		JLabel sad4logo = new JLabel("");
 		sad4logo.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/sad4logosmall.png")));
 		sad4logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(sad4logo);
-		
+
 		JLabel gerenciadorUsersBanner = new JLabel("");
-		gerenciadorUsersBanner.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/gerenciadorusername.png")));
+		gerenciadorUsersBanner.setIcon(
+				new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/gerenciadorusername.png")));
 		gerenciadorUsersBanner.setBounds(258, 25, 318, 100);
 		desktopPane.add(gerenciadorUsersBanner);
 		btnVerMquinas.addActionListener(new ActionListener() {
@@ -167,7 +171,8 @@ public class UserManagementOptions extends JFrame {
 				InsertUser admInsertUser = new InsertUser(idAdmin);
 
 				dispose();
-				admInsertUser.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				admInsertUser
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admInsertUser.setVisible(true);
 				admInsertUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
