@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -67,7 +66,8 @@ public class SetAdminEntry extends JFrame {
 		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
-		JButton button = new JButton("Voltar");
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(SetAdminEntry.class.getResource("/Resources/icon/voltabut.png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
@@ -79,7 +79,7 @@ public class SetAdminEntry extends JFrame {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBounds(506, 388, 65, 27);
+		button.setBounds(506, 388, 93, 34);
 		desktopPane.add(button);
 
 		idField = new JTextField();

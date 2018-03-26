@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -35,7 +34,8 @@ public class SetAdmin extends JFrame {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idAdmin;
-	private String idAlterar;
+	private String idAtual;
+	
 	private Sistema sistema = new Sistema();
 
 	/**
@@ -45,9 +45,10 @@ public class SetAdmin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SetAdmin(String id, String idAlterar) {
+	public SetAdmin(String id, String idSet) {
 		this.idAdmin = id;
-		this.idAlterar = idAlterar;
+		this.idAtual = idSet;
+		
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -63,30 +64,13 @@ public class SetAdmin extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(43, 62, 120, 34);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(21, 17, 161, 45);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
-		JLabel lblGerenciarUsurios = new JLabel("ALTERAR");
-		lblGerenciarUsurios.setBounds(315, 24, 139, 37);
-		lblGerenciarUsurios.setForeground(Color.WHITE);
-		lblGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblGerenciarUsurios);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(6, 107, 593, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
-		JButton button = new JButton("Voltar");
-		button.setBounds(492, 381, 84, 27);
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(SetAdmin.class.getResource("/Resources/icon/voltabut.png")));
+		button.setBounds(492, 381, 93, 34);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SetAdminEntry setAdminEntry = new SetAdminEntry(idAdmin);
@@ -99,64 +83,51 @@ public class SetAdmin extends JFrame {
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(button);
 
-		JLabel lblInformaes = new JLabel("ADMIN");
-		lblInformaes.setBounds(331, 59, 268, 37);
-		lblInformaes.setForeground(Color.WHITE);
-		lblInformaes.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblInformaes);
-
-		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(131, 199, 55, 16);
-		lblNome.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblNome.setForeground(Color.WHITE);
-		desktopPane.add(lblNome);
-
 		JTextPane nome = new JTextPane();
 		nome.setEditable(false);
 
-		nome.setBounds(182, 196, 268, 24);
-		nome.setText(sistema.getNomeAdmin(this.idAlterar));
+		nome.setBounds(182, 209, 268, 24);
+		nome.setText(sistema.getNomeAdmin(this.idAtual));
 		desktopPane.add(nome);
 
 		JTextPane userID = new JTextPane();
 		userID.setEditable(false);
 
-		userID.setBounds(182, 231, 268, 24);
-		userID.setText(idAlterar);
+		userID.setBounds(182, 240, 268, 24);
+		userID.setText(idAtual);
 		desktopPane.add(userID);
 
-		JLabel lblId = new JLabel("ID:");
-		lblId.setBounds(154, 234, 55, 16);
-		lblId.setForeground(Color.WHITE);
-		lblId.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(lblId);
-
-		JButton btnAlterarSenha = new JButton("Alterar Senha");
+		JButton btnAlterarSenha = new JButton("");
+		btnAlterarSenha.setIcon(new ImageIcon(SetAdmin.class.getResource("/Resources/icon/setPasswordbutton.png")));
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetAdminPassword admSetSenha = new SetAdminPassword(idAdmin, idAlterar);
+				SetAdminPassword admSetSenha = new SetAdminPassword(idAdmin, idAtual);
 				dispose();
 				admSetSenha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admSetSenha.setVisible(true);
 				admSetSenha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnAlterarSenha.setBounds(43, 381, 139, 27);
+		btnAlterarSenha.setBounds(149, 277, 123, 25);
 		btnAlterarSenha.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnAlterarSenha);
 
-		JButton btnEditar = new JButton("Editar");
+		JButton btnEditar = new JButton("");
+		btnEditar.setIcon(new ImageIcon(SetAdmin.class.getResource("/Resources/icon/editbutton.png")));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				userID.setEditable(true);
 				nome.setEditable(true);
 			}
 		});
-		btnEditar.setBounds(182, 273, 90, 28);
+		btnEditar.setBounds(275, 277, 90, 24);
 		desktopPane.add(btnEditar);
 
-		JButton btnAtualizar = new JButton("Atualizar");
+		JButton btnAtualizar = new JButton("");
+		btnAtualizar.setIcon(new ImageIcon(SetAdmin.class.getResource("/Resources/icon/atualizarbutton.png")));
 		btnAtualizar.addActionListener(new ActionListener() {
+			private String idAlterar;
+
 			public void actionPerformed(ActionEvent e) {
 
 				boolean has = false;
@@ -165,13 +136,13 @@ public class SetAdmin extends JFrame {
 					has = sistema.hasIdAdmin(userID.getText().trim());
 					if (nome.getText().trim().equals("")) {
 						JOptionPane.showMessageDialog(null, "Nome inválido");
-						nome.setText(sistema.getNomeAdmin(idAlterar));
+						nome.setText(sistema.getNomeAdmin(idAtual));
 						userID.setText(idAlterar);
 					} else if (userID.getText().equals("") || userID.getText().length() < 4) {
 						JOptionPane.showMessageDialog(null, "ID inválido");
 						nome.setText(sistema.getNomeAdmin(idAlterar));
 						userID.setText(idAlterar);
-					} else if (!userID.getText().trim().equals(idAlterar) && has) {
+					} else if (!userID.getText().trim().equals(idAtual) && has) {
 						JOptionPane.showMessageDialog(null, "ID já cadastrado!");
 						nome.setText(sistema.getNomeAdmin(idAlterar));
 						userID.setText(idAlterar);
@@ -180,8 +151,10 @@ public class SetAdmin extends JFrame {
 					else {
 						nome.setEditable(false);
 						userID.setEditable(false);
-						sistema.setIdAdmin(idAlterar, userID.getText().trim());
-						sistema.setNomeAdmin(nome.getText().trim(), idAlterar);
+						
+						sistema.setIdAdmin(idAtual, userID.getText().trim());
+						idAtual = userID.getText().trim();
+						sistema.setNomeAdmin(nome.getText().trim(), idAtual);
 						JOptionPane.showMessageDialog(null, "Dados atualizados com Sucesso!");
 
 					}
@@ -192,7 +165,22 @@ public class SetAdmin extends JFrame {
 			}
 
 		});
-		btnAtualizar.setBounds(360, 273, 90, 28);
+		btnAtualizar.setBounds(366, 277, 90, 25);
 		desktopPane.add(btnAtualizar);
+		
+		JLabel Sad4GMLogo = new JLabel("");
+		Sad4GMLogo.setIcon(new ImageIcon(SetAdmin.class.getResource("/Resources/icon/sad4logosmall.png")));
+		Sad4GMLogo.setBounds(29, 40, 205, 74);
+		desktopPane.add(Sad4GMLogo);
+		
+		JLabel setAdminBanner = new JLabel("");
+		setAdminBanner.setIcon(new ImageIcon(SetAdmin.class.getResource("/Resources/icon/alteraradminbanner.png")));
+		setAdminBanner.setBounds(328, 27, 210, 87);
+		desktopPane.add(setAdminBanner);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(SetAdmin.class.getResource("/Resources/icon/setAdmForm.png")));
+		label.setBounds(97, 146, 408, 185);
+		desktopPane.add(label);
 	}
 }
