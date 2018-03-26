@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import javax.management.RuntimeErrorException;
 
-import bancoDeDados.MaquinaTools;
+import bancoDeDados.MachineTools;
 import entidades.Maquina;
 import validadorInformacoes.ValidaMaquina;
 
@@ -15,27 +15,27 @@ import validadorInformacoes.ValidaMaquina;
  *
  */
 
-public class ControllerMaquinas {
+public class Machines {
 
-	private MaquinaTools mTools;
+	private MachineTools mTools;
 
-	public ControllerMaquinas(MaquinaTools mTools) {
+	public Machines(MachineTools mTools) {
 		this.mTools = mTools;
 
 	}
 
-	public String inserir(String nome, String codigo, String descricao, String idUsuario) {
+	public String insert(String name, String code, String description, String idUser) {
 		String status;
-		Maquina maquina;
+		Maquina machine;
 
 		try {
-			maquina = new Maquina(nome, codigo, descricao, idUsuario);
+			machine = new Maquina(name, code, description, idUser);
 		} catch (Exception e) {
 			return e.getMessage();
 		}
 
 		try {
-			mTools.inserir(maquina);
+			mTools.insert(machine);
 			status = "Máquina Inserida com Sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();

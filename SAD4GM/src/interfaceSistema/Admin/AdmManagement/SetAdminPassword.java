@@ -18,6 +18,7 @@ import javax.swing.JSeparator;
 
 import sistema.Sistema;
 import javax.swing.JPasswordField;
+import javax.swing.ImageIcon;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -62,26 +63,8 @@ public class SetAdminPassword extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(43, 62, 120, 34);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(21, 17, 161, 45);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
-		JLabel lblGerenciarUsurios = new JLabel("ALTERAR");
-		lblGerenciarUsurios.setBounds(370, 24, 139, 37);
-		lblGerenciarUsurios.setForeground(Color.WHITE);
-		lblGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblGerenciarUsurios);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(6, 107, 593, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
 		JButton button = new JButton("Voltar");
@@ -96,12 +79,6 @@ public class SetAdminPassword extends JFrame {
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(button);
-
-		JLabel lblInformaes = new JLabel("MINHA SENHA");
-		lblInformaes.setBounds(327, 60, 268, 37);
-		lblInformaes.setForeground(Color.WHITE);
-		lblInformaes.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblInformaes);
 
 		JLabel lblNome = new JLabel("Nova Senha:");
 		lblNome.setBounds(143, 198, 93, 16);
@@ -169,6 +146,16 @@ public class SetAdminPassword extends JFrame {
 		lblmnimoCaracteres.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblmnimoCaracteres.setBounds(248, 268, 88, 11);
 		desktopPane.add(lblmnimoCaracteres);
+		
+		JLabel sad4gmLogo = new JLabel("");
+		sad4gmLogo.setIcon(new ImageIcon(SetAdminPassword.class.getResource("/Resources/icon/sad4logosmall.png")));
+		sad4gmLogo.setBounds(29, 40, 205, 74);
+		desktopPane.add(sad4gmLogo);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(SetAdminPassword.class.getResource("/Resources/icon/setsenhabanner.png")));
+		label.setBounds(313, 29, 210, 87);
+		desktopPane.add(label);
 	}
 
 	public boolean isEmpty(String password) {

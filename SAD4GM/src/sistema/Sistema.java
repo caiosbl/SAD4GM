@@ -3,11 +3,11 @@ package sistema;
 import java.sql.SQLException;
 
 import bancoDeDados.AdminTools;
-import bancoDeDados.MaquinaTools;
-import bancoDeDados.UsuarioTools;
-import controllers.ControllerAdmins;
-import controllers.ControllerMaquinas;
-import controllers.ControllerUsuarios;
+import bancoDeDados.MachineTools;
+import bancoDeDados.UserTools;
+import controllers.Admins;
+import controllers.Machines;
+import controllers.Users;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -17,36 +17,36 @@ import controllers.ControllerUsuarios;
  */
 public class Sistema {
 
-	private ControllerUsuarios cUsuarios;
-	private ControllerMaquinas cMaquinas;
-	private ControllerAdmins cAdmins;
-	private UsuarioTools uTools;
-	private MaquinaTools mTools;
+	private Users cUsuarios;
+	private Machines cMaquinas;
+	private Admins cAdmins;
+	private UserTools uTools;
+	private MachineTools mTools;
 	private AdminTools admTools;
 
 	public Sistema() {
 
-		this.uTools = new UsuarioTools();
-		this.mTools = new MaquinaTools();
+		this.uTools = new UserTools();
+		this.mTools = new MachineTools();
 		this.admTools = new AdminTools();
 
-		this.cUsuarios = new ControllerUsuarios(uTools);
-		this.cMaquinas = new ControllerMaquinas(mTools);
-		this.cAdmins = new ControllerAdmins(admTools);
+		this.cUsuarios = new Users(uTools);
+		this.cMaquinas = new Machines(mTools);
+		this.cAdmins = new Admins(admTools);
 	}
 
 	// Funções de Admin
 
 	public String inserirAdmin(String nome, String senha, String id) {
-		return cAdmins.inserir(nome, senha, id);
+		return cAdmins.insert(nome, senha, id);
 	}
 
 	public String deletarAdmin(String id) {
-		return cAdmins.deletar(id);
+		return cAdmins.delete(id);
 	}
 
 	public String setNomeAdmin(String nome, String id) {
-		return cAdmins.setNome(nome, id);
+		return cAdmins.setName(nome, id);
 	}
 
 	public String setIdAdmin(String id, String novoId) {
@@ -54,7 +54,7 @@ public class Sistema {
 	}
 
 	public String setSenhaAdmin(String id, String senha) {
-		return cAdmins.setSenha(id, senha);
+		return cAdmins.setPassword(id, senha);
 	}
 
 	public String getInfoAdmin(String id) {
@@ -62,11 +62,11 @@ public class Sistema {
 	}
 
 	public String getNomeAdmin(String id) {
-		return cAdmins.getNome(id);
+		return cAdmins.getName(id);
 	}
 
 	public boolean autenticaAdmin(String id, String senha) throws SQLException {
-		return cAdmins.autentica(id, senha);
+		return cAdmins.authenticate(id, senha);
 	}
 
 	public boolean hasIdAdmin(String id) throws SQLException {
@@ -74,7 +74,7 @@ public class Sistema {
 	}
 
 	public String getListagemAdm() {
-		return cAdmins.getListagemAdmins();
+		return cAdmins.getListAdmins();
 	}
 
 	// Funções de Usuário
@@ -134,7 +134,7 @@ public class Sistema {
 	// Funções de Máquina
 
 	public String adicionaMaquina(String nome, String codigo, String descricao, String idUsuario) {
-		return cMaquinas.inserir(nome, codigo, descricao, idUsuario);
+		return cMaquinas.insert(nome, codigo, descricao, idUsuario);
 	}
 
 	public String removerMaquina(String codigo) {

@@ -1,6 +1,6 @@
 package entidades;
 
-import validadorInformacoes.ValidaUsuario;
+import validadorInformacoes.CheckUser;
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
  * SISTEMA SAD4GM
@@ -16,12 +16,12 @@ public class Usuario {
 	private String auditor;
 
 	public Usuario(String nome, String id, String senha, String auditor) {
-		ValidaUsuario.validaNome(nome);
+		CheckUser.validateName(nome);
 		this.nome = nome;
-		ValidaUsuario.validaId(id);
+		CheckUser.validateId(id);
 		this.id = id;
 		this.senha = senha;
-		ValidaUsuario.validaAuditor(auditor);
+		CheckUser.validaAuditor(auditor);
 		this.auditor = auditor;
 	}
 

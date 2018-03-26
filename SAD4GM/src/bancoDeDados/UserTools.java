@@ -16,7 +16,7 @@ import entidades.Usuario;
  *
  */
 
-public class UsuarioTools extends DataBaseTools {
+public class UserTools extends DataBaseTools {
 
 	public void inserir(Usuario usuario) throws SQLException {
 

@@ -3,7 +3,7 @@ package controllers;
 import java.sql.SQLException;
 
 import bancoDeDados.AdminTools;
-import validadorInformacoes.ValidaUsuario;
+import validadorInformacoes.CheckUser;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -12,21 +12,21 @@ import validadorInformacoes.ValidaUsuario;
  *
  */
 
-public class ControllerAdmins {
+public class Admins {
 	private AdminTools admTools;
 
-	public ControllerAdmins(AdminTools admTools) {
+	public Admins(AdminTools admTools) {
 		this.admTools = admTools;
 	}
 
-	public String inserir(String nome, String senha, String id) {
+	public String insert(String name, String password, String id) {
 
 		String status;
 
 		try {
-			ValidaUsuario.validaNome(nome);
-			ValidaUsuario.validaId(id);
-			admTools.insert(nome, senha, id);
+			CheckUser.validateName(name);
+			CheckUser.validateId(id);
+			admTools.insert(name, password, id);
 			status = "Admin CADASTRADO COM SUCESSO!";
 
 		} catch (NullPointerException e) {
@@ -42,7 +42,7 @@ public class ControllerAdmins {
 		return status;
 	}
 
-	public String deletar(String id) {
+	public String delete(String id) {
 		String status;
 
 		try {
@@ -55,12 +55,12 @@ public class ControllerAdmins {
 		return status;
 	}
 
-	public String setNome(String nome, String id) {
+	public String setName(String name, String id) {
 		String status;
 
 		try {
-			ValidaUsuario.validaNome(nome);
-			admTools.setName(nome, id);
+			CheckUser.validateName(name);
+			admTools.setName(name, id);
 			status = "Nome alterado com Sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -69,12 +69,12 @@ public class ControllerAdmins {
 		return status;
 	}
 
-	public String setId(String id, String novoId) {
+	public String setId(String id, String newId) {
 		String status;
 
 		try {
-			ValidaUsuario.validaId(novoId);
-			admTools.setId(id, novoId);
+			CheckUser.validateId(newId);
+			admTools.setId(id, newId);
 			status = "Nome alterado com Sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -83,12 +83,12 @@ public class ControllerAdmins {
 		return status;
 	}
 
-	public String setSenha(String id, String senha) {
+	public String setPassword(String id, String password) {
 		String status;
 
 		try {
 
-			admTools.setPassword(id, senha);
+			admTools.setPassword(id, password);
 			status = "Senha alterada com Sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -109,7 +109,7 @@ public class ControllerAdmins {
 		return info;
 	}
 
-	public String getNome(String id) {
+	public String getName(String id) {
 		String nome;
 		try {
 			nome = admTools.getName(id);
@@ -120,8 +120,8 @@ public class ControllerAdmins {
 		return nome;
 	}
 
-	public boolean autentica(String id, String senha) throws SQLException {
-		return admTools.authenticate(id, senha);
+	public boolean authenticate(String id, String password) throws SQLException {
+		return admTools.authenticate(id, password);
 
 	}
 
@@ -129,7 +129,7 @@ public class ControllerAdmins {
 		return admTools.hasAdmin(id);
 	}
 
-	public String getListagemAdmins() {
+	public String getListAdmins() {
 		return admTools.listAdmins();
 	}
 }
