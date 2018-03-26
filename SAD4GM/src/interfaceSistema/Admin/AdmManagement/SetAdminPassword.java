@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -67,9 +66,10 @@ public class SetAdminPassword extends JFrame {
 		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
-		JButton button = new JButton("Voltar");
-		button.setBounds(492, 381, 84, 27);
-		button.addActionListener(new ActionListener() {
+		JButton voltarButton = new JButton("");
+		voltarButton.setIcon(new ImageIcon(SetAdminPassword.class.getResource("/Resources/icon/voltabut.png")));
+		voltarButton.setBounds(492, 381, 84, 27);
+		voltarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SetAdmin setAdmin = new SetAdmin(idAdmin, idAlterado);
 				dispose();
@@ -77,23 +77,12 @@ public class SetAdminPassword extends JFrame {
 				setAdmin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		desktopPane.add(button);
+		voltarButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+		desktopPane.add(voltarButton);
 
-		JLabel lblNome = new JLabel("Nova Senha:");
-		lblNome.setBounds(143, 198, 93, 16);
-		lblNome.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblNome.setForeground(Color.WHITE);
-		desktopPane.add(lblNome);
-
-		JLabel lblId = new JLabel("Repita a nova Senha:");
-		lblId.setBounds(80, 235, 161, 16);
-		lblId.setForeground(Color.WHITE);
-		lblId.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(lblId);
-
-		JButton btnAlterarSenha = new JButton("Alterar Senha");
-		btnAlterarSenha.setBounds(406, 268, 117, 23);
+		JButton btnAlterarSenha = new JButton("");
+		btnAlterarSenha.setIcon(new ImageIcon(SetAdminPassword.class.getResource("/Resources/icon/setPasswordbutton.png")));
+		btnAlterarSenha.setBounds(398, 286, 117, 23);
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -134,18 +123,12 @@ public class SetAdminPassword extends JFrame {
 		desktopPane.add(btnAlterarSenha);
 
 		novaSenha = new JPasswordField();
-		novaSenha.setBounds(248, 193, 268, 28);
+		novaSenha.setBounds(248, 211, 268, 28);
 		desktopPane.add(novaSenha);
 
 		confirmacaoSenha = new JPasswordField();
-		confirmacaoSenha.setBounds(248, 228, 268, 28);
+		confirmacaoSenha.setBounds(248, 246, 268, 28);
 		desktopPane.add(confirmacaoSenha);
-
-		JLabel lblmnimoCaracteres = new JLabel("*Mínimo 6 caracteres");
-		lblmnimoCaracteres.setForeground(Color.WHITE);
-		lblmnimoCaracteres.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		lblmnimoCaracteres.setBounds(248, 268, 88, 11);
-		desktopPane.add(lblmnimoCaracteres);
 		
 		JLabel sad4gmLogo = new JLabel("");
 		sad4gmLogo.setIcon(new ImageIcon(SetAdminPassword.class.getResource("/Resources/icon/sad4logosmall.png")));
@@ -156,10 +139,14 @@ public class SetAdminPassword extends JFrame {
 		label.setIcon(new ImageIcon(SetAdminPassword.class.getResource("/Resources/icon/setsenhabanner.png")));
 		label.setBounds(313, 29, 210, 87);
 		desktopPane.add(label);
+		
+		JLabel setSenhaForm = new JLabel("");
+		setSenhaForm.setIcon(new ImageIcon(SetAdminPassword.class.getResource("/Resources/icon/setsenhaform.png")));
+		setSenhaForm.setBounds(80, 166, 470, 171);
+		desktopPane.add(setSenhaForm);
 	}
 
 	public boolean isEmpty(String password) {
 		return password.equals("");
 	}
-
 }
