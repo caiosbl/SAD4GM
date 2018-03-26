@@ -62,35 +62,26 @@ public class UserManagementOptions extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(43, 62, 120, 34);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
+		JButton insertUserButton = new JButton("");
+		insertUserButton.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/insertUser.png")));
+		insertUserButton.setBounds(0, 154, 249, 73);
+		desktopPane.add(insertUserButton);
+		insertUserButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(21, 17, 161, 45);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
+		JButton removeUserbutton = new JButton("");
+		removeUserbutton.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/removeuser.png")));
+		removeUserbutton.setBounds(0, 238, 249, 73);
+		desktopPane.add(removeUserbutton);
+		removeUserbutton.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JButton btnNewButton = new JButton("Inserir Usuário");
-		btnNewButton.setIcon(null);
-		btnNewButton.setBounds(25, 203, 228, 27);
-		desktopPane.add(btnNewButton);
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-
-		JButton btnVisualizarMquinas = new JButton("Remover Usuário");
-		btnVisualizarMquinas.setBounds(25, 229, 228, 27);
-		desktopPane.add(btnVisualizarMquinas);
-		btnVisualizarMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
-
-		JButton btnVerMquinas = new JButton("Alterar Usuário");
-		btnVerMquinas.setBounds(25, 256, 228, 27);
+		JButton btnVerMquinas = new JButton("");
+		btnVerMquinas.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/setuser.png")));
+		btnVerMquinas.setBounds(356, 154, 249, 73);
 		desktopPane.add(btnVerMquinas);
 		btnVerMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JButton btnListarUsurios = new JButton("Listar Usuários");
+		JButton btnListarUsurios = new JButton("");
+		btnListarUsurios.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/listuser.png")));
 		btnListarUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -102,12 +93,13 @@ public class UserManagementOptions extends JFrame {
 				uList.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnListarUsurios.setBounds(25, 283, 228, 27);
+		btnListarUsurios.setBounds(356, 238, 249, 73);
 		desktopPane.add(btnListarUsurios);
 		btnListarUsurios.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JButton btnVerInformaesUsurio = new JButton("Ver Informações de Usuário");
-		btnVerInformaesUsurio.setBounds(25, 311, 228, 27);
+		JButton btnVerInformaesUsurio = new JButton("");
+		btnVerInformaesUsurio.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/userinfo.png")));
+		btnVerInformaesUsurio.setBounds(0, 321, 249, 73);
 		btnVerInformaesUsurio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserInformationEntry uInformation = new UserInformationEntry(idAdmin);
@@ -121,23 +113,12 @@ public class UserManagementOptions extends JFrame {
 		btnVerInformaesUsurio.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnVerInformaesUsurio);
 
-		JLabel lblGerenciarUsurios = new JLabel("GERENCIADOR");
-		lblGerenciarUsurios.setBounds(329, 17, 227, 37);
-		lblGerenciarUsurios.setForeground(Color.WHITE);
-		lblGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblGerenciarUsurios);
-
-		JLabel lblDeUsurios = new JLabel("DE USUÁRIOS");
-		lblDeUsurios.setForeground(Color.WHITE);
-		lblDeUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblDeUsurios.setBounds(339, 53, 227, 37);
-		desktopPane.add(lblDeUsurios);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(6, 107, 593, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
-		JButton button = new JButton("Voltar");
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/voltabut.png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Options admOptions = new Options(idAdmin);
@@ -149,8 +130,18 @@ public class UserManagementOptions extends JFrame {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBounds(511, 381, 65, 27);
+		button.setBounds(487, 394, 94, 37);
 		desktopPane.add(button);
+		
+		JLabel sad4logo = new JLabel("");
+		sad4logo.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/sad4logosmall.png")));
+		sad4logo.setBounds(29, 40, 205, 74);
+		desktopPane.add(sad4logo);
+		
+		JLabel gerenciadorUsersBanner = new JLabel("");
+		gerenciadorUsersBanner.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/gerenciadorusername.png")));
+		gerenciadorUsersBanner.setBounds(258, 25, 318, 100);
+		desktopPane.add(gerenciadorUsersBanner);
 		btnVerMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SetUserEntry setUser = new SetUserEntry(idAdmin);
@@ -161,7 +152,7 @@ public class UserManagementOptions extends JFrame {
 				setUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnVisualizarMquinas.addActionListener(new ActionListener() {
+		removeUserbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserRemove userRemove = new UserRemove(idAdmin);
 
@@ -171,7 +162,7 @@ public class UserManagementOptions extends JFrame {
 				userRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnNewButton.addActionListener(new ActionListener() {
+		insertUserButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				InsertUser admInsertUser = new InsertUser(idAdmin);
 
