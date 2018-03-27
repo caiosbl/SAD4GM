@@ -20,6 +20,7 @@ import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
 import javax.swing.JTextPane;
+import javax.swing.ImageIcon;
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
  * SISTEMA SAD4GM
@@ -63,35 +64,12 @@ public class UserInformation extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(20, 60, 141, 45);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(10, 11, 210, 73);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 111, 605, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("INFORMAÇÃO ");
-		lblRemover.setForeground(Color.WHITE);
-		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblRemover.setBounds(249, 32, 221, 37);
-		desktopPane.add(lblRemover);
-
-		JLabel lblAdmin = new JLabel("DE UM USUÁRIO");
-		lblAdmin.setForeground(Color.WHITE);
-		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(235, 63, 252, 37);
-		desktopPane.add(lblAdmin);
-
-		JButton button = new JButton("Voltar");
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(UserInformation.class.getResource("/Resources/icon/voltabut.png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserInformationEntry uInformation = new UserInformationEntry(idAdmin);
@@ -102,7 +80,7 @@ public class UserInformation extends JFrame {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBounds(506, 388, 69, 23);
+		button.setBounds(492, 388, 83, 23);
 		desktopPane.add(button);
 		
 		JTextPane textPane = new JTextPane();
@@ -110,6 +88,21 @@ public class UserInformation extends JFrame {
 		textPane.setBackground(SystemColor.textInactiveText);
 		textPane.setBounds(116, 220, 394, 73);
 		desktopPane.add(textPane);
+		
+		JLabel logo = new JLabel("");
+		logo.setIcon(new ImageIcon(UserInformation.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setBounds(29, 40, 205, 74);
+		desktopPane.add(logo);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(UserInformation.class.getResource("/Resources/icon/viewinformation.png")));
+		label.setBounds(253, 20, 335, 90);
+		desktopPane.add(label);
+		
+		JLabel informationback = new JLabel("");
+		informationback.setIcon(new ImageIcon(UserInformation.class.getResource("/Resources/icon/informationback.png")));
+		informationback.setBounds(99, 204, 426, 108);
+		desktopPane.add(informationback);
 	
 	}
 }
