@@ -108,7 +108,7 @@ public class SetAdmin extends JFrame {
 				admSetSenha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnAlterarSenha.setBounds(149, 277, 123, 25);
+		btnAlterarSenha.setBounds(179, 276, 84, 27);
 		btnAlterarSenha.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnAlterarSenha);
 
@@ -120,7 +120,7 @@ public class SetAdmin extends JFrame {
 				nome.setEditable(true);
 			}
 		});
-		btnEditar.setBounds(275, 277, 90, 24);
+		btnEditar.setBounds(272, 276, 82, 24);
 		desktopPane.add(btnEditar);
 
 		JButton btnAtualizar = new JButton("");
@@ -165,7 +165,7 @@ public class SetAdmin extends JFrame {
 			}
 
 		});
-		btnAtualizar.setBounds(366, 277, 90, 25);
+		btnAtualizar.setBounds(366, 276, 90, 25);
 		desktopPane.add(btnAtualizar);
 		
 		JLabel Sad4GMLogo = new JLabel("");

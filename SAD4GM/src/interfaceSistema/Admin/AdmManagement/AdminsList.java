@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 
 import java.awt.Font;
@@ -64,35 +63,13 @@ public class AdminsList extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(20, 60, 141, 45);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(10, 11, 210, 73);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 111, 605, 12);
+		separator.setBounds(6, 126, 582, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("LISTAGEM");
-		lblRemover.setForeground(Color.WHITE);
-		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblRemover.setBounds(286, 23, 157, 37);
-		desktopPane.add(lblRemover);
-
-		JLabel lblAdmin = new JLabel("DOS ADMINS");
-		lblAdmin.setForeground(Color.WHITE);
-		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(264, 63, 202, 37);
-		desktopPane.add(lblAdmin);
-
-		JButton button = new JButton("Voltar");
+		JButton button = new JButton("");
+		button.setBounds(491, 388, 84, 31);
+		button.setIcon(new ImageIcon(AdminsList.class.getResource("/Resources/icon/voltabut.png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
@@ -104,15 +81,29 @@ public class AdminsList extends JFrame {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBounds(506, 388, 69, 23);
 		desktopPane.add(button);
 
 		JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
 		JScrollPane jsp = new JScrollPane(textPane);
-		textPane.setText(sistema.getListagemAdm());
 		jsp.setBounds(84, 150, 345, 261);
+		textPane.setText(sistema.getListagemAdm());
 		desktopPane.add(jsp);
+		
+		JLabel sad4gmlogo = new JLabel("");
+		sad4gmlogo.setBounds(29, 40, 205, 74);
+		sad4gmlogo.setIcon(new ImageIcon(AdminsList.class.getResource("/Resources/icon/sad4logosmall.png")));
+		desktopPane.add(sad4gmlogo);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(77, 137, 366, 283);
+		label.setIcon(new ImageIcon(AdminsList.class.getResource("/Resources/icon/backlist.png")));
+		desktopPane.add(label);
+		
+		JLabel listagem = new JLabel("");
+		listagem.setIcon(new ImageIcon(AdminsList.class.getResource("/Resources/icon/listagembanner.png")));
+		listagem.setBounds(287, 20, 289, 89);
+		desktopPane.add(listagem);
 
 	}
 }

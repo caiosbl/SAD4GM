@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -22,9 +21,9 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -63,36 +62,13 @@ public class MachineRemove extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(20, 60, 141, 45);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(10, 11, 210, 73);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 111, 605, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("REMOVER");
-		lblRemover.setForeground(Color.WHITE);
-		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblRemover.setBounds(308, 32, 150, 37);
-		desktopPane.add(lblRemover);
-
-		JLabel lblAdmin = new JLabel("MÁQUINA");
-		lblAdmin.setForeground(Color.WHITE);
-		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(308, 63, 152, 37);
-		desktopPane.add(lblAdmin);
-
-		JButton button = new JButton("Voltar");
-		button.addActionListener(new ActionListener() {
+		JButton btnVoltar = new JButton("");
+		btnVoltar.setIcon(new ImageIcon(MachineRemove.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MachineManagementOptions machineOptions = new MachineManagementOptions(idAdmin);
 
@@ -101,35 +77,29 @@ public class MachineRemove extends JFrame {
 				machineOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBounds(506, 388, 69, 23);
-		desktopPane.add(button);
+		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVoltar.setBounds(492, 388, 83, 23);
+		desktopPane.add(btnVoltar);
 
 		idField = new JTextField();
 		idField.setBounds(200, 248, 206, 28);
 		desktopPane.add(idField);
 		idField.setColumns(10);
 
-		JLabel lblIdDoAdmin = new JLabel("Código da Máquina a ser Removida:");
-		lblIdDoAdmin.setForeground(Color.WHITE);
-		lblIdDoAdmin.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblIdDoAdmin.setBounds(173, 226, 252, 19);
-		desktopPane.add(lblIdDoAdmin);
-
-		JButton btnRemover = new JButton("Remover");
+		JButton btnRemover = new JButton("");
+		btnRemover.setIcon(new ImageIcon(MachineRemove.class.getResource("/Resources/icon/removebutton.png")));
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (idField.getText().trim().length() < 4) {
 					JOptionPane.showMessageDialog(null, "Código Inválido!");
 					idField.setText("");
 				}
-				
+
 				else if (!isNumber(idField.getText().trim())) {
 					JOptionPane.showMessageDialog(null, "Por favor insira um código numérico válido!");
 					idField.setText("");
-					
-				}
-				else {
+
+				} else {
 					boolean has = false;
 					try {
 						has = sistema.hasMaquina(idField.getText().trim());
@@ -146,7 +116,8 @@ public class MachineRemove extends JFrame {
 
 						MachineManagementOptions admMOptions = new MachineManagementOptions(idAdmin);
 						dispose();
-						admMOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+						admMOptions.setIconImage(
+								new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						admMOptions.setVisible(true);
 						admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}
@@ -157,9 +128,23 @@ public class MachineRemove extends JFrame {
 		btnRemover.setBounds(311, 280, 95, 27);
 		desktopPane.add(btnRemover);
 
+		JLabel logo = new JLabel("");
+		logo.setIcon(new ImageIcon(MachineRemove.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setBounds(29, 40, 205, 74);
+		desktopPane.add(logo);
+
+		JLabel banner = new JLabel("");
+		banner.setIcon(new ImageIcon(MachineRemove.class.getResource("/Resources/icon/machineRemoveBanner.png")));
+		banner.setBounds(328, 25, 206, 101);
+		desktopPane.add(banner);
+
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(MachineRemove.class.getResource("/Resources/icon/removeForm.png")));
+		label.setBounds(83, 158, 434, 195);
+		desktopPane.add(label);
+
 	}
-	
-	
+
 	public boolean isNumber(String password) {
 		boolean status = false;
 

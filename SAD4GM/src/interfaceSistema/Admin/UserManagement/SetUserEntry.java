@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -63,33 +62,9 @@ public class SetUserEntry extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(20, 60, 141, 45);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(10, 11, 210, 73);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 111, 605, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
-
-		JLabel lblRemover = new JLabel("ALTERAR");
-		lblRemover.setForeground(Color.WHITE);
-		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblRemover.setBounds(286, 23, 150, 37);
-		desktopPane.add(lblRemover);
-
-		JLabel lblAdmin = new JLabel("USUÁRIO");
-		lblAdmin.setForeground(Color.WHITE);
-		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(286, 63, 144, 37);
-		desktopPane.add(lblAdmin);
 
 		JButton button = new JButton("Voltar");
 		button.addActionListener(new ActionListener() {
@@ -107,18 +82,13 @@ public class SetUserEntry extends JFrame {
 		desktopPane.add(button);
 
 		idField = new JTextField();
-		idField.setBounds(200, 248, 206, 28);
+		idField.setBounds(200, 250, 206, 28);
 		desktopPane.add(idField);
 		idField.setColumns(10);
 
-		JLabel lblIdDoAdmin = new JLabel("ID do Usuário a ser alterado:");
-		lblIdDoAdmin.setForeground(Color.WHITE);
-		lblIdDoAdmin.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblIdDoAdmin.setBounds(204, 224, 199, 19);
-		desktopPane.add(lblIdDoAdmin);
-
-		JButton btnRemover = new JButton("Alterar");
-		btnRemover.addActionListener(new ActionListener() {
+		JButton btnAlterar = new JButton("");
+		btnAlterar.setIcon(new ImageIcon(SetUserEntry.class.getResource("/Resources/icon/alterarbutton.png")));
+		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (idField.getText().trim().length() < 4) {
 					JOptionPane.showMessageDialog(null, "ID Inválido!");
@@ -147,9 +117,24 @@ public class SetUserEntry extends JFrame {
 				}
 			}
 		});
-		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnRemover.setBounds(311, 280, 95, 27);
-		desktopPane.add(btnRemover);
+		btnAlterar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAlterar.setBounds(341, 283, 65, 21);
+		desktopPane.add(btnAlterar);
+		
+		JLabel sad4logo = new JLabel("");
+		sad4logo.setIcon(new ImageIcon(SetUserEntry.class.getResource("/Resources/icon/sad4logosmall.png")));
+		sad4logo.setBounds(29, 40, 205, 74);
+		desktopPane.add(sad4logo);
+		
+		JLabel alterarUsuario = new JLabel("");
+		alterarUsuario.setIcon(new ImageIcon(SetUserEntry.class.getResource("/Resources/icon/alterarusuariobanner.png")));
+		alterarUsuario.setBounds(336, 22, 213, 96);
+		desktopPane.add(alterarUsuario);
+		
+		JLabel form = new JLabel("");
+		form.setIcon(new ImageIcon(SetUserEntry.class.getResource("/Resources/icon/setUserEntryForm.png")));
+		form.setBounds(158, 184, 289, 154);
+		desktopPane.add(form);
 
 	}
 }

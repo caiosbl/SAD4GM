@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -63,36 +62,13 @@ public class SetMachineEntry extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(20, 60, 141, 45);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(10, 11, 210, 73);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 111, 605, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("ALTERAR");
-		lblRemover.setForeground(Color.WHITE);
-		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblRemover.setBounds(286, 23, 150, 37);
-		desktopPane.add(lblRemover);
-
-		JLabel lblAdmin = new JLabel("MÁQUINA");
-		lblAdmin.setForeground(Color.WHITE);
-		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(286, 63, 152, 37);
-		desktopPane.add(lblAdmin);
-
-		JButton button = new JButton("Voltar");
-		button.addActionListener(new ActionListener() {
+		JButton btnVoltar = new JButton("");
+		btnVoltar.setIcon(new ImageIcon(SetMachineEntry.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MachineManagementOptions machineOptions = new MachineManagementOptions(idAdmin);
 
@@ -102,23 +78,18 @@ public class SetMachineEntry extends JFrame {
 				machineOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBounds(506, 388, 69, 23);
-		desktopPane.add(button);
+		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVoltar.setBounds(493, 388, 82, 28);
+		desktopPane.add(btnVoltar);
 
 		codigo = new JTextField();
 		codigo.setBounds(200, 248, 206, 28);
 		desktopPane.add(codigo);
 		codigo.setColumns(10);
 
-		JLabel lblIdDoAdmin = new JLabel("Código da Máquina a ser alterada:");
-		lblIdDoAdmin.setForeground(Color.WHITE);
-		lblIdDoAdmin.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblIdDoAdmin.setBounds(179, 218, 239, 19);
-		desktopPane.add(lblIdDoAdmin);
-
-		JButton btnRemover = new JButton("Alterar");
-		btnRemover.addActionListener(new ActionListener() {
+		JButton btnAlterar = new JButton("");
+		btnAlterar.setIcon(new ImageIcon(SetMachineEntry.class.getResource("/Resources/icon/alterarbutton.png")));
+		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (codigo.getText().trim().length() < 4) {
 					JOptionPane.showMessageDialog(null, "Código Inválido!");
@@ -152,9 +123,24 @@ public class SetMachineEntry extends JFrame {
 				}
 			}
 		});
-		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnRemover.setBounds(311, 280, 95, 27);
-		desktopPane.add(btnRemover);
+		btnAlterar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAlterar.setBounds(331, 277, 75, 23);
+		desktopPane.add(btnAlterar);
+		
+		JLabel logo = new JLabel("");
+		logo.setIcon(new ImageIcon(SetMachineEntry.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setBounds(29, 40, 205, 74);
+		desktopPane.add(logo);
+		
+		JLabel banner = new JLabel("");
+		banner.setIcon(new ImageIcon(SetMachineEntry.class.getResource("/Resources/icon/setMachineBanner.png")));
+		banner.setBounds(336, 29, 175, 86);
+		desktopPane.add(banner);
+		
+		JLabel backForm = new JLabel("");
+		backForm.setIcon(new ImageIcon(SetMachineEntry.class.getResource("/Resources/icon/setMachineEntryForm.png")));
+		backForm.setBounds(114, 165, 376, 178);
+		desktopPane.add(backForm);
 
 	}
 	

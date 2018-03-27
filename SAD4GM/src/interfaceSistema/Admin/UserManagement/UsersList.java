@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 
 import java.awt.Font;
@@ -64,35 +63,13 @@ public class UsersList extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(20, 60, 141, 45);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(10, 11, 210, 73);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 111, 605, 12);
+		separator.setBounds(10, 130, 582, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("LISTAGEM");
-		lblRemover.setForeground(Color.WHITE);
-		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblRemover.setBounds(286, 23, 157, 37);
-		desktopPane.add(lblRemover);
-
-		JLabel lblAdmin = new JLabel("DOS USUÁRIOS");
-		lblAdmin.setForeground(Color.WHITE);
-		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(249, 63, 237, 37);
-		desktopPane.add(lblAdmin);
-
-		JButton button = new JButton("Voltar");
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(UsersList.class.getResource("/Resources/icon/voltabut.png")));
+		button.setBounds(489, 388, 86, 29);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserManagementOptions uMOptions = new UserManagementOptions(idAdmin);
@@ -104,16 +81,30 @@ public class UsersList extends JFrame {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBounds(506, 388, 69, 23);
 		desktopPane.add(button);
 
 		JTextPane textPane = new JTextPane();
 		textPane.setBackground(SystemColor.activeCaption);
 		textPane.setEditable(false);
 		JScrollPane jsp = new JScrollPane(textPane);
-		textPane.setText(sistema.listarUsuarios());
 		jsp.setBounds(84, 150, 345, 261);
+		textPane.setText(sistema.listarUsuarios());
 		desktopPane.add(jsp);
+		
+		JLabel logo = new JLabel("");
+		logo.setBounds(10, 40, 205, 74);
+		logo.setIcon(new ImageIcon(UsersList.class.getResource("/Resources/icon/sad4logosmall.png")));
+		desktopPane.add(logo);
+		
+		JLabel listback = new JLabel("");
+		listback.setBounds(77, 137, 366, 289);
+		listback.setIcon(new ImageIcon(UsersList.class.getResource("/Resources/icon/backlist.png")));
+		desktopPane.add(listback);
+		
+		JLabel usersListBanner = new JLabel("");
+		usersListBanner.setIcon(new ImageIcon(UsersList.class.getResource("/Resources/icon/userslist.png")));
+		usersListBanner.setBounds(245, 19, 326, 96);
+		desktopPane.add(usersListBanner);
 
 	}
 }
