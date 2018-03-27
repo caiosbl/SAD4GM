@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -19,6 +18,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 
 import sistema.Sistema;
+import javax.swing.ImageIcon;
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
  * SISTEMA SAD4GM
@@ -62,31 +62,14 @@ public class SetMachine extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(43, 62, 120, 34);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(21, 17, 161, 45);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
-		JLabel lblGerenciarUsurios = new JLabel("ALTERAR");
-		lblGerenciarUsurios.setBounds(315, 24, 139, 37);
-		lblGerenciarUsurios.setForeground(Color.WHITE);
-		lblGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblGerenciarUsurios);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(6, 107, 593, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
-		JButton button = new JButton("Voltar");
-		button.setBounds(496, 420, 84, 27);
-		button.addActionListener(new ActionListener() {
+		JButton btnVoltar = new JButton("");
+		btnVoltar.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setBounds(490, 420, 90, 27);
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SetMachineEntry setMachineEntry = new SetMachineEntry(idAdmin);
 				dispose();
@@ -94,46 +77,22 @@ public class SetMachine extends JFrame {
 				setMachineEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		desktopPane.add(button);
-
-		JLabel lblInformaes = new JLabel("MÁQUINA");
-		lblInformaes.setBounds(315, 60, 152, 37);
-		lblInformaes.setForeground(Color.WHITE);
-		lblInformaes.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblInformaes);
-
-		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(131, 199, 55, 16);
-		lblNome.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblNome.setForeground(Color.WHITE);
-		desktopPane.add(lblNome);
+		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		desktopPane.add(btnVoltar);
 
 		JTextPane nome = new JTextPane();
 		nome.setEditable(false);
 
-		nome.setBounds(182, 196, 268, 24);
+		nome.setBounds(184, 196, 264, 24);
 		nome.setText(sistema.getNomeMaquina(codeMaquina));
 		desktopPane.add(nome);
 
 		JTextPane codigo = new JTextPane();
 		codigo.setEditable(false);
 
-		codigo.setBounds(182, 231, 268, 24);
+		codigo.setBounds(184, 231, 264, 24);
 		codigo.setText(codeMaquina);
 		desktopPane.add(codigo);
-
-		JLabel lblId = new JLabel("Código:");
-		lblId.setBounds(117, 235, 55, 16);
-		lblId.setForeground(Color.WHITE);
-		lblId.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(lblId);
-
-		JLabel lblAuditor = new JLabel("Descrição:");
-		lblAuditor.setForeground(Color.WHITE);
-		lblAuditor.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblAuditor.setBounds(97, 282, 74, 19);
-		desktopPane.add(lblAuditor);
 
 		JTextPane descricao = new JTextPane();
 		descricao.setText(sistema.getDescricaoMaquina(codeMaquina));
@@ -147,7 +106,8 @@ public class SetMachine extends JFrame {
 		desktopPane.add(jsp);
 		
 
-		JButton btnEditar = new JButton("Editar");
+		JButton btnEditar = new JButton("");
+		btnEditar.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/editbutton.png")));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				codigo.setEditable(true);
@@ -159,7 +119,8 @@ public class SetMachine extends JFrame {
 		btnEditar.setBounds(182, 364, 90, 28);
 		desktopPane.add(btnEditar);
 
-		JButton btnAtualizar = new JButton("Atualizar");
+		JButton btnAtualizar = new JButton("");
+		btnAtualizar.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/atualizarbutton.png")));
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -222,6 +183,21 @@ public class SetMachine extends JFrame {
 		});
 		btnAtualizar.setBounds(362, 364, 90, 28);
 		desktopPane.add(btnAtualizar);
+		
+		JLabel logo = new JLabel("");
+		logo.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setBounds(29, 40, 205, 74);
+		desktopPane.add(logo);
+		
+		JLabel banner = new JLabel("");
+		banner.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/setMachineBanner.png")));
+		banner.setBounds(339, 28, 175, 86);
+		desktopPane.add(banner);
+		
+		JLabel form = new JLabel("");
+		form.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/formaSetMachine.png")));
+		form.setBounds(97, 182, 421, 226);
+		desktopPane.add(form);
 
 	}
 	
