@@ -8,7 +8,6 @@ import javax.swing.border.EmptyBorder;
 import interfaceSistema.Admin.Options;
 
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
@@ -56,56 +55,36 @@ public class MachineManagementOptions extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(43, 62, 120, 34);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
+		JButton btnListMachines = new JButton("");
+		btnListMachines.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/listmachineicon.png")));
+		btnListMachines.setBounds(0, 198, 249, 73);
+		desktopPane.add(btnListMachines);
+		btnListMachines.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(21, 17, 161, 45);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
+		JButton btnViewMachine = new JButton("");
+		btnViewMachine.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/viewmachineicon.png")));
+		btnViewMachine.setBounds(0, 283, 249, 73);
+		desktopPane.add(btnViewMachine);
+		btnViewMachine.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JButton btnNewButton = new JButton("Listar Máquinas");
-		btnNewButton.setIcon(null);
-		btnNewButton.setBounds(25, 203, 228, 27);
-		desktopPane.add(btnNewButton);
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+		JButton btnRemoveMachine = new JButton("");
+		btnRemoveMachine.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/removemachineicon.png")));
+		btnRemoveMachine.setBounds(356, 283, 249, 73);
+		desktopPane.add(btnRemoveMachine);
+		btnRemoveMachine.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JButton btnVisualizarMquinas = new JButton("Visualizar Máquina");
-		btnVisualizarMquinas.setBounds(25, 229, 228, 27);
-		desktopPane.add(btnVisualizarMquinas);
-		btnVisualizarMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
-
-		JButton btnInserirFuno = new JButton("Remover Máquina");
-		btnInserirFuno.setBounds(25, 256, 228, 27);
-		desktopPane.add(btnInserirFuno);
-		btnInserirFuno.setFont(new Font("Tahoma", Font.BOLD, 12));
-
-		JButton btnVerMquinas = new JButton("Alterar Máquina");
-		btnVerMquinas.setBounds(25, 283, 228, 27);
-		desktopPane.add(btnVerMquinas);
-		btnVerMquinas.setFont(new Font("Tahoma", Font.BOLD, 12));
-
-		JLabel lblGerenciarUsurios = new JLabel("GERENCIADOR");
-		lblGerenciarUsurios.setBounds(329, 17, 227, 37);
-		lblGerenciarUsurios.setForeground(Color.WHITE);
-		lblGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblGerenciarUsurios);
-
-		JLabel lblDeUsurios = new JLabel("DE MÁQUINAS");
-		lblDeUsurios.setForeground(Color.WHITE);
-		lblDeUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblDeUsurios.setBounds(339, 53, 227, 37);
-		desktopPane.add(lblDeUsurios);
+		JButton btnSetMachine = new JButton("");
+		btnSetMachine.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/setmachineicon.png")));
+		btnSetMachine.setBounds(356, 198, 249, 73);
+		desktopPane.add(btnSetMachine);
+		btnSetMachine.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(6, 107, 593, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
-		JButton btnVoltar = new JButton("Voltar");
+		JButton btnVoltar = new JButton("");
+		btnVoltar.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Options admOptions = new Options(idAdmin);
@@ -117,9 +96,19 @@ public class MachineManagementOptions extends JFrame {
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnVoltar.setBounds(484, 381, 92, 27);
+		btnVoltar.setBounds(481, 409, 95, 27);
 		desktopPane.add(btnVoltar);
-		btnVerMquinas.addActionListener(new ActionListener() {
+		
+		JLabel logo = new JLabel("");
+		logo.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setBounds(29, 40, 205, 74);
+		desktopPane.add(logo);
+		
+		JLabel banner = new JLabel("");
+		banner.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/machinemanagerbanner.png")));
+		banner.setBounds(298, 30, 253, 84);
+		desktopPane.add(banner);
+		btnSetMachine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SetMachineEntry setMachine = new SetMachineEntry(idAdmin);
 
@@ -129,7 +118,7 @@ public class MachineManagementOptions extends JFrame {
 				setMachine.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnInserirFuno.addActionListener(new ActionListener() {
+		btnRemoveMachine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MachineRemove machineRemove = new MachineRemove(idAdmin);
 
@@ -139,7 +128,7 @@ public class MachineManagementOptions extends JFrame {
 				machineRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnVisualizarMquinas.addActionListener(new ActionListener() {
+		btnViewMachine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MachineInformationEntry machinesInformationEntry = new MachineInformationEntry(idAdmin);
 
@@ -149,7 +138,7 @@ public class MachineManagementOptions extends JFrame {
 				machinesInformationEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnNewButton.addActionListener(new ActionListener() {
+		btnListMachines.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 				MachinesList machinesList = new MachinesList(idAdmin);
@@ -161,5 +150,4 @@ public class MachineManagementOptions extends JFrame {
 			}
 		});
 	}
-
 }

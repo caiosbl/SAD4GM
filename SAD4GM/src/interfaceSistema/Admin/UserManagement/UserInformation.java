@@ -94,7 +94,7 @@ public class UserInformation extends JFrame {
 		desktopPane.add(logo);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(UserInformation.class.getResource("/Resources/icon/viewinformation.png")));
+		label.setIcon(new ImageIcon(UserInformation.class.getResource("/Resources/icon/viewinformationuser.png")));
 		label.setBounds(253, 20, 335, 90);
 		desktopPane.add(label);
 		
