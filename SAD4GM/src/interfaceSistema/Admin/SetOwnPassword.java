@@ -71,6 +71,7 @@ public class SetOwnPassword extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				MyInfo admMyInfo = new MyInfo(idAdmin);
 				dispose();
+				admMyInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admMyInfo.setVisible(true);
 				admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
