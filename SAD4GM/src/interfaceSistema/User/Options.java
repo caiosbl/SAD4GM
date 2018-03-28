@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import interfaceSistema.Entrada;
 
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -17,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
+import javax.swing.ImageIcon;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -56,69 +56,65 @@ public class Options extends JFrame {
 		desktopPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 
-		JButton btnNewButton = new JButton("Inserir Máquina");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnInserirMaquina = new JButton("");
+		btnInserirMaquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/insertMachineButton.png")));
+		btnInserirMaquina.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnInserirMaquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				InsertMaquina insertMaquina = new InsertMaquina(idUsuario);
 				dispose();
+				insertMaquina.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				insertMaquina.setVisible(true);
 				insertMaquina.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnNewButton.setBounds(53, 182, 181, 29);
-		desktopPane.add(btnNewButton);
+		btnInserirMaquina.setBounds(0, 191, 249, 73);
+		desktopPane.add(btnInserirMaquina);
 
-		JButton btnVisualizarMquinas = new JButton("Listar Máquinas");
-		btnVisualizarMquinas.addActionListener(new ActionListener() {
+		JButton btnListarMaquinas = new JButton("");
+		btnListarMaquinas.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/listmachineicon.png")));
+		btnListarMaquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MachinesList listarMaquinas = new MachinesList(idUsuario);
 				dispose();
+				listarMaquinas.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				listarMaquinas.setVisible(true);
 				listarMaquinas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnVisualizarMquinas.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnVisualizarMquinas.setBounds(53, 302, 181, 29);
-		desktopPane.add(btnVisualizarMquinas);
+		btnListarMaquinas.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnListarMaquinas.setBounds(0, 277, 249, 73);
+		desktopPane.add(btnListarMaquinas);
 
-		JButton btnInserirFuno = new JButton("Inserir Função");
-		btnInserirFuno.addActionListener(new ActionListener() {
+		JButton btnInserirFuncao = new JButton("");
+		btnInserirFuncao.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/insertFunctionIcon.png")));
+		btnInserirFuncao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnInserirFuno.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnInserirFuno.setBounds(53, 222, 181, 29);
-		desktopPane.add(btnInserirFuno);
+		btnInserirFuncao.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnInserirFuncao.setBounds(356, 191, 249, 73);
+		desktopPane.add(btnInserirFuncao);
 
-		JButton button = new JButton("Minhas Informações");
-		button.addActionListener(new ActionListener() {
+		JButton btnMinhasInformacoes = new JButton("");
+		btnMinhasInformacoes.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/myinformationicon.png")));
+		btnMinhasInformacoes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MyInfo myInfo = new MyInfo(idUsuario);
 				dispose();
+				myInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				myInfo.setVisible(true);
 				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button.setBounds(53, 342, 181, 29);
-		desktopPane.add(button);
+		btnMinhasInformacoes.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnMinhasInformacoes.setBounds(336, 54, 122, 27);
+		desktopPane.add(btnMinhasInformacoes);
 
-		JLabel label = new JLabel("DeSiDeS");
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Tahoma", Font.BOLD, 28));
-		label.setBounds(16, 67, 141, 45);
-		desktopPane.add(label);
-
-		JLabel label_1 = new JLabel("SAD4GM");
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 37));
-		label_1.setBounds(6, 18, 210, 73);
-		desktopPane.add(label_1);
-
-		JButton button_1 = new JButton("Logout");
-		button_1.addActionListener(new ActionListener() {
+		JButton btnLogout = new JButton("");
+		btnLogout.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logouticon.png")));
+		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Entrada entrada = new Entrada();
 				dispose();
@@ -126,25 +122,32 @@ public class Options extends JFrame {
 				entrada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button_1.setBounds(497, 40, 81, 27);
-		desktopPane.add(button_1);
+		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnLogout.setBounds(470, 54, 81, 27);
+		desktopPane.add(btnLogout);
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(6, 116, 605, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 		
-		JButton btnVerUmaMquina = new JButton("Ver uma Máquina");
+		JButton btnVerUmaMquina = new JButton("");
+		btnVerUmaMquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/viewmachineicon.png")));
 		btnVerUmaMquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MachineInformationEntry verMaquina = new MachineInformationEntry(idUsuario);
 				dispose();
+				verMaquina.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				verMaquina.setVisible(true);
 				verMaquina.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVerUmaMquina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnVerUmaMquina.setBounds(53, 262, 181, 29);
+		btnVerUmaMquina.setBounds(356, 277, 249, 73);
 		desktopPane.add(btnVerUmaMquina);
+		
+		JLabel logo = new JLabel("");
+		logo.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setBounds(29, 40, 205, 74);
+		desktopPane.add(logo);
 	}
 }

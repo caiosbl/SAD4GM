@@ -4,12 +4,16 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+
+
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -58,52 +62,24 @@ public class MyInfo extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(43, 62, 120, 34);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(21, 17, 161, 45);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
-		JLabel lblGerenciarUsurios = new JLabel("MINHAS ");
-		lblGerenciarUsurios.setBounds(385, 24, 137, 37);
-		lblGerenciarUsurios.setForeground(Color.WHITE);
-		lblGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblGerenciarUsurios);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(6, 107, 593, 12);
+		separator.setBounds(6, 116, 593, 12);
 		desktopPane.add(separator);
 
-		JButton button = new JButton("Voltar");
-		button.setBounds(492, 381, 84, 27);
-		button.addActionListener(new ActionListener() {
+		JButton btnVoltar = new JButton("");
+		btnVoltar.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setBounds(492, 381, 84, 27);
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Options userOptions = new Options(idUsuario);
 				dispose();
+				userOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				userOptions.setVisible(true);
 				userOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		desktopPane.add(button);
-
-		JLabel lblInformaes = new JLabel("INFORMAÇÕES");
-		lblInformaes.setBounds(331, 59, 268, 37);
-		lblInformaes.setForeground(Color.WHITE);
-		lblInformaes.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblInformaes);
-
-		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(131, 199, 55, 16);
-		lblNome.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblNome.setForeground(Color.WHITE);
-		desktopPane.add(lblNome);
+		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		desktopPane.add(btnVoltar);
 
 		JTextPane nome = new JTextPane();
 		nome.setEditable(false);
@@ -119,36 +95,34 @@ public class MyInfo extends JFrame {
 		userID.setText(idUsuario);
 		desktopPane.add(userID);
 
-		JLabel lblId = new JLabel("ID:");
-		lblId.setBounds(154, 234, 55, 16);
-		lblId.setForeground(Color.WHITE);
-		lblId.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(lblId);
-
-		JButton btnAlterarSenha = new JButton("Alterar Senha");
+		JButton btnAlterarSenha = new JButton("");
+		btnAlterarSenha.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/setPasswordbutton.png")));
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SetOwnPassword setSenha = new SetOwnPassword(idUsuario);
 				dispose();
+				setSenha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setSenha.setVisible(true);
 				setSenha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnAlterarSenha.setBounds(43, 381, 139, 27);
+		btnAlterarSenha.setBounds(182, 278, 84, 27);
 		btnAlterarSenha.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnAlterarSenha);
 
-		JButton btnEditar = new JButton("Editar");
+		JButton btnEditar = new JButton("");
+		btnEditar.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/editbutton.png")));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				userID.setEditable(true);
 				nome.setEditable(true);
 			}
 		});
-		btnEditar.setBounds(182, 273, 90, 28);
+		btnEditar.setBounds(273, 278, 82, 24);
 		desktopPane.add(btnEditar);
 
-		JButton btnAtualizar = new JButton("Atualizar");
+		JButton btnAtualizar = new JButton("");
+		btnAtualizar.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/atualizarbutton.png")));
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -186,7 +160,22 @@ public class MyInfo extends JFrame {
 			}
 
 		});
-		btnAtualizar.setBounds(360, 273, 90, 28);
+		btnAtualizar.setBounds(360, 278, 90, 25);
 		desktopPane.add(btnAtualizar);
+		
+		JLabel logo = new JLabel("");
+		logo.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setBounds(29, 40, 205, 74);
+		desktopPane.add(logo);
+		
+		JLabel form = new JLabel("");
+		form.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/setAdmInfoForm.png")));
+		form.setBounds(75, 146, 434, 195);
+		desktopPane.add(form);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/myinfoBannner.png")));
+		label.setBounds(278, 25, 258, 79);
+		desktopPane.add(label);
 	}
 }

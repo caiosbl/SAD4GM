@@ -6,14 +6,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -61,61 +63,34 @@ public class MachineInformationEntry extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(20, 60, 141, 45);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(10, 11, 210, 73);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 111, 605, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("VER INFORMAÇÕES");
-		lblRemover.setForeground(Color.WHITE);
-		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblRemover.setBounds(222, 25, 297, 37);
-		desktopPane.add(lblRemover);
-
-		JLabel lblAdmin = new JLabel(" DE UMA MÁQUINA");
-		lblAdmin.setForeground(Color.WHITE);
-		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(231, 57, 290, 37);
-		desktopPane.add(lblAdmin);
-
-		JButton button = new JButton("Voltar");
-		button.addActionListener(new ActionListener() {
+		JButton btnVoltar = new JButton("");
+		btnVoltar.setIcon(new ImageIcon(MachineInformationEntry.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Options options = new Options(idUsuario);
 
 				dispose();
+				options.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				options.setVisible(true);
 				options.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBounds(506, 388, 65, 27);
-		desktopPane.add(button);
+		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVoltar.setBounds(484, 388, 87, 27);
+		desktopPane.add(btnVoltar);
 
 		idField = new JTextField();
 		idField.setBounds(200, 248, 206, 28);
 		desktopPane.add(idField);
 		idField.setColumns(10);
 
-		JLabel lblIdDoAdmin = new JLabel("Código da Máquina:");
-		lblIdDoAdmin.setForeground(Color.WHITE);
-		lblIdDoAdmin.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblIdDoAdmin.setBounds(233, 221, 139, 19);
-		desktopPane.add(lblIdDoAdmin);
-
-		JButton btnRemover = new JButton("Visualizar");
-		btnRemover.addActionListener(new ActionListener() {
+		JButton btnVisualizar = new JButton();
+		btnVisualizar.setIcon(new ImageIcon(MachineInformationEntry.class.getResource("/Resources/icon/visualizarbutto.png")));
+		btnVisualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (idField.getText().trim().length() < 4) {
 					JOptionPane.showMessageDialog(null, "Insira um Código de no mínimo 4 digítos!");
@@ -141,15 +116,32 @@ public class MachineInformationEntry extends JFrame {
 					else {
 						MachineInformation machineInformation = new MachineInformation(idUsuario,idField.getText().trim());
 						dispose();
+						machineInformation.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						machineInformation.setVisible(true);
 						machineInformation.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}
 				}
 			}
 		});
-		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnRemover.setBounds(311, 280, 95, 27);
-		desktopPane.add(btnRemover);
+		btnVisualizar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVisualizar.setBounds(311, 280, 95, 27);
+		desktopPane.add(btnVisualizar);
+		
+
+		JLabel logo = new JLabel("");
+		logo.setIcon(new ImageIcon(MachineInformationEntry.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setBounds(29, 40, 205, 74);
+		desktopPane.add(logo);
+		
+		JLabel banner = new JLabel("");
+		banner.setIcon(new ImageIcon(MachineInformationEntry.class.getResource("/Resources/icon/viewmachineinformation.png")));
+		banner.setBounds(246, 27, 337, 92);
+		desktopPane.add(banner);
+		
+		JLabel form = new JLabel("");
+		form.setIcon(new ImageIcon(MachineInformationEntry.class.getResource("/Resources/icon/viewInformationForm.png")));
+		form.setBounds(119, 172, 376, 178);
+		desktopPane.add(form);
 
 	}
 	

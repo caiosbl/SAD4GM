@@ -117,6 +117,7 @@ public class Login extends JFrame {
 							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeUsuario(id) + "!");
 							Options uOptions = new Options(id);
 							dispose();
+							uOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 							uOptions.setVisible(true);
 							uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						} else {
@@ -139,8 +140,9 @@ public class Login extends JFrame {
 		button.setBounds(336, 306, 70, 25);
 		desktopPane.add(button);
 
-		JButton button_1 = new JButton("Voltar");
-		button_1.addActionListener(new ActionListener() {
+		JButton btnVoltar = new JButton("");
+		btnVoltar.setIcon(new ImageIcon(Login.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Entrada entrada = new Entrada();
 				dispose();
@@ -148,9 +150,9 @@ public class Login extends JFrame {
 				entrada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button_1.setBounds(479, 389, 100, 27);
-		desktopPane.add(button_1);
+		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVoltar.setBounds(489, 389, 90, 27);
+		desktopPane.add(btnVoltar);
 		
 		JLabel loginFormBack = new JLabel("");
 		loginFormBack.setIcon(new ImageIcon(Login.class.getResource("/Resources/icon/loginformback.png")));

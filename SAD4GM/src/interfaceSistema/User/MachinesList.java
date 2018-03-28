@@ -6,13 +6,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
-import java.awt.Color;
+
 import javax.swing.JLabel;
 
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -62,47 +65,25 @@ public class MachinesList extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(20, 60, 141, 45);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(10, 11, 210, 73);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 111, 605, 12);
+		separator.setBounds(6, 126, 582, 12);
 		desktopPane.add(separator);
 
-		JLabel lblRemover = new JLabel("LISTAGEM");
-		lblRemover.setForeground(Color.WHITE);
-		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblRemover.setBounds(286, 23, 157, 37);
-		desktopPane.add(lblRemover);
-
-		JLabel lblAdmin = new JLabel("DE MÁQUINAS");
-		lblAdmin.setForeground(Color.WHITE);
-		lblAdmin.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblAdmin.setBounds(249, 63, 237, 37);
-		desktopPane.add(lblAdmin);
-
-		JButton button = new JButton("Voltar");
-		button.addActionListener(new ActionListener() {
+		JButton btnVoltar = new JButton("");
+		btnVoltar.setIcon(new ImageIcon(MachinesList.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Options uOptions = new Options(idUser);
 
 				dispose();
+				uOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				uOptions.setVisible(true);
 				uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBounds(506, 388, 69, 23);
-		desktopPane.add(button);
+		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVoltar.setBounds(487, 422, 83, 23);
+		desktopPane.add(btnVoltar);
 
 		JTextPane machineList = new JTextPane();
 		machineList.setBackground(SystemColor.activeCaption);
@@ -111,6 +92,21 @@ public class MachinesList extends JFrame {
 		machineList.setText(sistema.listarMaquinas());
 		jsp.setBounds(84, 150, 345, 261);
 		desktopPane.add(jsp);
+		
+		JLabel logo = new JLabel("");
+		logo.setIcon(new ImageIcon(MachinesList.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setBounds(29, 40, 205, 74);
+		desktopPane.add(logo);
+		
+		JLabel banner = new JLabel("");
+		banner.setIcon(new ImageIcon(MachinesList.class.getResource("/Resources/icon/machineslistbanner.png")));
+		banner.setBounds(299, 22, 250, 90);
+		desktopPane.add(banner);
+		
+		JLabel backList = new JLabel("");
+		backList.setIcon(new ImageIcon(MachinesList.class.getResource("/Resources/icon/backlist.png")));
+		backList.setBounds(74, 140, 419, 276);
+		desktopPane.add(backList);
 
 	}
 }
