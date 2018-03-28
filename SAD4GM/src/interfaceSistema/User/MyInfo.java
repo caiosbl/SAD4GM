@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-
+import interfaceSistema.Entrada;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -29,7 +29,7 @@ import sistema.Sistema;
  * @author caiosbl
  *
  */
-public class MyInfo extends JFrame {
+public class MyInfo extends Entrada {
 
 	/**
 	 * 
@@ -46,12 +46,13 @@ public class MyInfo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MyInfo(String id) {
+	public MyInfo(String id,int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		this.idUsuario = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -71,7 +72,7 @@ public class MyInfo extends JFrame {
 		btnVoltar.setBounds(492, 381, 84, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Options userOptions = new Options(idUsuario);
+				Options userOptions = new Options(idUsuario,getXLocation(),getYLocation());
 				dispose();
 				userOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				userOptions.setVisible(true);
@@ -99,7 +100,7 @@ public class MyInfo extends JFrame {
 		btnAlterarSenha.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/setPasswordbutton.png")));
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetOwnPassword setSenha = new SetOwnPassword(idUsuario);
+				SetOwnPassword setSenha = new SetOwnPassword(idUsuario,getXLocation(),getYLocation());
 				dispose();
 				setSenha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setSenha.setVisible(true);

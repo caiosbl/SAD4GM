@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import interfaceSistema.Entrada;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,7 +29,7 @@ import sistema.Sistema;
  * @author caiosbl
  *
  */
-public class SetAdmin extends JFrame {
+public class SetAdmin extends Entrada {
 
 	/**
 	 * 
@@ -45,7 +48,8 @@ public class SetAdmin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SetAdmin(String id, String idSet) {
+	public SetAdmin(String id, String idSet, int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		this.idAdmin = id;
 		this.idAtual = idSet;
 		
@@ -53,7 +57,7 @@ public class SetAdmin extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -73,7 +77,7 @@ public class SetAdmin extends JFrame {
 		button.setBounds(492, 381, 93, 34);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetAdminEntry setAdminEntry = new SetAdminEntry(idAdmin);
+				SetAdminEntry setAdminEntry = new SetAdminEntry(idAdmin,getXLocation(),getYLocation());
 				dispose();
 				setAdminEntry.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setAdminEntry.setVisible(true);
@@ -101,7 +105,7 @@ public class SetAdmin extends JFrame {
 		btnAlterarSenha.setIcon(new ImageIcon(SetAdmin.class.getResource("/Resources/icon/setPasswordbutton.png")));
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetAdminPassword admSetSenha = new SetAdminPassword(idAdmin, idAtual);
+				SetAdminPassword admSetSenha = new SetAdminPassword(idAdmin, idAtual,getXLocation(),getYLocation());
 				dispose();
 				admSetSenha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admSetSenha.setVisible(true);

@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-
+import interfaceSistema.Entrada;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -32,7 +32,7 @@ import javax.swing.JScrollPane;
  * @author caiosbl
  *
  */
-public class MachinesList extends JFrame {
+public class MachinesList extends Entrada {
 
 	/**
 	 * 
@@ -49,12 +49,13 @@ public class MachinesList extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MachinesList(String id) {
+	public MachinesList(String id,int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		this.idUser = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -73,7 +74,7 @@ public class MachinesList extends JFrame {
 		btnVoltar.setIcon(new ImageIcon(MachinesList.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Options uOptions = new Options(idUser);
+				Options uOptions = new Options(idUser,getXLocation(),getYLocation());
 
 				dispose();
 				uOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());

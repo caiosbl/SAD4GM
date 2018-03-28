@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import interfaceSistema.Entrada;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -28,7 +29,7 @@ import javax.swing.JTextField;
  * @author caiosbl
  *
  */
-public class UserRemove extends JFrame {
+public class UserRemove extends Entrada {
 
 	/**
 	 * 
@@ -46,12 +47,13 @@ public class UserRemove extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserRemove(String id) {
+	public UserRemove(String id, int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -71,7 +73,7 @@ public class UserRemove extends JFrame {
 		button.setBounds(476, 388, 95, 27);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserManagementOptions userOptions = new UserManagementOptions(idAdmin);
+				UserManagementOptions userOptions = new UserManagementOptions(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				userOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -111,7 +113,7 @@ public class UserRemove extends JFrame {
 						sistema.removerUsuario(idField.getText().trim());
 						JOptionPane.showMessageDialog(null, "Usuário removido com Sucesso!");
 
-						UserManagementOptions admUserOptions = new UserManagementOptions(idAdmin);
+						UserManagementOptions admUserOptions = new UserManagementOptions(idAdmin,getXLocation(),getYLocation());
 						dispose();
 						admUserOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						admUserOptions.setVisible(true);

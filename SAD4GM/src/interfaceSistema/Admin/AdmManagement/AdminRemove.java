@@ -47,12 +47,13 @@ public class AdminRemove extends Entrada {
 	/**
 	 * Create the frame.
 	 */
-	public AdminRemove(String id) {
+	public AdminRemove(String id,int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -71,7 +72,7 @@ public class AdminRemove extends Entrada {
 		button.setIcon(new ImageIcon(AdminRemove.class.getResource("/Resources/icon/voltabut.png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
+				AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				admMOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -113,7 +114,7 @@ public class AdminRemove extends Entrada {
 						sistema.deletarAdmin(idField.getText().trim());
 						JOptionPane.showMessageDialog(null, "Admin removido com Sucesso!");
 
-						AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
+						AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin,getXLocation(),getYLocation());
 						dispose();
 						admMOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						admMOptions.setVisible(true);

@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import interfaceSistema.Entrada;
 import interfaceSistema.Admin.Options;
 
 import javax.swing.JDesktopPane;
@@ -28,7 +29,7 @@ import javax.swing.JSeparator;
  * @author caiosbl
  *
  */
-public class AdminManagementOptions extends JFrame {
+public class AdminManagementOptions extends Entrada {
 
 	/**
 	 * 
@@ -44,14 +45,15 @@ public class AdminManagementOptions extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdminManagementOptions(String id) {
+	public AdminManagementOptions(String id, int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("icon/icon.jpg");
 		this.setIconImage(iconeTitulo);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -85,7 +87,7 @@ public class AdminManagementOptions extends JFrame {
 		btnListarUsurios.setIcon(new ImageIcon(AdminManagementOptions.class.getResource("/Resources/icon/listadminicon.png")));
 		btnListarUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminsList admList = new AdminsList(idAdmin);
+				AdminsList admList = new AdminsList(idAdmin,getXLocation(),getYLocation());
 				dispose();
 				admList.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admList.setVisible(true);
@@ -104,7 +106,7 @@ public class AdminManagementOptions extends JFrame {
 		button.setIcon(new ImageIcon(AdminManagementOptions.class.getResource("/Resources/icon/voltabut.png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Options admOptions = new Options(idAdmin);
+				Options admOptions = new Options(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				admOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -126,7 +128,7 @@ public class AdminManagementOptions extends JFrame {
 		desktopPane.add(gerenciadorname);
 		btnInserirFuno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SetAdminEntry setAdmEntry = new SetAdminEntry(idAdmin);
+				SetAdminEntry setAdmEntry = new SetAdminEntry(idAdmin,getXLocation(),getYLocation());
 				dispose();
 				setAdmEntry.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setAdmEntry.setVisible(true);
@@ -135,7 +137,7 @@ public class AdminManagementOptions extends JFrame {
 		});
 		btnVisualizarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminRemove admRemove = new AdminRemove(idAdmin);
+				AdminRemove admRemove = new AdminRemove(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				admRemove.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -145,7 +147,7 @@ public class AdminManagementOptions extends JFrame {
 		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminInsert admInsertAdmin = new AdminInsert(idAdmin);
+				AdminInsert admInsertAdmin = new AdminInsert(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				admInsertAdmin.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());

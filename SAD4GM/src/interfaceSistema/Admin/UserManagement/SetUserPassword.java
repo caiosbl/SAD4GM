@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import interfaceSistema.Entrada;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,7 +29,7 @@ import javax.swing.JPasswordField;
  * @author caiosbl
  *
  */
-public class SetUserPassword extends JFrame {
+public class SetUserPassword extends Entrada {
 
 	/**
 	 * 
@@ -46,13 +49,14 @@ public class SetUserPassword extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SetUserPassword(String id, String idUsuario) {
+	public SetUserPassword(String id, String idUsuario, int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		this.idAdmin = id;
 		this.idUser = idUsuario;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -72,7 +76,7 @@ public class SetUserPassword extends JFrame {
 		voltarButton.setBounds(479, 381, 97, 27);
 		voltarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetUser setUser = new SetUser(idAdmin, idUser);
+				SetUser setUser = new SetUser(idAdmin, idUser,getXLocation(),getYLocation());
 				dispose();
 				setUser.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setUser.setVisible(true);
@@ -112,7 +116,7 @@ public class SetUserPassword extends JFrame {
 				} else {
 					sistema.setSenhaUsuario(idUser, newPassword);
 					JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
-					SetUser setUsuario = new SetUser(idAdmin, idUsuario);
+					SetUser setUsuario = new SetUser(idAdmin, idUsuario,getXLocation(),getYLocation());
 					dispose();
 					setUsuario
 							.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());

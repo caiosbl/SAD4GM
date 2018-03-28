@@ -24,7 +24,7 @@ import javax.swing.ImageIcon;
  * @author caiosbl
  *
  */
-public class Options extends JFrame {
+public class Options extends Entrada {
 
 	/**
 	 * 
@@ -40,13 +40,14 @@ public class Options extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Options(String id) {
+	public Options(String id, int xLocation, int yLocation) {
+		super(xLocation,yLocation);
 		this.idUsuario = id;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -61,7 +62,7 @@ public class Options extends JFrame {
 		btnInserirMaquina.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnInserirMaquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				InsertMaquina insertMaquina = new InsertMaquina(idUsuario);
+				InsertMaquina insertMaquina = new InsertMaquina(idUsuario,getXLocation(),getYLocation());
 				dispose();
 				insertMaquina.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				insertMaquina.setVisible(true);
@@ -75,7 +76,7 @@ public class Options extends JFrame {
 		btnListarMaquinas.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/listmachineicon.png")));
 		btnListarMaquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MachinesList listarMaquinas = new MachinesList(idUsuario);
+				MachinesList listarMaquinas = new MachinesList(idUsuario,getXLocation(),getYLocation());
 				dispose();
 				listarMaquinas.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				listarMaquinas.setVisible(true);
@@ -100,7 +101,7 @@ public class Options extends JFrame {
 		btnMinhasInformacoes.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/myinformationicon.png")));
 		btnMinhasInformacoes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MyInfo myInfo = new MyInfo(idUsuario);
+				MyInfo myInfo = new MyInfo(idUsuario,getXLocation(),getYLocation());
 				dispose();
 				myInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				myInfo.setVisible(true);
@@ -116,7 +117,7 @@ public class Options extends JFrame {
 		btnLogout.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logouticon.png")));
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Entrada entrada = new Entrada();
+				Entrada entrada = new Entrada(getXLocation(),getYLocation());
 				dispose();
 				entrada.setVisible(true);
 				entrada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -134,7 +135,7 @@ public class Options extends JFrame {
 		btnVerUmaMquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/viewmachineicon.png")));
 		btnVerUmaMquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MachineInformationEntry verMaquina = new MachineInformationEntry(idUsuario);
+				MachineInformationEntry verMaquina = new MachineInformationEntry(idUsuario,getXLocation(),getYLocation());
 				dispose();
 				verMaquina.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				verMaquina.setVisible(true);

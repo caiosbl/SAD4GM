@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import interfaceSistema.Entrada;
 import interfaceSistema.Admin.Options;
 
 import javax.swing.JDesktopPane;
@@ -27,7 +28,7 @@ import javax.swing.JSeparator;
  * @author caiosbl
  *
  */
-public class UserManagementOptions extends JFrame {
+public class UserManagementOptions extends Entrada {
 
 	/**
 	 * 
@@ -43,14 +44,15 @@ public class UserManagementOptions extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserManagementOptions(String id) {
+	public UserManagementOptions(String id, int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("icon/icon.jpg");
 		this.setIconImage(iconeTitulo);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -87,7 +89,7 @@ public class UserManagementOptions extends JFrame {
 		btnListarUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				UsersList uList = new UsersList(idAdmin);
+				UsersList uList = new UsersList(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				uList.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -105,7 +107,7 @@ public class UserManagementOptions extends JFrame {
 		btnVerInformaesUsurio.setBounds(0, 321, 249, 73);
 		btnVerInformaesUsurio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserInformationEntry uInformation = new UserInformationEntry(idAdmin);
+				UserInformationEntry uInformation = new UserInformationEntry(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				uInformation.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -124,7 +126,7 @@ public class UserManagementOptions extends JFrame {
 		button.setIcon(new ImageIcon(UserManagementOptions.class.getResource("/Resources/icon/voltabut.png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Options admOptions = new Options(idAdmin);
+				Options admOptions = new Options(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				admOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -148,7 +150,7 @@ public class UserManagementOptions extends JFrame {
 		desktopPane.add(gerenciadorUsersBanner);
 		btnVerMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetUserEntry setUser = new SetUserEntry(idAdmin);
+				SetUserEntry setUser = new SetUserEntry(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				setUser.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -158,7 +160,7 @@ public class UserManagementOptions extends JFrame {
 		});
 		removeUserbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserRemove userRemove = new UserRemove(idAdmin);
+				UserRemove userRemove = new UserRemove(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				userRemove.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -168,7 +170,7 @@ public class UserManagementOptions extends JFrame {
 		});
 		insertUserButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				InsertUser admInsertUser = new InsertUser(idAdmin);
+				InsertUser admInsertUser = new InsertUser(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				admInsertUser

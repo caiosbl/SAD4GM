@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import interfaceSistema.Entrada;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -30,7 +31,7 @@ import javax.swing.JScrollPane;
  * @author caiosbl
  *
  */
-public class UsersList extends JFrame {
+public class UsersList extends Entrada {
 
 	/**
 	 * 
@@ -47,12 +48,13 @@ public class UsersList extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UsersList(String id) {
+	public UsersList(String id, int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -72,7 +74,7 @@ public class UsersList extends JFrame {
 		button.setBounds(489, 388, 86, 29);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserManagementOptions uMOptions = new UserManagementOptions(idAdmin);
+				UserManagementOptions uMOptions = new UserManagementOptions(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				uMOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());

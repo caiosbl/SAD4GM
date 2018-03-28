@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import interfaceSistema.Entrada;
 import interfaceSistema.Admin.Options;
 
 import javax.swing.JDesktopPane;
@@ -21,7 +22,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JSeparator;
 
-public class MachineManagementOptions extends JFrame {
+public class MachineManagementOptions extends Entrada {
 
 	/**
 	 * 
@@ -37,14 +38,15 @@ public class MachineManagementOptions extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MachineManagementOptions(String id) {
+	public MachineManagementOptions(String id, int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("icon/icon.jpg");
 		this.setIconImage(iconeTitulo);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -87,7 +89,7 @@ public class MachineManagementOptions extends JFrame {
 		btnVoltar.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Options admOptions = new Options(idAdmin);
+				Options admOptions = new Options(idAdmin, getXLocation(),getYLocation());
 
 				dispose();
 				admOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -110,7 +112,7 @@ public class MachineManagementOptions extends JFrame {
 		desktopPane.add(banner);
 		btnSetMachine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetMachineEntry setMachine = new SetMachineEntry(idAdmin);
+				SetMachineEntry setMachine = new SetMachineEntry(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				setMachine.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -120,7 +122,7 @@ public class MachineManagementOptions extends JFrame {
 		});
 		btnRemoveMachine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MachineRemove machineRemove = new MachineRemove(idAdmin);
+				MachineRemove machineRemove = new MachineRemove(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				machineRemove.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -130,7 +132,7 @@ public class MachineManagementOptions extends JFrame {
 		});
 		btnViewMachine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MachineInformationEntry machinesInformationEntry = new MachineInformationEntry(idAdmin);
+				MachineInformationEntry machinesInformationEntry = new MachineInformationEntry(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				machinesInformationEntry.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -141,7 +143,7 @@ public class MachineManagementOptions extends JFrame {
 		btnListMachines.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				MachinesList machinesList = new MachinesList(idAdmin);
+				MachinesList machinesList = new MachinesList(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				machinesList.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());

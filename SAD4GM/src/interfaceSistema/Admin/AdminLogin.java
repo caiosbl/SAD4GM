@@ -50,12 +50,13 @@ public class AdminLogin extends Entrada {
 	/**
 	 * Create the frame.
 	 */
-	public AdminLogin() {
+	public AdminLogin(int xLocation,int yLocation) {
+		super(xLocation,yLocation);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation, yLocation, 621, 497);
 		Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("icon/icon.jpg");
 		this.setIconImage(iconeTitulo);
 		contentPane = new JPanel();
@@ -112,7 +113,7 @@ public class AdminLogin extends Entrada {
 
 						if (sistema.autenticaAdmin(id, senha)) {
 							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeAdmin(id) + "!");
-							Options admOptions = new Options(id);
+							Options admOptions = new Options(id,getXLocation(),getYLocation());
 
 							dispose();
 							admOptions.setIconImage(
@@ -143,7 +144,7 @@ public class AdminLogin extends Entrada {
 		button_1.setIcon(new ImageIcon(AdminLogin.class.getResource("/Resources/icon/voltabut.png")));
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Entrada entrada = new Entrada();
+				Entrada entrada = new Entrada(getXLocation(),getYLocation());
 				dispose();
 				entrada.setVisible(true);
 				entrada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

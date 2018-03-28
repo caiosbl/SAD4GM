@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
 import javax.swing.JButton;
 
 import javax.swing.UIManager;
@@ -46,6 +47,7 @@ public class Entrada extends JFrame {
 	@SuppressWarnings("unused")
 	private static ServerSocket s;
 
+
 	/**
 	 * Launch the application.
 	 */
@@ -57,7 +59,7 @@ public class Entrada extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Entrada frame = new Entrada();
+					Entrada frame = new Entrada(100,100);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -73,7 +75,8 @@ public class Entrada extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Entrada() {
+	public Entrada(int xLocation,int yLocation) {
+	
 		this.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 		
 	
@@ -97,7 +100,7 @@ public class Entrada extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM - DESIDES");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation, yLocation, 621, 497);
 
 		
 
@@ -122,7 +125,7 @@ public class Entrada extends JFrame {
 		button.setIcon(new ImageIcon(Entrada.class.getResource("/Resources/icon/usuariobutton.png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Login uOptions = new Login();
+				Login uOptions = new Login(getXLocation(),getYLocation());
 				dispose();
 				uOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				uOptions.setVisible(true);
@@ -139,7 +142,7 @@ public class Entrada extends JFrame {
 		button_1.setIcon(new ImageIcon(Entrada.class.getResource("/Resources/icon/adminbutton.png")));
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminLogin admLogin = new AdminLogin();
+				AdminLogin admLogin = new AdminLogin(getXLocation(),getYLocation());
 				dispose();
 				admLogin.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admLogin.setVisible(true);
@@ -168,5 +171,14 @@ public class Entrada extends JFrame {
 		desktopPane.add(lblNewLabel_2);
 	
 		
+	}
+	
+	
+	public int getXLocation() {
+		return this.getLocationOnScreen().x;
+	}
+	
+	public int getYLocation() {
+		return this.getLocationOnScreen().y;
 	}
 }

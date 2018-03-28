@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import interfaceSistema.Entrada;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,7 +29,7 @@ import sistema.Sistema;
  * @author caiosbl
  *
  */
-public class SetUser extends JFrame {
+public class SetUser extends Entrada {
 
 	/**
 	 * 
@@ -44,14 +47,15 @@ public class SetUser extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SetUser(String id, String idUser) {
+	public SetUser(String id, String idUser, int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		this.idAdmin = id;
 		this.idUser = idUser;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -71,7 +75,7 @@ public class SetUser extends JFrame {
 		button.setBounds(492, 381, 84, 27);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetUserEntry setUserEntry = new SetUserEntry(idAdmin);
+				SetUserEntry setUserEntry = new SetUserEntry(idAdmin,getXLocation(),getYLocation());
 				dispose();
 				setUserEntry.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setUserEntry.setVisible(true);
@@ -105,7 +109,7 @@ public class SetUser extends JFrame {
 		btnAlterarSenha.setIcon(new ImageIcon(SetUser.class.getResource("/Resources/icon/setPasswordbutton.png")));
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetUserPassword setUserPassword = new SetUserPassword(idAdmin, idUser);
+				SetUserPassword setUserPassword = new SetUserPassword(idAdmin, idUser,getXLocation(),getYLocation());
 				dispose();
 				setUserPassword.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setUserPassword.setVisible(true);

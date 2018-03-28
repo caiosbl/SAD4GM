@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import interfaceSistema.Entrada;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -28,7 +29,7 @@ import javax.swing.JTextField;
  * @author caiosbl
  *
  */
-public class SetMachineEntry extends JFrame {
+public class SetMachineEntry extends Entrada {
 
 	/**
 	 * 
@@ -46,12 +47,13 @@ public class SetMachineEntry extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SetMachineEntry(String id) {
+	public SetMachineEntry(String id, int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -70,7 +72,7 @@ public class SetMachineEntry extends JFrame {
 		btnVoltar.setIcon(new ImageIcon(SetMachineEntry.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MachineManagementOptions machineOptions = new MachineManagementOptions(idAdmin);
+				MachineManagementOptions machineOptions = new MachineManagementOptions(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				machineOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -114,7 +116,7 @@ public class SetMachineEntry extends JFrame {
 					}
 
 					else {
-						SetMachine setMachine = new SetMachine(idAdmin, codigo.getText().trim());
+						SetMachine setMachine = new SetMachine(idAdmin, codigo.getText().trim(),getXLocation(),getYLocation());
 						dispose();
 						setMachine.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						setMachine.setVisible(true);

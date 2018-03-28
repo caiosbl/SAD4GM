@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import interfaceSistema.Entrada;
+
 import javax.swing.JDesktopPane;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -28,7 +31,7 @@ import javax.swing.JTextField;
  * @author caiosbl
  *
  */
-public class AdminInsert extends JFrame {
+public class AdminInsert extends Entrada {
 
 	/**
 	 * 
@@ -50,12 +53,13 @@ public class AdminInsert extends JFrame {
 	 * Create the frame.
 	 */
 
-	public AdminInsert(String id) {
+	public AdminInsert(String id, int xLocation, int yLocation) {
+		super(xLocation,yLocation);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -75,7 +79,7 @@ public class AdminInsert extends JFrame {
 		voltarButton.setBounds(477, 405, 93, 34);
 		voltarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminManagementOptions admOptions = new AdminManagementOptions(idAdmin);
+				AdminManagementOptions admOptions = new AdminManagementOptions(idAdmin,getXLocation(),getYLocation());
 				dispose();
 				admOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admOptions.setVisible(true);
@@ -134,7 +138,7 @@ public class AdminInsert extends JFrame {
 					} else {
 						sistema.inserirAdmin(newUserName, newPassword, newIdAdmin);
 						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
-						AdminManagementOptions admMyInfo = new AdminManagementOptions(idAdmin);
+						AdminManagementOptions admMyInfo = new AdminManagementOptions(idAdmin,getXLocation(),getYLocation());
 						dispose();
 						admMyInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						admMyInfo.setVisible(true);

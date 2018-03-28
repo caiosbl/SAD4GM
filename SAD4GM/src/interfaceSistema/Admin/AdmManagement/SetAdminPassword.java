@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import interfaceSistema.Entrada;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -25,7 +28,7 @@ import javax.swing.ImageIcon;
  * @author caiosbl
  *
  */
-public class SetAdminPassword extends JFrame {
+public class SetAdminPassword extends Entrada {
 
 	/**
 	 * 
@@ -45,13 +48,14 @@ public class SetAdminPassword extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SetAdminPassword(String id, String idAlterado) {
+	public SetAdminPassword(String id, String idAlterado, int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		this.idAdmin = id;
 		this.idAlterar = idAlterado;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -71,7 +75,7 @@ public class SetAdminPassword extends JFrame {
 		voltarButton.setBounds(492, 381, 84, 27);
 		voltarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetAdmin setAdmin = new SetAdmin(idAdmin, idAlterado);
+				SetAdmin setAdmin = new SetAdmin(idAdmin, idAlterado,getXLocation(),getYLocation());
 				dispose();
 				setAdmin.setVisible(true);
 				setAdmin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -111,7 +115,7 @@ public class SetAdminPassword extends JFrame {
 				else {
 					sistema.setSenhaAdmin(idAlterar, newPassword);
 					JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
-					SetAdmin setAdmin = new SetAdmin(idAdmin, idAlterado);
+					SetAdmin setAdmin = new SetAdmin(idAdmin, idAlterado,getXLocation(),getYLocation());
 					dispose();
 					setAdmin.setVisible(true);
 					setAdmin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

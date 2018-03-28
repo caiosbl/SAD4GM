@@ -5,6 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import interfaceSistema.Entrada;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,7 +29,7 @@ import javax.swing.ImageIcon;
  * @author caiosbl
  *
  */
-public class SetMachine extends JFrame {
+public class SetMachine extends Entrada {
 
 	/**
 	 * 
@@ -44,14 +47,15 @@ public class SetMachine extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SetMachine(String id, String codeMaquina) {
+	public SetMachine(String id, String codeMaquina, int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		this.idAdmin = id;
 		this.codigoMaquina = codeMaquina;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -71,7 +75,7 @@ public class SetMachine extends JFrame {
 		btnVoltar.setBounds(490, 420, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetMachineEntry setMachineEntry = new SetMachineEntry(idAdmin);
+				SetMachineEntry setMachineEntry = new SetMachineEntry(idAdmin,getXLocation(),getYLocation());
 				dispose();
 				setMachineEntry.setVisible(true);
 				setMachineEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -5,6 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import interfaceSistema.Entrada;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,7 +30,7 @@ import javax.swing.ImageIcon;
  * @author caiosbl
  *
  */
-public class InsertMaquina extends JFrame {
+public class InsertMaquina extends Entrada {
 
 	/**
 	 * 
@@ -48,12 +51,13 @@ public class InsertMaquina extends JFrame {
 	 * Create the frame.
 	 */
 
-	public InsertMaquina(String id) {
+	public InsertMaquina(String id, int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		this.idUsuario = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -73,7 +77,7 @@ public class InsertMaquina extends JFrame {
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Options uOptions = new Options(idUsuario);
+				Options uOptions = new Options(idUsuario,getXLocation(),getYLocation());
 				dispose();
 				uOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				uOptions.setVisible(true);
@@ -120,7 +124,7 @@ public class InsertMaquina extends JFrame {
 					else {
 						sistema.adicionaMaquina(nome, codigo, descricao, idUsuario);
 						JOptionPane.showMessageDialog(null, "Máquina cadastrada com sucesso!");
-						Options userOptions = new Options(idUsuario);
+						Options userOptions = new Options(idUsuario,getXLocation(),getYLocation());
 
 						dispose();
 						userOptions.setVisible(true);

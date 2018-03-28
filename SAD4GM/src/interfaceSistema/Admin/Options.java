@@ -32,7 +32,7 @@ import javax.swing.ImageIcon;
  * @author caiosbl
  *
  */
-public class Options extends JFrame {
+public class Options extends Entrada {
 
 	/**
 	 * 
@@ -48,7 +48,9 @@ public class Options extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Options(String id) {
+	public Options(String id,int xLocation,int yLocation) {
+		super(xLocation, yLocation);
+		
 
 		Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("icon/icon.jpg");
 		this.setIconImage(iconeTitulo);
@@ -57,7 +59,7 @@ public class Options extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -73,7 +75,7 @@ public class Options extends JFrame {
 		btnGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnGerenciarUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				UserManagementOptions admUserOptions = new UserManagementOptions(idAdmin);
+				UserManagementOptions admUserOptions = new UserManagementOptions(idAdmin, getXLocation(),getYLocation());
 				dispose();
 				admUserOptions
 						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -89,7 +91,7 @@ public class Options extends JFrame {
 		btnGerenciarMquinas.setBounds(395, 207, 175, 88);
 		btnGerenciarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MachineManagementOptions admMachineOptions = new MachineManagementOptions(idAdmin);
+				MachineManagementOptions admMachineOptions = new MachineManagementOptions(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				admMachineOptions
@@ -106,7 +108,7 @@ public class Options extends JFrame {
 		btnMinhasInformaes_1.setBounds(336, 54, 122, 27);
 		btnMinhasInformaes_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MyInfo admMyInfo = new MyInfo(idAdmin);
+				MyInfo admMyInfo = new MyInfo(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				admMyInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -122,7 +124,7 @@ public class Options extends JFrame {
 		btnGerenciarAdmins.setBounds(31, 207, 175, 88);
 		btnGerenciarAdmins.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminManagementOptions admAdminManagement = new AdminManagementOptions(idAdmin);
+				AdminManagementOptions admAdminManagement = new AdminManagementOptions(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				admAdminManagement
@@ -140,7 +142,7 @@ public class Options extends JFrame {
 		btnLogout.setBounds(470, 54, 81, 27);
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Entrada entrada = new Entrada();
+				Entrada entrada = new Entrada(getXLocation(),getYLocation());
 				dispose();
 				entrada.setVisible(true);
 				entrada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

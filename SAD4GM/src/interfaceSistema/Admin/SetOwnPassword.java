@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import interfaceSistema.Entrada;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -25,7 +28,7 @@ import javax.swing.ImageIcon;
  * @author caiosbl
  *
  */
-public class SetOwnPassword extends JFrame {
+public class SetOwnPassword extends Entrada {
 
 	/**
 	 * 
@@ -44,12 +47,13 @@ public class SetOwnPassword extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SetOwnPassword(String id) {
+	public SetOwnPassword(String id, int xLocation, int yLocation) {
+		super(xLocation,yLocation);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -69,7 +73,7 @@ public class SetOwnPassword extends JFrame {
 		btnVoltar.setBounds(492, 381, 84, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MyInfo admMyInfo = new MyInfo(idAdmin);
+				MyInfo admMyInfo = new MyInfo(idAdmin,getXLocation(),getYLocation());
 				dispose();
 				admMyInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admMyInfo.setVisible(true);
@@ -110,7 +114,7 @@ public class SetOwnPassword extends JFrame {
 				else {
 					sistema.setSenhaAdmin(idAdmin, newPassword);
 					JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
-					MyInfo admMyInfo = new MyInfo(idAdmin);
+					MyInfo admMyInfo = new MyInfo(idAdmin,getXLocation(),getYLocation());
 					dispose();
 					admMyInfo.setVisible(true);
 					admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

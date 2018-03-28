@@ -33,7 +33,7 @@ import javax.swing.ImageIcon;
  * @author caiosbl
  *
  */
-public class Login extends JFrame {
+public class Login extends Entrada {
 
 	/**
 	 * 
@@ -48,11 +48,12 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
+	public Login(int xLocation,int yLocation) {
+		super(xLocation, yLocation);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("icon/icon.jpg");
 		this.setIconImage(iconeTitulo);
 		contentPane = new JPanel();
@@ -115,7 +116,7 @@ public class Login extends JFrame {
 					try {
 						if (sistema.autenticaUsuario(id, senha)) {
 							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeUsuario(id) + "!");
-							Options uOptions = new Options(id);
+							Options uOptions = new Options(id,getXLocation(),getYLocation());
 							dispose();
 							uOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 							uOptions.setVisible(true);
@@ -144,7 +145,7 @@ public class Login extends JFrame {
 		btnVoltar.setIcon(new ImageIcon(Login.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Entrada entrada = new Entrada();
+				Entrada entrada = new Entrada(getXLocation(),getYLocation());
 				dispose();
 				entrada.setVisible(true);
 				entrada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

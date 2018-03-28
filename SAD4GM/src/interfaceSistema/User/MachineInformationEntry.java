@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-
+import interfaceSistema.Entrada;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -29,7 +29,7 @@ import javax.swing.JTextField;
  * @author caiosbl
  *
  */
-public class MachineInformationEntry extends JFrame {
+public class MachineInformationEntry extends Entrada {
 
 	/**
 	 * 
@@ -47,12 +47,13 @@ public class MachineInformationEntry extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MachineInformationEntry(String id) {
+	public MachineInformationEntry(String id,int xLocation, int yLocation) {
+		super(xLocation, yLocation);
 		this.idUsuario = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -71,7 +72,7 @@ public class MachineInformationEntry extends JFrame {
 		btnVoltar.setIcon(new ImageIcon(MachineInformationEntry.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Options options = new Options(idUsuario);
+				Options options = new Options(idUsuario,getXLocation(),getYLocation());
 
 				dispose();
 				options.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -114,7 +115,7 @@ public class MachineInformationEntry extends JFrame {
 					}
 
 					else {
-						MachineInformation machineInformation = new MachineInformation(idUsuario,idField.getText().trim());
+						MachineInformation machineInformation = new MachineInformation(idUsuario,idField.getText().trim(),getXLocation(),getYLocation());
 						dispose();
 						machineInformation.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						machineInformation.setVisible(true);

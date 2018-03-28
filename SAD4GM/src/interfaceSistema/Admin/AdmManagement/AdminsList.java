@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import interfaceSistema.Entrada;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -30,7 +31,7 @@ import javax.swing.JScrollPane;
  * @author caiosbl
  *
  */
-public class AdminsList extends JFrame {
+public class AdminsList extends Entrada {
 
 	/**
 	 * 
@@ -47,12 +48,13 @@ public class AdminsList extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdminsList(String id) {
+	public AdminsList(String id, int xLocation , int yLocation) {
+		super(xLocation, yLocation);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(100, 100, 621, 497);
+		setBounds(xLocation,yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -72,7 +74,7 @@ public class AdminsList extends JFrame {
 		button.setIcon(new ImageIcon(AdminsList.class.getResource("/Resources/icon/voltabut.png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin);
+				AdminManagementOptions admMOptions = new AdminManagementOptions(idAdmin,getXLocation(),getYLocation());
 
 				dispose();
 				admMOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
