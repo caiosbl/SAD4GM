@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JDesktopPane;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -20,6 +19,7 @@ import javax.swing.JSeparator;
 import sistema.Sistema;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.ImageIcon;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -64,50 +64,29 @@ public class InsertMaquina extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label_1 = new JLabel("DeSiDeS");
-		label_1.setBounds(43, 62, 120, 34);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 28));
-		desktopPane.add(label_1);
-
-		JLabel label_2 = new JLabel("SAD4GM");
-		label_2.setBounds(21, 17, 161, 45);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 37));
-		desktopPane.add(label_2);
-
-		JLabel lblGerenciarUsurios = new JLabel("INSERIR");
-		lblGerenciarUsurios.setBounds(377, 24, 139, 37);
-		lblGerenciarUsurios.setForeground(Color.WHITE);
-		lblGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblGerenciarUsurios);
-
 		JSeparator separator = new JSeparator();
-		separator.setBounds(6, 107, 593, 12);
+		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
-		JButton button = new JButton("Voltar");
-		button.setBounds(495, 418, 84, 27);
-		button.addActionListener(new ActionListener() {
+		JButton btnVoltar = new JButton("");
+		btnVoltar.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setBounds(489, 418, 90, 27);
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Options uOptions = new Options(idUsuario);
 				dispose();
+				uOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				uOptions.setVisible(true);
 				uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		desktopPane.add(button);
+		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		desktopPane.add(btnVoltar);
 
-		JLabel lblInformacoes = new JLabel("MÁQUINA");
-		lblInformacoes.setBounds(366, 60, 152, 37);
-		lblInformacoes.setForeground(Color.WHITE);
-		lblInformacoes.setFont(new Font("Tahoma", Font.BOLD, 30));
-		desktopPane.add(lblInformacoes);
-
-		JButton btnAlterarSenha = new JButton("Inserir");
-		btnAlterarSenha.setBounds(404, 333, 112, 27);
-		btnAlterarSenha.addActionListener(new ActionListener() {
+		JButton btnInserir = new JButton("");
+		btnInserir.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/insertbutton.png")));
+		btnInserir.setBounds(385, 354, 103, 21);
+		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 				String nome = new String(name.getText().trim());
@@ -153,19 +132,13 @@ public class InsertMaquina extends JFrame {
 
 			}
 		});
-		btnAlterarSenha.setFont(new Font("Tahoma", Font.BOLD, 12));
-		desktopPane.add(btnAlterarSenha);
+		btnInserir.setFont(new Font("Tahoma", Font.BOLD, 12));
+		desktopPane.add(btnInserir);
 
 		name = new JTextField();
-		name.setBounds(251, 157, 268, 28);
+		name.setBounds(223, 178, 268, 28);
 		desktopPane.add(name);
 		name.setColumns(10);
-
-		JLabel nome = new JLabel("Nome:");
-		nome.setBounds(198, 161, 44, 19);
-		nome.setForeground(Color.WHITE);
-		nome.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(nome);
 
 		description = new JTextPane();
 		description.setEditable(true);
@@ -173,28 +146,28 @@ public class InsertMaquina extends JFrame {
 		
 		JScrollPane jsp = new JScrollPane(description);
 	
-		jsp.setBounds(251, 231, 268, 91);
+		jsp.setBounds(223, 252, 268, 91);
 		desktopPane.add(jsp);
-	
-		
-		
-
-		JLabel auditor = new JLabel("Descrição:");
-		auditor.setBounds(168, 258, 74, 19);
-		auditor.setForeground(Color.WHITE);
-		auditor.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(auditor);
 
 		code = new JTextField();
-		code.setBounds(251, 189, 268, 28);
+		code.setBounds(223, 210, 268, 28);
 		code.setColumns(10);
 		desktopPane.add(code);
-
-		JLabel idUsuario = new JLabel("Código:");
-		idUsuario.setBounds(188, 192, 54, 19);
-		idUsuario.setForeground(Color.WHITE);
-		idUsuario.setFont(new Font("SansSerif", Font.BOLD, 14));
-		desktopPane.add(idUsuario);
+		
+		JLabel logo = new JLabel("");
+		logo.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setBounds(29, 40, 205, 74);
+		desktopPane.add(logo);
+		
+		JLabel banner = new JLabel("");
+		banner.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/inserirmaquinabanner.png")));
+		banner.setBounds(332, 32, 172, 82);
+		desktopPane.add(banner);
+		
+		JLabel form = new JLabel("");
+		form.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/insertMaquinaForm.png")));
+		form.setBounds(119, 161, 393, 240);
+		desktopPane.add(form);
 	}
 
 	public boolean isEmpty(String string) {
