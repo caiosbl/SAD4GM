@@ -95,7 +95,7 @@ public class Entrada extends JFrame {
 		}
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Sad4GM - DESIDES");
+		setTitle("SAD4GM - DESIDES");
 		setResizable(false);
 		setBounds(100, 100, 621, 497);
 
