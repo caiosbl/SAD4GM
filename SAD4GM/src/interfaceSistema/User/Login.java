@@ -117,6 +117,7 @@ public class Login extends JFrame {
 							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeUsuario(id) + "!");
 							Options uOptions = new Options(id);
 							dispose();
+							uOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 							uOptions.setVisible(true);
 							uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						} else {
