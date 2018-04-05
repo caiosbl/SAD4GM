@@ -166,8 +166,8 @@ public class Entrada extends JFrame {
 		desktopPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(Entrada.class.getResource("/Resources/icon/desideslogo.png")));
-		lblNewLabel_2.setBounds(496, 22, 76, 55);
+		lblNewLabel_2.setIcon(new ImageIcon(Entrada.class.getResource("/Resources/icon/desideslogobck.png")));
+		lblNewLabel_2.setBounds(516, 0, 89, 69);
 		desktopPane.add(lblNewLabel_2);
 	
 		

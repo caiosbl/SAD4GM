@@ -1,8 +1,8 @@
-package controllers;
+package controladores;
 
 import java.sql.SQLException;
 
-import bancoDeDados.UserTools;
+import databaseTools.UserTools;
 import entidades.Usuario;
 import validadorInformacoes.CheckUser;
 /**
@@ -12,11 +12,11 @@ import validadorInformacoes.CheckUser;
  * @author caiosbl
  *
  */
-public class Users {
+public class Usuarios {
 
 	private UserTools uTools;
 
-	public Users(UserTools uTools) {
+	public Usuarios(UserTools uTools) {
 		this.uTools = uTools;
 	}
 

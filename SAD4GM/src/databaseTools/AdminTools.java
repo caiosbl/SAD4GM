@@ -1,5 +1,5 @@
 
-package bancoDeDados;
+package databaseTools;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

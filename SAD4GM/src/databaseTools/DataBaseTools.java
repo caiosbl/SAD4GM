@@ -1,4 +1,4 @@
-package bancoDeDados;
+package databaseTools;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

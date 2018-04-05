@@ -2,12 +2,12 @@ package sistema;
 
 import java.sql.SQLException;
 
-import bancoDeDados.AdminTools;
-import bancoDeDados.MachineTools;
-import bancoDeDados.UserTools;
-import controllers.Admins;
-import controllers.Machines;
-import controllers.Users;
+import controladores.Admins;
+import controladores.Maquinas;
+import controladores.Usuarios;
+import databaseTools.AdminTools;
+import databaseTools.MachineTools;
+import databaseTools.UserTools;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -17,8 +17,8 @@ import controllers.Users;
  */
 public class Sistema {
 
-	private Users cUsuarios;
-	private Machines cMaquinas;
+	private Usuarios cUsuarios;
+	private Maquinas cMaquinas;
 	private Admins cAdmins;
 	private UserTools uTools;
 	private MachineTools mTools;
@@ -30,19 +30,19 @@ public class Sistema {
 		this.mTools = new MachineTools();
 		this.admTools = new AdminTools();
 
-		this.cUsuarios = new Users(uTools);
-		this.cMaquinas = new Machines(mTools);
+		this.cUsuarios = new Usuarios(uTools);
+		this.cMaquinas = new Maquinas(mTools);
 		this.cAdmins = new Admins(admTools);
 	}
 
 	// Funções de Admin
 
 	public String inserirAdmin(String nome, String senha, String id) {
-		return cAdmins.insert(nome, senha, id);
+		return cAdmins.inserir(nome, senha, id);
 	}
 
 	public String deletarAdmin(String id) {
-		return cAdmins.delete(id);
+		return cAdmins.remover(id);
 	}
 
 	public String setNomeAdmin(String nome, String id) {
@@ -62,7 +62,7 @@ public class Sistema {
 	}
 
 	public String getNomeAdmin(String id) {
-		return cAdmins.getName(id);
+		return cAdmins.getNome(id);
 	}
 
 	public boolean autenticaAdmin(String id, String senha) throws SQLException {
@@ -134,7 +134,7 @@ public class Sistema {
 	// Funções de Máquina
 
 	public String adicionaMaquina(String nome, String codigo, String descricao, String idUsuario) {
-		return cMaquinas.insert(nome, codigo, descricao, idUsuario);
+		return cMaquinas.inserir(nome, codigo, descricao, idUsuario);
 	}
 
 	public String removerMaquina(String codigo) {
