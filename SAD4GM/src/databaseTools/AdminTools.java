@@ -9,6 +9,7 @@ import javax.management.RuntimeErrorException;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
+ * Classe de Ferramentas de Conexão com a Tabela de Admins no Banco de Dados.
  * 
  * @author caiosbl
  *
@@ -16,19 +17,32 @@ import javax.management.RuntimeErrorException;
 
 public class AdminTools extends DataBaseTools {
 
-	public void insert(String name, String password, String id) throws SQLException {
+	/**
+	 * Insere um Admin no Banco de Dados.
+	 * 
+	 * @param nome
+	 *            Nome do Admin
+	 * @param senha
+	 *            Senha do Admin
+	 * @param id
+	 *            ID do Admin
+	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
+	 *             Dados.
+	 */
+	public void inserir(String nome, String senha, String id) throws SQLException {
 
 		if (hasAdmin(id))
 			throw new RuntimeErrorException(null, "ID já cadastrado!");
 
 		try {
 
-			String encodingPassword = encodePassword(password);
+			String encodingPassword = encodePassword(senha);
 
 			final String INSERIR = "INSERT INTO sad4gm.admin (nome, senha,id) VALUES (?,?,?)";
 			openConnection();
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
-			stmt.setString(1, name);
+			stmt.setString(1, nome);
 			stmt.setString(2, encodingPassword);
 			stmt.setString(3, id);
 			stmt.execute();
@@ -41,7 +55,16 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public void delete(String id) throws SQLException {
+	/**
+	 * Remove um Admin do Banco de Dados.
+	 * 
+	 * @param id
+	 *            ID do Admin a ser Removido.
+	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
+	 *             Dados.
+	 */
+	public void deletar(String id) throws SQLException {
 
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Administrador não cadastrado!");
@@ -62,7 +85,16 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public void setName(String name, String id) throws SQLException {
+	/**
+	 * Altera o nome de um Admin no Banco de Dados.
+	 * 
+	 * @param nome
+	 *            Novo nome do Admin
+	 * @param id
+	 *            ID do Admin a ter nome alterado.
+	 * @throws SQLException
+	 */
+	public void setName(String nome, String id) throws SQLException {
 
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -72,7 +104,7 @@ public class AdminTools extends DataBaseTools {
 			final String UPDATE = "UPDATE  sad4gm.admin SET nome = ? WHERE CAST(id AS VARCHAR(128))= ?";
 			openConnection();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
-			stmt.setString(1, name);
+			stmt.setString(1, nome);
 			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();
@@ -84,7 +116,18 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public void setId(String id, String newId) throws SQLException {
+	/**
+	 * Altera o ID de um Admin
+	 * 
+	 * @param id
+	 *            ID do Admin a ser Alterado.
+	 * @param novoId
+	 *            Novo ID do Admin.
+	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
+	 *             Dados.
+	 */
+	public void setId(String id, String novoId) throws SQLException {
 
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -94,7 +137,7 @@ public class AdminTools extends DataBaseTools {
 			final String UPDATE = "UPDATE  sad4gm.admin SET id = ? WHERE CAST(id AS VARCHAR(128))  = ?";
 			openConnection();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
-			stmt.setString(1, newId);
+			stmt.setString(1, novoId);
 			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();
@@ -106,7 +149,18 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public void setPassword(String id, String senha) throws SQLException {
+	/**
+	 * Altera a Senha de um Admin
+	 * 
+	 * @param id
+	 *            ID do Admin a ser Alterado.
+	 * @param senha
+	 *            Nova Senha do Admin
+	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
+	 *             Dados.
+	 */
+	public void setSenha(String id, String senha) throws SQLException {
 
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
@@ -130,6 +184,16 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Retorna as Informações de um Admin
+	 * 
+	 * @param id
+	 *            ID do Admin a ter Informações Retornadas.
+	 * @return Informações do Admin
+	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
+	 *             Dados.
+	 */
 	public String getInfo(String id) throws SQLException {
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Admin inexistente!");
@@ -159,12 +223,22 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
-	public String getName(String id) throws SQLException {
+	/**
+	 * Retorna o nome de um Admin
+	 * 
+	 * @param id
+	 *            ID do Admin a ter nome retornado.
+	 * @return Nome do Admin
+	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
+	 *             Dados.
+	 */
+	public String getNome(String id) throws SQLException {
 
 		if (!hasAdmin(id))
 			throw new RuntimeErrorException(null, "Usuário inexistente!");
 
-		String name = "";
+		String nome = "";
 
 		try {
 			openConnection();
@@ -175,7 +249,7 @@ public class AdminTools extends DataBaseTools {
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
-				name = resSet.getString(1);
+				nome = resSet.getString(1);
 			}
 			state.close();
 			closeConnection();
@@ -183,20 +257,33 @@ public class AdminTools extends DataBaseTools {
 			e.printStackTrace();
 		}
 
-		return name;
+		return nome;
 
 	}
 
-	public boolean authenticate(String id, String password) throws SQLException {
+	/**
+	 * Autentica o ID e Senha de um Admin, retorna um valor Booleano informando se
+	 * as informações são válidas.
+	 * 
+	 * @param id
+	 *            ID do Admin
+	 * @param senha
+	 *            Senha do Admin
+	 * @return Status da Autenticação
+	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha de Conexão com o Banco de
+	 *             Dados.
+	 */
+	public boolean autenticar(String id, String senha) throws SQLException {
 
-		boolean valid = false;
+		boolean valido = false;
 
 		if (!hasAdmin(id))
 			return false;
-		
+
 		try {
 
-			String encodingPassword = encodePassword(password);
+			String encodingPassword = encodePassword(senha);
 			openConnection();
 			PreparedStatement state = con.prepareStatement(
 					"SELECT id FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ? AND CAST(senha AS VARCHAR(128)) =  ?");
@@ -206,7 +293,7 @@ public class AdminTools extends DataBaseTools {
 			ResultSet resSet = state.executeQuery();
 
 			if (resSet.next())
-				valid = true;
+				valido = true;
 
 			state.close();
 			closeConnection();
@@ -214,10 +301,22 @@ public class AdminTools extends DataBaseTools {
 			e.printStackTrace();
 		}
 
-		return valid;
+		return valido;
 
 	}
 
+	/**
+	 * Verifica se há um Admin no Banco de Dados com o ID informado.
+	 * 
+	 * @param id
+	 *            ID a ser verificado.
+	 * @return Valor Booleano informando existência ou não de tal ID no Banco de
+	 *         Dados.
+	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
+	 *             Dados.
+	 * 
+	 */
 	public boolean hasAdmin(String id) throws SQLException {
 		boolean has;
 		openConnection();
@@ -237,6 +336,11 @@ public class AdminTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Retorna a Listagem dos Admins presentes no Banco de Dados.
+	 * 
+	 * @return Listagem de Admins.
+	 */
 	public String listAdmins() {
 		String list = "";
 		String breakLine = System.lineSeparator();

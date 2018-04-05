@@ -42,7 +42,7 @@ public class Admins {
 		try {
 			CheckUser.validateName(nome);
 			CheckUser.validateId(id);
-			admTools.insert(nome, senha, id);
+			admTools.inserir(nome, senha, id);
 			status = "Admin CADASTRADO COM SUCESSO!";
 
 		} catch (NullPointerException e) {
@@ -69,7 +69,7 @@ public class Admins {
 		String status;
 
 		try {
-			admTools.delete(id);
+			admTools.deletar(id);
 			status = "Admin Removido com Sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -139,7 +139,7 @@ public class Admins {
 
 		try {
 
-			admTools.setPassword(id, password);
+			admTools.setSenha(id, password);
 			status = "Senha alterada com Sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -178,7 +178,7 @@ public class Admins {
 	public String getNome(String id) {
 		String nome;
 		try {
-			nome = admTools.getName(id);
+			nome = admTools.getNome(id);
 		} catch (Exception e) {
 			nome = e.getMessage();
 		}
@@ -199,8 +199,8 @@ public class Admins {
 	 *             Lança uma SQLException caso haja falha de Conexão com o Banco de
 	 *             Dados.
 	 */
-	public boolean authenticate(String id, String password) throws SQLException {
-		return admTools.authenticate(id, password);
+	public boolean autenticar(String id, String password) throws SQLException {
+		return admTools.autenticar(id, password);
 
 	}
 

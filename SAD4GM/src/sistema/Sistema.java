@@ -66,7 +66,7 @@ public class Sistema {
 	}
 
 	public boolean autenticaAdmin(String id, String senha) throws SQLException {
-		return cAdmins.authenticate(id, senha);
+		return cAdmins.autenticar(id, senha);
 	}
 
 	public boolean hasIdAdmin(String id) throws SQLException {
