@@ -10,7 +10,7 @@ import validadorInformacoes.ValidaMaquina;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
- * Classe Controladora de Máquinass
+ * Classe Controladora de Máquinas
  * 
  * @author caiosbl
  *
