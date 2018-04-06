@@ -25,10 +25,10 @@ public class UserTools extends DataBaseTools {
 
 		try {
 
-			String encodingPassword = encodePassword(usuario.getSenha());
+			String encodingPassword = encriptarSenha(usuario.getSenha());
 
 			final String INSERIR = "INSERT INTO sad4gm.usuario (nome, id, senha,auditor,ativo) VALUES (?,?,?,?,?)";
-			openConnection();
+			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
 			stmt.setString(1, usuario.getNome());
 			stmt.setString(2, usuario.getId());
@@ -37,7 +37,7 @@ public class UserTools extends DataBaseTools {
 			stmt.setInt(5, 1);
 			stmt.execute();
 			stmt.close();
-			closeConnection();
+			fecharConexao();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -55,12 +55,12 @@ public class UserTools extends DataBaseTools {
 		try {
 
 			final String DELETE = "UPDATE sad4gm.usuario SET ativo = 0 where CAST(id AS VARCHAR(128)) = ?";
-			openConnection();
+			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(DELETE);
 			stmt.setString(1, id);
 			stmt.execute();
 			stmt.close();
-			closeConnection();
+			fecharConexao();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -78,13 +78,13 @@ public class UserTools extends DataBaseTools {
 		try {
 
 			final String UPDATE = "UPDATE  sad4gm.usuario SET nome = ? WHERE  CAST(id AS VARCHAR(128)) = ?";
-			openConnection();
+			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, nome);
 			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();
-			closeConnection();
+			fecharConexao();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -102,13 +102,13 @@ public class UserTools extends DataBaseTools {
 		try {
 
 			final String UPDATE = "UPDATE  sad4gm.usuario SET id = ? WHERE  CAST(id AS VARCHAR(128)) = ?";
-			openConnection();
+			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, novoId);
 			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();
-			closeConnection();
+			fecharConexao();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -125,16 +125,16 @@ public class UserTools extends DataBaseTools {
 
 		try {
 
-			String encodingPassword = encodePassword(senha);
+			String encodingPassword = encriptarSenha(senha);
 
 			final String UPDATE = "UPDATE  sad4gm.usuario SET senha = ? WHERE  CAST(id AS VARCHAR(128)) = ?";
-			openConnection();
+			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, encodingPassword);
 			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();
-			closeConnection();
+			fecharConexao();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -152,13 +152,13 @@ public class UserTools extends DataBaseTools {
 		try {
 
 			final String UPDATE = "UPDATE  sad4gm.usuario SET auditor = ? WHERE  CAST(id AS VARCHAR(128)) = ?";
-			openConnection();
+			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, auditor);
 			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();
-			closeConnection();
+			fecharConexao();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -175,7 +175,7 @@ public class UserTools extends DataBaseTools {
 		String quebraLinha = System.lineSeparator();
 
 		try {
-			openConnection();
+			abrirConexao();
 			PreparedStatement state = con.prepareStatement(
 					"SELECT  nome,id,auditor,ativo FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ?");
 			state.setString(1, id);
@@ -194,7 +194,7 @@ public class UserTools extends DataBaseTools {
 
 			}
 			state.close();
-			closeConnection();
+			fecharConexao();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -211,7 +211,7 @@ public class UserTools extends DataBaseTools {
 		String nome = "";
 
 		try {
-			openConnection();
+			abrirConexao();
 			PreparedStatement state = con
 					.prepareStatement("SELECT  nome FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ?");
 			state.setString(1, id);
@@ -222,7 +222,7 @@ public class UserTools extends DataBaseTools {
 				nome = resSet.getString(1);
 			}
 			state.close();
-			closeConnection();
+			fecharConexao();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -265,7 +265,7 @@ public class UserTools extends DataBaseTools {
 		String auditor = "";
 
 		try {
-			openConnection();
+			abrirConexao();
 			PreparedStatement state = con
 					.prepareStatement("SELECT  auditor FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ?");
 			state.setString(1, id);
@@ -276,7 +276,7 @@ public class UserTools extends DataBaseTools {
 				auditor = resSet.getString(1);
 			}
 			state.close();
-			closeConnection();
+			fecharConexao();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -294,8 +294,8 @@ public class UserTools extends DataBaseTools {
 			return false;
 		try {
 
-			String encodingPassword = encodePassword(senha);
-			openConnection();
+			String encodingPassword = encriptarSenha(senha);
+			abrirConexao();
 			PreparedStatement state = con.prepareStatement(
 					"SELECT  nome FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ? AND  CAST(senha AS VARCHAR(128)) =  ?");
 			state.setString(1, id);
@@ -307,7 +307,7 @@ public class UserTools extends DataBaseTools {
 				valido = true;
 
 			state.close();
-			closeConnection();
+			fecharConexao();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -321,7 +321,7 @@ public class UserTools extends DataBaseTools {
 		String quebraLinha = System.lineSeparator();
 
 		try {
-			openConnection();
+			abrirConexao();
 			PreparedStatement state = con
 					.prepareStatement("SELECT nome,id,auditor FROM sad4gm.usuario WHERE ativo = 1");
 
@@ -334,7 +334,7 @@ public class UserTools extends DataBaseTools {
 						+ String.format("Auditor: %s", resSet.getString(3)) + quebraLinha;
 			}
 			state.close();
-			closeConnection();
+			fecharConexao();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -344,7 +344,7 @@ public class UserTools extends DataBaseTools {
 
 	public boolean hasUsuario(String id) throws SQLException {
 		boolean has;
-		openConnection();
+		abrirConexao();
 		PreparedStatement state = con
 				.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ?");
 		state.setString(1, id);
@@ -355,7 +355,7 @@ public class UserTools extends DataBaseTools {
 		else
 			has = false;
 		state.close();
-		closeConnection();
+		fecharConexao();
 
 		return has;
 
@@ -363,7 +363,7 @@ public class UserTools extends DataBaseTools {
 
 	public boolean isAtivo(String id) throws SQLException {
 		boolean has;
-		openConnection();
+		abrirConexao();
 		PreparedStatement state = con
 				.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ? AND ativo = 1");
 		state.setString(1, id);
@@ -374,7 +374,7 @@ public class UserTools extends DataBaseTools {
 		else
 			has = false;
 		state.close();
-		closeConnection();
+		fecharConexao();
 
 		return has;
 

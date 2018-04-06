@@ -37,17 +37,17 @@ public class AdminTools extends DataBaseTools {
 
 		try {
 
-			String encodingPassword = encodePassword(senha);
+			String encodingPassword = encriptarSenha(senha);
 
 			final String INSERIR = "INSERT INTO sad4gm.admin (nome, senha,id) VALUES (?,?,?)";
-			openConnection();
+			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
 			stmt.setString(1, nome);
 			stmt.setString(2, encodingPassword);
 			stmt.setString(3, id);
 			stmt.execute();
 			stmt.close();
-			closeConnection();
+			fecharConexao();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -72,12 +72,12 @@ public class AdminTools extends DataBaseTools {
 		try {
 
 			final String DELETE = "DELETE FROM sad4gm.admin where CAST(id AS VARCHAR(128)) = ?";
-			openConnection();
+			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(DELETE);
 			stmt.setString(1, id);
 			stmt.execute();
 			stmt.close();
-			closeConnection();
+			fecharConexao();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -102,13 +102,13 @@ public class AdminTools extends DataBaseTools {
 		try {
 
 			final String UPDATE = "UPDATE  sad4gm.admin SET nome = ? WHERE CAST(id AS VARCHAR(128))= ?";
-			openConnection();
+			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, nome);
 			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();
-			closeConnection();
+			fecharConexao();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -135,13 +135,13 @@ public class AdminTools extends DataBaseTools {
 		try {
 
 			final String UPDATE = "UPDATE  sad4gm.admin SET id = ? WHERE CAST(id AS VARCHAR(128))  = ?";
-			openConnection();
+			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, novoId);
 			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();
-			closeConnection();
+			fecharConexao();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -167,16 +167,16 @@ public class AdminTools extends DataBaseTools {
 
 		try {
 
-			String encodingPassword = encodePassword(senha);
+			String encodingPassword = encriptarSenha(senha);
 
 			final String UPDATE = "UPDATE  sad4gm.admin SET senha = ? WHERE CAST(id AS VARCHAR(128)) = ?";
-			openConnection();
+			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, encodingPassword);
 			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();
-			closeConnection();
+			fecharConexao();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -202,7 +202,7 @@ public class AdminTools extends DataBaseTools {
 		String breakLine = System.lineSeparator();
 
 		try {
-			openConnection();
+			abrirConexao();
 			PreparedStatement state = con
 					.prepareStatement("SELECT  nome,id FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ?");
 			state.setString(1, id);
@@ -214,7 +214,7 @@ public class AdminTools extends DataBaseTools {
 				infoAdmin += "Id: " + resSet.getString(2) + breakLine;
 			}
 			state.close();
-			closeConnection();
+			fecharConexao();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -241,7 +241,7 @@ public class AdminTools extends DataBaseTools {
 		String nome = "";
 
 		try {
-			openConnection();
+			abrirConexao();
 			PreparedStatement state = con
 					.prepareStatement("SELECT  nome FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ?");
 			state.setString(1, id);
@@ -252,7 +252,7 @@ public class AdminTools extends DataBaseTools {
 				nome = resSet.getString(1);
 			}
 			state.close();
-			closeConnection();
+			fecharConexao();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -283,8 +283,8 @@ public class AdminTools extends DataBaseTools {
 
 		try {
 
-			String encodingPassword = encodePassword(senha);
-			openConnection();
+			String encodingPassword = encriptarSenha(senha);
+			abrirConexao();
 			PreparedStatement state = con.prepareStatement(
 					"SELECT id FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ? AND CAST(senha AS VARCHAR(128)) =  ?");
 			state.setString(1, id);
@@ -296,7 +296,7 @@ public class AdminTools extends DataBaseTools {
 				valido = true;
 
 			state.close();
-			closeConnection();
+			fecharConexao();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -319,7 +319,7 @@ public class AdminTools extends DataBaseTools {
 	 */
 	public boolean hasAdmin(String id) throws SQLException {
 		boolean has;
-		openConnection();
+		abrirConexao();
 		PreparedStatement state = con
 				.prepareStatement("SELECT nome FROM sad4gm.admin WHERE CAST(id AS VARCHAR(128)) = ?");
 		state.setString(1, id);
@@ -330,7 +330,7 @@ public class AdminTools extends DataBaseTools {
 		else
 			has = false;
 		state.close();
-		closeConnection();
+		fecharConexao();
 
 		return has;
 
@@ -346,7 +346,7 @@ public class AdminTools extends DataBaseTools {
 		String breakLine = System.lineSeparator();
 
 		try {
-			openConnection();
+			abrirConexao();
 			PreparedStatement state = con.prepareStatement("SELECT  nome,id FROM sad4gm.admin");
 
 			ResultSet resSet = state.executeQuery();
@@ -357,7 +357,7 @@ public class AdminTools extends DataBaseTools {
 						+ String.format("ID: %s", resSet.getString(2)) + breakLine;
 			}
 			state.close();
-			closeConnection();
+			fecharConexao();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
