@@ -13,13 +13,20 @@ import entidades.Maquina;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
+ * Classe de Ferramentas de Conexão com a Tabela de Máquinas no Banco de Dados.
  * 
  * @author caiosbl
  *
  */
 
 public class MachineTools extends DataBaseTools {
+	/**
+	 * Instância da Classe de Ferramentas de conexão para usuários.
+	 */
 	private UserTools uTools;
+	/**
+	 * Padrão de formatação da Data.
+	 */
 	private String data = "dd/MM/yyyy";
 	SimpleDateFormat formata = new SimpleDateFormat(data);
 
@@ -27,7 +34,19 @@ public class MachineTools extends DataBaseTools {
 		uTools = new UserTools();
 	}
 
-	public void insert(Maquina maquina) throws SQLException {
+	/**
+	 * Insere uma Máquina no Banco de Dados
+	 * 
+	 * @param maquina
+	 *            Máquina a ser Inserida
+	 * @throws SQLException
+	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException no caso em que a máquina já está
+	 *             cadastrada.
+	 */
+	public void inserir(Maquina maquina) throws SQLException {
+
 		if (hasMaquina(maquina.getCodigo()))
 			throw new RuntimeErrorException(null, "Código já cadastrado!");
 
@@ -35,6 +54,7 @@ public class MachineTools extends DataBaseTools {
 
 			final String INSERIR = "INSERT INTO sad4gm.maquina (nome, codigo,descricao,idusuario,dataInsercao) VALUES (?,?,?,?,?)";
 			abrirConexao();
+
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
 			stmt.setString(1, maquina.getNome());
 			stmt.setInt(2, maquina.getCodigo());
@@ -43,6 +63,7 @@ public class MachineTools extends DataBaseTools {
 			stmt.setDate(5, java.sql.Date.valueOf(java.time.LocalDate.now()));
 			stmt.execute();
 			stmt.close();
+
 			fecharConexao();
 
 		} catch (Exception e) {
@@ -51,6 +72,11 @@ public class MachineTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * 
+	 * @param codigo
+	 * @throws SQLException
+	 */
 	public void deletar(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina não cadastrada!");

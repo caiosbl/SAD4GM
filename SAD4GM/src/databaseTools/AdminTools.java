@@ -29,6 +29,9 @@ public class AdminTools extends DataBaseTools {
 	 * @throws SQLException
 	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
 	 *             Dados.
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o ID já esteja cadastrado.
+	 * 
 	 */
 	public void inserir(String nome, String senha, String id) throws SQLException {
 
@@ -63,6 +66,10 @@ public class AdminTools extends DataBaseTools {
 	 * @throws SQLException
 	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
 	 *             Dados.
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o Admin não esteja
+	 *             cadastrado.
+	 * 
 	 */
 	public void deletar(String id) throws SQLException {
 
@@ -93,6 +100,11 @@ public class AdminTools extends DataBaseTools {
 	 * @param id
 	 *            ID do Admin a ter nome alterado.
 	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
+	 *             Dados.
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o ID não esteja cadastrado.
+	 * 
 	 */
 	public void setName(String nome, String id) throws SQLException {
 
@@ -126,11 +138,13 @@ public class AdminTools extends DataBaseTools {
 	 * @throws SQLException
 	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
 	 *             Dados.
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o ID não esteja cadastrado.
 	 */
 	public void setId(String id, String novoId) throws SQLException {
 
 		if (!hasAdmin(id))
-			throw new RuntimeErrorException(null, "Usuário inexistente!");
+			throw new RuntimeErrorException(null, "Admin inexistente!");
 
 		try {
 
@@ -159,11 +173,13 @@ public class AdminTools extends DataBaseTools {
 	 * @throws SQLException
 	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
 	 *             Dados.
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o ID não esteja cadastrado.
 	 */
 	public void setSenha(String id, String senha) throws SQLException {
 
 		if (!hasAdmin(id))
-			throw new RuntimeErrorException(null, "Usuário inexistente!");
+			throw new RuntimeErrorException(null, "Admin inexistente!");
 
 		try {
 
@@ -193,6 +209,8 @@ public class AdminTools extends DataBaseTools {
 	 * @throws SQLException
 	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
 	 *             Dados.
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o ID não esteja cadastrado.
 	 */
 	public String getInfo(String id) throws SQLException {
 		if (!hasAdmin(id))
@@ -232,11 +250,13 @@ public class AdminTools extends DataBaseTools {
 	 * @throws SQLException
 	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
 	 *             Dados.
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o ID não esteja cadastrado.
 	 */
 	public String getNome(String id) throws SQLException {
 
 		if (!hasAdmin(id))
-			throw new RuntimeErrorException(null, "Usuário inexistente!");
+			throw new RuntimeErrorException(null, "Admin inexistente!");
 
 		String nome = "";
 
@@ -273,6 +293,7 @@ public class AdminTools extends DataBaseTools {
 	 * @throws SQLException
 	 *             Lança uma SQLException caso haja falha de Conexão com o Banco de
 	 *             Dados.
+	 * 
 	 */
 	public boolean autenticar(String id, String senha) throws SQLException {
 

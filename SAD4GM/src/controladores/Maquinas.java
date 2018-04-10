@@ -52,7 +52,7 @@ public class Maquinas {
 		}
 
 		try {
-			mTools.insert(machine);
+			mTools.inserir(machine);
 			status = "Máquina Inserida com Sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();
@@ -94,6 +94,9 @@ public class Maquinas {
 	 * @param codigo
 	 *            Código da Máquina
 	 * @return Nome da Máquina
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o Código seja Inválido ou
+	 *             haja falha na Conexão com o Banco de Dados.
 	 */
 	public String getNome(String codigo) {
 		int codigoInt;
@@ -124,6 +127,10 @@ public class Maquinas {
 	 * @param codigo
 	 *            Código da Máquina
 	 * @return Descrição da Máquina
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o Código seja Inválido ou
+	 *             haja falha na Conexão com o Banco de Dados.
+	 * 
 	 */
 	public String getDescricao(String codigo) {
 		int codigoInt;
@@ -298,6 +305,9 @@ public class Maquinas {
 	 * @throws SQLException
 	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
 	 *             Dados.
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o Código não seja númerico.
+	 * 
 	 */
 	public boolean hasMaquina(String codigo) throws SQLException {
 
