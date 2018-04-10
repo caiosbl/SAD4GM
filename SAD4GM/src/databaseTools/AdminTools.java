@@ -15,7 +15,7 @@ import javax.management.RuntimeErrorException;
  *
  */
 
-public class AdminTools extends DataBaseTools {
+public class AdminTools extends DatabaseTools {
 
 	/**
 	 * Insere um Admin no Banco de Dados.

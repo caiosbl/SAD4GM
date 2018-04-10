@@ -6,8 +6,8 @@ import controladores.Admins;
 import controladores.Maquinas;
 import controladores.Usuarios;
 import databaseTools.AdminTools;
-import databaseTools.MachineTools;
-import databaseTools.UserTools;
+import databaseTools.MaquinaTools;
+import databaseTools.UsuarioTools;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -20,14 +20,14 @@ public class Sistema {
 	private Usuarios cUsuarios;
 	private Maquinas cMaquinas;
 	private Admins cAdmins;
-	private UserTools uTools;
-	private MachineTools mTools;
+	private UsuarioTools uTools;
+	private MaquinaTools mTools;
 	private AdminTools admTools;
 
 	public Sistema() {
 
-		this.uTools = new UserTools();
-		this.mTools = new MachineTools();
+		this.uTools = new UsuarioTools();
+		this.mTools = new MaquinaTools();
 		this.admTools = new AdminTools();
 
 		this.cUsuarios = new Usuarios(uTools);

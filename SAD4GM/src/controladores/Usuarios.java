@@ -2,7 +2,7 @@ package controladores;
 
 import java.sql.SQLException;
 
-import databaseTools.UserTools;
+import databaseTools.UsuarioTools;
 import entidades.Usuario;
 import validadorInformacoes.CheckUser;
 
@@ -18,9 +18,9 @@ public class Usuarios {
 	/**
 	 * Instância de Classe de Comunicação com Tabela de Usuários no Banco de Dados.
 	 */
-	private UserTools uTools;
+	private UsuarioTools uTools;
 
-	public Usuarios(UserTools uTools) {
+	public Usuarios(UsuarioTools uTools) {
 		this.uTools = uTools;
 	}
 

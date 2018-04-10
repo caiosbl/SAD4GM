@@ -17,7 +17,7 @@ import entidades.Usuario;
  *
  */
 
-public class UserTools extends DataBaseTools {
+public class UsuarioTools extends DatabaseTools {
 
 	/**
 	 * Insere um Usuário no Banco de Dados

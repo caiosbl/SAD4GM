@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import javax.management.RuntimeErrorException;
 
-import databaseTools.MachineTools;
+import databaseTools.MaquinaTools;
 import entidades.Maquina;
 import validadorInformacoes.ValidaMaquina;
 
@@ -21,9 +21,9 @@ public class Maquinas {
 	/**
 	 * Instância de Classe de Comunicação com Tabela de Máquinas no Banco de Dados.
 	 */
-	private MachineTools mTools;
+	private MaquinaTools mTools;
 
-	public Maquinas(MachineTools mTools) {
+	public Maquinas(MaquinaTools mTools) {
 		this.mTools = mTools;
 
 	}

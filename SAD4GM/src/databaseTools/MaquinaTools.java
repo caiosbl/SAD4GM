@@ -19,19 +19,19 @@ import entidades.Maquina;
  *
  */
 
-public class MachineTools extends DataBaseTools {
+public class MaquinaTools extends DatabaseTools {
 	/**
 	 * Instância da Classe de Ferramentas de conexão para usuários.
 	 */
-	private UserTools uTools;
+	private UsuarioTools uTools;
 	/**
 	 * Padrão de formatação da Data.
 	 */
 	private String data = "dd/MM/yyyy";
 	SimpleDateFormat formata = new SimpleDateFormat(data);
 
-	public MachineTools() {
-		uTools = new UserTools();
+	public MaquinaTools() {
+		uTools = new UsuarioTools();
 	}
 
 	/**

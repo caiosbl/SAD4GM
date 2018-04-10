@@ -15,7 +15,7 @@ import java.sql.SQLException;
  *
  */
 
-public abstract class DataBaseTools {
+public abstract class DatabaseTools {
 
 	/**
 	 * Instância da Conexão com o Banco de Dados
