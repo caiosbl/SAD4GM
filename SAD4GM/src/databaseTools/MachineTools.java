@@ -73,9 +73,13 @@ public class MachineTools extends DataBaseTools {
 	}
 
 	/**
-	 * 
+	 * Apaga uma Máquina do Banco de Dados.
 	 * @param codigo
+	 * Código da Máquina a ser Removida.
 	 * @throws SQLException
+	 * Lança uma SQLException caso haja falha na conexão com Banco de Dados.
+	 * @throws RuntimeErrorException
+	 * Lança uma RuntimeErrorException caso a Máquina não esteja cadastrada.
 	 */
 	public void deletar(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
@@ -97,6 +101,16 @@ public class MachineTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Retorna o nome de uma Máquina.
+	 * @param codigo
+	 * Código da Máquina a ter nome retornado.
+	 * @return
+	 * Nome da Máquina
+	 * @throws SQLException Lança uma SQLException caso haja falha na conexão com o Banco de Dados.
+	 * @throws RuntimeErrorException
+	 * Lança uma RuntimeErrorException caso a Máquina não esteja cadastrada.
+	 */
 	public String getNome(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
@@ -122,6 +136,16 @@ public class MachineTools extends DataBaseTools {
 		return nome;
 	}
 
+	/**
+	 * Retorna a Descrião de uma Máquina.
+	 * @param codigo
+	 * Código da Máquina a ter Descrição Retornada.
+	 * @return
+	 * Descrição
+	 * @throws SQLException Lança uma SQLException caso haja falha na conexão com o Banco de Dados.
+	 * @throws RuntimeErrorException
+	 * Lança uma RuntimeErrorException caso a Máquina não esteja cadastrada.
+	 */
 	public String getDescricao(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
