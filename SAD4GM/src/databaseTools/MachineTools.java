@@ -42,8 +42,8 @@ public class MachineTools extends DataBaseTools {
 	 * @throws SQLException
 	 *             Lança uma SQLException em caso de falha na conexão com a Database
 	 * @throws RuntimeErrorException
-	 *             Lança uma RuntimeErrorException no caso em que a máquina já está
-	 *             cadastrada.
+	 *             Lança uma RuntimeErrorException no caso em que o código da
+	 *             Máquina já esteja cadastrado.
 	 */
 	public void inserir(Maquina maquina) throws SQLException {
 

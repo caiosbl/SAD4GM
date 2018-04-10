@@ -11,6 +11,7 @@ import entidades.Usuario;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
+ * Classe de Ferramentas de Conexão com a Tabela de Usuários no Banco de Dados.
  * 
  * @author caiosbl
  *
@@ -18,6 +19,17 @@ import entidades.Usuario;
 
 public class UserTools extends DataBaseTools {
 
+	/**
+	 * Insere um Usuário no Banco de Dados
+	 * 
+	 * @param Usuário
+	 *            a ser Inserido
+	 * @throws SQLException
+	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException no caso em que o ID do usuário já
+	 *             esteja cadastrado.
+	 */
 	public void inserir(Usuario usuario) throws SQLException {
 
 		if (hasUsuario(usuario.getId()))
@@ -45,6 +57,17 @@ public class UserTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Define um Usuário no Banco de Dados como Inativo
+	 * 
+	 * @param id
+	 *            ID do Usuário a se tornar inativo.
+	 * @throws SQLException
+	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
+	 *             cadastrado ou já esteja Inativo.
+	 */
 	public void deletar(String id) throws SQLException {
 
 		if (!hasUsuario(id))
@@ -68,6 +91,21 @@ public class UserTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Altera o nome de um usuário no Banco de Dados.
+	 * 
+	 * @param nome
+	 *            Novo nome do Usuário.
+	 * @param id
+	 *            ID do Usuário a ser alterado.
+	 * @throws SQLException
+	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
+	 *             cadastrado ou já esteja Inativo.
+	 * 
+	 * 
+	 */
 	public void setNome(String nome, String id) throws SQLException {
 
 		if (!hasUsuario(id))
@@ -92,6 +130,19 @@ public class UserTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Altera o ID de um Usuário.
+	 * 
+	 * @param id
+	 *            ID do Usuário a ser Alterado.
+	 * @param novoId
+	 *            Novo ID do Usuário.
+	 * @throws SQLException
+	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
+	 *             cadastrado ou já esteja Inativo.
+	 */
 	public void setId(String id, String novoId) throws SQLException {
 
 		if (!hasUsuario(id))
@@ -116,6 +167,19 @@ public class UserTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Altera a Senha de um Usuário.
+	 * 
+	 * @param id
+	 *            ID do Usuário a ser alterado.
+	 * @param senha
+	 *            Nova Senha do Usuário.
+	 * @throws SQLException
+	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
+	 *             cadastrado ou já esteja Inativo.
+	 */
 	public void setSenha(String id, String senha) throws SQLException {
 
 		if (!hasUsuario(id))
@@ -142,6 +206,19 @@ public class UserTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Altera o Auditor de um Usuário.
+	 * 
+	 * @param id
+	 *            ID do Usuário a ser alterado.
+	 * @param auditor
+	 *            Novo Auditor do Usuário.
+	 * @throws SQLException
+	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
+	 *             cadastrado ou já esteja Inativo.
+	 */
 	public void setAuditor(String id, String auditor) throws SQLException {
 
 		if (!hasUsuario(id))
@@ -166,6 +243,18 @@ public class UserTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Retorna as Informações de um Usuário.
+	 * 
+	 * @param id
+	 *            ID do Usuário a ter Informações retornadas.
+	 * @return Informações
+	 * @throws SQLException
+	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
+	 *             cadastrado.
+	 */
 	public String getInfo(String id) throws SQLException {
 
 		if (!hasUsuario(id))
@@ -203,6 +292,18 @@ public class UserTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Retorna o nome de um Usuário.
+	 * 
+	 * @param id
+	 *            ID do Usuário a ter nome retornado.
+	 * @return Nome do Usuário.
+	 * @throws SQLException
+	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
+	 *             cadastrado .
+	 */
 	public String getNome(String id) throws SQLException {
 
 		if (!hasUsuario(id))
@@ -231,6 +332,20 @@ public class UserTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Retorna o Nome de um Usuário.
+	 * 
+	 * @param id
+	 *            ID do Usuário a ter nome retornado.
+	 * @param con
+	 *            Conexão com o Banco de Dados.
+	 * @return Nome do Usuário.
+	 * @throws SQLException
+	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
+	 *             cadastrado .
+	 */
 	public String getNome(String id, Connection con) throws SQLException {
 		if (!hasUsuario(id))
 			return "Usuário Não Cadastrado";
@@ -257,6 +372,18 @@ public class UserTools extends DataBaseTools {
 		return descricao;
 	}
 
+	/**
+	 * Retorna o nome do Auditor de um Usuário.
+	 * 
+	 * @param id
+	 *            ID do Usuário a ter nome retornado.
+	 * @return Nome do Auditor.
+	 * @throws SQLException
+	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
+	 *             cadastrado .
+	 */
 	public String getNomeAuditor(String id) throws SQLException {
 
 		if (!hasUsuario(id))
@@ -285,6 +412,18 @@ public class UserTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Autentica o ID e Senha de um Usuário.
+	 * 
+	 * @param id
+	 *            ID do Usuário a ser autenticado.
+	 * @param senha
+	 *            Senha do Usuário a ser autenticado.
+	 * @return Valor booleano indicando se os dados são válidos.
+	 * @throws SQLException
+	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * 
+	 */
 	public boolean autenticador(String id, String senha) throws SQLException {
 		boolean valido = false;
 
@@ -316,6 +455,11 @@ public class UserTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Retorna a listagem de Usuário cadastrados no Banco de Dados.
+	 * 
+	 * @return Listagem de Usuários.
+	 */
 	public String listar() {
 		String listagem = "";
 		String quebraLinha = System.lineSeparator();
@@ -342,6 +486,16 @@ public class UserTools extends DataBaseTools {
 		return listagem;
 	}
 
+	/**
+	 * Verifica se há um usuário cadastrado no Banco de Dados.
+	 * 
+	 * @param id
+	 *            ID do usuário a ser verificado.
+	 * @return Valor Booleano indicando se há tal usuário.
+	 * @throws SQLException
+	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * 
+	 */
 	public boolean hasUsuario(String id) throws SQLException {
 		boolean has;
 		abrirConexao();
@@ -361,6 +515,16 @@ public class UserTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Retorna um valor booleano indicando se um usuário está ativo.
+	 * 
+	 * @param id
+	 *            ID do usuário a ser verificado.
+	 * @return Valor Booleano indicando se o usuário está ativo.
+	 * @throws SQLException
+	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * 
+	 */
 	public boolean isAtivo(String id) throws SQLException {
 		boolean has;
 		abrirConexao();
