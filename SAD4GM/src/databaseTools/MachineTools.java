@@ -74,12 +74,15 @@ public class MachineTools extends DataBaseTools {
 
 	/**
 	 * Apaga uma Máquina do Banco de Dados.
+	 * 
 	 * @param codigo
-	 * Código da Máquina a ser Removida.
+	 *            Código da Máquina a ser Removida.
 	 * @throws SQLException
-	 * Lança uma SQLException caso haja falha na conexão com Banco de Dados.
+	 *             Lança uma SQLException caso haja falha na conexão com Banco de
+	 *             Dados.
 	 * @throws RuntimeErrorException
-	 * Lança uma RuntimeErrorException caso a Máquina não esteja cadastrada.
+	 *             Lança uma RuntimeErrorException caso a Máquina não esteja
+	 *             cadastrada.
 	 */
 	public void deletar(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
@@ -103,13 +106,16 @@ public class MachineTools extends DataBaseTools {
 
 	/**
 	 * Retorna o nome de uma Máquina.
+	 * 
 	 * @param codigo
-	 * Código da Máquina a ter nome retornado.
-	 * @return
-	 * Nome da Máquina
-	 * @throws SQLException Lança uma SQLException caso haja falha na conexão com o Banco de Dados.
+	 *            Código da Máquina a ter nome retornado.
+	 * @return Nome da Máquina
+	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
+	 *             Dados.
 	 * @throws RuntimeErrorException
-	 * Lança uma RuntimeErrorException caso a Máquina não esteja cadastrada.
+	 *             Lança uma RuntimeErrorException caso a Máquina não esteja
+	 *             cadastrada.
 	 */
 	public String getNome(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
@@ -137,14 +143,17 @@ public class MachineTools extends DataBaseTools {
 	}
 
 	/**
-	 * Retorna a Descrião de uma Máquina.
+	 * Retorna a Descrição de uma Máquina.
+	 * 
 	 * @param codigo
-	 * Código da Máquina a ter Descrição Retornada.
-	 * @return
-	 * Descrição
-	 * @throws SQLException Lança uma SQLException caso haja falha na conexão com o Banco de Dados.
+	 *            Código da Máquina a ter Descrição Retornada.
+	 * @return Descrição
+	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
+	 *             Dados.
 	 * @throws RuntimeErrorException
-	 * Lança uma RuntimeErrorException caso a Máquina não esteja cadastrada.
+	 *             Lança uma RuntimeErrorException caso a Máquina não esteja
+	 *             cadastrada.
 	 */
 	public String getDescricao(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
@@ -171,6 +180,20 @@ public class MachineTools extends DataBaseTools {
 		return descricao;
 	}
 
+	/**
+	 * Altera o nome de uma Máquina.
+	 * 
+	 * @param codigo
+	 *            Código da Máquina a ter nome alterado.
+	 * @param nome
+	 *            Novo Nome da Máquina.
+	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
+	 *             Dados.
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso a Máquina não esteja
+	 *             cadastrada.
+	 */
 	public void setNome(int codigo, String nome) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
@@ -192,6 +215,20 @@ public class MachineTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Altera o Código de uma Máquina.
+	 * 
+	 * @param codigo
+	 *            Código da Máquina a ser Alterada.
+	 * @param novoCodigo
+	 *            Novo Código da Máquina.
+	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha na Conexão com o Banco de
+	 *             Dados.
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso a Máquina não esteja
+	 *             cadastrada.
+	 */
 	public void setCodigo(int codigo, int novoCodigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
@@ -212,6 +249,20 @@ public class MachineTools extends DataBaseTools {
 		}
 	}
 
+	/**
+	 * Altera a Descrição de uma Máquina.
+	 * 
+	 * @param codigo
+	 *            Código da Máquina a ser Alterada.
+	 * @param descricao
+	 *            Nova Descrição da Máquina.
+	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
+	 *             Dados.
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso a Máquina não esteja
+	 *             cadastrada.
+	 */
 	public void setDescricao(int codigo, String descricao) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
@@ -233,6 +284,19 @@ public class MachineTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Retorna as Informações de uma Máquina
+	 * 
+	 * @param codigo
+	 *            Código da Máquina a ter Informações Retornadas.
+	 * @return Informações
+	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
+	 *             Dados.
+	 * @throws RuntimeErrorException
+	 *             Lança uma RuntimeErrorException caso a Máquina não esteja
+	 *             cadastrada.
+	 */
 	public String getInfo(int codigo) throws SQLException {
 		if (!hasMaquina(codigo))
 			throw new RuntimeErrorException(null, "Máquina inexistente!");
@@ -275,6 +339,11 @@ public class MachineTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Retorna a Listagem de Máquinas Cadastradas.
+	 * 
+	 * @return Listagem de Máquinas
+	 */
 	public String listar() {
 		String listagem = "";
 		String quebraLinha = System.lineSeparator();
@@ -312,6 +381,18 @@ public class MachineTools extends DataBaseTools {
 
 	}
 
+	/**
+	 * Retorna um Valor Booleano indicando se tal máquina está cadastrada no Banco
+	 * de Dados.
+	 * 
+	 * @param codigo
+	 *            Código da Máquina a ser verificada.
+	 * @return Valor Booleano Indicando Presença da Máquina.
+	 * @throws SQLException
+	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
+	 *             Dados.
+	 *
+	 */
 	public boolean hasMaquina(int codigo) throws SQLException {
 		boolean has;
 		abrirConexao();
