@@ -409,5 +409,28 @@ public class MaquinaTools extends DatabaseTools {
 
 		return has;
 	}
+	
+	
+	public void atualizaIDUsuario(String idUsuario, String novoID) throws SQLException {
+
+		abrirConexao();
+		try {
+
+			final String UPDATE = "UPDATE  sad4gm.maquina SET idusuario = ? WHERE CAST(idusuario AS VARCHAR(128)) = ?";
+			abrirConexao();
+			PreparedStatement stmt = con.prepareStatement(UPDATE);
+			stmt.setString(1, novoID);
+			stmt.setString(2, idUsuario);
+			stmt.execute();
+			stmt.close();
+			fecharConexao();
+
+		} catch (Exception e) {
+			throw new NullPointerException();
+		}
+		
+		fecharConexao();
+
+	}
 
 }

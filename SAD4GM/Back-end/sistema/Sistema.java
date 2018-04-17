@@ -31,7 +31,7 @@ public class Sistema {
 		this.mTools = new MaquinaTools();
 		this.admTools = new AdminTools();
 
-		this.cUsuarios = new Usuarios(uTools);
+		this.cUsuarios = new Usuarios(uTools,mTools);
 		this.cMaquinas = new Maquinas(mTools);
 		this.cAdmins = new Admins(admTools);
 	}
