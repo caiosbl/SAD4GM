@@ -68,8 +68,9 @@ public class SetUserEntry extends Main {
 		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
 
-		JButton button = new JButton("Voltar");
-		button.addActionListener(new ActionListener() {
+		JButton btnVoltar = new JButton("");
+		btnVoltar.setIcon(new ImageIcon(SetUserEntry.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserManagementOptions umgOptions = new UserManagementOptions(idAdmin,getXLocation(),getYLocation());
 
@@ -79,9 +80,9 @@ public class SetUserEntry extends Main {
 				umgOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBounds(506, 388, 65, 27);
-		desktopPane.add(button);
+		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVoltar.setBounds(482, 388, 89, 27);
+		desktopPane.add(btnVoltar);
 
 		idField = new JTextField();
 		idField.setBounds(200, 250, 206, 28);
