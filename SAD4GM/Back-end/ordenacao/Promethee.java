@@ -1,9 +1,9 @@
 package ordenacao;
 
-public class Promethee {
+public abstract class Promethee {
 
 	// Critério Usual
-	public double tipo1(double valor1, double valor2) {
+	public static double tipo1(double valor1, double valor2) {
 		double diferenca = valor1 - valor2;
 		int update = 0;
 
@@ -14,7 +14,7 @@ public class Promethee {
 	}
 
 	// Quase Critério
-	public double tipo2(double valor1, double valor2, double valor3) {
+	public static double tipo2(double valor1, double valor2, double valor3) {
 		double diferenca = valor1 - valor2;
 		int update = 0;
 
@@ -26,7 +26,7 @@ public class Promethee {
 	}
 
 	//Limiar de Preferência
-	public double tipo3(double valor1, double valor2, double valor3) {
+	public static double tipo3(double valor1, double valor2, double valor3) {
 		double diferenca = valor1 - valor2;
 		double update;
 
@@ -44,7 +44,7 @@ public class Promethee {
 	}
 
 	//Pseudo Critério
-	public double tipo4(double valor1, double valor2, double valor3, double valor4) {
+	public static double tipo4(double valor1, double valor2, double valor3, double valor4) {
 		double diferenca = valor1 - valor2;
 		double update = 0.5;
 
@@ -57,7 +57,7 @@ public class Promethee {
 	}
 
 	//Área de Indiferença
-	public double tipo5(double valor1, double valor2, double valor3, double valor4) {
+	public static double tipo5(double valor1, double valor2, double valor3, double valor4) {
 		double diferenca = valor1 - valor2;
 		double update = (diferenca - valor4) / (valor3 - valor4);
 
