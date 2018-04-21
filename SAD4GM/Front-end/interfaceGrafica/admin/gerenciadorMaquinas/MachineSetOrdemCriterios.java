@@ -1,7 +1,7 @@
 package interfaceGrafica.admin.gerenciadorMaquinas;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,15 +19,13 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.net.ServerSocket;
 import java.util.HashSet;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
-import javax.swing.JTextField;
+
 import javax.swing.JComboBox;
-import javax.swing.JProgressBar;
-import javax.swing.JRadioButton;
+
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -99,22 +97,26 @@ public class MachineSetOrdemCriterios extends Main {
 
 		Integer[] posicoesOrdem = new Integer[] { 1, 2, 3, 4, 5 };
 
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		JComboBox seletor1 = new JComboBox(posicoesOrdem);
 		seletor1.setBackground(SystemColor.inactiveCaptionBorder);
 		seletor1.setBounds(109, 198, 58, 20);
 		desktopPane.add(seletor1);
 
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		JComboBox seletor2 = new JComboBox(posicoesOrdem);
 		seletor2.setBackground(SystemColor.inactiveCaptionBorder);
 		seletor2.setBounds(109, 230, 58, 20);
 		desktopPane.add(seletor2);
 
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		JComboBox seletor3 = new JComboBox(posicoesOrdem);
 		seletor3.setBackground(SystemColor.inactiveCaptionBorder);
 		seletor3.setBounds(109, 261, 58, 20);
 
 		desktopPane.add(seletor3);
 
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		JComboBox seletor4 = new JComboBox(posicoesOrdem);
 		seletor4.setBackground(SystemColor.inactiveCaptionBorder);
 		seletor4.setBounds(109, 293, 58, 20);

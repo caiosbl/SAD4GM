@@ -73,8 +73,12 @@ public abstract class DatabaseTools {
 	 *             Banco de Dados.
 	 */
 	private void criarSchema(Connection con) throws SQLException {
-		PreparedStatement statament = con.prepareStatement("create SCHEMA sad4gm");
-		statament.execute();
+		PreparedStatement statement = con.prepareStatement("create SCHEMA sad4gm");
+		PreparedStatement statement1 = con.prepareStatement("create SCHEMA maquinas");
+		statement.execute();
+		statement.close();
+		statement1.execute();
+		statement1.close();
 	}
 
 	/**
@@ -90,6 +94,7 @@ public abstract class DatabaseTools {
 		PreparedStatement statement = con.prepareStatement("create table sad4gm.admin(\r\n" + "nome long VARCHAR,\r\n"
 				+ "id long VARCHAR,\r\n" + "senha long VARCHAR\r\n" + ")");
 		statement.execute();
+		statement.close();
 	}
 
 	/**
@@ -113,6 +118,7 @@ public abstract class DatabaseTools {
 
 		statement.setString(1, senhaDefault);
 		statement.execute();
+		statement.close();
 	}
 
 	/**
@@ -130,6 +136,7 @@ public abstract class DatabaseTools {
 				+ "id long VARCHAR,\r\n" + "senha VARCHAR(200),\r\n" + "auditor long VARCHAR,\r\n" + "ativo INTEGER)");
 
 		statement.execute();
+		statement.close();
 	}
 
 	/**
@@ -144,10 +151,11 @@ public abstract class DatabaseTools {
 	private void criarTabelaMaquinas(Connection con) throws SQLException {
 
 		PreparedStatement statement = con.prepareStatement(
-				"create table sad4gm.maquina(\r\n" + "nome long VARCHAR,\r\n" + "idusuario long VARCHAR,\r\n"
+				"create table maquinas.maquina(\r\n" + "nome long VARCHAR,\r\n" + "idusuario long VARCHAR,\r\n"
 						+ "datainsercao date,\r\n" + "codigo INTEGER NOT NULL,\r\n" + "descricao long VARCHAR)");
 
 		statement.execute();
+		statement.close();
 	}
 
 	/**

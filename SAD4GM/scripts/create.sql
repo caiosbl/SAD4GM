@@ -1,21 +1,10 @@
-create SCHEMA sad4gm;
+create SCHEMA maquinas;
 
-create table sad4gm.usuario(
+
+create table maquinas.maquina(
 nome long VARCHAR,
-id long VARCHAR,
-senha INTEGER NOT NULL,
-auditor long VARCHAR,
-ativo INTEGER);
-
-create table sad4gm.admin(
-nome long VARCHAR,
-id long VARCHAR,
-senha long VARCHAR
-);
-
-create table sad4gm.maquina(
-nome VARCHAR(20) NOT NULL,
+idusuario long VARCHAR,
+datainsercao DATE,
 codigo INTEGER NOT NULL,
-descricao VARCHAR(20)NOT NULL);
+descricao long VARCHAR);
 
-INSERT INTO sad4gm.admin (nome, senha,id) VALUES ('Desides Admin','rootdesides','admin');

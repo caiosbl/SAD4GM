@@ -12,7 +12,7 @@ import javax.management.RuntimeErrorException;
 import entidades.Maquina;
 
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA GM
  * Classe de Ferramentas de Conexão com a Tabela de Máquinas no Banco de Dados.
  * 
  * @author caiosbl
@@ -52,7 +52,7 @@ public class MaquinaTools extends DatabaseTools {
 
 		try {
 
-			final String INSERIR = "INSERT INTO sad4gm.maquina (nome, codigo,descricao,idusuario,dataInsercao) VALUES (?,?,?,?,?)";
+			final String INSERIR = "INSERT INTO maquinas.maquina (nome, codigo,descricao,idusuario,dataInsercao) VALUES (?,?,?,?,?)";
 			abrirConexao();
 
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
@@ -90,7 +90,7 @@ public class MaquinaTools extends DatabaseTools {
 
 		try {
 
-			final String DELETE = "DELETE FROM sad4gm.maquina where codigo = ?";
+			final String DELETE = "DELETE FROM maquinas.maquina where codigo = ?";
 			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(DELETE);
 			stmt.setInt(1, codigo);
@@ -125,7 +125,7 @@ public class MaquinaTools extends DatabaseTools {
 
 		try {
 			abrirConexao();
-			PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.maquina WHERE  codigo = ?");
+			PreparedStatement state = con.prepareStatement("SELECT nome FROM maquinas.maquina WHERE  codigo = ?");
 			state.setInt(1, codigo);
 
 			ResultSet resSet = state.executeQuery();
@@ -163,7 +163,7 @@ public class MaquinaTools extends DatabaseTools {
 
 		try {
 			abrirConexao();
-			PreparedStatement state = con.prepareStatement("SELECT descricao FROM sad4gm.maquina WHERE  codigo = ?");
+			PreparedStatement state = con.prepareStatement("SELECT descricao FROM maquinas.maquina WHERE  codigo = ?");
 			state.setInt(1, codigo);
 
 			ResultSet resSet = state.executeQuery();
@@ -200,7 +200,7 @@ public class MaquinaTools extends DatabaseTools {
 
 		try {
 
-			final String UPDATE = "UPDATE  sad4gm.maquina SET nome = ? WHERE codigo = ?";
+			final String UPDATE = "UPDATE  maquinas.maquina SET nome = ? WHERE codigo = ?";
 			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, nome);
@@ -235,7 +235,7 @@ public class MaquinaTools extends DatabaseTools {
 
 		try {
 
-			final String UPDATE = "UPDATE  sad4gm.maquina SET codigo = ? WHERE codigo = ?";
+			final String UPDATE = "UPDATE  maquinas.maquina SET codigo = ? WHERE codigo = ?";
 			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setInt(1, novoCodigo);
@@ -269,7 +269,7 @@ public class MaquinaTools extends DatabaseTools {
 
 		try {
 
-			final String UPDATE = "UPDATE  sad4gm.maquina SET descricao = ? WHERE codigo = ?";
+			final String UPDATE = "UPDATE  maquinas.maquina SET descricao = ? WHERE codigo = ?";
 			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, descricao);
@@ -309,7 +309,7 @@ public class MaquinaTools extends DatabaseTools {
 		try {
 			abrirConexao();
 			PreparedStatement state = con.prepareStatement(
-					"SELECT  nome,codigo,descricao,idusuario,dataInsercao FROM sad4gm.maquina WHERE codigo = ?");
+					"SELECT  nome,codigo,descricao,idusuario,dataInsercao FROM maquinas.maquina WHERE codigo = ?");
 			state.setInt(1, codigo);
 
 			ResultSet resSet = state.executeQuery();
@@ -353,7 +353,7 @@ public class MaquinaTools extends DatabaseTools {
 		try {
 			abrirConexao();
 			PreparedStatement state = con
-					.prepareStatement("SELECT nome,codigo,descricao,idusuario,dataInsercao FROM sad4gm.maquina");
+					.prepareStatement("SELECT nome,codigo,descricao,idusuario,dataInsercao FROM maquinas.maquina");
 
 			ResultSet resSet = state.executeQuery();
 
@@ -396,7 +396,7 @@ public class MaquinaTools extends DatabaseTools {
 	public boolean hasMaquina(int codigo) throws SQLException {
 		boolean has;
 		abrirConexao();
-		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.maquina WHERE codigo = ?");
+		PreparedStatement state = con.prepareStatement("SELECT nome FROM maquinas.maquina WHERE codigo = ?");
 		state.setInt(1, codigo);
 		ResultSet ResSet = state.executeQuery();
 
@@ -416,7 +416,7 @@ public class MaquinaTools extends DatabaseTools {
 		abrirConexao();
 		try {
 
-			final String UPDATE = "UPDATE  sad4gm.maquina SET idusuario = ? WHERE CAST(idusuario AS VARCHAR(128)) = ?";
+			final String UPDATE = "UPDATE  maquinas.maquina SET idusuario = ? WHERE CAST(idusuario AS VARCHAR(128)) = ?";
 			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, novoID);
