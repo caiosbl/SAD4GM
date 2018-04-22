@@ -1,0 +1,1 @@
+DROP table sad4gm.maquina;

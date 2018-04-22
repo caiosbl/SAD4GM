@@ -1,10 +1,9 @@
-create SCHEMA maquinas;
-
-
-create table maquinas.maquina(
-nome long VARCHAR,
-idusuario long VARCHAR,
-datainsercao DATE,
-codigo INTEGER NOT NULL,
-descricao long VARCHAR);
-
+CREATE TABLE sad4gm.usuario (
+		NOME LONG VARCHAR,
+		CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+		ID VARCHAR(200) NOT NULL,
+		SENHA VARCHAR(200),
+		AUDITOR LONG VARCHAR,
+		ATIVO INTEGER,
+		PRIMARY KEY (CHAVE));
+	

@@ -346,24 +346,21 @@ public class UsuarioTools extends DatabaseTools {
 	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
 	 *             cadastrado .
 	 */
-	public String getNome(String id, Connection con) throws SQLException {
-		if (!hasUsuario(id))
+	public String getNome(int chave, Connection con) throws SQLException {
+		if (!hasUsuario(chave))
 			return "Usuário Não Cadastrado";
 
 		String descricao = "";
-		String quebraLinha = System.lineSeparator();
 
 		try {
-			PreparedStatement state = con
-					.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ?");
-			state.setString(1, id);
+			PreparedStatement state = con.prepareStatement("SELECT nome,id FROM sad4gm.usuario WHERE chave = ?");
+			state.setInt(1, chave);
 
 			ResultSet resSet = state.executeQuery();
 
-			if (resSet.next()) {
-				descricao += String.format("Nome: %s  %sID: %s", resSet.getString(1), quebraLinha, id) + quebraLinha;
+			if (resSet.next())
+				descricao += resSet.getString(1) + " - ID: " + resSet.getString(2);
 
-			}
 			state.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -515,6 +512,23 @@ public class UsuarioTools extends DatabaseTools {
 
 	}
 
+	public boolean hasUsuario(int chave) throws SQLException {
+		boolean has;
+		abrirConexao();
+		PreparedStatement state = con.prepareStatement("SELECT nome FROM sad4gm.usuario WHERE CHAVE = ?");
+		state.setInt(1, chave);
+		ResultSet resSet = state.executeQuery();
+
+		if (resSet.next())
+			has = true;
+		else
+			has = false;
+		state.close();
+		fecharConexao();
+
+		return has;
+	}
+
 	/**
 	 * Retorna um valor booleano indicando se um usuário está ativo.
 	 * 
@@ -542,5 +556,22 @@ public class UsuarioTools extends DatabaseTools {
 
 		return has;
 
+	}
+
+	public int getChave(String id, Connection con) throws SQLException {
+
+		PreparedStatement state = con
+				.prepareStatement("SELECT chave FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ?");
+		state.setString(1, id);
+		ResultSet resSet = state.executeQuery();
+
+		int chave = -1;
+		if (resSet.next())
+			chave = resSet.getInt(1);
+
+		state.close();
+		fecharConexao();
+
+		return chave;
 	}
 }

@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 import javax.management.RuntimeErrorException;
 
@@ -52,14 +52,17 @@ public class MaquinaTools extends DatabaseTools {
 
 		try {
 
-			final String INSERIR = "INSERT INTO maquinas.maquina (nome, codigo,descricao,idusuario,dataInsercao) VALUES (?,?,?,?,?)";
+			final String INSERIR = "INSERT INTO maquinas.maquina (nome, codigo,descricao,chave_usuario,data_insercao) VALUES (?,?,?,?,?)";
 			abrirConexao();
+			
+			int chaveUsuario = uTools.getChave(maquina.getIdUsuario(), con);
 
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
+			
 			stmt.setString(1, maquina.getNome());
 			stmt.setInt(2, maquina.getCodigo());
 			stmt.setString(3, maquina.getDescricao());
-			stmt.setString(4, maquina.getIdUsuario());
+			stmt.setInt(4, chaveUsuario);
 			stmt.setDate(5, java.sql.Date.valueOf(java.time.LocalDate.now()));
 			stmt.execute();
 			stmt.close();
@@ -303,13 +306,12 @@ public class MaquinaTools extends DatabaseTools {
 
 		String infoMaquina = "";
 		String quebraLinha = System.lineSeparator();
-		String idUsuario = null;
-		Date dataInsercao = null;
+		int chaveUsuario;
 
 		try {
 			abrirConexao();
 			PreparedStatement state = con.prepareStatement(
-					"SELECT  nome,codigo,descricao,idusuario,dataInsercao FROM maquinas.maquina WHERE codigo = ?");
+					"SELECT NOME,DATA_INSERCAO,CODIGO,DESCRICAO,CHAVE_USUARIO FROM maquinas.maquina WHERE codigo = ?");
 			state.setInt(1, codigo);
 
 			ResultSet resSet = state.executeQuery();
@@ -317,15 +319,18 @@ public class MaquinaTools extends DatabaseTools {
 			while (resSet.next()) {
 				infoMaquina += "---------------------------------------------------------------------------"
 						+ quebraLinha;
-				infoMaquina += "Nome: " + resSet.getString(1) + quebraLinha;
-				infoMaquina += "Código: " + resSet.getInt(2) + quebraLinha;
-				infoMaquina += "Descrição: " + resSet.getString(3) + quebraLinha;
-				idUsuario = resSet.getString(4);
-				dataInsercao = resSet.getDate(5);
 
-				String infoUsuarioCadastrou = uTools.getNome(idUsuario, con);
-				infoMaquina += quebraLinha + "Cadastrada por: " + quebraLinha + infoUsuarioCadastrou;
-				infoMaquina += "Cadastrada em: " + formata.format(dataInsercao);
+				infoMaquina += "Nome: " + resSet.getString(1) + quebraLinha;
+				infoMaquina += "Data de Cadastro: " + formata.format(resSet.getDate(2)) + quebraLinha;
+				infoMaquina += "Código: " + resSet.getInt(3) + quebraLinha;
+				infoMaquina += "Descrição: " + resSet.getString(4) + quebraLinha;
+
+				chaveUsuario = resSet.getInt(5);
+
+				String infoUsuarioCadastrou = uTools.getNome(chaveUsuario, con);
+
+				infoMaquina += "Cadastrada por: " + infoUsuarioCadastrou + quebraLinha;
+
 				infoMaquina += quebraLinha;
 			}
 			state.close();
@@ -347,27 +352,28 @@ public class MaquinaTools extends DatabaseTools {
 	public String listar() {
 		String listagem = "";
 		String quebraLinha = System.lineSeparator();
-		String idUsuario = null;
-		Date dataInsercao = null;
+		int chaveUsuario;
 
 		try {
 			abrirConexao();
 			PreparedStatement state = con
-					.prepareStatement("SELECT nome,codigo,descricao,idusuario,dataInsercao FROM maquinas.maquina");
+					.prepareStatement("SELECT NOME,DATA_INSERCAO,CODIGO,DESCRICAO,CHAVE_USUARIO FROM maquinas.maquina");
 
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
 				listagem += "---------------------------------------------------------------------------" + quebraLinha;
 				listagem += "Nome: " + resSet.getString(1) + quebraLinha;
-				listagem += "Código: " + resSet.getInt(2) + quebraLinha;
-				listagem += "Descrição: " + resSet.getString(3) + quebraLinha;
-				idUsuario = resSet.getString(4);
-				dataInsercao = resSet.getDate(5);
+				listagem += "Data de Cadastro: " + formata.format(resSet.getDate(2)) + quebraLinha;
+				listagem += "Código: " + resSet.getInt(3) + quebraLinha;
+				listagem += "Descrição: " + resSet.getString(4) + quebraLinha;
 
-				String infoUsuarioCadastrou = uTools.getNome(idUsuario, con);
-				listagem += quebraLinha + "Cadastrada por: " + quebraLinha + infoUsuarioCadastrou;
-				listagem += "Cadastrada em: " + formata.format(dataInsercao);
+				chaveUsuario = resSet.getInt(5);
+
+				String infoUsuarioCadastrou = uTools.getNome(chaveUsuario, con);
+
+				listagem += "Cadastrada por: " + infoUsuarioCadastrou + quebraLinha;
+
 				listagem += quebraLinha;
 
 			}
@@ -408,29 +414,6 @@ public class MaquinaTools extends DatabaseTools {
 		fecharConexao();
 
 		return has;
-	}
-	
-	
-	public void atualizaIDUsuario(String idUsuario, String novoID) throws SQLException {
-
-		abrirConexao();
-		try {
-
-			final String UPDATE = "UPDATE  maquinas.maquina SET idusuario = ? WHERE CAST(idusuario AS VARCHAR(128)) = ?";
-			abrirConexao();
-			PreparedStatement stmt = con.prepareStatement(UPDATE);
-			stmt.setString(1, novoID);
-			stmt.setString(2, idUsuario);
-			stmt.execute();
-			stmt.close();
-			fecharConexao();
-
-		} catch (Exception e) {
-			throw new NullPointerException();
-		}
-		
-		fecharConexao();
-
 	}
 
 }

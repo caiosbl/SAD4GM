@@ -1,3 +1,1 @@
-ALTER TABLE sad4gm.usuario ADD senha  VARCHAR(200);
-
-
+ALTER TABLE sad4gm.usuario ADD PRIMARY KEY  VARCHAR(200);

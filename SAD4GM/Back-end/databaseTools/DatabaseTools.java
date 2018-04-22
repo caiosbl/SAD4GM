@@ -132,8 +132,14 @@ public abstract class DatabaseTools {
 	 */
 	private void criarTabelaUsuarios(Connection con) throws SQLException {
 
-		PreparedStatement statement = con.prepareStatement("create table sad4gm.usuario(\r\n" + "nome long VARCHAR,\r\n"
-				+ "id long VARCHAR,\r\n" + "senha VARCHAR(200),\r\n" + "auditor long VARCHAR,\r\n" + "ativo INTEGER)");
+		PreparedStatement statement = con.prepareStatement("CREATE TABLE sad4gm.usuario (\r\n" + 
+				"		NOME LONG VARCHAR,\r\n" + 
+				"		CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
+				"		ID VARCHAR(200) NOT NULL,\r\n" + 
+				"		SENHA VARCHAR(200),\r\n" + 
+				"		AUDITOR LONG VARCHAR,\r\n" + 
+				"		ATIVO INTEGER,\r\n" + 
+				"		PRIMARY KEY (CHAVE))");
 
 		statement.execute();
 		statement.close();
@@ -151,8 +157,16 @@ public abstract class DatabaseTools {
 	private void criarTabelaMaquinas(Connection con) throws SQLException {
 
 		PreparedStatement statement = con.prepareStatement(
-				"create table maquinas.maquina(\r\n" + "nome long VARCHAR,\r\n" + "idusuario long VARCHAR,\r\n"
-						+ "datainsercao date,\r\n" + "codigo INTEGER NOT NULL,\r\n" + "descricao long VARCHAR)");
+				"CREATE TABLE MAQUINAS.MAQUINA (\r\n" + 
+				"		NOME LONG VARCHAR,\r\n" + 
+				"		DATA_INSERCAO DATE,\r\n" + 
+				"		CODIGO INTEGER NOT NULL,\r\n" + 
+				"		DESCRICAO LONG VARCHAR,\r\n" + 
+				"		CHAVE_USUARIO INTEGER NOT NULL,\r\n" + 
+				"		CONSTRAINT USUARIO_FK\r\n" + 
+				"		FOREIGN KEY (CHAVE_USUARIO)\r\n" + 
+				"		REFERENCES sad4gm.usuario (chave)\r\n" + 
+				"	)");
 
 		statement.execute();
 		statement.close();
