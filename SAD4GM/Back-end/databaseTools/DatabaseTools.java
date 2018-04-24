@@ -158,15 +158,17 @@ public abstract class DatabaseTools {
 
 		PreparedStatement statement = con.prepareStatement(
 				"CREATE TABLE MAQUINAS.MAQUINA (\r\n" + 
-				"		NOME LONG VARCHAR,\r\n" + 
-				"		DATA_INSERCAO DATE,\r\n" + 
-				"		CODIGO INTEGER NOT NULL,\r\n" + 
-				"		DESCRICAO LONG VARCHAR,\r\n" + 
-				"		CHAVE_USUARIO INTEGER NOT NULL,\r\n" + 
-				"		CONSTRAINT USUARIO_FK\r\n" + 
-				"		FOREIGN KEY (CHAVE_USUARIO)\r\n" + 
-				"		REFERENCES sad4gm.usuario (chave)\r\n" + 
-				"	)");
+				"					NOME LONG VARCHAR,\r\n" + 
+				"					DATA_INSERCAO DATE,\r\n" + 
+				"					CODIGO INTEGER NOT NULL, \r\n" + 
+				"					DESCRICAO LONG VARCHAR, \r\n" + 
+				"					CHAVE_USUARIO INTEGER NOT NULL, \r\n" + 
+				"					CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), \r\n" + 
+				"				    PRIMARY KEY (CHAVE), \r\n" + 
+				"					CONSTRAINT USUARIO_FK \r\n" + 
+				"					FOREIGN KEY (CHAVE_USUARIO)  \r\n" + 
+				"					REFERENCES sad4gm.usuario (chave))\r\n" + 
+				"					");
 
 		statement.execute();
 		statement.close();
