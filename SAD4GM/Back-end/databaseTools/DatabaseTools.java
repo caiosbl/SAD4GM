@@ -59,6 +59,7 @@ public abstract class DatabaseTools {
 			criarTabelaSubsistema(con);
 			criarTabelaComponente(con);
 			criarTabelaFalha(con);
+			criarTabelaModoFalha(con);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -217,6 +218,22 @@ public abstract class DatabaseTools {
 				"chave_componente INTEGER NOT NULL,\r\n" + 
 				"PRIMARY KEY (chave)" + 
 				"CONSTRAINT falha_chave_componente_fkey FOREIGN KEY (chave_componente) REFERENCES maquinas.componente(chave)\r\n" + 
+				");");
+
+		statement.execute();
+		statement.close();
+	}
+	
+	private void criarTabelaModoFalha(Connection con) throws SQLException {
+
+		PreparedStatement statement = con.prepareStatement("\r\n" + 
+				"\r\n" + 
+				"CREATE TABLE maquinas.modo_falha(\r\n" + 
+				"descricao LONG VARCHAR,\r\n" + 
+				"chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
+				"chave_falha INTEGER NOT NULL,\r\n" + 
+				"PRIMARY KEY(chave),\r\n" + 
+				"CONSTRAINT modo_falha_chave_falha_fkey FOREIGN KEY (chave_falha) REFERENCES maquinas.falha(chave)\r\n" + 
 				");");
 
 		statement.execute();
