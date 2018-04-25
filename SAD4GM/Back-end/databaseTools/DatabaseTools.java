@@ -56,6 +56,8 @@ public abstract class DatabaseTools {
 			inserirAdminDefault(con);
 			criarTabelaUsuarios(con);
 			criarTabelaMaquinas(con);
+			criarTabelaSubsistema(con);
+			criarTabelaComponente(con);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -165,10 +167,39 @@ public abstract class DatabaseTools {
 				"					CHAVE_USUARIO INTEGER NOT NULL, \r\n" + 
 				"					CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), \r\n" + 
 				"				    PRIMARY KEY (CHAVE), \r\n" + 
-				"					CONSTRAINT USUARIO_FK \r\n" + 
+				"					CONSTRAINT MAQUINAS_CHAVE_USUARIO_FKEY \r\n" + 
 				"					FOREIGN KEY (CHAVE_USUARIO)  \r\n" + 
 				"					REFERENCES sad4gm.usuario (chave))\r\n" + 
 				"					");
+
+		statement.execute();
+		statement.close();
+	}
+	
+	private void criarTabelaSubsistema(Connection con) throws SQLException {
+
+		PreparedStatement statement = con.prepareStatement("\r\n" + 
+				"\r\n" + 
+				"CREATE TABLE MAQUINAS.SUBSISTEMAS(\r\n" + 
+				"nome LONG VARCHAR,\r\n" + 
+				"chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
+				"chave_maquina INTEGER NOT NULL,\r\n" + 
+				"PRIMARY KEY (chave)" + 
+				"CONSTRAINT SUBSISTEMA_CHAVE_MAQUINA_FKEY FOREIGN KEY (chave_maquina) REFERENCES maquinas.maquina(chave)\r\n" + 
+				");");
+
+		statement.execute();
+		statement.close();
+	}
+	private void criarTabelaComponente(Connection con) throws SQLException {
+
+		PreparedStatement statement = con.prepareStatement("CREATE TABLE MAQUINAS.COMPONENTE(\r\n" + 
+				"nome LONG VARCHAR,\r\n" + 
+				"chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
+				"chave_subsistema INTEGER NOT NULL,\r\n" + 
+				"funcao LONG VARCHAR,\r\n" + 
+				"CONSTRAINT componente_chave_subsistema_fkey FOREIGN KEY (chave_subsistema) REFERENCES maquinas.subsistema(chave)\r\n" + 
+				");");
 
 		statement.execute();
 		statement.close();

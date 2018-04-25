@@ -1,0 +1,1 @@
+ALTER TABLE maquinas.subsistema ADD PRIMARY KEY (chave);
