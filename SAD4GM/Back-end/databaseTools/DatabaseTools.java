@@ -58,6 +58,7 @@ public abstract class DatabaseTools {
 			criarTabelaMaquinas(con);
 			criarTabelaSubsistema(con);
 			criarTabelaComponente(con);
+			criarTabelaFalha(con);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -135,12 +136,12 @@ public abstract class DatabaseTools {
 	private void criarTabelaUsuarios(Connection con) throws SQLException {
 
 		PreparedStatement statement = con.prepareStatement("CREATE TABLE sad4gm.usuario (\r\n" + 
-				"		NOME LONG VARCHAR,\r\n" + 
-				"		CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
-				"		ID VARCHAR(200) NOT NULL,\r\n" + 
-				"		SENHA VARCHAR(200),\r\n" + 
-				"		AUDITOR LONG VARCHAR,\r\n" + 
-				"		ATIVO INTEGER,\r\n" + 
+				"		nome LONG VARCHAR,\r\n" + 
+				"		chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
+				"		id VARCHAR(200) NOT NULL,\r\n" + 
+				"		senha VARCHAR(200),\r\n" + 
+				"		auditor LONG VARCHAR,\r\n" + 
+				"		ativo INTEGER,\r\n" + 
 				"		PRIMARY KEY (CHAVE))");
 
 		statement.execute();
@@ -159,16 +160,16 @@ public abstract class DatabaseTools {
 	private void criarTabelaMaquinas(Connection con) throws SQLException {
 
 		PreparedStatement statement = con.prepareStatement(
-				"CREATE TABLE MAQUINAS.MAQUINA (\r\n" + 
-				"					NOME LONG VARCHAR,\r\n" + 
-				"					DATA_INSERCAO DATE,\r\n" + 
-				"					CODIGO INTEGER NOT NULL, \r\n" + 
-				"					DESCRICAO LONG VARCHAR, \r\n" + 
-				"					CHAVE_USUARIO INTEGER NOT NULL, \r\n" + 
-				"					CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), \r\n" + 
-				"				    PRIMARY KEY (CHAVE), \r\n" + 
-				"					CONSTRAINT MAQUINAS_CHAVE_USUARIO_FKEY \r\n" + 
-				"					FOREIGN KEY (CHAVE_USUARIO)  \r\n" + 
+				"CREATE TABLE maquinas.maquina (\r\n" + 
+				"					nome LONG VARCHAR,\r\n" + 
+				"					data_insercao DATE,\r\n" + 
+				"					codigo INTEGER NOT NULL, \r\n" + 
+				"					descricao LONG VARCHAR, \r\n" + 
+				"					chave_usuario INTEGER NOT NULL, \r\n" + 
+				"					chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), \r\n" + 
+				"				    PRIMARY KEY (chave), \r\n" + 
+				"					CONSTRAINT maquina_chave_usuario_fkey \r\n" + 
+				"					FOREIGN KEY (chave_usuario)  \r\n" + 
 				"					REFERENCES sad4gm.usuario (chave))\r\n" + 
 				"					");
 
@@ -180,12 +181,12 @@ public abstract class DatabaseTools {
 
 		PreparedStatement statement = con.prepareStatement("\r\n" + 
 				"\r\n" + 
-				"CREATE TABLE MAQUINAS.SUBSISTEMAS(\r\n" + 
+				"CREATE TABLE maquinas.subsistema(\r\n" + 
 				"nome LONG VARCHAR,\r\n" + 
 				"chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
 				"chave_maquina INTEGER NOT NULL,\r\n" + 
 				"PRIMARY KEY (chave)" + 
-				"CONSTRAINT SUBSISTEMA_CHAVE_MAQUINA_FKEY FOREIGN KEY (chave_maquina) REFERENCES maquinas.maquina(chave)\r\n" + 
+				"CONSTRAINT subsistema_chave_maquina_fkey FOREIGN KEY (chave_maquina) REFERENCES maquinas.maquina(chave)\r\n" + 
 				");");
 
 		statement.execute();
@@ -193,12 +194,29 @@ public abstract class DatabaseTools {
 	}
 	private void criarTabelaComponente(Connection con) throws SQLException {
 
-		PreparedStatement statement = con.prepareStatement("CREATE TABLE MAQUINAS.COMPONENTE(\r\n" + 
+		PreparedStatement statement = con.prepareStatement("CREATE TABLE maquinas.componente(\r\n" + 
 				"nome LONG VARCHAR,\r\n" + 
 				"chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
 				"chave_subsistema INTEGER NOT NULL,\r\n" + 
 				"funcao LONG VARCHAR,\r\n" + 
+				"PRIMARY KEY (chave)" + 
 				"CONSTRAINT componente_chave_subsistema_fkey FOREIGN KEY (chave_subsistema) REFERENCES maquinas.subsistema(chave)\r\n" + 
+				");");
+
+		statement.execute();
+		statement.close();
+	}
+	
+	private void criarTabelaFalha(Connection con) throws SQLException {
+
+		PreparedStatement statement = con.prepareStatement("\r\n" + 
+				"CREATE TABLE maquinas.falha(\r\n" + 
+				"nome LONG VARCHAR,\r\n" + 
+				"descricao LONG VARCHAR,\r\n" + 
+				"chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
+				"chave_componente INTEGER NOT NULL,\r\n" + 
+				"PRIMARY KEY (chave)" + 
+				"CONSTRAINT falha_chave_componente_fkey FOREIGN KEY (chave_componente) REFERENCES maquinas.componente(chave)\r\n" + 
 				");");
 
 		statement.execute();
