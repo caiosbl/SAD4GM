@@ -1,6 +1,9 @@
 package controladores;
 
+
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.management.RuntimeErrorException;
 
@@ -322,6 +325,16 @@ public class Maquinas {
 		}
 
 		return mTools.hasMaquina(codigoInt);
+
+	}
+	
+	public Map<String,Integer> getMapaMaquinas()  {
+
+		try {
+			return mTools.getMapaMaquinas();
+		} catch (SQLException e) {
+			return new HashMap<String,Integer>();
+		}
 
 	}
 

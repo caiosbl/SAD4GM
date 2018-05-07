@@ -5,9 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 import javax.management.RuntimeErrorException;
@@ -418,58 +418,23 @@ public class MaquinaTools extends DatabaseTools {
 
 		return has;
 	}
-	
 
-	
-
-	public Map<String,Integer> getNomesMaquinas() throws SQLException {
+	public Map<String, Integer> getMapaMaquinas() throws SQLException {
 		abrirConexao();
-		Map<String,Integer> maquinas = new HashMap<>();
+		Map<String, Integer> maquinas = new HashMap<>();
 
 		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.maquina");
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {
-			maquinas.put(resSet.getString(1),resSet.getInt(2));
+			maquinas.put(resSet.getString(1), resSet.getInt(2));
 		}
 		state.close();
-		
+
 		fecharConexao();
 
 		return maquinas;
 
 	}
-	
-	
-	// Subsistemas
-	
-	
-	
-	
-	public void inserirSubsistema(String nome, int chaveMaquina) throws SQLException {
-
-
-
-		try {
-
-			final String INSERIR = "INSERT INTO maquinas.subsistema (nome, chave_maquina) VALUES (?,?)";
-			abrirConexao();
-
-
-			PreparedStatement stmt = con.prepareStatement(INSERIR);
-
-			stmt.setString(1, nome);
-			stmt.setInt(2, chaveMaquina);
-			stmt.execute();
-			stmt.close();
-
-			fecharConexao();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
 
 }
