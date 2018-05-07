@@ -1,9 +1,9 @@
 
 
-CREATE TABLE maquinas.falha(
-nome LONG VARCHAR,
+CREATE TABLE maquinas.modo_falha(
 descricao LONG VARCHAR,
 chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-chave_componente INTEGER NOT NULL,
-CONSTRAINT falha_chave_componente_fkey FOREIGN KEY (chave_componente) REFERENCES maquinas.componente(chave)
+chave_falha INTEGER NOT NULL,
+PRIMARY KEY(chave),
+CONSTRAINT modo_falha_chave_falha_fkey FOREIGN KEY (chave_falha) REFERENCES maquinas.falha(chave)
 );

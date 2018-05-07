@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.gerenciadorMaquinas.InsertMaquina;
+import interfaceGrafica.usuario.gerenciadorMaquinas.InsertSubsistema;
 import interfaceGrafica.usuario.gerenciadorMaquinas.MachineInformationEntry;
 import interfaceGrafica.usuario.gerenciadorMaquinas.MachinesList;
 
@@ -16,6 +17,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
@@ -44,13 +46,13 @@ public class Options extends Main {
 	 * Create the frame.
 	 */
 	public Options(String id, int xLocation, int yLocation) {
-		super(xLocation,yLocation);
+		super(xLocation, yLocation);
 		this.idUsuario = id;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(xLocation,yLocation, 621, 497);
+		setBounds(xLocation, yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -65,9 +67,10 @@ public class Options extends Main {
 		btnInserirMaquina.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnInserirMaquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				InsertMaquina insertMaquina = new InsertMaquina(idUsuario,getXLocation(),getYLocation());
+				InsertMaquina insertMaquina = new InsertMaquina(idUsuario, getXLocation(), getYLocation());
 				dispose();
-				insertMaquina.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				insertMaquina
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				insertMaquina.setVisible(true);
 				insertMaquina.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -79,9 +82,10 @@ public class Options extends Main {
 		btnListarMaquinas.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/listmachineicon.png")));
 		btnListarMaquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MachinesList listarMaquinas = new MachinesList(idUsuario,getXLocation(),getYLocation());
+				MachinesList listarMaquinas = new MachinesList(idUsuario, getXLocation(), getYLocation());
 				dispose();
-				listarMaquinas.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				listarMaquinas
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				listarMaquinas.setVisible(true);
 				listarMaquinas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -104,7 +108,7 @@ public class Options extends Main {
 		btnMinhasInformacoes.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/myinformationicon.png")));
 		btnMinhasInformacoes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MyInfo myInfo = new MyInfo(idUsuario,getXLocation(),getYLocation());
+				MyInfo myInfo = new MyInfo(idUsuario, getXLocation(), getYLocation());
 				dispose();
 				myInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				myInfo.setVisible(true);
@@ -120,7 +124,7 @@ public class Options extends Main {
 		btnLogout.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logouticon.png")));
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main entrada = new Main(getXLocation(),getYLocation());
+				Main entrada = new Main(getXLocation(), getYLocation());
 				dispose();
 				entrada.setVisible(true);
 				entrada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -133,12 +137,13 @@ public class Options extends Main {
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 137, 582, 12);
 		desktopPane.add(separator);
-		
+
 		JButton btnVerUmaMquina = new JButton("");
 		btnVerUmaMquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/viewmachineicon.png")));
 		btnVerUmaMquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MachineInformationEntry verMaquina = new MachineInformationEntry(idUsuario,getXLocation(),getYLocation());
+				MachineInformationEntry verMaquina = new MachineInformationEntry(idUsuario, getXLocation(),
+						getYLocation());
 				dispose();
 				verMaquina.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				verMaquina.setVisible(true);
@@ -148,10 +153,28 @@ public class Options extends Main {
 		btnVerUmaMquina.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnVerUmaMquina.setBounds(356, 277, 249, 73);
 		desktopPane.add(btnVerUmaMquina);
-		
+
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
+
+		JButton btnInserirSubsistema = new JButton("Inserir Subsistema");
+		btnInserirSubsistema.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InsertSubsistema insertSubsistema;
+
+				insertSubsistema = new InsertSubsistema(idUsuario, getXLocation(), getYLocation());
+
+				dispose();
+
+				insertSubsistema
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				insertSubsistema.setVisible(true);
+				insertSubsistema.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		btnInserirSubsistema.setBounds(29, 370, 133, 28);
+		desktopPane.add(btnInserirSubsistema);
 	}
 }

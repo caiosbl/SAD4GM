@@ -181,14 +181,13 @@ public abstract class DatabaseTools {
 	private void criarTabelaSubsistema(Connection con) throws SQLException {
 
 		PreparedStatement statement = con.prepareStatement("\r\n" + 
-				"\r\n" + 
-				"CREATE TABLE maquinas.subsistema(\r\n" + 
-				"nome LONG VARCHAR,\r\n" + 
-				"chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
-				"chave_maquina INTEGER NOT NULL,\r\n" + 
-				"PRIMARY KEY (chave)" + 
-				"CONSTRAINT subsistema_chave_maquina_fkey FOREIGN KEY (chave_maquina) REFERENCES maquinas.maquina(chave)\r\n" + 
-				");");
+				"				CREATE TABLE maquinas.subsistema(\r\n" + 
+				"				nome LONG VARCHAR,\r\n" + 
+				"				chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
+				"				chave_maquina INTEGER NOT NULL,\r\n" + 
+				"				PRIMARY KEY (chave) ,\r\n" + 
+				"				CONSTRAINT subsistema_chave_maquina_fkey FOREIGN KEY (chave_maquina) REFERENCES maquinas.maquina(chave)\r\n" + 
+				"				)");
 
 		statement.execute();
 		statement.close();
@@ -200,9 +199,9 @@ public abstract class DatabaseTools {
 				"chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
 				"chave_subsistema INTEGER NOT NULL,\r\n" + 
 				"funcao LONG VARCHAR,\r\n" + 
-				"PRIMARY KEY (chave)" + 
+				"PRIMARY KEY (chave)," + 
 				"CONSTRAINT componente_chave_subsistema_fkey FOREIGN KEY (chave_subsistema) REFERENCES maquinas.subsistema(chave)\r\n" + 
-				");");
+				")");
 
 		statement.execute();
 		statement.close();
@@ -216,9 +215,9 @@ public abstract class DatabaseTools {
 				"descricao LONG VARCHAR,\r\n" + 
 				"chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
 				"chave_componente INTEGER NOT NULL,\r\n" + 
-				"PRIMARY KEY (chave)" + 
+				"PRIMARY KEY (chave)," + 
 				"CONSTRAINT falha_chave_componente_fkey FOREIGN KEY (chave_componente) REFERENCES maquinas.componente(chave)\r\n" + 
-				");");
+				")");
 
 		statement.execute();
 		statement.close();
@@ -234,7 +233,7 @@ public abstract class DatabaseTools {
 				"chave_falha INTEGER NOT NULL,\r\n" + 
 				"PRIMARY KEY(chave),\r\n" + 
 				"CONSTRAINT modo_falha_chave_falha_fkey FOREIGN KEY (chave_falha) REFERENCES maquinas.falha(chave)\r\n" + 
-				");");
+				")");
 
 		statement.execute();
 		statement.close();

@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.management.RuntimeErrorException;
 
@@ -54,11 +57,11 @@ public class MaquinaTools extends DatabaseTools {
 
 			final String INSERIR = "INSERT INTO maquinas.maquina (nome, codigo,descricao,chave_usuario,data_insercao) VALUES (?,?,?,?,?)";
 			abrirConexao();
-			
+
 			int chaveUsuario = uTools.getChave(maquina.getIdUsuario(), con);
 
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
-			
+
 			stmt.setString(1, maquina.getNome());
 			stmt.setInt(2, maquina.getCodigo());
 			stmt.setString(3, maquina.getDescricao());
@@ -415,5 +418,58 @@ public class MaquinaTools extends DatabaseTools {
 
 		return has;
 	}
+	
+
+	
+
+	public Map<String,Integer> getNomesMaquinas() throws SQLException {
+		abrirConexao();
+		Map<String,Integer> maquinas = new HashMap<>();
+
+		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.maquina");
+		ResultSet resSet = state.executeQuery();
+
+		while (resSet.next()) {
+			maquinas.put(resSet.getString(1),resSet.getInt(2));
+		}
+		state.close();
+		
+		fecharConexao();
+
+		return maquinas;
+
+	}
+	
+	
+	// Subsistemas
+	
+	
+	
+	
+	public void inserirSubsistema(String nome, int chaveMaquina) throws SQLException {
+
+
+
+		try {
+
+			final String INSERIR = "INSERT INTO maquinas.subsistema (nome, chave_maquina) VALUES (?,?)";
+			abrirConexao();
+
+
+			PreparedStatement stmt = con.prepareStatement(INSERIR);
+
+			stmt.setString(1, nome);
+			stmt.setInt(2, chaveMaquina);
+			stmt.execute();
+			stmt.close();
+
+			fecharConexao();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 
 }
