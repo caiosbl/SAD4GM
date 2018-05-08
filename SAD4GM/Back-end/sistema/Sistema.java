@@ -4,10 +4,12 @@ import java.sql.SQLException;
 import java.util.Map;
 
 import controladores.Admins;
+import controladores.Componentes;
 import controladores.Maquinas;
 import controladores.Subsistemas;
 import controladores.Usuarios;
 import databaseTools.AdminTools;
+import databaseTools.ComponenteTools;
 import databaseTools.MaquinaTools;
 import databaseTools.SubsistemaTools;
 import databaseTools.UsuarioTools;
@@ -24,10 +26,13 @@ public class Sistema {
 	private Maquinas cMaquinas;
 	private Admins cAdmins;
 	private Subsistemas cSubsistemas;
+	private Componentes cComponentes;
+	
 	private UsuarioTools uTools;
 	private MaquinaTools mTools;
 	private AdminTools admTools;
 	private SubsistemaTools sTools;
+	private ComponenteTools cTools;
 
 	public Sistema() {
 
@@ -36,11 +41,14 @@ public class Sistema {
 		this.mTools = new MaquinaTools();
 		this.admTools = new AdminTools();
 		this.sTools = new SubsistemaTools();
+		this.cTools = new ComponenteTools();
+		
 
 		this.cUsuarios = new Usuarios(uTools);
 		this.cMaquinas = new Maquinas(mTools);
 		this.cAdmins = new Admins(admTools);
 		this.cSubsistemas = new Subsistemas(sTools);
+		this.cComponentes = new Componentes(cTools);
 	}
 
 	// Funções de Admin
@@ -192,6 +200,13 @@ public class Sistema {
 	
 	public String inserirSubsistema(String nome, int chaveMaquina) {
 		return cSubsistemas.inserir(nome, chaveMaquina);
+	}
+	
+	
+	// Funções de Componentes
+	
+	public String inserirComponente(String nome, int chaveSubsistema, String funcao) {
+		return cComponentes.inserir(nome, chaveSubsistema, funcao);
 	}
 
 }

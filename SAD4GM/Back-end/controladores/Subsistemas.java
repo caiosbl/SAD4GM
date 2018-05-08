@@ -17,7 +17,7 @@ public class Subsistemas {
 	
 	
 	public String inserir(String nome, int chaveMaquina) {
-		String status = "Falha ao Inserir Subsistema!";
+		String status;
 		
 		try {
 			sTools.inserir(nome, chaveMaquina);
