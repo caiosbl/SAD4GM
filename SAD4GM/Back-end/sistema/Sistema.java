@@ -5,11 +5,13 @@ import java.util.Map;
 
 import controladores.Admins;
 import controladores.Componentes;
+import controladores.Falhas;
 import controladores.Maquinas;
 import controladores.Subsistemas;
 import controladores.Usuarios;
 import databaseTools.AdminTools;
 import databaseTools.ComponenteTools;
+import databaseTools.FalhaTools;
 import databaseTools.MaquinaTools;
 import databaseTools.SubsistemaTools;
 import databaseTools.UsuarioTools;
@@ -27,12 +29,14 @@ public class Sistema {
 	private Admins cAdmins;
 	private Subsistemas cSubsistemas;
 	private Componentes cComponentes;
+	private Falhas cFalhas;
 	
 	private UsuarioTools uTools;
 	private MaquinaTools mTools;
 	private AdminTools admTools;
 	private SubsistemaTools sTools;
 	private ComponenteTools cTools;
+	private FalhaTools fTools;
 
 	public Sistema() {
 
@@ -42,6 +46,7 @@ public class Sistema {
 		this.admTools = new AdminTools();
 		this.sTools = new SubsistemaTools();
 		this.cTools = new ComponenteTools();
+		this.fTools = new FalhaTools();
 		
 
 		this.cUsuarios = new Usuarios(uTools);
@@ -49,6 +54,7 @@ public class Sistema {
 		this.cAdmins = new Admins(admTools);
 		this.cSubsistemas = new Subsistemas(sTools);
 		this.cComponentes = new Componentes(cTools);
+		this.cFalhas = new Falhas(fTools);
 	}
 
 	// Funções de Admin
@@ -216,5 +222,16 @@ public class Sistema {
 	public Map<String,Integer> getMapaComponentes()  {
 		return cComponentes.getMapaComponentes();
 	}
+	
+	// Funções de Falhas
+	
+	public String inserirFalha(String nome, String descricao, int chaveComponente) {
+		return cFalhas.inserir(nome, descricao, chaveComponente);
+	}
+	
+	public Map<String,Integer> getMapaFalhas()  {
+		return cFalhas.getMapaFalhas();
+	}
+	
 
 }
