@@ -16,7 +16,7 @@ public class Componentes {
 		
 		try {
 			cTools.inserir(nome, chaveSubsistema, funcao);
-			status = "Subsistema inserido com Sucesso!";
+			status = "Componente inserido com Sucesso!";
 		} 
 		catch (Exception e) {
 			status = e.getMessage();

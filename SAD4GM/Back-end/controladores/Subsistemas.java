@@ -2,6 +2,10 @@ package controladores;
 
 
 
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
 import databaseTools.SubsistemaTools;
 
 public class Subsistemas {
@@ -29,6 +33,16 @@ public class Subsistemas {
 		
 		return status;
 		
+	}
+	
+	public Map<String,Integer> getMapaSubsistemas()  {
+
+		try {
+			return sTools.getMapaSubsistemas();
+		} catch (SQLException e) {
+			return new HashMap<String,Integer>();
+		}
+
 	}
 	
 	

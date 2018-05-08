@@ -3,6 +3,8 @@ package databaseTools;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SubsistemaTools extends DatabaseTools {
 
@@ -47,6 +49,24 @@ public class SubsistemaTools extends DatabaseTools {
 		fecharConexao();
 
 		return has;
+	}
+	
+	public Map<String, Integer> getMapaSubsistemas() throws SQLException {
+		abrirConexao();
+		Map<String, Integer> subsistemas = new HashMap<>();
+
+		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.subsistema");
+		ResultSet resSet = state.executeQuery();
+
+		while (resSet.next()) {
+			subsistemas.put(resSet.getString(1), resSet.getInt(2));
+		}
+		state.close();
+
+		fecharConexao();
+
+		return subsistemas;
+
 	}
 
 }

@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
+import interfaceGrafica.usuario.gerenciadorMaquinas.InsertComponente;
 import interfaceGrafica.usuario.gerenciadorMaquinas.InsertMaquina;
 import interfaceGrafica.usuario.gerenciadorMaquinas.InsertSubsistema;
 import interfaceGrafica.usuario.gerenciadorMaquinas.MachineInformationEntry;
@@ -17,7 +18,6 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
@@ -176,5 +176,23 @@ public class Options extends Main {
 		});
 		btnInserirSubsistema.setBounds(29, 370, 133, 28);
 		desktopPane.add(btnInserirSubsistema);
+		
+		JButton btnInserirComponente = new JButton("Inserir Componente");
+		btnInserirComponente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InsertComponente insertComponente;
+
+				insertComponente = new InsertComponente(idUsuario, getXLocation(), getYLocation());
+
+				dispose();
+
+				insertComponente
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				insertComponente.setVisible(true);
+				insertComponente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		btnInserirComponente.setBounds(29, 410, 146, 28);
+		desktopPane.add(btnInserirComponente);
 	}
 }
