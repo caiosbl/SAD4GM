@@ -212,5 +212,9 @@ public class Sistema {
 	public String inserirComponente(String nome, int chaveSubsistema, String funcao) {
 		return cComponentes.inserir(nome, chaveSubsistema, funcao);
 	}
+	
+	public Map<String,Integer> getMapaComponentes()  {
+		return cComponentes.getMapaComponentes();
+	}
 
 }

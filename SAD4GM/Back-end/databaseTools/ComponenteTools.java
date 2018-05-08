@@ -3,6 +3,8 @@ package databaseTools;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ComponenteTools extends DatabaseTools {
 
@@ -51,6 +53,24 @@ public class ComponenteTools extends DatabaseTools {
 		fecharConexao();
 
 		return has;
+	}
+	
+	public Map<String, Integer> getMapaComponentes() throws SQLException {
+		abrirConexao();
+		Map<String, Integer> componentes = new HashMap<>();
+
+		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.componente");
+		ResultSet resSet = state.executeQuery();
+
+		while (resSet.next()) {
+			componentes.put(resSet.getString(1), resSet.getInt(2));
+		}
+		state.close();
+
+		fecharConexao();
+
+		return componentes;
+
 	}
 
 }
