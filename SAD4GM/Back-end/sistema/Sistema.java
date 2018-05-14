@@ -7,12 +7,14 @@ import controladores.Admins;
 import controladores.Componentes;
 import controladores.Falhas;
 import controladores.Maquinas;
+import controladores.ModosFalha;
 import controladores.Subsistemas;
 import controladores.Usuarios;
 import databaseTools.AdminTools;
 import databaseTools.ComponenteTools;
 import databaseTools.FalhaTools;
 import databaseTools.MaquinaTools;
+import databaseTools.ModosFalhaTools;
 import databaseTools.SubsistemaTools;
 import databaseTools.UsuarioTools;
 
@@ -30,16 +32,17 @@ public class Sistema {
 	private Subsistemas cSubsistemas;
 	private Componentes cComponentes;
 	private Falhas cFalhas;
-	
+	private ModosFalha cMFalhas;
+
 	private UsuarioTools uTools;
 	private MaquinaTools mTools;
 	private AdminTools admTools;
 	private SubsistemaTools sTools;
 	private ComponenteTools cTools;
 	private FalhaTools fTools;
+	private ModosFalhaTools mFTools;
 
 	public Sistema() {
-
 
 		this.uTools = new UsuarioTools();
 		this.mTools = new MaquinaTools();
@@ -47,7 +50,7 @@ public class Sistema {
 		this.sTools = new SubsistemaTools();
 		this.cTools = new ComponenteTools();
 		this.fTools = new FalhaTools();
-		
+		this.mFTools = new ModosFalhaTools();
 
 		this.cUsuarios = new Usuarios(uTools);
 		this.cMaquinas = new Maquinas(mTools);
@@ -55,6 +58,7 @@ public class Sistema {
 		this.cSubsistemas = new Subsistemas(sTools);
 		this.cComponentes = new Componentes(cTools);
 		this.cFalhas = new Falhas(fTools);
+		this.cMFalhas = new ModosFalha(mFTools);
 	}
 
 	// Funções de Admin
@@ -186,52 +190,57 @@ public class Sistema {
 	public boolean hasMaquina(String codigo) throws SQLException {
 		return cMaquinas.hasMaquina(codigo);
 	}
-	
-	
+
 	public String getNomeMaquina(String codigo) {
 		return cMaquinas.getNome(codigo);
 	}
-	
+
 	public String getDescricaoMaquina(String codigo) {
 		return cMaquinas.getDescricao(codigo);
 	}
-	
-	public Map<String,Integer> getMapaMaquinas()  {
+
+	public Map<String, Integer> getMapaMaquinas() {
 		return cMaquinas.getMapaMaquinas();
 	}
-	
-	
-	
+
 	// Funções de Subsistema
-	
+
 	public String inserirSubsistema(String nome, int chaveMaquina) {
 		return cSubsistemas.inserir(nome, chaveMaquina);
 	}
-	
-	public Map<String,Integer> getMapaSubsistemas()  {
+
+	public Map<String, Integer> getMapaSubsistemas() {
 		return cSubsistemas.getMapaSubsistemas();
 	}
-	
-	
+
 	// Funções de Componentes
-	
+
 	public String inserirComponente(String nome, int chaveSubsistema, String funcao) {
 		return cComponentes.inserir(nome, chaveSubsistema, funcao);
 	}
-	
-	public Map<String,Integer> getMapaComponentes()  {
+
+	public Map<String, Integer> getMapaComponentes() {
 		return cComponentes.getMapaComponentes();
 	}
-	
+
 	// Funções de Falhas
-	
+
 	public String inserirFalha(String nome, String descricao, int chaveComponente) {
 		return cFalhas.inserir(nome, descricao, chaveComponente);
 	}
-	
-	public Map<String,Integer> getMapaFalhas()  {
+
+	public Map<String, Integer> getMapaFalhas() {
 		return cFalhas.getMapaFalhas();
 	}
-	
+
+	// Funções de Modos de Falha
+
+	public String inserirModoFalha(String descricao, int chaveFalha) {
+		return cMFalhas.inserir(descricao, chaveFalha);
+	}
+
+	public Map<String, Integer> getMapaModosFalha() {
+		return cMFalhas.getMapaModosFalha();
+	}
 
 }
