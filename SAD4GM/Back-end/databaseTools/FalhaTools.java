@@ -56,7 +56,7 @@ public class FalhaTools extends DatabaseTools {
 		abrirConexao();
 		Map<String, Integer> subsistemas = new HashMap<>();
 
-		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.subsistema");
+		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.falha");
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {
