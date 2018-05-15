@@ -43,9 +43,7 @@ public class EditMachineOptions extends Main {
 	private JPanel contentPane;
 	private String idUsuario;
 	private int chaveMaquina;
-	private Map<String, Integer> mapaMaquinas;
-	private Object[] nomesMaquinas;
-	private Sistema sistema;
+
 
 	/**
 	 * Launch the application.
@@ -57,11 +55,9 @@ public class EditMachineOptions extends Main {
 	 * @throws SQLException
 	 */
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public EditMachineOptions(String id, int xLocation, int yLocation, int chaveMaquina) {
 		super(xLocation, yLocation);
 		this.chaveMaquina = chaveMaquina;
-		sistema = new Sistema();
 		this.idUsuario = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -86,11 +82,11 @@ public class EditMachineOptions extends Main {
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Options uOptions = new Options(idUsuario, getXLocation(), getYLocation());
+				EditMachine editMachine = new EditMachine(idUsuario, getXLocation(), getYLocation());
 				dispose();
-				uOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				uOptions.setVisible(true);
-				uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				editMachine.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				editMachine.setVisible(true);
+				editMachine.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));

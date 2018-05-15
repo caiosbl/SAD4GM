@@ -102,8 +102,13 @@ public class EditMachine extends Main {
 
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
 				int chaveMaquina = mapaMaquinas.get(nomesMaquinas[boxMaquinas.getSelectedIndex()]);
+				EditMachineOptions eOptions = new EditMachineOptions(idUsuario, getXLocation(), getYLocation(),chaveMaquina);
+				dispose();
+				eOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				eOptions.setVisible(true);
+				eOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				
 
 			}
 
