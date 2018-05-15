@@ -6,27 +6,20 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.entrada.Options;
-import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.Map;
+
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
-import javax.swing.JTextField;
-
 import javax.swing.ImageIcon;
-
-import javax.swing.JComboBox;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -43,7 +36,6 @@ public class EditMachineOptions extends Main {
 	private JPanel contentPane;
 	private String idUsuario;
 	private int chaveMaquina;
-
 
 	/**
 	 * Launch the application.
@@ -101,26 +93,31 @@ public class EditMachineOptions extends Main {
 		banner.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/editNameBanner.png")));
 		banner.setBounds(330, 24, 141, 92);
 		desktopPane.add(banner);
-		
-		JButton btnEd = new JButton("");
-		btnEd.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/editInfomachinebutton.png")));
-		btnEd.setBounds(42, 183, 252, 74);
-		desktopPane.add(btnEd);
-		
+
+		JButton btnMachineInfoEdit = new JButton("");
+		btnMachineInfoEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnMachineInfoEdit.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/editMachineInfo.png")));
+		btnMachineInfoEdit.setBounds(0, 183, 252, 74);
+		desktopPane.add(btnMachineInfoEdit);
+
 		JButton btnInserirSubsistema = new JButton("");
-		btnInserirSubsistema.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/insertSubsystem.png")));
-		btnInserirSubsistema.setBounds(306, 183, 252, 74);
+		btnInserirSubsistema
+				.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/insertSubsystem.png")));
+		btnInserirSubsistema.setBounds(353, 183, 252, 74);
 		desktopPane.add(btnInserirSubsistema);
-		
+
 		JButton btnEditarSubsistema = new JButton("");
-		btnEditarSubsistema.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/subsEdit.png")));
+		btnEditarSubsistema
+				.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/subsEdit.png")));
 		btnEditarSubsistema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnEditarSubsistema.setBounds(42, 271, 252, 74);
+		btnEditarSubsistema.setBounds(0, 273, 252, 74);
 		desktopPane.add(btnEditarSubsistema);
 
-		
 	}
 }

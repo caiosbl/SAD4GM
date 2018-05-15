@@ -7,9 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.gerenciadorMaquinas.InsertComponente;
+import interfaceGrafica.usuario.gerenciadorMaquinas.EditMachine;
 import interfaceGrafica.usuario.gerenciadorMaquinas.InsertMaquina;
-import interfaceGrafica.usuario.gerenciadorMaquinas.InsertSubsistema;
 import interfaceGrafica.usuario.gerenciadorMaquinas.MachineInformationEntry;
 import interfaceGrafica.usuario.gerenciadorMaquinas.MachinesList;
 
@@ -75,7 +74,7 @@ public class Options extends Main {
 				insertMaquina.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnInserirMaquina.setBounds(0, 191, 249, 73);
+		btnInserirMaquina.setBounds(0, 156, 249, 73);
 		desktopPane.add(btnInserirMaquina);
 
 		JButton btnListarMaquinas = new JButton("");
@@ -91,18 +90,8 @@ public class Options extends Main {
 			}
 		});
 		btnListarMaquinas.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnListarMaquinas.setBounds(0, 277, 249, 73);
+		btnListarMaquinas.setBounds(356, 156, 249, 73);
 		desktopPane.add(btnListarMaquinas);
-
-		JButton btnInserirFuncao = new JButton("");
-		btnInserirFuncao.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/insertFunctionIcon.png")));
-		btnInserirFuncao.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnInserirFuncao.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnInserirFuncao.setBounds(356, 191, 249, 73);
-		desktopPane.add(btnInserirFuncao);
 
 		JButton btnMinhasInformacoes = new JButton("");
 		btnMinhasInformacoes.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/myinformationicon.png")));
@@ -151,7 +140,7 @@ public class Options extends Main {
 			}
 		});
 		btnVerUmaMquina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnVerUmaMquina.setBounds(356, 277, 249, 73);
+		btnVerUmaMquina.setBounds(356, 241, 249, 73);
 		desktopPane.add(btnVerUmaMquina);
 
 		JLabel logo = new JLabel("");
@@ -159,40 +148,19 @@ public class Options extends Main {
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
-		JButton btnInserirSubsistema = new JButton("Inserir Subsistema");
-		btnInserirSubsistema.addActionListener(new ActionListener() {
+		JButton btnEditarMaquina = new JButton("");
+		btnEditarMaquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InsertSubsistema insertSubsistema;
-
-				insertSubsistema = new InsertSubsistema(idUsuario, getXLocation(), getYLocation());
-
+				EditMachine editMachine = new EditMachine(idUsuario, getXLocation(), getYLocation());
 				dispose();
-
-				insertSubsistema
-						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				insertSubsistema.setVisible(true);
-				insertSubsistema.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				editMachine.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				editMachine.setVisible(true);
+				editMachine.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnInserirSubsistema.setBounds(29, 370, 133, 28);
-		desktopPane.add(btnInserirSubsistema);
-		
-		JButton btnInserirComponente = new JButton("Inserir Componente");
-		btnInserirComponente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InsertComponente insertComponente;
-
-				insertComponente = new InsertComponente(idUsuario, getXLocation(), getYLocation());
-
-				dispose();
-
-				insertComponente
-						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				insertComponente.setVisible(true);
-				insertComponente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-		});
-		btnInserirComponente.setBounds(29, 410, 146, 28);
-		desktopPane.add(btnInserirComponente);
+		btnEditarMaquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/machinedit.png")));
+		btnEditarMaquina.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEditarMaquina.setBounds(0, 241, 249, 73);
+		desktopPane.add(btnEditarMaquina);
 	}
 }

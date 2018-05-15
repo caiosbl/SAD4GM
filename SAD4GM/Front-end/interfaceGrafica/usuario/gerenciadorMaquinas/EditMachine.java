@@ -11,7 +11,6 @@ import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -21,8 +20,6 @@ import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
-
-import javax.swing.JTextField;
 
 import javax.swing.ImageIcon;
 
@@ -103,12 +100,12 @@ public class EditMachine extends Main {
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int chaveMaquina = mapaMaquinas.get(nomesMaquinas[boxMaquinas.getSelectedIndex()]);
-				EditMachineOptions eOptions = new EditMachineOptions(idUsuario, getXLocation(), getYLocation(),chaveMaquina);
+				EditMachineOptions eOptions = new EditMachineOptions(idUsuario, getXLocation(), getYLocation(),
+						chaveMaquina);
 				dispose();
 				eOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				eOptions.setVisible(true);
 				eOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				
 
 			}
 
