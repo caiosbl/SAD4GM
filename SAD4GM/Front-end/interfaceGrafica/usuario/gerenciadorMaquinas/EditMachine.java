@@ -124,7 +124,7 @@ public class EditMachine extends Main {
 		banner.setBounds(330, 24, 141, 92);
 		desktopPane.add(banner);
 
-		mapaMaquinas = getMapaMaquinas();
+		this.mapaMaquinas = getMapaMaquinas();
 
 		nomesMaquinas = mapaMaquinas.keySet().toArray();
 		boxMaquinas = new JComboBox(nomesMaquinas);

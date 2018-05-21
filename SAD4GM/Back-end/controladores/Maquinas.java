@@ -1,6 +1,5 @@
 package controladores;
 
-
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -327,14 +326,20 @@ public class Maquinas {
 		return mTools.hasMaquina(codigoInt);
 
 	}
-	
-	public Map<String,Integer> getMapaMaquinas()  {
+
+	public Map<String, Integer> getMapaMaquinas() {
 
 		try {
 			return mTools.getMapaMaquinas();
 		} catch (SQLException e) {
-			return new HashMap<String,Integer>();
+			return new HashMap<String, Integer>();
 		}
+
+	}
+
+	public int getCodigo(int chaveMaquina) throws SQLException {
+
+		return mTools.getCodigo(chaveMaquina);
 
 	}
 

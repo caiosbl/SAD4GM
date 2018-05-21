@@ -202,6 +202,10 @@ public class Sistema {
 	public Map<String, Integer> getMapaMaquinas() {
 		return cMaquinas.getMapaMaquinas();
 	}
+	
+	public String getCodigoMaquina(int chaveMaquina) throws SQLException {
+		return String.valueOf(cMaquinas.getCodigo(chaveMaquina));
+	}
 
 	// Funções de Subsistema
 

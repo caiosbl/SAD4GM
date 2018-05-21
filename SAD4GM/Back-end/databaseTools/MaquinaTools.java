@@ -421,6 +421,7 @@ public class MaquinaTools extends DatabaseTools {
 
 	public Map<String, Integer> getMapaMaquinas() throws SQLException {
 		abrirConexao();
+		
 		Map<String, Integer> maquinas = new HashMap<>();
 
 		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.maquina");
@@ -434,6 +435,25 @@ public class MaquinaTools extends DatabaseTools {
 		fecharConexao();
 
 		return maquinas;
+
+	}
+	
+	public int getCodigo(int chave) throws SQLException {
+		abrirConexao();
+		
+		int codigo = -1;
+
+		PreparedStatement state = con.prepareStatement("SELECT codigo FROM maquinas.maquina WHERE chave = " + chave);
+		ResultSet resSet = state.executeQuery();
+
+		if(resSet.next()) {
+			codigo = resSet.getInt(1);
+		}
+		state.close();
+
+		fecharConexao();
+
+		return codigo;
 
 	}
 

@@ -35,7 +35,6 @@ public class EditMachineOptions extends Main {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idUsuario;
-	private int chaveMaquina;
 
 	/**
 	 * Launch the application.
@@ -49,7 +48,6 @@ public class EditMachineOptions extends Main {
 
 	public EditMachineOptions(String id, int xLocation, int yLocation, int chaveMaquina) {
 		super(xLocation, yLocation);
-		this.chaveMaquina = chaveMaquina;
 		this.idUsuario = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -97,9 +95,17 @@ public class EditMachineOptions extends Main {
 		JButton btnMachineInfoEdit = new JButton("");
 		btnMachineInfoEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				SetMachine setMachine = new SetMachine(idUsuario, chaveMaquina, getXLocation(), getYLocation());
+				dispose();
+				setMachine.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				setMachine.setVisible(true);
+				setMachine.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 			}
 		});
-		btnMachineInfoEdit.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/editMachineInfo.png")));
+		btnMachineInfoEdit
+				.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/editMachineInfo.png")));
 		btnMachineInfoEdit.setBounds(0, 183, 252, 74);
 		desktopPane.add(btnMachineInfoEdit);
 

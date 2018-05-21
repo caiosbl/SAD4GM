@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
@@ -36,7 +37,7 @@ public class SetMachine extends Main {
 	 */
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
-	private String idAdmin;
+	private String idUsuario;
 	private String codigoMaquina;
 	private Sistema sistema = new Sistema();
 
@@ -47,10 +48,15 @@ public class SetMachine extends Main {
 	/**
 	 * Create the frame.
 	 */
-	public SetMachine(String id, String codeMaquina, int xLocation, int yLocation) {
+	public SetMachine(String idUser,int chaveMaquina, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
-		this.idAdmin = id;
-		this.codigoMaquina = codeMaquina;
+		this.idUsuario = idUser;
+		try {
+			this.codigoMaquina = sistema.getCodigoMaquina(chaveMaquina);
+		} catch (SQLException e2) {
+			JOptionPane.showMessageDialog(null, "Falha na Conexão com o Banco de Dados!");
+		}
+	
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -75,7 +81,7 @@ public class SetMachine extends Main {
 		btnVoltar.setBounds(490, 420, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetMachineEntry setMachineEntry = new SetMachineEntry(idAdmin,getXLocation(),getYLocation());
+				EditMachineOptions setMachineEntry = new EditMachineOptions(idUsuario,getXLocation(),getYLocation(),chaveMaquina);
 				dispose();
 				setMachineEntry.setVisible(true);
 				setMachineEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -88,18 +94,18 @@ public class SetMachine extends Main {
 		nome.setEditable(false);
 
 		nome.setBounds(184, 196, 264, 24);
-		nome.setText(sistema.getNomeMaquina(codeMaquina));
+		nome.setText(sistema.getNomeMaquina(codigoMaquina));
 		desktopPane.add(nome);
 
 		JTextPane codigo = new JTextPane();
 		codigo.setEditable(false);
 
 		codigo.setBounds(184, 231, 264, 24);
-		codigo.setText(codeMaquina);
+		codigo.setText(codigoMaquina);
 		desktopPane.add(codigo);
 
 		JTextPane descricao = new JTextPane();
-		descricao.setText(sistema.getDescricaoMaquina(codeMaquina));
+		descricao.setText(sistema.getDescricaoMaquina(codigoMaquina));
 		descricao.setEditable(false);
 		descricao.setBounds(182, 267, 268, 92);
 		
@@ -170,9 +176,9 @@ public class SetMachine extends Main {
 					else {
 						nome.setEditable(false);
 						codigo.setEditable(false);
-						sistema.setCodigoMaquina(codeMaquina, codigo.getText().trim());
+						sistema.setCodigoMaquina(codigoMaquina, codigo.getText().trim());
 						sistema.setNomeMaquina( codigo.getText().trim(),nome.getText().trim());
-						sistema.setDescricaoMaquina(codeMaquina, descricao.getText().trim());
+						sistema.setDescricaoMaquina(codigoMaquina, descricao.getText().trim());
 						codigoMaquina = codigo.getText().trim();
 						
 						JOptionPane.showMessageDialog(null, "Dados atualizados com Sucesso!");
