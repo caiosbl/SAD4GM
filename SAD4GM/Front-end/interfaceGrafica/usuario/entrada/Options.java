@@ -7,10 +7,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.gerenciadorMaquinas.EditMachine;
 import interfaceGrafica.usuario.gerenciadorMaquinas.InsertMaquina;
 import interfaceGrafica.usuario.gerenciadorMaquinas.MachineInformationEntry;
 import interfaceGrafica.usuario.gerenciadorMaquinas.MachinesList;
+import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachine;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;

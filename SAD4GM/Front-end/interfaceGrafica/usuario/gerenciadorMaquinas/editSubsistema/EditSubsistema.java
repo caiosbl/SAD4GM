@@ -1,4 +1,4 @@
-package interfaceGrafica.usuario.gerenciadorMaquinas;
+package interfaceGrafica.usuario.gerenciadorMaquinas.editSubsistema;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.entrada.Options;
+import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachineOptions;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -31,7 +32,7 @@ import javax.swing.JComboBox;
  * @author caiosbl
  *
  */
-public class EditMachine extends Main {
+public class EditSubsistema extends Main {
 
 	/**
 	 * 
@@ -40,9 +41,10 @@ public class EditMachine extends Main {
 	private JPanel contentPane;
 	private String idUsuario;
 	@SuppressWarnings("rawtypes")
-	private JComboBox boxMaquinas;
-	private Map<String, Integer> mapaMaquinas;
-	private Object[] nomesMaquinas;
+	private JComboBox boxSubsistemas;
+	private Map<String, Integer> mapaSubsistemas;
+	private Object[] nomesSubsistemas;
+	private int chaveMaquina;
 	private Sistema sistema;
 
 	/**
@@ -56,10 +58,11 @@ public class EditMachine extends Main {
 	 */
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public EditMachine(String id, int xLocation, int yLocation) {
+	public EditSubsistema(String id, int xLocation, int yLocation,int chaveMaquina) {
 		super(xLocation, yLocation);
 		sistema = new Sistema();
 		this.idUsuario = id;
+		this.chaveMaquina = chaveMaquina;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -79,33 +82,34 @@ public class EditMachine extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(EditMachine.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setIcon(new ImageIcon(EditSubsistema.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Options uOptions = new Options(idUsuario, getXLocation(), getYLocation());
+				EditMachineOptions eMOptions = new EditMachineOptions(id, xLocation, yLocation, chaveMaquina);
 				dispose();
-				uOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				uOptions.setVisible(true);
-				uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				eMOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				eMOptions.setVisible(true);
+				eMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnVoltar);
 
 		JButton btnInserir = new JButton("");
-		btnInserir.setIcon(new ImageIcon(EditMachine.class.getResource("/Resources/icon/editbutton.png")));
-		btnInserir.setBounds(367, 309, 90, 27);
+		btnInserir.setIcon(new ImageIcon(EditSubsistema.class.getResource("/Resources/icon/editbutton.png")));
+		btnInserir.setBounds(367, 335, 90, 27);
 
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int chaveMaquina = mapaMaquinas.get(nomesMaquinas[boxMaquinas.getSelectedIndex()]);
-				EditMachineOptions eOptions = new EditMachineOptions(idUsuario, getXLocation(), getYLocation(),
-						chaveMaquina);
+				int chaveSubsistema = mapaSubsistemas.get(nomesSubsistemas[boxSubsistemas.getSelectedIndex()]);
+				
+				EditSubsistemaOptions eSubOptions = new EditSubsistemaOptions(idUsuario, getXLocation(), getYLocation(),
+						chaveMaquina,chaveSubsistema);
 				dispose();
-				eOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				eOptions.setVisible(true);
-				eOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				eSubOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				eSubOptions.setVisible(true);
+				eSubOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 			}
 
@@ -115,26 +119,26 @@ public class EditMachine extends Main {
 		desktopPane.add(btnInserir);
 
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(EditMachine.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setIcon(new ImageIcon(EditSubsistema.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(EditMachine.class.getResource("/Resources/icon/editNameBanner.png")));
-		banner.setBounds(330, 24, 141, 92);
+		banner.setIcon(new ImageIcon(EditSubsistema.class.getResource("/Resources/icon/ediSubsistema.png")));
+		banner.setBounds(330, 24, 193, 95);
 		desktopPane.add(banner);
 
-		this.mapaMaquinas = getMapaMaquinas();
+		this.mapaSubsistemas = getMapaSubsistemas(this.chaveMaquina);
 
-		nomesMaquinas = mapaMaquinas.keySet().toArray();
-		boxMaquinas = new JComboBox(nomesMaquinas);
+		nomesSubsistemas = mapaSubsistemas.keySet().toArray();
+		boxSubsistemas = new JComboBox(nomesSubsistemas);
 
-		boxMaquinas.setBounds(189, 270, 268, 27);
-		desktopPane.add(boxMaquinas);
+		boxSubsistemas.setBounds(189, 270, 268, 27);
+		desktopPane.add(boxSubsistemas);
 
 		JLabel background = new JLabel("");
-		background.setIcon(new ImageIcon(EditMachine.class.getResource("/Resources/icon/backEditMaquina.png")));
-		background.setBounds(84, 199, 434, 195);
+		background.setIcon(new ImageIcon(EditSubsistema.class.getResource("/Resources/icon/subsSelector.png")));
+		background.setBounds(92, 202, 434, 195);
 		desktopPane.add(background);
 	}
 
@@ -142,7 +146,7 @@ public class EditMachine extends Main {
 		return string.equals("");
 	}
 
-	public Map<String, Integer> getMapaMaquinas() {
-		return sistema.getMapaMaquinas();
+	public Map<String, Integer> getMapaSubsistemas(int chaveMaquina) {
+		return sistema.getMapaSubsistemas(chaveMaquina);
 	}
 }

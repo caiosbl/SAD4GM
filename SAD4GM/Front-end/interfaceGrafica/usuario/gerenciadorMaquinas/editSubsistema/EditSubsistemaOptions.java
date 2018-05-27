@@ -1,4 +1,4 @@
-package interfaceGrafica.usuario.gerenciadorMaquinas;
+package interfaceGrafica.usuario.gerenciadorMaquinas.editSubsistema;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
+import interfaceGrafica.usuario.gerenciadorMaquinas.SetMachine;
+import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachine;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -27,7 +29,7 @@ import javax.swing.ImageIcon;
  * @author caiosbl
  *
  */
-public class EditMachineOptions extends Main {
+public class EditSubsistemaOptions extends Main {
 
 	/**
 	 * 
@@ -46,7 +48,7 @@ public class EditMachineOptions extends Main {
 	 * @throws SQLException
 	 */
 
-	public EditMachineOptions(String id, int xLocation, int yLocation, int chaveMaquina) {
+	public EditSubsistemaOptions(String id, int xLocation, int yLocation, int chaveMaquina,int chaveSubsistema) {
 		super(xLocation, yLocation);
 		this.idUsuario = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,27 +70,27 @@ public class EditMachineOptions extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditMachine editMachine = new EditMachine(idUsuario, getXLocation(), getYLocation());
+				EditSubsistema editSubsistema = new EditSubsistema(id, xLocation, yLocation, chaveMaquina);
 				dispose();
-				editMachine.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				editMachine.setVisible(true);
-				editMachine.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				editSubsistema.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				editSubsistema.setVisible(true);
+				editSubsistema.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnVoltar);
 
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/editNameBanner.png")));
+		banner.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/editNameBanner.png")));
 		banner.setBounds(330, 24, 141, 92);
 		desktopPane.add(banner);
 
@@ -105,19 +107,19 @@ public class EditMachineOptions extends Main {
 			}
 		});
 		btnMachineInfoEdit
-				.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/editMachineInfo.png")));
+				.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/editMachineInfo.png")));
 		btnMachineInfoEdit.setBounds(0, 183, 252, 74);
 		desktopPane.add(btnMachineInfoEdit);
 
 		JButton btnInserirSubsistema = new JButton("");
 		btnInserirSubsistema
-				.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/insertSubsystem.png")));
+				.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/insertSubsystem.png")));
 		btnInserirSubsistema.setBounds(353, 183, 252, 74);
 		desktopPane.add(btnInserirSubsistema);
 
 		JButton btnEditarSubsistema = new JButton("");
 		btnEditarSubsistema
-				.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/subsEdit.png")));
+				.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/subsEdit.png")));
 		btnEditarSubsistema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EditSubsistema editSubsistema = new EditSubsistema(id, xLocation, yLocation, chaveMaquina);

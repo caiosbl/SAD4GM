@@ -7,6 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
+import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachineOptions;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
