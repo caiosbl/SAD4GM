@@ -120,6 +120,11 @@ public class EditMachineOptions extends Main {
 				.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/subsEdit.png")));
 		btnEditarSubsistema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				EditSubsistema editSubsistema = new EditSubsistema(id, xLocation, yLocation, chaveMaquina);
+				dispose();
+				editSubsistema.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				editSubsistema.setVisible(true);
+				editSubsistema.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnEditarSubsistema.setBounds(0, 273, 252, 74);

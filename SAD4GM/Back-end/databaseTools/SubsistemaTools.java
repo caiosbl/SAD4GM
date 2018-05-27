@@ -51,11 +51,11 @@ public class SubsistemaTools extends DatabaseTools {
 		return has;
 	}
 	
-	public Map<String, Integer> getMapaSubsistemas() throws SQLException {
+	public Map<String, Integer> getMapaSubsistemas(int chaveMaquina) throws SQLException {
 		abrirConexao();
 		Map<String, Integer> subsistemas = new HashMap<>();
 
-		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.subsistema");
+		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.subsistema WHERE chave_maquina=" + chaveMaquina);
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {

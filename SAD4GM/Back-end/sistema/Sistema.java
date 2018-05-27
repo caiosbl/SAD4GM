@@ -213,8 +213,8 @@ public class Sistema {
 		return cSubsistemas.inserir(nome, chaveMaquina);
 	}
 
-	public Map<String, Integer> getMapaSubsistemas() {
-		return cSubsistemas.getMapaSubsistemas();
+	public Map<String, Integer> getMapaSubsistemas(int chaveMaquina) {
+		return cSubsistemas.getMapaSubsistemas(chaveMaquina);
 	}
 
 	// Funções de Componentes

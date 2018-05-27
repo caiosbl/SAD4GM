@@ -35,10 +35,10 @@ public class Subsistemas {
 		
 	}
 	
-	public Map<String,Integer> getMapaSubsistemas()  {
+	public Map<String,Integer> getMapaSubsistemas(int chaveMaquina)  {
 
 		try {
-			return sTools.getMapaSubsistemas();
+			return sTools.getMapaSubsistemas(chaveMaquina);
 		} catch (SQLException e) {
 			return new HashMap<String,Integer>();
 		}
