@@ -90,47 +90,35 @@ public class EditSubsistemaOptions extends Main {
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/editNameBanner.png")));
-		banner.setBounds(330, 24, 141, 92);
+		banner.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/ediSubsistema.png")));
+		banner.setBounds(330, 24, 193, 95);
 		desktopPane.add(banner);
-
-		JButton btnMachineInfoEdit = new JButton("");
-		btnMachineInfoEdit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				SetMachine setMachine = new SetMachine(idUsuario, chaveMaquina, getXLocation(), getYLocation());
-				dispose();
-				setMachine.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				setMachine.setVisible(true);
-				setMachine.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-			}
-		});
-		btnMachineInfoEdit
-				.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/editMachineInfo.png")));
-		btnMachineInfoEdit.setBounds(0, 183, 252, 74);
-		desktopPane.add(btnMachineInfoEdit);
 
 		JButton btnInserirSubsistema = new JButton("");
 		btnInserirSubsistema
-				.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/insertSubsystem.png")));
+				.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/insertComponent.png")));
 		btnInserirSubsistema.setBounds(353, 183, 252, 74);
 		desktopPane.add(btnInserirSubsistema);
 
 		JButton btnEditarSubsistema = new JButton("");
 		btnEditarSubsistema
-				.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/subsEdit.png")));
+				.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/editSubInfo.png")));
 		btnEditarSubsistema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EditSubsistema editSubsistema = new EditSubsistema(id, xLocation, yLocation, chaveMaquina);
+				SetSubsistema setSubsistema = new SetSubsistema(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema);
 				dispose();
-				editSubsistema.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				editSubsistema.setVisible(true);
-				editSubsistema.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				setSubsistema.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				setSubsistema.setVisible(true);
+				setSubsistema.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnEditarSubsistema.setBounds(0, 273, 252, 74);
+		btnEditarSubsistema.setBounds(0, 183, 252, 74);
 		desktopPane.add(btnEditarSubsistema);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/editComponentes.png")));
+		label.setBounds(0, 280, 252, 76);
+		desktopPane.add(label);
 
 	}
 }

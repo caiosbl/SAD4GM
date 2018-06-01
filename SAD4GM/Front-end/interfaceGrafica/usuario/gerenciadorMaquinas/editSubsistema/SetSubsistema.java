@@ -1,4 +1,4 @@
-package interfaceGrafica.usuario.gerenciadorMaquinas;
+package interfaceGrafica.usuario.gerenciadorMaquinas.editSubsistema;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -31,7 +31,7 @@ import javax.swing.ImageIcon;
  * @author caiosbl
  *
  */
-public class SetMachine extends Main {
+public class SetSubsistema extends Main {
 
 	/**
 	 * 
@@ -49,7 +49,7 @@ public class SetMachine extends Main {
 	/**
 	 * Create the frame.
 	 */
-	public SetMachine(String idUser,int chaveMaquina, int xLocation, int yLocation) {
+	public SetSubsistema(String idUser,int xLocation, int yLocation, int chaveMaquina,int chaveSubsistema) {
 		super(xLocation, yLocation);
 		this.idUsuario = idUser;
 		try {
@@ -78,14 +78,14 @@ public class SetMachine extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setIcon(new ImageIcon(SetSubsistema.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.setBounds(490, 420, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditMachineOptions setMachineEntry = new EditMachineOptions(idUsuario,getXLocation(),getYLocation(),chaveMaquina);
+				EditSubsistemaOptions subOptions = new EditSubsistemaOptions(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema);
 				dispose();
-				setMachineEntry.setVisible(true);
-				setMachineEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				subOptions.setVisible(true);
+				subOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -94,31 +94,13 @@ public class SetMachine extends Main {
 		JTextPane nome = new JTextPane();
 		nome.setEditable(false);
 
-		nome.setBounds(184, 196, 264, 24);
+		nome.setBounds(182, 247, 264, 24);
 		nome.setText(sistema.getNomeMaquina(codigoMaquina));
 		desktopPane.add(nome);
-
-		JTextPane codigo = new JTextPane();
-		codigo.setEditable(false);
-
-		codigo.setBounds(184, 231, 264, 24);
-		codigo.setText(codigoMaquina);
-		desktopPane.add(codigo);
-
-		JTextPane descricao = new JTextPane();
-		descricao.setText(sistema.getDescricaoMaquina(codigoMaquina));
-		descricao.setEditable(false);
-		descricao.setBounds(182, 267, 268, 92);
-		
-		
-		JScrollPane jsp = new JScrollPane(descricao);
-		
-		jsp.setBounds(182, 267, 268, 92);
-		desktopPane.add(jsp);
 		
 
 		JButton btnEditar = new JButton("");
-		btnEditar.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/editbutton.png")));
+		btnEditar.setIcon(new ImageIcon(SetSubsistema.class.getResource("/Resources/icon/editbutton.png")));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				codigo.setEditable(true);
@@ -127,11 +109,11 @@ public class SetMachine extends Main {
 
 			}
 		});
-		btnEditar.setBounds(182, 364, 90, 28);
+		btnEditar.setBounds(182, 283, 90, 28);
 		desktopPane.add(btnEditar);
 
 		JButton btnAtualizar = new JButton("");
-		btnAtualizar.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/atualizarbutton.png")));
+		btnAtualizar.setIcon(new ImageIcon(SetSubsistema.class.getResource("/Resources/icon/atualizarbutton.png")));
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -192,23 +174,23 @@ public class SetMachine extends Main {
 			}
 
 		});
-		btnAtualizar.setBounds(362, 364, 90, 28);
+		btnAtualizar.setBounds(356, 283, 90, 28);
 		desktopPane.add(btnAtualizar);
 		
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setIcon(new ImageIcon(SetSubsistema.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 		
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/setMachineBanner.png")));
-		banner.setBounds(343, 28, 175, 86);
+		banner.setIcon(new ImageIcon(SetSubsistema.class.getResource("/Resources/icon/editSubsInfoBanner.png")));
+		banner.setBounds(263, 30, 329, 95);
 		desktopPane.add(banner);
 		
-		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/formaSetMachine.png")));
-		form.setBounds(97, 182, 421, 226);
-		desktopPane.add(form);
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(SetSubsistema.class.getResource("/Resources/icon/editNameSubsi.png")));
+		label.setBounds(121, 201, 360, 145);
+		desktopPane.add(label);
 
 	}
 	
