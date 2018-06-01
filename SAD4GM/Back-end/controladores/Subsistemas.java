@@ -46,5 +46,33 @@ public class Subsistemas {
 	}
 	
 	
+	
+	public String getNomeSubsistema(int chaveSubsistema) {
+		String nome;
+		
+		try {
+			nome = sTools.getNomeSubsistema(chaveSubsistema);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			nome = "Falha na Conexão com Banco de Dados!";
+		}
+		return nome;
+	}
+	
+	public String setNomeSubsistema(String nome, int chaveSubsistema) {
+		String status;
+		
+		try {
+			sTools.setNomeSubsistema(nome, chaveSubsistema);
+			status = "Nome atualizado com Sucesso!";
+		}
+		catch (Exception e) {
+			status = "Falha ao Atualizar Nome!";
+		}
+		
+		return status;
+	}
+	
+	
 
 }

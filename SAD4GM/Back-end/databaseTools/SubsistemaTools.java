@@ -9,8 +9,9 @@ import java.util.Map;
 public class SubsistemaTools extends DatabaseTools {
 
 	public void inserir(String nome, int chaveMaquina) throws SQLException {
-		
-		if (hasSubsistema(nome)) throw new IllegalArgumentException("Este nome de Subsistema já está cadastrado!");
+
+		if (hasSubsistema(nome))
+			throw new IllegalArgumentException("Este nome de Subsistema já está cadastrado!");
 
 		try {
 
@@ -37,7 +38,8 @@ public class SubsistemaTools extends DatabaseTools {
 
 		abrirConexao();
 
-		PreparedStatement state = con.prepareStatement("SELECT nome FROM maquinas.subsistema WHERE CAST (nome AS VARCHAR(128)) = ?");
+		PreparedStatement state = con
+				.prepareStatement("SELECT nome FROM maquinas.subsistema WHERE CAST (nome AS VARCHAR(128)) = ?");
 		state.setString(1, nome);
 		ResultSet ResSet = state.executeQuery();
 
@@ -50,12 +52,13 @@ public class SubsistemaTools extends DatabaseTools {
 
 		return has;
 	}
-	
+
 	public Map<String, Integer> getMapaSubsistemas(int chaveMaquina) throws SQLException {
 		abrirConexao();
 		Map<String, Integer> subsistemas = new HashMap<>();
 
-		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.subsistema WHERE chave_maquina=" + chaveMaquina);
+		PreparedStatement state = con
+				.prepareStatement("SELECT nome,chave FROM maquinas.subsistema WHERE chave_maquina=" + chaveMaquina);
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {
@@ -67,6 +70,34 @@ public class SubsistemaTools extends DatabaseTools {
 
 		return subsistemas;
 
+	}
+
+	public String getNomeSubsistema(int chaveSubsistema) throws SQLException {
+		abrirConexao();
+		String nome;
+		PreparedStatement state = con
+				.prepareStatement("SELECT nome FROM maquinas.subsistema WHERE chave=" + chaveSubsistema);
+		ResultSet resSet = state.executeQuery();
+		
+
+		if(resSet.next())
+		nome = resSet.getString(1);
+		else
+			nome = "Falha na Conexão com Banco de Dados";
+		
+
+		state.close();
+		fecharConexao();
+
+		return nome;
+
+	}
+	
+	public void setNomeSubsistema(String nome, int chaveSubsistema) throws SQLException {
+		abrirConexao();
+		PreparedStatement state = con.prepareStatement("UPDATE  maquinas.subsistema SET nome = ? WHERE chave=" + chaveSubsistema);
+		state.setString(1, nome);
+		state.execute();
 	}
 
 }

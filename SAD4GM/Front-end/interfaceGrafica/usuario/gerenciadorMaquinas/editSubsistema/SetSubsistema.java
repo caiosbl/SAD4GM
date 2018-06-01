@@ -95,7 +95,7 @@ public class SetSubsistema extends Main {
 		nome.setEditable(false);
 
 		nome.setBounds(182, 247, 264, 24);
-		nome.setText(sistema.getNomeMaquina(codigoMaquina));
+		nome.setText(sistema.getNomeSubsistema(chaveSubsistema));
 		desktopPane.add(nome);
 		
 
@@ -103,10 +103,7 @@ public class SetSubsistema extends Main {
 		btnEditar.setIcon(new ImageIcon(SetSubsistema.class.getResource("/Resources/icon/editbutton.png")));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				codigo.setEditable(true);
 				nome.setEditable(true);
-				descricao.setEditable(true);
-
 			}
 		});
 		btnEditar.setBounds(182, 283, 90, 28);
@@ -116,60 +113,9 @@ public class SetSubsistema extends Main {
 		btnAtualizar.setIcon(new ImageIcon(SetSubsistema.class.getResource("/Resources/icon/atualizarbutton.png")));
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				JOptionPane.showMessageDialog(null,sistema.setNomeSubsistema(nome.getText().trim(), chaveSubsistema));
 
-				boolean has = false;
-
-				try {
-					has = sistema.hasMaquina(codigo.getText().trim());
-					if (nome.getText().trim().equals("")) {
-						JOptionPane.showMessageDialog(null, "Nome inválido!");
-						nome.setText(sistema.getNomeMaquina(codigoMaquina));
-						codigo.setText(codigoMaquina);
-						descricao.setText(sistema.getDescricaoMaquina(codigoMaquina));
-					} 
-					
-					else if (descricao.getText().trim().equals("")) {
-						JOptionPane.showMessageDialog(null, "Descrição inválida!");
-						nome.setText(sistema.getNomeMaquina(codigoMaquina));
-						codigo.setText(codigoMaquina);
-						descricao.setText(sistema.getDescricaoMaquina(codigoMaquina));
-					}
-					
-					else if (codigo.getText().equals("") || codigo.getText().length() < 4) {
-						JOptionPane.showMessageDialog(null, "Código inválido!");
-						nome.setText(sistema.getNomeMaquina(codigoMaquina));
-						codigo.setText(codigoMaquina);
-						descricao.setText(sistema.getDescricaoMaquina(codigoMaquina));
-					}
-					
-					else if (!isNumber(codigo.getText().trim())) {
-						JOptionPane.showMessageDialog(null, "Por favor insira um código númerico!");
-						nome.setText(sistema.getNomeMaquina(codigoMaquina));
-						codigo.setText(codigoMaquina);
-						descricao.setText(sistema.getDescricaoMaquina(codigoMaquina));
-					}
-					
-					else if (!codigo.getText().trim().equals(codigoMaquina) && has) {
-						JOptionPane.showMessageDialog(null, "Código já cadastrado!");
-						nome.setText(sistema.getNomeMaquina(codigoMaquina));
-						codigo.setText(codigoMaquina);
-						descricao.setText(sistema.getDescricaoMaquina(codigoMaquina));
-					}
-
-					else {
-						nome.setEditable(false);
-						codigo.setEditable(false);
-						sistema.setCodigoMaquina(codigoMaquina, codigo.getText().trim());
-						sistema.setNomeMaquina( codigo.getText().trim(),nome.getText().trim());
-						sistema.setDescricaoMaquina(codigoMaquina, descricao.getText().trim());
-						codigoMaquina = codigo.getText().trim();
-						
-						JOptionPane.showMessageDialog(null, "Dados atualizados com Sucesso!");
-
-					}
-				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "Falha na conexão com Banco de dados!");
-				}
 
 			}
 
@@ -194,15 +140,5 @@ public class SetSubsistema extends Main {
 
 	}
 	
-	public boolean isNumber(String password) {
-		boolean status = false;
 
-		try {
-			Integer.parseInt(password);
-			status = true;
-		} catch (Exception e) {
-			status = false;
-		}
-		return status;
-	}
 }

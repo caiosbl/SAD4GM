@@ -216,6 +216,14 @@ public class Sistema {
 	public Map<String, Integer> getMapaSubsistemas(int chaveMaquina) {
 		return cSubsistemas.getMapaSubsistemas(chaveMaquina);
 	}
+	
+	public String getNomeSubsistema(int chaveSubsistema) {
+		return cSubsistemas.getNomeSubsistema(chaveSubsistema);
+	}
+	
+	public String setNomeSubsistema(String nome, int chaveSubsistema) {
+		return cSubsistemas.setNomeSubsistema(nome, chaveSubsistema);
+	}
 
 	// Funções de Componentes
 
