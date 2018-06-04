@@ -6,8 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.entrada.Options;
-import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachineOptions;
 import interfaceGrafica.usuario.gerenciadorMaquinas.editSubsistema.EditSubsistemaOptions;
 import sistema.Sistema;
 
