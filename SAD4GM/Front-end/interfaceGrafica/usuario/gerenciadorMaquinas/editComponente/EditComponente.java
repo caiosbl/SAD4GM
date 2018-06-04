@@ -102,14 +102,13 @@ public class EditComponente extends Main {
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				int chaveSubsistema = mapaComponentes.get(nomesComponentes[boxComponentes.getSelectedIndex()]);
+				int chaveComponente = mapaComponentes.get(nomesComponentes[boxComponentes.getSelectedIndex()]);
 				
-				EditSubsistemaOptions eSubOptions = new EditSubsistemaOptions(idUsuario, getXLocation(), getYLocation(),
-						chaveMaquina,chaveSubsistema);
+				EditComponentOptions eComOptions = new EditComponentOptions(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema, chaveComponente);
 				dispose();
-				eSubOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				eSubOptions.setVisible(true);
-				eSubOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				eComOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				eComOptions.setVisible(true);
+				eComOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				
 
 			}

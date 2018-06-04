@@ -75,11 +75,11 @@ public class EditComponentOptions extends Main {
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditSubsistema editSubsistema = new EditSubsistema(id, xLocation, yLocation, chaveMaquina);
+				EditComponente editComponente = new EditComponente(id, xLocation, yLocation, chaveMaquina,chaveSubsistema);
 				dispose();
-				editSubsistema.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				editSubsistema.setVisible(true);
-				editSubsistema.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				editComponente.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				editComponente.setVisible(true);
+				editComponente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
