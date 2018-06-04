@@ -97,13 +97,13 @@ public class EditComponentOptions extends Main {
 
 		JButton btnInserirSubsistema = new JButton("");
 		btnInserirSubsistema
-				.setIcon(new ImageIcon(EditComponentOptions.class.getResource("/Resources/icon/insertComponent.png")));
+				.setIcon(new ImageIcon(EditComponentOptions.class.getResource("/Resources/icon/insert-falha-btn.png")));
 		btnInserirSubsistema.setBounds(353, 183, 252, 74);
 		desktopPane.add(btnInserirSubsistema);
 
 		JButton btnEditarSubsistema = new JButton("");
 		btnEditarSubsistema
-				.setIcon(new ImageIcon(EditComponentOptions.class.getResource("/Resources/icon/editSubInfo.png")));
+				.setIcon(new ImageIcon(EditComponentOptions.class.getResource("/Resources/icon/component-info-btn.png")));
 		btnEditarSubsistema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SetSubsistema setSubsistema = new SetSubsistema(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema);
@@ -126,7 +126,7 @@ public class EditComponentOptions extends Main {
 				editComponente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		editComponenteBtn.setIcon(new ImageIcon(EditComponentOptions.class.getResource("/Resources/icon/editComponentes.png")));
+		editComponenteBtn.setIcon(new ImageIcon(EditComponentOptions.class.getResource("/Resources/icon/edit-falhas-btin.png")));
 		editComponenteBtn.setBounds(0, 280, 252, 76);
 		desktopPane.add(editComponenteBtn);
 
