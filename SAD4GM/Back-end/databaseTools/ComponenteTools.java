@@ -55,11 +55,11 @@ public class ComponenteTools extends DatabaseTools {
 		return has;
 	}
 	
-	public Map<String, Integer> getMapaComponentes() throws SQLException {
+	public Map<String, Integer> getMapaComponentes(int chaveSubsistema) throws SQLException {
 		abrirConexao();
 		Map<String, Integer> componentes = new HashMap<>();
 
-		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.componente");
+		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.componente WHERE chave_subsistema=" + chaveSubsistema);
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {

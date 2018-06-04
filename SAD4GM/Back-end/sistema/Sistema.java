@@ -231,8 +231,8 @@ public class Sistema {
 		return cComponentes.inserir(nome, chaveSubsistema, funcao);
 	}
 
-	public Map<String, Integer> getMapaComponentes() {
-		return cComponentes.getMapaComponentes();
+	public Map<String, Integer> getMapaComponentes(int chaveSubsistema) {
+		return cComponentes.getMapaComponentes(chaveSubsistema);
 	}
 
 	// Funções de Falhas

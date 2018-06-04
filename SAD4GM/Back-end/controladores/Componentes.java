@@ -30,10 +30,10 @@ public class Componentes {
 		
 	}
 	
-	public Map<String,Integer> getMapaComponentes()  {
+	public Map<String,Integer> getMapaComponentes(int chaveSubsistema)  {
 
 		try {
-			return cTools.getMapaComponentes();
+			return cTools.getMapaComponentes(chaveSubsistema);
 		} catch (SQLException e) {
 			return new HashMap<String,Integer>();
 		}

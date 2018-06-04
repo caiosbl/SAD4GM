@@ -3,11 +3,10 @@ package interfaceGrafica.usuario.gerenciadorMaquinas.editSubsistema;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachineOptions;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -24,9 +23,9 @@ import javax.swing.JTextPane;
 
 import sistema.Sistema;
 import javax.swing.ImageIcon;
+
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -49,7 +48,7 @@ public class SetSubsistema extends Main {
 	/**
 	 * Create the frame.
 	 */
-	public SetSubsistema(String idUser,int xLocation, int yLocation, int chaveMaquina,int chaveSubsistema) {
+	public SetSubsistema(String idUser, int xLocation, int yLocation, int chaveMaquina, int chaveSubsistema) {
 		super(xLocation, yLocation);
 		this.idUsuario = idUser;
 		try {
@@ -57,12 +56,11 @@ public class SetSubsistema extends Main {
 		} catch (SQLException e2) {
 			JOptionPane.showMessageDialog(null, "Falha na Conexão com o Banco de Dados!");
 		}
-	
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(xLocation,yLocation, 621, 497);
+		setBounds(xLocation, yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -82,7 +80,8 @@ public class SetSubsistema extends Main {
 		btnVoltar.setBounds(490, 420, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditSubsistemaOptions subOptions = new EditSubsistemaOptions(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema);
+				EditSubsistemaOptions subOptions = new EditSubsistemaOptions(idUsuario, xLocation, yLocation,
+						chaveMaquina, chaveSubsistema);
 				dispose();
 				subOptions.setVisible(true);
 				subOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -97,7 +96,6 @@ public class SetSubsistema extends Main {
 		nome.setBounds(182, 247, 264, 24);
 		nome.setText(sistema.getNomeSubsistema(chaveSubsistema));
 		desktopPane.add(nome);
-		
 
 		JButton btnEditar = new JButton("");
 		btnEditar.setIcon(new ImageIcon(SetSubsistema.class.getResource("/Resources/icon/editbutton.png")));
@@ -113,32 +111,31 @@ public class SetSubsistema extends Main {
 		btnAtualizar.setIcon(new ImageIcon(SetSubsistema.class.getResource("/Resources/icon/atualizarbutton.png")));
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				JOptionPane.showMessageDialog(null,sistema.setNomeSubsistema(nome.getText().trim(), chaveSubsistema));
 
+				JOptionPane.showMessageDialog(null, sistema.setNomeSubsistema(nome.getText().trim(), chaveSubsistema));
 
 			}
 
 		});
+		
 		btnAtualizar.setBounds(356, 283, 90, 28);
 		desktopPane.add(btnAtualizar);
-		
+
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(SetSubsistema.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
-		
+
 		JLabel banner = new JLabel("");
 		banner.setIcon(new ImageIcon(SetSubsistema.class.getResource("/Resources/icon/editSubsInfoBanner.png")));
 		banner.setBounds(263, 30, 329, 95);
 		desktopPane.add(banner);
-		
+
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(SetSubsistema.class.getResource("/Resources/icon/editNameSubsi.png")));
 		label.setBounds(121, 201, 360, 145);
 		desktopPane.add(label);
 
 	}
-	
 
 }

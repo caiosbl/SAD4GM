@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.gerenciadorMaquinas.SetMachine;
+import interfaceGrafica.usuario.gerenciadorMaquinas.editComponente.EditComponente;
 import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachine;
 
 import javax.swing.JDesktopPane;
@@ -115,10 +116,19 @@ public class EditSubsistemaOptions extends Main {
 		btnEditarSubsistema.setBounds(0, 183, 252, 74);
 		desktopPane.add(btnEditarSubsistema);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/editComponentes.png")));
-		label.setBounds(0, 280, 252, 76);
-		desktopPane.add(label);
+		JButton editComponenteBtn = new JButton();
+		editComponenteBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditComponente editComponente = new EditComponente(id, xLocation, yLocation, chaveMaquina, chaveSubsistema);
+				dispose();
+				editComponente.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				editComponente.setVisible(true);
+				editComponente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		editComponenteBtn.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/editComponentes.png")));
+		editComponenteBtn.setBounds(0, 280, 252, 76);
+		desktopPane.add(editComponenteBtn);
 
 	}
 }
