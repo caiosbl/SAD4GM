@@ -181,4 +181,8 @@ public class Main extends JFrame {
 	public int getYLocation() {
 		return this.getLocationOnScreen().y;
 	}
+	
+	public boolean isEmpty(String string) {
+		return string.equals("");
+	}
 }

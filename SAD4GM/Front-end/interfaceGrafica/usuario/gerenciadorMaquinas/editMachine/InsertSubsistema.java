@@ -1,4 +1,4 @@
-package interfaceGrafica.usuario.gerenciadorMaquinas;
+package interfaceGrafica.usuario.gerenciadorMaquinas.editMachine;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.entrada.Options;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -26,8 +25,6 @@ import javax.swing.JTextField;
 
 import javax.swing.ImageIcon;
 
-import javax.swing.JComboBox;
-
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
@@ -43,10 +40,6 @@ public class InsertSubsistema extends Main {
 	private JPanel contentPane;
 	private String idUsuario;
 	private JTextField name;
-	@SuppressWarnings("rawtypes")
-	private JComboBox boxMaquinas;
-	private Map<String, Integer> mapaMaquinas;
-	private Object[] nomesMaquinas;
 	private Sistema sistema;
 
 	/**
@@ -59,8 +52,7 @@ public class InsertSubsistema extends Main {
 	 * @throws SQLException
 	 */
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public InsertSubsistema(String id, int xLocation, int yLocation) {
+	public InsertSubsistema(String id, int xLocation, int yLocation, int chaveMaquina) {
 		super(xLocation, yLocation);
 		sistema = new Sistema();
 		this.idUsuario = id;
@@ -87,11 +79,11 @@ public class InsertSubsistema extends Main {
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Options uOptions = new Options(idUsuario, getXLocation(), getYLocation());
+				EditMachineOptions eMOptions = new EditMachineOptions(idUsuario, xLocation, yLocation, chaveMaquina);
 				dispose();
-				uOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				uOptions.setVisible(true);
-				uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				eMOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				eMOptions.setVisible(true);
+				eMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -99,7 +91,7 @@ public class InsertSubsistema extends Main {
 
 		JButton btnInserir = new JButton("");
 		btnInserir.setIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/insertbutton.png")));
-		btnInserir.setBounds(357, 322, 103, 21);
+		btnInserir.setBounds(336, 292, 103, 21);
 
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -108,7 +100,6 @@ public class InsertSubsistema extends Main {
 				if (isEmpty(nome))
 					JOptionPane.showMessageDialog(null, "Nome Inválido");
 				else {
-					int chaveMaquina = mapaMaquinas.get(nomesMaquinas[boxMaquinas.getSelectedIndex()]);
 					String status = sistema.inserirSubsistema(nome, chaveMaquina);
 					JOptionPane.showMessageDialog(null, status);
 
@@ -121,7 +112,7 @@ public class InsertSubsistema extends Main {
 		desktopPane.add(btnInserir);
 
 		name = new JTextField();
-		name.setBounds(196, 242, 268, 28);
+		name.setBounds(175, 243, 268, 28);
 		desktopPane.add(name);
 		name.setColumns(10);
 
@@ -135,26 +126,13 @@ public class InsertSubsistema extends Main {
 		banner.setBounds(332, 32, 172, 82);
 		desktopPane.add(banner);
 
-		mapaMaquinas = getMapaMaquinas();
-
-		nomesMaquinas = mapaMaquinas.keySet().toArray();
-		boxMaquinas = new JComboBox(nomesMaquinas);
-
-		boxMaquinas.setBounds(196, 277, 268, 27);
-		desktopPane.add(boxMaquinas);
-
-		JLabel backForm = new JLabel("");
-		backForm.setIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/backFormSubsistema.png")));
-		backForm.setBounds(101, 185, 409, 185);
-		desktopPane.add(backForm);
-	}
-
-	public boolean isEmpty(String string) {
-		return string.equals("");
+		JLabel form = new JLabel("");
+		form.setIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/subsystemform.png")));
+		form.setBounds(105, 197, 393, 143);
+		desktopPane.add(form);
 	}
 
 	public Map<String, Integer> getMapaMaquinas() {
 		return sistema.getMapaMaquinas();
 	}
-
 }

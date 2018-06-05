@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
@@ -38,7 +37,6 @@ public class SetComponente extends Main {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idUsuario;
-	private String codigoMaquina;
 	private Sistema sistema = new Sistema();
 
 	/**
@@ -52,11 +50,6 @@ public class SetComponente extends Main {
 			int chaveComponente) {
 		super(xLocation, yLocation);
 		this.idUsuario = idUser;
-		try {
-			this.codigoMaquina = sistema.getCodigoMaquina(chaveMaquina);
-		} catch (SQLException e2) {
-			JOptionPane.showMessageDialog(null, "Falha na Conexão com o Banco de Dados!");
-		}
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -120,8 +113,21 @@ public class SetComponente extends Main {
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				JOptionPane.showMessageDialog(null, sistema.setNomeComponente(nome.getText().trim(), chaveComponente));
-				JOptionPane.showMessageDialog(null, sistema.setFuncaoComponente(funcaoPane.getText().trim(), chaveComponente));
+				if (isEmpty(nome.getText().trim())) {
+					nome.setText(sistema.getNomeComponente(chaveComponente));
+					JOptionPane.showMessageDialog(null, "Nome Inválido!");
+				} else if (isEmpty(funcaoPane.getText().trim())) {
+					funcaoPane.setText(sistema.getFuncaoComponente(chaveComponente));
+					JOptionPane.showMessageDialog(null, "Função Inválida");
+				}
+
+				else {
+					
+					JOptionPane.showMessageDialog(null,
+							sistema.setNomeComponente(nome.getText().trim(), chaveComponente));
+					JOptionPane.showMessageDialog(null,
+							sistema.setFuncaoComponente(funcaoPane.getText().trim(), chaveComponente));
+				}
 
 			}
 
@@ -146,4 +152,5 @@ public class SetComponente extends Main {
 		desktopPane.add(label);
 
 	}
+
 }

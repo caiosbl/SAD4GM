@@ -112,6 +112,16 @@ public class EditMachineOptions extends Main {
 		desktopPane.add(btnMachineInfoEdit);
 
 		JButton btnInserirSubsistema = new JButton("");
+		btnInserirSubsistema.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InsertSubsistema insertSubsistema = new InsertSubsistema(idUsuario, xLocation, yLocation, chaveMaquina);
+				dispose();
+				insertSubsistema
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				insertSubsistema.setVisible(true);
+				insertSubsistema.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnInserirSubsistema
 				.setIcon(new ImageIcon(EditMachineOptions.class.getResource("/Resources/icon/insertSubsystem.png")));
 		btnInserirSubsistema.setBounds(353, 183, 252, 74);
@@ -124,7 +134,8 @@ public class EditMachineOptions extends Main {
 			public void actionPerformed(ActionEvent e) {
 				EditSubsistema editSubsistema = new EditSubsistema(id, xLocation, yLocation, chaveMaquina);
 				dispose();
-				editSubsistema.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				editSubsistema
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				editSubsistema.setVisible(true);
 				editSubsistema.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}

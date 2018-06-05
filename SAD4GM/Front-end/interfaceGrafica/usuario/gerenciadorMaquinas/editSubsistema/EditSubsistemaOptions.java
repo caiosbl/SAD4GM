@@ -6,9 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.gerenciadorMaquinas.SetMachine;
 import interfaceGrafica.usuario.gerenciadorMaquinas.editComponente.EditComponente;
-import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachine;
+
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -96,6 +95,10 @@ public class EditSubsistemaOptions extends Main {
 		desktopPane.add(banner);
 
 		JButton btnInserirSubsistema = new JButton("");
+		btnInserirSubsistema.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnInserirSubsistema
 				.setIcon(new ImageIcon(EditSubsistemaOptions.class.getResource("/Resources/icon/insertComponent.png")));
 		btnInserirSubsistema.setBounds(353, 183, 252, 74);
