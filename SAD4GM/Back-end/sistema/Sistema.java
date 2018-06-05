@@ -234,6 +234,22 @@ public class Sistema {
 	public Map<String, Integer> getMapaComponentes(int chaveSubsistema) {
 		return cComponentes.getMapaComponentes(chaveSubsistema);
 	}
+	
+	public String getNomeComponente(int chaveComponente) {
+		return cComponentes.getNomeComponente(chaveComponente);
+	}
+	
+	public String setNomeComponente(String nome, int chaveComponente) {
+		return cComponentes.setNomeComponente(nome, chaveComponente);
+	}
+	
+	public String getFuncaoComponente(int chaveComponente) {
+		return cComponentes.getFuncaoComponente(chaveComponente);
+	}
+	
+	public String setFuncaoComponente(String funcao, int chaveComponente) {
+		return cComponentes.setFuncaoComponente(funcao,chaveComponente);
+	}
 
 	// Funções de Falhas
 

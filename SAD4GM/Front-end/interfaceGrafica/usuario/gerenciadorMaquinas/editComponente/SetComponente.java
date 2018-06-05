@@ -48,7 +48,8 @@ public class SetComponente extends Main {
 	/**
 	 * Create the frame.
 	 */
-	public SetComponente(String idUser, int xLocation, int yLocation, int chaveMaquina, int chaveSubsistema, int chaveComponente) {
+	public SetComponente(String idUser, int xLocation, int yLocation, int chaveMaquina, int chaveSubsistema,
+			int chaveComponente) {
 		super(xLocation, yLocation);
 		this.idUsuario = idUser;
 		try {
@@ -80,7 +81,8 @@ public class SetComponente extends Main {
 		btnVoltar.setBounds(490, 420, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditComponentOptions compOptions = new EditComponentOptions(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema, chaveComponente);
+				EditComponentOptions compOptions = new EditComponentOptions(idUsuario, xLocation, yLocation,
+						chaveMaquina, chaveSubsistema, chaveComponente);
 				dispose();
 				compOptions.setVisible(true);
 				compOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -92,10 +94,11 @@ public class SetComponente extends Main {
 		JTextPane nome = new JTextPane();
 		nome.setEditable(false);
 		nome.setBounds(190, 200, 264, 24);
-		nome.setText(sistema.getNomeSubsistema(chaveSubsistema));
+		nome.setText(sistema.getNomeComponente(chaveComponente));
 		desktopPane.add(nome);
-		
+
 		JTextPane funcaoPane = new JTextPane();
+		funcaoPane.setText(sistema.getFuncaoComponente(chaveComponente));
 		JScrollPane jPane = new JScrollPane(funcaoPane);
 		jPane.setBounds(188, 240, 268, 80);
 		funcaoPane.setEditable(false);
@@ -117,12 +120,13 @@ public class SetComponente extends Main {
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				JOptionPane.showMessageDialog(null, sistema.setNomeSubsistema(nome.getText().trim(), chaveSubsistema));
+				JOptionPane.showMessageDialog(null, sistema.setNomeComponente(nome.getText().trim(), chaveComponente));
+				JOptionPane.showMessageDialog(null, sistema.setFuncaoComponente(funcaoPane.getText().trim(), chaveComponente));
 
 			}
 
 		});
-		
+
 		btnAtualizar.setBounds(362, 325, 90, 28);
 		desktopPane.add(btnAtualizar);
 
@@ -135,7 +139,7 @@ public class SetComponente extends Main {
 		banner.setIcon(new ImageIcon(SetComponente.class.getResource("/Resources/icon/edit-component-info.png")));
 		banner.setBounds(274, 28, 286, 90);
 		desktopPane.add(banner);
-		
+
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(SetComponente.class.getResource("/Resources/icon/edit-component-info-form.png")));
 		label.setBounds(108, 172, 393, 225);

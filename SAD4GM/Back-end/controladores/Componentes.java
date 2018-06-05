@@ -83,10 +83,10 @@ public class Componentes {
 		
 		try {
 			cTools.setFuncaoComponente(funcao, chaveComponente);
-			status = "Nome atualizado com Sucesso!";
+			status = "Função atualizada com Sucesso!";
 		}
 		catch (Exception e) {
-			status = "Falha ao Atualizar Nome!";
+			status = "Falha ao Atualizar Função!";
 		}
 		
 		return status;
