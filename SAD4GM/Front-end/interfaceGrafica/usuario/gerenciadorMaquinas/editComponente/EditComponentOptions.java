@@ -106,7 +106,7 @@ public class EditComponentOptions extends Main {
 				.setIcon(new ImageIcon(EditComponentOptions.class.getResource("/Resources/icon/component-info-btn.png")));
 		btnEditarSubsistema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SetSubsistema setSubsistema = new SetSubsistema(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema);
+				SetComponente setSubsistema = new SetComponente(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema,chaveComponente);
 				dispose();
 				setSubsistema.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setSubsistema.setVisible(true);
