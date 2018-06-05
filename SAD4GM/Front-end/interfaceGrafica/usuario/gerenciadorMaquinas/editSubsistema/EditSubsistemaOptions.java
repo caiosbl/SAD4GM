@@ -97,6 +97,12 @@ public class EditSubsistemaOptions extends Main {
 		JButton btnInserirSubsistema = new JButton("");
 		btnInserirSubsistema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				InsertComponente insertComponente = new InsertComponente(id, xLocation, yLocation, chaveMaquina, chaveSubsistema);
+				dispose();
+				insertComponente
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				insertComponente.setVisible(true);
+				insertComponente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnInserirSubsistema
