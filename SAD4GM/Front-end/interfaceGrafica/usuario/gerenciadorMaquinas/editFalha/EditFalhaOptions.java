@@ -1,4 +1,4 @@
-package interfaceGrafica.usuario.gerenciadorMaquinas.editComponente;
+package interfaceGrafica.usuario.gerenciadorMaquinas.editFalha;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -29,7 +29,7 @@ import javax.swing.ImageIcon;
  * @author caiosbl
  *
  */
-public class EditComponentOptions extends Main {
+public class EditFalhaOptions extends Main {
 
 	/**
 	 * 
@@ -48,7 +48,7 @@ public class EditComponentOptions extends Main {
 	 * @throws SQLException
 	 */
 
-	public EditComponentOptions(String id, int xLocation, int yLocation, int chaveMaquina,int chaveSubsistema, int chaveComponente) {
+	public EditFalhaOptions(String id, int xLocation, int yLocation, int chaveMaquina,int chaveSubsistema, int chaveComponente) {
 		super(xLocation, yLocation);
 		this.idUsuario = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,7 +70,7 @@ public class EditComponentOptions extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(EditComponentOptions.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setIcon(new ImageIcon(EditFalhaOptions.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -85,12 +85,12 @@ public class EditComponentOptions extends Main {
 		desktopPane.add(btnVoltar);
 
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(EditComponentOptions.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setIcon(new ImageIcon(EditFalhaOptions.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(EditComponentOptions.class.getResource("/Resources/icon/editComponenteN.png")));
+		banner.setIcon(new ImageIcon(EditFalhaOptions.class.getResource("/Resources/icon/editComponenteN.png")));
 		banner.setBounds(330, 24, 193, 95);
 		desktopPane.add(banner);
 
@@ -106,13 +106,13 @@ public class EditComponentOptions extends Main {
 			}
 		});
 		btnInserirSubsistema
-				.setIcon(new ImageIcon(EditComponentOptions.class.getResource("/Resources/icon/insert-falha-btn.png")));
+				.setIcon(new ImageIcon(EditFalhaOptions.class.getResource("/Resources/icon/insert-falha-btn.png")));
 		btnInserirSubsistema.setBounds(353, 183, 252, 74);
 		desktopPane.add(btnInserirSubsistema);
 
 		JButton btnEditarSubsistema = new JButton("");
 		btnEditarSubsistema
-				.setIcon(new ImageIcon(EditComponentOptions.class.getResource("/Resources/icon/component-info-btn.png")));
+				.setIcon(new ImageIcon(EditFalhaOptions.class.getResource("/Resources/icon/component-info-btn.png")));
 		btnEditarSubsistema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SetComponente setSubsistema = new SetComponente(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema,chaveComponente);
@@ -135,7 +135,7 @@ public class EditComponentOptions extends Main {
 				editComponente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		editComponenteBtn.setIcon(new ImageIcon(EditComponentOptions.class.getResource("/Resources/icon/edit-falhas-btin.png")));
+		editComponenteBtn.setIcon(new ImageIcon(EditFalhaOptions.class.getResource("/Resources/icon/edit-falhas-btin.png")));
 		editComponenteBtn.setBounds(0, 280, 252, 76);
 		desktopPane.add(editComponenteBtn);
 
