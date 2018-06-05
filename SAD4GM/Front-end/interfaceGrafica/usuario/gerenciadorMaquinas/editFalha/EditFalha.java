@@ -1,4 +1,4 @@
-package interfaceGrafica.usuario.gerenciadorMaquinas.editSubsistema;
+package interfaceGrafica.usuario.gerenciadorMaquinas.editFalha;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -6,7 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachineOptions;
+import interfaceGrafica.usuario.gerenciadorMaquinas.editComponente.EditComponentOptions;
+import interfaceGrafica.usuario.gerenciadorMaquinas.editComponente.EditComponente;
+import interfaceGrafica.usuario.gerenciadorMaquinas.editSubsistema.EditSubsistemaOptions;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -31,7 +33,7 @@ import javax.swing.JComboBox;
  * @author caiosbl
  *
  */
-public class EditSubsistema extends Main {
+public class EditFalha extends Main {
 
 	/**
 	 * 
@@ -40,10 +42,10 @@ public class EditSubsistema extends Main {
 	private JPanel contentPane;
 	private String idUsuario;
 	@SuppressWarnings("rawtypes")
-	private JComboBox boxSubsistemas;
-	private Map<String, Integer> mapaSubsistemas;
-	private Object[] nomesSubsistemas;
-	private int chaveMaquina;
+	private JComboBox boxFalhas;
+	private Map<String, Integer> mapaFalhas;
+	private Object[] nomesFalhas;
+
 	private Sistema sistema;
 
 	/**
@@ -57,11 +59,10 @@ public class EditSubsistema extends Main {
 	 */
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public EditSubsistema(String id, int xLocation, int yLocation,int chaveMaquina) {
+	public EditFalha(String id, int xLocation, int yLocation, int chaveMaquina, int chaveSubsistema, int chaveComponente) {
 		super(xLocation, yLocation);
 		sistema = new Sistema();
 		this.idUsuario = id;
-		this.chaveMaquina = chaveMaquina;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -81,34 +82,35 @@ public class EditSubsistema extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(EditSubsistema.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setIcon(new ImageIcon(EditFalha.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditMachineOptions eMOptions = new EditMachineOptions(id, xLocation, yLocation, chaveMaquina);
+				EditComponentOptions eComOptions = new EditComponentOptions(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema, chaveComponente);
 				dispose();
-				eMOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				eMOptions.setVisible(true);
-				eMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				eComOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				eComOptions.setVisible(true);
+				eComOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnVoltar);
 
 		JButton btnInserir = new JButton("");
-		btnInserir.setIcon(new ImageIcon(EditSubsistema.class.getResource("/Resources/icon/editbutton.png")));
+		btnInserir.setIcon(new ImageIcon(EditFalha.class.getResource("/Resources/icon/editbutton.png")));
 		btnInserir.setBounds(367, 335, 90, 27);
 
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int chaveSubsistema = mapaSubsistemas.get(nomesSubsistemas[boxSubsistemas.getSelectedIndex()]);
-				
-				EditSubsistemaOptions eSubOptions = new EditSubsistemaOptions(idUsuario, getXLocation(), getYLocation(),
-						chaveMaquina,chaveSubsistema);
+
+				int chaveComponente = mapaFalhas.get(nomesFalhas[boxFalhas.getSelectedIndex()]);
+
+				EditComponentOptions eComOptions = new EditComponentOptions(idUsuario, xLocation, yLocation,
+						chaveMaquina, chaveSubsistema, chaveComponente);
 				dispose();
-				eSubOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				eSubOptions.setVisible(true);
-				eSubOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				eComOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				eComOptions.setVisible(true);
+				eComOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 			}
 
@@ -118,25 +120,23 @@ public class EditSubsistema extends Main {
 		desktopPane.add(btnInserir);
 
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(EditSubsistema.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setIcon(new ImageIcon(EditFalha.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(EditSubsistema.class.getResource("/Resources/icon/ediSubsistema.png")));
-		banner.setBounds(330, 24, 193, 95);
+		banner.setIcon(new ImageIcon(EditFalha.class.getResource("/Resources/icon/editar-falha-banner.png")));
+		banner.setBounds(379, 30, 106, 84);
 		desktopPane.add(banner);
 
-		this.mapaSubsistemas = getMapaSubsistemas(this.chaveMaquina);
-
-		nomesSubsistemas = mapaSubsistemas.keySet().toArray();
-		boxSubsistemas = new JComboBox(nomesSubsistemas);
-
-		boxSubsistemas.setBounds(189, 270, 268, 27);
-		desktopPane.add(boxSubsistemas);
+		this.mapaFalhas = getMapaFalhas(chaveComponente);
+		nomesFalhas = mapaFalhas.keySet().toArray();
+		boxFalhas = new JComboBox(nomesFalhas);
+		boxFalhas.setBounds(191, 275, 268, 27);
+		desktopPane.add(boxFalhas);
 
 		JLabel background = new JLabel("");
-		background.setIcon(new ImageIcon(EditSubsistema.class.getResource("/Resources/icon/subsSelector.png")));
+		background.setIcon(new ImageIcon(EditFalha.class.getResource("/Resources/icon/falha-form.png")));
 		background.setBounds(92, 202, 434, 195);
 		desktopPane.add(background);
 	}
@@ -145,7 +145,7 @@ public class EditSubsistema extends Main {
 		return string.equals("");
 	}
 
-	public Map<String, Integer> getMapaSubsistemas(int chaveMaquina) {
-		return sistema.getMapaSubsistemas(chaveMaquina);
+	public Map<String, Integer> getMapaFalhas(int chaveComponente) {
+		return sistema.getMapaFalhas(chaveComponente);
 	}
 }

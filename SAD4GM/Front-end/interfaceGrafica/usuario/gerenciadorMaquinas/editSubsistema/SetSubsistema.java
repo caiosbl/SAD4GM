@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
@@ -38,7 +37,7 @@ public class SetSubsistema extends Main {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idUsuario;
-	private String codigoMaquina;
+
 	private Sistema sistema = new Sistema();
 
 	/**
@@ -51,11 +50,6 @@ public class SetSubsistema extends Main {
 	public SetSubsistema(String idUser, int xLocation, int yLocation, int chaveMaquina, int chaveSubsistema) {
 		super(xLocation, yLocation);
 		this.idUsuario = idUser;
-		try {
-			this.codigoMaquina = sistema.getCodigoMaquina(chaveMaquina);
-		} catch (SQLException e2) {
-			JOptionPane.showMessageDialog(null, "Falha na Conexão com o Banco de Dados!");
-		}
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -117,7 +111,7 @@ public class SetSubsistema extends Main {
 			}
 
 		});
-		
+
 		btnAtualizar.setBounds(356, 283, 90, 28);
 		desktopPane.add(btnAtualizar);
 

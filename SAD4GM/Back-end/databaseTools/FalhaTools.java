@@ -52,21 +52,21 @@ public class FalhaTools extends DatabaseTools {
 		return has;
 	}
 	
-	public Map<String, Integer> getMapaFalhas() throws SQLException {
+	public Map<String, Integer> getMapaFalhas(int chaveComponente) throws SQLException {
 		abrirConexao();
-		Map<String, Integer> subsistemas = new HashMap<>();
+		Map<String, Integer> falhas = new HashMap<>();
 
-		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.falha");
+		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.falha WHERE chave_componente="  + chaveComponente);
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {
-			subsistemas.put(resSet.getString(1), resSet.getInt(2));
+			falhas.put(resSet.getString(1), resSet.getInt(2));
 		}
 		state.close();
 
 		fecharConexao();
 
-		return subsistemas;
+		return falhas;
 
 	}
 

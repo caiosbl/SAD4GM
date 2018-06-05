@@ -29,10 +29,10 @@ public class Falhas {
 
 	}
 
-	public Map<String, Integer> getMapaFalhas() {
+	public Map<String, Integer> getMapaFalhas(int chaveComponente) {
 
 		try {
-			return fTools.getMapaFalhas();
+			return fTools.getMapaFalhas(chaveComponente);
 		} catch (SQLException e) {
 			return new HashMap<String, Integer>();
 		}

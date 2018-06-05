@@ -6,9 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.gerenciadorMaquinas.SetMachine;
 import interfaceGrafica.usuario.gerenciadorMaquinas.editComponente.EditComponente;
-import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachine;
+import interfaceGrafica.usuario.gerenciadorMaquinas.editFalha.EditFalha;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -119,7 +118,7 @@ public class EditComponentOptions extends Main {
 		JButton editComponenteBtn = new JButton();
 		editComponenteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EditComponente editComponente = new EditComponente(id, xLocation, yLocation, chaveMaquina, chaveSubsistema);
+				EditFalha editComponente = new EditFalha(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema, chaveComponente);
 				dispose();
 				editComponente.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				editComponente.setVisible(true);

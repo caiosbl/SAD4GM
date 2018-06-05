@@ -43,7 +43,7 @@ public class EditComponente extends Main {
 	private JComboBox boxComponentes;
 	private Map<String, Integer> mapaComponentes;
 	private Object[] nomesComponentes;
-	private int chaveMaquina;
+
 	private Sistema sistema;
 
 	/**
@@ -57,11 +57,10 @@ public class EditComponente extends Main {
 	 */
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public EditComponente(String id, int xLocation, int yLocation,int chaveMaquina, int chaveSubsistema) {
+	public EditComponente(String id, int xLocation, int yLocation, int chaveMaquina, int chaveSubsistema) {
 		super(xLocation, yLocation);
 		sistema = new Sistema();
 		this.idUsuario = id;
-		this.chaveMaquina = chaveMaquina;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -85,7 +84,8 @@ public class EditComponente extends Main {
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditSubsistemaOptions eSubOptions = new EditSubsistemaOptions(id, xLocation, yLocation, chaveMaquina, chaveSubsistema);
+				EditSubsistemaOptions eSubOptions = new EditSubsistemaOptions(id, xLocation, yLocation, chaveMaquina,
+						chaveSubsistema);
 				dispose();
 				eSubOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				eSubOptions.setVisible(true);
@@ -101,15 +101,15 @@ public class EditComponente extends Main {
 
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				int chaveComponente = mapaComponentes.get(nomesComponentes[boxComponentes.getSelectedIndex()]);
-				
-				EditComponentOptions eComOptions = new EditComponentOptions(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema, chaveComponente);
+
+				EditComponentOptions eComOptions = new EditComponentOptions(idUsuario, xLocation, yLocation,
+						chaveMaquina, chaveSubsistema, chaveComponente);
 				dispose();
 				eComOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				eComOptions.setVisible(true);
 				eComOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				
 
 			}
 

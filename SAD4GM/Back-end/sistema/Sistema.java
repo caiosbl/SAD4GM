@@ -257,8 +257,8 @@ public class Sistema {
 		return cFalhas.inserir(nome, descricao, chaveComponente);
 	}
 
-	public Map<String, Integer> getMapaFalhas() {
-		return cFalhas.getMapaFalhas();
+	public Map<String, Integer> getMapaFalhas(int chaveComponente) {
+		return cFalhas.getMapaFalhas(chaveComponente);
 	}
 
 	// Funções de Modos de Falha
