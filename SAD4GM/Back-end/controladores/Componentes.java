@@ -39,5 +39,57 @@ public class Componentes {
 		}
 
 	}
+	
+	public String getNomeComponente(int chaveComponente) {
+		String nome;
+		
+		try {
+			nome = cTools.getNomeComponente(chaveComponente);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			nome = "Falha na Conexão com Banco de Dados!";
+		}
+		return nome;
+	}
+	
+	public String setNomeComponente(String nome, int chaveComponente) {
+		String status;
+		
+		try {
+			cTools.setNomeComponente(nome, chaveComponente);
+			status = "Nome atualizado com Sucesso!";
+		}
+		catch (Exception e) {
+			status = "Falha ao Atualizar Nome!";
+		}
+		
+		return status;
+	}
+	
+	public String getFuncaoComponente(int chaveComponente) {
+		String funcao;
+		
+		try {
+			funcao = cTools.getFuncaoComponente(chaveComponente);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			funcao = "Falha na Conexão com Banco de Dados!";
+		}
+		return funcao;
+	}
+	
+	public String setFuncaoComponente(String funcao, int chaveComponente) {
+		String status;
+		
+		try {
+			cTools.setFuncaoComponente(funcao, chaveComponente);
+			status = "Nome atualizado com Sucesso!";
+		}
+		catch (Exception e) {
+			status = "Falha ao Atualizar Nome!";
+		}
+		
+		return status;
+	}
 
 }

@@ -72,5 +72,61 @@ public class ComponenteTools extends DatabaseTools {
 		return componentes;
 
 	}
+	
+	public String getNomeComponente(int chaveComponente) throws SQLException {
+		abrirConexao();
+		String nome;
+		PreparedStatement state = con
+				.prepareStatement("SELECT nome FROM maquinas.componente WHERE chave=" + chaveComponente);
+		ResultSet resSet = state.executeQuery();
+		
+
+		if(resSet.next())
+		nome = resSet.getString(1);
+		else
+			nome = "Falha na Conexão com Banco de Dados";
+		
+
+		state.close();
+		fecharConexao();
+
+		return nome;
+
+	}
+	
+	public void setNomeComponente(String nome, int chaveComponente) throws SQLException {
+		abrirConexao();
+		PreparedStatement state = con.prepareStatement("UPDATE  maquinas.componente SET nome = ? WHERE chave=" + chaveComponente);
+		state.setString(1, nome);
+		state.execute();
+	}
+	
+	public String getFuncaoComponente(int chaveComponente) throws SQLException {
+		abrirConexao();
+		String funcao;
+		PreparedStatement state = con
+				.prepareStatement("SELECT funcao FROM maquinas.componente WHERE chave=" + chaveComponente);
+		ResultSet resSet = state.executeQuery();
+		
+
+		if(resSet.next())
+		funcao = resSet.getString(1);
+		else
+			funcao = "Falha na Conexão com Banco de Dados";
+		
+
+		state.close();
+		fecharConexao();
+
+		return funcao;
+
+	}
+	
+	public void setFuncaoComponente(String funcao, int chaveComponente) throws SQLException {
+		abrirConexao();
+		PreparedStatement state = con.prepareStatement("UPDATE  maquinas.componente SET funcao = ? WHERE chave=" + chaveComponente);
+		state.setString(1, funcao);
+		state.execute();
+	}
 
 }
