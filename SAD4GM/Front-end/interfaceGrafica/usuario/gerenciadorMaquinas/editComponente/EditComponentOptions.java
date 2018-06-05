@@ -95,6 +95,15 @@ public class EditComponentOptions extends Main {
 		desktopPane.add(banner);
 
 		JButton btnInserirSubsistema = new JButton("");
+		btnInserirSubsistema.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InsertFalha insertFalha = new InsertFalha(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema, chaveComponente);
+				dispose();
+				insertFalha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				insertFalha.setVisible(true);
+				insertFalha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnInserirSubsistema
 				.setIcon(new ImageIcon(EditComponentOptions.class.getResource("/Resources/icon/insert-falha-btn.png")));
 		btnInserirSubsistema.setBounds(353, 183, 252, 74);
