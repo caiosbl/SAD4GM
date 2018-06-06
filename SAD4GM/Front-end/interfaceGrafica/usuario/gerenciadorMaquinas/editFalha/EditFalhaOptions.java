@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.gerenciadorMaquinas.editComponente.EditComponente;
 import interfaceGrafica.usuario.gerenciadorMaquinas.editFalha.EditFalha;
 
 import javax.swing.JDesktopPane;
@@ -94,26 +93,22 @@ public class EditFalhaOptions extends Main {
 		banner.setBounds(368, 21, 106, 84);
 		desktopPane.add(banner);
 
-		JButton btnInserirSubsistema = new JButton("");
-		btnInserirSubsistema.addActionListener(new ActionListener() {
+		JButton btnInserirModoFalha = new JButton("");
+		btnInserirModoFalha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InsertFalha insertFalha = new InsertFalha(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema, chaveComponente);
-				dispose();
-				insertFalha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				insertFalha.setVisible(true);
-				insertFalha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				
 				
 			}
 		});
-		btnInserirSubsistema
+		btnInserirModoFalha
 				.setIcon(new ImageIcon(EditFalhaOptions.class.getResource("/Resources/icon/inserir-modo-aviao.png")));
-		btnInserirSubsistema.setBounds(353, 183, 252, 74);
-		desktopPane.add(btnInserirSubsistema);
+		btnInserirModoFalha.setBounds(353, 183, 252, 74);
+		desktopPane.add(btnInserirModoFalha);
 
-		JButton btnEditarSubsistema = new JButton("");
-		btnEditarSubsistema
+		JButton btnEditarInfoFalha = new JButton("");
+		btnEditarInfoFalha
 				.setIcon(new ImageIcon(EditFalhaOptions.class.getResource("/Resources/icon/edit-info-falha.png")));
-		btnEditarSubsistema.addActionListener(new ActionListener() {
+		btnEditarInfoFalha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SetFalha setSubsistema = new SetFalha(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema,chaveComponente,chaveFalha);
 				dispose();
@@ -122,22 +117,18 @@ public class EditFalhaOptions extends Main {
 				setSubsistema.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnEditarSubsistema.setBounds(0, 183, 252, 74);
-		desktopPane.add(btnEditarSubsistema);
+		btnEditarInfoFalha.setBounds(0, 183, 252, 74);
+		desktopPane.add(btnEditarInfoFalha);
 		
-		JButton editComponenteBtn = new JButton();
-		editComponenteBtn.addActionListener(new ActionListener() {
+		JButton editModosFalhaBtn = new JButton();
+		editModosFalhaBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EditFalha editComponente = new EditFalha(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema, chaveComponente);
-				dispose();
-				editComponente.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				editComponente.setVisible(true);
-				editComponente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				
 			}
 		});
-		editComponenteBtn.setIcon(new ImageIcon(EditFalhaOptions.class.getResource("/Resources/icon/edit-modos-falha.png")));
-		editComponenteBtn.setBounds(0, 280, 252, 76);
-		desktopPane.add(editComponenteBtn);
+		editModosFalhaBtn.setIcon(new ImageIcon(EditFalhaOptions.class.getResource("/Resources/icon/edit-modos-falha.png")));
+		editModosFalhaBtn.setBounds(0, 280, 252, 76);
+		desktopPane.add(editModosFalhaBtn);
 
 	}
 }
