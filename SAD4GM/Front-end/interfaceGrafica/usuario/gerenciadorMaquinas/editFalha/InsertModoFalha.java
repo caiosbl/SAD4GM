@@ -22,7 +22,6 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
-import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
 
@@ -40,7 +39,7 @@ public class InsertModoFalha extends Main {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idUsuario;
-	private JTextPane function;
+	private JTextPane descricaoPane;
 	private Sistema sistema;
 
 	/**
@@ -53,7 +52,8 @@ public class InsertModoFalha extends Main {
 	 * @throws SQLException
 	 */
 
-	public InsertModoFalha(String id, int xLocation, int yLocation, int chaveMaquina, int chaveSubsistema, int chaveComponente, int chaveFalha) {
+	public InsertModoFalha(String id, int xLocation, int yLocation, int chaveMaquina, int chaveSubsistema,
+			int chaveComponente, int chaveFalha) {
 		super(xLocation, yLocation);
 		sistema = new Sistema();
 		this.idUsuario = id;
@@ -80,11 +80,13 @@ public class InsertModoFalha extends Main {
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditComponentOptions eCompOptions = new EditComponentOptions(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema, chaveComponente);
+				EditFalhaOptions efitFalhaOptions = new EditFalhaOptions(idUsuario, xLocation, yLocation, chaveMaquina,
+						chaveSubsistema, chaveComponente, chaveFalha);
 				dispose();
-				eCompOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				eCompOptions.setVisible(true);
-				eCompOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				efitFalhaOptions
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				efitFalhaOptions.setVisible(true);
+				efitFalhaOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -96,16 +98,13 @@ public class InsertModoFalha extends Main {
 
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				String nome = new String(name.getText().trim());
-				String descricao = new String(function.getText().trim());
 
-				if (isEmpty(nome))
-					JOptionPane.showMessageDialog(null, "Nome Inválido!");
-				else if (isEmpty(descricao))
+				String descricao = new String(descricaoPane.getText().trim());
+
+				if (isEmpty(descricao))
 					JOptionPane.showMessageDialog(null, "Descrição Inválida!");
 				else {
-					JOptionPane.showMessageDialog(null, sistema.inserirFalha(nome, descricao, chaveComponente));
+					JOptionPane.showMessageDialog(null, sistema.inserirModoFalha(descricao, chaveFalha));
 
 				}
 
@@ -121,18 +120,19 @@ public class InsertModoFalha extends Main {
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/insert-modo-falha-banner.png")));
+		banner.setIcon(
+				new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/insert-modo-falha-banner.png")));
 		banner.setBounds(287, 19, 295, 102);
 		desktopPane.add(banner);
 
 		JScrollPane jsp = new JScrollPane();
 		jsp.setBounds(192, 209, 268, 91);
 		desktopPane.add(jsp);
-		
-				function = new JTextPane();
-				jsp.setViewportView(function);
-				function.setEditable(true);
-		
+
+		descricaoPane = new JTextPane();
+		jsp.setViewportView(descricaoPane);
+		descricaoPane.setEditable(true);
+
 		JLabel form = new JLabel("");
 		form.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/descricao-form.png")));
 		form.setBounds(110, 164, 392, 196);
