@@ -260,6 +260,22 @@ public class Sistema {
 	public Map<String, Integer> getMapaFalhas(int chaveComponente) {
 		return cFalhas.getMapaFalhas(chaveComponente);
 	}
+	
+	public String getNomeFalha(int chaveFalha) {
+		return cFalhas.getNome(chaveFalha);
+	}
+	
+	public String setNomeFalha (String nome, int chaveFalha) {
+		return cFalhas.setNome(nome,chaveFalha);
+	}
+	
+	public String getDescricaoFalha(int chaveFalha) {
+		return cFalhas.getDescricao(chaveFalha);
+	}
+	
+	public String setDescricaoFalha (String nome, int chaveFalha) {
+		return cFalhas.setDescricao(nome,chaveFalha);
+	}
 
 	// Funções de Modos de Falha
 

@@ -69,6 +69,62 @@ public class FalhaTools extends DatabaseTools {
 		return falhas;
 
 	}
+	
+	public String getDescricaoFalha(int chaveFalha) throws SQLException {
+		abrirConexao();
+		String funcao;
+		PreparedStatement state = con
+				.prepareStatement("SELECT descricao FROM maquinas.falha WHERE chave=" + chaveFalha);
+		ResultSet resSet = state.executeQuery();
+		
+
+		if(resSet.next())
+		funcao = resSet.getString(1);
+		else
+			funcao = "Falha na Conexão com Banco de Dados";
+		
+
+		state.close();
+		fecharConexao();
+
+		return funcao;
+
+	}
+	
+	public void setDescricaoFalha(String descricao, int chaveFalha) throws SQLException {
+		abrirConexao();
+		PreparedStatement state = con.prepareStatement("UPDATE  maquinas.falha SET descricao = ? WHERE chave=" + chaveFalha);
+		state.setString(1, descricao);
+		state.execute();
+	}
+	
+	public String getNomeFalha(int chaveFalha) throws SQLException {
+		abrirConexao();
+		String funcao;
+		PreparedStatement state = con
+				.prepareStatement("SELECT nome FROM maquinas.falha WHERE chave=" + chaveFalha);
+		ResultSet resSet = state.executeQuery();
+		
+
+		if(resSet.next())
+		funcao = resSet.getString(1);
+		else
+			funcao = "Falha na Conexão com Banco de Dados";
+		
+
+		state.close();
+		fecharConexao();
+
+		return funcao;
+
+	}
+	
+	public void setNomeFalha(String nome, int chaveFalha) throws SQLException {
+		abrirConexao();
+		PreparedStatement state = con.prepareStatement("UPDATE  maquinas.falha SET nome = ? WHERE chave=" + chaveFalha);
+		state.setString(1, nome);
+		state.execute();
+	}
 
 
 }

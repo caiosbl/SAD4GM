@@ -38,5 +38,59 @@ public class Falhas {
 		}
 
 	}
+	
+	public String getDescricao(int chaveFalha) {
+		String descricao;
+		
+		try {
+			descricao = fTools.getDescricaoFalha(chaveFalha);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			descricao = "Falha na Conexão com Banco de Dados!";
+		}
+		return descricao;
+	}
+	
+	public String setDescricao(String descricao, int chaveFalha) {
+		String status;
+		
+		try {
+			fTools.setDescricaoFalha(descricao, chaveFalha);
+			status = "Descrição atualizada com Sucesso!";
+		}
+		catch (Exception e) {
+			status = "Falha ao Atualizar Descrição!";
+		}
+		
+		return status;
+	}
+	
+	
+	
+	public String getNome(int chaveFalha) {
+		String nome;
+		
+		try {
+			nome = fTools.getNomeFalha(chaveFalha);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			nome = "Falha na Conexão com Banco de Dados!";
+		}
+		return nome;
+	}
+	
+	public String setNome(String nome, int chaveFalha) {
+		String status;
+		
+		try {
+			fTools.setNomeFalha(nome, chaveFalha);
+			status = "Nome atualizado com Sucesso!";
+		}
+		catch (Exception e) {
+			status = "Falha ao Atualizar Nome!";
+		}
+		
+		return status;
+	}
 
 }

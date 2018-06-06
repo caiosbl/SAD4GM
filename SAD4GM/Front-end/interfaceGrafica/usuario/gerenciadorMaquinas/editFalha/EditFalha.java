@@ -7,8 +7,6 @@ import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.gerenciadorMaquinas.editComponente.EditComponentOptions;
-import interfaceGrafica.usuario.gerenciadorMaquinas.editComponente.EditComponente;
-import interfaceGrafica.usuario.gerenciadorMaquinas.editSubsistema.EditSubsistemaOptions;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -59,7 +57,8 @@ public class EditFalha extends Main {
 	 */
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public EditFalha(String id, int xLocation, int yLocation, int chaveMaquina, int chaveSubsistema, int chaveComponente) {
+	public EditFalha(String id, int xLocation, int yLocation, int chaveMaquina, int chaveSubsistema,
+			int chaveComponente) {
 		super(xLocation, yLocation);
 		sistema = new Sistema();
 		this.idUsuario = id;
@@ -86,7 +85,8 @@ public class EditFalha extends Main {
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditComponentOptions eComOptions = new EditComponentOptions(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema, chaveComponente);
+				EditComponentOptions eComOptions = new EditComponentOptions(idUsuario, xLocation, yLocation,
+						chaveMaquina, chaveSubsistema, chaveComponente);
 				dispose();
 				eComOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				eComOptions.setVisible(true);
@@ -103,14 +103,15 @@ public class EditFalha extends Main {
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				int chaveComponente = mapaFalhas.get(nomesFalhas[boxFalhas.getSelectedIndex()]);
+				int chaveFalha = mapaFalhas.get(nomesFalhas[boxFalhas.getSelectedIndex()]);
 
-				EditComponentOptions eComOptions = new EditComponentOptions(idUsuario, xLocation, yLocation,
-						chaveMaquina, chaveSubsistema, chaveComponente);
+				EditFalhaOptions editFalhaOptions = new EditFalhaOptions(idUsuario, xLocation, yLocation, chaveMaquina,
+						chaveSubsistema, chaveComponente, chaveFalha);
 				dispose();
-				eComOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				eComOptions.setVisible(true);
-				eComOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				editFalhaOptions
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				editFalhaOptions.setVisible(true);
+				editFalhaOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 			}
 

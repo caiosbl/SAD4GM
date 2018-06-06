@@ -48,7 +48,7 @@ public class EditFalhaOptions extends Main {
 	 * @throws SQLException
 	 */
 
-	public EditFalhaOptions(String id, int xLocation, int yLocation, int chaveMaquina,int chaveSubsistema, int chaveComponente) {
+	public EditFalhaOptions(String id, int xLocation, int yLocation, int chaveMaquina,int chaveSubsistema, int chaveComponente, int chaveFalha) {
 		super(xLocation, yLocation);
 		this.idUsuario = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,11 +74,11 @@ public class EditFalhaOptions extends Main {
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditComponente editComponente = new EditComponente(id, xLocation, yLocation, chaveMaquina,chaveSubsistema);
+				EditFalha editFalha = new EditFalha(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema, chaveComponente);
 				dispose();
-				editComponente.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				editComponente.setVisible(true);
-				editComponente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				editFalha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				editFalha.setVisible(true);
+				editFalha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -115,7 +115,7 @@ public class EditFalhaOptions extends Main {
 				.setIcon(new ImageIcon(EditFalhaOptions.class.getResource("/Resources/icon/edit-info-falha.png")));
 		btnEditarSubsistema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SetComponente setSubsistema = new SetComponente(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema,chaveComponente);
+				SetFalha setSubsistema = new SetFalha(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema,chaveComponente,chaveFalha);
 				dispose();
 				setSubsistema.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setSubsistema.setVisible(true);
