@@ -127,6 +127,7 @@ public class SetFalha extends Main {
 							sistema.setNomeFalha(nome.getText().trim(), chaveFalha));
 					JOptionPane.showMessageDialog(null,
 							sistema.setDescricaoFalha(descricaoPane.getText().trim(), chaveFalha));
+					
 				}
 
 			}
