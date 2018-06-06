@@ -47,7 +47,8 @@ public class EditFalhaOptions extends Main {
 	 * @throws SQLException
 	 */
 
-	public EditFalhaOptions(String id, int xLocation, int yLocation, int chaveMaquina,int chaveSubsistema, int chaveComponente, int chaveFalha) {
+	public EditFalhaOptions(String id, int xLocation, int yLocation, int chaveMaquina, int chaveSubsistema,
+			int chaveComponente, int chaveFalha) {
 		super(xLocation, yLocation);
 		this.idUsuario = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,7 +74,8 @@ public class EditFalhaOptions extends Main {
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditFalha editFalha = new EditFalha(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema, chaveComponente);
+				EditFalha editFalha = new EditFalha(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema,
+						chaveComponente);
 				dispose();
 				editFalha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				editFalha.setVisible(true);
@@ -96,8 +98,13 @@ public class EditFalhaOptions extends Main {
 		JButton btnInserirModoFalha = new JButton("");
 		btnInserirModoFalha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				InsertModoFalha insertMFalha = new InsertModoFalha(idUsuario, xLocation, yLocation, chaveMaquina,
+						chaveSubsistema, chaveComponente, chaveFalha);
+				dispose();
+				insertMFalha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				insertMFalha.setVisible(true);
+				insertMFalha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 			}
 		});
 		btnInserirModoFalha
@@ -110,23 +117,26 @@ public class EditFalhaOptions extends Main {
 				.setIcon(new ImageIcon(EditFalhaOptions.class.getResource("/Resources/icon/edit-info-falha.png")));
 		btnEditarInfoFalha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SetFalha setSubsistema = new SetFalha(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema,chaveComponente,chaveFalha);
+				SetFalha setSubsistema = new SetFalha(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema,
+						chaveComponente, chaveFalha);
 				dispose();
-				setSubsistema.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				setSubsistema
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				setSubsistema.setVisible(true);
 				setSubsistema.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnEditarInfoFalha.setBounds(0, 183, 252, 74);
 		desktopPane.add(btnEditarInfoFalha);
-		
+
 		JButton editModosFalhaBtn = new JButton();
 		editModosFalhaBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
-		editModosFalhaBtn.setIcon(new ImageIcon(EditFalhaOptions.class.getResource("/Resources/icon/edit-modos-falha.png")));
+		editModosFalhaBtn
+				.setIcon(new ImageIcon(EditFalhaOptions.class.getResource("/Resources/icon/edit-modos-falha.png")));
 		editModosFalhaBtn.setBounds(0, 280, 252, 76);
 		desktopPane.add(editModosFalhaBtn);
 
