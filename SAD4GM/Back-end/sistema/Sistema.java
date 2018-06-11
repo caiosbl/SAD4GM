@@ -283,8 +283,8 @@ public class Sistema {
 		return cMFalhas.inserir(descricao, chaveFalha);
 	}
 
-	public Map<String, Integer> getMapaModosFalha() {
-		return cMFalhas.getMapaModosFalha();
+	public Map<String, Integer> getMapaModosFalha(int chaveFalha) {
+		return cMFalhas.getMapaModosFalha(chaveFalha);
 	}
 
 }

@@ -33,11 +33,11 @@ public class ModosFalhaTools extends DatabaseTools {
 
 
 
-	public Map<String, Integer> getMapaModosFalha() throws SQLException {
+	public Map<String, Integer> getMapaModosFalha(int chaveFalha) throws SQLException {
 		abrirConexao();
 		Map<String, Integer> subsistemas = new HashMap<>();
 
-		PreparedStatement state = con.prepareStatement("SELECT descricao,chave FROM maquinas.modo_falha");
+		PreparedStatement state = con.prepareStatement("SELECT descricao,chave FROM maquinas.modo_falha WHERE chave_falha=" + chaveFalha);
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {

@@ -29,10 +29,10 @@ public class ModosFalha {
 
 	}
 
-	public Map<String, Integer> getMapaModosFalha() {
+	public Map<String, Integer> getMapaModosFalha(int chaveFalha) {
 
 		try {
-			return mFTools.getMapaModosFalha();
+			return mFTools.getMapaModosFalha(chaveFalha);
 		} catch (SQLException e) {
 			return new HashMap<String, Integer>();
 		}

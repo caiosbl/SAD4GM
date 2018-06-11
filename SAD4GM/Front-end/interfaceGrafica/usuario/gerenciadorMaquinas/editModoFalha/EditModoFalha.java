@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.gerenciadorMaquinas.editComponente.EditComponentOptions;
 import interfaceGrafica.usuario.gerenciadorMaquinas.editFalha.EditFalhaOptions;
 import sistema.Sistema;
 
@@ -41,9 +40,9 @@ public class EditModoFalha extends Main {
 	private JPanel contentPane;
 	private String idUsuario;
 	@SuppressWarnings("rawtypes")
-	private JComboBox boxFalhas;
-	private Map<String, Integer> mapaFalhas;
-	private Object[] nomesFalhas;
+	private JComboBox boxModoFalhas;
+	private Map<String, Integer> mapaModosFalhas;
+	private Object[] nomesModosFalhas;
 
 	private Sistema sistema;
 
@@ -103,10 +102,10 @@ public class EditModoFalha extends Main {
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				int chaveFalha = mapaFalhas.get(nomesFalhas[boxFalhas.getSelectedIndex()]);
+				int chaveModoFalha = mapaModosFalhas.get(nomesModosFalhas[boxModoFalhas.getSelectedIndex()]);
 
 				EditFalhaOptions editFalhaOptions = new EditFalhaOptions(idUsuario, xLocation, yLocation, chaveMaquina,
-						chaveSubsistema, chaveComponente, chaveFalha);
+						chaveSubsistema, chaveComponente, chaveModoFalha);
 				dispose();
 				editFalhaOptions
 						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -130,11 +129,11 @@ public class EditModoFalha extends Main {
 		banner.setBounds(303, 24, 246, 88);
 		desktopPane.add(banner);
 
-		this.mapaFalhas = getMapaFalhas(chaveComponente);
-		nomesFalhas = mapaFalhas.keySet().toArray();
-		boxFalhas = new JComboBox(nomesFalhas);
-		boxFalhas.setBounds(191, 275, 268, 27);
-		desktopPane.add(boxFalhas);
+		this.mapaModosFalhas = getMapaModosFalhas(chaveFalha);
+		nomesModosFalhas = mapaModosFalhas.keySet().toArray();
+		boxModoFalhas = new JComboBox(nomesModosFalhas);
+		boxModoFalhas.setBounds(191, 275, 268, 27);
+		desktopPane.add(boxModoFalhas);
 
 		JLabel background = new JLabel("");
 		background.setIcon(new ImageIcon(EditModoFalha.class.getResource("/Resources/icon/formModofalha.png")));
@@ -142,11 +141,9 @@ public class EditModoFalha extends Main {
 		desktopPane.add(background);
 	}
 
-	public boolean isEmpty(String string) {
-		return string.equals("");
-	}
+	
 
-	public Map<String, Integer> getMapaFalhas(int chaveComponente) {
-		return sistema.getMapaFalhas(chaveComponente);
+	public Map<String, Integer> getMapaModosFalhas(int chaveFalha) {
+		return sistema.getMapaModosFalha(chaveFalha);
 	}
 }
