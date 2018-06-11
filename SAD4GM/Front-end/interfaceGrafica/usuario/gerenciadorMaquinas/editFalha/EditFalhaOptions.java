@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.gerenciadorMaquinas.editFalha.EditFalha;
+import interfaceGrafica.usuario.gerenciadorMaquinas.editModoFalha.EditModoFalha;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -53,7 +54,6 @@ public class EditFalhaOptions extends Main {
 		this.idUsuario = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
-		setResizable(false);
 		setBounds(xLocation, yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -132,6 +132,12 @@ public class EditFalhaOptions extends Main {
 		JButton editModosFalhaBtn = new JButton();
 		editModosFalhaBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				EditModoFalha editModoFalha = new EditModoFalha(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema, chaveComponente, chaveFalha);
+				dispose();
+				editModoFalha
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				editModoFalha.setVisible(true);
+				editModoFalha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 			}
 		});
