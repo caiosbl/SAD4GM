@@ -38,5 +38,32 @@ public class ModosFalha {
 		}
 
 	}
+	
+	
+	public String getDescricao(int chaveModoFalha) {
+		String descricao;
+		
+		try {
+			descricao = mFTools.getDescricaoModoFalha(chaveModoFalha);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			descricao = "Falha na Conexão com Banco de Dados!";
+		}
+		return descricao;
+	}
+	
+	public String setDescricao(String descricao, int chaveModoFalha) {
+		String status;
+		
+		try {
+			mFTools.setDescricaoModoFalha(descricao, chaveModoFalha);
+			status = "Descrição atualizada com Sucesso!";
+		}
+		catch (Exception e) {
+			status = "Falha ao Atualizar Descrição!";
+		}
+		
+		return status;
+	}
 
 }

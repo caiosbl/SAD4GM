@@ -1,4 +1,4 @@
-package interfaceGrafica.usuario.gerenciadorMaquinas.editFalha;
+package interfaceGrafica.usuario.gerenciadorMaquinas.editModoFalha;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -29,7 +29,7 @@ import javax.swing.ImageIcon;
  * @author caiosbl
  *
  */
-public class SetFalha extends Main {
+public class SetModoFalha extends Main {
 
 	/**
 	 * 
@@ -46,8 +46,8 @@ public class SetFalha extends Main {
 	/**
 	 * Create the frame.
 	 */
-	public SetFalha(String idUser, int xLocation, int yLocation, int chaveMaquina, int chaveSubsistema,
-			int chaveComponente, int chaveFalha) {
+	public SetModoFalha(String idUser, int xLocation, int yLocation, int chaveMaquina, int chaveSubsistema,
+			int chaveComponente, int chaveFalha, int chaveModoFalha) {
 		super(xLocation, yLocation);
 		this.idUsuario = idUser;
 
@@ -70,38 +70,31 @@ public class SetFalha extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(SetFalha.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.setBounds(490, 420, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditFalhaOptions compOptions = new EditFalhaOptions(idUsuario, xLocation, yLocation, chaveMaquina,
+				EditModoFalha editModoFalha = new EditModoFalha(idUsuario, xLocation, yLocation, chaveMaquina,
 						chaveSubsistema, chaveComponente, chaveFalha);
 				dispose();
-				compOptions.setVisible(true);
-				compOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				editModoFalha.setVisible(true);
+				editModoFalha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnVoltar);
 
-		JTextPane nome = new JTextPane();
-		nome.setEditable(false);
-		nome.setBounds(190, 210, 264, 24);
-		nome.setText(sistema.getNomeFalha(chaveFalha));
-		desktopPane.add(nome);
-
 		JTextPane descricaoPane = new JTextPane();
-		descricaoPane.setText(sistema.getDescricaoFalha(chaveFalha));
+		descricaoPane.setText(sistema.getDescricaoModoFalha(chaveModoFalha));
 		JScrollPane jPane = new JScrollPane(descricaoPane);
 		jPane.setBounds(188, 244, 268, 80);
 		descricaoPane.setEditable(false);
 		desktopPane.add(jPane);
 
 		JButton btnEditar = new JButton("");
-		btnEditar.setIcon(new ImageIcon(SetFalha.class.getResource("/Resources/icon/editbutton.png")));
+		btnEditar.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/editbutton.png")));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				nome.setEditable(true);
 				descricaoPane.setEditable(true);
 			}
 		});
@@ -109,24 +102,18 @@ public class SetFalha extends Main {
 		desktopPane.add(btnEditar);
 
 		JButton btnAtualizar = new JButton("");
-		btnAtualizar.setIcon(new ImageIcon(SetFalha.class.getResource("/Resources/icon/atualizarbutton.png")));
+		btnAtualizar.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/atualizarbutton.png")));
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (isEmpty(nome.getText().trim())) {
-					nome.setText(sistema.getNomeFalha(chaveFalha));
-					JOptionPane.showMessageDialog(null, "Nome Inválido!");
-				} else if (isEmpty(descricaoPane.getText().trim())) {
-					descricaoPane.setText(sistema.getDescricaoFalha(chaveFalha));
+				 if (isEmpty(descricaoPane.getText().trim())) {
+					descricaoPane.setText(sistema.getDescricaoModoFalha(chaveModoFalha));
 					JOptionPane.showMessageDialog(null, "Descrição Inválida");
 				}
 
 				else {
-
 					JOptionPane.showMessageDialog(null,
-							sistema.setNomeFalha(nome.getText().trim(), chaveFalha));
-					JOptionPane.showMessageDialog(null,
-							sistema.setDescricaoFalha(descricaoPane.getText().trim(), chaveFalha));
+							sistema.setDescricaoModoFalha(descricaoPane.getText().trim(), chaveModoFalha));
 					
 				}
 
@@ -138,17 +125,17 @@ public class SetFalha extends Main {
 		desktopPane.add(btnAtualizar);
 
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(SetFalha.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(SetFalha.class.getResource("/Resources/icon/editar-infofalha-banner.png")));
+		banner.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/editar-infofalha-banner.png")));
 		banner.setBounds(274, 28, 286, 90);
 		desktopPane.add(banner);
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(SetFalha.class.getResource("/Resources/icon/insert-falha-form.png")));
+		label.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/insert-falha-form.png")));
 		label.setBounds(108, 172, 393, 225);
 		desktopPane.add(label);
 

@@ -50,4 +50,32 @@ public class ModosFalhaTools extends DatabaseTools {
 		return subsistemas;
 
 	}
+	
+	public String getDescricaoModoFalha(int chaveModoFalha) throws SQLException {
+		abrirConexao();
+		String funcao;
+		PreparedStatement state = con
+				.prepareStatement("SELECT descricao FROM maquinas.modo_falha WHERE chave=" + chaveModoFalha);
+		ResultSet resSet = state.executeQuery();
+		
+
+		if(resSet.next())
+		funcao = resSet.getString(1);
+		else
+			funcao = "Falha na Conexão com Banco de Dados";
+		
+
+		state.close();
+		fecharConexao();
+
+		return funcao;
+
+	}
+	
+	public void setDescricaoModoFalha(String descricao, int chaveModoFalha) throws SQLException {
+		abrirConexao();
+		PreparedStatement state = con.prepareStatement("UPDATE  maquinas.modo_falha SET descricao = ? WHERE chave=" + chaveModoFalha);
+		state.setString(1, descricao);
+		state.execute();
+	}
 }

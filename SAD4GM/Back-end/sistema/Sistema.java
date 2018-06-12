@@ -286,5 +286,13 @@ public class Sistema {
 	public Map<String, Integer> getMapaModosFalha(int chaveFalha) {
 		return cMFalhas.getMapaModosFalha(chaveFalha);
 	}
+	
+	public String getDescricaoModoFalha(int chaveModoFalha) {
+		return cMFalhas.getDescricao(chaveModoFalha);
+	}
+	
+	public String setDescricaoModoFalha (String nome, int chaveModoFalha) {
+		return cMFalhas.setDescricao(nome,chaveModoFalha);
+	}
 
 }
