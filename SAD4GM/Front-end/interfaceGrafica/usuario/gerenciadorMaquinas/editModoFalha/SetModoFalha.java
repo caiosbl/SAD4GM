@@ -72,6 +72,14 @@ public class SetModoFalha extends Main {
 		JButton btnVoltar = new JButton("");
 		btnVoltar.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.setBounds(490, 420, 90, 27);
+		JScrollPane jPane = new JScrollPane();
+		jPane.setBounds(188, 198, 268, 140);
+		desktopPane.add(jPane);
+		
+				JTextPane descricaoPane = new JTextPane();
+				jPane.setViewportView(descricaoPane);
+				descricaoPane.setText(sistema.getDescricaoModoFalha(chaveModoFalha));
+				descricaoPane.setEditable(false);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				EditModoFalha editModoFalha = new EditModoFalha(idUsuario, xLocation, yLocation, chaveMaquina,
@@ -86,19 +94,6 @@ public class SetModoFalha extends Main {
 
 		JButton btnEditar = new JButton("");
 		btnEditar.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/editbutton.png")));
-		JScrollPane jPane = new JScrollPane();
-		jPane.setBounds(188, 198, 268, 140);
-		desktopPane.add(jPane);
-
-		JTextPane descricaoPane = new JTextPane();
-		jPane.setViewportView(descricaoPane);
-		descricaoPane.setText(sistema.getDescricaoModoFalha(chaveModoFalha));
-		descricaoPane.setEditable(false);
-
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/descricao-form-modo-falha.png")));
-		label.setBounds(108, 172, 393, 199);
-		desktopPane.add(label);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				descricaoPane.setEditable(true);
@@ -112,7 +107,7 @@ public class SetModoFalha extends Main {
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (isEmpty(descricaoPane.getText().trim())) {
+				 if (isEmpty(descricaoPane.getText().trim())) {
 					descricaoPane.setText(sistema.getDescricaoModoFalha(chaveModoFalha));
 					JOptionPane.showMessageDialog(null, "Descrição Inválida");
 				}
@@ -120,7 +115,7 @@ public class SetModoFalha extends Main {
 				else {
 					JOptionPane.showMessageDialog(null,
 							sistema.setDescricaoModoFalha(descricaoPane.getText().trim(), chaveModoFalha));
-
+					
 				}
 
 			}
@@ -139,6 +134,12 @@ public class SetModoFalha extends Main {
 		banner.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/editModoFalha.png")));
 		banner.setBounds(274, 28, 286, 90);
 		desktopPane.add(banner);
+			
+				
+						JLabel label = new JLabel("");
+						label.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/descricao-form-modo-falha.png")));
+						label.setBounds(100, 178, 393, 199);
+						desktopPane.add(label);
 
 	}
 
