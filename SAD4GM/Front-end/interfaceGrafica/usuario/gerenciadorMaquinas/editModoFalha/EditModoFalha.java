@@ -58,7 +58,7 @@ public class EditModoFalha extends Main {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public EditModoFalha(String id, int xLocation, int yLocation, int chaveMaquina, int chaveSubsistema,
-			int chaveComponente,int chaveFalha) {
+			int chaveComponente, int chaveFalha) {
 		super(xLocation, yLocation);
 		sistema = new Sistema();
 		this.idUsuario = id;
@@ -85,7 +85,8 @@ public class EditModoFalha extends Main {
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditFalhaOptions eComOptions = new EditFalhaOptions(idUsuario, xLocation, yLocation, chaveMaquina, chaveSubsistema, chaveComponente, chaveFalha);
+				EditFalhaOptions eComOptions = new EditFalhaOptions(idUsuario, xLocation, yLocation, chaveMaquina,
+						chaveSubsistema, chaveComponente, chaveFalha);
 				dispose();
 				eComOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				eComOptions.setVisible(true);
@@ -97,20 +98,19 @@ public class EditModoFalha extends Main {
 
 		JButton btnInserir = new JButton("");
 		btnInserir.setIcon(new ImageIcon(EditModoFalha.class.getResource("/Resources/icon/editbutton.png")));
-		btnInserir.setBounds(367, 335, 90, 27);
+		btnInserir.setBounds(367, 345, 90, 27);
 
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 				int chaveModoFalha = mapaModosFalhas.get(nomesModosFalhas[boxModoFalhas.getSelectedIndex()]);
 
-				EditFalhaOptions editFalhaOptions = new EditFalhaOptions(idUsuario, xLocation, yLocation, chaveMaquina,
-						chaveSubsistema, chaveComponente, chaveModoFalha);
+				SetModoFalha setModoFalha = new SetModoFalha(idUsuario, xLocation, yLocation, chaveMaquina,
+						chaveSubsistema, chaveComponente, chaveFalha, chaveModoFalha);
 				dispose();
-				editFalhaOptions
-						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				editFalhaOptions.setVisible(true);
-				editFalhaOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				setModoFalha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				setModoFalha.setVisible(true);
+				setModoFalha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 			}
 
@@ -132,7 +132,7 @@ public class EditModoFalha extends Main {
 		this.mapaModosFalhas = getMapaModosFalhas(chaveFalha);
 		nomesModosFalhas = mapaModosFalhas.keySet().toArray();
 		boxModoFalhas = new JComboBox(nomesModosFalhas);
-		boxModoFalhas.setBounds(191, 275, 268, 27);
+		boxModoFalhas.setBounds(189, 253, 268, 80);
 		desktopPane.add(boxModoFalhas);
 
 		JLabel background = new JLabel("");
@@ -140,8 +140,6 @@ public class EditModoFalha extends Main {
 		background.setBounds(92, 202, 434, 195);
 		desktopPane.add(background);
 	}
-
-	
 
 	public Map<String, Integer> getMapaModosFalhas(int chaveFalha) {
 		return sistema.getMapaModosFalha(chaveFalha);

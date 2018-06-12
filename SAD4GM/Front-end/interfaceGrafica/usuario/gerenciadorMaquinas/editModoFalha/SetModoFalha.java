@@ -84,21 +84,27 @@ public class SetModoFalha extends Main {
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnVoltar);
 
-		JTextPane descricaoPane = new JTextPane();
-		descricaoPane.setText(sistema.getDescricaoModoFalha(chaveModoFalha));
-		JScrollPane jPane = new JScrollPane(descricaoPane);
-		jPane.setBounds(188, 244, 268, 80);
-		descricaoPane.setEditable(false);
-		desktopPane.add(jPane);
-
 		JButton btnEditar = new JButton("");
 		btnEditar.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/editbutton.png")));
+		JScrollPane jPane = new JScrollPane();
+		jPane.setBounds(188, 198, 268, 140);
+		desktopPane.add(jPane);
+
+		JTextPane descricaoPane = new JTextPane();
+		jPane.setViewportView(descricaoPane);
+		descricaoPane.setText(sistema.getDescricaoModoFalha(chaveModoFalha));
+		descricaoPane.setEditable(false);
+
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/descricao-form-modo-falha.png")));
+		label.setBounds(108, 172, 393, 199);
+		desktopPane.add(label);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				descricaoPane.setEditable(true);
 			}
 		});
-		btnEditar.setBounds(188, 330, 90, 28);
+		btnEditar.setBounds(188, 340, 90, 28);
 		desktopPane.add(btnEditar);
 
 		JButton btnAtualizar = new JButton("");
@@ -106,7 +112,7 @@ public class SetModoFalha extends Main {
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				 if (isEmpty(descricaoPane.getText().trim())) {
+				if (isEmpty(descricaoPane.getText().trim())) {
 					descricaoPane.setText(sistema.getDescricaoModoFalha(chaveModoFalha));
 					JOptionPane.showMessageDialog(null, "Descrição Inválida");
 				}
@@ -114,14 +120,14 @@ public class SetModoFalha extends Main {
 				else {
 					JOptionPane.showMessageDialog(null,
 							sistema.setDescricaoModoFalha(descricaoPane.getText().trim(), chaveModoFalha));
-					
+
 				}
 
 			}
 
 		});
 
-		btnAtualizar.setBounds(362, 330, 90, 28);
+		btnAtualizar.setBounds(367, 340, 90, 28);
 		desktopPane.add(btnAtualizar);
 
 		JLabel logo = new JLabel("");
@@ -130,14 +136,9 @@ public class SetModoFalha extends Main {
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/editar-infofalha-banner.png")));
+		banner.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/editModoFalha.png")));
 		banner.setBounds(274, 28, 286, 90);
 		desktopPane.add(banner);
-
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/insert-falha-form.png")));
-		label.setBounds(108, 172, 393, 225);
-		desktopPane.add(label);
 
 	}
 
