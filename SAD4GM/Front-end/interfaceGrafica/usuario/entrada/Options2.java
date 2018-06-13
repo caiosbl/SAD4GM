@@ -185,7 +185,7 @@ public class Options2 extends Main {
 
 		JButton btnGerenciarUsurios = new JButton("");
 		btnGerenciarUsurios.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/usermanager.png")));
-		btnGerenciarUsurios.setBounds(214, 207, 169, 88);
+		btnGerenciarUsurios.setBounds(119, 184, 169, 88);
 		btnGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnGerenciarUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -202,7 +202,7 @@ public class Options2 extends Main {
 
 		JButton btnGerenciarMquinas = new JButton("");
 		btnGerenciarMquinas.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/machinemanager.png")));
-		btnGerenciarMquinas.setBounds(395, 207, 175, 88);
+		btnGerenciarMquinas.setBounds(300, 184, 175, 88);
 		btnGerenciarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MachineManagementOptions admMachineOptions = new MachineManagementOptions(idUsuario,getXLocation(),getYLocation());
@@ -232,24 +232,6 @@ public class Options2 extends Main {
 		});
 		btnMinhasInformaes_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		desktopPane2.add(btnMinhasInformaes_1);
-
-		JButton btnGerenciarAdmins = new JButton("");
-		btnGerenciarAdmins.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/adminmanagerbutton.png")));
-		btnGerenciarAdmins.setBounds(31, 207, 175, 88);
-		btnGerenciarAdmins.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AdminManagementOptions admAdminManagement = new AdminManagementOptions(idUsuario,getXLocation(),getYLocation());
-
-				dispose();
-				admAdminManagement
-						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				admAdminManagement.setVisible(true);
-				admAdminManagement.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-			}
-		});
-		btnGerenciarAdmins.setFont(new Font("Tahoma", Font.BOLD, 14));
-		desktopPane2.add(btnGerenciarAdmins);
 
 		JButton btnLogout2 = new JButton("");
 		btnLogout2.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logouticon.png")));
