@@ -143,6 +143,7 @@ public abstract class DatabaseTools {
 				"		senha VARCHAR(200),\r\n" + 
 				"		auditor LONG VARCHAR,\r\n" + 
 				"		ativo INTEGER,\r\n" + 
+				"		admin INTEGER DEFAULT 0,\r\n" + 
 				"		PRIMARY KEY (CHAVE))");
 
 		statement.execute();
