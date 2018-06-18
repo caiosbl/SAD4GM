@@ -191,7 +191,7 @@ public class InsertUser extends Main {
 		desktopPane.add(sad4logo);
 
 		JLabel insertUser = new JLabel("");
-		insertUser.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/insertUserBanner.png")));
+		insertUser.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/inserir-usuario.png")));
 		insertUser.setBounds(328, 25, 201, 94);
 		desktopPane.add(insertUser);
 		
