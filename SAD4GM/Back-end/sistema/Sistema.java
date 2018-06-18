@@ -105,8 +105,8 @@ public class Sistema {
 
 	// Funções de Usuário
 
-	public String cadastrarUsuario(String nome, String id, String senha, String auditor) {
-		return cUsuarios.inserir(nome, id, senha, auditor);
+	public String cadastrarUsuario(String nome, String id, String senha, String auditor,boolean admin) {
+		return cUsuarios.inserir(nome, id, senha, auditor,admin);
 	}
 
 	public String removerUsuario(String id) {

@@ -45,7 +45,7 @@ public class InsertUser extends Main {
 	private JTextField userName;
 	private JTextField auditorName;
 	private JTextField newIdUser;
-
+	private JToggleButton tglbtnAdmin;
 	/**
 	 * Launch the application.
 	 */
@@ -143,7 +143,8 @@ public class InsertUser extends Main {
 					}
 
 					else {
-						sistema.cadastrarUsuario(newUserName, idUser, newPassword, auditor);
+						boolean isAdmin = tglbtnAdmin.isSelected();
+						sistema.cadastrarUsuario(newUserName, idUser, newPassword, auditor,isAdmin);
 						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
 						UserManagementOptions userOptions = new UserManagementOptions(idAdmin,getXLocation(),getYLocation());
 						dispose();
@@ -194,11 +195,11 @@ public class InsertUser extends Main {
 		insertUser.setBounds(328, 25, 201, 94);
 		desktopPane.add(insertUser);
 		
-		JToggleButton tglbtnAdmin = new JToggleButton("");
+		tglbtnAdmin = new JToggleButton("");
 		desktopPane.setLayer(tglbtnAdmin, 0);
 		tglbtnAdmin.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/off.png")));
 		tglbtnAdmin.setSelectedIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/on-button.png")));
-		tglbtnAdmin.setBounds(224, 376, 32, 20);
+		tglbtnAdmin.setBounds(224, 378, 32, 20);
 		desktopPane.add(tglbtnAdmin);
 		
 				JLabel formUser = new JLabel("");
