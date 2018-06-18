@@ -15,8 +15,9 @@ public class Usuario {
 	private String id;
 	private String senha;
 	private String auditor;
+	private boolean isAdmin;
 
-	public Usuario(String nome, String id, String senha, String auditor) {
+	public Usuario(String nome, String id, String senha, String auditor, boolean admin) {
 		CheckUser.validateName(nome);
 		this.nome = nome;
 		CheckUser.validateId(id);
@@ -24,6 +25,7 @@ public class Usuario {
 		this.senha = senha;
 		CheckUser.validaAuditor(auditor);
 		this.auditor = auditor;
+		this.isAdmin = admin;
 	}
 
 	
@@ -38,6 +40,10 @@ public class Usuario {
 
 	public String getId() {
 		return id;
+	}
+	
+	public boolean isAdmin() {
+		return isAdmin;
 	}
 
 	public void setId(String id) {

@@ -36,10 +36,14 @@ public class UsuarioTools extends DatabaseTools {
 			throw new RuntimeErrorException(null, "ID já cadastrado!");
 
 		try {
+			
+			int admin = 0;
+			if (usuario.isAdmin())
+				admin = 1;
 
 			String encodingPassword = encriptarSenha(usuario.getSenha());
 
-			final String INSERIR = "INSERT INTO sad4gm.usuario (nome, id, senha,auditor,ativo) VALUES (?,?,?,?,?)";
+			final String INSERIR = "INSERT INTO sad4gm.usuario (nome, id, senha,auditor,ativo,admin) VALUES (?,?,?,?,?,?)";
 			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
 			stmt.setString(1, usuario.getNome());
@@ -47,6 +51,7 @@ public class UsuarioTools extends DatabaseTools {
 			stmt.setString(3, encodingPassword);
 			stmt.setString(4, usuario.getAuditor());
 			stmt.setInt(5, 1);
+			stmt.setInt(6,admin);
 			stmt.execute();
 			stmt.close();
 			fecharConexao();

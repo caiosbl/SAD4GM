@@ -37,13 +37,13 @@ public class Usuarios {
 	 *            Nome do Auditor
 	 * @return Status da Operação
 	 */
-	public String inserir(String nome, String id, String senha, String auditor) {
+	public String inserir(String nome, String id, String senha, String auditor, boolean admin) {
 
 		Usuario usuario;
 		String status;
 
 		try {
-			usuario = new Usuario(nome, id, senha, auditor);
+			usuario = new Usuario(nome, id, senha, auditor,admin);
 		} catch (Exception e) {
 			return e.getMessage();
 		}
