@@ -574,4 +574,21 @@ public class UsuarioTools extends DatabaseTools {
 
 		return chave;
 	}
+	
+	public boolean isAdmin(String id) throws SQLException {
+		PreparedStatement state = con
+				.prepareStatement("SELECT admin FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ?");
+		state.setString(1, id);
+		ResultSet resSet = state.executeQuery();
+		
+		int is = 0;
+
+		if (resSet.next())
+			is = resSet.getInt(1);
+
+		state.close();
+		fecharConexao();
+
+		return is == 1;
+	}
 }

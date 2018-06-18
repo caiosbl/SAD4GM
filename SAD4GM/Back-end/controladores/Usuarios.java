@@ -2,7 +2,6 @@ package controladores;
 
 import java.sql.SQLException;
 
-
 import databaseTools.UsuarioTools;
 import entidades.Usuario;
 import validadorInformacoes.CheckUser;
@@ -20,7 +19,6 @@ public class Usuarios {
 	 * Instância de Classe de Comunicação com Tabela de Usuários no Banco de Dados.
 	 */
 	private UsuarioTools uTools;
-
 
 	public Usuarios(UsuarioTools uTools) {
 		this.uTools = uTools;
@@ -134,8 +132,7 @@ public class Usuarios {
 
 		try {
 			uTools.setId(id, novoId);
-			
-			
+
 			status = "ID Atualizado com Sucesso!";
 		} catch (Exception e) {
 			status = "Falha ao Atualizar o ID!";
@@ -319,6 +316,14 @@ public class Usuarios {
 	 */
 	public boolean isAtivo(String id) throws SQLException {
 		return uTools.isAtivo(id);
+	}
+
+	public boolean isAdmin(String id) {
+		try {
+			return uTools.isAdmin(id);
+		} catch (SQLException e) {
+			return false;
+		}
 	}
 
 }

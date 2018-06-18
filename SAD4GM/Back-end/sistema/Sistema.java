@@ -156,6 +156,10 @@ public class Sistema {
 	public boolean isUsuarioAtivo(String id) throws SQLException {
 		return cUsuarios.isAtivo(id);
 	}
+	
+	public boolean isAdmin(String id) {
+		return cUsuarios.isAdmin(id);
+	}
 
 	// Funções de Máquina
 

@@ -23,6 +23,7 @@ import javax.swing.JSeparator;
 import sistema.Sistema;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -188,19 +189,25 @@ public class InsertUser extends Main {
 		sad4logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(sad4logo);
 
-		JLabel formUser = new JLabel("");
-		formUser.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/forminsertuser.png")));
-		formUser.setBounds(95, 145, 434, 270);
-		desktopPane.add(formUser);
-
 		JLabel insertUser = new JLabel("");
 		insertUser.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/insertUserBanner.png")));
 		insertUser.setBounds(328, 25, 201, 94);
 		desktopPane.add(insertUser);
+		
+		JToggleButton tglbtnAdmin = new JToggleButton("");
+		desktopPane.setLayer(tglbtnAdmin, 0);
+		tglbtnAdmin.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/off.png")));
+		tglbtnAdmin.setSelectedIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/on-button.png")));
+		tglbtnAdmin.setBounds(224, 376, 32, 20);
+		desktopPane.add(tglbtnAdmin);
+		
+				JLabel formUser = new JLabel("");
+				formUser.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/forminsertuser.png")));
+				formUser.setBounds(95, 145, 434, 270);
+				desktopPane.add(formUser);
 	}
 
 	public boolean isEmpty(String password) {
 		return password.equals("");
 	}
-
 }

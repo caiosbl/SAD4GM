@@ -16,6 +16,7 @@ import interfaceGrafica.usuario.gerenciadorMaquinas.InsertMaquina;
 import interfaceGrafica.usuario.gerenciadorMaquinas.MachineInformationEntry;
 import interfaceGrafica.usuario.gerenciadorMaquinas.MachinesList;
 import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachine;
+import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -27,6 +28,8 @@ import java.awt.SystemColor;
 import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
+import java.awt.Color;
+import javax.swing.UIManager;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -43,6 +46,8 @@ public class Options2 extends Main {
 	private JPanel usuarioPane;
 	private JPanel adminPane;
 	private String idUsuario;
+	private boolean isAdmin;
+	private Sistema sistema;
 
 	/**
 	 * Launch the application.
@@ -54,6 +59,8 @@ public class Options2 extends Main {
 	public Options2(String id, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
 		this.idUsuario = id;
+		this.sistema = new Sistema();
+		this.isAdmin = sistema.isAdmin(id);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -61,6 +68,7 @@ public class Options2 extends Main {
 		setBounds(xLocation, yLocation, 621, 497);
 
 		usuarioPane = new JPanel();
+		usuarioPane.setBackground(Color.WHITE);
 		usuarioPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		usuarioPane.setLayout(new BorderLayout(0, 0));
 		//setContentPane(contentPane);
@@ -173,6 +181,7 @@ public class Options2 extends Main {
 		
 		
 		//
+		 
 		
 		adminPane = new JPanel();
 		adminPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -264,8 +273,10 @@ public class Options2 extends Main {
 
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBackground(SystemColor.activeCaption);
 		tabbedPane.setBounds(xLocation, yLocation, 621, 497);
 		tabbedPane.add(usuarioPane,"Usuário");
+		//if (isAdmin)
 		tabbedPane.add(adminPane,"Admin");
 		
 		
