@@ -116,7 +116,8 @@ public class Login extends Main {
 					try {
 						if (sistema.autenticaUsuario(id, senha)) {
 							JOptionPane.showMessageDialog(null, "Bem-vindo " + sistema.getNomeUsuario(id) + "!");
-							Options uOptions = new Options(id,getXLocation(),getYLocation());
+							boolean isAdmin = sistema.isAdmin(id);
+							Options2 uOptions = new Options2(id,getXLocation(),getYLocation(),isAdmin);
 							dispose();
 							uOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 							uOptions.setVisible(true);

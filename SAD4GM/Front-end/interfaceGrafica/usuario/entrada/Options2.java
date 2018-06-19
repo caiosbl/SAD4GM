@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import interfaceGrafica.admin.entrada.MyInfo;
+
 import interfaceGrafica.admin.entrada.Options;
 import interfaceGrafica.admin.gerenciadorAdmins.AdminManagementOptions;
 import interfaceGrafica.admin.gerenciadorMaquinas.MachineManagementOptions;
@@ -56,11 +56,11 @@ public class Options2 extends Main {
 	/**
 	 * Create the frame.
 	 */
-	public Options2(String id, int xLocation, int yLocation) {
+	public Options2(String id, int xLocation, int yLocation, boolean isAdmin) {
 		super(xLocation, yLocation);
 		this.idUsuario = id;
 		this.sistema = new Sistema();
-		this.isAdmin = sistema.isAdmin(id);
+		this.isAdmin = isAdmin;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -71,7 +71,7 @@ public class Options2 extends Main {
 		usuarioPane.setBackground(Color.WHITE);
 		usuarioPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		usuarioPane.setLayout(new BorderLayout(0, 0));
-		//setContentPane(contentPane);
+		
 
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBackground(SystemColor.inactiveCaption);
@@ -278,6 +278,8 @@ public class Options2 extends Main {
 		tabbedPane.add(usuarioPane,"Usuário");
 		//if (isAdmin)
 		tabbedPane.add(adminPane,"Admin");
+		
+		setContentPane(tabbedPane);
 		
 		
 		
