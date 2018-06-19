@@ -26,6 +26,9 @@ import java.awt.SystemColor;
 import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.BevelBorder;
+import java.awt.Color;
 
 
 
@@ -68,7 +71,7 @@ public class Options extends Main {
 		usuarioPane = new JPanel();
 		usuarioPane.setForeground(SystemColor.activeCaption);
 		usuarioPane.setBackground(SystemColor.activeCaption);
-		usuarioPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		usuarioPane.setBorder(null);
 		usuarioPane.setLayout(new BorderLayout(0, 0));
 		
 
@@ -184,7 +187,7 @@ public class Options extends Main {
 		
 		adminPane = new JPanel();
 		adminPane.setBackground(SystemColor.activeCaption);
-		adminPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		adminPane.setBorder(null);
 		adminPane.setLayout(new BorderLayout(0, 0));
 		//setContentPane(adminPane);
 
@@ -273,16 +276,20 @@ public class Options extends Main {
 
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
-		tabbedPane.setForeground(SystemColor.activeCaption);
+		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		tabbedPane.setBorder(null);
+		tabbedPane.setForeground(Color.WHITE);
 		tabbedPane.setBackground(SystemColor.activeCaption);
 		tabbedPane.setBounds(xLocation, yLocation, 621, 497);
 		ImageIcon usericon = new ImageIcon(Options.class.getResource("/Resources/icon/usericon.png")); 
 		ImageIcon admicon = new ImageIcon(Options.class.getResource("/Resources/icon/admicon.png")); 
 		tabbedPane.add(usuarioPane,usericon);
-		
+		tabbedPane.add(adminPane,admicon);
+		tabbedPane.setEnabledAt(1, false);
 		
 		if (isAdmin)
-		tabbedPane.add(adminPane,admicon);
+			tabbedPane.setEnabledAt(1, true);
+		
 		
 		setContentPane(tabbedPane);
 		
