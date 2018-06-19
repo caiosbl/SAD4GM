@@ -165,8 +165,8 @@ public class InsertMaquina extends Main {
 		desktopPane.add(logo);
 		
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/inserirmaquinabanner.png")));
-		banner.setBounds(332, 32, 172, 82);
+		banner.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/inserirMaquinatitle.png")));
+		banner.setBounds(335, 26, 177, 99);
 		desktopPane.add(banner);
 		
 		JLabel form = new JLabel("");

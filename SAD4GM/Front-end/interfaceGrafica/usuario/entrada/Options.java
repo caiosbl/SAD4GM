@@ -6,11 +6,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+
+import interfaceGrafica.admin.gerenciadorMaquinas.MachineManagementOptions;
+import interfaceGrafica.admin.gerenciadorUsuarios.UserManagementOptions;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.gerenciadorMaquinas.InsertMaquina;
 import interfaceGrafica.usuario.gerenciadorMaquinas.MachineInformationEntry;
 import interfaceGrafica.usuario.gerenciadorMaquinas.MachinesList;
 import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachine;
+import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -21,6 +25,9 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
+import javax.swing.JTabbedPane;
+
+
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -34,8 +41,11 @@ public class Options extends Main {
 	 * 
 	 */
 	private static final long serialVersionUID = -1728238218376528571L;
-	private JPanel contentPane;
+	private JPanel usuarioPane;
+	private JPanel adminPane;
 	private String idUsuario;
+	private boolean isAdmin;
+	private Sistema sistema;
 
 	/**
 	 * Launch the application.
@@ -47,19 +57,24 @@ public class Options extends Main {
 	public Options(String id, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
 		this.idUsuario = id;
+		this.sistema = new Sistema();
+		this.isAdmin = sistema.isAdmin(id);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
 		setBounds(xLocation, yLocation, 621, 497);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+
+		usuarioPane = new JPanel();
+		usuarioPane.setForeground(SystemColor.activeCaption);
+		usuarioPane.setBackground(SystemColor.activeCaption);
+		usuarioPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		usuarioPane.setLayout(new BorderLayout(0, 0));
+		
 
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBackground(SystemColor.inactiveCaption);
-		contentPane.add(desktopPane, BorderLayout.CENTER);
+		usuarioPane.add(desktopPane, BorderLayout.CENTER);
 
 		JButton btnInserirMaquina = new JButton("");
 		btnInserirMaquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/insertMachineButton.png")));
@@ -162,5 +177,118 @@ public class Options extends Main {
 		btnEditarMaquina.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnEditarMaquina.setBounds(0, 241, 249, 73);
 		desktopPane.add(btnEditarMaquina);
+		
+		
+		//
+		 
+		
+		adminPane = new JPanel();
+		adminPane.setBackground(SystemColor.activeCaption);
+		adminPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		adminPane.setLayout(new BorderLayout(0, 0));
+		//setContentPane(adminPane);
+
+		JDesktopPane desktopPane2 = new JDesktopPane();
+		desktopPane2.setBackground(SystemColor.inactiveCaption);
+		adminPane.add(desktopPane2, BorderLayout.CENTER);
+
+		JButton btnGerenciarUsurios = new JButton("");
+		btnGerenciarUsurios.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/usermanager.png")));
+		btnGerenciarUsurios.setBounds(119, 184, 169, 88);
+		btnGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnGerenciarUsurios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				UserManagementOptions admUserOptions = new UserManagementOptions(idUsuario, getXLocation(),getYLocation());
+				dispose();
+				admUserOptions
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				admUserOptions.setVisible(true);
+				admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		desktopPane2.setLayout(null);
+		desktopPane2.add(btnGerenciarUsurios);
+
+		JButton btnGerenciarMquinas = new JButton("");
+		btnGerenciarMquinas.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/machinemanager.png")));
+		btnGerenciarMquinas.setBounds(300, 184, 175, 88);
+		btnGerenciarMquinas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MachineManagementOptions admMachineOptions = new MachineManagementOptions(idUsuario,getXLocation(),getYLocation());
+
+				dispose();
+				admMachineOptions
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				admMachineOptions.setVisible(true);
+				admMachineOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		btnGerenciarMquinas.setFont(new Font("Tahoma", Font.BOLD, 14));
+		desktopPane2.add(btnGerenciarMquinas);
+
+		JButton btnMinhasInformaes_1 = new JButton("");
+		btnMinhasInformaes_1.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/myinformationicon.png")));
+		btnMinhasInformaes_1.setBounds(336, 54, 122, 27);
+		btnMinhasInformaes_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MyInfo admMyInfo = new MyInfo(idUsuario,getXLocation(),getYLocation());
+
+				dispose();
+				admMyInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				admMyInfo.setVisible(true);
+				admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		btnMinhasInformaes_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		desktopPane2.add(btnMinhasInformaes_1);
+
+		JButton btnLogout2 = new JButton("");
+		btnLogout2.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logouticon.png")));
+		btnLogout2.setBounds(470, 54, 81, 27);
+		btnLogout2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Main entrada = new Main(getXLocation(),getYLocation());
+				dispose();
+				entrada.setVisible(true);
+				entrada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		btnLogout2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		desktopPane2.add(btnLogout2);
+
+		JSeparator separator2 = new JSeparator();
+		separator2.setBounds(0, 137, 605, 12);
+		desktopPane2.add(separator2);
+
+		JLabel label = new JLabel("");
+		label.setBounds(29, 40, 205, 74);
+		label.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/sad4logosmall.png")));
+		desktopPane2.add(label);
+
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/adminescudo.png")));
+		lblNewLabel.setBounds(237, 33, 368, 414);
+		desktopPane2.add(lblNewLabel);
+	
+
+
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
+		tabbedPane.setForeground(SystemColor.activeCaption);
+		tabbedPane.setBackground(SystemColor.activeCaption);
+		tabbedPane.setBounds(xLocation, yLocation, 621, 497);
+		ImageIcon usericon = new ImageIcon(Options.class.getResource("/Resources/icon/usericon.png")); 
+		ImageIcon admicon = new ImageIcon(Options.class.getResource("/Resources/icon/admicon.png")); 
+		tabbedPane.add(usuarioPane,usericon);
+		
+		
+		if (isAdmin)
+		tabbedPane.add(adminPane,admicon);
+		
+		setContentPane(tabbedPane);
+		
+		
+		
+		
+		
 	}
 }

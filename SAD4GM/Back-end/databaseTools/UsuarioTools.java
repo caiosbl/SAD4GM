@@ -565,6 +565,7 @@ public class UsuarioTools extends DatabaseTools {
 
 	public int getChave(String id, Connection con) throws SQLException {
 
+		abrirConexao();
 		PreparedStatement state = con
 				.prepareStatement("SELECT chave FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ?");
 		state.setString(1, id);
@@ -581,6 +582,7 @@ public class UsuarioTools extends DatabaseTools {
 	}
 	
 	public boolean isAdmin(String id) throws SQLException {
+		abrirConexao();
 		PreparedStatement state = con
 				.prepareStatement("SELECT admin FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ?");
 		state.setString(1, id);

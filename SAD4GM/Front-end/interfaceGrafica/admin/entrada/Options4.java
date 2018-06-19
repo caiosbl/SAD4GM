@@ -32,7 +32,7 @@ import javax.swing.ImageIcon;
  * @author caiosbl
  *
  */
-public class Options extends Main {
+public class Options4 extends Main {
 
 	/**
 	 * 
@@ -48,7 +48,7 @@ public class Options extends Main {
 	/**
 	 * Create the frame.
 	 */
-	public Options(String id,int xLocation,int yLocation) {
+	public Options4(String id,int xLocation,int yLocation) {
 		super(xLocation, yLocation);
 		
 

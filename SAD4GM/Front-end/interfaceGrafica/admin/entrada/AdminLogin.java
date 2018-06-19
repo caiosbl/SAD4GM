@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
+import interfaceGrafica.usuario.entrada.Options;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
