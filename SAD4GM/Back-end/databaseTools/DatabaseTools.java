@@ -53,8 +53,8 @@ public abstract class DatabaseTools {
 
 			criarSchema(con);
 			criarTabelaAdmins(con);
-			inserirAdminDefault(con);
 			criarTabelaUsuarios(con);
+			inserirAdminDefault(con);
 			criarTabelaMaquinas(con);
 			criarTabelaSubsistema(con);
 			criarTabelaComponente(con);
@@ -118,7 +118,7 @@ public abstract class DatabaseTools {
 		String senhaDefault = encriptarSenha("rootdesides");
 
 		PreparedStatement statement = con
-				.prepareStatement("INSERT INTO sad4gm.admin (nome,senha,id) VALUES ('Desides Admin',?,'admin')");
+				.prepareStatement("INSERT INTO sad4gm.usuario (admin,ativo,auditor,senha,id,nome) VALUES (1,1,'Fernando',?,'admin','Caio')");
 
 		statement.setString(1, senhaDefault);
 		statement.execute();
@@ -172,7 +172,7 @@ public abstract class DatabaseTools {
 				"				    PRIMARY KEY (chave), \r\n" + 
 				"					CONSTRAINT maquina_chave_usuario_fkey \r\n" + 
 				"					FOREIGN KEY (chave_usuario)  \r\n" + 
-				"					REFERENCES sad4gm.usuario (chave))\r\n" + 
+				"					REFERENCES sad4gm.usuario (chave) ON DELETE CASCADE )\r\n" + 
 				"					");
 
 		statement.execute();
@@ -187,7 +187,7 @@ public abstract class DatabaseTools {
 				"				chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
 				"				chave_maquina INTEGER NOT NULL,\r\n" + 
 				"				PRIMARY KEY (chave) ,\r\n" + 
-				"				CONSTRAINT subsistema_chave_maquina_fkey FOREIGN KEY (chave_maquina) REFERENCES maquinas.maquina(chave)\r\n" + 
+				"				CONSTRAINT subsistema_chave_maquina_fkey FOREIGN KEY (chave_maquina) REFERENCES maquinas.maquina(chave) ON DELETE CASCADE \r\n" + 
 				"				)");
 
 		statement.execute();
@@ -201,7 +201,7 @@ public abstract class DatabaseTools {
 				"chave_subsistema INTEGER NOT NULL,\r\n" + 
 				"funcao LONG VARCHAR,\r\n" + 
 				"PRIMARY KEY (chave)," + 
-				"CONSTRAINT componente_chave_subsistema_fkey FOREIGN KEY (chave_subsistema) REFERENCES maquinas.subsistema(chave)\r\n" + 
+				"CONSTRAINT componente_chave_subsistema_fkey FOREIGN KEY (chave_subsistema) REFERENCES maquinas.subsistema(chave) ON DELETE CASCADE\r\n" + 
 				")");
 
 		statement.execute();
@@ -216,7 +216,7 @@ public abstract class DatabaseTools {
 				"				CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
 				"				CHAVE_COMPONENTE INTEGER NOT NULL, \r\n" + 
 				"				PRIMARY KEY (CHAVE),\r\n" + 
-				"				CONSTRAINT falha_chave_componente_fkey FOREIGN KEY (CHAVE_COMPONENTE) REFERENCES maquinas.componente(CHAVE) ON DELETE CASCADE);;");
+				"				CONSTRAINT falha_chave_componente_fkey FOREIGN KEY (CHAVE_COMPONENTE) REFERENCES maquinas.componente(CHAVE) ON DELETE CASCADE)");
 
 		statement.execute();
 		statement.close();
@@ -231,7 +231,7 @@ public abstract class DatabaseTools {
 				"CHAVE_FALHA INTEGER NOT NULL,\r\n" + 
 				"PRIMARY KEY(CHAVE),\r\n" + 
 				"CONSTRAINT modo_falha_chave_falha_fkey FOREIGN KEY (CHAVE_FALHA) REFERENCES MAQUINAS.FALHA(CHAVE) ON DELETE CASCADE\r\n" + 
-				");");
+				")");
 
 		statement.execute();
 		statement.close();
