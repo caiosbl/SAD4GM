@@ -78,6 +78,7 @@ public class MachineManagementOptions extends Main {
 				Options admOptions = new Options(idAdmin, getXLocation(),getYLocation());
 
 				dispose();
+				admOptions.setTabbedPane(1);
 				admOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admOptions.setVisible(true);
 				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -98,6 +99,15 @@ public class MachineManagementOptions extends Main {
 		desktopPane.add(banner);
 		
 		JButton removeSubsistemaBtn = new JButton("");
+		removeSubsistemaBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SubsistemaRemove subsistemaRemove = new SubsistemaRemove(idAdmin,getXLocation(),getYLocation());
+				dispose();
+				subsistemaRemove.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				subsistemaRemove.setVisible(true);
+				subsistemaRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		removeSubsistemaBtn.setSelectedIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/removesubenabled.png")));
 		removeSubsistemaBtn.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/removesubdisabled.png")));
 		removeSubsistemaBtn.setFont(new Font("Tahoma", Font.BOLD, 12));

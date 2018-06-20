@@ -127,8 +127,8 @@ public class UserManagementOptions extends Main {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Options admOptions = new Options(idAdmin,getXLocation(),getYLocation());
-
 				dispose();
+				admOptions.setTabbedPane(1);
 				admOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admOptions.setVisible(true);
 				admOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

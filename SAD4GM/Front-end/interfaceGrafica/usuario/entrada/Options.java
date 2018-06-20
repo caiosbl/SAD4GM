@@ -47,6 +47,7 @@ public class Options extends Main {
 	private String idUsuario;
 	private boolean isAdmin;
 	private Sistema sistema;
+	private JTabbedPane tabbedPane;
 
 	/**
 	 * Launch the application.
@@ -273,7 +274,7 @@ public class Options extends Main {
 	
 
 
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
+		tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBorder(null);
 		tabbedPane.setForeground(Color.WHITE);
@@ -295,5 +296,9 @@ public class Options extends Main {
 		
 		
 		
+	}
+	
+	public void setTabbedPane(int index) {
+		tabbedPane.setSelectedIndex(index);
 	}
 }
