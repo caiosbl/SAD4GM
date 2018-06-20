@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+
 
 
 import interfaceGrafica.admin.gerenciadorMaquinas.MachineManagementOptions;
@@ -26,8 +26,6 @@ import java.awt.SystemColor;
 import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.BevelBorder;
 import java.awt.Color;
 
 

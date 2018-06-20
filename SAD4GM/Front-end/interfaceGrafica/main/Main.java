@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import interfaceGrafica.admin.entrada.AdminLogin;
+
 import interfaceGrafica.usuario.entrada.Login;
 
 import javax.swing.JDesktopPane;
@@ -113,14 +113,6 @@ public class Main extends JFrame {
 		desktopPane.setBackground(Color.GRAY);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 
-		JLabel lblEscolhaSeuTipo = new JLabel("");
-		lblEscolhaSeuTipo.setIcon(new ImageIcon(Main.class.getResource("/Resources/icon/entrarcomobutton.png")));
-		lblEscolhaSeuTipo.setForeground(SystemColor.inactiveCaptionBorder);
-		lblEscolhaSeuTipo.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblEscolhaSeuTipo.setBackground(new Color(255, 255, 255));
-		lblEscolhaSeuTipo.setBounds(180, 199, 227, 34);
-		desktopPane.add(lblEscolhaSeuTipo);
-
 		JButton button = new JButton("");
 		button.setIcon(new ImageIcon(Main.class.getResource("/Resources/icon/usuariobutton.png")));
 		button.addActionListener(new ActionListener() {
@@ -135,25 +127,8 @@ public class Main extends JFrame {
 		button.setForeground(new Color(0, 0, 51));
 		button.setFont(new Font("Tahoma", Font.BOLD, 11));
 		button.setBackground(SystemColor.activeCaption);
-		button.setBounds(295, 266, 124, 53);
+		button.setBounds(268, 268, 124, 53);
 		desktopPane.add(button);
-
-		JButton button_1 = new JButton("");
-		button_1.setIcon(new ImageIcon(Main.class.getResource("/Resources/icon/adminbutton.png")));
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AdminLogin admLogin = new AdminLogin(getXLocation(),getYLocation());
-				dispose();
-				admLogin.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				admLogin.setVisible(true);
-				admLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-		});
-		button_1.setForeground(new Color(0, 0, 51));
-		button_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button_1.setBackground(SystemColor.activeCaption);
-		button_1.setBounds(158, 266, 130, 53);
-		desktopPane.add(button_1);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Main.class.getResource("/Resources/icon/sad4logo.png")));
