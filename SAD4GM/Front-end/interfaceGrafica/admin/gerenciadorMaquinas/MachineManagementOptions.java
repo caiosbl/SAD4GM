@@ -1,6 +1,8 @@
 package interfaceGrafica.admin.gerenciadorMaquinas;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -57,29 +59,13 @@ public class MachineManagementOptions extends Main {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JButton btnListMachines = new JButton("");
-		btnListMachines.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/listmachineicon.png")));
-		btnListMachines.setBounds(0, 198, 249, 73);
-		desktopPane.add(btnListMachines);
-		btnListMachines.setFont(new Font("Tahoma", Font.BOLD, 12));
-
-		JButton btnViewMachine = new JButton("");
-		btnViewMachine.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/viewmachineicon.png")));
-		btnViewMachine.setBounds(0, 283, 249, 73);
-		desktopPane.add(btnViewMachine);
-		btnViewMachine.setFont(new Font("Tahoma", Font.BOLD, 12));
-
 		JButton btnRemoveMachine = new JButton("");
-		btnRemoveMachine.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/removemachineicon.png")));
-		btnRemoveMachine.setBounds(356, 283, 249, 73);
+		btnRemoveMachine.setSelectedIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/removemenabled.png")));
+		btnRemoveMachine.setBackground(new Color(0,0,0,0));
+		btnRemoveMachine.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/removemdisabled.png")));
+		btnRemoveMachine.setBounds(25, 195, 137, 145);
 		desktopPane.add(btnRemoveMachine);
 		btnRemoveMachine.setFont(new Font("Tahoma", Font.BOLD, 12));
-
-		JButton btnSetMachine = new JButton("");
-		btnSetMachine.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/setmachineicon.png")));
-		btnSetMachine.setBounds(356, 198, 249, 73);
-		desktopPane.add(btnSetMachine);
-		btnSetMachine.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 137, 582, 12);
@@ -107,19 +93,17 @@ public class MachineManagementOptions extends Main {
 		desktopPane.add(logo);
 		
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/machinemanagerbanner.png")));
+		banner.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/gerenciadormaquinatitle.png")));
 		banner.setBounds(298, 30, 253, 84);
 		desktopPane.add(banner);
-		btnSetMachine.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				SetMachineEntry setMachine = new SetMachineEntry(idAdmin,getXLocation(),getYLocation());
-
-				dispose();
-				setMachine.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				setMachine.setVisible(true);
-				setMachine.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-		});
+		
+		JButton removeSubsistemaBtn = new JButton("");
+		removeSubsistemaBtn.setSelectedIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/removesubenabled.png")));
+		removeSubsistemaBtn.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/removesubdisabled.png")));
+		removeSubsistemaBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
+		removeSubsistemaBtn.setBackground(new Color(0, 0, 0, 0));
+		removeSubsistemaBtn.setBounds(153, 195, 137, 145);
+		desktopPane.add(removeSubsistemaBtn);
 		btnRemoveMachine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MachineRemove machineRemove = new MachineRemove(idAdmin,getXLocation(),getYLocation());
@@ -128,27 +112,6 @@ public class MachineManagementOptions extends Main {
 				machineRemove.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				machineRemove.setVisible(true);
 				machineRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-		});
-		btnViewMachine.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MachineInformationEntry machinesInformationEntry = new MachineInformationEntry(idAdmin,getXLocation(),getYLocation());
-
-				dispose();
-				machinesInformationEntry.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				machinesInformationEntry.setVisible(true);
-				machinesInformationEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-		});
-		btnListMachines.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				MachinesList machinesList = new MachinesList(idAdmin,getXLocation(),getYLocation());
-
-				dispose();
-				machinesList.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				machinesList.setVisible(true);
-				machinesList.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 	}

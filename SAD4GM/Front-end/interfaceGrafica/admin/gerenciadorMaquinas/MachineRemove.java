@@ -73,8 +73,8 @@ public class MachineRemove extends Main {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MachineManagementOptions machineOptions = new MachineManagementOptions(idAdmin,getXLocation(),getYLocation());
-
 				dispose();
+				machineOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				machineOptions.setVisible(true);
 				machineOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}

@@ -210,15 +210,13 @@ public abstract class DatabaseTools {
 	
 	private void criarTabelaFalha(Connection con) throws SQLException {
 
-		PreparedStatement statement = con.prepareStatement("\r\n" + 
-				"CREATE TABLE maquinas.falha(\r\n" + 
-				"nome LONG VARCHAR,\r\n" + 
-				"descricao LONG VARCHAR,\r\n" + 
-				"chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
-				"chave_componente INTEGER NOT NULL,\r\n" + 
-				"PRIMARY KEY (chave)," + 
-				"CONSTRAINT falha_chave_componente_fkey FOREIGN KEY (chave_componente) REFERENCES maquinas.componente(chave)\r\n" + 
-				")");
+		PreparedStatement statement = con.prepareStatement("CREATE TABLE MAQUINAS.FALHA(\r\n" + 
+				"				NOME LONG VARCHAR,\r\n" + 
+				"				DESCRICAO LONG VARCHAR,\r\n" + 
+				"				CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
+				"				CHAVE_COMPONENTE INTEGER NOT NULL, \r\n" + 
+				"				PRIMARY KEY (CHAVE),\r\n" + 
+				"				CONSTRAINT falha_chave_componente_fkey FOREIGN KEY (CHAVE_COMPONENTE) REFERENCES maquinas.componente(CHAVE) ON DELETE CASCADE);;");
 
 		statement.execute();
 		statement.close();
@@ -227,14 +225,13 @@ public abstract class DatabaseTools {
 	private void criarTabelaModoFalha(Connection con) throws SQLException {
 
 		PreparedStatement statement = con.prepareStatement("\r\n" + 
-				"\r\n" + 
-				"CREATE TABLE maquinas.modo_falha(\r\n" + 
-				"descricao LONG VARCHAR,\r\n" + 
-				"chave INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
-				"chave_falha INTEGER NOT NULL,\r\n" + 
-				"PRIMARY KEY(chave),\r\n" + 
-				"CONSTRAINT modo_falha_chave_falha_fkey FOREIGN KEY (chave_falha) REFERENCES maquinas.falha(chave)\r\n" + 
-				")");
+				"CREATE TABLE MAQUINAS.MODO_FALHA(\r\n" + 
+				"DESCRICAO LONG VARCHAR,\r\n" + 
+				"CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
+				"CHAVE_FALHA INTEGER NOT NULL,\r\n" + 
+				"PRIMARY KEY(CHAVE),\r\n" + 
+				"CONSTRAINT modo_falha_chave_falha_fkey FOREIGN KEY (CHAVE_FALHA) REFERENCES MAQUINAS.FALHA(CHAVE) ON DELETE CASCADE\r\n" + 
+				");");
 
 		statement.execute();
 		statement.close();
