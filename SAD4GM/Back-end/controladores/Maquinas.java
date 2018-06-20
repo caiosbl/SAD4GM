@@ -66,22 +66,15 @@ public class Maquinas {
 	/**
 	 * Remove uma Máquina do Banco de Dados
 	 * 
-	 * @param codigo
+	 * @param chave
 	 *            Código da Máquina a ser Removida.
 	 * @return Status da Operação.
 	 */
-	public String remover(String codigo) {
+	public String remover(int chave) {
 		String status;
-		int codigoInt;
 
 		try {
-			codigoInt = Maquina.parseCodigo(codigo);
-		} catch (Exception e) {
-			return e.getMessage();
-		}
-
-		try {
-			mTools.deletar(codigoInt);
+			mTools.deletar(chave);
 			status = "Máquina removida com sucesso!";
 		} catch (Exception e) {
 			status = e.getMessage();

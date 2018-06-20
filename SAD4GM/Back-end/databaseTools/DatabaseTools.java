@@ -52,7 +52,6 @@ public abstract class DatabaseTools {
 			con = DriverManager.getConnection("jdbc:derby:Sad4gmDatabase; create = true");
 
 			criarSchema(con);
-			criarTabelaAdmins(con);
 			criarTabelaUsuarios(con);
 			inserirAdminDefault(con);
 			criarTabelaMaquinas(con);
@@ -85,24 +84,9 @@ public abstract class DatabaseTools {
 		statement1.close();
 	}
 
-	/**
-	 * Cria a Tabela de Admins no Banco de Dados.
-	 * 
-	 * @param con
-	 *            Conexão com o Banco de Dados.
-	 * @throws SQLException
-	 *             Lança uma SQLException caso haja alguma falha na conexão com o
-	 *             Banco de Dados.
-	 */
-	private void criarTabelaAdmins(Connection con) throws SQLException {
-		PreparedStatement statement = con.prepareStatement("create table sad4gm.admin(\r\n" + "nome long VARCHAR,\r\n"
-				+ "id long VARCHAR,\r\n" + "senha long VARCHAR\r\n" + ")");
-		statement.execute();
-		statement.close();
-	}
 
 	/**
-	 * Insere o Admin Default na Tabela de Admins
+	 * Insere o Admin Default na Tabela de Usuário
 	 * 
 	 * @param con
 	 *            Conexão com o Banco de Dados.

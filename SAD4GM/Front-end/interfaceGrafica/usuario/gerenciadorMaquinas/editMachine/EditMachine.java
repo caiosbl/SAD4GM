@@ -138,9 +138,7 @@ public class EditMachine extends Main {
 		desktopPane.add(background);
 	}
 
-	public boolean isEmpty(String string) {
-		return string.equals("");
-	}
+	
 
 	public Map<String, Integer> getMapaMaquinas() {
 		return sistema.getMapaMaquinas();

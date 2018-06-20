@@ -81,7 +81,7 @@ public class MaquinaTools extends DatabaseTools {
 	/**
 	 * Apaga uma Máquina do Banco de Dados.
 	 * 
-	 * @param codigo
+	 * @param chave
 	 *            Código da Máquina a ser Removida.
 	 * @throws SQLException
 	 *             Lança uma SQLException caso haja falha na conexão com Banco de
@@ -90,16 +90,14 @@ public class MaquinaTools extends DatabaseTools {
 	 *             Lança uma RuntimeErrorException caso a Máquina não esteja
 	 *             cadastrada.
 	 */
-	public void deletar(int codigo) throws SQLException {
-		if (!hasMaquina(codigo))
-			throw new RuntimeErrorException(null, "Máquina não cadastrada!");
+	public void deletar(int chave) throws SQLException {
 
 		try {
+			
 
-			final String DELETE = "DELETE FROM maquinas.maquina where codigo = ?";
+			final String DELETE = "DELETE FROM maquinas.maquina where chave =" + chave;
 			abrirConexao();
 			PreparedStatement stmt = con.prepareStatement(DELETE);
-			stmt.setInt(1, codigo);
 			stmt.execute();
 			stmt.close();
 			fecharConexao();

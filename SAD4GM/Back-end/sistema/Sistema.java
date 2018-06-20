@@ -167,8 +167,8 @@ public class Sistema {
 		return cMaquinas.inserir(nome, codigo, descricao, idUsuario);
 	}
 
-	public String removerMaquina(String codigo) {
-		return cMaquinas.remover(codigo);
+	public String removerMaquina(int chave) {
+		return cMaquinas.remover(chave);
 	}
 
 	public String setNomeMaquina(String codigo, String novoNome) {

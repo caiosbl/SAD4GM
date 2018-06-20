@@ -17,11 +17,14 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
-import javax.swing.JTextField;
+
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -37,8 +40,12 @@ public class MachineRemove extends Main {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idAdmin;
-	private JTextField idField;
-	private Sistema sistema = new Sistema();
+	@SuppressWarnings("rawtypes")
+	private JComboBox boxMaquinas;
+	private Map<String, Integer> mapaMaquinas;
+	private Object[] nomesMaquinas;
+	private Sistema sistema;
+	
 
 	/**
 	 * Launch the application.
@@ -47,9 +54,11 @@ public class MachineRemove extends Main {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public MachineRemove(String id, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
 		this.idAdmin = id;
+		this.sistema = new Sistema();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -82,39 +91,26 @@ public class MachineRemove extends Main {
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnVoltar.setBounds(492, 388, 83, 23);
 		desktopPane.add(btnVoltar);
+		
+		this.mapaMaquinas = getMapaMaquinas();
 
-		idField = new JTextField();
-		idField.setBounds(200, 248, 206, 28);
-		desktopPane.add(idField);
-		idField.setColumns(10);
+		nomesMaquinas = mapaMaquinas.keySet().toArray();
+		boxMaquinas = new JComboBox(nomesMaquinas);
+
+		boxMaquinas.setBounds(187, 246, 268, 27);
+		desktopPane.add(boxMaquinas);
+
+	
 
 		JButton btnRemover = new JButton("");
 		btnRemover.setIcon(new ImageIcon(MachineRemove.class.getResource("/Resources/icon/removebutton.png")));
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (idField.getText().trim().length() < 4) {
-					JOptionPane.showMessageDialog(null, "Código Inválido!");
-					idField.setText("");
-				}
-
-				else if (!isNumber(idField.getText().trim())) {
-					JOptionPane.showMessageDialog(null, "Por favor insira um código numérico válido!");
-					idField.setText("");
-
-				} else {
-					boolean has = false;
-					try {
-						has = sistema.hasMaquina(idField.getText().trim());
-					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(null, "Falha na conexão com banco de dados!");
-					}
-
-					if (!has) {
-						JOptionPane.showMessageDialog(null, "Máquina inexistente!");
-						idField.setText("");
-					} else {
-						sistema.removerMaquina(idField.getText().trim());
-						JOptionPane.showMessageDialog(null, "Máquina removida com Sucesso!");
+				
+				int chaveMaquina = mapaMaquinas.get(nomesMaquinas[boxMaquinas.getSelectedIndex()]);
+			
+						
+						JOptionPane.showMessageDialog(null, sistema.removerMaquina(chaveMaquina));
 
 						MachineManagementOptions admMOptions = new MachineManagementOptions(idAdmin,getXLocation(),getYLocation());
 						dispose();
@@ -123,11 +119,11 @@ public class MachineRemove extends Main {
 						admMOptions.setVisible(true);
 						admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}
-				}
-			}
+				
+			
 		});
 		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnRemover.setBounds(311, 280, 95, 27);
+		btnRemover.setBounds(360, 285, 95, 27);
 		desktopPane.add(btnRemover);
 
 		JLabel logo = new JLabel("");
@@ -136,27 +132,21 @@ public class MachineRemove extends Main {
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(MachineRemove.class.getResource("/Resources/icon/machineRemoveBanner.png")));
+		banner.setIcon(new ImageIcon(MachineRemove.class.getResource("/Resources/icon/remove-maquina-title.png")));
 		banner.setBounds(328, 25, 206, 101);
 		desktopPane.add(banner);
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(MachineRemove.class.getResource("/Resources/icon/removeForm.png")));
-		label.setBounds(83, 158, 434, 195);
+		label.setIcon(new ImageIcon(MachineRemove.class.getResource("/Resources/icon/backEditMaquina.png")));
+		label.setBounds(84, 174, 434, 195);
 		desktopPane.add(label);
 
 	}
 
-	public boolean isNumber(String password) {
-		boolean status = false;
-
-		try {
-			Integer.parseInt(password);
-			status = true;
-		} catch (Exception e) {
-			status = false;
-		}
-		return status;
+	
+	
+	public Map<String, Integer> getMapaMaquinas() {
+		return sistema.getMapaMaquinas();
 	}
 
 }
