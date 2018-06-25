@@ -216,6 +216,12 @@ public class Sistema {
 	public String inserirSubsistema(String nome, int chaveMaquina) {
 		return cSubsistemas.inserir(nome, chaveMaquina);
 	}
+	
+	public String removerSubsistema(int chave) {
+		return cSubsistemas.remover(chave);
+	}
+	
+	
 
 	public Map<String, Integer> getMapaSubsistemas(int chaveMaquina) {
 		return cSubsistemas.getMapaSubsistemas(chaveMaquina);

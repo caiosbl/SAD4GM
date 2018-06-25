@@ -72,6 +72,22 @@ public class Subsistemas {
 		
 		return status;
 	}
+
+
+
+
+	public String remover(int chave) {
+		String status;
+
+		try {
+			sTools.deletar(chave);
+			status = "Subsistema removido com sucesso!";
+		} catch (Exception e) {
+			status = e.getMessage();
+		}
+
+		return status;
+	}
 	
 	
 

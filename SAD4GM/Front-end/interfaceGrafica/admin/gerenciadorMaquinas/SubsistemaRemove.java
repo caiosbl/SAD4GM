@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -44,8 +43,9 @@ public class SubsistemaRemove extends Main {
 	private String idAdmin;
 	@SuppressWarnings("rawtypes")
 	private JComboBox boxMaquinas;
+	@SuppressWarnings("rawtypes")
 	private JComboBox boxSubsistemas;
-	private Map<String, Integer> mapaMaquinas;
+	private Map<String, Integer> mapaSu;
 	private Map<String, Integer> mapaSubsistemas;
 	private Object[] nomesMaquinas;
 	private Object[] nomesSubsistemas;
@@ -99,58 +99,47 @@ public class SubsistemaRemove extends Main {
 		btnVoltar.setBounds(492, 388, 83, 23);
 		desktopPane.add(btnVoltar);
 
-		this.mapaMaquinas = getMapaMaquinas();
+		this.mapaSu = getMapaMaquinas();
 
-		nomesMaquinas = mapaMaquinas.keySet().toArray();
+		nomesMaquinas = mapaSu.keySet().toArray();
 		boxMaquinas = new JComboBox(nomesMaquinas);
-		boxMaquinas.setBounds(180, 216, 268, 27);
+		boxMaquinas.setBounds(170, 232, 268, 27);
 		desktopPane.add(boxMaquinas);
-		if(mapaMaquinas.size() > 0)
-			chaveMaquina = mapaMaquinas.get(nomesMaquinas[boxMaquinas.getSelectedIndex()]);
-		
+		if (mapaSu.size() > 0)
+			chaveMaquina = mapaSu.get(nomesMaquinas[boxMaquinas.getSelectedIndex()]);
+
 		this.mapaSubsistemas = getMapaSubsistemas(chaveMaquina);
 		nomesSubsistemas = mapaSubsistemas.keySet().toArray();
 
 		boxSubsistemas = new JComboBox(nomesSubsistemas);
-		boxSubsistemas.setBounds(180, 255, 268, 27);
+		boxSubsistemas.setBounds(170, 274, 268, 27);
 		desktopPane.add(boxSubsistemas);
-		
-		
-		
-		
 
 		boxMaquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				chaveMaquina = mapaMaquinas.get(nomesMaquinas[boxMaquinas.getSelectedIndex()]);
+				chaveMaquina = mapaSu.get(nomesMaquinas[boxMaquinas.getSelectedIndex()]);
 				mapaSubsistemas = getMapaSubsistemas(chaveMaquina);
 				nomesSubsistemas = mapaSubsistemas.keySet().toArray();
 				System.out.println(Arrays.toString(nomesSubsistemas));
 				boxSubsistemas.removeAllItems();
 				boxSubsistemas.setModel(new DefaultComboBoxModel(nomesSubsistemas));
-				
-				
 
-				
-				
 			}
 		});
-
-	
-
-	
 
 		JButton btnRemover = new JButton("");
 		btnRemover.setIcon(new ImageIcon(SubsistemaRemove.class.getResource("/Resources/icon/removebutton.png")));
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				int chaveMaquina = mapaMaquinas.get(nomesMaquinas[boxMaquinas.getSelectedIndex()]);
+				int chaveSubsistema = mapaSubsistemas.get(nomesSubsistemas[boxSubsistemas.getSelectedIndex()]);
 
-				JOptionPane.showMessageDialog(null, sistema.removerMaquina(chaveMaquina));
+				JOptionPane.showMessageDialog(null, sistema.removerSubsistema(chaveSubsistema));
 
 				MachineManagementOptions admMOptions = new MachineManagementOptions(idAdmin, getXLocation(),
 						getYLocation());
 				dispose();
+
 				admMOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				admMOptions.setVisible(true);
 				admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -158,7 +147,7 @@ public class SubsistemaRemove extends Main {
 
 		});
 		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnRemover.setBounds(349, 306, 95, 27);
+		btnRemover.setBounds(342, 313, 95, 27);
 		desktopPane.add(btnRemover);
 
 		JLabel logo = new JLabel("");
@@ -167,12 +156,12 @@ public class SubsistemaRemove extends Main {
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(SubsistemaRemove.class.getResource("/Resources/icon/remove-maquina-title.png")));
-		banner.setBounds(328, 25, 206, 101);
+		banner.setIcon(new ImageIcon(SubsistemaRemove.class.getResource("/Resources/icon/remove-subs-title.png")));
+		banner.setBounds(328, 25, 244, 89);
 		desktopPane.add(banner);
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(SubsistemaRemove.class.getResource("/Resources/icon/backEditMaquina.png")));
+		label.setIcon(new ImageIcon(SubsistemaRemove.class.getResource("/Resources/icon/remove-subsistema-form.png")));
 		label.setBounds(84, 174, 434, 195);
 		desktopPane.add(label);
 

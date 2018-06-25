@@ -78,13 +78,11 @@ public class SubsistemaTools extends DatabaseTools {
 		PreparedStatement state = con
 				.prepareStatement("SELECT nome FROM maquinas.subsistema WHERE chave=" + chaveSubsistema);
 		ResultSet resSet = state.executeQuery();
-		
 
-		if(resSet.next())
-		nome = resSet.getString(1);
+		if (resSet.next())
+			nome = resSet.getString(1);
 		else
 			nome = "Falha na Conexão com Banco de Dados";
-		
 
 		state.close();
 		fecharConexao();
@@ -92,12 +90,29 @@ public class SubsistemaTools extends DatabaseTools {
 		return nome;
 
 	}
-	
+
 	public void setNomeSubsistema(String nome, int chaveSubsistema) throws SQLException {
 		abrirConexao();
-		PreparedStatement state = con.prepareStatement("UPDATE  maquinas.subsistema SET nome = ? WHERE chave=" + chaveSubsistema);
+		PreparedStatement state = con
+				.prepareStatement("UPDATE  maquinas.subsistema SET nome = ? WHERE chave=" + chaveSubsistema);
 		state.setString(1, nome);
 		state.execute();
+	}
+
+	public void deletar(int chave) {
+		try {
+
+			final String DELETE = "DELETE FROM maquinas.subsistema where chave =" + chave;
+			abrirConexao();
+			PreparedStatement stmt = con.prepareStatement(DELETE);
+			stmt.execute();
+			stmt.close();
+			fecharConexao();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }
