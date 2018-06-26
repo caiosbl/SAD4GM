@@ -21,7 +21,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
@@ -120,7 +119,6 @@ public class SubsistemaRemove extends Main {
 				chaveMaquina = mapaSu.get(nomesMaquinas[boxMaquinas.getSelectedIndex()]);
 				mapaSubsistemas = getMapaSubsistemas(chaveMaquina);
 				nomesSubsistemas = mapaSubsistemas.keySet().toArray();
-				System.out.println(Arrays.toString(nomesSubsistemas));
 				boxSubsistemas.removeAllItems();
 				boxSubsistemas.setModel(new DefaultComboBoxModel(nomesSubsistemas));
 
@@ -136,13 +134,6 @@ public class SubsistemaRemove extends Main {
 
 				JOptionPane.showMessageDialog(null, sistema.removerSubsistema(chaveSubsistema));
 
-				MachineManagementOptions admMOptions = new MachineManagementOptions(idAdmin, getXLocation(),
-						getYLocation());
-				dispose();
-
-				admMOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				admMOptions.setVisible(true);
-				admMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 
 		});

@@ -63,9 +63,37 @@ public class MachineManagementOptions extends Main {
 		btnRemoveMachine.setSelectedIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/removemenabled.png")));
 		btnRemoveMachine.setBackground(new Color(0,0,0,0));
 		btnRemoveMachine.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/removemdisabled.png")));
-		btnRemoveMachine.setBounds(25, 195, 137, 145);
+		btnRemoveMachine.setBounds(0, 195, 137, 145);
 		desktopPane.add(btnRemoveMachine);
 		btnRemoveMachine.setFont(new Font("Tahoma", Font.BOLD, 12));
+		
+		JButton btnRemoveComponent = new JButton("");
+		btnRemoveComponent.setSelectedIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/remove-component-enabled.png")));
+		btnRemoveComponent.setBackground(new Color(0,0,0,0));
+		btnRemoveComponent.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/remove-component-disabled.png")));
+		btnRemoveComponent.setBounds(234, 195, 137, 145);
+		desktopPane.add(btnRemoveComponent);
+		btnRemoveComponent.setFont(new Font("Tahoma", Font.BOLD, 12));
+		
+		JButton btnRemoveFail = new JButton("");
+		btnRemoveFail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnRemoveFail.setSelectedIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/remove-falha-enabled.png")));
+		btnRemoveFail.setBackground(new Color(0,0,0,0));
+		btnRemoveFail.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/remove-falha-disabled.png")));
+		btnRemoveFail.setBounds(349, 195, 137, 144);
+		desktopPane.add(btnRemoveFail);
+		btnRemoveFail.setFont(new Font("Tahoma", Font.BOLD, 12));
+		
+		JButton btnRemoveModoFalha = new JButton("");
+		btnRemoveModoFalha.setSelectedIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/remove-modo-falha-enabled.png")));
+		btnRemoveModoFalha.setBackground(new Color(0,0,0,0));
+		btnRemoveModoFalha.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/remove-modo-falha-disabled.png")));
+		btnRemoveModoFalha.setBounds(462, 195, 137, 144);
+		desktopPane.add(btnRemoveModoFalha);
+	
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 137, 582, 12);
@@ -112,7 +140,7 @@ public class MachineManagementOptions extends Main {
 		removeSubsistemaBtn.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/removesubdisabled.png")));
 		removeSubsistemaBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
 		removeSubsistemaBtn.setBackground(new Color(0, 0, 0, 0));
-		removeSubsistemaBtn.setBounds(153, 195, 137, 145);
+		removeSubsistemaBtn.setBounds(118, 195, 137, 145);
 		desktopPane.add(removeSubsistemaBtn);
 		btnRemoveMachine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
