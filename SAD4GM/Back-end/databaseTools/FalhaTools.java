@@ -6,11 +6,14 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import entidades.Falha;
+
 public class FalhaTools extends DatabaseTools {
-	
-	public void inserir(String nome, String descricao,  int chaveComponente) throws SQLException {
-		
-		if (hasFalha(nome)) throw new IllegalArgumentException("Este nome de Falha já está cadastrado!");
+
+	public void inserir(String nome, String descricao, int chaveComponente) throws SQLException {
+
+		if (hasFalha(nome))
+			throw new IllegalArgumentException("Este nome de Falha já está cadastrado!");
 
 		try {
 
@@ -32,13 +35,14 @@ public class FalhaTools extends DatabaseTools {
 		}
 
 	}
-	
+
 	public boolean hasFalha(String nome) throws SQLException {
 		boolean has;
 
 		abrirConexao();
 
-		PreparedStatement state = con.prepareStatement("SELECT nome FROM maquinas.falha WHERE CAST (nome AS VARCHAR(128)) = ?");
+		PreparedStatement state = con
+				.prepareStatement("SELECT nome FROM maquinas.falha WHERE CAST (nome AS VARCHAR(128)) = ?");
 		state.setString(1, nome);
 		ResultSet ResSet = state.executeQuery();
 
@@ -51,12 +55,13 @@ public class FalhaTools extends DatabaseTools {
 
 		return has;
 	}
-	
+
 	public Map<String, Integer> getMapaFalhas(int chaveComponente) throws SQLException {
 		abrirConexao();
 		Map<String, Integer> falhas = new HashMap<>();
 
-		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.falha WHERE chave_componente="  + chaveComponente);
+		PreparedStatement state = con
+				.prepareStatement("SELECT nome,chave FROM maquinas.falha WHERE chave_componente=" + chaveComponente);
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {
@@ -69,20 +74,18 @@ public class FalhaTools extends DatabaseTools {
 		return falhas;
 
 	}
-	
+
 	public String getDescricaoFalha(int chaveFalha) throws SQLException {
 		abrirConexao();
 		String funcao;
 		PreparedStatement state = con
 				.prepareStatement("SELECT descricao FROM maquinas.falha WHERE chave=" + chaveFalha);
 		ResultSet resSet = state.executeQuery();
-		
 
-		if(resSet.next())
-		funcao = resSet.getString(1);
+		if (resSet.next())
+			funcao = resSet.getString(1);
 		else
 			funcao = "Falha na Conexão com Banco de Dados";
-		
 
 		state.close();
 		fecharConexao();
@@ -90,27 +93,25 @@ public class FalhaTools extends DatabaseTools {
 		return funcao;
 
 	}
-	
+
 	public void setDescricaoFalha(String descricao, int chaveFalha) throws SQLException {
 		abrirConexao();
-		PreparedStatement state = con.prepareStatement("UPDATE  maquinas.falha SET descricao = ? WHERE chave=" + chaveFalha);
+		PreparedStatement state = con
+				.prepareStatement("UPDATE  maquinas.falha SET descricao = ? WHERE chave=" + chaveFalha);
 		state.setString(1, descricao);
 		state.execute();
 	}
-	
+
 	public String getNomeFalha(int chaveFalha) throws SQLException {
 		abrirConexao();
 		String funcao;
-		PreparedStatement state = con
-				.prepareStatement("SELECT nome FROM maquinas.falha WHERE chave=" + chaveFalha);
+		PreparedStatement state = con.prepareStatement("SELECT nome FROM maquinas.falha WHERE chave=" + chaveFalha);
 		ResultSet resSet = state.executeQuery();
-		
 
-		if(resSet.next())
-		funcao = resSet.getString(1);
+		if (resSet.next())
+			funcao = resSet.getString(1);
 		else
 			funcao = "Falha na Conexão com Banco de Dados";
-		
 
 		state.close();
 		fecharConexao();
@@ -118,7 +119,7 @@ public class FalhaTools extends DatabaseTools {
 		return funcao;
 
 	}
-	
+
 	public void setNomeFalha(String nome, int chaveFalha) throws SQLException {
 		abrirConexao();
 		PreparedStatement state = con.prepareStatement("UPDATE  maquinas.falha SET nome = ? WHERE chave=" + chaveFalha);
@@ -126,5 +127,25 @@ public class FalhaTools extends DatabaseTools {
 		state.execute();
 	}
 
+	public Map<Integer, Falha> getFalhasMap(int chaveComponente) throws SQLException {
+		abrirConexao();
+
+		Map<Integer, Falha> falhas = new HashMap<>();
+
+		PreparedStatement state = con
+				.prepareStatement("SELECT nome,chave FROM maquinas.falha WHERE chave_componente=" + chaveComponente);
+		ResultSet resSet = state.executeQuery();
+
+		while (resSet.next()) {
+			Falha falha = new Falha(resSet.getString(1), resSet.getInt(2));
+			falhas.put(falha.getChave(), falha);
+		}
+
+		state.close();
+
+		fecharConexao();
+
+		return falhas;
+	}
 
 }

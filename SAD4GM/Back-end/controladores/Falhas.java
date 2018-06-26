@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import databaseTools.FalhaTools;
+import entidades.Falha;
 
 public class Falhas {
 
@@ -39,6 +40,13 @@ public class Falhas {
 
 	}
 	
+	public Map<Integer,Falha> getFalhasMap(int chaveComponente){
+		try {
+			return fTools.getFalhasMap(chaveComponente);
+		} catch (SQLException e) {
+			return new HashMap<Integer,Falha>();
+		}
+	}
 	public String getDescricao(int chaveFalha) {
 		String descricao;
 		

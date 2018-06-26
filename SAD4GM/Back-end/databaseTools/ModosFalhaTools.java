@@ -6,10 +6,12 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+
+import entidades.ModoFalha;
+
 public class ModosFalhaTools extends DatabaseTools {
 
 	public void inserir(String descricao, int chaveFalha) throws SQLException {
-	
 
 		try {
 
@@ -31,13 +33,12 @@ public class ModosFalhaTools extends DatabaseTools {
 
 	}
 
-
-
 	public Map<String, Integer> getMapaModosFalha(int chaveFalha) throws SQLException {
 		abrirConexao();
 		Map<String, Integer> subsistemas = new HashMap<>();
 
-		PreparedStatement state = con.prepareStatement("SELECT descricao,chave FROM maquinas.modo_falha WHERE chave_falha=" + chaveFalha);
+		PreparedStatement state = con
+				.prepareStatement("SELECT descricao,chave FROM maquinas.modo_falha WHERE chave_falha=" + chaveFalha);
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {
@@ -50,20 +51,18 @@ public class ModosFalhaTools extends DatabaseTools {
 		return subsistemas;
 
 	}
-	
+
 	public String getDescricaoModoFalha(int chaveModoFalha) throws SQLException {
 		abrirConexao();
 		String funcao;
 		PreparedStatement state = con
 				.prepareStatement("SELECT descricao FROM maquinas.modo_falha WHERE chave=" + chaveModoFalha);
 		ResultSet resSet = state.executeQuery();
-		
 
-		if(resSet.next())
-		funcao = resSet.getString(1);
+		if (resSet.next())
+			funcao = resSet.getString(1);
 		else
 			funcao = "Falha na Conexão com Banco de Dados";
-		
 
 		state.close();
 		fecharConexao();
@@ -71,11 +70,33 @@ public class ModosFalhaTools extends DatabaseTools {
 		return funcao;
 
 	}
-	
+
 	public void setDescricaoModoFalha(String descricao, int chaveModoFalha) throws SQLException {
 		abrirConexao();
-		PreparedStatement state = con.prepareStatement("UPDATE  maquinas.modo_falha SET descricao = ? WHERE chave=" + chaveModoFalha);
+		PreparedStatement state = con
+				.prepareStatement("UPDATE  maquinas.modo_falha SET descricao = ? WHERE chave=" + chaveModoFalha);
 		state.setString(1, descricao);
 		state.execute();
+	}
+
+	public Map<Integer, ModoFalha> getModosFalhaMap(int chaveFalha) throws SQLException {
+		abrirConexao();
+
+		Map<Integer, ModoFalha> modosFalha = new HashMap<>();
+
+		PreparedStatement state = con
+				.prepareStatement("SELECT nome,chave FROM maquinas.modo_falha WHERE chave_falha =" + chaveFalha);
+		ResultSet resSet = state.executeQuery();
+
+		while (resSet.next()) {
+			ModoFalha falha = new ModoFalha(resSet.getString(1), resSet.getInt(2));
+			modosFalha.put(falha.getChave(), falha);
+		}
+
+		state.close();
+
+		fecharConexao();
+
+		return modosFalha;
 	}
 }

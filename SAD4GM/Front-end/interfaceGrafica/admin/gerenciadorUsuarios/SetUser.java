@@ -154,12 +154,12 @@ public class SetUser extends Main {
 						auditor.setText(sistema.getNomeAuditor(idUser));
 					} else if (userID.getText().equals("") || userID.getText().length() < 4) {
 						JOptionPane.showMessageDialog(null, "ID inválido");
-						nome.setText(sistema.getNomeAdmin(idUser));
+						nome.setText(sistema.getNomeUsuario(idUser));
 						userID.setText(idUser);
 						auditor.setText(sistema.getNomeAuditor(idUser));
 					} else if (!userID.getText().trim().equals(idUser) && has) {
 						JOptionPane.showMessageDialog(null, "ID já cadastrado!");
-						nome.setText(sistema.getNomeAdmin(idUser));
+						nome.setText(sistema.getNomeUsuario(idUser));
 						userID.setText(idUser);
 						auditor.setText(sistema.getNomeAuditor(idUser));
 					}

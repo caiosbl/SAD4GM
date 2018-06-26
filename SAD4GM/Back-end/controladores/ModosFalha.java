@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import databaseTools.ModosFalhaTools;
+import entidades.ModoFalha;
 
 public class ModosFalha {
 	
@@ -37,6 +38,14 @@ public class ModosFalha {
 			return new HashMap<String, Integer>();
 		}
 
+	}
+	
+	public Map<Integer,ModoFalha> getModosFalhaMap(int chaveFalha){
+		try {
+			return mFTools.getModosFalhaMap(chaveFalha);
+		} catch (SQLException e) {
+			return new HashMap<Integer, ModoFalha>();
+		}
 	}
 	
 	

@@ -93,7 +93,6 @@ public class MaquinaTools extends DatabaseTools {
 	public void deletar(int chave) throws SQLException {
 
 		try {
-			
 
 			final String DELETE = "DELETE FROM maquinas.maquina where chave =" + chave;
 			abrirConexao();
@@ -419,7 +418,7 @@ public class MaquinaTools extends DatabaseTools {
 
 	public Map<String, Integer> getMapaMaquinas() throws SQLException {
 		abrirConexao();
-		
+
 		Map<String, Integer> maquinas = new HashMap<>();
 
 		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.maquina");
@@ -435,16 +434,35 @@ public class MaquinaTools extends DatabaseTools {
 		return maquinas;
 
 	}
-	
+
+	public Map<Integer, Maquina> getMaquinasMap() throws SQLException {
+		abrirConexao();
+
+		Map<Integer, Maquina> maquinas = new HashMap<>();
+
+		PreparedStatement state = con.prepareStatement("SELECT nome,chave FROM maquinas.maquina");
+		ResultSet resSet = state.executeQuery();
+
+		while (resSet.next()) {
+			Maquina maquina = new Maquina(resSet.getString(1), resSet.getInt(2));
+			maquinas.put(maquina.getChave(), maquina);
+		}
+		state.close();
+
+		fecharConexao();
+
+		return maquinas;
+	}
+
 	public int getCodigo(int chave) throws SQLException {
 		abrirConexao();
-		
+
 		int codigo = -1;
 
 		PreparedStatement state = con.prepareStatement("SELECT codigo FROM maquinas.maquina WHERE chave = " + chave);
 		ResultSet resSet = state.executeQuery();
 
-		if(resSet.next()) {
+		if (resSet.next()) {
 			codigo = resSet.getInt(1);
 		}
 		state.close();

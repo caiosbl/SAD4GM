@@ -330,6 +330,16 @@ public class Maquinas {
 
 	}
 
+	public Map<Integer, Maquina> getMaquinasMapa() {
+
+		try {
+			return mTools.getMaquinasMap();
+		} catch (SQLException e) {
+			return new HashMap<Integer, Maquina>();
+		}
+
+	}
+
 	public int getCodigo(int chaveMaquina) throws SQLException {
 
 		return mTools.getCodigo(chaveMaquina);

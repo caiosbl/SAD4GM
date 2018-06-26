@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import entidades.Componente;
+
+
 public class ComponenteTools extends DatabaseTools {
 
 	public void inserir(String nome, int chaveSubsistema, String funcao) throws SQLException {
@@ -127,6 +130,27 @@ public class ComponenteTools extends DatabaseTools {
 		PreparedStatement state = con.prepareStatement("UPDATE  maquinas.componente SET funcao = ? WHERE chave=" + chaveComponente);
 		state.setString(1, funcao);
 		state.execute();
+	}
+	
+	public Map<Integer, Componente> getComponentesMap(int chaveSubsistema) throws SQLException {
+		abrirConexao();
+
+		Map<Integer, Componente> componentes = new HashMap<>();
+
+		PreparedStatement state = con
+				.prepareStatement("SELECT nome,chave FROM maquinas.componente WHERE chave_subsistema=" + chaveSubsistema);
+		ResultSet resSet = state.executeQuery();
+
+		while (resSet.next()) {
+			Componente componente = new Componente(resSet.getString(1), resSet.getInt(2));
+			componentes.put(componente.getChave(), componente);
+		}
+		
+		state.close();
+
+		fecharConexao();
+
+		return componentes;
 	}
 
 }

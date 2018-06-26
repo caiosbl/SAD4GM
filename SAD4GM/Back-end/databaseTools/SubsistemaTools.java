@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+
+import entidades.Subsistema;
+
 public class SubsistemaTools extends DatabaseTools {
 
 	public void inserir(String nome, int chaveMaquina) throws SQLException {
@@ -70,6 +73,26 @@ public class SubsistemaTools extends DatabaseTools {
 
 		return subsistemas;
 
+	}
+
+	public Map<Integer, Subsistema> getSubsistemasMap(int chaveMaquina) throws SQLException {
+		abrirConexao();
+
+		Map<Integer, Subsistema> subsistemas = new HashMap<>();
+
+		PreparedStatement state = con
+				.prepareStatement("SELECT nome,chave FROM maquinas.subsistema  WHERE chave_maquina=" + chaveMaquina);
+		ResultSet resSet = state.executeQuery();
+
+		while (resSet.next()) {
+			Subsistema subsistema = new Subsistema(resSet.getString(1), resSet.getInt(2));
+			subsistemas.put(subsistema.getChave(), subsistema);
+		}
+		state.close();
+
+		fecharConexao();
+
+		return subsistemas;
 	}
 
 	public String getNomeSubsistema(int chaveSubsistema) throws SQLException {

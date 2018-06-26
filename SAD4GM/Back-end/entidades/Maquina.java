@@ -17,6 +17,7 @@ public class Maquina {
 	private int codigo;
 	private String descricao;
 	private String idUsuario;
+	private int chave;
 
 	public Maquina(String nome, String codigo, String descricao, String idUsuario) {
 		ValidaMaquina.validaNome(nome);
@@ -28,14 +29,20 @@ public class Maquina {
 		this.idUsuario = idUsuario;
 	}
 
+	public Maquina(String nome, int chave) {
+		this.nome = nome;
+		this.chave = chave;
+	}
+
 	/**
 	 * Retorna o valor inteiro de um código em String
+	 * 
 	 * @param codigo
-	 * Código a ser convertido.
-	 * @return
-	 * Código em Int
+	 *            Código a ser convertido.
+	 * @return Código em Int
 	 * @throws IllegalArgumentException
-	 * Lança um IllegalArgumentException caso o código não possa ser convertido em um inteiro válido.
+	 *             Lança um IllegalArgumentException caso o código não possa ser
+	 *             convertido em um inteiro válido.
 	 */
 	public static int parseCodigo(String codigo) {
 		int codigoInt;
@@ -84,6 +91,10 @@ public class Maquina {
 		this.idUsuario = idUsuario;
 	}
 
+	public int getChave() {
+		return this.chave;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -109,10 +120,7 @@ public class Maquina {
 	@Override
 	public String toString() {
 
-		String quebraLinha = System.lineSeparator();
-
-		return "DADOS DA MÁQUINA: " + quebraLinha + "Nome: " + this.nome + quebraLinha + "Código: " + codigo
-				+ quebraLinha + "Descrição: " + descricao + quebraLinha;
+		return nome;
 	}
 
 }

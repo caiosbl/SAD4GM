@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import databaseTools.SubsistemaTools;
+import entidades.Subsistema;
 
 public class Subsistemas {
 	
@@ -43,6 +44,14 @@ public class Subsistemas {
 			return new HashMap<String,Integer>();
 		}
 
+	}
+	
+	public Map<Integer,Subsistema> getSubsistemasMap(int chaveMaquina){
+		try {
+			return sTools.getSubsistemasMap(chaveMaquina);
+		} catch (SQLException e) {
+			return new HashMap<Integer,Subsistema>();
+		}
 	}
 	
 	

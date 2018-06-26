@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import databaseTools.ComponenteTools;
+import entidades.Componente;
 
 public class Componentes {
 	
@@ -38,6 +39,14 @@ public class Componentes {
 			return new HashMap<String,Integer>();
 		}
 
+	}
+	
+	public Map<Integer,Componente> getComponentesMap(int chaveSubsistema){
+		try {
+			return cTools.getComponentesMap(chaveSubsistema);
+		} catch (SQLException e) {
+			return new HashMap<Integer,Componente>();
+		}
 	}
 	
 	public String getNomeComponente(int chaveComponente) {

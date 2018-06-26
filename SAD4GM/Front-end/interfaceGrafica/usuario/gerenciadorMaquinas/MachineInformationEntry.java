@@ -116,7 +116,7 @@ public class MachineInformationEntry extends Main {
 					}
 
 					else {
-						MachineInformation machineInformation = new MachineInformation(idUsuario,idField.getText().trim(),getXLocation(),getYLocation());
+						MachineInformation2 machineInformation = new MachineInformation2(idUsuario,idField.getText().trim(),getXLocation(),getYLocation());
 						dispose();
 						machineInformation.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						machineInformation.setVisible(true);

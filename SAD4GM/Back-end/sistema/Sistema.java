@@ -2,21 +2,24 @@ package sistema;
 
 import java.sql.SQLException;
 import java.util.Map;
-
-import controladores.Admins;
 import controladores.Componentes;
 import controladores.Falhas;
 import controladores.Maquinas;
 import controladores.ModosFalha;
 import controladores.Subsistemas;
 import controladores.Usuarios;
-import databaseTools.AdminTools;
+
 import databaseTools.ComponenteTools;
 import databaseTools.FalhaTools;
 import databaseTools.MaquinaTools;
 import databaseTools.ModosFalhaTools;
 import databaseTools.SubsistemaTools;
 import databaseTools.UsuarioTools;
+import entidades.Componente;
+import entidades.Falha;
+import entidades.Maquina;
+import entidades.ModoFalha;
+import entidades.Subsistema;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -28,7 +31,7 @@ public class Sistema {
 
 	private Usuarios cUsuarios;
 	private Maquinas cMaquinas;
-	private Admins cAdmins;
+	
 	private Subsistemas cSubsistemas;
 	private Componentes cComponentes;
 	private Falhas cFalhas;
@@ -36,7 +39,7 @@ public class Sistema {
 
 	private UsuarioTools uTools;
 	private MaquinaTools mTools;
-	private AdminTools admTools;
+
 	private SubsistemaTools sTools;
 	private ComponenteTools cTools;
 	private FalhaTools fTools;
@@ -46,7 +49,7 @@ public class Sistema {
 
 		this.uTools = new UsuarioTools();
 		this.mTools = new MaquinaTools();
-		this.admTools = new AdminTools();
+
 		this.sTools = new SubsistemaTools();
 		this.cTools = new ComponenteTools();
 		this.fTools = new FalhaTools();
@@ -54,59 +57,19 @@ public class Sistema {
 
 		this.cUsuarios = new Usuarios(uTools);
 		this.cMaquinas = new Maquinas(mTools);
-		this.cAdmins = new Admins(admTools);
+
 		this.cSubsistemas = new Subsistemas(sTools);
 		this.cComponentes = new Componentes(cTools);
 		this.cFalhas = new Falhas(fTools);
 		this.cMFalhas = new ModosFalha(mFTools);
 	}
 
-	// Funções de Admin
-
-	public String inserirAdmin(String nome, String senha, String id) {
-		return cAdmins.inserir(nome, senha, id);
-	}
-
-	public String deletarAdmin(String id) {
-		return cAdmins.remover(id);
-	}
-
-	public String setNomeAdmin(String nome, String id) {
-		return cAdmins.setName(nome, id);
-	}
-
-	public String setIdAdmin(String id, String novoId) {
-		return cAdmins.setId(id, novoId);
-	}
-
-	public String setSenhaAdmin(String id, String senha) {
-		return cAdmins.setPassword(id, senha);
-	}
-
-	public String getInfoAdmin(String id) {
-		return cAdmins.getInfo(id);
-	}
-
-	public String getNomeAdmin(String id) {
-		return cAdmins.getNome(id);
-	}
-
-	public boolean autenticaAdmin(String id, String senha) throws SQLException {
-		return cAdmins.autenticar(id, senha);
-	}
-
-	public boolean hasIdAdmin(String id) throws SQLException {
-		return cAdmins.hasAdmin(id);
-	}
-
-	public String getListagemAdm() {
-		return cAdmins.getListAdmins();
-	}
+	
 
 	// Funções de Usuário
 
-	public String cadastrarUsuario(String nome, String id, String senha, String auditor,boolean admin) {
-		return cUsuarios.inserir(nome, id, senha, auditor,admin);
+	public String cadastrarUsuario(String nome, String id, String senha, String auditor, boolean admin) {
+		return cUsuarios.inserir(nome, id, senha, auditor, admin);
 	}
 
 	public String removerUsuario(String id) {
@@ -156,7 +119,7 @@ public class Sistema {
 	public boolean isUsuarioAtivo(String id) throws SQLException {
 		return cUsuarios.isAtivo(id);
 	}
-	
+
 	public boolean isAdmin(String id) {
 		return cUsuarios.isAdmin(id);
 	}
@@ -206,7 +169,11 @@ public class Sistema {
 	public Map<String, Integer> getMapaMaquinas() {
 		return cMaquinas.getMapaMaquinas();
 	}
-	
+
+	public Map<Integer, Maquina> getMaquinaMapa() {
+		return cMaquinas.getMaquinasMapa();
+	}
+
 	public String getCodigoMaquina(int chaveMaquina) throws SQLException {
 		return String.valueOf(cMaquinas.getCodigo(chaveMaquina));
 	}
@@ -216,21 +183,23 @@ public class Sistema {
 	public String inserirSubsistema(String nome, int chaveMaquina) {
 		return cSubsistemas.inserir(nome, chaveMaquina);
 	}
-	
+
 	public String removerSubsistema(int chave) {
 		return cSubsistemas.remover(chave);
 	}
-	
-	
 
 	public Map<String, Integer> getMapaSubsistemas(int chaveMaquina) {
 		return cSubsistemas.getMapaSubsistemas(chaveMaquina);
 	}
-	
+
+	public Map<Integer, Subsistema> getSubsistemasMap(int chaveMaquina) {
+		return cSubsistemas.getSubsistemasMap(chaveMaquina);
+	}
+
 	public String getNomeSubsistema(int chaveSubsistema) {
 		return cSubsistemas.getNomeSubsistema(chaveSubsistema);
 	}
-	
+
 	public String setNomeSubsistema(String nome, int chaveSubsistema) {
 		return cSubsistemas.setNomeSubsistema(nome, chaveSubsistema);
 	}
@@ -245,20 +214,24 @@ public class Sistema {
 		return cComponentes.getMapaComponentes(chaveSubsistema);
 	}
 	
+	public Map<Integer,Componente> getComponentesMap(int chaveSubsistema){
+		return cComponentes.getComponentesMap(chaveSubsistema);
+	}
+
 	public String getNomeComponente(int chaveComponente) {
 		return cComponentes.getNomeComponente(chaveComponente);
 	}
-	
+
 	public String setNomeComponente(String nome, int chaveComponente) {
 		return cComponentes.setNomeComponente(nome, chaveComponente);
 	}
-	
+
 	public String getFuncaoComponente(int chaveComponente) {
 		return cComponentes.getFuncaoComponente(chaveComponente);
 	}
-	
+
 	public String setFuncaoComponente(String funcao, int chaveComponente) {
-		return cComponentes.setFuncaoComponente(funcao,chaveComponente);
+		return cComponentes.setFuncaoComponente(funcao, chaveComponente);
 	}
 
 	// Funções de Falhas
@@ -271,20 +244,24 @@ public class Sistema {
 		return cFalhas.getMapaFalhas(chaveComponente);
 	}
 	
+	public Map<Integer,Falha> getFalhasMap(int chaveComponente){
+		return cFalhas.getFalhasMap(chaveComponente);
+	}
+
 	public String getNomeFalha(int chaveFalha) {
 		return cFalhas.getNome(chaveFalha);
 	}
-	
-	public String setNomeFalha (String nome, int chaveFalha) {
-		return cFalhas.setNome(nome,chaveFalha);
+
+	public String setNomeFalha(String nome, int chaveFalha) {
+		return cFalhas.setNome(nome, chaveFalha);
 	}
-	
+
 	public String getDescricaoFalha(int chaveFalha) {
 		return cFalhas.getDescricao(chaveFalha);
 	}
-	
-	public String setDescricaoFalha (String nome, int chaveFalha) {
-		return cFalhas.setDescricao(nome,chaveFalha);
+
+	public String setDescricaoFalha(String nome, int chaveFalha) {
+		return cFalhas.setDescricao(nome, chaveFalha);
 	}
 
 	// Funções de Modos de Falha
@@ -297,12 +274,16 @@ public class Sistema {
 		return cMFalhas.getMapaModosFalha(chaveFalha);
 	}
 	
+	public Map<Integer,ModoFalha> getModosFalhaMap(int chaveFalha){
+		return cMFalhas.getModosFalhaMap(chaveFalha);
+	}
+
 	public String getDescricaoModoFalha(int chaveModoFalha) {
 		return cMFalhas.getDescricao(chaveModoFalha);
 	}
-	
-	public String setDescricaoModoFalha (String nome, int chaveModoFalha) {
-		return cMFalhas.setDescricao(nome,chaveModoFalha);
+
+	public String setDescricaoModoFalha(String nome, int chaveModoFalha) {
+		return cMFalhas.setDescricao(nome, chaveModoFalha);
 	}
 
 }
