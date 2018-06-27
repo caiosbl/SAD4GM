@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import entidades.Componente;
@@ -19,6 +21,7 @@ import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 
@@ -112,11 +115,41 @@ public class MachineInformation2 extends Main {
 		desktopPane.add(banner);
 
 	}
+	
+	public void jTree1ValueChanged( TreeSelectionEvent tse ) {
+		
+		DefaultMutableTreeNode node = (	DefaultMutableTreeNode) tse.getNewLeadSelectionPath().getLastPathComponent();
+		
+		       
+		if(node.getUserObject().getClass() == Maquina.class) {
+			
+			Maquina maquina = (Maquina) node.getUserObject();
+			
+			  JOptionPane.showMessageDialog(null,maquina.getNome());
+		}
+		       
+		    
+		
+		
+	}
 
 	private void iniciaTree() {
 
 		DefaultMutableTreeNode maquinaNode = iniciaNodeMaquinas();
 		tree = new JTree(maquinaNode);
+		
+		TreeSelectionListener tsl = new TreeSelectionListener() {
+	        public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+	            jTree1ValueChanged(evt);
+	        }
+	    };
+	    
+	    
+
+		
+		
+		tree.addTreeSelectionListener(tsl);
+		
 		// tree.setBackground(new Color(0, 0, 0, 0));
 		tree.setBounds(67, 161, 465, 244);
 		desktopPane.add(tree);
@@ -138,47 +171,59 @@ public class MachineInformation2 extends Main {
 
 	private void iniciaRamoSubsistemas(DefaultMutableTreeNode maquinaNode, Maquina maquina) {
 		DefaultMutableTreeNode subsistemasNode = new DefaultMutableTreeNode("Subsistemas");
-		maquinaNode.add(subsistemasNode);
 
-		for (Subsistema subsistema : getMapaSubsistemas(maquina.getChave()).values()) {
-			DefaultMutableTreeNode subsNode = new DefaultMutableTreeNode(subsistema);
-			subsistemasNode.add(subsNode);
-			iniciaRamoComponentes(subsNode, subsistema);
+		if (!getMapaSubsistemas(maquina.getChave()).isEmpty()) {
+			maquinaNode.add(subsistemasNode);
+
+			for (Subsistema subsistema : getMapaSubsistemas(maquina.getChave()).values()) {
+				DefaultMutableTreeNode subsNode = new DefaultMutableTreeNode(subsistema);
+				subsistemasNode.add(subsNode);
+				iniciaRamoComponentes(subsNode, subsistema);
+			}
 		}
 
 	}
 
 	private void iniciaRamoComponentes(DefaultMutableTreeNode subsistemaNode, Subsistema subsistema) {
 		DefaultMutableTreeNode componenteNode = new DefaultMutableTreeNode("Componentes");
-		subsistemaNode.add(componenteNode);
 
-		for (Componente componente : getMapaComponentes(subsistema.getChave()).values()) {
-			DefaultMutableTreeNode compNode = new DefaultMutableTreeNode(componente);
-			componenteNode.add(compNode);
-			iniciaRamoFalha(compNode, componente);
+		if (!getMapaComponentes(subsistema.getChave()).isEmpty()) {
+
+			subsistemaNode.add(componenteNode);
+
+			for (Componente componente : getMapaComponentes(subsistema.getChave()).values()) {
+				DefaultMutableTreeNode compNode = new DefaultMutableTreeNode(componente);
+				componenteNode.add(compNode);
+				iniciaRamoFalha(compNode, componente);
+			}
 		}
 
 	}
 
 	private void iniciaRamoFalha(DefaultMutableTreeNode componenteNode, Componente componente) {
 		DefaultMutableTreeNode falhaNode = new DefaultMutableTreeNode("Falhas");
-		componenteNode.add(falhaNode);
+		if (!getFalhasMap(componente.getChave()).isEmpty()) {
+			componenteNode.add(falhaNode);
 
-		for (Falha falha : getFalhasMap(componente.getChave()).values()) {
-			DefaultMutableTreeNode failNode = new DefaultMutableTreeNode(falha);
-			falhaNode.add(failNode);
-			iniciaRamoModoFalha(failNode, falha);
+			for (Falha falha : getFalhasMap(componente.getChave()).values()) {
+				DefaultMutableTreeNode failNode = new DefaultMutableTreeNode(falha);
+				falhaNode.add(failNode);
+				iniciaRamoModoFalha(failNode, falha);
+			}
 		}
 
 	}
 
 	private void iniciaRamoModoFalha(DefaultMutableTreeNode failNode, Falha falha) {
 		DefaultMutableTreeNode modoFalhaNode = new DefaultMutableTreeNode("Modos de Falha");
-		failNode.add(modoFalhaNode);
+		if (!getModosFalhaMap(falha.getChave()).isEmpty()) {
+			failNode.add(modoFalhaNode);
+			
 
-		for (ModoFalha modoFalha : getModosFalhaMap(falha.getChave()).values()) {
-			DefaultMutableTreeNode mFailNode = new DefaultMutableTreeNode(modoFalha);
-			modoFalhaNode.add(mFailNode);
+			for (ModoFalha modoFalha : getModosFalhaMap(falha.getChave()).values()) {
+				DefaultMutableTreeNode mFailNode = new DefaultMutableTreeNode(modoFalha);
+				modoFalhaNode.add(mFailNode);
+			}
 		}
 
 	}
