@@ -11,7 +11,7 @@ import interfaceGrafica.admin.gerenciadorMaquinas.MachineManagementOptions;
 import interfaceGrafica.admin.gerenciadorUsuarios.UserManagementOptions;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.gerenciadorMaquinas.InsertMaquina;
-import interfaceGrafica.usuario.gerenciadorMaquinas.MachineInformation2;
+import interfaceGrafica.usuario.gerenciadorMaquinas.ViewMachinesInfo;
 import interfaceGrafica.usuario.gerenciadorMaquinas.MachinesList;
 import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachine;
 import sistema.Sistema;
@@ -148,7 +148,7 @@ public class Options extends Main {
 		btnVerUmaMquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/viewmachineicon.png")));
 		btnVerUmaMquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MachineInformation2 verMaquina = new MachineInformation2(id, xLocation, yLocation);
+				ViewMachinesInfo verMaquina = new ViewMachinesInfo(id, xLocation, yLocation);
 				dispose();
 				verMaquina.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				verMaquina.setVisible(true);

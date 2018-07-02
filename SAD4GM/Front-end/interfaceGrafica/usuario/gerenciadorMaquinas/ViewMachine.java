@@ -75,7 +75,7 @@ public class ViewMachine extends Main {
 		btnVoltar.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MachineInformation2 information = new MachineInformation2(idAdmin, getXLocation(), getYLocation());
+				ViewMachinesInfo information = new ViewMachinesInfo(idAdmin, getXLocation(), getYLocation());
 
 				dispose();
 				information.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());

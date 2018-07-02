@@ -41,7 +41,7 @@ import javax.swing.JTree;
  *
  */
 
-public class MachineInformation2 extends Main {
+public class ViewMachinesInfo extends Main {
 
 	/**
 	 * 
@@ -61,7 +61,7 @@ public class MachineInformation2 extends Main {
 	/**
 	 * Create the frame.
 	 */
-	public MachineInformation2(String id, int xLocation, int yLocation) {
+	public ViewMachinesInfo(String id, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
 		this.idAdmin = id;
 		this.sistema = new Sistema();
@@ -86,7 +86,7 @@ public class MachineInformation2 extends Main {
 		iniciaTree();
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(MachineInformation2.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Options options = new Options(idAdmin, getXLocation(), getYLocation());
@@ -102,12 +102,12 @@ public class MachineInformation2 extends Main {
 		desktopPane.add(btnVoltar);
 
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(MachineInformation2.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(MachineInformation2.class.getResource("/Resources/icon/view-machines-title.png")));
+		banner.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/view-machines-title.png")));
 		banner.setBounds(311, 21, 214, 104);
 		desktopPane.add(banner);
 
