@@ -63,7 +63,7 @@ public class MachineInformation2 extends Main {
 	/**
 	 * Create the frame.
 	 */
-	public MachineInformation2(String id, String codigoMaquina, int xLocation, int yLocation) {
+	public MachineInformation2(String id, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
 		this.idAdmin = id;
 		this.sistema = new Sistema();
@@ -109,47 +109,58 @@ public class MachineInformation2 extends Main {
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(
-				new ImageIcon(MachineInformation2.class.getResource("/Resources/icon/viewmachineinformation.png")));
-		banner.setBounds(246, 33, 337, 92);
+		banner.setIcon(new ImageIcon(MachineInformation2.class.getResource("/Resources/icon/view-machines-title.png")));
+		banner.setBounds(311, 21, 214, 104);
 		desktopPane.add(banner);
 
 	}
-	
-	public void jTree1ValueChanged( TreeSelectionEvent tse ) {
-		
-		DefaultMutableTreeNode node = (	DefaultMutableTreeNode) tse.getNewLeadSelectionPath().getLastPathComponent();
-		
-		       
-		if(node.getUserObject().getClass() == Maquina.class) {
-			
+
+	public void jTree1ValueChanged(TreeSelectionEvent tse) {
+
+		DefaultMutableTreeNode node = (DefaultMutableTreeNode) tse.getNewLeadSelectionPath().getLastPathComponent();
+
+		final Class<? extends Object> CLASS_TYPE = node.getUserObject().getClass();
+
+		if (CLASS_TYPE == Maquina.class) {
 			Maquina maquina = (Maquina) node.getUserObject();
-			
-			  JOptionPane.showMessageDialog(null,maquina.getNome());
+			JOptionPane.showMessageDialog(null, maquina.getNome());
 		}
-		       
-		    
 		
+		else if (CLASS_TYPE == Subsistema.class) {
+			Subsistema subsistema = (Subsistema) node.getUserObject();
+			JOptionPane.showMessageDialog(null, subsistema.getNome());
+		}
 		
+		else if (CLASS_TYPE == Componente.class) {
+			Componente componente = (Componente) node.getUserObject();
+			JOptionPane.showMessageDialog(null, componente.getNome());
+		}
+		
+		else if (CLASS_TYPE == Falha.class) {
+			Falha falha = (Falha) node.getUserObject();
+			JOptionPane.showMessageDialog(null, falha.getNome());
+		}
+		
+		else if (CLASS_TYPE == ModoFalha.class) {
+			ModoFalha modoFalha = (ModoFalha) node.getUserObject();
+			JOptionPane.showMessageDialog(null, modoFalha.getNome());
+		}
+
 	}
 
 	private void iniciaTree() {
 
 		DefaultMutableTreeNode maquinaNode = iniciaNodeMaquinas();
 		tree = new JTree(maquinaNode);
-		
-		TreeSelectionListener tsl = new TreeSelectionListener() {
-	        public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
-	            jTree1ValueChanged(evt);
-	        }
-	    };
-	    
-	    
 
-		
-		
+		TreeSelectionListener tsl = new TreeSelectionListener() {
+			public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+				jTree1ValueChanged(evt);
+			}
+		};
+
 		tree.addTreeSelectionListener(tsl);
-		
+
 		// tree.setBackground(new Color(0, 0, 0, 0));
 		tree.setBounds(67, 161, 465, 244);
 		desktopPane.add(tree);
@@ -218,7 +229,6 @@ public class MachineInformation2 extends Main {
 		DefaultMutableTreeNode modoFalhaNode = new DefaultMutableTreeNode("Modos de Falha");
 		if (!getModosFalhaMap(falha.getChave()).isEmpty()) {
 			failNode.add(modoFalhaNode);
-			
 
 			for (ModoFalha modoFalha : getModosFalhaMap(falha.getChave()).values()) {
 				DefaultMutableTreeNode mFailNode = new DefaultMutableTreeNode(modoFalha);
