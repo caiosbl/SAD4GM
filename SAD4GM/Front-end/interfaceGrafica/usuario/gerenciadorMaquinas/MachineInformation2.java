@@ -32,8 +32,6 @@ import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
-
-import javax.swing.JTextPane;
 import javax.swing.JTree;
 
 /**
@@ -123,24 +121,29 @@ public class MachineInformation2 extends Main {
 
 		if (CLASS_TYPE == Maquina.class) {
 			Maquina maquina = (Maquina) node.getUserObject();
-			JOptionPane.showMessageDialog(null, maquina.getNome());
+			ViewMachine vMachine = new ViewMachine(idAdmin, maquina.getChave(), getXLocation(), getYLocation());
+			dispose();
+			vMachine.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			vMachine.setVisible(true);
+			vMachine.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 		}
-		
+
 		else if (CLASS_TYPE == Subsistema.class) {
 			Subsistema subsistema = (Subsistema) node.getUserObject();
 			JOptionPane.showMessageDialog(null, subsistema.getNome());
 		}
-		
+
 		else if (CLASS_TYPE == Componente.class) {
 			Componente componente = (Componente) node.getUserObject();
 			JOptionPane.showMessageDialog(null, componente.getNome());
 		}
-		
+
 		else if (CLASS_TYPE == Falha.class) {
 			Falha falha = (Falha) node.getUserObject();
 			JOptionPane.showMessageDialog(null, falha.getNome());
 		}
-		
+
 		else if (CLASS_TYPE == ModoFalha.class) {
 			ModoFalha modoFalha = (ModoFalha) node.getUserObject();
 			JOptionPane.showMessageDialog(null, modoFalha.getNome());

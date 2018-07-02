@@ -250,22 +250,15 @@ public class Maquinas {
 	/**
 	 * Retorna as Informações de uma Máquina.
 	 * 
-	 * @param codigo
+	 * @param chaveMaquina
 	 *            Código da Máquina a ter informações retornadas.
 	 * @return Status da Operação.
 	 */
-	public String getInfo(String codigo) {
+	public String getInfo(int chaveMaquina) {
 		String info;
-		int codigoInt;
 
 		try {
-			codigoInt = Integer.parseInt(codigo);
-		} catch (Exception e) {
-			return "CÓDIGO INVÁLIDO!";
-		}
-
-		try {
-			info = mTools.getInfo(codigoInt);
+			info = mTools.getInfo(chaveMaquina);
 		} catch (Exception e) {
 			info = e.getMessage();
 		}

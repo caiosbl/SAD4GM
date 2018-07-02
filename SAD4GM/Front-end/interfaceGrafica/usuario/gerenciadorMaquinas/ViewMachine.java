@@ -1,6 +1,7 @@
 package interfaceGrafica.usuario.gerenciadorMaquinas;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -8,7 +9,6 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.entrada.Options;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -32,7 +32,7 @@ import javax.swing.JTextPane;
  *
  */
 
-public class MachineInformation extends Main {
+public class ViewMachine extends Main {
 
 	/**
 	 * 
@@ -50,13 +50,13 @@ public class MachineInformation extends Main {
 	/**
 	 * Create the frame.
 	 */
-	public MachineInformation(String id, String codigoMaquina,int xLocation, int yLocation) {
+	public ViewMachine(String id, int chaveMaquina, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(xLocation,yLocation, 621, 497);
+		setBounds(xLocation, yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -72,15 +72,15 @@ public class MachineInformation extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(MachineInformation.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Options options = new Options(idAdmin,getXLocation(),getYLocation());
+				MachineInformation2 information = new MachineInformation2(idAdmin, getXLocation(), getYLocation());
 
 				dispose();
-				options.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				options.setVisible(true);
-				options.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				information.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				information.setVisible(true);
+				information.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -88,31 +88,31 @@ public class MachineInformation extends Main {
 		desktopPane.add(btnVoltar);
 
 		JTextPane textPane = new JTextPane();
-		textPane.setText(sistema.getInfoMaquina(codigoMaquina));
-		textPane.setBackground(SystemColor.textInactiveText);
+		textPane.setFont(new Font("SansSerif", Font.BOLD, 16));
+		textPane.setForeground(Color.BLACK);
+		textPane.setText(sistema.getInfoMaquina(chaveMaquina));
+		// textPane.setBackground(new Color(0, 0, 0,0));
 		textPane.setBounds(114, 162, 394, 191);
 
 		JScrollPane jsp = new JScrollPane(textPane);
 
 		jsp.setBounds(114, 162, 394, 229);
 		desktopPane.add(jsp);
-		
+
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(MachineInformation.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(
-				new ImageIcon(MachineInformation.class.getResource("/Resources/icon/viewmachineinformation.png")));
-		banner.setBounds(246, 33, 337, 92);
+		banner.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/view-machine-title.png")));
+		banner.setBounds(324, 19, 204, 106);
 		desktopPane.add(banner);
 
 		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(MachineInformation.class.getResource("/Resources/icon/viewMachineInfoForm.png")));
+		form.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/viewMachineInfoForm.png")));
 		form.setBounds(94, 150, 434, 253);
 		desktopPane.add(form);
-		
 
 	}
 }

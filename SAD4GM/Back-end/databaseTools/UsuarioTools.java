@@ -364,7 +364,7 @@ public class UsuarioTools extends DatabaseTools {
 			ResultSet resSet = state.executeQuery();
 
 			if (resSet.next())
-				descricao += resSet.getString(1) + " - ID: " + resSet.getString(2);
+				descricao += resSet.getString(1);
 
 			state.close();
 		} catch (Exception e) {

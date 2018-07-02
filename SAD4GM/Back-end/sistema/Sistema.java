@@ -146,8 +146,8 @@ public class Sistema {
 		return cMaquinas.setDescricao(codigo, descricao);
 	}
 
-	public String getInfoMaquina(String codigo) {
-		return cMaquinas.getInfo(codigo);
+	public String getInfoMaquina(int chaveMaquina) {
+		return cMaquinas.getInfo(chaveMaquina);
 	}
 
 	public String listarMaquinas() {

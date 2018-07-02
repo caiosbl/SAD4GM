@@ -290,7 +290,7 @@ public class MaquinaTools extends DatabaseTools {
 	/**
 	 * Retorna as Informações de uma Máquina
 	 * 
-	 * @param codigo
+	 * @param chaveMaquina
 	 *            Código da Máquina a ter Informações Retornadas.
 	 * @return Informações
 	 * @throws SQLException
@@ -300,9 +300,7 @@ public class MaquinaTools extends DatabaseTools {
 	 *             Lança uma RuntimeErrorException caso a Máquina não esteja
 	 *             cadastrada.
 	 */
-	public String getInfo(int codigo) throws SQLException {
-		if (!hasMaquina(codigo))
-			throw new RuntimeErrorException(null, "Máquina inexistente!");
+	public String getInfo(int chaveMaquina) throws SQLException {
 
 		String infoMaquina = "";
 		String quebraLinha = System.lineSeparator();
@@ -311,14 +309,13 @@ public class MaquinaTools extends DatabaseTools {
 		try {
 			abrirConexao();
 			PreparedStatement state = con.prepareStatement(
-					"SELECT NOME,DATA_INSERCAO,CODIGO,DESCRICAO,CHAVE_USUARIO FROM maquinas.maquina WHERE codigo = ?");
-			state.setInt(1, codigo);
+					"SELECT NOME,DATA_INSERCAO,CODIGO,DESCRICAO,CHAVE_USUARIO FROM maquinas.maquina WHERE chave = ?");
+			state.setInt(1, chaveMaquina);
 
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
-				infoMaquina += "---------------------------------------------------------------------------"
-						+ quebraLinha;
+				infoMaquina += quebraLinha;
 
 				infoMaquina += "Nome: " + resSet.getString(1) + quebraLinha;
 				infoMaquina += "Data de Cadastro: " + formata.format(resSet.getDate(2)) + quebraLinha;
