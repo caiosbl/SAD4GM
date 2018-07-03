@@ -87,12 +87,10 @@ public class ViewSubsistema extends Main {
 		desktopPane.add(btnVoltar);
 
 		JTextPane textPane = new JTextPane();
-		textPane.setFont(new Font("SansSerif", Font.BOLD, 16));
 		textPane.setForeground(Color.BLACK);
-		textPane.setBackground(new Color(0,0,0,0));
 		textPane.setText(sistema.getNomeSubsistema(chaveSubsistema));
 		// textPane.setBackground(new Color(0, 0, 0,0));
-		textPane.setBounds(123, 230, 394, 74);
+		textPane.setBounds(158, 244, 365, 35);
 		desktopPane.add(textPane);
 
 		
@@ -106,11 +104,16 @@ public class ViewSubsistema extends Main {
 		banner.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/view-sub-title.png")));
 		banner.setBounds(292, 22, 244, 93);
 		desktopPane.add(banner);
-
-		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/viewMachineInfoForm.png")));
-		form.setBounds(102, 200, 434, 132);
-		desktopPane.add(form);
+		
+		JLabel lblNome = new JLabel("NOME:");
+		lblNome.setFont(new Font("Bebas Neue", Font.PLAIN, 16));
+		lblNome.setBounds(119, 256, 33, 17);
+		desktopPane.add(lblNome);
+		
+				JLabel form = new JLabel("");
+				form.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/viewMachineInfoForm.png")));
+				form.setBounds(102, 221, 434, 85);
+				desktopPane.add(form);
 
 	}
 }
