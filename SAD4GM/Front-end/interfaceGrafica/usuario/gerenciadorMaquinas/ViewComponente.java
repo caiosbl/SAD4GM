@@ -5,6 +5,7 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
@@ -86,16 +87,19 @@ public class ViewComponente extends Main {
 		btnVoltar.setBounds(484, 418, 88, 29);
 		desktopPane.add(btnVoltar);
 
-		JTextPane textPane = new JTextPane();
-		textPane.setFont(new Font("SansSerif", Font.BOLD, 16));
-		textPane.setForeground(Color.BLACK);
-		textPane.setBackground(new Color(0,0,0,0));
-		textPane.setText(sistema.getNomeSubsistema(chaveComponente));
-		// textPane.setBackground(new Color(0, 0, 0,0));
-		textPane.setBounds(123, 230, 394, 74);
-		desktopPane.add(textPane);
+		JTextPane nomePane = new JTextPane();
+		nomePane.setForeground(Color.BLACK);
+		nomePane.setText(sistema.getNomeComponente(chaveComponente));
+		nomePane.setBounds(215, 187, 244, 29);
+		desktopPane.add(nomePane);
+		JScrollPane jPane = new JScrollPane();
+		jPane.setBounds(215, 236, 244, 93);
+		desktopPane.add(jPane);
 
-		
+		JTextPane funcaoPane = new JTextPane();
+		jPane.setViewportView(funcaoPane);
+		funcaoPane.setText(sistema.getFuncaoComponente(chaveComponente));
+		funcaoPane.setEditable(false);
 
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/sad4logosmall.png")));
@@ -108,8 +112,8 @@ public class ViewComponente extends Main {
 		desktopPane.add(banner);
 
 		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/viewMachineInfoForm.png")));
-		form.setBounds(102, 200, 434, 132);
+		form.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/edit-component-info-form.png")));
+		form.setBounds(123, 161, 393, 225);
 		desktopPane.add(form);
 
 	}

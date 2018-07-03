@@ -140,7 +140,11 @@ public class ViewMachinesInfo extends Main {
 
 		else if (CLASS_TYPE == Componente.class) {
 			Componente componente = (Componente) node.getUserObject();
-			JOptionPane.showMessageDialog(null, componente.getNome());
+			ViewComponente vComponente = new ViewComponente(idAdmin, componente.getChave(), getXLocation(),getYLocation());
+			dispose();
+			vComponente.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			vComponente.setVisible(true);
+			vComponente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 
 		else if (CLASS_TYPE == Falha.class) {
