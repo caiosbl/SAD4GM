@@ -113,7 +113,7 @@ public class ViewMachinesInfo extends Main {
 
 	}
 
-	public void jTree1ValueChanged(TreeSelectionEvent tse) {
+	private void jTree1ValueChanged(TreeSelectionEvent tse) {
 
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode) tse.getNewLeadSelectionPath().getLastPathComponent();
 
@@ -131,7 +131,11 @@ public class ViewMachinesInfo extends Main {
 
 		else if (CLASS_TYPE == Subsistema.class) {
 			Subsistema subsistema = (Subsistema) node.getUserObject();
-			JOptionPane.showMessageDialog(null, subsistema.getNome());
+			ViewSubsistema vSubsistema = new ViewSubsistema(idAdmin, subsistema.getChave(), getXLocation(), getYLocation());
+			dispose();
+			vSubsistema.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			vSubsistema.setVisible(true);
+			vSubsistema.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 
 		else if (CLASS_TYPE == Componente.class) {
