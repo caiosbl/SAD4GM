@@ -5,7 +5,6 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
