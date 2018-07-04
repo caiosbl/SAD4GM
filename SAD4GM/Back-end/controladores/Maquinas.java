@@ -33,14 +33,10 @@ public class Maquinas {
 	/**
 	 * Insere uma Máquina no Banco de Dados
 	 * 
-	 * @param nome
-	 *            Nome da Máquina
-	 * @param codigo
-	 *            Código da Máquina
-	 * @param descricao
-	 *            Descrição da Máquina
-	 * @param idUsuario
-	 *            ID do Usuário que cadastrou a Máquina
+	 * @param nome      Nome da Máquina
+	 * @param codigo    Código da Máquina
+	 * @param descricao Descrição da Máquina
+	 * @param idUsuario ID do Usuário que cadastrou a Máquina
 	 * @return Status da Operação.
 	 */
 	public String inserir(String nome, String codigo, String descricao, String idUsuario) {
@@ -66,8 +62,7 @@ public class Maquinas {
 	/**
 	 * Remove uma Máquina do Banco de Dados
 	 * 
-	 * @param chave
-	 *            Código da Máquina a ser Removida.
+	 * @param chave Código da Máquina a ser Removida.
 	 * @return Status da Operação.
 	 */
 	public String remover(int chave) {
@@ -86,12 +81,11 @@ public class Maquinas {
 	/**
 	 * Retorna o nome de uma Máquina
 	 * 
-	 * @param codigo
-	 *            Código da Máquina
+	 * @param codigo Código da Máquina
 	 * @return Nome da Máquina
-	 * @throws RuntimeErrorException
-	 *             Lança uma RuntimeErrorException caso o Código seja Inválido ou
-	 *             haja falha na Conexão com o Banco de Dados.
+	 * @throws RuntimeErrorException Lança uma RuntimeErrorException caso o Código
+	 *                               seja Inválido ou haja falha na Conexão com o
+	 *                               Banco de Dados.
 	 */
 	public String getNome(String codigo) {
 		int codigoInt;
@@ -119,12 +113,11 @@ public class Maquinas {
 	/**
 	 * Retorna a Descrição de uma Máquina
 	 * 
-	 * @param codigo
-	 *            Código da Máquina
+	 * @param codigo Código da Máquina
 	 * @return Descrição da Máquina
-	 * @throws RuntimeErrorException
-	 *             Lança uma RuntimeErrorException caso o Código seja Inválido ou
-	 *             haja falha na Conexão com o Banco de Dados.
+	 * @throws RuntimeErrorException Lança uma RuntimeErrorException caso o Código
+	 *                               seja Inválido ou haja falha na Conexão com o
+	 *                               Banco de Dados.
 	 * 
 	 */
 	public String getDescricao(String codigo) {
@@ -153,10 +146,8 @@ public class Maquinas {
 	/**
 	 * Altera o nome de uma Máquina no Banco de Dados
 	 * 
-	 * @param codigo
-	 *            Código da Máquina a ser alterada.
-	 * @param nome
-	 *            Novo nome da Máquina a ser alterada.
+	 * @param codigo Código da Máquina a ser alterada.
+	 * @param nome   Novo nome da Máquina a ser alterada.
 	 * @return Status da Operação.
 	 */
 	public String setNome(String codigo, String nome) {
@@ -183,10 +174,8 @@ public class Maquinas {
 	/**
 	 * Altera o Código de uma Máquina
 	 * 
-	 * @param codigo
-	 *            Código da Máquina a ser Alterada.
-	 * @param novoCodigo
-	 *            Novo Código da Máquina a ser Alterada.
+	 * @param codigo     Código da Máquina a ser Alterada.
+	 * @param novoCodigo Novo Código da Máquina a ser Alterada.
 	 * @return Status da Operação.
 	 */
 	public String setCodigo(String codigo, String novoCodigo) {
@@ -220,10 +209,8 @@ public class Maquinas {
 	/**
 	 * Altera a descrição de uma Máquina.
 	 * 
-	 * @param codigo
-	 *            Código da Máquina a ser Alterada.
-	 * @param descricao
-	 *            Nova Descrição da Máquina a ser Alterada.
+	 * @param codigo    Código da Máquina a ser Alterada.
+	 * @param descricao Nova Descrição da Máquina a ser Alterada.
 	 * @return Status da Operação.
 	 */
 	public String setDescricao(String codigo, String descricao) {
@@ -250,18 +237,14 @@ public class Maquinas {
 	/**
 	 * Retorna as Informações de uma Máquina.
 	 * 
-	 * @param chaveMaquina
-	 *            Código da Máquina a ter informações retornadas.
+	 * @param chaveMaquina Código da Máquina a ter informações retornadas.
 	 * @return Status da Operação.
+	 * @throws Exception
 	 */
-	public String getInfo(int chaveMaquina) {
-		String info;
+	public Maquina getInfo(int chaveMaquina) throws Exception {
+		Maquina info;
 
-		try {
-			info = mTools.getInfo(chaveMaquina);
-		} catch (Exception e) {
-			info = e.getMessage();
-		}
+		info = mTools.getInfo(chaveMaquina);
 
 		return info;
 	}
@@ -287,14 +270,12 @@ public class Maquinas {
 	 * Retorna um valor booleano informando se há ou não uma Máquina cadastrada no
 	 * Banco de Dados.
 	 * 
-	 * @param codigo
-	 *            Código da Máquina a ser checada.
+	 * @param codigo Código da Máquina a ser checada.
 	 * @return Valor Booleano indicando sua presença
-	 * @throws SQLException
-	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
-	 *             Dados.
-	 * @throws RuntimeErrorException
-	 *             Lança uma RuntimeErrorException caso o Código não seja númerico.
+	 * @throws SQLException          Lança uma SQLException caso haja falha na
+	 *                               conexão com o Banco de Dados.
+	 * @throws RuntimeErrorException Lança uma RuntimeErrorException caso o Código
+	 *                               não seja númerico.
 	 * 
 	 */
 	public boolean hasMaquina(String codigo) throws SQLException {

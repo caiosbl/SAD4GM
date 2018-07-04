@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-
+import java.util.Date;
 import java.util.HashMap;
 
 import java.util.Map;
@@ -293,17 +293,18 @@ public class MaquinaTools extends DatabaseTools {
 	 * @param chaveMaquina
 	 *            Código da Máquina a ter Informações Retornadas.
 	 * @return Informações
-	 * @throws SQLException
-	 *             Lança uma SQLException caso haja falha na conexão com o Banco de
-	 *             Dados.
+	 * @throws Exception 
 	 * @throws RuntimeErrorException
 	 *             Lança uma RuntimeErrorException caso a Máquina não esteja
 	 *             cadastrada.
 	 */
-	public String getInfo(int chaveMaquina) throws SQLException {
-
-		String infoMaquina = "";
-		String quebraLinha = System.lineSeparator();
+	public Maquina getInfo(int chaveMaquina) throws Exception {		
+		String  nomeMaquina = null;
+		int codigo = -1;
+		String descricao = null;
+		String nomeUsuario = null;
+		Date dataCadastro = null;
+		
 		int chaveUsuario;
 
 		try {
@@ -315,29 +316,25 @@ public class MaquinaTools extends DatabaseTools {
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
-				infoMaquina += quebraLinha;
-
-				infoMaquina += "Nome: " + resSet.getString(1) + quebraLinha;
-				infoMaquina += "Data de Cadastro: " + formata.format(resSet.getDate(2)) + quebraLinha;
-				infoMaquina += "Código: " + resSet.getInt(3) + quebraLinha;
-				infoMaquina += "Descrição: " + resSet.getString(4) + quebraLinha;
-
+				nomeMaquina = resSet.getString(1);
+				dataCadastro = resSet.getDate(2);
+				codigo = resSet.getInt(3);
+				descricao = resSet.getString(4);
 				chaveUsuario = resSet.getInt(5);
+				nomeUsuario = uTools.getNome(chaveUsuario, con);
 
-				String infoUsuarioCadastrou = uTools.getNome(chaveUsuario, con);
-
-				infoMaquina += "Cadastrada por: " + infoUsuarioCadastrou + quebraLinha;
-
-				infoMaquina += quebraLinha;
 			}
 			state.close();
 
 			fecharConexao();
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new Exception("Máquina Inexistente");
 		}
+		
+		Maquina maquina = new Maquina(nomeMaquina, codigo, descricao, nomeUsuario, dataCadastro);
+		
 
-		return infoMaquina;
+		return maquina;
 
 	}
 

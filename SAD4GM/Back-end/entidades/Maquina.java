@@ -1,6 +1,9 @@
 package entidades;
 
 import validadorInformacoes.ValidaMaquina;
+
+import java.util.Date;
+
 import validadorInformacoes.CheckUser;
 
 /**
@@ -16,17 +19,18 @@ public class Maquina {
 	private String nome;
 	private int codigo;
 	private String descricao;
-	private String idUsuario;
+	private String nomeUsuario;
 	private int chave;
+	private Date dataCadastro;
 
-	public Maquina(String nome, String codigo, String descricao, String idUsuario) {
+	public Maquina(String nome, int codigo, String descricao, String nomeUsuario, Date dataCadastro) {
 		ValidaMaquina.validaNome(nome);
 		this.nome = nome;
-		this.codigo = parseCodigo(codigo);
+		this.codigo = codigo;
 		ValidaMaquina.validaDescricao(descricao);
 		this.descricao = descricao;
-		CheckUser.validateId(idUsuario);
-		this.idUsuario = idUsuario;
+		CheckUser.validateId(nomeUsuario);
+		this.nomeUsuario = nomeUsuario;
 	}
 
 	public Maquina(String nome, int chave) {
@@ -34,15 +38,21 @@ public class Maquina {
 		this.chave = chave;
 	}
 
+	public Maquina(String nome, String codigo, String descricao, String idUsuario) {
+		this.nome = nome;
+		this.codigo = parseCodigo(codigo);
+		this.descricao = descricao;
+		this.nomeUsuario = idUsuario;
+	}
+
 	/**
 	 * Retorna o valor inteiro de um código em String
 	 * 
-	 * @param codigo
-	 *            Código a ser convertido.
+	 * @param codigo Código a ser convertido.
 	 * @return Código em Int
-	 * @throws IllegalArgumentException
-	 *             Lança um IllegalArgumentException caso o código não possa ser
-	 *             convertido em um inteiro válido.
+	 * @throws IllegalArgumentException Lança um IllegalArgumentException caso o
+	 *                                  código não possa ser convertido em um
+	 *                                  inteiro válido.
 	 */
 	public static int parseCodigo(String codigo) {
 		int codigoInt;
@@ -84,15 +94,23 @@ public class Maquina {
 	}
 
 	public String getIdUsuario() {
-		return idUsuario;
+		return nomeUsuario;
 	}
 
 	public void setIdUsuario(String idUsuario) {
-		this.idUsuario = idUsuario;
+		this.nomeUsuario = idUsuario;
 	}
 
 	public int getChave() {
 		return this.chave;
+	}
+
+	public Date getDataCadastro() {
+		return this.dataCadastro;
+	}
+
+	public void setDataCadastro(Date novaData) {
+		this.dataCadastro = novaData;
 	}
 
 	@Override
