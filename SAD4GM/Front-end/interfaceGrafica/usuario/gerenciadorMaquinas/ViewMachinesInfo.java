@@ -149,7 +149,11 @@ public class ViewMachinesInfo extends Main {
 
 		else if (CLASS_TYPE == Falha.class) {
 			Falha falha = (Falha) node.getUserObject();
-			JOptionPane.showMessageDialog(null, falha.getNome());
+			ViewFalha vFalha = new ViewFalha(idAdmin, falha.getChave(), getXLocation(),getYLocation());
+			dispose();
+			vFalha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			vFalha.setVisible(true);
+			vFalha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 
 		else if (CLASS_TYPE == ModoFalha.class) {
