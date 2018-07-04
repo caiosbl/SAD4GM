@@ -107,8 +107,8 @@ public class ViewComponente extends Main {
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/view-sub-title.png")));
-		banner.setBounds(292, 22, 244, 93);
+		banner.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/view-component-title.png")));
+		banner.setBounds(292, 22, 262, 89);
 		desktopPane.add(banner);
 
 		JLabel form = new JLabel("");
