@@ -51,6 +51,7 @@ public class ViewSubsistema extends Main {
 	 */
 	public ViewSubsistema(String id, int chaveSubsistema, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
+		setEnabled(false);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
