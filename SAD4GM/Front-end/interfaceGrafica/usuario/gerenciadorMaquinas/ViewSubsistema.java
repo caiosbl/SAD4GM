@@ -105,15 +105,10 @@ public class ViewSubsistema extends Main {
 		banner.setBounds(292, 22, 244, 93);
 		desktopPane.add(banner);
 		
-		JLabel lblNome = new JLabel("NOME:");
-		lblNome.setFont(new Font("Bebas Neue", Font.PLAIN, 16));
-		lblNome.setBounds(119, 256, 33, 17);
-		desktopPane.add(lblNome);
-		
-				JLabel form = new JLabel("");
-				form.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/viewMachineInfoForm.png")));
-				form.setBounds(102, 221, 434, 85);
-				desktopPane.add(form);
+		JLabel form = new JLabel("");
+		form.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/formviewSubsistema.png")));
+		form.setBounds(87, 178, 459, 182);
+		desktopPane.add(form);
 
 	}
 }

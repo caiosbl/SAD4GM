@@ -31,6 +31,7 @@ public class Maquina {
 		this.descricao = descricao;
 		CheckUser.validateId(nomeUsuario);
 		this.nomeUsuario = nomeUsuario;
+		this.dataCadastro = dataCadastro;
 	}
 
 	public Maquina(String nome, int chave) {
