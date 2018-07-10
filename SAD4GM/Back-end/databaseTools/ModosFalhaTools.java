@@ -99,4 +99,21 @@ public class ModosFalhaTools extends DatabaseTools {
 
 		return modosFalha;
 	}
+	
+	public void deletar(int chave) throws SQLException {
+
+		try {
+
+			final String DELETE = "DELETE FROM maquinas.modo_falha where chave =" + chave;
+			abrirConexao();
+			PreparedStatement stmt = con.prepareStatement(DELETE);
+			stmt.execute();
+			stmt.close();
+			fecharConexao();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 }
