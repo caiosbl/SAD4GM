@@ -68,6 +68,16 @@ public class MachineManagementOptions extends Main {
 		btnRemoveMachine.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JButton btnRemoveComponent = new JButton("");
+		btnRemoveComponent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewMachinesRemove vMRemove = new ViewMachinesRemove(idAdmin,getXLocation(),getYLocation());
+
+				dispose();
+				vMRemove.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				vMRemove.setVisible(true);
+				vMRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnRemoveComponent.setSelectedIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/remove-component-enabled.png")));
 		btnRemoveComponent.setBackground(new Color(0,0,0,0));
 		btnRemoveComponent.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/remove-component-disabled.png")));

@@ -89,12 +89,12 @@ public class ViewMachinesRemove extends Main {
 		btnVoltar.setIcon(new ImageIcon(ViewMachinesRemove.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Options options = new Options(idAdmin, getXLocation(), getYLocation());
+				MachineManagementOptions mMoptions = new MachineManagementOptions(idAdmin, getXLocation(), getYLocation());
 
 				dispose();
-				options.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				options.setVisible(true);
-				options.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				mMoptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				mMoptions.setVisible(true);
+				mMoptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -120,40 +120,33 @@ public class ViewMachinesRemove extends Main {
 		final Class<? extends Object> CLASS_TYPE = node.getUserObject().getClass();
 
 		if (CLASS_TYPE == Maquina.class) {
+			
 			Maquina maquina = (Maquina) node.getUserObject();
-			ViewMachine vMachine = new ViewMachine(idAdmin, maquina.getChave(), getXLocation(), getYLocation());
-			dispose();
-			vMachine.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-			vMachine.setVisible(true);
-			vMachine.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+			JFrame frame = new JFrame();
+		    int resposta = JOptionPane.showConfirmDialog(frame,"Tem Certeza que Deseja remover a Máquina " + maquina.getNome() + " ?", "", JOptionPane.YES_NO_OPTION);
+		   
+		    if (resposta == JOptionPane.YES_OPTION) {
+		        JOptionPane.showMessageDialog(null, sistema.removerMaquina(maquina.getChave()));
+		        iniciaTree();
+		      }
+		    
+		    
+		     
 		}
 
 		else if (CLASS_TYPE == Subsistema.class) {
 			Subsistema subsistema = (Subsistema) node.getUserObject();
-			ViewSubsistema vSubsistema = new ViewSubsistema(idAdmin, subsistema.getChave(), getXLocation(), getYLocation());
-			dispose();
-			vSubsistema.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-			vSubsistema.setVisible(true);
-			vSubsistema.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			
 		}
 
 		else if (CLASS_TYPE == Componente.class) {
 			Componente componente = (Componente) node.getUserObject();
-			ViewComponente vComponente = new ViewComponente(idAdmin, componente.getChave(), getXLocation(),getYLocation());
-			dispose();
-			vComponente.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-			vComponente.setVisible(true);
-			vComponente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			
 		}
 
 		else if (CLASS_TYPE == Falha.class) {
 			Falha falha = (Falha) node.getUserObject();
-			ViewFalha vFalha = new ViewFalha(idAdmin, falha.getChave(), getXLocation(),getYLocation());
-			dispose();
-			vFalha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-			vFalha.setVisible(true);
-			vFalha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			
 		}
 
 		else if (CLASS_TYPE == ModoFalha.class) {
