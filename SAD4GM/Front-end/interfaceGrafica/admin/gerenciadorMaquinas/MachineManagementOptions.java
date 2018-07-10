@@ -71,7 +71,6 @@ public class MachineManagementOptions extends Main {
 		btnRemoveComponent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ViewMachinesRemove vMRemove = new ViewMachinesRemove(idAdmin,getXLocation(),getYLocation());
-
 				dispose();
 				vMRemove.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				vMRemove.setVisible(true);

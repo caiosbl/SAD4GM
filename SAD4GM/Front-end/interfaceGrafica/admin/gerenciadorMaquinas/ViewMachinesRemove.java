@@ -90,7 +90,6 @@ public class ViewMachinesRemove extends Main {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MachineManagementOptions mMoptions = new MachineManagementOptions(idAdmin, getXLocation(), getYLocation());
-
 				dispose();
 				mMoptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				mMoptions.setVisible(true);
@@ -124,10 +123,11 @@ public class ViewMachinesRemove extends Main {
 			Maquina maquina = (Maquina) node.getUserObject();
 			JFrame frame = new JFrame();
 		    int resposta = JOptionPane.showConfirmDialog(frame,"Tem Certeza que Deseja remover a Máquina " + maquina.getNome() + " ?", "", JOptionPane.YES_NO_OPTION);
-		   
+		    frame.dispose();
 		    if (resposta == JOptionPane.YES_OPTION) {
 		        JOptionPane.showMessageDialog(null, sistema.removerMaquina(maquina.getChave()));
 		        iniciaTree();
+		        tree.removeAll();
 		      }
 		    
 		    
