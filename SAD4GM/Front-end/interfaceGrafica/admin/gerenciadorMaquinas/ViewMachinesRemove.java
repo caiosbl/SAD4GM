@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
 
 import entidades.Componente;
 import entidades.Falha;
@@ -89,7 +91,8 @@ public class ViewMachinesRemove extends Main {
 		btnVoltar.setIcon(new ImageIcon(ViewMachinesRemove.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MachineManagementOptions mMoptions = new MachineManagementOptions(idAdmin, getXLocation(), getYLocation());
+				MachineManagementOptions mMoptions = new MachineManagementOptions(idAdmin, getXLocation(),
+						getYLocation());
 				dispose();
 				mMoptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				mMoptions.setVisible(true);
@@ -114,45 +117,53 @@ public class ViewMachinesRemove extends Main {
 
 	private void jTree1ValueChanged(TreeSelectionEvent tse) {
 
-		DefaultMutableTreeNode node = (DefaultMutableTreeNode) tse.getNewLeadSelectionPath().getLastPathComponent();
+		if (tse.isAddedPath()) {
 
-		final Class<? extends Object> CLASS_TYPE = node.getUserObject().getClass();
+			DefaultMutableTreeNode node = (DefaultMutableTreeNode) tse.getNewLeadSelectionPath().getLastPathComponent();
 
-		if (CLASS_TYPE == Maquina.class) {
-			
-			Maquina maquina = (Maquina) node.getUserObject();
-			JFrame frame = new JFrame();
-		    int resposta = JOptionPane.showConfirmDialog(frame,"Tem Certeza que Deseja remover a Máquina " + maquina.getNome() + " ?", "", JOptionPane.YES_NO_OPTION);
-		    frame.dispose();
-		    if (resposta == JOptionPane.YES_OPTION) {
-		        JOptionPane.showMessageDialog(null, sistema.removerMaquina(maquina.getChave()));
-		        iniciaTree();
-		        tree.removeAll();
-		      }
-		    
-		    
-		     
+			final Class<? extends Object> CLASS_TYPE = node.getUserObject().getClass();
+
+			if (CLASS_TYPE == Maquina.class) {
+
+				Maquina maquina = (Maquina) node.getUserObject();
+				JFrame frame = new JFrame();
+				int resposta = JOptionPane.showConfirmDialog(frame,
+						"Tem Certeza que Deseja remover a Máquina " + maquina.getNome() + " ?", "",
+						JOptionPane.YES_NO_OPTION);
+				frame.dispose();
+				if (resposta == JOptionPane.YES_OPTION) {
+					JOptionPane.showMessageDialog(null, sistema.removerMaquina(maquina.getChave()));
+					atualizaTree();
+				}
+
+			}
+
+			else if (CLASS_TYPE == Subsistema.class) {
+				Subsistema subsistema = (Subsistema) node.getUserObject();
+
+			}
+
+			else if (CLASS_TYPE == Componente.class) {
+				Componente componente = (Componente) node.getUserObject();
+
+			}
+
+			else if (CLASS_TYPE == Falha.class) {
+				Falha falha = (Falha) node.getUserObject();
+
+			}
+
+			else if (CLASS_TYPE == ModoFalha.class) {
+				ModoFalha modoFalha = (ModoFalha) node.getUserObject();
+				JOptionPane.showMessageDialog(null, modoFalha.getNome());
+			}
 		}
+	}
 
-		else if (CLASS_TYPE == Subsistema.class) {
-			Subsistema subsistema = (Subsistema) node.getUserObject();
-			
-		}
-
-		else if (CLASS_TYPE == Componente.class) {
-			Componente componente = (Componente) node.getUserObject();
-			
-		}
-
-		else if (CLASS_TYPE == Falha.class) {
-			Falha falha = (Falha) node.getUserObject();
-			
-		}
-
-		else if (CLASS_TYPE == ModoFalha.class) {
-			ModoFalha modoFalha = (ModoFalha) node.getUserObject();
-			JOptionPane.showMessageDialog(null, modoFalha.getNome());
-		}
+	private void atualizaTree() {
+		DefaultMutableTreeNode maquinaNode = iniciaNodeMaquinas();
+		TreeModel arvore = new DefaultTreeModel(maquinaNode);
+		tree.setModel(arvore);
 
 	}
 
