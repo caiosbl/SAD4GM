@@ -18,7 +18,6 @@ import entidades.Maquina;
 import entidades.ModoFalha;
 import entidades.Subsistema;
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.entrada.Options;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -128,7 +127,7 @@ public class ViewMachinesRemove extends Main {
 				Maquina maquina = (Maquina) node.getUserObject();
 				JFrame frame = new JFrame();
 				int resposta = JOptionPane.showConfirmDialog(frame,
-						"Tem Certeza que Deseja remover a Máquina " + maquina.getNome() + " ?", "",
+						"Tem Certeza que Deseja remover a Máquina " + maquina.getNome() + " ?", "Remover Máquina",
 						JOptionPane.YES_NO_OPTION);
 				frame.dispose();
 				if (resposta == JOptionPane.YES_OPTION) {
@@ -140,16 +139,43 @@ public class ViewMachinesRemove extends Main {
 
 			else if (CLASS_TYPE == Subsistema.class) {
 				Subsistema subsistema = (Subsistema) node.getUserObject();
+				JFrame frame = new JFrame();
+				int resposta = JOptionPane.showConfirmDialog(frame,
+						"Tem Certeza que Deseja remover o Subsistema " + subsistema.getNome() + " ?",
+						"Remover Subsistema", JOptionPane.YES_NO_OPTION);
+				frame.dispose();
+				if (resposta == JOptionPane.YES_OPTION) {
+					JOptionPane.showMessageDialog(null, sistema.removerSubsistema(subsistema.getChave()));
+					atualizaTree();
+				}
 
 			}
 
 			else if (CLASS_TYPE == Componente.class) {
 				Componente componente = (Componente) node.getUserObject();
+				JFrame frame = new JFrame();
+				int resposta = JOptionPane.showConfirmDialog(frame,
+						"Tem Certeza que Deseja remover o Componente " + componente.getNome() + " ?",
+						"Remover Componente", JOptionPane.YES_NO_OPTION);
+				frame.dispose();
+				if (resposta == JOptionPane.YES_OPTION) {
+					JOptionPane.showMessageDialog(null, sistema.removerComponente(componente.getChave()));
+					atualizaTree();
+				}
 
 			}
 
 			else if (CLASS_TYPE == Falha.class) {
 				Falha falha = (Falha) node.getUserObject();
+				JFrame frame = new JFrame();
+				int resposta = JOptionPane.showConfirmDialog(frame,
+						"Tem Certeza que Deseja remover a Falha " + falha.getNome() + " ?", "Remover Falha",
+						JOptionPane.YES_NO_OPTION);
+				frame.dispose();
+				if (resposta == JOptionPane.YES_OPTION) {
+					JOptionPane.showMessageDialog(null, sistema.removerFalha(falha.getChave()));
+					atualizaTree();
+				}
 
 			}
 
