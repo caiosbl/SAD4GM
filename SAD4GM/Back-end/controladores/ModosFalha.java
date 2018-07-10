@@ -8,19 +8,19 @@ import databaseTools.ModosFalhaTools;
 import entidades.ModoFalha;
 
 public class ModosFalha {
-	
+
 	private ModosFalhaTools mFTools;
-	
+
 	public ModosFalha(ModosFalhaTools mFTools) {
 		this.mFTools = new ModosFalhaTools();
 	}
-	
+
 	public String inserir(String descricao, int chaveFalha) {
 
 		String status;
 
 		try {
-			mFTools.inserir( descricao, chaveFalha);
+			mFTools.inserir(descricao, chaveFalha);
 			status = "Modo de Falha inserido com Sucesso!";
 		} catch (SQLException e) {
 			status = e.getMessage();
@@ -39,19 +39,18 @@ public class ModosFalha {
 		}
 
 	}
-	
-	public Map<Integer,ModoFalha> getModosFalhaMap(int chaveFalha){
+
+	public Map<Integer, ModoFalha> getModosFalhaMap(int chaveFalha) {
 		try {
 			return mFTools.getModosFalhaMap(chaveFalha);
 		} catch (SQLException e) {
 			return new HashMap<Integer, ModoFalha>();
 		}
 	}
-	
-	
+
 	public String getDescricao(int chaveModoFalha) {
 		String descricao;
-		
+
 		try {
 			descricao = mFTools.getDescricaoModoFalha(chaveModoFalha);
 		} catch (SQLException e) {
@@ -60,18 +59,30 @@ public class ModosFalha {
 		}
 		return descricao;
 	}
-	
+
 	public String setDescricao(String descricao, int chaveModoFalha) {
 		String status;
-		
+
 		try {
 			mFTools.setDescricaoModoFalha(descricao, chaveModoFalha);
 			status = "Descrição atualizada com Sucesso!";
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			status = "Falha ao Atualizar Descrição!";
 		}
-		
+
+		return status;
+	}
+
+	public String remover(int chave) {
+		String status;
+
+		try {
+			mFTools.deletar(chave);
+			status = "Modo de Falha removido com sucesso!";
+		} catch (Exception e) {
+			status = e.getMessage();
+		}
+
 		return status;
 	}
 

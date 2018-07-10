@@ -100,5 +100,18 @@ public class Componentes {
 		
 		return status;
 	}
+	
+	public String remover(int chave) {
+		String status;
+
+		try {
+			cTools.deletar(chave);
+			status = "Componente removido com sucesso!";
+		} catch (Exception e) {
+			status = e.getMessage();
+		}
+
+		return status;
+	}
 
 }

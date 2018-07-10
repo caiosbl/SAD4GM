@@ -100,5 +100,18 @@ public class Falhas {
 		
 		return status;
 	}
+	
+	public String remover(int chave) {
+		String status;
+
+		try {
+			fTools.deletar(chave);
+			status = "Falha removida com sucesso!";
+		} catch (Exception e) {
+			status = e.getMessage();
+		}
+
+		return status;
+	}
 
 }

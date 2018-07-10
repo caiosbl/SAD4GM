@@ -203,11 +203,17 @@ public class Sistema {
 	public String setNomeSubsistema(String nome, int chaveSubsistema) {
 		return cSubsistemas.setNomeSubsistema(nome, chaveSubsistema);
 	}
+	
+	
 
 	// Funções de Componentes
 
 	public String inserirComponente(String nome, int chaveSubsistema, String funcao) {
 		return cComponentes.inserir(nome, chaveSubsistema, funcao);
+	}
+	
+	public String removerComponente(int chave) {
+		return cComponentes.remover(chave);
 	}
 
 	public Map<String, Integer> getMapaComponentes(int chaveSubsistema) {
@@ -239,6 +245,10 @@ public class Sistema {
 	public String inserirFalha(String nome, String descricao, int chaveComponente) {
 		return cFalhas.inserir(nome, descricao, chaveComponente);
 	}
+	
+	public String removerFalha(int chave) {
+		return cFalhas.remover(chave);
+	}
 
 	public Map<String, Integer> getMapaFalhas(int chaveComponente) {
 		return cFalhas.getMapaFalhas(chaveComponente);
@@ -268,6 +278,10 @@ public class Sistema {
 
 	public String inserirModoFalha(String descricao, int chaveFalha) {
 		return cMFalhas.inserir(descricao, chaveFalha);
+	}
+	
+	public String removerModoFalha(int chave) {
+		return cMFalhas.remover(chave);
 	}
 
 	public Map<String, Integer> getMapaModosFalha(int chaveFalha) {
