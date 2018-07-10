@@ -147,5 +147,22 @@ public class FalhaTools extends DatabaseTools {
 
 		return falhas;
 	}
+	
+	public void deletar(int chave) throws SQLException {
+
+		try {
+
+			final String DELETE = "DELETE FROM maquinas.falha where chave =" + chave;
+			abrirConexao();
+			PreparedStatement stmt = con.prepareStatement(DELETE);
+			stmt.execute();
+			stmt.close();
+			fecharConexao();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 
 }
