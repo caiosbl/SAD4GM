@@ -3,10 +3,12 @@ package interfaceGrafica.usuario.gerenciadorMaquinas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
 
 import entidades.Maquina;
 import interfaceGrafica.main.Main;
@@ -27,6 +29,7 @@ import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
 import javax.swing.JTextPane;
+
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -157,3 +160,5 @@ public class ViewMachine extends Main {
 
 	}
 }
+
+
