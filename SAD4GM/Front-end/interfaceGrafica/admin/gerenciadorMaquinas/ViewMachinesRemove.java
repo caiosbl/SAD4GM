@@ -181,7 +181,15 @@ public class ViewMachinesRemove extends Main {
 
 			else if (CLASS_TYPE == ModoFalha.class) {
 				ModoFalha modoFalha = (ModoFalha) node.getUserObject();
-				JOptionPane.showMessageDialog(null, modoFalha.getNome());
+				JFrame frame = new JFrame();
+				int resposta = JOptionPane.showConfirmDialog(frame,
+						"Tem Certeza que Deseja remover o Modo de Falha " + modoFalha.getNome() + " ?",
+						"Remover Modo de Falha", JOptionPane.YES_NO_OPTION);
+				frame.dispose();
+				if (resposta == JOptionPane.YES_OPTION) {
+					JOptionPane.showMessageDialog(null, sistema.removerModoFalha(modoFalha.getChave()));
+					atualizaTree();
+				}
 			}
 		}
 	}
