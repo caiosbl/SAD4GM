@@ -210,6 +210,7 @@ public abstract class DatabaseTools {
 
 		PreparedStatement statement = con.prepareStatement("\r\n" + 
 				"CREATE TABLE MAQUINAS.MODO_FALHA(\r\n" + 
+				"NOME LONG VARCHAR, \r\n" +
 				"DESCRICAO LONG VARCHAR,\r\n" + 
 				"CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
 				"CHAVE_FALHA INTEGER NOT NULL,\r\n" + 

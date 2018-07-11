@@ -63,45 +63,9 @@ public class MachineManagementOptions extends Main {
 		btnRemoveMachine.setSelectedIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/removemenabled.png")));
 		btnRemoveMachine.setBackground(new Color(0,0,0,0));
 		btnRemoveMachine.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/removemdisabled.png")));
-		btnRemoveMachine.setBounds(0, 195, 137, 145);
+		btnRemoveMachine.setBounds(24, 182, 137, 145);
 		desktopPane.add(btnRemoveMachine);
 		btnRemoveMachine.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
-		JButton btnRemoveComponent = new JButton("");
-		btnRemoveComponent.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ViewMachinesRemove vMRemove = new ViewMachinesRemove(idAdmin,getXLocation(),getYLocation());
-				dispose();
-				vMRemove.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				vMRemove.setVisible(true);
-				vMRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-		});
-		btnRemoveComponent.setSelectedIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/remove-component-enabled.png")));
-		btnRemoveComponent.setBackground(new Color(0,0,0,0));
-		btnRemoveComponent.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/remove-component-disabled.png")));
-		btnRemoveComponent.setBounds(234, 195, 137, 145);
-		desktopPane.add(btnRemoveComponent);
-		btnRemoveComponent.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
-		JButton btnRemoveFail = new JButton("");
-		btnRemoveFail.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnRemoveFail.setSelectedIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/remove-falha-enabled.png")));
-		btnRemoveFail.setBackground(new Color(0,0,0,0));
-		btnRemoveFail.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/remove-falha-disabled.png")));
-		btnRemoveFail.setBounds(349, 195, 137, 144);
-		desktopPane.add(btnRemoveFail);
-		btnRemoveFail.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
-		JButton btnRemoveModoFalha = new JButton("");
-		btnRemoveModoFalha.setSelectedIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/remove-modo-falha-enabled.png")));
-		btnRemoveModoFalha.setBackground(new Color(0,0,0,0));
-		btnRemoveModoFalha.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/remove-modo-falha-disabled.png")));
-		btnRemoveModoFalha.setBounds(462, 195, 137, 144);
-		desktopPane.add(btnRemoveModoFalha);
 	
 
 		JSeparator separator = new JSeparator();
@@ -134,31 +98,13 @@ public class MachineManagementOptions extends Main {
 		banner.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/gerenciadormaquinatitle.png")));
 		banner.setBounds(298, 30, 253, 84);
 		desktopPane.add(banner);
-		
-		JButton removeSubsistemaBtn = new JButton("");
-		removeSubsistemaBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				SubsistemaRemove subsistemaRemove = new SubsistemaRemove(idAdmin,getXLocation(),getYLocation());
-				dispose();
-				subsistemaRemove.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				subsistemaRemove.setVisible(true);
-				subsistemaRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-		});
-		removeSubsistemaBtn.setSelectedIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/removesubenabled.png")));
-		removeSubsistemaBtn.setIcon(new ImageIcon(MachineManagementOptions.class.getResource("/Resources/icon/removesubdisabled.png")));
-		removeSubsistemaBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
-		removeSubsistemaBtn.setBackground(new Color(0, 0, 0, 0));
-		removeSubsistemaBtn.setBounds(118, 195, 137, 145);
-		desktopPane.add(removeSubsistemaBtn);
 		btnRemoveMachine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MachineRemove machineRemove = new MachineRemove(idAdmin,getXLocation(),getYLocation());
-
+				ViewMachinesRemove vMRemove = new ViewMachinesRemove(idAdmin,getXLocation(),getYLocation());
 				dispose();
-				machineRemove.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				machineRemove.setVisible(true);
-				machineRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				vMRemove.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				vMRemove.setVisible(true);
+				vMRemove.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 	}

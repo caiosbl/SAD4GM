@@ -205,8 +205,6 @@ public class ViewMachinesRemove extends Main {
 		};
 
 		tree.addTreeSelectionListener(tsl);
-
-		// tree.setBackground(new Color(0, 0, 0, 0));
 		tree.setBounds(67, 161, 465, 244);
 		desktopPane.add(tree);
 
