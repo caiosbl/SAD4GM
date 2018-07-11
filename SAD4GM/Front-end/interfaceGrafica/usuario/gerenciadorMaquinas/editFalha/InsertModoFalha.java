@@ -24,6 +24,7 @@ import javax.swing.JSeparator;
 
 import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -41,6 +42,7 @@ public class InsertModoFalha extends Main {
 	private String idUsuario;
 	private JTextPane descricaoPane;
 	private Sistema sistema;
+	private JTextField tituloField;
 
 	/**
 	 * Launch the application.
@@ -76,8 +78,8 @@ public class InsertModoFalha extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.setBounds(489, 418, 90, 27);
+		btnVoltar.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				EditFalhaOptions efitFalhaOptions = new EditFalhaOptions(idUsuario, xLocation, yLocation, chaveMaquina,
@@ -93,18 +95,23 @@ public class InsertModoFalha extends Main {
 		desktopPane.add(btnVoltar);
 
 		JButton btnInserir = new JButton("");
+		btnInserir.setBounds(415, 369, 103, 21);
 		btnInserir.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/insertbutton.png")));
-		btnInserir.setBounds(357, 305, 103, 21);
 
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 				String descricao = new String(descricaoPane.getText().trim());
+				String titulo = new String(tituloField.getText().trim());
 
-				if (isEmpty(descricao))
+				if (isEmpty(titulo))
+					JOptionPane.showMessageDialog(null, "Título Inválido!");
+				else if (isEmpty(descricao))
 					JOptionPane.showMessageDialog(null, "Descrição Inválida!");
+				
+				
 				else {
-					JOptionPane.showMessageDialog(null, sistema.inserirModoFalha(descricao, chaveFalha));
+					JOptionPane.showMessageDialog(null, sistema.inserirModoFalha(titulo,descricao, chaveFalha));
 
 				}
 
@@ -115,28 +122,32 @@ public class InsertModoFalha extends Main {
 		desktopPane.add(btnInserir);
 
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
+		logo.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/sad4logosmall.png")));
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
+		banner.setBounds(287, 19, 295, 102);
 		banner.setIcon(
 				new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/insert-modo-falha-banner.png")));
-		banner.setBounds(287, 19, 295, 102);
 		desktopPane.add(banner);
 
 		JScrollPane jsp = new JScrollPane();
-		jsp.setBounds(192, 209, 268, 91);
+		jsp.setBounds(114, 239, 404, 116);
 		desktopPane.add(jsp);
-
-		descricaoPane = new JTextPane();
-		jsp.setViewportView(descricaoPane);
-		descricaoPane.setEditable(true);
-
+		
+				descricaoPane = new JTextPane();
+				jsp.setViewportView(descricaoPane);
+				descricaoPane.setEditable(true);
+		
+		tituloField = new JTextField();
+		tituloField.setBounds(114, 193, 404, 34);
+		desktopPane.add(tituloField);
+		tituloField.setColumns(10);
+		
 		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/descricao-form.png")));
-		form.setBounds(110, 164, 392, 196);
+		form.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/insert-modofalha-form.png")));
+		form.setBounds(36, 159, 515, 244);
 		desktopPane.add(form);
 	}
-
 }

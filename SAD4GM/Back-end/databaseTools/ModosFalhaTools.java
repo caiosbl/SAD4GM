@@ -6,22 +6,22 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import entidades.ModoFalha;
 
 public class ModosFalhaTools extends DatabaseTools {
 
-	public void inserir(String descricao, int chaveFalha) throws SQLException {
+	public void inserir(String nome, String descricao, int chaveFalha) throws SQLException {
 
 		try {
 
-			final String INSERIR = "INSERT INTO maquinas.modo_falha (descricao,chave_falha) VALUES (?,?)";
+			final String INSERIR = "INSERT INTO maquinas.modo_falha (nome,descricao,chave_falha) VALUES (?,?,?)";
 			abrirConexao();
 
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
 
-			stmt.setString(1, descricao);
-			stmt.setInt(2, chaveFalha);
+			stmt.setString(1, nome);
+			stmt.setString(2, descricao);
+			stmt.setInt(3, chaveFalha);
 			stmt.execute();
 			stmt.close();
 
@@ -84,12 +84,12 @@ public class ModosFalhaTools extends DatabaseTools {
 
 		Map<Integer, ModoFalha> modosFalha = new HashMap<>();
 
-		PreparedStatement state = con
-				.prepareStatement("SELECT nome,chave FROM maquinas.modo_falha WHERE chave_falha =" + chaveFalha);
+		PreparedStatement state = con.prepareStatement(
+				"SELECT nome,descricao,chave FROM maquinas.modo_falha WHERE chave_falha =" + chaveFalha);
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {
-			ModoFalha falha = new ModoFalha(resSet.getString(1), resSet.getInt(2));
+			ModoFalha falha = new ModoFalha(resSet.getString(1), resSet.getString(2), resSet.getInt(3));
 			modosFalha.put(falha.getChave(), falha);
 		}
 
@@ -99,7 +99,7 @@ public class ModosFalhaTools extends DatabaseTools {
 
 		return modosFalha;
 	}
-	
+
 	public void deletar(int chave) throws SQLException {
 
 		try {

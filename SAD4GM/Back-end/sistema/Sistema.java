@@ -276,8 +276,8 @@ public class Sistema {
 
 	// Funções de Modos de Falha
 
-	public String inserirModoFalha(String descricao, int chaveFalha) {
-		return cMFalhas.inserir(descricao, chaveFalha);
+	public String inserirModoFalha(String nome, String descricao, int chaveFalha) {
+		return cMFalhas.inserir(nome,descricao, chaveFalha);
 	}
 	
 	public String removerModoFalha(int chave) {

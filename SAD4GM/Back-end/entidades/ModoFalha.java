@@ -3,16 +3,26 @@ package entidades;
 public class ModoFalha {
 
 	private String nome;
+	private String descricao;
 	private int chave;
 
-	public ModoFalha(String nome, int chave) {
+	public ModoFalha(String nome, String descricao, int chave) {
 		super();
 		this.nome = nome;
+		this.descricao = descricao;
 		this.chave = chave;
 	}
 
 	public String getNome() {
 		return nome;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public void setNome(String nome) {

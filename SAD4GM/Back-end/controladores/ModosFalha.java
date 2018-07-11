@@ -15,12 +15,12 @@ public class ModosFalha {
 		this.mFTools = new ModosFalhaTools();
 	}
 
-	public String inserir(String descricao, int chaveFalha) {
+	public String inserir(String nome, String descricao, int chaveFalha) {
 
 		String status;
 
 		try {
-			mFTools.inserir(descricao, chaveFalha);
+			mFTools.inserir(nome, descricao, chaveFalha);
 			status = "Modo de Falha inserido com Sucesso!";
 		} catch (SQLException e) {
 			status = e.getMessage();
