@@ -21,7 +21,6 @@ import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 
@@ -131,7 +130,8 @@ public class ViewMachinesInfo extends Main {
 
 		else if (CLASS_TYPE == Subsistema.class) {
 			Subsistema subsistema = (Subsistema) node.getUserObject();
-			ViewSubsistema vSubsistema = new ViewSubsistema(idAdmin, subsistema.getChave(), getXLocation(), getYLocation());
+			ViewSubsistema vSubsistema = new ViewSubsistema(idAdmin, subsistema.getChave(), getXLocation(),
+					getYLocation());
 			dispose();
 			vSubsistema.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 			vSubsistema.setVisible(true);
@@ -140,7 +140,8 @@ public class ViewMachinesInfo extends Main {
 
 		else if (CLASS_TYPE == Componente.class) {
 			Componente componente = (Componente) node.getUserObject();
-			ViewComponente vComponente = new ViewComponente(idAdmin, componente.getChave(), getXLocation(),getYLocation());
+			ViewComponente vComponente = new ViewComponente(idAdmin, componente.getChave(), getXLocation(),
+					getYLocation());
 			dispose();
 			vComponente.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 			vComponente.setVisible(true);
@@ -149,7 +150,7 @@ public class ViewMachinesInfo extends Main {
 
 		else if (CLASS_TYPE == Falha.class) {
 			Falha falha = (Falha) node.getUserObject();
-			ViewFalha vFalha = new ViewFalha(idAdmin, falha.getChave(), getXLocation(),getYLocation());
+			ViewFalha vFalha = new ViewFalha(idAdmin, falha.getChave(), getXLocation(), getYLocation());
 			dispose();
 			vFalha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 			vFalha.setVisible(true);
@@ -158,7 +159,11 @@ public class ViewMachinesInfo extends Main {
 
 		else if (CLASS_TYPE == ModoFalha.class) {
 			ModoFalha modoFalha = (ModoFalha) node.getUserObject();
-			JOptionPane.showMessageDialog(null, modoFalha.getNome());
+			ViewModoFalha vMFalha = new ViewModoFalha(idAdmin, modoFalha.getChave(), getXLocation(), getYLocation());
+			dispose();
+			vMFalha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			vMFalha.setVisible(true);
+			vMFalha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 
 	}
@@ -175,8 +180,6 @@ public class ViewMachinesInfo extends Main {
 		};
 
 		tree.addTreeSelectionListener(tsl);
-
-		// tree.setBackground(new Color(0, 0, 0, 0));
 		tree.setBounds(67, 161, 465, 244);
 		desktopPane.add(tree);
 

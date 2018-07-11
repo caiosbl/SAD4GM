@@ -54,7 +54,17 @@ public class ModosFalha {
 		try {
 			descricao = mFTools.getDescricaoModoFalha(chaveModoFalha);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			descricao = "Falha na Conexão com Banco de Dados!";
+		}
+		return descricao;
+	}
+
+	public String getNome(int chaveModoFalha) {
+		String descricao;
+
+		try {
+			descricao = mFTools.getNomeModoFalha(chaveModoFalha);
+		} catch (SQLException e) {
 			descricao = "Falha na Conexão com Banco de Dados!";
 		}
 		return descricao;

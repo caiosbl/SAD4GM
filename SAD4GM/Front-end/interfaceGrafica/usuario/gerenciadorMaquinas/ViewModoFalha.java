@@ -1,7 +1,6 @@
 package interfaceGrafica.usuario.gerenciadorMaquinas;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,6 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
+import interfaceGrafica.usuario.gerenciadorMaquinas.editFalha.InsertModoFalha;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -22,7 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
-
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
 /**
@@ -32,7 +32,7 @@ import javax.swing.JTextPane;
  *
  */
 
-public class ViewFalha extends Main {
+public class ViewModoFalha extends Main {
 
 	/**
 	 * 
@@ -50,7 +50,7 @@ public class ViewFalha extends Main {
 	/**
 	 * Create the frame.
 	 */
-	public ViewFalha(String id, int chaveFalha, int xLocation, int yLocation) {
+	public ViewModoFalha(String id, int chaveModoFalha, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,7 +72,7 @@ public class ViewFalha extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(ViewFalha.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setIcon(new ImageIcon(ViewModoFalha.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ViewMachinesInfo information = new ViewMachinesInfo(idAdmin, getXLocation(), getYLocation());
@@ -87,35 +87,36 @@ public class ViewFalha extends Main {
 		btnVoltar.setBounds(484, 418, 88, 29);
 		desktopPane.add(btnVoltar);
 
-		JTextPane nomePane = new JTextPane();
-		nomePane.setEditable(false);
-		nomePane.setForeground(Color.BLACK);
-		nomePane.setText(sistema.getNomeFalha(chaveFalha));
-		nomePane.setBounds(215, 200, 244, 29);
-		desktopPane.add(nomePane);
-		JScrollPane jPane = new JScrollPane();
-		jPane.setBounds(215, 247, 244, 93);
-		desktopPane.add(jPane);
-
-		JTextPane descricaoPane = new JTextPane();
-		descricaoPane.setEditable(false);
-		jPane.setViewportView(descricaoPane);
-		descricaoPane.setText(sistema.getDescricaoFalha(chaveFalha));
-		descricaoPane.setEditable(false);
-
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(ViewFalha.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setIcon(new ImageIcon(ViewModoFalha.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(ViewFalha.class.getResource("/Resources/icon/view-falha-title.png")));
+		banner.setIcon(new ImageIcon(ViewModoFalha.class.getResource("/Resources/icon/view-falha-title.png")));
 		banner.setBounds(329, 24, 199, 86);
 		desktopPane.add(banner);
 
+		JScrollPane jsp = new JScrollPane();
+		jsp.setBounds(114, 239, 404, 116);
+		desktopPane.add(jsp);
+
+		JTextPane descricaoPane = new JTextPane();
+		descricaoPane.setText(sistema.getDescricaoModoFalha(chaveModoFalha));
+		descricaoPane.setEditable(false);
+		jsp.setViewportView(descricaoPane);
+		
+
+		JTextField tituloField = new JTextField();
+		tituloField.setEditable(false);
+		tituloField.setText(sistema.getNomeModoFalha(chaveModoFalha));
+		tituloField.setBounds(114, 193, 404, 34);
+		desktopPane.add(tituloField);
+		tituloField.setColumns(10);
+
 		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(ViewFalha.class.getResource("/Resources/icon/insert-falha-form.png")));
-		form.setBounds(123, 161, 393, 225);
+		form.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/insert-modofalha-form.png")));
+		form.setBounds(36, 159, 515, 244);
 		desktopPane.add(form);
 
 	}

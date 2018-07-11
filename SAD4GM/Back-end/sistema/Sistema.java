@@ -299,5 +299,9 @@ public class Sistema {
 	public String setDescricaoModoFalha(String nome, int chaveModoFalha) {
 		return cMFalhas.setDescricao(nome, chaveModoFalha);
 	}
+	
+	public String getNomeModoFalha(int chaveModoFalha) {
+		return cMFalhas.getNome(chaveModoFalha);
+	}
 
 }

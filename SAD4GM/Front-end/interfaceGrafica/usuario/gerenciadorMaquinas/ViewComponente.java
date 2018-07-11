@@ -88,6 +88,7 @@ public class ViewComponente extends Main {
 		desktopPane.add(btnVoltar);
 
 		JTextPane nomePane = new JTextPane();
+		nomePane.setEditable(false);
 		nomePane.setForeground(Color.BLACK);
 		nomePane.setText(sistema.getNomeComponente(chaveComponente));
 		nomePane.setBounds(215, 187, 244, 29);
@@ -97,6 +98,7 @@ public class ViewComponente extends Main {
 		desktopPane.add(jPane);
 
 		JTextPane funcaoPane = new JTextPane();
+		funcaoPane.setEditable(false);
 		jPane.setViewportView(funcaoPane);
 		funcaoPane.setText(sistema.getFuncaoComponente(chaveComponente));
 		funcaoPane.setEditable(false);

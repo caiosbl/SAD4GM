@@ -88,6 +88,7 @@ public class ViewSubsistema extends Main {
 		desktopPane.add(btnVoltar);
 
 		JTextPane textPane = new JTextPane();
+		textPane.setEditable(false);
 		textPane.setForeground(Color.BLACK);
 		textPane.setText(sistema.getNomeSubsistema(chaveSubsistema));
 		// textPane.setBackground(new Color(0, 0, 0,0));

@@ -103,32 +103,35 @@ public class ViewMachine extends Main {
 		}
 
 		JTextPane nomePane = new JTextPane();
+		nomePane.setEditable(false);
 		nomePane.setBounds(185, 178, 332, 29);
 		nomePane.setForeground(Color.BLACK);
 		nomePane.setText(maquina.getNome());
 		desktopPane.add(nomePane);
 
 		JTextPane dataCadastroPane = new JTextPane();
+		dataCadastroPane.setEditable(false);
 		dataCadastroPane.setBounds(185, 214, 332, 29);
 		dataCadastroPane.setText(formata.format(maquina.getDataCadastro()));
 		dataCadastroPane.setForeground(Color.BLACK);
 		desktopPane.add(dataCadastroPane);
 
 		JTextPane codigoPane = new JTextPane();
+		codigoPane.setEditable(false);
 		codigoPane.setBounds(185, 248, 332, 29);
 		codigoPane.setText(String.valueOf(maquina.getCodigo()));
 		codigoPane.setForeground(Color.BLACK);
 		desktopPane.add(codigoPane);
-	
 
 		JScrollPane jsPanel = new JScrollPane();
 		jsPanel.setBounds(182, 282, 335, 80);
 		desktopPane.add(jsPanel);
-		
-				JTextPane descricaoPane = new JTextPane();
-				jsPanel.setViewportView(descricaoPane);
-				descricaoPane.setText(String.valueOf(maquina.getDescricao()));
-				descricaoPane.setForeground(Color.BLACK);
+
+		JTextPane descricaoPane = new JTextPane();
+		descricaoPane.setEditable(false);
+		jsPanel.setViewportView(descricaoPane);
+		descricaoPane.setText(String.valueOf(maquina.getDescricao()));
+		descricaoPane.setForeground(Color.BLACK);
 
 		JLabel logo = new JLabel("");
 		logo.setBounds(29, 40, 205, 74);
@@ -139,17 +142,18 @@ public class ViewMachine extends Main {
 		banner.setBounds(324, 19, 204, 106);
 		banner.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/view-machine-title.png")));
 		desktopPane.add(banner);
-		
+
 		JTextPane usuarioCadastrouPane = new JTextPane();
+		usuarioCadastrouPane.setEditable(false);
 		usuarioCadastrouPane.setBounds(185, 363, 332, 29);
 		usuarioCadastrouPane.setText(maquina.getIdUsuario());
 		usuarioCadastrouPane.setForeground(Color.BLACK);
 		desktopPane.add(usuarioCadastrouPane);
-		
-				JLabel form = new JLabel("");
-				form.setBounds(18, 158, 559, 253);
-				form.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/newform.png")));
-				desktopPane.add(form);
+
+		JLabel form = new JLabel("");
+		form.setBounds(18, 158, 559, 253);
+		form.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/newform.png")));
+		desktopPane.add(form);
 
 	}
 }

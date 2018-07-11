@@ -12,7 +12,6 @@ import interfaceGrafica.admin.gerenciadorUsuarios.UserManagementOptions;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.gerenciadorMaquinas.InsertMaquina;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewMachinesInfo;
-import interfaceGrafica.usuario.gerenciadorMaquinas.MachinesList;
 import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachine;
 import sistema.Sistema;
 
@@ -94,22 +93,6 @@ public class Options extends Main {
 		btnInserirMaquina.setBounds(0, 156, 249, 73);
 		desktopPane.add(btnInserirMaquina);
 
-		JButton btnListarMaquinas = new JButton("");
-		btnListarMaquinas.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/listmachineicon.png")));
-		btnListarMaquinas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MachinesList listarMaquinas = new MachinesList(idUsuario, getXLocation(), getYLocation());
-				dispose();
-				listarMaquinas
-						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				listarMaquinas.setVisible(true);
-				listarMaquinas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-		});
-		btnListarMaquinas.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnListarMaquinas.setBounds(356, 156, 249, 73);
-		desktopPane.add(btnListarMaquinas);
-
 		JButton btnMinhasInformacoes = new JButton("");
 		btnMinhasInformacoes.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/myinformationicon.png")));
 		btnMinhasInformacoes.addActionListener(new ActionListener() {
@@ -156,7 +139,7 @@ public class Options extends Main {
 			}
 		});
 		btnVerUmaMquina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnVerUmaMquina.setBounds(356, 241, 249, 73);
+		btnVerUmaMquina.setBounds(0, 321, 249, 73);
 		desktopPane.add(btnVerUmaMquina);
 
 		JLabel logo = new JLabel("");
@@ -176,7 +159,7 @@ public class Options extends Main {
 		});
 		btnEditarMaquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/machinedit.png")));
 		btnEditarMaquina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnEditarMaquina.setBounds(0, 241, 249, 73);
+		btnEditarMaquina.setBounds(0, 236, 249, 73);
 		desktopPane.add(btnEditarMaquina);
 		
 		
