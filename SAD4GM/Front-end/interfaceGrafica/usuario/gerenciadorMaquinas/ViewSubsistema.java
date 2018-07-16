@@ -51,7 +51,6 @@ public class ViewSubsistema extends Main {
 	 */
 	public ViewSubsistema(String id, int chaveSubsistema, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
-		setEnabled(false);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -76,7 +75,6 @@ public class ViewSubsistema extends Main {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ViewMachinesInfo information = new ViewMachinesInfo(idAdmin, getXLocation(), getYLocation());
-
 				dispose();
 				information.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				information.setVisible(true);
@@ -91,7 +89,6 @@ public class ViewSubsistema extends Main {
 		textPane.setEditable(false);
 		textPane.setForeground(Color.BLACK);
 		textPane.setText(sistema.getNomeSubsistema(chaveSubsistema));
-		// textPane.setBackground(new Color(0, 0, 0,0));
 		textPane.setBounds(158, 244, 365, 35);
 		desktopPane.add(textPane);
 

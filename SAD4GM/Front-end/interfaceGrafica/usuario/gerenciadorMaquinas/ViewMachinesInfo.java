@@ -1,7 +1,7 @@
 package interfaceGrafica.usuario.gerenciadorMaquinas;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,8 +10,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.TreeCellRenderer;
 
 import entidades.Componente;
 import entidades.Falha;
@@ -20,6 +18,7 @@ import entidades.ModoFalha;
 import entidades.Subsistema;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.entrada.Options;
+import interfaceGrafica.utils.RenderizarTree;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -175,7 +174,7 @@ public class ViewMachinesInfo extends Main {
 
 		DefaultMutableTreeNode maquinaNode = iniciaNodeMaquinas();
 		tree = new JTree(maquinaNode);
-		tree.setCellRenderer(new RenderizarTree() );
+		tree.setCellRenderer(new RenderizarTree());
 
 		TreeSelectionListener tsl = new TreeSelectionListener() {
 			public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
@@ -279,20 +278,4 @@ public class ViewMachinesInfo extends Main {
 	private Map<Integer, ModoFalha> getModosFalhaMap(int chaveFalha) {
 		return sistema.getModosFalhaMap(chaveFalha);
 	}
-}
-
-class RenderizarTree extends DefaultTreeCellRenderer implements TreeCellRenderer {
-    private Font plainFont, italicFont;
-   
-    @Override
-    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
-        super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
-        DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
-        if(node.toString().equals("Máquinas")) {
-            setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/admicon.png")));
-        }
-        return this;
-    }
-
-	
 }
