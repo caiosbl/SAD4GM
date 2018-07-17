@@ -1,6 +1,8 @@
 package interfaceGrafica.usuario.entrada;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -97,6 +99,7 @@ public class MyInfo extends Main {
 		desktopPane.add(userID);
 
 		JButton btnAlterarSenha = new JButton("");
+		btnAlterarSenha.setBackground(new Color(0,0,0,0));
 		btnAlterarSenha.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/setPasswordbutton.png")));
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -107,11 +110,12 @@ public class MyInfo extends Main {
 				setSenha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnAlterarSenha.setBounds(182, 278, 84, 27);
+		btnAlterarSenha.setBounds(221, 288, 165, 36);
 		btnAlterarSenha.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnAlterarSenha);
 
 		JButton btnEditar = new JButton("");
+		btnEditar.setBackground(new Color(0,0,0,0));
 		btnEditar.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/editbutton.png")));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -119,10 +123,11 @@ public class MyInfo extends Main {
 				nome.setEditable(true);
 			}
 		});
-		btnEditar.setBounds(273, 278, 82, 24);
+		btnEditar.setBounds(366, 285, 112, 39);
 		desktopPane.add(btnEditar);
 
 		JButton btnAtualizar = new JButton("");
+		btnAtualizar.setBackground(new Color(0,0,0,0));
 		btnAtualizar.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/atualizarbutton.png")));
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -161,7 +166,7 @@ public class MyInfo extends Main {
 			}
 
 		});
-		btnAtualizar.setBounds(360, 278, 90, 25);
+		btnAtualizar.setBounds(121, 288, 124, 39);
 		desktopPane.add(btnAtualizar);
 		
 		JLabel logo = new JLabel("");
