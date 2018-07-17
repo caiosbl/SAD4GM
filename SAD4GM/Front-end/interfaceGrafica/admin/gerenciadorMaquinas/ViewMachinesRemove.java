@@ -18,6 +18,7 @@ import entidades.Maquina;
 import entidades.ModoFalha;
 import entidades.Subsistema;
 import interfaceGrafica.main.Main;
+import interfaceGrafica.utils.RenderizarTree;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -205,6 +206,7 @@ public class ViewMachinesRemove extends Main {
 
 		DefaultMutableTreeNode maquinaNode = iniciaNodeMaquinas();
 		tree = new JTree(maquinaNode);
+		tree.setCellRenderer(new RenderizarTree());
 
 		TreeSelectionListener tsl = new TreeSelectionListener() {
 			public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
