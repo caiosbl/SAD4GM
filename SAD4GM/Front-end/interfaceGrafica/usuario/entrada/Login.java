@@ -89,9 +89,11 @@ public class Login extends Main {
 		password.setBounds(226, 269, 180, 25);
 		desktopPane.add(password);
 
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(Login.class.getResource("/Resources/icon/loginbutton.png")));
-		button.addActionListener(new ActionListener() {
+		JButton loginBtn = new JButton("");
+		loginBtn.setBackground(new Color(0,0,0,0));
+		loginBtn.setSelectedIcon(new ImageIcon(Login.class.getResource("/Resources/icon/entrar-enabledd.png")));
+		loginBtn.setIcon(new ImageIcon(Login.class.getResource("/Resources/icon/entrar-disabledd.png")));
+		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String id = user.getText().trim();
 				String senha = new String(password.getPassword()).trim();
@@ -136,11 +138,11 @@ public class Login extends Main {
 
 			}
 		});
-		button.setForeground(Color.BLACK);
-		button.setFont(new Font("Tahoma", Font.BOLD, 13));
-		button.setBackground(Color.WHITE);
-		button.setBounds(336, 306, 70, 25);
-		desktopPane.add(button);
+		loginBtn.setForeground(Color.BLACK);
+		loginBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
+		loginBtn.setBackground(Color.WHITE);
+		loginBtn.setBounds(335, 306, 70, 25);
+		desktopPane.add(loginBtn);
 
 		JButton btnVoltar = new JButton("");
 		btnVoltar.setIcon(new ImageIcon(Login.class.getResource("/Resources/icon/voltabut.png")));

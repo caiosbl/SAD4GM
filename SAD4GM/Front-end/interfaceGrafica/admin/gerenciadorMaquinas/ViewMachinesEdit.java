@@ -35,7 +35,6 @@ import java.awt.event.ActionListener;
 import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import javax.swing.JSeparator;
 import javax.swing.JTree;
 
 /**
@@ -83,10 +82,6 @@ public class ViewMachinesEdit extends Main {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 137, 582, 12);
-		desktopPane.add(separator);
-
 		iniciaTree();
 
 		JButton btnVoltar = new JButton("");
@@ -114,6 +109,11 @@ public class ViewMachinesEdit extends Main {
 		banner.setIcon(new ImageIcon(ViewMachinesEdit.class.getResource("/Resources/icon/editNameBanner.png")));
 		banner.setBounds(311, 21, 141, 92);
 		desktopPane.add(banner);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ViewMachinesEdit.class.getResource("/Resources/icon/top-select-item-edit.png")));
+		label.setBounds(70, 138, 460, 25);
+		desktopPane.add(label);
 
 	}
 
