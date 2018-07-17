@@ -10,8 +10,9 @@ import javax.swing.JPanel;
 import interfaceGrafica.admin.gerenciadorMaquinas.MachineManagementOptions;
 import interfaceGrafica.admin.gerenciadorUsuarios.UserManagementOptions;
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.gerenciadorMaquinas.InsertMaquina;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewMachinesInfo;
+import interfaceGrafica.usuario.gerenciadorMaquinas.ViewMachinesInsert;
+import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertMaquina;
 import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachine;
 import sistema.Sistema;
 
@@ -161,6 +162,20 @@ public class Options extends Main {
 		btnEditarMaquina.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnEditarMaquina.setBounds(0, 236, 249, 73);
 		desktopPane.add(btnEditarMaquina);
+		
+		JButton btnInserir = new JButton("Inserir");
+		btnInserir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewMachinesInsert insertMaquina =  new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
+				dispose();
+				insertMaquina
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				insertMaquina.setVisible(true);
+				insertMaquina.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		btnInserir.setBounds(320, 236, 89, 23);
+		desktopPane.add(btnInserir);
 		
 		
 		//

@@ -1,4 +1,4 @@
-package interfaceGrafica.usuario.gerenciadorMaquinas;
+package interfaceGrafica.usuario.gerenciadorMaquinas.Insert;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.entrada.Options;
+import interfaceGrafica.usuario.gerenciadorMaquinas.ViewMachinesInsert;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -58,7 +59,7 @@ public class InsertMaquina extends Main {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(xLocation,yLocation, 621, 497);
+		setBounds(xLocation, yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -78,11 +79,11 @@ public class InsertMaquina extends Main {
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Options uOptions = new Options(idUsuario,getXLocation(),getYLocation());
+				ViewMachinesInsert insert = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
 				dispose();
-				uOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				uOptions.setVisible(true);
-				uOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				insert.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				insert.setVisible(true);
+				insert.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -125,7 +126,7 @@ public class InsertMaquina extends Main {
 					else {
 						sistema.adicionaMaquina(nome, codigo, descricao, idUsuario);
 						JOptionPane.showMessageDialog(null, "Máquina cadastrada com sucesso!");
-						Options userOptions = new Options(idUsuario,getXLocation(),getYLocation());
+						Options userOptions = new Options(idUsuario, getXLocation(), getYLocation());
 
 						dispose();
 						userOptions.setVisible(true);
@@ -148,9 +149,9 @@ public class InsertMaquina extends Main {
 		description = new JTextPane();
 		description.setEditable(true);
 		description.setBounds(251, 231, 268, 75);
-		
+
 		JScrollPane jsp = new JScrollPane(description);
-	
+
 		jsp.setBounds(223, 252, 268, 91);
 		desktopPane.add(jsp);
 
@@ -158,17 +159,17 @@ public class InsertMaquina extends Main {
 		code.setBounds(223, 210, 268, 28);
 		code.setColumns(10);
 		desktopPane.add(code);
-		
+
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
-		
+
 		JLabel banner = new JLabel("");
 		banner.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/inserirMaquinatitle.png")));
 		banner.setBounds(335, 26, 177, 99);
 		desktopPane.add(banner);
-		
+
 		JLabel form = new JLabel("");
 		form.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/insertMaquinaForm.png")));
 		form.setBounds(119, 161, 393, 240);

@@ -1,11 +1,13 @@
-package interfaceGrafica.usuario.gerenciadorMaquinas.editMachine;
+package interfaceGrafica.usuario.gerenciadorMaquinas.Insert;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
+import interfaceGrafica.usuario.gerenciadorMaquinas.ViewMachinesInsert;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -16,13 +18,13 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.Map;
+
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
 import javax.swing.JTextField;
-
+import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
 
 /**
@@ -31,7 +33,7 @@ import javax.swing.ImageIcon;
  * @author caiosbl
  *
  */
-public class InsertSubsistema extends Main {
+public class InsertComponente extends Main {
 
 	/**
 	 * 
@@ -40,6 +42,7 @@ public class InsertSubsistema extends Main {
 	private JPanel contentPane;
 	private String idUsuario;
 	private JTextField name;
+	private JTextPane function;
 	private Sistema sistema;
 
 	/**
@@ -52,7 +55,7 @@ public class InsertSubsistema extends Main {
 	 * @throws SQLException
 	 */
 
-	public InsertSubsistema(String id, int xLocation, int yLocation, int chaveMaquina) {
+	public InsertComponente(String id, int xLocation, int yLocation, int chaveSubsistema) {
 		super(xLocation, yLocation);
 		sistema = new Sistema();
 		this.idUsuario = id;
@@ -75,33 +78,35 @@ public class InsertSubsistema extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setIcon(new ImageIcon(InsertComponente.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.setBounds(489, 418, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditMachineOptions eMOptions = new EditMachineOptions(idUsuario, xLocation, yLocation, chaveMaquina);
+				ViewMachinesInsert eSOptions = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
 				dispose();
-				eMOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				eMOptions.setVisible(true);
-				eMOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				eSOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				eSOptions.setVisible(true);
+				eSOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnVoltar);
 
 		JButton btnInserir = new JButton("");
-		btnInserir.setIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/insertbutton.png")));
-		btnInserir.setBounds(336, 292, 103, 21);
+		btnInserir.setIcon(new ImageIcon(InsertComponente.class.getResource("/Resources/icon/insertbutton.png")));
+		btnInserir.setBounds(357, 321, 103, 21);
 
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String nome = new String(name.getText().trim());
+				String funcao = new String(function.getText().trim());
 
 				if (isEmpty(nome))
 					JOptionPane.showMessageDialog(null, "Nome Inválido");
+				else if (isEmpty(funcao))
+					JOptionPane.showMessageDialog(null, "Função Inválida");
 				else {
-					String status = sistema.inserirSubsistema(nome, chaveMaquina);
-					JOptionPane.showMessageDialog(null, status);
+					JOptionPane.showMessageDialog(null, sistema.inserirComponente(nome, chaveSubsistema, funcao));
 
 				}
 
@@ -112,27 +117,32 @@ public class InsertSubsistema extends Main {
 		desktopPane.add(btnInserir);
 
 		name = new JTextField();
-		name.setBounds(175, 243, 268, 28);
+		name.setBounds(192, 186, 268, 28);
 		desktopPane.add(name);
 		name.setColumns(10);
 
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/sad4logosmall.png")));
+		logo.setIcon(new ImageIcon(InsertComponente.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/INSERTSUBbanner.png")));
-		banner.setBounds(332, 32, 172, 82);
+		banner.setIcon(new ImageIcon(InsertComponente.class.getResource("/Resources/icon/inserirComponenteTitle.png")));
+		banner.setBounds(333, 40, 183, 68);
 		desktopPane.add(banner);
 
+		JScrollPane jsp = new JScrollPane();
+		jsp.setBounds(192, 226, 268, 91);
+		desktopPane.add(jsp);
+
+		function = new JTextPane();
+		jsp.setViewportView(function);
+		function.setEditable(true);
+
 		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/subsystemform.png")));
-		form.setBounds(105, 197, 393, 143);
+		form.setIcon(new ImageIcon(InsertComponente.class.getResource("/Resources/icon/insert-componente-form.png")));
+		form.setBounds(120, 164, 371, 196);
 		desktopPane.add(form);
 	}
 
-	public Map<String, Integer> getMapaMaquinas() {
-		return sistema.getMapaMaquinas();
-	}
 }

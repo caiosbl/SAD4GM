@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.gerenciadorMaquinas.SetMachine;
+import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertSubsistema;
 import interfaceGrafica.usuario.gerenciadorMaquinas.editSubsistema.EditSubsistema;
 
 import javax.swing.JDesktopPane;
