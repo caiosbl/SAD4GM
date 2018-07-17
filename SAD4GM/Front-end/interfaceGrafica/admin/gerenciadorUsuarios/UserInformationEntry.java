@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
@@ -18,10 +19,12 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.JList;
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
  * SISTEMA SAD4GM
@@ -37,7 +40,6 @@ public class UserInformationEntry extends Main {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idAdmin;
-	private JTextField idField;
 	private Sistema sistema = new Sistema();
 
 	/**
@@ -81,63 +83,26 @@ public class UserInformationEntry extends Main {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
-		button.setBounds(487, 388, 84, 27);
+		button.setBounds(464, 397, 84, 27);
 		desktopPane.add(button);
-
-		idField = new JTextField();
-		idField.setBounds(200, 248, 206, 28);
-		desktopPane.add(idField);
-		idField.setColumns(10);
-
-		JButton btnRemover = new JButton("");
-		btnRemover.setIcon(new ImageIcon(UserInformationEntry.class.getResource("/Resources/icon/visualizarbutto.png")));
-		btnRemover.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (idField.getText().trim().length() < 4) {
-					JOptionPane.showMessageDialog(null, "ID Inválido!");
-					idField.setText("");
-				} else {
-					boolean has = false;
-
-					try {
-						has = sistema.hasIdUsuario(idField.getText().trim());
-					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(null, "Falha na conexão com banco de dados!");
-					}
-
-					if (!has) {
-						JOptionPane.showMessageDialog(null, "Usuário inexistente!");
-						idField.setText("");
-					}
-
-					else {
-						UserInformation userInformation = new UserInformation(idAdmin,idField.getText().trim(),getXLocation(),getYLocation());
-						dispose();
-						userInformation.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-						userInformation.setVisible(true);
-						userInformation.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					}
-				}
-			}
-		});
-		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnRemover.setBounds(310, 288, 95, 27);
-		desktopPane.add(btnRemover);
 		
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(UserInformationEntry.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 		
-		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(UserInformationEntry.class.getResource("/Resources/icon/userInformationForm.png")));
-		form.setBounds(165, 177, 273, 154);
-		desktopPane.add(form);
-		
 		JLabel banner = new JLabel("");
 		banner.setIcon(new ImageIcon(UserInformationEntry.class.getResource("/Resources/icon/viewinformationuser.png")));
 		banner.setBounds(246, 26, 335, 90);
 		desktopPane.add(banner);
+		JScrollPane jSPane = new JScrollPane();
+		jSPane.setBounds(82, 172, 471, 213);
+		desktopPane.add(jSPane);
+		
+		DefaultListM
+		JList list = new JList(lista);
+		
+		jSPane.setViewportView(list);
 
 	}
 }
