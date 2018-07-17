@@ -83,9 +83,14 @@ public class ViewMachinesInsert extends Main {
 		desktopPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/top-select-item-insert.png")));
+		label.setBounds(69, 138, 460, 25);
+		desktopPane.add(label);
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 137, 582, 12);
+		separator.setBounds(10, 137, 0, 2);
 		desktopPane.add(separator);
 
 		iniciaTree();
@@ -111,8 +116,8 @@ public class ViewMachinesInsert extends Main {
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/view-machines-title.png")));
-		banner.setBounds(311, 21, 214, 104);
+		banner.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/insert-machine.png")));
+		banner.setBounds(318, 17, 214, 114);
 		desktopPane.add(banner);
 
 	}
