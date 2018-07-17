@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
@@ -183,8 +183,9 @@ public class ViewMachinesInsert extends Main {
 		};
 
 		tree.addTreeSelectionListener(tsl);
-		tree.setBounds(67, 161, 465, 244);
-		desktopPane.add(tree);
+		JScrollPane jSPane = new JScrollPane(tree);
+		jSPane.setBounds(67, 161, 465, 244);
+		desktopPane.add(jSPane);
 
 	}
 
