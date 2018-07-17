@@ -21,7 +21,6 @@ import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetMachine;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetModoFalha;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetSubsistema;
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.entrada.Options;
 import interfaceGrafica.utils.RenderizarTree;
 import sistema.Sistema;
 
@@ -94,12 +93,12 @@ public class ViewMachinesEdit extends Main {
 		btnVoltar.setIcon(new ImageIcon(ViewMachinesEdit.class.getResource("/Resources/icon/voltabut.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Options options = new Options(idAdmin, getXLocation(), getYLocation());
-
+				MachineManagementOptions mMoptions = new MachineManagementOptions(idAdmin, getXLocation(),
+						getYLocation());
 				dispose();
-				options.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				options.setVisible(true);
-				options.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				mMoptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				mMoptions.setVisible(true);
+				mMoptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -112,8 +111,8 @@ public class ViewMachinesEdit extends Main {
 		desktopPane.add(logo);
 
 		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(ViewMachinesEdit.class.getResource("/Resources/icon/view-machines-title.png")));
-		banner.setBounds(311, 21, 214, 104);
+		banner.setIcon(new ImageIcon(ViewMachinesEdit.class.getResource("/Resources/icon/editNameBanner.png")));
+		banner.setBounds(311, 21, 141, 92);
 		desktopPane.add(banner);
 
 	}

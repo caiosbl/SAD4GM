@@ -6,8 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import interfaceGrafica.admin.gerenciadorMaquinas.ViewMachinesEdit;
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachineOptions;
+
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -24,9 +25,9 @@ import javax.swing.JTextPane;
 
 import sistema.Sistema;
 import javax.swing.ImageIcon;
+
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -49,7 +50,7 @@ public class SetMachine extends Main {
 	/**
 	 * Create the frame.
 	 */
-	public SetMachine(String idUser,int xLocation, int yLocation, int chaveMaquina) {
+	public SetMachine(String idUser, int xLocation, int yLocation, int chaveMaquina) {
 		super(xLocation, yLocation);
 		this.idUsuario = idUser;
 		try {
@@ -57,12 +58,11 @@ public class SetMachine extends Main {
 		} catch (SQLException e2) {
 			JOptionPane.showMessageDialog(null, "Falha na Conexão com o Banco de Dados!");
 		}
-	
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(xLocation,yLocation, 621, 497);
+		setBounds(xLocation, yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -82,10 +82,10 @@ public class SetMachine extends Main {
 		btnVoltar.setBounds(490, 420, 90, 27);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditMachineOptions setMachineEntry = new EditMachineOptions(idUsuario,getXLocation(),getYLocation(),chaveMaquina);
+				ViewMachinesEdit viewMachinesEdit = new ViewMachinesEdit(idUsuario, getXLocation(), getYLocation());
 				dispose();
-				setMachineEntry.setVisible(true);
-				setMachineEntry.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				viewMachinesEdit.setVisible(true);
+				viewMachinesEdit.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -109,13 +109,11 @@ public class SetMachine extends Main {
 		descricao.setText(sistema.getDescricaoMaquina(codigoMaquina));
 		descricao.setEditable(false);
 		descricao.setBounds(182, 267, 268, 92);
-		
-		
+
 		JScrollPane jsp = new JScrollPane(descricao);
-		
+
 		jsp.setBounds(182, 267, 268, 92);
 		desktopPane.add(jsp);
-		
 
 		JButton btnEditar = new JButton("");
 		btnEditar.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/editbutton.png")));
@@ -144,29 +142,29 @@ public class SetMachine extends Main {
 						nome.setText(sistema.getNomeMaquina(codigoMaquina));
 						codigo.setText(codigoMaquina);
 						descricao.setText(sistema.getDescricaoMaquina(codigoMaquina));
-					} 
-					
+					}
+
 					else if (descricao.getText().trim().equals("")) {
 						JOptionPane.showMessageDialog(null, "Descrição inválida!");
 						nome.setText(sistema.getNomeMaquina(codigoMaquina));
 						codigo.setText(codigoMaquina);
 						descricao.setText(sistema.getDescricaoMaquina(codigoMaquina));
 					}
-					
+
 					else if (codigo.getText().equals("") || codigo.getText().length() < 4) {
 						JOptionPane.showMessageDialog(null, "Código inválido!");
 						nome.setText(sistema.getNomeMaquina(codigoMaquina));
 						codigo.setText(codigoMaquina);
 						descricao.setText(sistema.getDescricaoMaquina(codigoMaquina));
 					}
-					
+
 					else if (!isNumber(codigo.getText().trim())) {
 						JOptionPane.showMessageDialog(null, "Por favor insira um código númerico!");
 						nome.setText(sistema.getNomeMaquina(codigoMaquina));
 						codigo.setText(codigoMaquina);
 						descricao.setText(sistema.getDescricaoMaquina(codigoMaquina));
 					}
-					
+
 					else if (!codigo.getText().trim().equals(codigoMaquina) && has) {
 						JOptionPane.showMessageDialog(null, "Código já cadastrado!");
 						nome.setText(sistema.getNomeMaquina(codigoMaquina));
@@ -178,10 +176,10 @@ public class SetMachine extends Main {
 						nome.setEditable(false);
 						codigo.setEditable(false);
 						sistema.setCodigoMaquina(codigoMaquina, codigo.getText().trim());
-						sistema.setNomeMaquina( codigo.getText().trim(),nome.getText().trim());
+						sistema.setNomeMaquina(codigo.getText().trim(), nome.getText().trim());
 						sistema.setDescricaoMaquina(codigoMaquina, descricao.getText().trim());
 						codigoMaquina = codigo.getText().trim();
-						
+
 						JOptionPane.showMessageDialog(null, "Dados atualizados com Sucesso!");
 
 					}
@@ -194,24 +192,24 @@ public class SetMachine extends Main {
 		});
 		btnAtualizar.setBounds(362, 364, 90, 28);
 		desktopPane.add(btnAtualizar);
-		
+
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
-		
+
 		JLabel banner = new JLabel("");
 		banner.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/setMachineBanner.png")));
 		banner.setBounds(343, 28, 175, 86);
 		desktopPane.add(banner);
-		
+
 		JLabel form = new JLabel("");
 		form.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/formaSetMachine.png")));
 		form.setBounds(97, 182, 421, 226);
 		desktopPane.add(form);
 
 	}
-	
+
 	public boolean isNumber(String password) {
 		boolean status = false;
 
