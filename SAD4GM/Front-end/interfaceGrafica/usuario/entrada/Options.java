@@ -5,15 +5,11 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
-
 import interfaceGrafica.admin.gerenciadorMaquinas.MachineManagementOptions;
 import interfaceGrafica.admin.gerenciadorUsuarios.UserManagementOptions;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewMachinesInfo;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewMachinesInsert;
-import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertMaquina;
-import interfaceGrafica.usuario.gerenciadorMaquinas.editMachine.EditMachine;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -27,8 +23,6 @@ import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 import java.awt.Color;
-
-
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -72,7 +66,6 @@ public class Options extends Main {
 		usuarioPane.setBackground(SystemColor.activeCaption);
 		usuarioPane.setBorder(null);
 		usuarioPane.setLayout(new BorderLayout(0, 0));
-		
 
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBackground(SystemColor.inactiveCaption);
@@ -83,7 +76,7 @@ public class Options extends Main {
 		btnInserirMaquina.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnInserirMaquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				InsertMaquina insertMaquina = new InsertMaquina(idUsuario, getXLocation(), getYLocation());
+				ViewMachinesInsert insertMaquina =  new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
 				dispose();
 				insertMaquina
 						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -140,7 +133,7 @@ public class Options extends Main {
 			}
 		});
 		btnVerUmaMquina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnVerUmaMquina.setBounds(0, 321, 249, 73);
+		btnVerUmaMquina.setBounds(360, 156, 249, 73);
 		desktopPane.add(btnVerUmaMquina);
 
 		JLabel logo = new JLabel("");
@@ -148,44 +141,13 @@ public class Options extends Main {
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
-		JButton btnEditarMaquina = new JButton("");
-		btnEditarMaquina.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				EditMachine editMachine = new EditMachine(idUsuario, getXLocation(), getYLocation());
-				dispose();
-				editMachine.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				editMachine.setVisible(true);
-				editMachine.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-		});
-		btnEditarMaquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/machinedit.png")));
-		btnEditarMaquina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnEditarMaquina.setBounds(0, 236, 249, 73);
-		desktopPane.add(btnEditarMaquina);
-		
-		JButton btnInserir = new JButton("Inserir");
-		btnInserir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ViewMachinesInsert insertMaquina =  new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
-				dispose();
-				insertMaquina
-						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				insertMaquina.setVisible(true);
-				insertMaquina.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-		});
-		btnInserir.setBounds(320, 236, 89, 23);
-		desktopPane.add(btnInserir);
-		
-		
 		//
-		 
-		
+
 		adminPane = new JPanel();
 		adminPane.setBackground(SystemColor.activeCaption);
 		adminPane.setBorder(null);
 		adminPane.setLayout(new BorderLayout(0, 0));
-		//setContentPane(adminPane);
+		// setContentPane(adminPane);
 
 		JDesktopPane desktopPane2 = new JDesktopPane();
 		desktopPane2.setBackground(SystemColor.inactiveCaption);
@@ -197,7 +159,8 @@ public class Options extends Main {
 		btnGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnGerenciarUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				UserManagementOptions admUserOptions = new UserManagementOptions(idUsuario, getXLocation(),getYLocation());
+				UserManagementOptions admUserOptions = new UserManagementOptions(idUsuario, getXLocation(),
+						getYLocation());
 				dispose();
 				admUserOptions
 						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -213,7 +176,8 @@ public class Options extends Main {
 		btnGerenciarMquinas.setBounds(300, 184, 175, 88);
 		btnGerenciarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MachineManagementOptions admMachineOptions = new MachineManagementOptions(idUsuario,getXLocation(),getYLocation());
+				MachineManagementOptions admMachineOptions = new MachineManagementOptions(idUsuario, getXLocation(),
+						getYLocation());
 
 				dispose();
 				admMachineOptions
@@ -230,7 +194,7 @@ public class Options extends Main {
 		btnMinhasInformaes_1.setBounds(336, 54, 122, 27);
 		btnMinhasInformaes_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MyInfo admMyInfo = new MyInfo(idUsuario,getXLocation(),getYLocation());
+				MyInfo admMyInfo = new MyInfo(idUsuario, getXLocation(), getYLocation());
 
 				dispose();
 				admMyInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -246,7 +210,7 @@ public class Options extends Main {
 		btnLogout2.setBounds(470, 54, 81, 27);
 		btnLogout2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Main entrada = new Main(getXLocation(),getYLocation());
+				Main entrada = new Main(getXLocation(), getYLocation());
 				dispose();
 				entrada.setVisible(true);
 				entrada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -268,8 +232,6 @@ public class Options extends Main {
 		lblNewLabel.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/adminescudo.png")));
 		lblNewLabel.setBounds(237, 33, 368, 414);
 		desktopPane2.add(lblNewLabel);
-	
-
 
 		tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -277,24 +239,19 @@ public class Options extends Main {
 		tabbedPane.setForeground(Color.WHITE);
 		tabbedPane.setBackground(SystemColor.activeCaption);
 		tabbedPane.setBounds(xLocation, yLocation, 621, 497);
-		ImageIcon usericon = new ImageIcon(Options.class.getResource("/Resources/icon/usericon.png")); 
-		ImageIcon admicon = new ImageIcon(Options.class.getResource("/Resources/icon/admicon.png")); 
-		tabbedPane.add(usuarioPane,usericon);
-		tabbedPane.add(adminPane,admicon);
+		ImageIcon usericon = new ImageIcon(Options.class.getResource("/Resources/icon/usericon.png"));
+		ImageIcon admicon = new ImageIcon(Options.class.getResource("/Resources/icon/admicon.png"));
+		tabbedPane.add(usuarioPane, usericon);
+		tabbedPane.add(adminPane, admicon);
 		tabbedPane.setEnabledAt(1, false);
-		
+
 		if (isAdmin)
 			tabbedPane.setEnabledAt(1, true);
-		
-		
+
 		setContentPane(tabbedPane);
-		
-		
-		
-		
-		
+
 	}
-	
+
 	public void setTabbedPane(int index) {
 		tabbedPane.setSelectedIndex(index);
 	}

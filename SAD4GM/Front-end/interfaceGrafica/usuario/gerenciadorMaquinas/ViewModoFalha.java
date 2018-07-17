@@ -8,7 +8,6 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
-import interfaceGrafica.usuario.gerenciadorMaquinas.editFalha.InsertModoFalha;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -115,7 +114,7 @@ public class ViewModoFalha extends Main {
 		tituloField.setColumns(10);
 
 		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/insert-modofalha-form.png")));
+		form.setIcon(new ImageIcon(ViewModoFalha.class.getResource("/Resources/icon/insert-modofalha-form.png")));
 		form.setBounds(36, 159, 515, 244);
 		desktopPane.add(form);
 
