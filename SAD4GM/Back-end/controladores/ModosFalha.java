@@ -11,8 +11,8 @@ public class ModosFalha {
 
 	private ModosFalhaTools mFTools;
 
-	public ModosFalha() {
-		this.mFTools = new ModosFalhaTools();
+	public ModosFalha(ModosFalhaTools mFTools) {
+		this.mFTools = mFTools;
 	}
 
 	public String inserir(String nome, String descricao, int chaveFalha) {

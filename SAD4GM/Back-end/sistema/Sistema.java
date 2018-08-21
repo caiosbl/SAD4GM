@@ -2,19 +2,22 @@ package sistema;
 
 import java.sql.SQLException;
 import java.util.Map;
+
+import controladores.CausasPotenciais;
 import controladores.Componentes;
 import controladores.Falhas;
 import controladores.Maquinas;
 import controladores.ModosFalha;
 import controladores.Subsistemas;
 import controladores.Usuarios;
-
+import databaseTools.CausasPotenciaisTools;
 import databaseTools.ComponenteTools;
 import databaseTools.FalhaTools;
 import databaseTools.MaquinaTools;
 import databaseTools.ModosFalhaTools;
 import databaseTools.SubsistemaTools;
 import databaseTools.UsuarioTools;
+import entidades.CausaPotencial;
 import entidades.Componente;
 import entidades.Falha;
 import entidades.Maquina;
@@ -31,11 +34,11 @@ public class Sistema {
 
 	private Usuarios cUsuarios;
 	private Maquinas cMaquinas;
-	
 	private Subsistemas cSubsistemas;
 	private Componentes cComponentes;
 	private Falhas cFalhas;
 	private ModosFalha cMFalhas;
+	private CausasPotenciais cCPotenciais;
 
 	private UsuarioTools uTools;
 	private MaquinaTools mTools;
@@ -44,24 +47,25 @@ public class Sistema {
 	private ComponenteTools cTools;
 	private FalhaTools fTools;
 	private ModosFalhaTools mFTools;
+	private CausasPotenciaisTools CPTools;
 
 	public Sistema() {
 
 		this.uTools = new UsuarioTools();
 		this.mTools = new MaquinaTools();
-
 		this.sTools = new SubsistemaTools();
 		this.cTools = new ComponenteTools();
 		this.fTools = new FalhaTools();
 		this.mFTools = new ModosFalhaTools();
+		this.CPTools = new CausasPotenciaisTools();
 
 		this.cUsuarios = new Usuarios(uTools);
 		this.cMaquinas = new Maquinas(mTools);
-
 		this.cSubsistemas = new Subsistemas(sTools);
 		this.cComponentes = new Componentes(cTools);
 		this.cFalhas = new Falhas(fTools);
 		this.cMFalhas = new ModosFalha(mFTools);
+		this.cCPotenciais = new CausasPotenciais(CPTools);
 	}
 
 	
@@ -302,6 +306,36 @@ public class Sistema {
 	
 	public String getNomeModoFalha(int chaveModoFalha) {
 		return cMFalhas.getNome(chaveModoFalha);
+	}
+	
+	// Funções de Causas Potenciais
+
+	public String inserirCausaPotencial(String nome, String descricao, int chaveFalha) {
+		return cCPotenciais.inserir(nome,descricao, chaveFalha);
+	}
+	
+	public String removerCausaPotencial(int chave) {
+		return cCPotenciais.remover(chave);
+	}
+
+	public Map<String, Integer> getMapaCausasPotenciais(int chaveModoFalha) {
+		return cCPotenciais.getMapaCausasPotenciais(chaveModoFalha);
+	}
+	
+	public Map<Integer,CausaPotencial> getCausasPotenciaisMap(int chaveModoFalha){
+		return cCPotenciais.getCausasPotenciaisMap(chaveModoFalha);
+	}
+
+	public String getDescricaoCausaPotencial(int chaveCausaPotencial) {
+		return cCPotenciais.getDescricao(chaveCausaPotencial);
+	}
+
+	public String setDescricaoCausaPotencial(String nome, int chaveCausaPotencial) {
+		return cCPotenciais.setDescricao(nome, chaveCausaPotencial);
+	}
+	
+	public String getNomeCausaPotencial(int chaveCausaPotencial) {
+		return cCPotenciais.getNome(chaveCausaPotencial);
 	}
 
 }

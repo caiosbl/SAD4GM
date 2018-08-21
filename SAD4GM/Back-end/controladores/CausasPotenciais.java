@@ -11,8 +11,8 @@ public class CausasPotenciais {
 
 	private CausasPotenciaisTools cPTools;
 
-	public CausasPotenciais() {
-		this.cPTools = new CausasPotenciaisTools();
+	public CausasPotenciais(CausasPotenciaisTools cPTools) {
+		this.cPTools = cPTools;
 	}
 
 	public String inserir(String nome, String descricao, int chaveModoFalha) {
