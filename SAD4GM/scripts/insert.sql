@@ -1,1 +1,0 @@
-ALTER TABLE maquinas.falha ADD PRIMARY KEY (chave);

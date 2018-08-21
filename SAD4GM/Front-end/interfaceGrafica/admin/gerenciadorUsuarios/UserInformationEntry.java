@@ -12,19 +12,17 @@ import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 
 import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.JList;
+
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
  * SISTEMA SAD4GM
@@ -40,7 +38,7 @@ public class UserInformationEntry extends Main {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idAdmin;
-	private Sistema sistema = new Sistema();
+	private Sistema sistema ;
 
 	/**
 	 * Launch the application.
@@ -51,6 +49,7 @@ public class UserInformationEntry extends Main {
 	 */
 	public UserInformationEntry(String id, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
+		this.sistema = new Sistema();
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -99,10 +98,7 @@ public class UserInformationEntry extends Main {
 		jSPane.setBounds(82, 172, 471, 213);
 		desktopPane.add(jSPane);
 		
-		DefaultListM
-		JList list = new JList(lista);
 		
-		jSPane.setViewportView(list);
 
 	}
 }

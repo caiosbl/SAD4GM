@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="derby-1655d878e37-54fc0dfc9b5e639d" provider="generic" driver="derby" name="Derby - Sad4gmDatabase" save-password="false" read-only="false">
+		<connection server="" database="C:\Users\fjfca\Desktop\here\SAD4GM\SAD4GM\Sad4gmDatabase" url="jdbc:derby:C:\Users\fjfca\Desktop\here\SAD4GM\SAD4GM\Sad4gmDatabase" type="dev"/>
+	</data-source>
+	<filters/>
+</data-sources>
