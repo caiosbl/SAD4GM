@@ -11,7 +11,7 @@ public class ModosFalha {
 
 	private ModosFalhaTools mFTools;
 
-	public ModosFalha(ModosFalhaTools mFTools) {
+	public ModosFalha() {
 		this.mFTools = new ModosFalhaTools();
 	}
 
@@ -60,14 +60,14 @@ public class ModosFalha {
 	}
 
 	public String getNome(int chaveModoFalha) {
-		String descricao;
+		String nome;
 
 		try {
-			descricao = mFTools.getNomeModoFalha(chaveModoFalha);
+			nome = mFTools.getNomeModoFalha(chaveModoFalha);
 		} catch (SQLException e) {
-			descricao = "Falha na Conexão com Banco de Dados!";
+			nome = "Falha na Conexão com Banco de Dados!";
 		}
-		return descricao;
+		return nome;
 	}
 
 	public String setDescricao(String descricao, int chaveModoFalha) {

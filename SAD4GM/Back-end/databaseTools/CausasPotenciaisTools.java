@@ -71,7 +71,7 @@ public class CausasPotenciaisTools extends DatabaseTools {
 
 	}
 
-	public String getNomeModoFalha(int chaveCausaPotencial) throws SQLException {
+	public String getNomeCausaPotencial(int chaveCausaPotencial) throws SQLException {
 		abrirConexao();
 		String nome;
 		PreparedStatement state = con
