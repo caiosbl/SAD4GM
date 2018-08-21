@@ -35,58 +35,58 @@ public class ModosFalhaTools extends DatabaseTools {
 
 	public Map<String, Integer> getMapaModosFalha(int chaveFalha) throws SQLException {
 		abrirConexao();
-		Map<String, Integer> subsistemas = new HashMap<>();
+		Map<String, Integer> modosFalha = new HashMap<>();
 
 		PreparedStatement state = con
 				.prepareStatement("SELECT descricao,chave FROM maquinas.modo_falha WHERE chave_falha=" + chaveFalha);
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {
-			subsistemas.put(resSet.getString(1), resSet.getInt(2));
+			modosFalha.put(resSet.getString(1), resSet.getInt(2));
 		}
 		state.close();
 
 		fecharConexao();
 
-		return subsistemas;
+		return modosFalha;
 
 	}
 
 	public String getDescricaoModoFalha(int chaveModoFalha) throws SQLException {
 		abrirConexao();
-		String funcao;
+		String descricao;
 		PreparedStatement state = con
 				.prepareStatement("SELECT descricao FROM maquinas.modo_falha WHERE chave=" + chaveModoFalha);
 		ResultSet resSet = state.executeQuery();
 
 		if (resSet.next())
-			funcao = resSet.getString(1);
+			descricao = resSet.getString(1);
 		else
-			funcao = "Falha na Conexão com Banco de Dados";
+			descricao = "Falha na Conexão com Banco de Dados";
 
 		state.close();
 		fecharConexao();
 
-		return funcao;
+		return descricao;
 
 	}
 	
 	public String getNomeModoFalha(int chaveModoFalha) throws SQLException {
 		abrirConexao();
-		String funcao;
+		String nome;
 		PreparedStatement state = con
 				.prepareStatement("SELECT nome FROM maquinas.modo_falha WHERE chave=" + chaveModoFalha);
 		ResultSet resSet = state.executeQuery();
 
 		if (resSet.next())
-			funcao = resSet.getString(1);
+			nome = resSet.getString(1);
 		else
-			funcao = "Falha na Conexão com Banco de Dados";
+			nome = "Falha na Conexão com Banco de Dados";
 
 		state.close();
 		fecharConexao();
 
-		return funcao;
+		return nome;
 
 	}
 
