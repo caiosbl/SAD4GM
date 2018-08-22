@@ -3,15 +3,15 @@ package controladores;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-import databaseTools.CausasPotenciaisTools;
+import databaseTools.CausaPotencialTools;
 import entidades.CausaPotencial;
 
 
 public class CausasPotenciais {
 
-	private CausasPotenciaisTools cPTools;
+	private CausaPotencialTools cPTools;
 
-	public CausasPotenciais(CausasPotenciaisTools cPTools) {
+	public CausasPotenciais(CausaPotencialTools cPTools) {
 		this.cPTools = cPTools;
 	}
 
@@ -68,6 +68,19 @@ public class CausasPotenciais {
 			nome = "Falha na Conexão com Banco de Dados!";
 		}
 		return nome;
+	}
+	
+	public String setNome(String nome, int chaveCausaPotencial) {
+		String status;
+
+		try {
+			cPTools.setNomeCausaPotencial(nome, chaveCausaPotencial);
+			status = "Nome atualizado com Sucesso!";
+		} catch (Exception e) {
+			status = "Falha ao Atualizar Nome!";
+		}
+
+		return status;
 	}
 
 	public String setDescricao(String descricao, int chaveCausaPotencial) {

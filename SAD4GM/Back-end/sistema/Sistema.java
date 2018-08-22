@@ -10,7 +10,7 @@ import controladores.Maquinas;
 import controladores.ModosFalha;
 import controladores.Subsistemas;
 import controladores.Usuarios;
-import databaseTools.CausasPotenciaisTools;
+import databaseTools.CausaPotencialTools;
 import databaseTools.ComponenteTools;
 import databaseTools.FalhaTools;
 import databaseTools.MaquinaTools;
@@ -47,7 +47,7 @@ public class Sistema {
 	private ComponenteTools cTools;
 	private FalhaTools fTools;
 	private ModosFalhaTools mFTools;
-	private CausasPotenciaisTools CPTools;
+	private CausaPotencialTools CPTools;
 
 	public Sistema() {
 
@@ -57,7 +57,7 @@ public class Sistema {
 		this.cTools = new ComponenteTools();
 		this.fTools = new FalhaTools();
 		this.mFTools = new ModosFalhaTools();
-		this.CPTools = new CausasPotenciaisTools();
+		this.CPTools = new CausaPotencialTools();
 
 		this.cUsuarios = new Usuarios(uTools);
 		this.cMaquinas = new Maquinas(mTools);
@@ -329,9 +329,13 @@ public class Sistema {
 	public String getDescricaoCausaPotencial(int chaveCausaPotencial) {
 		return cCPotenciais.getDescricao(chaveCausaPotencial);
 	}
+	
+	public String setNomeCausaPotencial(String nome, int chaveCausaPotencial) {
+		return cCPotenciais.setNome(nome, chaveCausaPotencial);
+	}
 
-	public String setDescricaoCausaPotencial(String nome, int chaveCausaPotencial) {
-		return cCPotenciais.setDescricao(nome, chaveCausaPotencial);
+	public String setDescricaoCausaPotencial(String descricao, int chaveCausaPotencial) {
+		return cCPotenciais.setDescricao(descricao, chaveCausaPotencial);
 	}
 	
 	public String getNomeCausaPotencial(int chaveCausaPotencial) {

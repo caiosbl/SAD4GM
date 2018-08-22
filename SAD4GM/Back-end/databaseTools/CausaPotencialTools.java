@@ -8,7 +8,7 @@ import java.util.Map;
 
 import entidades.CausaPotencial;
 
-public class CausasPotenciaisTools extends DatabaseTools {
+public class CausaPotencialTools extends DatabaseTools {
 
 	public void inserir(String nome, String descricao, int chaveModoFalha) throws SQLException {
 
@@ -88,6 +88,14 @@ public class CausasPotenciaisTools extends DatabaseTools {
 
 		return nome;
 
+	}
+	
+	public void setNomeCausaPotencial(String nome, int chaveCausaPotencial) throws SQLException {
+		abrirConexao();
+		PreparedStatement state = con.prepareStatement(
+				"UPDATE  maquinas.causas_potenciais SET nome = ? WHERE chave=" + chaveCausaPotencial);
+		state.setString(1, nome);
+		state.execute();
 	}
 
 	public void setDescricaoCausaPotencial(String descricao, int chaveCausaPotencial) throws SQLException {
