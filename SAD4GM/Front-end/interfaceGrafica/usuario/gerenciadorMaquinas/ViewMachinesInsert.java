@@ -10,6 +10,7 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import entidades.CausaPotencial;
 import entidades.Componente;
 import entidades.Falha;
 import entidades.Maquina;
@@ -83,9 +84,10 @@ public class ViewMachinesInsert extends Main {
 		desktopPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
-		
+
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/top-select-item-insert.png")));
+		label.setIcon(
+				new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/top-select-item-insert.png")));
 		label.setBounds(69, 138, 460, 25);
 		desktopPane.add(label);
 
@@ -260,8 +262,27 @@ public class ViewMachinesInsert extends Main {
 			for (ModoFalha modoFalha : getModosFalhaMap(falha.getChave()).values()) {
 				DefaultMutableTreeNode mFailNode = new DefaultMutableTreeNode(modoFalha);
 				modoFalhaNode.add(mFailNode);
+				iniciaRamoCausaPotencial(mFailNode, modoFalha);
 			}
 		}
+
+	}
+
+	private void iniciaRamoCausaPotencial(DefaultMutableTreeNode failNode, ModoFalha modoFalha) {
+		DefaultMutableTreeNode causaPotencialNode = new DefaultMutableTreeNode("Causas Potenciais");
+		if (!getModosFalhaMap(modoFalha.getChave()).isEmpty()) {
+			failNode.add(causaPotencialNode);
+
+			for (CausaPotencial causaPotencial : getCausasPotenciaisMap(modoFalha.getChave()).values()) {
+				DefaultMutableTreeNode cPotencialNode = new DefaultMutableTreeNode(causaPotencial);
+				causaPotencialNode.add(cPotencialNode);
+			}
+		}
+
+	}
+
+	private Map<Integer, CausaPotencial> getCausasPotenciaisMap(int chaveModoFalha) {
+		return sistema.getCausasPotenciaisMap(chaveModoFalha);
 
 	}
 
