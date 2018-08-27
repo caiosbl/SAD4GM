@@ -9,6 +9,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeCellRenderer;
 
+import entidades.CausaPotencial;
 import entidades.Componente;
 import entidades.Falha;
 import entidades.Maquina;
@@ -43,6 +44,10 @@ public class RenderizarTree extends DefaultTreeCellRenderer implements TreeCellR
 		else if (node.toString().equals("Modos de Falha")) 
 			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/modosfalha.png")));
 		
+		// ->
+		else if (node.toString().equals("Causas Potenciais")) 
+			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/modosfalha.png")));
+		
 		
 		else if (CLASS_TYPE == Maquina.class) 
 			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/machine.png")));
@@ -58,7 +63,9 @@ public class RenderizarTree extends DefaultTreeCellRenderer implements TreeCellR
 		
 		else if (CLASS_TYPE == ModoFalha.class) 
 			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/modofalha.png")));
-		
+		// ->
+		else if(CLASS_TYPE == CausaPotencial.class)
+			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/modofalha.png")));
 
 		return this;
 	}

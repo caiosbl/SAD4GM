@@ -10,11 +10,13 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import entidades.CausaPotencial;
 import entidades.Componente;
 import entidades.Falha;
 import entidades.Maquina;
 import entidades.ModoFalha;
 import entidades.Subsistema;
+import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetCausaPotencial;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetComponente;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetFalha;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetMachine;
@@ -170,6 +172,15 @@ public class ViewMachinesEdit extends Main {
 			vMFalha.setVisible(true);
 			vMFalha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
+		
+		else if(CLASS_TYPE == CausaPotencial.class) {
+			CausaPotencial causaPotencial = (CausaPotencial) node.getUserObject();
+			SetCausaPotencial vMCausaPotencial = new SetCausaPotencial(idAdmin, getXLocation(), getYLocation(), causaPotencial.getChave());
+			dispose();
+			vMCausaPotencial.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			vMCausaPotencial.setVisible(true);
+			vMCausaPotencial.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		}
 
 	}
 
@@ -259,6 +270,20 @@ public class ViewMachinesEdit extends Main {
 			for (ModoFalha modoFalha : getModosFalhaMap(falha.getChave()).values()) {
 				DefaultMutableTreeNode mFailNode = new DefaultMutableTreeNode(modoFalha);
 				modoFalhaNode.add(mFailNode);
+				iniciaRamoCausaPotencial(mFailNode, modoFalha);
+			}
+		}
+
+	}
+	
+	private void iniciaRamoCausaPotencial(DefaultMutableTreeNode failNode, ModoFalha modoFalha) {
+		DefaultMutableTreeNode causaPotencialNode = new DefaultMutableTreeNode("Causas Potenciais");
+		if (!getModosFalhaMap(modoFalha.getChave()).isEmpty()) {
+			failNode.add(causaPotencialNode);
+
+			for (CausaPotencial causaPotencial : getCausasPotenciaisMap(modoFalha.getChave()).values()) {
+				DefaultMutableTreeNode cPotencialNode = new DefaultMutableTreeNode(causaPotencial);
+				causaPotencialNode.add(cPotencialNode);
 			}
 		}
 
@@ -282,5 +307,10 @@ public class ViewMachinesEdit extends Main {
 
 	private Map<Integer, ModoFalha> getModosFalhaMap(int chaveFalha) {
 		return sistema.getModosFalhaMap(chaveFalha);
+	}
+	
+	private Map<Integer,CausaPotencial> getCausasPotenciaisMap(int chaveModoFalha){
+		return sistema.getCausasPotenciaisMap(chaveModoFalha);
+		
 	}
 }
