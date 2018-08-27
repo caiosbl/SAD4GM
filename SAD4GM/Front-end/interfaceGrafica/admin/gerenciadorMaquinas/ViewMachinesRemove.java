@@ -12,6 +12,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 
+import entidades.CausaPotencial;
 import entidades.Componente;
 import entidades.Falha;
 import entidades.Maquina;
@@ -107,9 +108,10 @@ public class ViewMachinesRemove extends Main {
 		banner.setIcon(new ImageIcon(ViewMachinesRemove.class.getResource("/Resources/icon/remove-maquina-title.png")));
 		banner.setBounds(311, 21, 214, 104);
 		desktopPane.add(banner);
-		
+
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(ViewMachinesRemove.class.getResource("/Resources/icon/top-select-item-remove.png")));
+		label.setIcon(
+				new ImageIcon(ViewMachinesRemove.class.getResource("/Resources/icon/top-select-item-remove.png")));
 		label.setBounds(69, 138, 460, 25);
 		desktopPane.add(label);
 
@@ -189,6 +191,19 @@ public class ViewMachinesRemove extends Main {
 				frame.dispose();
 				if (resposta == JOptionPane.YES_OPTION) {
 					JOptionPane.showMessageDialog(null, sistema.removerModoFalha(modoFalha.getChave()));
+					atualizaTree();
+				}
+			}
+
+			else if (CLASS_TYPE == CausaPotencial.class) {
+				CausaPotencial causaPotencial = (CausaPotencial) node.getUserObject();
+				JFrame frame = new JFrame();
+				int resposta = JOptionPane.showConfirmDialog(frame,
+						"Tem Certeza que Deseja remover a Causa Potencial " + causaPotencial.getNome() + " ?",
+						"Remover Causa Potencial", JOptionPane.YES_NO_OPTION);
+				frame.dispose();
+				if (resposta == JOptionPane.YES_OPTION) {
+					JOptionPane.showMessageDialog(null, sistema.removerCausaPotencial(causaPotencial.getChave()));
 					atualizaTree();
 				}
 			}
@@ -286,8 +301,27 @@ public class ViewMachinesRemove extends Main {
 			for (ModoFalha modoFalha : getModosFalhaMap(falha.getChave()).values()) {
 				DefaultMutableTreeNode mFailNode = new DefaultMutableTreeNode(modoFalha);
 				modoFalhaNode.add(mFailNode);
+				iniciaRamoCausaPotencial(mFailNode, modoFalha);
 			}
 		}
+
+	}
+
+	private void iniciaRamoCausaPotencial(DefaultMutableTreeNode failNode, ModoFalha modoFalha) {
+		DefaultMutableTreeNode causaPotencialNode = new DefaultMutableTreeNode("Causas Potenciais");
+		if (!getModosFalhaMap(modoFalha.getChave()).isEmpty()) {
+			failNode.add(causaPotencialNode);
+
+			for (CausaPotencial causaPotencial : getCausasPotenciaisMap(modoFalha.getChave()).values()) {
+				DefaultMutableTreeNode cPotencialNode = new DefaultMutableTreeNode(causaPotencial);
+				causaPotencialNode.add(cPotencialNode);
+			}
+		}
+
+	}
+
+	private Map<Integer, CausaPotencial> getCausasPotenciaisMap(int chaveModoFalha) {
+		return sistema.getCausasPotenciaisMap(chaveModoFalha);
 
 	}
 
