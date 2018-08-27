@@ -174,6 +174,19 @@ public class ViewMachinesInsert extends Main {
 			insertModoFalha.setVisible(true);
 			insertModoFalha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
+		
+		else if (node.toString().equals("Causas Potenciais")) {
+			CausaPotencial causaPotencial = (CausaPotencial) nodeParent.getUserObject();
+			InsertModoFalha insertCausaPotencial = new InsertModoFalha(idAdmin, getXLocation(), getYLocation(),
+					causaPotencial.getChave());
+			dispose();
+			insertCausaPotencial.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			insertCausaPotencial.setVisible(true);
+			insertCausaPotencial.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			
+		}
+		
+		
 
 	}
 
