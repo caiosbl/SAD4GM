@@ -184,7 +184,7 @@ public class ViewMachinesInsert extends Main {
 			insertCausaPotencial.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 			insertCausaPotencial.setVisible(true);
 			insertCausaPotencial.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			
+				
 		}
 		
 		
