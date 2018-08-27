@@ -21,7 +21,7 @@ public class CausasPotenciais {
 
 		try {
 			cPTools.inserir(nome, descricao, chaveModoFalha);
-			status = "Modo de Falha inserido com Sucesso!";
+			status = "Causa Potencial inserida com Sucesso!";
 		} catch (SQLException e) {
 			status = e.getMessage();
 		}
