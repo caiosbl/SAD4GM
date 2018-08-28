@@ -2,7 +2,6 @@ package interfaceGrafica.usuario.gerenciadorMaquinas;
 
 import java.awt.BorderLayout;
 
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -19,7 +18,7 @@ import entidades.Subsistema;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.entrada.Options;
 import interfaceGrafica.utils.RenderizarTree;
-import sistema.Sistema;
+import interfaceGrafica.utils.Tree;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -29,7 +28,7 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.Map;
+
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JTree;
@@ -52,8 +51,6 @@ public class ViewMachinesInfo extends Main {
 	private JTree tree;
 	private JDesktopPane desktopPane;
 
-	private Sistema sistema;
-
 	/**
 	 * Launch the application.
 	 */
@@ -64,7 +61,6 @@ public class ViewMachinesInfo extends Main {
 	public ViewMachinesInfo(String id, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
 		this.idAdmin = id;
-		this.sistema = new Sistema();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -106,7 +102,7 @@ public class ViewMachinesInfo extends Main {
 		banner.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/view-machines-title.png")));
 		banner.setBounds(311, 21, 214, 104);
 		desktopPane.add(banner);
-		
+
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/top-select-item-view.png")));
 		label.setBounds(70, 139, 460, 25);
@@ -172,7 +168,7 @@ public class ViewMachinesInfo extends Main {
 
 	private void iniciaTree() {
 
-		DefaultMutableTreeNode maquinaNode = iniciaNodeMaquinas();
+		DefaultMutableTreeNode maquinaNode = Tree.getTree();
 		tree = new JTree(maquinaNode);
 		tree.setCellRenderer(new RenderizarTree());
 
@@ -189,94 +185,4 @@ public class ViewMachinesInfo extends Main {
 
 	}
 
-	private DefaultMutableTreeNode iniciaNodeMaquinas() {
-		DefaultMutableTreeNode maquinaNode = new DefaultMutableTreeNode("Máquinas");
-
-		for (Maquina maquina : getMapaMaquinas().values()) {
-			DefaultMutableTreeNode mNode = new DefaultMutableTreeNode(maquina);
-			maquinaNode.add(mNode);
-			iniciaRamoSubsistemas(mNode, maquina);
-		}
-
-		return maquinaNode;
-
-	}
-
-	private void iniciaRamoSubsistemas(DefaultMutableTreeNode maquinaNode, Maquina maquina) {
-		DefaultMutableTreeNode subsistemasNode = new DefaultMutableTreeNode("Subsistemas");
-
-		if (!getMapaSubsistemas(maquina.getChave()).isEmpty()) {
-			maquinaNode.add(subsistemasNode);
-
-			for (Subsistema subsistema : getMapaSubsistemas(maquina.getChave()).values()) {
-				DefaultMutableTreeNode subsNode = new DefaultMutableTreeNode(subsistema);
-				subsistemasNode.add(subsNode);
-				iniciaRamoComponentes(subsNode, subsistema);
-			}
-		}
-
-	}
-
-	private void iniciaRamoComponentes(DefaultMutableTreeNode subsistemaNode, Subsistema subsistema) {
-		DefaultMutableTreeNode componenteNode = new DefaultMutableTreeNode("Componentes");
-
-		if (!getMapaComponentes(subsistema.getChave()).isEmpty()) {
-
-			subsistemaNode.add(componenteNode);
-
-			for (Componente componente : getMapaComponentes(subsistema.getChave()).values()) {
-				DefaultMutableTreeNode compNode = new DefaultMutableTreeNode(componente);
-				componenteNode.add(compNode);
-				iniciaRamoFalha(compNode, componente);
-			}
-		}
-
-	}
-
-	private void iniciaRamoFalha(DefaultMutableTreeNode componenteNode, Componente componente) {
-		DefaultMutableTreeNode falhaNode = new DefaultMutableTreeNode("Falhas");
-		if (!getFalhasMap(componente.getChave()).isEmpty()) {
-			componenteNode.add(falhaNode);
-
-			for (Falha falha : getFalhasMap(componente.getChave()).values()) {
-				DefaultMutableTreeNode failNode = new DefaultMutableTreeNode(falha);
-				falhaNode.add(failNode);
-				iniciaRamoModoFalha(failNode, falha);
-			}
-		}
-
-	}
-
-	private void iniciaRamoModoFalha(DefaultMutableTreeNode failNode, Falha falha) {
-		DefaultMutableTreeNode modoFalhaNode = new DefaultMutableTreeNode("Modos de Falha");
-		if (!getModosFalhaMap(falha.getChave()).isEmpty()) {
-			failNode.add(modoFalhaNode);
-
-			for (ModoFalha modoFalha : getModosFalhaMap(falha.getChave()).values()) {
-				DefaultMutableTreeNode mFailNode = new DefaultMutableTreeNode(modoFalha);
-				modoFalhaNode.add(mFailNode);
-			}
-		}
-
-	}
-
-	private Map<Integer, Maquina> getMapaMaquinas() {
-		return sistema.getMaquinaMapa();
-	}
-
-	private Map<Integer, Subsistema> getMapaSubsistemas(int chaveMaquina) {
-		return sistema.getSubsistemasMap(chaveMaquina);
-	}
-
-	private Map<Integer, Componente> getMapaComponentes(int chaveSubsistema) {
-		return sistema.getComponentesMap(chaveSubsistema);
-	}
-
-	private Map<Integer, Falha> getFalhasMap(int chaveComponente) {
-		return sistema.getFalhasMap(chaveComponente);
-	}
-
-	private Map<Integer, ModoFalha> getModosFalhaMap(int chaveFalha) {
-		return sistema.getModosFalhaMap(chaveFalha);
-	}
 }

@@ -20,6 +20,7 @@ import entidades.ModoFalha;
 import entidades.Subsistema;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.utils.RenderizarTree;
+import interfaceGrafica.utils.Tree;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -31,7 +32,6 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JTree;
@@ -211,7 +211,7 @@ public class ViewMachinesRemove extends Main {
 	}
 
 	private void atualizaTree() {
-		DefaultMutableTreeNode maquinaNode = iniciaNodeMaquinas();
+		DefaultMutableTreeNode maquinaNode = Tree.getTree();
 		TreeModel arvore = new DefaultTreeModel(maquinaNode);
 		tree.setModel(arvore);
 
@@ -219,7 +219,7 @@ public class ViewMachinesRemove extends Main {
 
 	private void iniciaTree() {
 
-		DefaultMutableTreeNode maquinaNode = iniciaNodeMaquinas();
+		DefaultMutableTreeNode maquinaNode = Tree.getTree();
 		tree = new JTree(maquinaNode);
 		tree.setCellRenderer(new RenderizarTree());
 
@@ -235,113 +235,4 @@ public class ViewMachinesRemove extends Main {
 		desktopPane.add(jSPane);
 	}
 
-	private DefaultMutableTreeNode iniciaNodeMaquinas() {
-		DefaultMutableTreeNode maquinaNode = new DefaultMutableTreeNode("Máquinas");
-
-		for (Maquina maquina : getMapaMaquinas().values()) {
-			DefaultMutableTreeNode mNode = new DefaultMutableTreeNode(maquina);
-			maquinaNode.add(mNode);
-			iniciaRamoSubsistemas(mNode, maquina);
-		}
-
-		return maquinaNode;
-
-	}
-
-	private void iniciaRamoSubsistemas(DefaultMutableTreeNode maquinaNode, Maquina maquina) {
-		DefaultMutableTreeNode subsistemasNode = new DefaultMutableTreeNode("Subsistemas");
-
-		if (!getMapaSubsistemas(maquina.getChave()).isEmpty()) {
-			maquinaNode.add(subsistemasNode);
-
-			for (Subsistema subsistema : getMapaSubsistemas(maquina.getChave()).values()) {
-				DefaultMutableTreeNode subsNode = new DefaultMutableTreeNode(subsistema);
-				subsistemasNode.add(subsNode);
-				iniciaRamoComponentes(subsNode, subsistema);
-			}
-		}
-
-	}
-
-	private void iniciaRamoComponentes(DefaultMutableTreeNode subsistemaNode, Subsistema subsistema) {
-		DefaultMutableTreeNode componenteNode = new DefaultMutableTreeNode("Componentes");
-
-		if (!getMapaComponentes(subsistema.getChave()).isEmpty()) {
-
-			subsistemaNode.add(componenteNode);
-
-			for (Componente componente : getMapaComponentes(subsistema.getChave()).values()) {
-				DefaultMutableTreeNode compNode = new DefaultMutableTreeNode(componente);
-				componenteNode.add(compNode);
-				iniciaRamoFalha(compNode, componente);
-			}
-		}
-
-	}
-
-	private void iniciaRamoFalha(DefaultMutableTreeNode componenteNode, Componente componente) {
-		DefaultMutableTreeNode falhaNode = new DefaultMutableTreeNode("Falhas");
-		if (!getFalhasMap(componente.getChave()).isEmpty()) {
-			componenteNode.add(falhaNode);
-
-			for (Falha falha : getFalhasMap(componente.getChave()).values()) {
-				DefaultMutableTreeNode failNode = new DefaultMutableTreeNode(falha);
-				falhaNode.add(failNode);
-				iniciaRamoModoFalha(failNode, falha);
-			}
-		}
-
-	}
-
-	private void iniciaRamoModoFalha(DefaultMutableTreeNode failNode, Falha falha) {
-		DefaultMutableTreeNode modoFalhaNode = new DefaultMutableTreeNode("Modos de Falha");
-		if (!getModosFalhaMap(falha.getChave()).isEmpty()) {
-			failNode.add(modoFalhaNode);
-
-			for (ModoFalha modoFalha : getModosFalhaMap(falha.getChave()).values()) {
-				DefaultMutableTreeNode mFailNode = new DefaultMutableTreeNode(modoFalha);
-				modoFalhaNode.add(mFailNode);
-				iniciaRamoCausaPotencial(mFailNode, modoFalha);
-			}
-		}
-
-	}
-
-	private void iniciaRamoCausaPotencial(DefaultMutableTreeNode failNode, ModoFalha modoFalha) {
-		DefaultMutableTreeNode causaPotencialNode = new DefaultMutableTreeNode("Causas Potenciais");
-		if (!getModosFalhaMap(modoFalha.getChave()).isEmpty()) {
-			failNode.add(causaPotencialNode);
-
-			for (CausaPotencial causaPotencial : getCausasPotenciaisMap(modoFalha.getChave()).values()) {
-				DefaultMutableTreeNode cPotencialNode = new DefaultMutableTreeNode(causaPotencial);
-				causaPotencialNode.add(cPotencialNode);
-			}
-		}
-
-	}
-
-	private Map<Integer, CausaPotencial> getCausasPotenciaisMap(int chaveModoFalha) {
-		return sistema.getCausasPotenciaisMap(chaveModoFalha);
-
-	}
-
-	private Map<Integer, Maquina> getMapaMaquinas() {
-		return sistema.getMaquinaMapa();
-	}
-
-	private Map<Integer, Subsistema> getMapaSubsistemas(int chaveMaquina) {
-		return sistema.getSubsistemasMap(chaveMaquina);
-	}
-
-	private Map<Integer, Componente> getMapaComponentes(int chaveSubsistema) {
-		return sistema.getComponentesMap(chaveSubsistema);
-	}
-
-	private Map<Integer, Falha> getFalhasMap(int chaveComponente) {
-		return sistema.getFalhasMap(chaveComponente);
-	}
-
-	private Map<Integer, ModoFalha> getModosFalhaMap(int chaveFalha) {
-		return sistema.getModosFalhaMap(chaveFalha);
-	}
 }

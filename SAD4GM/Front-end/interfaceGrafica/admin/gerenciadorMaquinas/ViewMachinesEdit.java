@@ -24,7 +24,7 @@ import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetModoFalha;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetSubsistema;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.utils.RenderizarTree;
-import sistema.Sistema;
+import interfaceGrafica.utils.Tree;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -34,7 +34,6 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JTree;
@@ -57,8 +56,6 @@ public class ViewMachinesEdit extends Main {
 	private JTree tree;
 	private JDesktopPane desktopPane;
 
-	private Sistema sistema;
-
 	/**
 	 * Launch the application.
 	 */
@@ -69,7 +66,7 @@ public class ViewMachinesEdit extends Main {
 	public ViewMachinesEdit(String id, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
 		this.idAdmin = id;
-		this.sistema = new Sistema();
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
@@ -111,7 +108,7 @@ public class ViewMachinesEdit extends Main {
 		banner.setIcon(new ImageIcon(ViewMachinesEdit.class.getResource("/Resources/icon/editNameBanner.png")));
 		banner.setBounds(311, 21, 141, 92);
 		desktopPane.add(banner);
-		
+
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ViewMachinesEdit.class.getResource("/Resources/icon/top-select-item-edit.png")));
 		label.setBounds(70, 138, 460, 25);
@@ -172,10 +169,11 @@ public class ViewMachinesEdit extends Main {
 			vMFalha.setVisible(true);
 			vMFalha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
-		
-		else if(CLASS_TYPE == CausaPotencial.class) {
+
+		else if (CLASS_TYPE == CausaPotencial.class) {
 			CausaPotencial causaPotencial = (CausaPotencial) node.getUserObject();
-			SetCausaPotencial vMCausaPotencial = new SetCausaPotencial(idAdmin, getXLocation(), getYLocation(), causaPotencial.getChave());
+			SetCausaPotencial vMCausaPotencial = new SetCausaPotencial(idAdmin, getXLocation(), getYLocation(),
+					causaPotencial.getChave());
 			dispose();
 			vMCausaPotencial.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 			vMCausaPotencial.setVisible(true);
@@ -186,7 +184,7 @@ public class ViewMachinesEdit extends Main {
 
 	private void iniciaTree() {
 
-		DefaultMutableTreeNode maquinaNode = iniciaNodeMaquinas();
+		DefaultMutableTreeNode maquinaNode = Tree.getTree();
 		tree = new JTree(maquinaNode);
 		tree.setCellRenderer(new RenderizarTree());
 
@@ -197,120 +195,11 @@ public class ViewMachinesEdit extends Main {
 		};
 
 		tree.addTreeSelectionListener(tsl);
-		
+
 		JScrollPane jSPane = new JScrollPane(tree);
 		jSPane.setBounds(67, 161, 465, 244);
 		desktopPane.add(jSPane);
 
 	}
 
-	private DefaultMutableTreeNode iniciaNodeMaquinas() {
-		DefaultMutableTreeNode maquinaNode = new DefaultMutableTreeNode("Máquinas");
-
-		for (Maquina maquina : getMapaMaquinas().values()) {
-			DefaultMutableTreeNode mNode = new DefaultMutableTreeNode(maquina);
-			maquinaNode.add(mNode);
-			iniciaRamoSubsistemas(mNode, maquina);
-		}
-
-		return maquinaNode;
-
-	}
-
-	private void iniciaRamoSubsistemas(DefaultMutableTreeNode maquinaNode, Maquina maquina) {
-		DefaultMutableTreeNode subsistemasNode = new DefaultMutableTreeNode("Subsistemas");
-
-		if (!getMapaSubsistemas(maquina.getChave()).isEmpty()) {
-			maquinaNode.add(subsistemasNode);
-
-			for (Subsistema subsistema : getMapaSubsistemas(maquina.getChave()).values()) {
-				DefaultMutableTreeNode subsNode = new DefaultMutableTreeNode(subsistema);
-				subsistemasNode.add(subsNode);
-				iniciaRamoComponentes(subsNode, subsistema);
-			}
-		}
-
-	}
-
-	private void iniciaRamoComponentes(DefaultMutableTreeNode subsistemaNode, Subsistema subsistema) {
-		DefaultMutableTreeNode componenteNode = new DefaultMutableTreeNode("Componentes");
-
-		if (!getMapaComponentes(subsistema.getChave()).isEmpty()) {
-
-			subsistemaNode.add(componenteNode);
-
-			for (Componente componente : getMapaComponentes(subsistema.getChave()).values()) {
-				DefaultMutableTreeNode compNode = new DefaultMutableTreeNode(componente);
-				componenteNode.add(compNode);
-				iniciaRamoFalha(compNode, componente);
-			}
-		}
-
-	}
-
-	private void iniciaRamoFalha(DefaultMutableTreeNode componenteNode, Componente componente) {
-		DefaultMutableTreeNode falhaNode = new DefaultMutableTreeNode("Falhas");
-		if (!getFalhasMap(componente.getChave()).isEmpty()) {
-			componenteNode.add(falhaNode);
-
-			for (Falha falha : getFalhasMap(componente.getChave()).values()) {
-				DefaultMutableTreeNode failNode = new DefaultMutableTreeNode(falha);
-				falhaNode.add(failNode);
-				iniciaRamoModoFalha(failNode, falha);
-			}
-		}
-
-	}
-
-	private void iniciaRamoModoFalha(DefaultMutableTreeNode failNode, Falha falha) {
-		DefaultMutableTreeNode modoFalhaNode = new DefaultMutableTreeNode("Modos de Falha");
-		if (!getModosFalhaMap(falha.getChave()).isEmpty()) {
-			failNode.add(modoFalhaNode);
-
-			for (ModoFalha modoFalha : getModosFalhaMap(falha.getChave()).values()) {
-				DefaultMutableTreeNode mFailNode = new DefaultMutableTreeNode(modoFalha);
-				modoFalhaNode.add(mFailNode);
-				iniciaRamoCausaPotencial(mFailNode, modoFalha);
-			}
-		}
-
-	}
-	
-	private void iniciaRamoCausaPotencial(DefaultMutableTreeNode failNode, ModoFalha modoFalha) {
-		DefaultMutableTreeNode causaPotencialNode = new DefaultMutableTreeNode("Causas Potenciais");
-		if (!getModosFalhaMap(modoFalha.getChave()).isEmpty()) {
-			failNode.add(causaPotencialNode);
-
-			for (CausaPotencial causaPotencial : getCausasPotenciaisMap(modoFalha.getChave()).values()) {
-				DefaultMutableTreeNode cPotencialNode = new DefaultMutableTreeNode(causaPotencial);
-				causaPotencialNode.add(cPotencialNode);
-			}
-		}
-
-	}
-
-	private Map<Integer, Maquina> getMapaMaquinas() {
-		return sistema.getMaquinaMapa();
-	}
-
-	private Map<Integer, Subsistema> getMapaSubsistemas(int chaveMaquina) {
-		return sistema.getSubsistemasMap(chaveMaquina);
-	}
-
-	private Map<Integer, Componente> getMapaComponentes(int chaveSubsistema) {
-		return sistema.getComponentesMap(chaveSubsistema);
-	}
-
-	private Map<Integer, Falha> getFalhasMap(int chaveComponente) {
-		return sistema.getFalhasMap(chaveComponente);
-	}
-
-	private Map<Integer, ModoFalha> getModosFalhaMap(int chaveFalha) {
-		return sistema.getModosFalhaMap(chaveFalha);
-	}
-	
-	private Map<Integer,CausaPotencial> getCausasPotenciaisMap(int chaveModoFalha){
-		return sistema.getCausasPotenciaisMap(chaveModoFalha);
-		
-	}
 }
