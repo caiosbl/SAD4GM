@@ -14,7 +14,6 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import java.awt.Font;
 
 import javax.swing.JButton;
 
@@ -25,7 +24,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 import java.awt.event.ActionListener;
 import java.net.ServerSocket;
 import java.awt.event.ActionEvent;
-import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 
 /**
@@ -108,7 +106,9 @@ public class Main extends JFrame {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(Main.class.getResource("/Resources/icon/usuariobutton.png")));
+		button.setBackground(new Color(0, 0, 0,0));
+		button.setSelectedIcon(new ImageIcon(Main.class.getResource("/Resources/icon/login-selected.png")));
+		button.setIcon(new ImageIcon(Main.class.getResource("/Resources/icon/login-diselect.png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Login uOptions = new Login(getXLocation(), getYLocation());
@@ -119,15 +119,14 @@ public class Main extends JFrame {
 
 			}
 		});
-		button.setForeground(new Color(0, 0, 51));
-		button.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button.setBackground(SystemColor.activeCaption);
-		button.setBounds(226, 276, 124, 53);
+		button.setForeground(new Color(0, 0, 0,0));
+
+		button.setBounds(221, 262, 153, 65);
 		desktopPane.add(button);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Main.class.getResource("/Resources/icon/sad4logo.png")));
-		lblNewLabel.setBounds(154, 158, 265, 97);
+		lblNewLabel.setBounds(154, 121, 265, 97);
 		desktopPane.add(lblNewLabel);
 
 		JLabel lblNewLabel_2 = new JLabel("");

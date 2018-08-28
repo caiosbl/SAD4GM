@@ -19,7 +19,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 
-import javax.swing.JSeparator;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -64,18 +64,6 @@ public class Login extends Main {
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
-
-		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(Login.class.getResource("/Resources/icon/usuarioareaicon.png")));
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 25));
-		label_2.setBackground(new Color(0, 0, 51));
-		label_2.setBounds(393, 11, 202, 117);
-		desktopPane.add(label_2);
-
-		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 137, 582, 15);
-		desktopPane.add(separator);
 
 		user = new JTextField();
 
@@ -145,7 +133,9 @@ public class Login extends Main {
 		desktopPane.add(loginBtn);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(Login.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setSelectedIcon(new ImageIcon(Login.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0, 0, 0,0));
+		btnVoltar.setIcon(new ImageIcon(Login.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main entrada = new Main(getXLocation(),getYLocation());
@@ -155,7 +145,7 @@ public class Login extends Main {
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnVoltar.setBounds(489, 389, 90, 27);
+		btnVoltar.setBounds(508, 395, 78, 44);
 		desktopPane.add(btnVoltar);
 		
 		JLabel loginFormBack = new JLabel("");
@@ -165,7 +155,7 @@ public class Login extends Main {
 		
 		JLabel sad4logo = new JLabel("");
 		sad4logo.setIcon(new ImageIcon(Login.class.getResource("/Resources/icon/sad4logosmall.png")));
-		sad4logo.setBounds(29, 40, 205, 74);
+		sad4logo.setBounds(179, 75, 205, 74);
 		desktopPane.add(sad4logo);
 	}
 
