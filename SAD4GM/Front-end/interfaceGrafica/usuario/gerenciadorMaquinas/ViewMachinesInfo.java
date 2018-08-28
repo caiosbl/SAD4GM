@@ -10,6 +10,7 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import entidades.CausaPotencial;
 import entidades.Componente;
 import entidades.Falha;
 import entidades.Maquina;
@@ -162,6 +163,16 @@ public class ViewMachinesInfo extends Main {
 			vMFalha.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 			vMFalha.setVisible(true);
 			vMFalha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		}
+
+		else if (CLASS_TYPE == CausaPotencial.class) {
+			CausaPotencial causaPotencial = (CausaPotencial) node.getUserObject();
+			ViewCausaPotencial vCPotencial = new ViewCausaPotencial(idAdmin, causaPotencial.getChave(), getXLocation(),
+					getYLocation());
+			dispose();
+			vCPotencial.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			vCPotencial.setVisible(true);
+			vCPotencial.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 
 	}

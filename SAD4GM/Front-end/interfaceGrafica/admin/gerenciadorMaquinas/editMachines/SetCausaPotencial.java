@@ -80,7 +80,7 @@ public class SetCausaPotencial extends Main {
 
 		JTextPane descricaoPane = new JTextPane();
 		jPane.setViewportView(descricaoPane);
-		descricaoPane.setText(sistema.getDescricaoModoFalha(chaveCausaPotencial));
+		descricaoPane.setText(sistema.getDescricaoCausaPotencial(chaveCausaPotencial));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ViewMachinesEdit editModoFalha = new ViewMachinesEdit(idUsuario, getXLocation(), getYLocation());
@@ -113,7 +113,7 @@ public class SetCausaPotencial extends Main {
 					String mensagem = "";
 					mensagem += sistema.setNomeCausaPotencial(nomeField.getText().trim(), chaveCausaPotencial);
 					mensagem += System.lineSeparator()
-							+ sistema.setDescricaoModoFalha(descricaoPane.getText().trim(), chaveCausaPotencial);
+							+ sistema.setDescricaoCausaPotencial(descricaoPane.getText().trim(), chaveCausaPotencial);
 
 					JOptionPane.showMessageDialog(null, mensagem);
 
