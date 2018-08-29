@@ -70,8 +70,10 @@ public class MyInfo extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/voltabut.png")));
-		btnVoltar.setBounds(492, 381, 84, 27);
+		btnVoltar.setSelectedIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/back-btn.png")));
+		btnVoltar.setBounds(492, 381, 78, 44);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Options userOptions = new Options(idUsuario,getXLocation(),getYLocation());
@@ -85,22 +87,21 @@ public class MyInfo extends Main {
 		desktopPane.add(btnVoltar);
 
 		JTextPane nome = new JTextPane();
-		nome.setEditable(false);
 
-		nome.setBounds(182, 196, 268, 24);
+		nome.setBounds(182, 224, 268, 24);
 		nome.setText(sistema.getNomeUsuario(idUsuario));
 		desktopPane.add(nome);
 
 		JTextPane userID = new JTextPane();
-		userID.setEditable(false);
 
-		userID.setBounds(182, 231, 268, 24);
+		userID.setBounds(182, 259, 268, 24);
 		userID.setText(idUsuario);
 		desktopPane.add(userID);
 
 		JButton btnAlterarSenha = new JButton("");
+		btnAlterarSenha.setSelectedIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/set-senha-on.png")));
 		btnAlterarSenha.setBackground(new Color(0,0,0,0));
-		btnAlterarSenha.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/setPasswordbutton.png")));
+		btnAlterarSenha.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/set-senha.png")));
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SetOwnPassword setSenha = new SetOwnPassword(idUsuario,getXLocation(),getYLocation());
@@ -110,25 +111,14 @@ public class MyInfo extends Main {
 				setSenha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnAlterarSenha.setBounds(221, 288, 165, 36);
+		btnAlterarSenha.setBounds(306, 295, 144, 39);
 		btnAlterarSenha.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnAlterarSenha);
 
-		JButton btnEditar = new JButton("");
-		btnEditar.setBackground(new Color(0,0,0,0));
-		btnEditar.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/editbutton.png")));
-		btnEditar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				userID.setEditable(true);
-				nome.setEditable(true);
-			}
-		});
-		btnEditar.setBounds(366, 285, 112, 39);
-		desktopPane.add(btnEditar);
-
 		JButton btnAtualizar = new JButton("");
+		btnAtualizar.setSelectedIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/update-selected.png")));
 		btnAtualizar.setBackground(new Color(0,0,0,0));
-		btnAtualizar.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/atualizarbutton.png")));
+		btnAtualizar.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/update.png")));
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -166,7 +156,7 @@ public class MyInfo extends Main {
 			}
 
 		});
-		btnAtualizar.setBounds(121, 288, 124, 39);
+		btnAtualizar.setBounds(170, 295, 124, 39);
 		desktopPane.add(btnAtualizar);
 		
 		JLabel logo = new JLabel("");
@@ -176,12 +166,13 @@ public class MyInfo extends Main {
 		
 		JLabel form = new JLabel("");
 		form.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/setAdmInfoForm.png")));
-		form.setBounds(75, 146, 434, 195);
+		form.setBounds(75, 174, 434, 195);
 		desktopPane.add(form);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(MyInfo.class.getResource("/Resources/icon/myinfoBannner.png")));
-		label.setBounds(278, 25, 258, 79);
-		desktopPane.add(label);
+		JLabel lblMinhas = new JLabel("MEUS DADOS");
+		lblMinhas.setForeground(Color.WHITE);
+		lblMinhas.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblMinhas.setBounds(316, 40, 223, 40);
+		desktopPane.add(lblMinhas);
 	}
 }
