@@ -72,8 +72,10 @@ public class Options extends Main {
 		usuarioPane.add(desktopPane, BorderLayout.CENTER);
 
 		JButton btnInserirMaquina = new JButton("");
-		btnInserirMaquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/insertMachineButton.png")));
-		btnInserirMaquina.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnInserirMaquina.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/pack/insert-machine-offf.png")));
+		btnInserirMaquina.setBackground(new Color(0, 0,0, 0));
+		btnInserirMaquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/pack/insert-machine-onn.png")));
+	
 		btnInserirMaquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ViewMachinesInsert insertMaquina =  new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
@@ -84,7 +86,7 @@ public class Options extends Main {
 				insertMaquina.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnInserirMaquina.setBounds(0, 156, 249, 73);
+		btnInserirMaquina.setBounds(111, 163, 150, 189);
 		desktopPane.add(btnInserirMaquina);
 
 		JButton btnMinhasInformacoes = new JButton("");
@@ -122,7 +124,9 @@ public class Options extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVerUmaMquina = new JButton("");
-		btnVerUmaMquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/viewmachineicon.png")));
+		btnVerUmaMquina.setBackground(new Color(0, 0, 0,0));
+		btnVerUmaMquina.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/pack/view-machine-offff.png")));
+		btnVerUmaMquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/pack/view-machine-off.png")));
 		btnVerUmaMquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ViewMachinesInfo verMaquina = new ViewMachinesInfo(id, xLocation, yLocation);
@@ -133,7 +137,7 @@ public class Options extends Main {
 			}
 		});
 		btnVerUmaMquina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnVerUmaMquina.setBounds(360, 156, 249, 73);
+		btnVerUmaMquina.setBounds(360, 156, 150, 189);
 		desktopPane.add(btnVerUmaMquina);
 
 		JLabel logo = new JLabel("");
