@@ -1,6 +1,8 @@
 package interfaceGrafica.usuario.gerenciadorMaquinas.Insert;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -78,8 +80,10 @@ public class InsertCausaPotencial extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setBounds(489, 418, 90, 27);
-		btnVoltar.setIcon(new ImageIcon(InsertCausaPotencial.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setSelectedIcon(new ImageIcon(InsertCausaPotencial.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setBounds(514, 408, 78, 44);
+		btnVoltar.setIcon(new ImageIcon(InsertCausaPotencial.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ViewMachinesInsert insert = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
@@ -93,8 +97,9 @@ public class InsertCausaPotencial extends Main {
 		desktopPane.add(btnVoltar);
 
 		JButton btnInserir = new JButton("");
+		btnInserir.setSelectedIcon(new ImageIcon(InsertCausaPotencial.class.getResource("/Resources/icon/patch/insert-on.png")));
 		btnInserir.setBounds(407, 362, 103, 21);
-		btnInserir.setIcon(new ImageIcon(InsertCausaPotencial.class.getResource("/Resources/icon/insertbutton.png")));
+		btnInserir.setIcon(new ImageIcon(InsertCausaPotencial.class.getResource("/Resources/icon/patch/insert-off.png")));
 
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -124,12 +129,6 @@ public class InsertCausaPotencial extends Main {
 		logo.setIcon(new ImageIcon(InsertCausaPotencial.class.getResource("/Resources/icon/sad4logosmall.png")));
 		desktopPane.add(logo);
 
-		JLabel banner = new JLabel("");
-		banner.setBounds(275, 40, 305, 83);
-		banner.setIcon(new ImageIcon(
-				InsertCausaPotencial.class.getResource("/Resources/icon/insert-causa-potencial-banner.png")));
-		desktopPane.add(banner);
-
 		JScrollPane jsp = new JScrollPane();
 		jsp.setBounds(114, 239, 404, 116);
 		desktopPane.add(jsp);
@@ -148,5 +147,17 @@ public class InsertCausaPotencial extends Main {
 				new ImageIcon(InsertCausaPotencial.class.getResource("/Resources/icon/insert-modofalha-form.png")));
 		form.setBounds(36, 159, 515, 244);
 		desktopPane.add(form);
+		
+		JLabel lblInserir = new JLabel("INSERIR");
+		lblInserir.setForeground(Color.WHITE);
+		lblInserir.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblInserir.setBounds(349, 30, 146, 40);
+		desktopPane.add(lblInserir);
+		
+		JLabel lblCausaPotencial = new JLabel("CAUSA POTENCIAL");
+		lblCausaPotencial.setForeground(Color.WHITE);
+		lblCausaPotencial.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblCausaPotencial.setBounds(267, 63, 315, 40);
+		desktopPane.add(lblCausaPotencial);
 	}
 }
