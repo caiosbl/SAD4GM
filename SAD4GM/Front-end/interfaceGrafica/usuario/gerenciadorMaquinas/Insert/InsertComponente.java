@@ -1,6 +1,8 @@
 package interfaceGrafica.usuario.gerenciadorMaquinas.Insert;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -78,8 +80,10 @@ public class InsertComponente extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(InsertComponente.class.getResource("/Resources/icon/voltabut.png")));
-		btnVoltar.setBounds(489, 418, 90, 27);
+		btnVoltar.setSelectedIcon(new ImageIcon(InsertComponente.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setIcon(new ImageIcon(InsertComponente.class.getResource("/Resources/icon/back-btn.png")));
+		btnVoltar.setBounds(514, 408, 78, 44);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ViewMachinesInsert eSOptions = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
@@ -93,8 +97,10 @@ public class InsertComponente extends Main {
 		desktopPane.add(btnVoltar);
 
 		JButton btnInserir = new JButton("");
-		btnInserir.setIcon(new ImageIcon(InsertComponente.class.getResource("/Resources/icon/insertbutton.png")));
-		btnInserir.setBounds(357, 321, 103, 21);
+		btnInserir.setSelectedIcon(new ImageIcon(InsertComponente.class.getResource("/Resources/icon/patch/insert-on.png")));
+		btnInserir.setBackground(new Color(0,0,0,0));
+		btnInserir.setIcon(new ImageIcon(InsertComponente.class.getResource("/Resources/icon/patch/insert-off.png")));
+		btnInserir.setBounds(344, 314, 132, 34);
 
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -126,11 +132,6 @@ public class InsertComponente extends Main {
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
-		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(InsertComponente.class.getResource("/Resources/icon/inserirComponenteTitle.png")));
-		banner.setBounds(333, 40, 183, 68);
-		desktopPane.add(banner);
-
 		JScrollPane jsp = new JScrollPane();
 		jsp.setBounds(192, 226, 268, 91);
 		desktopPane.add(jsp);
@@ -143,6 +144,18 @@ public class InsertComponente extends Main {
 		form.setIcon(new ImageIcon(InsertComponente.class.getResource("/Resources/icon/insert-componente-form.png")));
 		form.setBounds(120, 164, 371, 196);
 		desktopPane.add(form);
+		
+		JLabel lblInserir = new JLabel("INSERIR");
+		lblInserir.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblInserir.setForeground(Color.WHITE);
+		lblInserir.setBounds(344, 28, 146, 40);
+		desktopPane.add(lblInserir);
+		
+		JLabel lblComponente = new JLabel("COMPONENTE");
+		lblComponente.setForeground(Color.WHITE);
+		lblComponente.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblComponente.setBounds(305, 57, 233, 40);
+		desktopPane.add(lblComponente);
 	}
 
 }
