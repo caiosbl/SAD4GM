@@ -1,6 +1,8 @@
 package interfaceGrafica.usuario.gerenciadorMaquinas.Insert;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -78,8 +80,10 @@ public class InsertModoFalha extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setBounds(489, 418, 90, 27);
-		btnVoltar.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setSelectedIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setBounds(514, 408, 78, 44);
+		btnVoltar.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ViewMachinesInsert insert = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
@@ -93,8 +97,9 @@ public class InsertModoFalha extends Main {
 		desktopPane.add(btnVoltar);
 
 		JButton btnInserir = new JButton("");
+		btnInserir.setSelectedIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/patch/insert-on.png")));
 		btnInserir.setBounds(415, 369, 103, 21);
-		btnInserir.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/insertbutton.png")));
+		btnInserir.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/patch/insert-off.png")));
 
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -123,12 +128,6 @@ public class InsertModoFalha extends Main {
 		logo.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/sad4logosmall.png")));
 		desktopPane.add(logo);
 
-		JLabel banner = new JLabel("");
-		banner.setBounds(287, 19, 295, 102);
-		banner.setIcon(
-				new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/insert-modo-falha-banner.png")));
-		desktopPane.add(banner);
-
 		JScrollPane jsp = new JScrollPane();
 		jsp.setBounds(114, 239, 404, 116);
 		desktopPane.add(jsp);
@@ -146,5 +145,17 @@ public class InsertModoFalha extends Main {
 		form.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/insert-modofalha-form.png")));
 		form.setBounds(36, 159, 515, 244);
 		desktopPane.add(form);
+		
+		JLabel lblInserir = new JLabel("INSERIR");
+		lblInserir.setForeground(Color.WHITE);
+		lblInserir.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblInserir.setBounds(350, 29, 146, 40);
+		desktopPane.add(lblInserir);
+		
+		JLabel lblModoDeFalha = new JLabel("MODO DE FALHA");
+		lblModoDeFalha.setForeground(Color.WHITE);
+		lblModoDeFalha.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblModoDeFalha.setBounds(298, 63, 278, 40);
+		desktopPane.add(lblModoDeFalha);
 	}
 }
