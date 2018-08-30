@@ -1,6 +1,8 @@
 package interfaceGrafica.usuario.gerenciadorMaquinas.Insert;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -76,8 +78,10 @@ public class InsertSubsistema extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/voltabut.png")));
-		btnVoltar.setBounds(489, 418, 90, 27);
+		btnVoltar.setSelectedIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/back-btn.png")));
+		btnVoltar.setBounds(484, 396, 78, 44);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ViewMachinesInsert insert = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
@@ -91,8 +95,10 @@ public class InsertSubsistema extends Main {
 		desktopPane.add(btnVoltar);
 
 		JButton btnInserir = new JButton("");
-		btnInserir.setIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/insertbutton.png")));
-		btnInserir.setBounds(336, 292, 103, 21);
+		btnInserir.setBackground(new Color(0,0,0,0));
+		btnInserir.setSelectedIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/patch/insert-on.png")));
+		btnInserir.setIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/patch/insert-off.png")));
+		btnInserir.setBounds(324, 269, 132, 34);
 
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -122,15 +128,22 @@ public class InsertSubsistema extends Main {
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
-		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/INSERTSUBbanner.png")));
-		banner.setBounds(332, 32, 172, 82);
-		desktopPane.add(banner);
-
 		JLabel form = new JLabel("");
 		form.setIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/subsystemform.png")));
 		form.setBounds(105, 197, 393, 143);
 		desktopPane.add(form);
+		
+		JLabel lblInserir = new JLabel("INSERIR");
+		lblInserir.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblInserir.setForeground(Color.WHITE);
+		lblInserir.setBounds(322, 29, 146, 40);
+		desktopPane.add(lblInserir);
+		
+		JLabel lblMquina = new JLabel("SUBSISTEMA");
+		lblMquina.setForeground(Color.WHITE);
+		lblMquina.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblMquina.setBounds(287, 59, 218, 40);
+		desktopPane.add(lblMquina);
 	}
 
 	public Map<String, Integer> getMapaMaquinas() {
