@@ -71,8 +71,10 @@ public class SetOwnPassword extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(SetOwnPassword.class.getResource("/Resources/icon/voltabut.png")));
-		btnVoltar.setBounds(481, 381, 95, 27);
+		btnVoltar.setSelectedIcon(new ImageIcon(SetOwnPassword.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setIcon(new ImageIcon(SetOwnPassword.class.getResource("/Resources/icon/back-btn.png")));
+		btnVoltar.setBounds(481, 381, 78, 44);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MyInfo admMyInfo = new MyInfo(idUsuario,getXLocation(),getYLocation());
@@ -86,8 +88,10 @@ public class SetOwnPassword extends Main {
 		desktopPane.add(btnVoltar);
 
 		JButton btnAlterarSenha = new JButton("");
-		btnAlterarSenha.setIcon(new ImageIcon(SetOwnPassword.class.getResource("/Resources/icon/setPasswordbutton.png")));
-		btnAlterarSenha.setBounds(406, 292, 112, 27);
+		btnAlterarSenha.setSelectedIcon(new ImageIcon(SetOwnPassword.class.getResource("/Resources/icon/set-senha-on.png")));
+		btnAlterarSenha.setBackground(new Color(0,0,0,0));
+		btnAlterarSenha.setIcon(new ImageIcon(SetOwnPassword.class.getResource("/Resources/icon/set-senha.png")));
+		btnAlterarSenha.setBounds(384, 292, 144, 39);
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -144,21 +148,21 @@ public class SetOwnPassword extends Main {
 		label.setIcon(new ImageIcon(SetOwnPassword.class.getResource("/Resources/icon/novaSenhraformu.png")));
 		label.setBounds(76, 162, 470, 195);
 		desktopPane.add(label);
-		
-		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(SetOwnPassword.class.getResource("/Resources/icon/setsenhabanner.png")));
-		banner.setBounds(304, 29, 210, 87);
-		desktopPane.add(banner);
 
 		JLabel lblmnimoCaracteres = new JLabel("*Mínimo 6 Caracteres");
 		lblmnimoCaracteres.setForeground(Color.WHITE);
 		lblmnimoCaracteres.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblmnimoCaracteres.setBounds(248, 268, 111, 16);
 		desktopPane.add(lblmnimoCaracteres);
+		
+		JLabel lblAlterar = new JLabel("ALTERAR SENHA");
+		lblAlterar.setForeground(Color.WHITE);
+		lblAlterar.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblAlterar.setBounds(268, 50, 277, 40);
+		desktopPane.add(lblAlterar);
 	}
 
 	public boolean isEmpty(String password) {
 		return password.equals("");
 	}
-
 }

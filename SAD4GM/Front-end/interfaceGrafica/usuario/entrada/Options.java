@@ -72,9 +72,9 @@ public class Options extends Main {
 		usuarioPane.add(desktopPane, BorderLayout.CENTER);
 
 		JButton btnInserirMaquina = new JButton("");
-		btnInserirMaquina.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/pack/insert-machine-offf.png")));
+		btnInserirMaquina.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/patch/insert-machine-on.png")));
 		btnInserirMaquina.setBackground(new Color(0, 0,0, 0));
-		btnInserirMaquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/pack/insert-machine-onn.png")));
+		btnInserirMaquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/patch/insert-machine-off.png")));
 	
 		btnInserirMaquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -125,8 +125,8 @@ public class Options extends Main {
 
 		JButton btnVerUmaMquina = new JButton("");
 		btnVerUmaMquina.setBackground(new Color(0, 0, 0,0));
-		btnVerUmaMquina.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/pack/view-machine-offff.png")));
-		btnVerUmaMquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/pack/view-machine-off.png")));
+		btnVerUmaMquina.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/patch/view-machine-offff.png")));
+		btnVerUmaMquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/patch/view-machine-on.png")));
 		btnVerUmaMquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ViewMachinesInfo verMaquina = new ViewMachinesInfo(id, xLocation, yLocation);
