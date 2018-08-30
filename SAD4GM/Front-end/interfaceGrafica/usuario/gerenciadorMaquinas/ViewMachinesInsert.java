@@ -38,6 +38,7 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 import javax.swing.JTree;
+import java.awt.Color;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -81,12 +82,6 @@ public class ViewMachinesInsert extends Main {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JLabel label = new JLabel("");
-		label.setIcon(
-				new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/top-select-item-insert.png")));
-		label.setBounds(69, 138, 460, 25);
-		desktopPane.add(label);
-
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 137, 0, 2);
 		desktopPane.add(separator);
@@ -94,7 +89,9 @@ public class ViewMachinesInsert extends Main {
 		iniciaTree();
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setSelectedIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Options options = new Options(idAdmin, getXLocation(), getYLocation());
@@ -105,18 +102,31 @@ public class ViewMachinesInsert extends Main {
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnVoltar.setBounds(484, 418, 88, 29);
+		btnVoltar.setBounds(503, 408, 78, 44);
 		desktopPane.add(btnVoltar);
 
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
-
-		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/insert-machine.png")));
-		banner.setBounds(318, 17, 214, 114);
-		desktopPane.add(banner);
+		
+		JLabel lblSelecioneOItem = new JLabel("SELECIONE O ITEM QUE DESEJA INSERIR:");
+		lblSelecioneOItem.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblSelecioneOItem.setForeground(Color.WHITE);
+		lblSelecioneOItem.setBounds(122, 137, 342, 20);
+		desktopPane.add(lblSelecioneOItem);
+		
+		JLabel lblInserir = new JLabel("INSERIR");
+		lblInserir.setForeground(Color.WHITE);
+		lblInserir.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblInserir.setBounds(332, 29, 146, 40);
+		desktopPane.add(lblInserir);
+		
+		JLabel lblD = new JLabel("DADOS DE MÁQUINA");
+		lblD.setForeground(Color.WHITE);
+		lblD.setFont(new Font("Tahoma", Font.BOLD, 26));
+		lblD.setBounds(278, 64, 277, 32);
+		desktopPane.add(lblD);
 
 	}
 

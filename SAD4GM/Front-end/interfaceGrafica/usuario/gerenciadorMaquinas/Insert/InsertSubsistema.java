@@ -81,7 +81,7 @@ public class InsertSubsistema extends Main {
 		btnVoltar.setSelectedIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/return-selected.png")));
 		btnVoltar.setBackground(new Color(0,0,0,0));
 		btnVoltar.setIcon(new ImageIcon(InsertSubsistema.class.getResource("/Resources/icon/back-btn.png")));
-		btnVoltar.setBounds(484, 396, 78, 44);
+		btnVoltar.setBounds(514, 395, 78, 44);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ViewMachinesInsert insert = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
