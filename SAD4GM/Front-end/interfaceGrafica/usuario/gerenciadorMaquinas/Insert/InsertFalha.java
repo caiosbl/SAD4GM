@@ -1,6 +1,8 @@
 package interfaceGrafica.usuario.gerenciadorMaquinas.Insert;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -78,8 +80,10 @@ public class InsertFalha extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(InsertFalha.class.getResource("/Resources/icon/voltabut.png")));
-		btnVoltar.setBounds(489, 418, 90, 27);
+		btnVoltar.setSelectedIcon(new ImageIcon(InsertFalha.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setIcon(new ImageIcon(InsertFalha.class.getResource("/Resources/icon/back-btn.png")));
+		btnVoltar.setBounds(514, 408, 78, 44);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ViewMachinesInsert viewInsert = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
@@ -93,7 +97,8 @@ public class InsertFalha extends Main {
 		desktopPane.add(btnVoltar);
 
 		JButton btnInserir = new JButton("");
-		btnInserir.setIcon(new ImageIcon(InsertFalha.class.getResource("/Resources/icon/insertbutton.png")));
+		btnInserir.setSelectedIcon(new ImageIcon(InsertFalha.class.getResource("/Resources/icon/patch/insert-on.png")));
+		btnInserir.setIcon(new ImageIcon(InsertFalha.class.getResource("/Resources/icon/patch/insert-off.png")));
 		btnInserir.setBounds(354, 321, 103, 21);
 
 		btnInserir.addActionListener(new ActionListener() {
@@ -127,11 +132,6 @@ public class InsertFalha extends Main {
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
-		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(InsertFalha.class.getResource("/Resources/icon/inserir-falha-banner.png")));
-		banner.setBounds(367, 27, 135, 86);
-		desktopPane.add(banner);
-
 		JScrollPane jsp = new JScrollPane();
 		jsp.setBounds(192, 226, 268, 91);
 		desktopPane.add(jsp);
@@ -144,6 +144,18 @@ public class InsertFalha extends Main {
 		form.setIcon(new ImageIcon(InsertFalha.class.getResource("/Resources/icon/insert-falha-form.png")));
 		form.setBounds(110, 164, 392, 196);
 		desktopPane.add(form);
+		
+		JLabel lblInserir = new JLabel("INSERIR");
+		lblInserir.setForeground(Color.WHITE);
+		lblInserir.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblInserir.setBounds(360, 33, 146, 40);
+		desktopPane.add(lblInserir);
+		
+		JLabel lblFalha = new JLabel("FALHA");
+		lblFalha.setForeground(Color.WHITE);
+		lblFalha.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblFalha.setBounds(379, 68, 109, 40);
+		desktopPane.add(lblFalha);
 	}
 
 }
