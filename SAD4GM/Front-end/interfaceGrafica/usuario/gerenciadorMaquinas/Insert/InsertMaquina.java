@@ -25,6 +25,7 @@ import sistema.Sistema;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -71,12 +72,14 @@ public class InsertMaquina extends Main {
 		desktopPane.setLayout(null);
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 137, 582, 12);
+		separator.setBounds(6, 126, 582, 12);
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/voltabut.png")));
-		btnVoltar.setBounds(489, 418, 90, 27);
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setSelectedIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/back-btn.png")));
+		btnVoltar.setBounds(498, 408, 78, 44);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ViewMachinesInsert insert = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
@@ -90,8 +93,10 @@ public class InsertMaquina extends Main {
 		desktopPane.add(btnVoltar);
 
 		JButton btnInserir = new JButton("");
-		btnInserir.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/insertbutton.png")));
-		btnInserir.setBounds(385, 354, 103, 21);
+		btnInserir.setBackground(new Color(0,0,0,0));
+		btnInserir.setSelectedIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/patch/insert-on.png")));
+		btnInserir.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/patch/insert-off.png")));
+		btnInserir.setBounds(366, 355, 132, 34);
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -165,15 +170,22 @@ public class InsertMaquina extends Main {
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
-		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/inserirMaquinatitle.png")));
-		banner.setBounds(335, 26, 177, 99);
-		desktopPane.add(banner);
-
 		JLabel form = new JLabel("");
 		form.setIcon(new ImageIcon(InsertMaquina.class.getResource("/Resources/icon/insertMaquinaForm.png")));
 		form.setBounds(119, 161, 393, 240);
 		desktopPane.add(form);
+		
+		JLabel lblInserirMquina = new JLabel("INSERIR");
+		lblInserirMquina.setForeground(Color.WHITE);
+		lblInserirMquina.setFont(new Font("Tahoma", Font.BOLD, 32));
+		lblInserirMquina.setBounds(343, 30, 141, 39);
+		desktopPane.add(lblInserirMquina);
+		
+		JLabel lblMquina = new JLabel("MÁQUINA");
+		lblMquina.setForeground(Color.WHITE);
+		lblMquina.setFont(new Font("Tahoma", Font.BOLD, 32));
+		lblMquina.setBounds(335, 63, 162, 39);
+		desktopPane.add(lblMquina);
 	}
 
 	public boolean isEmpty(String string) {
