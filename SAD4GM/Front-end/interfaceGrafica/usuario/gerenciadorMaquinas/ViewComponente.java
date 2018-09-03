@@ -72,7 +72,9 @@ public class ViewComponente extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setSelectedIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ViewMachinesInfo information = new ViewMachinesInfo(idAdmin, getXLocation(), getYLocation());
@@ -84,7 +86,7 @@ public class ViewComponente extends Main {
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnVoltar.setBounds(484, 418, 88, 29);
+		btnVoltar.setBounds(497, 408, 78, 44);
 		desktopPane.add(btnVoltar);
 
 		JTextPane nomePane = new JTextPane();
@@ -108,15 +110,22 @@ public class ViewComponente extends Main {
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
-		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/view-component-title.png")));
-		banner.setBounds(292, 22, 262, 89);
-		desktopPane.add(banner);
-
 		JLabel form = new JLabel("");
 		form.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/edit-component-info-form.png")));
 		form.setBounds(123, 161, 393, 225);
 		desktopPane.add(form);
+		
+		JLabel label = new JLabel("VISUALIZAR");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Tahoma", Font.BOLD, 33));
+		label.setBounds(307, 21, 209, 40);
+		desktopPane.add(label);
+		
+		JLabel lblComponente = new JLabel("COMPONENTE");
+		lblComponente.setForeground(Color.WHITE);
+		lblComponente.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblComponente.setBounds(294, 51, 233, 40);
+		desktopPane.add(lblComponente);
 
 	}
 }
