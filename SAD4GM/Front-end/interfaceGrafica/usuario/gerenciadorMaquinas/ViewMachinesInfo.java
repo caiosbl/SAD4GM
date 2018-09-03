@@ -33,6 +33,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JTree;
+import java.awt.Color;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -79,7 +80,9 @@ public class ViewMachinesInfo extends Main {
 		iniciaTree();
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Options options = new Options(idAdmin, getXLocation(), getYLocation());
@@ -91,23 +94,31 @@ public class ViewMachinesInfo extends Main {
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnVoltar.setBounds(484, 418, 88, 29);
+		btnVoltar.setBounds(503, 408, 78, 44);
 		desktopPane.add(btnVoltar);
 
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
-
-		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/view-machines-title.png")));
-		banner.setBounds(311, 21, 214, 104);
-		desktopPane.add(banner);
-
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/top-select-item-view.png")));
-		label.setBounds(70, 139, 460, 25);
-		desktopPane.add(label);
+		
+		JLabel lblSelecioneOItem = new JLabel("SELECIONE O ITEM QUE DESEJA VISUALIZAR:");
+		lblSelecioneOItem.setForeground(Color.WHITE);
+		lblSelecioneOItem.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblSelecioneOItem.setBounds(112, 137, 374, 20);
+		desktopPane.add(lblSelecioneOItem);
+		
+		JLabel lblVisualizar = new JLabel("VISUALIZAR");
+		lblVisualizar.setForeground(Color.WHITE);
+		lblVisualizar.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblVisualizar.setBounds(310, 28, 209, 40);
+		desktopPane.add(lblVisualizar);
+		
+		JLabel lblDadosDeMquina = new JLabel("DADOS DE MÁQUINA");
+		lblDadosDeMquina.setForeground(Color.WHITE);
+		lblDadosDeMquina.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblDadosDeMquina.setBounds(246, 62, 349, 40);
+		desktopPane.add(lblDadosDeMquina);
 
 	}
 
@@ -195,5 +206,4 @@ public class ViewMachinesInfo extends Main {
 		desktopPane.add(jSPane);
 
 	}
-
 }
