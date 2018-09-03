@@ -79,8 +79,10 @@ public class ViewMachine extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setBounds(504, 423, 88, 29);
-		btnVoltar.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setSelectedIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setBounds(514, 414, 78, 44);
+		btnVoltar.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ViewMachinesInfo information = new ViewMachinesInfo(idAdmin, getXLocation(), getYLocation());
@@ -141,11 +143,6 @@ public class ViewMachine extends Main {
 		logo.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/sad4logosmall.png")));
 		desktopPane.add(logo);
 
-		JLabel banner = new JLabel("");
-		banner.setBounds(324, 19, 204, 106);
-		banner.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/view-machine-title.png")));
-		desktopPane.add(banner);
-
 		JTextPane usuarioCadastrouPane = new JTextPane();
 		usuarioCadastrouPane.setEditable(false);
 		usuarioCadastrouPane.setBounds(185, 363, 332, 29);
@@ -157,6 +154,18 @@ public class ViewMachine extends Main {
 		form.setBounds(18, 158, 559, 253);
 		form.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/newform.png")));
 		desktopPane.add(form);
+		
+		JLabel label = new JLabel("VISUALIZAR");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Tahoma", Font.BOLD, 33));
+		label.setBounds(308, 26, 209, 40);
+		desktopPane.add(label);
+		
+		JLabel lblMquina = new JLabel("MÁQUINA");
+		lblMquina.setForeground(Color.WHITE);
+		lblMquina.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblMquina.setBounds(331, 61, 165, 40);
+		desktopPane.add(lblMquina);
 
 	}
 }
