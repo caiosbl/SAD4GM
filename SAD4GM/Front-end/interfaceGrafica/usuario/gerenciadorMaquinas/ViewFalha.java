@@ -72,7 +72,9 @@ public class ViewFalha extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(ViewFalha.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setSelectedIcon(new ImageIcon(ViewFalha.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setIcon(new ImageIcon(ViewFalha.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ViewMachinesInfo information = new ViewMachinesInfo(idAdmin, getXLocation(), getYLocation());
@@ -84,7 +86,7 @@ public class ViewFalha extends Main {
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnVoltar.setBounds(484, 418, 88, 29);
+		btnVoltar.setBounds(502, 398, 78, 44);
 		desktopPane.add(btnVoltar);
 
 		JTextPane nomePane = new JTextPane();
@@ -108,15 +110,22 @@ public class ViewFalha extends Main {
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
-		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(ViewFalha.class.getResource("/Resources/icon/view-falha-title.png")));
-		banner.setBounds(329, 24, 199, 86);
-		desktopPane.add(banner);
-
 		JLabel form = new JLabel("");
 		form.setIcon(new ImageIcon(ViewFalha.class.getResource("/Resources/icon/insert-falha-form.png")));
 		form.setBounds(123, 161, 393, 225);
 		desktopPane.add(form);
+		
+		JLabel label = new JLabel("VISUALIZAR");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Tahoma", Font.BOLD, 33));
+		label.setBounds(319, 21, 209, 40);
+		desktopPane.add(label);
+		
+		JLabel lblFalha = new JLabel("FALHA");
+		lblFalha.setForeground(Color.WHITE);
+		lblFalha.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblFalha.setBounds(367, 55, 109, 40);
+		desktopPane.add(lblFalha);
 
 	}
 }

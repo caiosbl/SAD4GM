@@ -1,6 +1,7 @@
 package interfaceGrafica.usuario.gerenciadorMaquinas;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -71,7 +72,9 @@ public class ViewModoFalha extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(ViewModoFalha.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setSelectedIcon(new ImageIcon(ViewModoFalha.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setIcon(new ImageIcon(ViewModoFalha.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ViewMachinesInfo information = new ViewMachinesInfo(idAdmin, getXLocation(), getYLocation());
@@ -83,18 +86,13 @@ public class ViewModoFalha extends Main {
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnVoltar.setBounds(484, 418, 88, 29);
+		btnVoltar.setBounds(521, 408, 78, 44);
 		desktopPane.add(btnVoltar);
 
 		JLabel logo = new JLabel("");
 		logo.setIcon(new ImageIcon(ViewModoFalha.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
-
-		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(ViewModoFalha.class.getResource("/Resources/icon/view-falha-title.png")));
-		banner.setBounds(329, 24, 199, 86);
-		desktopPane.add(banner);
 
 		JScrollPane jsp = new JScrollPane();
 		jsp.setBounds(114, 239, 404, 116);
@@ -117,6 +115,18 @@ public class ViewModoFalha extends Main {
 		form.setIcon(new ImageIcon(ViewModoFalha.class.getResource("/Resources/icon/insert-modofalha-form.png")));
 		form.setBounds(36, 159, 515, 244);
 		desktopPane.add(form);
+		
+		JLabel label = new JLabel("VISUALIZAR");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Tahoma", Font.BOLD, 33));
+		label.setBounds(327, 27, 209, 40);
+		desktopPane.add(label);
+		
+		JLabel lblModoDeFalha = new JLabel("MODO DE FALHA");
+		lblModoDeFalha.setForeground(Color.WHITE);
+		lblModoDeFalha.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblModoDeFalha.setBounds(292, 57, 278, 40);
+		desktopPane.add(lblModoDeFalha);
 
 	}
 }
