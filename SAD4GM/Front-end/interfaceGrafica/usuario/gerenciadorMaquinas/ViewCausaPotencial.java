@@ -94,11 +94,6 @@ public class ViewCausaPotencial extends Main {
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
 
-		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(ViewCausaPotencial.class.getResource("/Resources/icon/view-causa-potencial-banner.png")));
-		banner.setBounds(246, 31, 305, 83);
-		desktopPane.add(banner);
-
 		JScrollPane jsp = new JScrollPane();
 		jsp.setBounds(114, 239, 404, 116);
 		desktopPane.add(jsp);
@@ -120,6 +115,18 @@ public class ViewCausaPotencial extends Main {
 		form.setIcon(new ImageIcon(ViewCausaPotencial.class.getResource("/Resources/icon/insert-modofalha-form.png")));
 		form.setBounds(36, 159, 515, 244);
 		desktopPane.add(form);
+		
+		JLabel label = new JLabel("VISUALIZAR");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Tahoma", Font.BOLD, 33));
+		label.setBounds(298, 41, 209, 40);
+		desktopPane.add(label);
+		
+		JLabel lblCausaPotencial = new JLabel("CAUSA POTENCIAL");
+		lblCausaPotencial.setForeground(Color.WHITE);
+		lblCausaPotencial.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblCausaPotencial.setBounds(258, 74, 315, 40);
+		desktopPane.add(lblCausaPotencial);
 
 	}
 }

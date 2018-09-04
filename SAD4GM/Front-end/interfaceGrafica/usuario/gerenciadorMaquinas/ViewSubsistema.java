@@ -71,7 +71,9 @@ public class ViewSubsistema extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setSelectedIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ViewMachinesInfo information = new ViewMachinesInfo(idAdmin, getXLocation(), getYLocation());
@@ -82,14 +84,14 @@ public class ViewSubsistema extends Main {
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnVoltar.setBounds(484, 418, 88, 29);
+		btnVoltar.setBounds(514, 408, 78, 44);
 		desktopPane.add(btnVoltar);
 
 		JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setForeground(Color.BLACK);
 		textPane.setText(sistema.getNomeSubsistema(chaveSubsistema));
-		textPane.setBounds(158, 244, 365, 35);
+		textPane.setBounds(158, 250, 365, 30);
 		desktopPane.add(textPane);
 
 		
@@ -98,16 +100,23 @@ public class ViewSubsistema extends Main {
 		logo.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
-
-		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/view-sub-title.png")));
-		banner.setBounds(292, 22, 244, 93);
-		desktopPane.add(banner);
 		
 		JLabel form = new JLabel("");
 		form.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/formviewSubsistema.png")));
 		form.setBounds(87, 178, 459, 182);
 		desktopPane.add(form);
+		
+		JLabel label = new JLabel("VISUALIZAR");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Tahoma", Font.BOLD, 33));
+		label.setBounds(301, 26, 209, 40);
+		desktopPane.add(label);
+		
+		JLabel lblSubsistema = new JLabel("SUBSISTEMA");
+		lblSubsistema.setForeground(Color.WHITE);
+		lblSubsistema.setFont(new Font("Tahoma", Font.BOLD, 33));
+		lblSubsistema.setBounds(301, 55, 218, 40);
+		desktopPane.add(lblSubsistema);
 
 	}
 }

@@ -86,11 +86,21 @@ public class Options extends Main {
 				insertMaquina.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
+		
+		JButton button = new JButton("");
+		button.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/home-on.png")));
+		button.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/home-off.png")));
+		button.setBackground(new Color(0,0,0,0));
+		button.setFont(new Font("Tahoma", Font.BOLD, 14));
+		button.setBounds(360, 43, 62, 44);
+		desktopPane.add(button);
 		btnInserirMaquina.setBounds(111, 163, 150, 189);
 		desktopPane.add(btnInserirMaquina);
 
 		JButton btnMinhasInformacoes = new JButton("");
-		btnMinhasInformacoes.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/myinformationicon.png")));
+		btnMinhasInformacoes.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/my-data-on.png")));
+		btnMinhasInformacoes.setBackground(new Color(0,0,0,0));
+		btnMinhasInformacoes.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/my-data-off.png")));
 		btnMinhasInformacoes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MyInfo myInfo = new MyInfo(idUsuario, getXLocation(), getYLocation());
@@ -102,11 +112,13 @@ public class Options extends Main {
 			}
 		});
 		btnMinhasInformacoes.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnMinhasInformacoes.setBounds(336, 54, 122, 27);
+		btnMinhasInformacoes.setBounds(408, 43, 119, 45);
 		desktopPane.add(btnMinhasInformacoes);
 
 		JButton btnLogout = new JButton("");
-		btnLogout.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logouticon.png")));
+		btnLogout.setBackground(new Color(0,0,0,0));
+		btnLogout.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logout-on.png")));
+		btnLogout.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logout-off.png")));
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main entrada = new Main(getXLocation(), getYLocation());
@@ -116,7 +128,7 @@ public class Options extends Main {
 			}
 		});
 		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnLogout.setBounds(470, 54, 81, 27);
+		btnLogout.setBounds(510, 43, 100, 45);
 		desktopPane.add(btnLogout);
 
 		JSeparator separator = new JSeparator();
@@ -144,6 +156,11 @@ public class Options extends Main {
 		logo.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
+		
+		JLabel navbar = new JLabel("");
+		navbar.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/navbar.png")));
+		navbar.setBounds(359, 40, 256, 51);
+		desktopPane.add(navbar);
 
 		//
 
