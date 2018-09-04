@@ -94,7 +94,7 @@ public class ViewMachinesInfo extends Main {
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnVoltar.setBounds(503, 408, 78, 44);
+		btnVoltar.setBounds(527, 408, 78, 44);
 		desktopPane.add(btnVoltar);
 
 		JLabel logo = new JLabel("");
@@ -105,7 +105,7 @@ public class ViewMachinesInfo extends Main {
 		JLabel lblSelecioneOItem = new JLabel("SELECIONE O ITEM QUE DESEJA VISUALIZAR:");
 		lblSelecioneOItem.setForeground(Color.WHITE);
 		lblSelecioneOItem.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblSelecioneOItem.setBounds(112, 137, 374, 20);
+		lblSelecioneOItem.setBounds(112, 172, 374, 20);
 		desktopPane.add(lblSelecioneOItem);
 		
 		JLabel lblVisualizar = new JLabel("VISUALIZAR");
@@ -119,6 +119,35 @@ public class ViewMachinesInfo extends Main {
 		lblDadosDeMquina.setFont(new Font("Tahoma", Font.BOLD, 33));
 		lblDadosDeMquina.setBounds(246, 62, 349, 40);
 		desktopPane.add(lblDadosDeMquina);
+		
+		JButton button = new JButton("");
+		button.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/home-on.png")));
+		button.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/home-off.png")));
+		button.setFont(new Font("Tahoma", Font.BOLD, 14));
+		button.setBackground(new Color(0, 0, 0, 0));
+		button.setBounds(348, 109, 62, 44);
+		desktopPane.add(button);
+		
+		JButton button_1 = new JButton("");
+		button_1.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/my-data-on.png")));
+		button_1.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/my-data-off.png")));
+		button_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		button_1.setBackground(new Color(0, 0, 0, 0));
+		button_1.setBounds(403, 109, 119, 45);
+		desktopPane.add(button_1);
+		
+		JButton button_2 = new JButton("");
+		button_2.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/logout-on.png")));
+		button_2.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/logout-off.png")));
+		button_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		button_2.setBackground(new Color(0, 0, 0, 0));
+		button_2.setBounds(498, 109, 119, 45);
+		desktopPane.add(button_2);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/navbar.png")));
+		label.setBounds(349, 106, 256, 51);
+		desktopPane.add(label);
 
 	}
 
@@ -191,19 +220,20 @@ public class ViewMachinesInfo extends Main {
 	private void iniciaTree() {
 
 		DefaultMutableTreeNode maquinaNode = Tree.getTree();
-		tree = new JTree(maquinaNode);
-		tree.setCellRenderer(new RenderizarTree());
 
 		TreeSelectionListener tsl = new TreeSelectionListener() {
 			public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
 				jTree1ValueChanged(evt);
 			}
 		};
-
-		tree.addTreeSelectionListener(tsl);
-		JScrollPane jSPane = new JScrollPane(tree);
-		jSPane.setBounds(67, 161, 465, 244);
+		JScrollPane jSPane = new JScrollPane();
+		jSPane.setBounds(67, 190, 465, 244);
 		desktopPane.add(jSPane);
+		tree = new JTree(maquinaNode);
+		jSPane.setViewportView(tree);
+		tree.setCellRenderer(new RenderizarTree());
+		
+				tree.addTreeSelectionListener(tsl);
 
 	}
 }
