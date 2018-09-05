@@ -142,8 +142,8 @@ public class ViewSubsistema extends Main {
 		button_1.setBounds(404, 9, 119, 45);
 		desktopPane.add(button_1);
 		
-		JButton button_2 = new JButton("");
-		button_2.addActionListener(new ActionListener() {
+		JButton logoutBtn = new JButton("");
+		logoutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MyInfo myInfo = new MyInfo(id, getXLocation(), getYLocation());
 				dispose();
@@ -152,12 +152,12 @@ public class ViewSubsistema extends Main {
 				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button_2.setSelectedIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/logout-on.png")));
-		button_2.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/logout-off.png")));
-		button_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_2.setBackground(new Color(0, 0, 0, 0));
-		button_2.setBounds(499, 9, 119, 45);
-		desktopPane.add(button_2);
+		logoutBtn.setSelectedIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/logout-on.png")));
+		logoutBtn.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/logout-off.png")));
+		logoutBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		logoutBtn.setBackground(new Color(0, 0, 0, 0));
+		logoutBtn.setBounds(499, 9, 119, 45);
+		desktopPane.add(logoutBtn);
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/navbar.png")));
