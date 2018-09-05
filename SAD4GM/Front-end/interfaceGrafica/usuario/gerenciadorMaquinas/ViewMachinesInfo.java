@@ -17,6 +17,8 @@ import entidades.Maquina;
 import entidades.ModoFalha;
 import entidades.Subsistema;
 import interfaceGrafica.main.Main;
+import interfaceGrafica.usuario.entrada.Login;
+import interfaceGrafica.usuario.entrada.MyInfo;
 import interfaceGrafica.usuario.entrada.Options;
 import interfaceGrafica.utils.RenderizarTree;
 import interfaceGrafica.utils.Tree;
@@ -96,57 +98,79 @@ public class ViewMachinesInfo extends Main {
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnVoltar.setBounds(527, 408, 78, 44);
 		desktopPane.add(btnVoltar);
-
-		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/sad4logosmall.png")));
-		logo.setBounds(29, 40, 205, 74);
-		desktopPane.add(logo);
 		
 		JLabel lblSelecioneOItem = new JLabel("SELECIONE O ITEM QUE DESEJA VISUALIZAR:");
 		lblSelecioneOItem.setForeground(Color.WHITE);
 		lblSelecioneOItem.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblSelecioneOItem.setBounds(112, 172, 374, 20);
+		lblSelecioneOItem.setBounds(121, 117, 374, 20);
 		desktopPane.add(lblSelecioneOItem);
 		
 		JLabel lblVisualizar = new JLabel("VISUALIZAR");
 		lblVisualizar.setForeground(Color.WHITE);
-		lblVisualizar.setFont(new Font("Tahoma", Font.BOLD, 33));
-		lblVisualizar.setBounds(310, 28, 209, 40);
+		lblVisualizar.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblVisualizar.setBounds(67, 22, 151, 29);
 		desktopPane.add(lblVisualizar);
 		
 		JLabel lblDadosDeMquina = new JLabel("DADOS DE MÁQUINA");
 		lblDadosDeMquina.setForeground(Color.WHITE);
-		lblDadosDeMquina.setFont(new Font("Tahoma", Font.BOLD, 33));
-		lblDadosDeMquina.setBounds(246, 62, 349, 40);
+		lblDadosDeMquina.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblDadosDeMquina.setBounds(33, 47, 252, 29);
 		desktopPane.add(lblDadosDeMquina);
 		
 		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Options options = new Options(id, getXLocation(), getYLocation());
+				dispose();
+				options.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				options.setVisible(true);
+				options.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		button.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/home-on.png")));
 		button.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/home-off.png")));
 		button.setFont(new Font("Tahoma", Font.BOLD, 14));
 		button.setBackground(new Color(0, 0, 0, 0));
-		button.setBounds(348, 109, 62, 44);
+		button.setBounds(349, 9, 62, 44);
 		desktopPane.add(button);
 		
 		JButton button_1 = new JButton("");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyInfo myInfo = new MyInfo(id, getXLocation(), getYLocation());
+				dispose();
+				myInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				myInfo.setVisible(true);
+				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		button_1.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/my-data-on.png")));
 		button_1.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/my-data-off.png")));
 		button_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		button_1.setBackground(new Color(0, 0, 0, 0));
-		button_1.setBounds(403, 109, 119, 45);
+		button_1.setBounds(404, 9, 119, 45);
 		desktopPane.add(button_1);
 		
 		JButton button_2 = new JButton("");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login login = new Login(getXLocation(), getYLocation());
+				dispose();
+				login.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				login.setVisible(true);
+				login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		button_2.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/logout-on.png")));
 		button_2.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/logout-off.png")));
 		button_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		button_2.setBackground(new Color(0, 0, 0, 0));
-		button_2.setBounds(498, 109, 119, 45);
+		button_2.setBounds(499, 9, 119, 45);
 		desktopPane.add(button_2);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/navbar.png")));
-		label.setBounds(349, 106, 256, 51);
+		label.setBounds(350, 6, 256, 51);
 		desktopPane.add(label);
 
 	}
@@ -227,7 +251,7 @@ public class ViewMachinesInfo extends Main {
 			}
 		};
 		JScrollPane jSPane = new JScrollPane();
-		jSPane.setBounds(67, 190, 465, 244);
+		jSPane.setBounds(13, 139, 581, 270);
 		desktopPane.add(jSPane);
 		tree = new JTree(maquinaNode);
 		jSPane.setViewportView(tree);
