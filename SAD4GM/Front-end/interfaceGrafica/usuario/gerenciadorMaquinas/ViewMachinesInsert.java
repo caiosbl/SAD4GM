@@ -16,6 +16,8 @@ import entidades.Maquina;
 import entidades.ModoFalha;
 import entidades.Subsistema;
 import interfaceGrafica.main.Main;
+import interfaceGrafica.usuario.entrada.Login;
+import interfaceGrafica.usuario.entrada.MyInfo;
 import interfaceGrafica.usuario.entrada.Options;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertMaquina;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertModoFalha;
@@ -104,11 +106,6 @@ public class ViewMachinesInsert extends Main {
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnVoltar.setBounds(503, 408, 78, 44);
 		desktopPane.add(btnVoltar);
-
-		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/sad4logosmall.png")));
-		logo.setBounds(29, 40, 205, 74);
-		desktopPane.add(logo);
 		
 		JLabel lblSelecioneOItem = new JLabel("SELECIONE O ITEM QUE DESEJA INSERIR:");
 		lblSelecioneOItem.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -118,15 +115,70 @@ public class ViewMachinesInsert extends Main {
 		
 		JLabel lblInserir = new JLabel("INSERIR");
 		lblInserir.setForeground(Color.WHITE);
-		lblInserir.setFont(new Font("Tahoma", Font.BOLD, 33));
-		lblInserir.setBounds(332, 29, 146, 40);
+		lblInserir.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblInserir.setBounds(99, 22, 107, 29);
 		desktopPane.add(lblInserir);
 		
 		JLabel lblD = new JLabel("DADOS DE MÁQUINA");
 		lblD.setForeground(Color.WHITE);
-		lblD.setFont(new Font("Tahoma", Font.BOLD, 26));
-		lblD.setBounds(278, 64, 277, 32);
+		lblD.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblD.setBounds(33, 47, 252, 29);
 		desktopPane.add(lblD);
+		
+		JButton homeBtn = new JButton("");
+		homeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Options options = new Options(id, getXLocation(), getYLocation());
+				dispose();
+				options.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				options.setVisible(true);
+				options.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		homeBtn.setSelectedIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/home-on.png")));
+		homeBtn.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/home-off.png")));
+		homeBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		homeBtn.setBackground(new Color(0, 0, 0, 0));
+		homeBtn.setBounds(349, 9, 62, 44);
+		desktopPane.add(homeBtn);
+		
+		JButton myDataBtn = new JButton("");
+		myDataBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyInfo myInfo = new MyInfo(id, getXLocation(), getYLocation());
+				dispose();
+				myInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				myInfo.setVisible(true);
+				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		myDataBtn.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/my-data-off.png")));
+		myDataBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		myDataBtn.setBackground(new Color(0, 0, 0, 0));
+		myDataBtn.setBounds(404, 9, 119, 45);
+		desktopPane.add(myDataBtn);
+		
+		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login login = new Login(getXLocation(), getYLocation());
+				dispose();
+				login.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				login.setVisible(true);
+				login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		button.setSelectedIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/logout-on.png")));
+		button.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/logout-off.png")));
+		button.setFont(new Font("Tahoma", Font.BOLD, 14));
+		button.setBackground(new Color(0, 0, 0, 0));
+		button.setBounds(499, 9, 119, 45);
+		desktopPane.add(button);
+		
+		JLabel navbar = new JLabel("");
+		navbar.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/navbar.png")));
+		navbar.setBounds(350, 6, 256, 51);
+		desktopPane.add(navbar);
 
 	}
 
@@ -213,5 +265,4 @@ public class ViewMachinesInsert extends Main {
 		desktopPane.add(jSPane);
 
 	}
-
 }

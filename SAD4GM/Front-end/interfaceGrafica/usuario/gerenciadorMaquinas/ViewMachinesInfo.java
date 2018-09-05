@@ -117,8 +117,8 @@ public class ViewMachinesInfo extends Main {
 		lblDadosDeMquina.setBounds(33, 47, 252, 29);
 		desktopPane.add(lblDadosDeMquina);
 		
-		JButton button = new JButton("");
-		button.addActionListener(new ActionListener() {
+		JButton homeBtn = new JButton("");
+		homeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Options options = new Options(id, getXLocation(), getYLocation());
 				dispose();
@@ -127,15 +127,15 @@ public class ViewMachinesInfo extends Main {
 				options.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/home-on.png")));
-		button.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/home-off.png")));
-		button.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button.setBackground(new Color(0, 0, 0, 0));
-		button.setBounds(349, 9, 62, 44);
-		desktopPane.add(button);
+		homeBtn.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/home-on.png")));
+		homeBtn.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/home-off.png")));
+		homeBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		homeBtn.setBackground(new Color(0, 0, 0, 0));
+		homeBtn.setBounds(349, 9, 62, 44);
+		desktopPane.add(homeBtn);
 		
-		JButton button_1 = new JButton("");
-		button_1.addActionListener(new ActionListener() {
+		JButton myDataBtn = new JButton("");
+		myDataBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MyInfo myInfo = new MyInfo(id, getXLocation(), getYLocation());
 				dispose();
@@ -144,15 +144,15 @@ public class ViewMachinesInfo extends Main {
 				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button_1.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/my-data-on.png")));
-		button_1.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/my-data-off.png")));
-		button_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_1.setBackground(new Color(0, 0, 0, 0));
-		button_1.setBounds(404, 9, 119, 45);
-		desktopPane.add(button_1);
+		myDataBtn.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/my-data-on.png")));
+		myDataBtn.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/my-data-off.png")));
+		myDataBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		myDataBtn.setBackground(new Color(0, 0, 0, 0));
+		myDataBtn.setBounds(404, 9, 119, 45);
+		desktopPane.add(myDataBtn);
 		
-		JButton button_2 = new JButton("");
-		button_2.addActionListener(new ActionListener() {
+		JButton logoutBtn = new JButton("");
+		logoutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login login = new Login(getXLocation(), getYLocation());
 				dispose();
@@ -161,12 +161,12 @@ public class ViewMachinesInfo extends Main {
 				login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button_2.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/logout-on.png")));
-		button_2.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/logout-off.png")));
-		button_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_2.setBackground(new Color(0, 0, 0, 0));
-		button_2.setBounds(499, 9, 119, 45);
-		desktopPane.add(button_2);
+		logoutBtn.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/logout-on.png")));
+		logoutBtn.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/logout-off.png")));
+		logoutBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		logoutBtn.setBackground(new Color(0, 0, 0, 0));
+		logoutBtn.setBounds(499, 9, 119, 45);
+		desktopPane.add(logoutBtn);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/navbar.png")));
