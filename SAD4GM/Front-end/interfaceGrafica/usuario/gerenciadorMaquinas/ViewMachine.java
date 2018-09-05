@@ -77,10 +77,6 @@ public class ViewMachine extends Main {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 137, 582, 12);
-		desktopPane.add(separator);
-
 		JButton btnVoltar = new JButton("");
 		btnVoltar.setSelectedIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/return-selected.png")));
 		btnVoltar.setBackground(new Color(0,0,0,0));
@@ -112,44 +108,44 @@ public class ViewMachine extends Main {
 
 		JTextPane nomePane = new JTextPane();
 		nomePane.setEditable(false);
-		nomePane.setBounds(185, 178, 332, 29);
+		nomePane.setBounds(185, 155, 332, 29);
 		nomePane.setForeground(Color.BLACK);
 		nomePane.setText(maquina.getNome());
 		desktopPane.add(nomePane);
 
 		JTextPane dataCadastroPane = new JTextPane();
 		dataCadastroPane.setEditable(false);
-		dataCadastroPane.setBounds(185, 214, 332, 29);
+		dataCadastroPane.setBounds(185, 190, 332, 29);
 		dataCadastroPane.setText(formata.format(maquina.getDataCadastro()));
 		dataCadastroPane.setForeground(Color.BLACK);
 		desktopPane.add(dataCadastroPane);
 
 		JTextPane codigoPane = new JTextPane();
 		codigoPane.setEditable(false);
-		codigoPane.setBounds(185, 248, 332, 29);
+		codigoPane.setBounds(185, 225, 332, 29);
 		codigoPane.setText(String.valueOf(maquina.getCodigo()));
 		codigoPane.setForeground(Color.BLACK);
 		desktopPane.add(codigoPane);
 
 		JScrollPane jsPanel = new JScrollPane();
-		jsPanel.setBounds(182, 282, 335, 80);
+		jsPanel.setBounds(182, 260, 335, 80);
 		desktopPane.add(jsPanel);
-
-		JTextPane descricaoPane = new JTextPane();
-		descricaoPane.setEditable(false);
-		jsPanel.setViewportView(descricaoPane);
-		descricaoPane.setText(String.valueOf(maquina.getDescricao()));
-		descricaoPane.setForeground(Color.BLACK);
+		
+				JTextPane descricaoPane = new JTextPane();
+				jsPanel.setViewportView(descricaoPane);
+				descricaoPane.setEditable(false);
+				descricaoPane.setText(String.valueOf(maquina.getDescricao()));
+				descricaoPane.setForeground(Color.BLACK);
 
 		JTextPane usuarioCadastrouPane = new JTextPane();
 		usuarioCadastrouPane.setEditable(false);
-		usuarioCadastrouPane.setBounds(185, 363, 332, 29);
+		usuarioCadastrouPane.setBounds(185, 345, 332, 29);
 		usuarioCadastrouPane.setText(maquina.getIdUsuario());
 		usuarioCadastrouPane.setForeground(Color.BLACK);
 		desktopPane.add(usuarioCadastrouPane);
 
 		JLabel form = new JLabel("");
-		form.setBounds(18, 158, 559, 253);
+		form.setBounds(16, 136, 559, 253);
 		form.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/newform.png")));
 		desktopPane.add(form);
 		
