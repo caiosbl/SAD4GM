@@ -110,7 +110,7 @@ public class ViewMachinesInsert extends Main {
 		JLabel lblSelecioneOItem = new JLabel("SELECIONE O ITEM QUE DESEJA INSERIR:");
 		lblSelecioneOItem.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblSelecioneOItem.setForeground(Color.WHITE);
-		lblSelecioneOItem.setBounds(122, 137, 342, 20);
+		lblSelecioneOItem.setBounds(121, 117, 342, 20);
 		desktopPane.add(lblSelecioneOItem);
 		
 		JLabel lblInserir = new JLabel("INSERIR");
@@ -250,19 +250,20 @@ public class ViewMachinesInsert extends Main {
 	private void iniciaTree() {
 
 		DefaultMutableTreeNode maquinaNode = Tree.getTree();
-		tree = new JTree(maquinaNode);
-		tree.setCellRenderer(new RenderizarTree());
 
 		TreeSelectionListener tsl = new TreeSelectionListener() {
 			public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
 				jTree1ValueChanged(evt);
 			}
 		};
-
-		tree.addTreeSelectionListener(tsl);
-		JScrollPane jSPane = new JScrollPane(tree);
-		jSPane.setBounds(67, 161, 465, 244);
+		JScrollPane jSPane = new JScrollPane();
+		jSPane.setBounds(13, 139, 581, 270);
 		desktopPane.add(jSPane);
+		tree = new JTree(maquinaNode);
+		jSPane.setViewportView(tree);
+		tree.setCellRenderer(new RenderizarTree());
+		
+				tree.addTreeSelectionListener(tsl);
 
 	}
 }
