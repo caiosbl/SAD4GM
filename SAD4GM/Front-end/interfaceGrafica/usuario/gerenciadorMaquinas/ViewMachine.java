@@ -29,7 +29,6 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import javax.swing.JSeparator;
 
 import javax.swing.JTextPane;
 
