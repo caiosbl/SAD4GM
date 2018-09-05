@@ -143,6 +143,7 @@ public class ViewMachinesInsert extends Main {
 		desktopPane.add(homeBtn);
 		
 		JButton myDataBtn = new JButton("");
+		myDataBtn.setSelectedIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/my-data-on.png")));
 		myDataBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MyInfo myInfo = new MyInfo(id, getXLocation(), getYLocation());
