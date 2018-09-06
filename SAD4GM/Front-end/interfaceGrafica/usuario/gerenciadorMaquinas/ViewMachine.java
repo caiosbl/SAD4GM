@@ -79,7 +79,7 @@ public class ViewMachine extends Main {
 		JButton btnVoltar = new JButton("");
 		btnVoltar.setSelectedIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/return-selected.png")));
 		btnVoltar.setBackground(new Color(0,0,0,0));
-		btnVoltar.setBounds(514, 414, 78, 44);
+		btnVoltar.setBounds(521, 408, 78, 44);
 		btnVoltar.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -107,27 +107,27 @@ public class ViewMachine extends Main {
 
 		JTextPane nomePane = new JTextPane();
 		nomePane.setEditable(false);
-		nomePane.setBounds(185, 155, 332, 29);
+		nomePane.setBounds(47, 124, 476, 29);
 		nomePane.setForeground(Color.BLACK);
 		nomePane.setText(maquina.getNome());
 		desktopPane.add(nomePane);
 
 		JTextPane dataCadastroPane = new JTextPane();
 		dataCadastroPane.setEditable(false);
-		dataCadastroPane.setBounds(185, 190, 332, 29);
+		dataCadastroPane.setBounds(47, 180, 476, 29);
 		dataCadastroPane.setText(formata.format(maquina.getDataCadastro()));
 		dataCadastroPane.setForeground(Color.BLACK);
 		desktopPane.add(dataCadastroPane);
 
 		JTextPane codigoPane = new JTextPane();
 		codigoPane.setEditable(false);
-		codigoPane.setBounds(185, 225, 332, 29);
+		codigoPane.setBounds(47, 234, 476, 29);
 		codigoPane.setText(String.valueOf(maquina.getCodigo()));
 		codigoPane.setForeground(Color.BLACK);
 		desktopPane.add(codigoPane);
 
 		JScrollPane jsPanel = new JScrollPane();
-		jsPanel.setBounds(182, 260, 335, 80);
+		jsPanel.setBounds(45, 285, 480, 80);
 		desktopPane.add(jsPanel);
 		
 				JTextPane descricaoPane = new JTextPane();
@@ -138,15 +138,10 @@ public class ViewMachine extends Main {
 
 		JTextPane usuarioCadastrouPane = new JTextPane();
 		usuarioCadastrouPane.setEditable(false);
-		usuarioCadastrouPane.setBounds(185, 345, 332, 29);
+		usuarioCadastrouPane.setBounds(47, 386, 476, 29);
 		usuarioCadastrouPane.setText(maquina.getIdUsuario());
 		usuarioCadastrouPane.setForeground(Color.BLACK);
 		desktopPane.add(usuarioCadastrouPane);
-
-		JLabel form = new JLabel("");
-		form.setBounds(16, 136, 559, 253);
-		form.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/newform.png")));
-		desktopPane.add(form);
 		
 		JLabel label_1 = new JLabel("VISUALIZAR");
 		label_1.setForeground(Color.WHITE);
@@ -160,8 +155,8 @@ public class ViewMachine extends Main {
 		lblMquina.setBounds(80, 45, 120, 29);
 		desktopPane.add(lblMquina);
 		
-		JButton button = new JButton("");
-		button.addActionListener(new ActionListener() {
+		JButton homeBtn = new JButton("");
+		homeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Options options = new Options(id, getXLocation(), getYLocation());
 				dispose();
@@ -170,15 +165,15 @@ public class ViewMachine extends Main {
 				options.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button.setSelectedIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/home-on.png")));
-		button.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/home-off.png")));
-		button.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button.setBackground(new Color(0, 0, 0, 0));
-		button.setBounds(349, 9, 62, 44);
-		desktopPane.add(button);
+		homeBtn.setSelectedIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/home-on.png")));
+		homeBtn.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/home-off.png")));
+		homeBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		homeBtn.setBackground(new Color(0, 0, 0, 0));
+		homeBtn.setBounds(349, 9, 62, 44);
+		desktopPane.add(homeBtn);
 		
-		JButton button_1 = new JButton("");
-		button_1.addActionListener(new ActionListener() {
+		JButton myDataBtn = new JButton("");
+		myDataBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MyInfo myInfo = new MyInfo(id, getXLocation(), getYLocation());
 				dispose();
@@ -187,15 +182,15 @@ public class ViewMachine extends Main {
 				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button_1.setSelectedIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/my-data-on.png")));
-		button_1.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/my-data-off.png")));
-		button_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_1.setBackground(new Color(0, 0, 0, 0));
-		button_1.setBounds(404, 9, 119, 45);
-		desktopPane.add(button_1);
+		myDataBtn.setSelectedIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/my-data-on.png")));
+		myDataBtn.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/my-data-off.png")));
+		myDataBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		myDataBtn.setBackground(new Color(0, 0, 0, 0));
+		myDataBtn.setBounds(404, 9, 119, 45);
+		desktopPane.add(myDataBtn);
 		
-		JButton button_2 = new JButton("");
-		button_2.addActionListener(new ActionListener() {
+		JButton logoutBtn = new JButton("");
+		logoutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login login = new Login(getXLocation(), getYLocation());
 				dispose();
@@ -204,17 +199,47 @@ public class ViewMachine extends Main {
 				login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		button_2.setSelectedIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/logout-on.png")));
-		button_2.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/logout-off.png")));
-		button_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_2.setBackground(new Color(0, 0, 0, 0));
-		button_2.setBounds(499, 9, 119, 45);
-		desktopPane.add(button_2);
+		logoutBtn.setSelectedIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/logout-on.png")));
+		logoutBtn.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/logout-off.png")));
+		logoutBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		logoutBtn.setBackground(new Color(0, 0, 0, 0));
+		logoutBtn.setBounds(499, 9, 119, 45);
+		desktopPane.add(logoutBtn);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ViewMachine.class.getResource("/Resources/icon/navbar.png")));
 		label.setBounds(350, 6, 256, 51);
 		desktopPane.add(label);
+		
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setForeground(Color.WHITE);
+		lblNome.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNome.setBounds(251, 104, 53, 20);
+		desktopPane.add(lblNome);
+		
+		JLabel lblDataDeCadastro = new JLabel("Data de Cadastro:");
+		lblDataDeCadastro.setForeground(Color.WHITE);
+		lblDataDeCadastro.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDataDeCadastro.setBounds(206, 162, 148, 20);
+		desktopPane.add(lblDataDeCadastro);
+		
+		JLabel lblCdigo = new JLabel("Código:");
+		lblCdigo.setForeground(Color.WHITE);
+		lblCdigo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblCdigo.setBounds(251, 215, 62, 20);
+		desktopPane.add(lblCdigo);
+				
+				JLabel lblDescrio = new JLabel("Descrição:");
+				lblDescrio.setForeground(Color.WHITE);
+				lblDescrio.setFont(new Font("Tahoma", Font.BOLD, 16));
+				lblDescrio.setBounds(243, 267, 84, 20);
+				desktopPane.add(lblDescrio);
+				
+				JLabel lblCadastradaPor = new JLabel("Cadastrada por:");
+				lblCadastradaPor.setForeground(Color.WHITE);
+				lblCadastradaPor.setFont(new Font("Tahoma", Font.BOLD, 16));
+				lblCadastradaPor.setBounds(225, 365, 131, 20);
+				desktopPane.add(lblCadastradaPor);
 
 	}
 }

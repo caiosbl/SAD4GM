@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
+import interfaceGrafica.usuario.entrada.Login;
 import interfaceGrafica.usuario.entrada.MyInfo;
 import interfaceGrafica.usuario.entrada.Options;
 import sistema.Sistema;
@@ -139,11 +140,11 @@ public class ViewFalha extends Main {
 		JButton logoutBtn = new JButton("");
 		logoutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MyInfo myInfo = new MyInfo(id, getXLocation(), getYLocation());
+				Login login = new Login(getXLocation(), getYLocation());
 				dispose();
-				myInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				myInfo.setVisible(true);
-				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				login.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				login.setVisible(true);
+				login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		logoutBtn.setSelectedIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/logout-on.png")));
