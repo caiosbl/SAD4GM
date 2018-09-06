@@ -88,7 +88,7 @@ public class ViewCausaPotencial extends Main {
 		desktopPane.add(btnVoltar);
 
 		JScrollPane jsp = new JScrollPane();
-		jsp.setBounds(120, 210, 404, 116);
+		jsp.setBounds(35, 226, 534, 116);
 		desktopPane.add(jsp);
 		
 				JTextPane descricaoPane = new JTextPane();
@@ -100,7 +100,7 @@ public class ViewCausaPotencial extends Main {
 		JTextField tituloField = new JTextField();
 		tituloField.setEditable(false);
 		tituloField.setText(sistema.getNomeCausaPotencial(chaveCausaPotencial));
-		tituloField.setBounds(119, 169, 404, 34);
+		tituloField.setBounds(35, 170, 534, 34);
 		desktopPane.add(tituloField);
 		tituloField.setColumns(10);
 		
@@ -159,11 +159,6 @@ public class ViewCausaPotencial extends Main {
 		navbar.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/navbar.png")));
 		navbar.setBounds(350, 6, 256, 51);
 		desktopPane.add(navbar);
-
-		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(ViewCausaPotencial.class.getResource("/Resources/icon/insert-modofalha-form.png")));
-		form.setBounds(40, 136, 515, 244);
-		desktopPane.add(form);
 		
 		JLabel label = new JLabel("VISUALIZAR");
 		label.setForeground(Color.WHITE);
@@ -176,6 +171,18 @@ public class ViewCausaPotencial extends Main {
 		lblCausaPotencial.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblCausaPotencial.setBounds(29, 43, 229, 29);
 		desktopPane.add(lblCausaPotencial);
+		
+		JLabel label_1 = new JLabel("Nome:");
+		label_1.setForeground(Color.WHITE);
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		label_1.setBounds(264, 150, 53, 20);
+		desktopPane.add(label_1);
+		
+		JLabel lblDescrio = new JLabel("Descrição:");
+		lblDescrio.setForeground(Color.WHITE);
+		lblDescrio.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDescrio.setBounds(255, 205, 84, 20);
+		desktopPane.add(lblDescrio);
 
 	}
 }
