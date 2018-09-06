@@ -91,10 +91,10 @@ public class ViewFalha extends Main {
 		nomePane.setEditable(false);
 		nomePane.setForeground(Color.BLACK);
 		nomePane.setText(sistema.getNomeFalha(chaveFalha));
-		nomePane.setBounds(67, 170, 495, 29);
+		nomePane.setBounds(33, 170, 547, 34);
 		desktopPane.add(nomePane);
 		JScrollPane jPane = new JScrollPane();
-		jPane.setBounds(67, 220, 495, 126);
+		jPane.setBounds(33, 233, 547, 126);
 		desktopPane.add(jPane);
 		
 				JTextPane descricaoPane = new JTextPane();
@@ -173,13 +173,13 @@ public class ViewFalha extends Main {
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setForeground(Color.WHITE);
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNome.setBounds(271, 145, 53, 20);
+		lblNome.setBounds(255, 146, 53, 20);
 		desktopPane.add(lblNome);
 		
 		JLabel lblDescrio = new JLabel("Descrição:");
 		lblDescrio.setForeground(Color.WHITE);
 		lblDescrio.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblDescrio.setBounds(255, 201, 84, 20);
+		lblDescrio.setBounds(248, 213, 84, 20);
 		desktopPane.add(lblDescrio);
 
 	}
