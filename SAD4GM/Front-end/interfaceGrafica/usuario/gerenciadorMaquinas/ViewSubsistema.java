@@ -89,13 +89,8 @@ public class ViewSubsistema extends Main {
 		textPane.setEditable(false);
 		textPane.setForeground(Color.BLACK);
 		textPane.setText(sistema.getNomeSubsistema(chaveSubsistema));
-		textPane.setBounds(158, 250, 365, 30);
+		textPane.setBounds(59, 205, 495, 30);
 		desktopPane.add(textPane);
-		
-		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/formviewSubsistema.png")));
-		form.setBounds(87, 178, 459, 182);
-		desktopPane.add(form);
 		
 		JLabel label = new JLabel("VISUALIZAR");
 		label.setForeground(Color.WHITE);
@@ -164,6 +159,12 @@ public class ViewSubsistema extends Main {
 		label_1.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/navbar.png")));
 		label_1.setBounds(350, 6, 256, 51);
 		desktopPane.add(label_1);
+		
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNome.setForeground(Color.WHITE);
+		lblNome.setBounds(277, 180, 53, 20);
+		desktopPane.add(lblNome);
 
 	}
 }
