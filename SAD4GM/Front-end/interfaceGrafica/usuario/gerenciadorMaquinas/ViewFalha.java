@@ -91,17 +91,17 @@ public class ViewFalha extends Main {
 		nomePane.setEditable(false);
 		nomePane.setForeground(Color.BLACK);
 		nomePane.setText(sistema.getNomeFalha(chaveFalha));
-		nomePane.setBounds(216, 159, 244, 29);
+		nomePane.setBounds(67, 170, 495, 29);
 		desktopPane.add(nomePane);
 		JScrollPane jPane = new JScrollPane();
-		jPane.setBounds(214, 201, 244, 93);
+		jPane.setBounds(67, 220, 495, 126);
 		desktopPane.add(jPane);
-
-		JTextPane descricaoPane = new JTextPane();
-		jPane.setViewportView(descricaoPane);
-		descricaoPane.setEditable(false);
-		descricaoPane.setText(sistema.getDescricaoFalha(chaveFalha));
-		descricaoPane.setEditable(false);
+		
+				JTextPane descricaoPane = new JTextPane();
+				jPane.setViewportView(descricaoPane);
+				descricaoPane.setEditable(false);
+				descricaoPane.setText(sistema.getDescricaoFalha(chaveFalha));
+				descricaoPane.setEditable(false);
 
 		JButton homeBtn = new JButton("");
 		homeBtn.addActionListener(new ActionListener() {
@@ -158,11 +158,6 @@ public class ViewFalha extends Main {
 		navbar.setBounds(350, 6, 256, 51);
 		desktopPane.add(navbar);
 
-		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(ViewFalha.class.getResource("/Resources/icon/insert-falha-form.png")));
-		form.setBounds(120, 118, 393, 225);
-		desktopPane.add(form);
-
 		JLabel label = new JLabel("VISUALIZAR");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.BOLD, 24));
@@ -174,6 +169,18 @@ public class ViewFalha extends Main {
 		lblFalha.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblFalha.setBounds(102, 46, 78, 29);
 		desktopPane.add(lblFalha);
+		
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setForeground(Color.WHITE);
+		lblNome.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNome.setBounds(271, 145, 53, 20);
+		desktopPane.add(lblNome);
+		
+		JLabel lblDescrio = new JLabel("Descrição:");
+		lblDescrio.setForeground(Color.WHITE);
+		lblDescrio.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDescrio.setBounds(255, 201, 84, 20);
+		desktopPane.add(lblDescrio);
 
 	}
 }
