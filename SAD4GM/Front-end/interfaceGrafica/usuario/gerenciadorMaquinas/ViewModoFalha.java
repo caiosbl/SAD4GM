@@ -89,7 +89,7 @@ public class ViewModoFalha extends Main {
 		desktopPane.add(btnVoltar);
 
 		JScrollPane jsp = new JScrollPane();
-		jsp.setBounds(120, 210, 404, 116);
+		jsp.setBounds(35, 239, 540, 116);
 		desktopPane.add(jsp);
 		
 				JTextPane descricaoPane = new JTextPane();
@@ -100,7 +100,7 @@ public class ViewModoFalha extends Main {
 		JTextField tituloField = new JTextField();
 		tituloField.setEditable(false);
 		tituloField.setText(sistema.getNomeModoFalha(chaveModoFalha));
-		tituloField.setBounds(119, 169, 404, 34);
+		tituloField.setBounds(33, 169, 547, 34);
 		desktopPane.add(tituloField);
 		tituloField.setColumns(10);
 
@@ -159,11 +159,6 @@ public class ViewModoFalha extends Main {
 		navbar.setBounds(350, 6, 256, 51);
 		desktopPane.add(navbar);
 
-		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(ViewModoFalha.class.getResource("/Resources/icon/insert-modofalha-form.png")));
-		form.setBounds(40, 136, 515, 244);
-		desktopPane.add(form);
-
 		JLabel label = new JLabel("VISUALIZAR");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.BOLD, 24));
@@ -175,6 +170,18 @@ public class ViewModoFalha extends Main {
 		lblModoDeFalha.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblModoDeFalha.setBounds(49, 47, 200, 29);
 		desktopPane.add(lblModoDeFalha);
+		
+		JLabel lblNome = new JLabel(" Nome:");
+		lblNome.setForeground(Color.WHITE);
+		lblNome.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNome.setBounds(255, 146, 58, 20);
+		desktopPane.add(lblNome);
+		
+		JLabel lblDescrio = new JLabel("Descrição:");
+		lblDescrio.setForeground(Color.WHITE);
+		lblDescrio.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDescrio.setBounds(248, 215, 84, 20);
+		desktopPane.add(lblDescrio);
 
 	}
 }
