@@ -92,22 +92,17 @@ public class ViewComponente extends Main {
 		nomePane.setEditable(false);
 		nomePane.setForeground(Color.BLACK);
 		nomePane.setText(sistema.getNomeComponente(chaveComponente));
-		nomePane.setBounds(215, 187, 244, 29);
+		nomePane.setBounds(35, 170, 534, 29);
 		desktopPane.add(nomePane);
 		JScrollPane jPane = new JScrollPane();
-		jPane.setBounds(215, 236, 244, 93);
+		jPane.setBounds(36, 235, 534, 93);
 		desktopPane.add(jPane);
-
-		JTextPane funcaoPane = new JTextPane();
-		funcaoPane.setEditable(false);
-		jPane.setViewportView(funcaoPane);
-		funcaoPane.setText(sistema.getFuncaoComponente(chaveComponente));
-		funcaoPane.setEditable(false);
-
-		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/edit-component-info-form.png")));
-		form.setBounds(123, 161, 393, 225);
-		desktopPane.add(form);
+		
+				JTextPane funcaoPane = new JTextPane();
+				jPane.setViewportView(funcaoPane);
+				funcaoPane.setEditable(false);
+				funcaoPane.setText(sistema.getFuncaoComponente(chaveComponente));
+				funcaoPane.setEditable(false);
 		
 		JLabel label_1 = new JLabel("VISUALIZAR");
 		label_1.setForeground(Color.WHITE);
@@ -176,6 +171,18 @@ public class ViewComponente extends Main {
 		label.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/navbar.png")));
 		label.setBounds(350, 6, 256, 51);
 		desktopPane.add(label);
+				
+				JLabel lblNome = new JLabel("Nome:");
+				lblNome.setForeground(Color.WHITE);
+				lblNome.setFont(new Font("Tahoma", Font.BOLD, 16));
+				lblNome.setBounds(264, 150, 53, 20);
+				desktopPane.add(lblNome);
+				
+				JLabel lblFuno = new JLabel("Função:");
+				lblFuno.setForeground(Color.WHITE);
+				lblFuno.setFont(new Font("Tahoma", Font.BOLD, 16));
+				lblFuno.setBounds(264, 215, 63, 20);
+				desktopPane.add(lblFuno);
 
 	}
 }
