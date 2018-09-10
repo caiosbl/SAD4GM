@@ -68,6 +68,7 @@ public class Options extends Main {
 		usuarioPane.setLayout(new BorderLayout(0, 0));
 
 		JDesktopPane desktopPane = new JDesktopPane();
+		JDesktopPane desktopPane2 = new JDesktopPane();
 		desktopPane.setBackground(SystemColor.inactiveCaption);
 		usuarioPane.add(desktopPane, BorderLayout.CENTER);
 
@@ -87,13 +88,23 @@ public class Options extends Main {
 			}
 		});
 		
-		JButton button = new JButton("");
-		button.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/home-on.png")));
-		button.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/home-off.png")));
-		button.setBackground(new Color(0,0,0,0));
-		button.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button.setBounds(360, 43, 62, 44);
-		desktopPane.add(button);
+		JButton homeBtn = new JButton("");
+		homeBtn.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/home-on.png")));
+		homeBtn.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/home-off.png")));
+		homeBtn.setBackground(new Color(0,0,0,0));
+		homeBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		homeBtn.setBounds(360, 43, 62, 44);
+		desktopPane.add(homeBtn);
+	
+		
+		JButton homeBtn2 = new JButton("");
+		homeBtn2.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/home-on.png")));
+		homeBtn2.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/home-off.png")));
+		homeBtn2.setBackground(new Color(0,0,0,0));
+		homeBtn2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		homeBtn2.setBounds(360, 43, 62, 44);
+		
+		desktopPane2.add(homeBtn2);
 		btnInserirMaquina.setBounds(111, 163, 150, 189);
 		desktopPane.add(btnInserirMaquina);
 
@@ -113,7 +124,26 @@ public class Options extends Main {
 		});
 		btnMinhasInformacoes.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnMinhasInformacoes.setBounds(408, 43, 119, 45);
+		
+		JButton btnMinhasInformacoes2 = new JButton("");
+		btnMinhasInformacoes2.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/my-data-on.png")));
+		btnMinhasInformacoes2.setBackground(new Color(0,0,0,0));
+		btnMinhasInformacoes2.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/my-data-off.png")));
+		btnMinhasInformacoes2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyInfo myInfo = new MyInfo(idUsuario, getXLocation(), getYLocation());
+				dispose();
+				myInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				myInfo.setVisible(true);
+				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+			}
+		});
+		btnMinhasInformacoes2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnMinhasInformacoes2.setBounds(408, 43, 119, 45);
+		
 		desktopPane.add(btnMinhasInformacoes);
+		desktopPane2.add(btnMinhasInformacoes2);
 
 		JButton btnLogout = new JButton("");
 		btnLogout.setBackground(new Color(0,0,0,0));
@@ -129,7 +159,24 @@ public class Options extends Main {
 		});
 		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnLogout.setBounds(510, 43, 100, 45);
+		
+
+		JButton btnLogout2 = new JButton("");
+		btnLogout2.setBackground(new Color(0,0,0,0));
+		btnLogout2.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logout-on.png")));
+		btnLogout2.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logout-off.png")));
+		btnLogout2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main entrada = new Main(getXLocation(), getYLocation());
+				dispose();
+				entrada.setVisible(true);
+				entrada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		btnLogout2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnLogout2.setBounds(510, 43, 100, 45);
 		desktopPane.add(btnLogout);
+		desktopPane2.add(btnLogout2);
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 137, 582, 12);
@@ -160,7 +207,12 @@ public class Options extends Main {
 		JLabel navbar = new JLabel("");
 		navbar.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/navbar.png")));
 		navbar.setBounds(359, 40, 256, 51);
+		
+		JLabel navbar2 = new JLabel("");
+		navbar2.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/navbar.png")));
+		navbar2.setBounds(359, 40, 256, 51);
 		desktopPane.add(navbar);
+		desktopPane2.add(navbar2);
 
 		//
 
@@ -170,7 +222,7 @@ public class Options extends Main {
 		adminPane.setLayout(new BorderLayout(0, 0));
 		// setContentPane(adminPane);
 
-		JDesktopPane desktopPane2 = new JDesktopPane();
+	
 		desktopPane2.setBackground(SystemColor.inactiveCaption);
 		adminPane.add(desktopPane2, BorderLayout.CENTER);
 
@@ -209,36 +261,6 @@ public class Options extends Main {
 		});
 		btnGerenciarMquinas.setFont(new Font("Tahoma", Font.BOLD, 14));
 		desktopPane2.add(btnGerenciarMquinas);
-
-		JButton btnMinhasInformaes_1 = new JButton("");
-		btnMinhasInformaes_1.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/myinformationicon.png")));
-		btnMinhasInformaes_1.setBounds(336, 54, 122, 27);
-		btnMinhasInformaes_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				MyInfo admMyInfo = new MyInfo(idUsuario, getXLocation(), getYLocation());
-
-				dispose();
-				admMyInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				admMyInfo.setVisible(true);
-				admMyInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-		});
-		btnMinhasInformaes_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		desktopPane2.add(btnMinhasInformaes_1);
-
-		JButton btnLogout2 = new JButton("");
-		btnLogout2.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logouticon.png")));
-		btnLogout2.setBounds(470, 54, 81, 27);
-		btnLogout2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Main entrada = new Main(getXLocation(), getYLocation());
-				dispose();
-				entrada.setVisible(true);
-				entrada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-		});
-		btnLogout2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		desktopPane2.add(btnLogout2);
 
 		JSeparator separator2 = new JSeparator();
 		separator2.setBounds(0, 137, 605, 12);
