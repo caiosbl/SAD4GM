@@ -22,7 +22,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 
 import sistema.Sistema;
@@ -66,10 +65,6 @@ public class MyInfo extends Main {
 		desktopPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
-
-		JSeparator separator = new JSeparator();
-		separator.setBounds(6, 116, 593, 12);
-		desktopPane.add(separator);
 
 		JTextPane nome = new JTextPane();
 
