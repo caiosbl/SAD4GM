@@ -9,7 +9,12 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
+import interfaceGrafica.usuario.entrada.Login;
+import interfaceGrafica.usuario.entrada.MyInfo;
+import interfaceGrafica.usuario.entrada.Options;
+import interfaceGrafica.usuario.gerenciadorMaquinas.ViewComponente;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewMachinesInsert;
+import interfaceGrafica.usuario.gerenciadorMaquinas.ViewSubsistema;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
@@ -23,8 +28,6 @@ import java.sql.SQLException;
 
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import javax.swing.JSeparator;
-
 import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
@@ -46,6 +49,7 @@ public class InsertModoFalha extends Main {
 	private JTextPane descricaoPane;
 	private Sistema sistema;
 	private JTextField tituloField;
+	private JLabel title;
 
 	/**
 	 * Launch the application.
@@ -75,10 +79,6 @@ public class InsertModoFalha extends Main {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 137, 582, 12);
-		desktopPane.add(separator);
-
 		JButton btnVoltar = new JButton("");
 		btnVoltar.setSelectedIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/return-selected.png")));
 		btnVoltar.setBackground(new Color(0,0,0,0));
@@ -98,7 +98,7 @@ public class InsertModoFalha extends Main {
 
 		JButton btnInserir = new JButton("");
 		btnInserir.setSelectedIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/patch/insert-on.png")));
-		btnInserir.setBounds(415, 369, 103, 21);
+		btnInserir.setBounds(50, 351, 103, 21);
 		btnInserir.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/patch/insert-off.png")));
 
 		btnInserir.addActionListener(new ActionListener() {
@@ -119,43 +119,101 @@ public class InsertModoFalha extends Main {
 
 			}
 		});
+		
+		JButton homeBtn = new JButton("");
+		homeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Options options = new Options(id, getXLocation(), getYLocation());
+				dispose();
+				options.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				options.setVisible(true);
+				options.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		homeBtn.setSelectedIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/home-on.png")));
+		homeBtn.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/home-off.png")));
+		homeBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		homeBtn.setBackground(new Color(0, 0, 0, 0));
+		homeBtn.setBounds(349, 9, 62, 44);
+		desktopPane.add(homeBtn);
+		
+		JButton myDataBtn = new JButton("");
+		myDataBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyInfo myInfo = new MyInfo(id, getXLocation(), getYLocation());
+				dispose();
+				myInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				myInfo.setVisible(true);
+				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		myDataBtn.setSelectedIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/my-data-on.png")));
+		myDataBtn.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/my-data-off.png")));
+		myDataBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		myDataBtn.setBackground(new Color(0, 0, 0, 0));
+		myDataBtn.setBounds(404, 9, 119, 45);
+		desktopPane.add(myDataBtn);
+		
+		JButton logoutBtn = new JButton("");
+		logoutBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login login = new Login(getXLocation(), getYLocation());
+				dispose();
+				login.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				login.setVisible(true);
+				login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		logoutBtn.setSelectedIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/logout-on.png")));
+		logoutBtn.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/logout-off.png")));
+		logoutBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		logoutBtn.setBackground(new Color(0, 0, 0, 0));
+		logoutBtn.setBounds(499, 9, 119, 45);
+		desktopPane.add(logoutBtn);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/navbar.png")));
+		label.setBounds(350, 6, 256, 51);
+		desktopPane.add(label);
 
 		btnInserir.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnInserir);
 
-		JLabel logo = new JLabel("");
-		logo.setBounds(29, 40, 205, 74);
-		logo.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/sad4logosmall.png")));
-		desktopPane.add(logo);
-
 		JScrollPane jsp = new JScrollPane();
-		jsp.setBounds(114, 239, 404, 116);
+		jsp.setBounds(47, 225, 511, 116);
 		desktopPane.add(jsp);
-
-		descricaoPane = new JTextPane();
-		jsp.setViewportView(descricaoPane);
-		descricaoPane.setEditable(true);
+		
+				descricaoPane = new JTextPane();
+				jsp.setViewportView(descricaoPane);
+				descricaoPane.setEditable(true);
 
 		tituloField = new JTextField();
-		tituloField.setBounds(114, 193, 404, 34);
+		tituloField.setBounds(45, 160, 514, 34);
 		desktopPane.add(tituloField);
 		tituloField.setColumns(10);
-
-		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/insert-modofalha-form.png")));
-		form.setBounds(36, 159, 515, 244);
-		desktopPane.add(form);
-		
-		JLabel lblInserir = new JLabel("INSERIR");
-		lblInserir.setForeground(Color.WHITE);
-		lblInserir.setFont(new Font("Tahoma", Font.BOLD, 33));
-		lblInserir.setBounds(350, 29, 146, 40);
-		desktopPane.add(lblInserir);
+	
+		title = new JLabel("INSERIR");
+		title.setForeground(Color.WHITE);
+		title.setFont(new Font("Tahoma", Font.BOLD, 24));
+		title.setBounds(67, 22, 110, 29);
+		desktopPane.add(title);
 		
 		JLabel lblModoDeFalha = new JLabel("MODO DE FALHA");
 		lblModoDeFalha.setForeground(Color.WHITE);
-		lblModoDeFalha.setFont(new Font("Tahoma", Font.BOLD, 33));
-		lblModoDeFalha.setBounds(298, 63, 278, 40);
+		lblModoDeFalha.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblModoDeFalha.setBounds(35, 51, 200, 29);
 		desktopPane.add(lblModoDeFalha);
+		
+		JLabel lblTtulo = new JLabel("Título:");
+		lblTtulo.setForeground(Color.WHITE);
+		lblTtulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTtulo.setBounds(267, 139, 54, 20);
+		desktopPane.add(lblTtulo);
+		
+		JLabel lblDescrio = new JLabel("Descrição:");
+		lblDescrio.setForeground(Color.WHITE);
+		lblDescrio.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDescrio.setBounds(257, 204, 84, 20);
+		desktopPane.add(lblDescrio);
 	}
 }
