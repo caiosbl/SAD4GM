@@ -164,11 +164,7 @@ public class MyInfo extends Main {
 		JButton myDataBtn = new JButton("");
 		myDataBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MyInfo myInfo = new MyInfo(id, getXLocation(), getYLocation());
-				dispose();
-				myInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				myInfo.setVisible(true);
-				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				
 			}
 		});
 		myDataBtn.setSelectedIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/my-data-on.png")));
