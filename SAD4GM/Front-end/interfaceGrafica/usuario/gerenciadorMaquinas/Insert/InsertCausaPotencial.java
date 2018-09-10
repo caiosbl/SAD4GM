@@ -155,7 +155,7 @@ public class InsertCausaPotencial extends Main {
 
 		JButton btnInserir = new JButton("");
 		btnInserir.setSelectedIcon(new ImageIcon(InsertCausaPotencial.class.getResource("/Resources/icon/patch/insert-on.png")));
-		btnInserir.setBounds(38, 349, 103, 21);
+		btnInserir.setBounds(60, 344, 103, 21);
 		btnInserir.setIcon(new ImageIcon(InsertCausaPotencial.class.getResource("/Resources/icon/patch/insert-off.png")));
 
 		btnInserir.addActionListener(new ActionListener() {
@@ -182,7 +182,7 @@ public class InsertCausaPotencial extends Main {
 		desktopPane.add(btnInserir);
 
 		JScrollPane jsp = new JScrollPane();
-		jsp.setBounds(42, 216, 497, 116);
+		jsp.setBounds(50, 216, 497, 116);
 		desktopPane.add(jsp);
 		
 				descricaoPane = new JTextPane();
@@ -190,7 +190,7 @@ public class InsertCausaPotencial extends Main {
 				descricaoPane.setEditable(true);
 
 		tituloField = new JTextField();
-		tituloField.setBounds(42, 148, 497, 34);
+		tituloField.setBounds(50, 148, 497, 34);
 		desktopPane.add(tituloField);
 		tituloField.setColumns(10);
 		
