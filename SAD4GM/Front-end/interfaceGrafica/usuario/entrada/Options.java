@@ -227,8 +227,10 @@ public class Options extends Main {
 		adminPane.add(desktopPane2, BorderLayout.CENTER);
 
 		JButton btnGerenciarUsurios = new JButton("");
-		btnGerenciarUsurios.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/usermanager.png")));
-		btnGerenciarUsurios.setBounds(119, 184, 169, 88);
+		btnGerenciarUsurios.setBackground(new Color(0,0,0,0));
+		btnGerenciarUsurios.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/gerenciador-users-button-on_.png")));
+		btnGerenciarUsurios.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/gerenciador-users-button-off_.png")));
+		btnGerenciarUsurios.setBounds(29, 192, 269, 129);
 		btnGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnGerenciarUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -245,8 +247,10 @@ public class Options extends Main {
 		desktopPane2.add(btnGerenciarUsurios);
 
 		JButton btnGerenciarMquinas = new JButton("");
-		btnGerenciarMquinas.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/machinemanager.png")));
-		btnGerenciarMquinas.setBounds(300, 184, 175, 88);
+		btnGerenciarMquinas.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/gerenciador-maquinas-on.png")));
+		btnGerenciarMquinas.setBackground(new Color(0,0,0,0));
+		btnGerenciarMquinas.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/gerenciador-maquinas-off.png")));
+		btnGerenciarMquinas.setBounds(300, 192, 271, 132);
 		btnGerenciarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MachineManagementOptions admMachineOptions = new MachineManagementOptions(idUsuario, getXLocation(),
@@ -263,7 +267,7 @@ public class Options extends Main {
 		desktopPane2.add(btnGerenciarMquinas);
 
 		JSeparator separator2 = new JSeparator();
-		separator2.setBounds(0, 137, 605, 12);
+		separator2.setBounds(10, 137, 582, 12);
 		desktopPane2.add(separator2);
 
 		JLabel label = new JLabel("");
