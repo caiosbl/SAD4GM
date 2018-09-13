@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.management.RuntimeErrorException;
 
@@ -22,13 +24,11 @@ public class UsuarioTools extends DatabaseTools {
 	/**
 	 * Insere um Usuário no Banco de Dados
 	 * 
-	 * @param Usuário
-	 *            a ser Inserido
-	 * @throws SQLException
-	 *             Lança uma SQLException em caso de falha na conexão com a Database
-	 * @throws RuntimeErrorException
-	 *             Lança uma RuntimeErrorException no caso em que o ID do usuário já
-	 *             esteja cadastrado.
+	 * @param Usuário a ser Inserido
+	 * @throws SQLException          Lança uma SQLException em caso de falha na
+	 *                               conexão com a Database
+	 * @throws RuntimeErrorException Lança uma RuntimeErrorException no caso em que
+	 *                               o ID do usuário já esteja cadastrado.
 	 */
 	public void inserir(Usuario usuario) throws SQLException {
 
@@ -36,7 +36,7 @@ public class UsuarioTools extends DatabaseTools {
 			throw new RuntimeErrorException(null, "ID já cadastrado!");
 
 		try {
-			
+
 			int admin = 0;
 			if (usuario.isAdmin())
 				admin = 1;
@@ -51,7 +51,7 @@ public class UsuarioTools extends DatabaseTools {
 			stmt.setString(3, encodingPassword);
 			stmt.setString(4, usuario.getAuditor());
 			stmt.setInt(5, 1);
-			stmt.setInt(6,admin);
+			stmt.setInt(6, admin);
 			stmt.execute();
 			stmt.close();
 			fecharConexao();
@@ -65,13 +65,11 @@ public class UsuarioTools extends DatabaseTools {
 	/**
 	 * Define um Usuário no Banco de Dados como Inativo
 	 * 
-	 * @param id
-	 *            ID do Usuário a se tornar inativo.
-	 * @throws SQLException
-	 *             Lança uma SQLException em caso de falha na conexão com a Database
-	 * @throws RuntimeErrorException
-	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
-	 *             cadastrado ou já esteja Inativo.
+	 * @param id ID do Usuário a se tornar inativo.
+	 * @throws SQLException          Lança uma SQLException em caso de falha na
+	 *                               conexão com a Database
+	 * @throws RuntimeErrorException Lança uma RuntimeErrorException caso o Usuário
+	 *                               não esteja cadastrado ou já esteja Inativo.
 	 */
 	public void deletar(String id) throws SQLException {
 
@@ -99,15 +97,12 @@ public class UsuarioTools extends DatabaseTools {
 	/**
 	 * Altera o nome de um usuário no Banco de Dados.
 	 * 
-	 * @param nome
-	 *            Novo nome do Usuário.
-	 * @param id
-	 *            ID do Usuário a ser alterado.
-	 * @throws SQLException
-	 *             Lança uma SQLException em caso de falha na conexão com a Database
-	 * @throws RuntimeErrorException
-	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
-	 *             cadastrado ou já esteja Inativo.
+	 * @param nome Novo nome do Usuário.
+	 * @param id   ID do Usuário a ser alterado.
+	 * @throws SQLException          Lança uma SQLException em caso de falha na
+	 *                               conexão com a Database
+	 * @throws RuntimeErrorException Lança uma RuntimeErrorException caso o Usuário
+	 *                               não esteja cadastrado ou já esteja Inativo.
 	 * 
 	 * 
 	 */
@@ -138,15 +133,12 @@ public class UsuarioTools extends DatabaseTools {
 	/**
 	 * Altera o ID de um Usuário.
 	 * 
-	 * @param id
-	 *            ID do Usuário a ser Alterado.
-	 * @param novoId
-	 *            Novo ID do Usuário.
-	 * @throws SQLException
-	 *             Lança uma SQLException em caso de falha na conexão com a Database
-	 * @throws RuntimeErrorException
-	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
-	 *             cadastrado ou já esteja Inativo.
+	 * @param id     ID do Usuário a ser Alterado.
+	 * @param novoId Novo ID do Usuário.
+	 * @throws SQLException          Lança uma SQLException em caso de falha na
+	 *                               conexão com a Database
+	 * @throws RuntimeErrorException Lança uma RuntimeErrorException caso o Usuário
+	 *                               não esteja cadastrado ou já esteja Inativo.
 	 */
 	public void setId(String id, String novoId) throws SQLException {
 
@@ -175,15 +167,12 @@ public class UsuarioTools extends DatabaseTools {
 	/**
 	 * Altera a Senha de um Usuário.
 	 * 
-	 * @param id
-	 *            ID do Usuário a ser alterado.
-	 * @param senha
-	 *            Nova Senha do Usuário.
-	 * @throws SQLException
-	 *             Lança uma SQLException em caso de falha na conexão com a Database
-	 * @throws RuntimeErrorException
-	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
-	 *             cadastrado ou já esteja Inativo.
+	 * @param id    ID do Usuário a ser alterado.
+	 * @param senha Nova Senha do Usuário.
+	 * @throws SQLException          Lança uma SQLException em caso de falha na
+	 *                               conexão com a Database
+	 * @throws RuntimeErrorException Lança uma RuntimeErrorException caso o Usuário
+	 *                               não esteja cadastrado ou já esteja Inativo.
 	 */
 	public void setSenha(String id, String senha) throws SQLException {
 
@@ -214,15 +203,12 @@ public class UsuarioTools extends DatabaseTools {
 	/**
 	 * Altera o Auditor de um Usuário.
 	 * 
-	 * @param id
-	 *            ID do Usuário a ser alterado.
-	 * @param auditor
-	 *            Novo Auditor do Usuário.
-	 * @throws SQLException
-	 *             Lança uma SQLException em caso de falha na conexão com a Database
-	 * @throws RuntimeErrorException
-	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
-	 *             cadastrado ou já esteja Inativo.
+	 * @param id      ID do Usuário a ser alterado.
+	 * @param auditor Novo Auditor do Usuário.
+	 * @throws SQLException          Lança uma SQLException em caso de falha na
+	 *                               conexão com a Database
+	 * @throws RuntimeErrorException Lança uma RuntimeErrorException caso o Usuário
+	 *                               não esteja cadastrado ou já esteja Inativo.
 	 */
 	public void setAuditor(String id, String auditor) throws SQLException {
 
@@ -251,14 +237,12 @@ public class UsuarioTools extends DatabaseTools {
 	/**
 	 * Retorna as Informações de um Usuário.
 	 * 
-	 * @param id
-	 *            ID do Usuário a ter Informações retornadas.
+	 * @param id ID do Usuário a ter Informações retornadas.
 	 * @return Informações
-	 * @throws SQLException
-	 *             Lança uma SQLException em caso de falha na conexão com a Database
-	 * @throws RuntimeErrorException
-	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
-	 *             cadastrado.
+	 * @throws SQLException          Lança uma SQLException em caso de falha na
+	 *                               conexão com a Database
+	 * @throws RuntimeErrorException Lança uma RuntimeErrorException caso o Usuário
+	 *                               não esteja cadastrado.
 	 */
 	public String getInfo(String id) throws SQLException {
 
@@ -300,14 +284,12 @@ public class UsuarioTools extends DatabaseTools {
 	/**
 	 * Retorna o nome de um Usuário.
 	 * 
-	 * @param id
-	 *            ID do Usuário a ter nome retornado.
+	 * @param id ID do Usuário a ter nome retornado.
 	 * @return Nome do Usuário.
-	 * @throws SQLException
-	 *             Lança uma SQLException em caso de falha na conexão com a Database
-	 * @throws RuntimeErrorException
-	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
-	 *             cadastrado .
+	 * @throws SQLException          Lança uma SQLException em caso de falha na
+	 *                               conexão com a Database
+	 * @throws RuntimeErrorException Lança uma RuntimeErrorException caso o Usuário
+	 *                               não esteja cadastrado .
 	 */
 	public String getNome(String id) throws SQLException {
 
@@ -340,16 +322,13 @@ public class UsuarioTools extends DatabaseTools {
 	/**
 	 * Retorna o Nome de um Usuário.
 	 * 
-	 * @param id
-	 *            ID do Usuário a ter nome retornado.
-	 * @param con
-	 *            Conexão com o Banco de Dados.
+	 * @param id  ID do Usuário a ter nome retornado.
+	 * @param con Conexão com o Banco de Dados.
 	 * @return Nome do Usuário.
-	 * @throws SQLException
-	 *             Lança uma SQLException em caso de falha na conexão com a Database
-	 * @throws RuntimeErrorException
-	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
-	 *             cadastrado .
+	 * @throws SQLException          Lança uma SQLException em caso de falha na
+	 *                               conexão com a Database
+	 * @throws RuntimeErrorException Lança uma RuntimeErrorException caso o Usuário
+	 *                               não esteja cadastrado .
 	 */
 	public String getNome(int chave, Connection con) throws SQLException {
 		if (!hasUsuario(chave))
@@ -377,14 +356,12 @@ public class UsuarioTools extends DatabaseTools {
 	/**
 	 * Retorna o nome do Auditor de um Usuário.
 	 * 
-	 * @param id
-	 *            ID do Usuário a ter nome retornado.
+	 * @param id ID do Usuário a ter nome retornado.
 	 * @return Nome do Auditor.
-	 * @throws SQLException
-	 *             Lança uma SQLException em caso de falha na conexão com a Database
-	 * @throws RuntimeErrorException
-	 *             Lança uma RuntimeErrorException caso o Usuário não esteja
-	 *             cadastrado .
+	 * @throws SQLException          Lança uma SQLException em caso de falha na
+	 *                               conexão com a Database
+	 * @throws RuntimeErrorException Lança uma RuntimeErrorException caso o Usuário
+	 *                               não esteja cadastrado .
 	 */
 	public String getNomeAuditor(String id) throws SQLException {
 
@@ -417,13 +394,11 @@ public class UsuarioTools extends DatabaseTools {
 	/**
 	 * Autentica o ID e Senha de um Usuário.
 	 * 
-	 * @param id
-	 *            ID do Usuário a ser autenticado.
-	 * @param senha
-	 *            Senha do Usuário a ser autenticado.
+	 * @param id    ID do Usuário a ser autenticado.
+	 * @param senha Senha do Usuário a ser autenticado.
 	 * @return Valor booleano indicando se os dados são válidos.
-	 * @throws SQLException
-	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * @throws SQLException Lança uma SQLException em caso de falha na conexão com a
+	 *                      Database
 	 * 
 	 */
 	public boolean autenticador(String id, String senha) throws SQLException {
@@ -462,9 +437,9 @@ public class UsuarioTools extends DatabaseTools {
 	 * 
 	 * @return Listagem de Usuários.
 	 */
-	public String listar() {
-		String listagem = "";
-		String quebraLinha = System.lineSeparator();
+	public List<Usuario> listar() {
+
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 
 		try {
 			abrirConexao();
@@ -474,10 +449,12 @@ public class UsuarioTools extends DatabaseTools {
 			ResultSet resSet = state.executeQuery();
 
 			while (resSet.next()) {
-				listagem += "----------------------------------------------------------------------------";
-				listagem += quebraLinha + String.format("Nome: %s", resSet.getString(1)) + quebraLinha
-						+ String.format("ID: %s", resSet.getString(2)) + quebraLinha
-						+ String.format("Auditor: %s", resSet.getString(3)) + quebraLinha;
+				String nome = resSet.getString(1);
+				String id = resSet.getString(2);
+				String auditor = resSet.getString(3);
+
+				Usuario usuario = new Usuario(nome, id, null, auditor, false);
+				usuarios.add(usuario);
 			}
 			state.close();
 			fecharConexao();
@@ -485,17 +462,16 @@ public class UsuarioTools extends DatabaseTools {
 			e.printStackTrace();
 		}
 
-		return listagem;
+		return usuarios;
 	}
 
 	/**
 	 * Verifica se há um usuário cadastrado no Banco de Dados.
 	 * 
-	 * @param id
-	 *            ID do usuário a ser verificado.
+	 * @param id ID do usuário a ser verificado.
 	 * @return Valor Booleano indicando se há tal usuário.
-	 * @throws SQLException
-	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * @throws SQLException Lança uma SQLException em caso de falha na conexão com a
+	 *                      Database
 	 * 
 	 */
 	public boolean hasUsuario(String id) throws SQLException {
@@ -537,11 +513,10 @@ public class UsuarioTools extends DatabaseTools {
 	/**
 	 * Retorna um valor booleano indicando se um usuário está ativo.
 	 * 
-	 * @param id
-	 *            ID do usuário a ser verificado.
+	 * @param id ID do usuário a ser verificado.
 	 * @return Valor Booleano indicando se o usuário está ativo.
-	 * @throws SQLException
-	 *             Lança uma SQLException em caso de falha na conexão com a Database
+	 * @throws SQLException Lança uma SQLException em caso de falha na conexão com a
+	 *                      Database
 	 * 
 	 */
 	public boolean isAtivo(String id) throws SQLException {
@@ -580,14 +555,14 @@ public class UsuarioTools extends DatabaseTools {
 
 		return chave;
 	}
-	
+
 	public boolean isAdmin(String id) throws SQLException {
 		abrirConexao();
 		PreparedStatement state = con
 				.prepareStatement("SELECT admin FROM sad4gm.usuario WHERE  CAST(id AS VARCHAR(128)) = ?");
 		state.setString(1, id);
 		ResultSet resSet = state.executeQuery();
-		
+
 		int is = 0;
 
 		if (resSet.next())

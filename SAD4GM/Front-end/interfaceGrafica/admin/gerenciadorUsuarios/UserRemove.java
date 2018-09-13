@@ -7,11 +7,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.main.Main;
+import interfaceGrafica.usuario.entrada.Login;
+import interfaceGrafica.usuario.entrada.MyInfo;
+import interfaceGrafica.usuario.entrada.Options;
+import interfaceGrafica.usuario.gerenciadorMaquinas.ViewComponente;
+import interfaceGrafica.usuario.gerenciadorMaquinas.ViewSubsistema;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 
 import java.awt.Font;
 
@@ -20,8 +25,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
+
+import java.awt.Color;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -37,7 +42,6 @@ public class UserRemove extends Main {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idAdmin;
-	private JTextField idField;
 	private Sistema sistema = new Sistema();
 
 	/**
@@ -64,10 +68,6 @@ public class UserRemove extends Main {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 137, 582, 12);
-		desktopPane.add(separator);
-
 		JButton button = new JButton("");
 		button.setIcon(new ImageIcon(UserRemove.class.getResource("/Resources/icon/voltabut.png")));
 		button.setBounds(476, 388, 95, 27);
@@ -84,20 +84,12 @@ public class UserRemove extends Main {
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(button);
 
-		idField = new JTextField();
-		idField.setBounds(192, 260, 236, 28);
-		desktopPane.add(idField);
-		idField.setColumns(10);
-
 		JButton btnRemover = new JButton("");
 		btnRemover.setBounds(328, 291, 95, 27);
 		btnRemover.setIcon(new ImageIcon(UserRemove.class.getResource("/Resources/icon/removebutton.png")));
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (idField.getText().trim().length() < 4) {
-					JOptionPane.showMessageDialog(null, "ID Inválido!");
-					idField.setText("");
-				} else {
+		/*
 					boolean has = false;
 					try {
 						has = sistema.hasIdUsuario(idField.getText().trim())
@@ -118,27 +110,81 @@ public class UserRemove extends Main {
 						admUserOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						admUserOptions.setVisible(true);
 						admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					}
+					}*/
 				}
-			}
+			
 		});
 		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnRemover);
 		
-		JLabel form = new JLabel("");
-		form.setBounds(161, 186, 289, 154);
-		form.setIcon(new ImageIcon(UserRemove.class.getResource("/Resources/icon/userRemoveForm.png")));
-		desktopPane.add(form);
+		JLabel title = new JLabel("REMOVER");
+		title.setForeground(Color.WHITE);
+		title.setFont(new Font("Tahoma", Font.BOLD, 24));
+		title.setBounds(67, 22, 119, 29);
+		desktopPane.add(title);
 		
-		JLabel sad4gmlogo = new JLabel("");
-		sad4gmlogo.setBounds(10, 40, 205, 74);
-		sad4gmlogo.setIcon(new ImageIcon(UserRemove.class.getResource("/Resources/icon/sad4logosmall.png")));
-		desktopPane.add(sad4gmlogo);
+		JLabel lblUsurio = new JLabel("USUÁRIO");
+		lblUsurio.setForeground(Color.WHITE);
+		lblUsurio.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblUsurio.setBounds(69, 49, 119, 29);
+		desktopPane.add(lblUsurio);
 		
-		JLabel removerUserBanner = new JLabel("");
-		removerUserBanner.setIcon(new ImageIcon(UserRemove.class.getResource("/Resources/icon/removerUser.png")));
-		removerUserBanner.setBounds(313, 26, 236, 92);
-		desktopPane.add(removerUserBanner);
+		JButton homeBtn = new JButton("");
+		homeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Options options = new Options(id, getXLocation(), getYLocation());
+				dispose();
+				options.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				options.setVisible(true);
+				options.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		homeBtn.setSelectedIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/home-on.png")));
+		homeBtn.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/home-off.png")));
+		homeBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		homeBtn.setBackground(new Color(0, 0, 0, 0));
+		homeBtn.setBounds(349, 9, 62, 44);
+		desktopPane.add(homeBtn);
+		
+		JButton myDataBtn = new JButton("");
+		myDataBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyInfo myInfo = new MyInfo(id, getXLocation(), getYLocation());
+				dispose();
+				myInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				myInfo.setVisible(true);
+				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		myDataBtn.setSelectedIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/my-data-on.png")));
+		myDataBtn.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/my-data-off.png")));
+		myDataBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		myDataBtn.setBackground(new Color(0, 0, 0, 0));
+		myDataBtn.setBounds(404, 9, 119, 45);
+		desktopPane.add(myDataBtn);
+		
+		JButton logoutBtn = new JButton("");
+		logoutBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login login = new Login(getXLocation(), getYLocation());
+				dispose();
+				login.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				login.setVisible(true);
+				login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		logoutBtn.setSelectedIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/logout-on.png")));
+		logoutBtn.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/logout-off.png")));
+		logoutBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		logoutBtn.setBackground(new Color(0, 0, 0, 0));
+		logoutBtn.setBounds(499, 9, 119, 45);
+		desktopPane.add(logoutBtn);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/navbar.png")));
+		label.setBounds(350, 6, 256, 51);
+		desktopPane.add(label);
+
 
 	}
 }
