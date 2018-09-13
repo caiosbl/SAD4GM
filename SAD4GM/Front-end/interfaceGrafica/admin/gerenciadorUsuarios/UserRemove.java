@@ -200,6 +200,12 @@ public class UserRemove extends Main {
 		comboBoxUsuarios = new JComboBox(usuarios.toArray());
 		comboBoxUsuarios.setBounds(83, 203, 425, 58);
 		desktopPane.add(comboBoxUsuarios);
+		
+		JLabel lblSelecioneOUsurio = new JLabel("SELECIONE O USUÁRIO A SER REMOVIDO:");
+		lblSelecioneOUsurio.setForeground(Color.WHITE);
+		lblSelecioneOUsurio.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblSelecioneOUsurio.setBounds(147, 185, 304, 17);
+		desktopPane.add(lblSelecioneOUsurio);
 
 	}
 

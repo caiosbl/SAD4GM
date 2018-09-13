@@ -6,25 +6,32 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import entidades.Usuario;
 import interfaceGrafica.main.Main;
+import interfaceGrafica.usuario.entrada.Login;
+import interfaceGrafica.usuario.entrada.MyInfo;
+import interfaceGrafica.usuario.entrada.Options;
+import interfaceGrafica.usuario.gerenciadorMaquinas.ViewComponente;
+import interfaceGrafica.usuario.gerenciadorMaquinas.ViewSubsistema;
 import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
+import java.awt.Color;
+
 /**
- * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES 
- * SISTEMA SAD4GM
+ * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
  * @author caiosbl
  *
@@ -37,8 +44,9 @@ public class SetUserEntry extends Main {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idAdmin;
-	private JTextField idField;
 	private Sistema sistema = new Sistema();
+	@SuppressWarnings("rawtypes")
+	private JComboBox comboBoxUsuarios;
 
 	/**
 	 * Launch the application.
@@ -47,13 +55,14 @@ public class SetUserEntry extends Main {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SetUserEntry(String id, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(xLocation,yLocation, 621, 497);
+		setBounds(xLocation, yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -64,15 +73,69 @@ public class SetUserEntry extends Main {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 137, 582, 12);
-		desktopPane.add(separator);
+		JButton homeBtn = new JButton("");
+		homeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Options options = new Options(id, getXLocation(), getYLocation());
+				dispose();
+				options.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				options.setVisible(true);
+				options.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		homeBtn.setSelectedIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/home-on.png")));
+		homeBtn.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/home-off.png")));
+		homeBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		homeBtn.setBackground(new Color(0, 0, 0, 0));
+		homeBtn.setBounds(349, 9, 62, 44);
+		desktopPane.add(homeBtn);
+
+		JButton myDataBtn = new JButton("");
+		myDataBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyInfo myInfo = new MyInfo(id, getXLocation(), getYLocation());
+				dispose();
+				myInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				myInfo.setVisible(true);
+				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		myDataBtn.setSelectedIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/my-data-on.png")));
+		myDataBtn.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/my-data-off.png")));
+		myDataBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		myDataBtn.setBackground(new Color(0, 0, 0, 0));
+		myDataBtn.setBounds(404, 9, 119, 45);
+		desktopPane.add(myDataBtn);
+
+		JButton logoutBtn = new JButton("");
+		logoutBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login login = new Login(getXLocation(), getYLocation());
+				dispose();
+				login.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				login.setVisible(true);
+				login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		logoutBtn.setSelectedIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/logout-on.png")));
+		logoutBtn.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/logout-off.png")));
+		logoutBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		logoutBtn.setBackground(new Color(0, 0, 0, 0));
+		logoutBtn.setBounds(499, 9, 119, 45);
+		desktopPane.add(logoutBtn);
+
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/navbar.png")));
+		label.setBounds(350, 6, 256, 51);
+		desktopPane.add(label);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(SetUserEntry.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setSelectedIcon(new ImageIcon(SetUserEntry.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0, 0, 0, 0));
+		btnVoltar.setIcon(new ImageIcon(SetUserEntry.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserManagementOptions umgOptions = new UserManagementOptions(idAdmin,getXLocation(),getYLocation());
+				UserManagementOptions umgOptions = new UserManagementOptions(idAdmin, getXLocation(), getYLocation());
 
 				dispose();
 				umgOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -81,63 +144,58 @@ public class SetUserEntry extends Main {
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnVoltar.setBounds(482, 388, 89, 27);
+		btnVoltar.setBounds(521, 395, 78, 44);
 		desktopPane.add(btnVoltar);
 
-		idField = new JTextField();
-		idField.setBounds(200, 250, 206, 28);
-		desktopPane.add(idField);
-		idField.setColumns(10);
-
 		JButton btnAlterar = new JButton("");
-		btnAlterar.setIcon(new ImageIcon(SetUserEntry.class.getResource("/Resources/icon/alterarbutton.png")));
+		btnAlterar.setSelectedIcon(new ImageIcon(SetUserEntry.class.getResource("/Resources/icon/edit-btn-on.png")));
+		btnAlterar.setBackground(new Color(0, 0, 0, 0));
+		btnAlterar.setIcon(new ImageIcon(SetUserEntry.class.getResource("/Resources/icon/edit-btn-off.png")));
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (idField.getText().trim().length() < 4) {
-					JOptionPane.showMessageDialog(null, "ID Inválido!");
-					idField.setText("");
-				} else {
-					boolean has = false;
 
-					try {
-						has = sistema.hasIdUsuario(idField.getText().trim()) && sistema.isUsuarioAtivo(idField.getText().trim());
-					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(null, "Falha na conexão com banco de dados!");
-					}
+				Usuario usuario = (Usuario) comboBoxUsuarios.getSelectedItem();
 
-					if (!has) {
-						JOptionPane.showMessageDialog(null, "Usuário inexistente!");
-						idField.setText("");
-					}
+				SetUser setUser = new SetUser(idAdmin, usuario.getId(), getXLocation(), getYLocation());
+				dispose();
+				setUser.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				setUser.setVisible(true);
+				setUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-					else {
-						SetUser setUser = new SetUser(idAdmin, idField.getText().trim(),getXLocation(),getYLocation());
-						dispose();
-						setUser.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-						setUser.setVisible(true);
-						setUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					}
-				}
 			}
+
 		});
 		btnAlterar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnAlterar.setBounds(341, 283, 65, 21);
+		btnAlterar.setBounds(390, 264, 131, 45);
 		desktopPane.add(btnAlterar);
-		
-		JLabel sad4logo = new JLabel("");
-		sad4logo.setIcon(new ImageIcon(SetUserEntry.class.getResource("/Resources/icon/sad4logosmall.png")));
-		sad4logo.setBounds(29, 40, 205, 74);
-		desktopPane.add(sad4logo);
-		
-		JLabel alterarUsuario = new JLabel("");
-		alterarUsuario.setIcon(new ImageIcon(SetUserEntry.class.getResource("/Resources/icon/alterarusuariobanner.png")));
-		alterarUsuario.setBounds(336, 22, 213, 96);
-		desktopPane.add(alterarUsuario);
-		
-		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(SetUserEntry.class.getResource("/Resources/icon/setUserEntryForm.png")));
-		form.setBounds(158, 184, 289, 154);
-		desktopPane.add(form);
 
+		JLabel lblEditar = new JLabel("EDITAR");
+		lblEditar.setForeground(Color.WHITE);
+		lblEditar.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblEditar.setBounds(67, 22, 93, 29);
+		desktopPane.add(lblEditar);
+
+		JLabel lblUsurio = new JLabel("USUÁRIO");
+		lblUsurio.setForeground(Color.WHITE);
+		lblUsurio.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblUsurio.setBounds(58, 47, 114, 29);
+		desktopPane.add(lblUsurio);
+
+		List<entidades.Usuario> usuarios = getListagemUsuarios();
+
+		comboBoxUsuarios = new JComboBox(usuarios.toArray());
+		comboBoxUsuarios.setBounds(83, 203, 425, 58);
+		desktopPane.add(comboBoxUsuarios);
+
+		JLabel lblSelecioneOUsurio = new JLabel("SELECIONE O USUÁRIO A SER EDITADO:");
+		lblSelecioneOUsurio.setForeground(Color.WHITE);
+		lblSelecioneOUsurio.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblSelecioneOUsurio.setBounds(141, 187, 304, 17);
+		desktopPane.add(lblSelecioneOUsurio);
+
+	}
+
+	private List<entidades.Usuario> getListagemUsuarios() {
+		return sistema.listarUsuarios();
 	}
 }
