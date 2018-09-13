@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import entidades.Usuario;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.entrada.Login;
 import interfaceGrafica.usuario.entrada.MyInfo;
@@ -16,17 +17,19 @@ import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
-
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
 import java.awt.Color;
+import javax.swing.JComboBox;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -43,6 +46,8 @@ public class UserRemove extends Main {
 	private JPanel contentPane;
 	private String idAdmin;
 	private Sistema sistema = new Sistema();
+	@SuppressWarnings("rawtypes")
+	private JComboBox comboBoxUsuarios;
 
 	/**
 	 * Launch the application.
@@ -51,13 +56,14 @@ public class UserRemove extends Main {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public UserRemove(String id, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
 		setResizable(false);
-		setBounds(xLocation,yLocation, 621, 497);
+		setBounds(xLocation, yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -69,11 +75,13 @@ public class UserRemove extends Main {
 		desktopPane.setLayout(null);
 
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(UserRemove.class.getResource("/Resources/icon/voltabut.png")));
-		button.setBounds(476, 388, 95, 27);
+		button.setSelectedIcon(new ImageIcon(UserRemove.class.getResource("/Resources/icon/return-selected.png")));
+		button.setBackground(new Color(0, 0, 0, 0));
+		button.setIcon(new ImageIcon(UserRemove.class.getResource("/Resources/icon/back-btn.png")));
+		button.setBounds(521, 394, 78, 44);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserManagementOptions userOptions = new UserManagementOptions(idAdmin,getXLocation(),getYLocation());
+				UserManagementOptions userOptions = new UserManagementOptions(idAdmin, getXLocation(), getYLocation());
 
 				dispose();
 				userOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -85,50 +93,52 @@ public class UserRemove extends Main {
 		desktopPane.add(button);
 
 		JButton btnRemover = new JButton("");
-		btnRemover.setBounds(328, 291, 95, 27);
-		btnRemover.setIcon(new ImageIcon(UserRemove.class.getResource("/Resources/icon/removebutton.png")));
+		btnRemover.setSelectedIcon(new ImageIcon(UserRemove.class.getResource("/Resources/icon/remove-btn-on.png")));
+		btnRemover.setBackground(new Color(0, 0, 0, 0));
+		btnRemover.setBounds(392, 263, 131, 45);
+		btnRemover.setIcon(new ImageIcon(UserRemove.class.getResource("/Resources/icon/remove-btn-off.png")));
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		/*
-					boolean has = false;
-					try {
-						has = sistema.hasIdUsuario(idField.getText().trim())
-								&& sistema.isUsuarioAtivo(idField.getText().trim());
-					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(null, "Falha na conexão com banco de dados!");
-					}
 
-					if (!has) {
-						JOptionPane.showMessageDialog(null, "Usuário inexistente!");
-						idField.setText("");
-					} else {
-						sistema.removerUsuario(idField.getText().trim());
-						JOptionPane.showMessageDialog(null, "Usuário removido com Sucesso!");
+				Usuario usuario = (Usuario) comboBoxUsuarios.getSelectedItem();
 
-						UserManagementOptions admUserOptions = new UserManagementOptions(idAdmin,getXLocation(),getYLocation());
-						dispose();
-						admUserOptions.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-						admUserOptions.setVisible(true);
-						admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					}*/
+				JFrame frame = new JFrame();
+				int resposta = JOptionPane.showConfirmDialog(frame,
+						"Tem Certeza que Deseja remover o Usuário " + usuario.getNome() + " ?", "Remover Usuário",
+						JOptionPane.YES_NO_OPTION);
+				frame.dispose();
+				if (resposta == JOptionPane.YES_OPTION) {
+					sistema.removerUsuario(usuario.getId());
+					JOptionPane.showMessageDialog(null, "Usuário removido com Sucesso!");
+					UserManagementOptions admUserOptions = new UserManagementOptions(idAdmin, getXLocation(),
+							getYLocation());
+					dispose();
+					admUserOptions
+							.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+					admUserOptions.setVisible(true);
+					admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 				}
-			
+
+			}
+
 		});
+
 		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
 		desktopPane.add(btnRemover);
-		
+
 		JLabel title = new JLabel("REMOVER");
 		title.setForeground(Color.WHITE);
 		title.setFont(new Font("Tahoma", Font.BOLD, 24));
 		title.setBounds(67, 22, 119, 29);
 		desktopPane.add(title);
-		
+
 		JLabel lblUsurio = new JLabel("USUÁRIO");
 		lblUsurio.setForeground(Color.WHITE);
 		lblUsurio.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblUsurio.setBounds(69, 49, 119, 29);
 		desktopPane.add(lblUsurio);
-		
+
 		JButton homeBtn = new JButton("");
 		homeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -145,7 +155,7 @@ public class UserRemove extends Main {
 		homeBtn.setBackground(new Color(0, 0, 0, 0));
 		homeBtn.setBounds(349, 9, 62, 44);
 		desktopPane.add(homeBtn);
-		
+
 		JButton myDataBtn = new JButton("");
 		myDataBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -162,7 +172,7 @@ public class UserRemove extends Main {
 		myDataBtn.setBackground(new Color(0, 0, 0, 0));
 		myDataBtn.setBounds(404, 9, 119, 45);
 		desktopPane.add(myDataBtn);
-		
+
 		JButton logoutBtn = new JButton("");
 		logoutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -179,12 +189,21 @@ public class UserRemove extends Main {
 		logoutBtn.setBackground(new Color(0, 0, 0, 0));
 		logoutBtn.setBounds(499, 9, 119, 45);
 		desktopPane.add(logoutBtn);
-		
+
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/navbar.png")));
 		label.setBounds(350, 6, 256, 51);
 		desktopPane.add(label);
 
+		List<entidades.Usuario> usuarios = getListagemUsuarios();
 
+		comboBoxUsuarios = new JComboBox(usuarios.toArray());
+		comboBoxUsuarios.setBounds(83, 203, 425, 58);
+		desktopPane.add(comboBoxUsuarios);
+
+	}
+
+	private List<entidades.Usuario> getListagemUsuarios() {
+		return sistema.listarUsuarios();
 	}
 }

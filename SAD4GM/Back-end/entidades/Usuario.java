@@ -65,5 +65,9 @@ public class Usuario {
 	public void setAuditor(String auditor) {
 		this.auditor = auditor;
 	}
+	
+	public String toString() {
+		return  "ID: " + id + " -  Nome: " + nome;
+	}
 
 }

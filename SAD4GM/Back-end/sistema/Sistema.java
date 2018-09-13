@@ -1,6 +1,7 @@
 package sistema;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import controladores.CausasPotenciais;
@@ -68,8 +69,6 @@ public class Sistema {
 		this.cCPotenciais = new CausasPotenciais(CPTools);
 	}
 
-	
-
 	// Funções de Usuário
 
 	public String cadastrarUsuario(String nome, String id, String senha, String auditor, boolean admin) {
@@ -108,7 +107,7 @@ public class Sistema {
 		return cUsuarios.getNomeAuditor(id);
 	}
 
-	public String listarUsuarios() {
+	public List<entidades.Usuario> listarUsuarios() {
 		return cUsuarios.listar();
 	}
 
@@ -207,15 +206,13 @@ public class Sistema {
 	public String setNomeSubsistema(String nome, int chaveSubsistema) {
 		return cSubsistemas.setNomeSubsistema(nome, chaveSubsistema);
 	}
-	
-	
 
 	// Funções de Componentes
 
 	public String inserirComponente(String nome, int chaveSubsistema, String funcao) {
 		return cComponentes.inserir(nome, chaveSubsistema, funcao);
 	}
-	
+
 	public String removerComponente(int chave) {
 		return cComponentes.remover(chave);
 	}
@@ -223,8 +220,8 @@ public class Sistema {
 	public Map<String, Integer> getMapaComponentes(int chaveSubsistema) {
 		return cComponentes.getMapaComponentes(chaveSubsistema);
 	}
-	
-	public Map<Integer,Componente> getComponentesMap(int chaveSubsistema){
+
+	public Map<Integer, Componente> getComponentesMap(int chaveSubsistema) {
 		return cComponentes.getComponentesMap(chaveSubsistema);
 	}
 
@@ -249,7 +246,7 @@ public class Sistema {
 	public String inserirFalha(String nome, String descricao, int chaveComponente) {
 		return cFalhas.inserir(nome, descricao, chaveComponente);
 	}
-	
+
 	public String removerFalha(int chave) {
 		return cFalhas.remover(chave);
 	}
@@ -257,8 +254,8 @@ public class Sistema {
 	public Map<String, Integer> getMapaFalhas(int chaveComponente) {
 		return cFalhas.getMapaFalhas(chaveComponente);
 	}
-	
-	public Map<Integer,Falha> getFalhasMap(int chaveComponente){
+
+	public Map<Integer, Falha> getFalhasMap(int chaveComponente) {
 		return cFalhas.getFalhasMap(chaveComponente);
 	}
 
@@ -281,9 +278,9 @@ public class Sistema {
 	// Funções de Modos de Falha
 
 	public String inserirModoFalha(String nome, String descricao, int chaveFalha) {
-		return cMFalhas.inserir(nome,descricao, chaveFalha);
+		return cMFalhas.inserir(nome, descricao, chaveFalha);
 	}
-	
+
 	public String removerModoFalha(int chave) {
 		return cMFalhas.remover(chave);
 	}
@@ -291,8 +288,8 @@ public class Sistema {
 	public Map<String, Integer> getMapaModosFalha(int chaveFalha) {
 		return cMFalhas.getMapaModosFalha(chaveFalha);
 	}
-	
-	public Map<Integer,ModoFalha> getModosFalhaMap(int chaveFalha){
+
+	public Map<Integer, ModoFalha> getModosFalhaMap(int chaveFalha) {
 		return cMFalhas.getModosFalhaMap(chaveFalha);
 	}
 
@@ -303,17 +300,17 @@ public class Sistema {
 	public String setDescricaoModoFalha(String nome, int chaveModoFalha) {
 		return cMFalhas.setDescricao(nome, chaveModoFalha);
 	}
-	
+
 	public String getNomeModoFalha(int chaveModoFalha) {
 		return cMFalhas.getNome(chaveModoFalha);
 	}
-	
+
 	// Funções de Causas Potenciais
 
 	public String inserirCausaPotencial(String nome, String descricao, int chaveFalha) {
-		return cCPotenciais.inserir(nome,descricao, chaveFalha);
+		return cCPotenciais.inserir(nome, descricao, chaveFalha);
 	}
-	
+
 	public String removerCausaPotencial(int chave) {
 		return cCPotenciais.remover(chave);
 	}
@@ -321,15 +318,15 @@ public class Sistema {
 	public Map<String, Integer> getMapaCausasPotenciais(int chaveModoFalha) {
 		return cCPotenciais.getMapaCausasPotenciais(chaveModoFalha);
 	}
-	
-	public Map<Integer,CausaPotencial> getCausasPotenciaisMap(int chaveModoFalha){
+
+	public Map<Integer, CausaPotencial> getCausasPotenciaisMap(int chaveModoFalha) {
 		return cCPotenciais.getCausasPotenciaisMap(chaveModoFalha);
 	}
 
 	public String getDescricaoCausaPotencial(int chaveCausaPotencial) {
 		return cCPotenciais.getDescricao(chaveCausaPotencial);
 	}
-	
+
 	public String setNomeCausaPotencial(String nome, int chaveCausaPotencial) {
 		return cCPotenciais.setNome(nome, chaveCausaPotencial);
 	}
@@ -337,7 +334,7 @@ public class Sistema {
 	public String setDescricaoCausaPotencial(String descricao, int chaveCausaPotencial) {
 		return cCPotenciais.setDescricao(descricao, chaveCausaPotencial);
 	}
-	
+
 	public String getNomeCausaPotencial(int chaveCausaPotencial) {
 		return cCPotenciais.getNome(chaveCausaPotencial);
 	}

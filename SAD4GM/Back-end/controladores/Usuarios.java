@@ -1,6 +1,7 @@
 package controladores;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import databaseTools.UsuarioTools;
 import entidades.Usuario;
@@ -27,14 +28,10 @@ public class Usuarios {
 	/**
 	 * Insere um Usuário no Banco de Dados
 	 * 
-	 * @param nome
-	 *            Nome do Usuário
-	 * @param id
-	 *            ID do Usuário
-	 * @param senha
-	 *            Senha do Usuário
-	 * @param auditor
-	 *            Nome do Auditor
+	 * @param nome    Nome do Usuário
+	 * @param id      ID do Usuário
+	 * @param senha   Senha do Usuário
+	 * @param auditor Nome do Auditor
 	 * @return Status da Operação
 	 */
 	public String inserir(String nome, String id, String senha, String auditor, boolean admin) {
@@ -43,7 +40,7 @@ public class Usuarios {
 		String status;
 
 		try {
-			usuario = new Usuario(nome, id, senha, auditor,admin);
+			usuario = new Usuario(nome, id, senha, auditor, admin);
 		} catch (Exception e) {
 			return e.getMessage();
 		}
@@ -61,8 +58,7 @@ public class Usuarios {
 	/**
 	 * Remove um Usuário do Banco de Dados
 	 * 
-	 * @param id
-	 *            ID do Usuário a ser removido.
+	 * @param id ID do Usuário a ser removido.
 	 * @return Status da Operação
 	 */
 	public String remover(String id) {
@@ -80,10 +76,8 @@ public class Usuarios {
 	/**
 	 * Altera o nome de um Usuário no Banco de Dados
 	 * 
-	 * @param id
-	 *            ID do Usuário a ser alterado
-	 * @param nome
-	 *            Novo Nome do Usuário.
+	 * @param id   ID do Usuário a ser alterado
+	 * @param nome Novo Nome do Usuário.
 	 * @return Status da Operação.
 	 */
 
@@ -112,10 +106,8 @@ public class Usuarios {
 	/**
 	 * Altera o ID de um Usuário no Banco de Dados.
 	 * 
-	 * @param id
-	 *            ID do Usuário a ser alterado.
-	 * @param novoId
-	 *            Novo ID do Usuário.
+	 * @param id     ID do Usuário a ser alterado.
+	 * @param novoId Novo ID do Usuário.
 	 * @return Status da Operação.
 	 */
 	public String setId(String id, String novoId) {
@@ -144,10 +136,8 @@ public class Usuarios {
 	/**
 	 * Altera o Auditor de um Usuário.
 	 * 
-	 * @param id
-	 *            ID do Usuário a ter Auditor alterado.
-	 * @param auditor
-	 *            Novo Auditor do Usuário.
+	 * @param id      ID do Usuário a ter Auditor alterado.
+	 * @param auditor Novo Auditor do Usuário.
 	 * @return Status da Operação.
 	 */
 	public String setAuditor(String id, String auditor) {
@@ -176,10 +166,8 @@ public class Usuarios {
 	/**
 	 * Altera a Senha de um Usuário.
 	 * 
-	 * @param id
-	 *            ID do Usuário a ter Senha Alterada.
-	 * @param senha
-	 *            Novo Senha do Usuário.
+	 * @param id    ID do Usuário a ter Senha Alterada.
+	 * @param senha Novo Senha do Usuário.
 	 * @return Status da Operação.
 	 */
 	public String setSenha(String id, String senha) {
@@ -198,8 +186,7 @@ public class Usuarios {
 	/**
 	 * Retorna as Informações de um Usuário.
 	 * 
-	 * @param id
-	 *            ID do Usuário a ter informações retornada.
+	 * @param id ID do Usuário a ter informações retornada.
 	 * @return Informações.
 	 */
 	public String getInfo(String id) {
@@ -217,8 +204,7 @@ public class Usuarios {
 	/**
 	 * Retorna o Nome de um Usuário.
 	 * 
-	 * @param id
-	 *            Id do Usuário a ter Nome Retornado.
+	 * @param id Id do Usuário a ter Nome Retornado.
 	 * @return Nome do Usuário.
 	 */
 	public String getNome(String id) {
@@ -235,8 +221,7 @@ public class Usuarios {
 	/**
 	 * Retorna o Nome do Auditor de um Usuário.
 	 * 
-	 * @param id
-	 *            ID do Usuário a ter Nome do Auditor Retornado.
+	 * @param id ID do Usuário a ter Nome do Auditor Retornado.
 	 * @return Nome do Auditor do Usuário.
 	 */
 	public String getNomeAuditor(String id) {
@@ -256,28 +241,19 @@ public class Usuarios {
 	 * 
 	 * @return Listagem de Usuários.
 	 */
-	public String listar() {
-		String listagem;
+	public List<Usuario> listar() {
 
-		listagem = uTools.listar();
-
-		if (listagem.equals(""))
-			listagem = "Nenhum usuário cadastrado!";
-
-		return listagem;
+		return uTools.listar();
 	}
 
 	/**
 	 * Autentica ID e Senha de um Usuário e retorna o valor booleano correspondente
 	 * 
-	 * @param id
-	 *            ID do Usuário
-	 * @param senha
-	 *            Senha do Usuário
+	 * @param id    ID do Usuário
+	 * @param senha Senha do Usuário
 	 * @return Valor Booleano referente a autenticação dos dados.
-	 * @throws SQLException
-	 *             Lança uma SQLException caso haja falha na Comunicação com o Banco
-	 *             de Dados.
+	 * @throws SQLException Lança uma SQLException caso haja falha na Comunicação
+	 *                      com o Banco de Dados.
 	 */
 	public boolean autentica(String id, String senha) throws SQLException {
 		boolean status;
@@ -293,12 +269,10 @@ public class Usuarios {
 	/**
 	 * Checa a Existência de um Usuário através de seu ID.
 	 * 
-	 * @param id
-	 *            ID do Usuário a ser checado.
+	 * @param id ID do Usuário a ser checado.
 	 * @return Valor Booleano indicando sua existência.
-	 * @throws SQLException
-	 *             Lança uma SQLException caso haja falha na Comunicação com o Banco
-	 *             de Dados.
+	 * @throws SQLException Lança uma SQLException caso haja falha na Comunicação
+	 *                      com o Banco de Dados.
 	 */
 	public boolean hasUsuario(String id) throws SQLException {
 		return uTools.hasUsuario(id);
@@ -307,12 +281,10 @@ public class Usuarios {
 	/**
 	 * Verifica se um Usuário está Ativo.
 	 * 
-	 * @param id
-	 *            ID do Usuário.
+	 * @param id ID do Usuário.
 	 * @return Valor Booleano indicando se o Usuário está ativo.
-	 * @throws SQLException
-	 *             Lança uma SQLException caso haja falha na Comunicação com o Banco
-	 *             de Dados.
+	 * @throws SQLException Lança uma SQLException caso haja falha na Comunicação
+	 *                      com o Banco de Dados.
 	 */
 	public boolean isAtivo(String id) throws SQLException {
 		return uTools.isAtivo(id);
