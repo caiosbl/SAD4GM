@@ -78,8 +78,10 @@ public class InsertUser extends Main {
 		desktopPane.setLayout(null);
 
 		JButton voltarButton = new JButton("");
-		voltarButton.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/voltabut.png")));
-		voltarButton.setBounds(492, 428, 84, 27);
+		voltarButton.setBackground(new Color(0,0,0,0));
+		voltarButton.setSelectedIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/return-selected.png")));
+		voltarButton.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/back-btn.png")));
+		voltarButton.setBounds(521, 408, 78, 44);
 		voltarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				UserManagementOptions admOptionsUser = new UserManagementOptions(idAdmin,getXLocation(),getYLocation());
@@ -94,8 +96,10 @@ public class InsertUser extends Main {
 		desktopPane.add(voltarButton);
 
 		JButton btnAlterarSenha = new JButton("");
-		btnAlterarSenha.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/insertbutton.png")));
-		btnAlterarSenha.setBounds(433, 365, 112, 21);
+		btnAlterarSenha.setSelectedIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/patch/insert-on.png")));
+		btnAlterarSenha.setBackground(new Color(0,0,0,0));
+		btnAlterarSenha.setIcon(new ImageIcon(InsertUser.class.getResource("/Resources/icon/patch/insert-off.png")));
+		btnAlterarSenha.setBounds(424, 362, 132, 34);
 		btnAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
