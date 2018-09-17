@@ -23,7 +23,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 
 import sistema.Sistema;
@@ -125,6 +124,7 @@ public class SetUser extends Main {
 		desktopPane.add(btnAlterarSenha);
 
 		JButton btnAtualizar = new JButton("");
+		btnAtualizar.setSelectedIcon(new ImageIcon(SetUser.class.getResource("/Resources/icon/update-selected.png")));
 		btnAtualizar.setBackground(new Color(0,0,0,0));
 		btnAtualizar.setIcon(new ImageIcon(SetUser.class.getResource("/Resources/icon/update.png")));
 		btnAtualizar.addActionListener(new ActionListener() {

@@ -25,6 +25,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
@@ -196,6 +197,14 @@ public class SetUserEntry extends Main {
 	}
 
 	private List<entidades.Usuario> getListagemUsuarios() {
-		return sistema.listarUsuarios();
+
+		ArrayList<entidades.Usuario> lista = new ArrayList<entidades.Usuario>();
+
+		for (Usuario usuario : sistema.listarUsuarios()) {
+			if (!usuario.getId().equals(idAdmin))
+				lista.add(usuario);
+		}
+
+		return lista;
 	}
 }

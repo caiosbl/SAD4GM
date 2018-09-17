@@ -24,6 +24,7 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
@@ -200,7 +201,7 @@ public class UserRemove extends Main {
 		comboBoxUsuarios = new JComboBox(usuarios.toArray());
 		comboBoxUsuarios.setBounds(83, 203, 425, 58);
 		desktopPane.add(comboBoxUsuarios);
-		
+
 		JLabel lblSelecioneOUsurio = new JLabel("SELECIONE O USUÁRIO A SER REMOVIDO:");
 		lblSelecioneOUsurio.setForeground(Color.WHITE);
 		lblSelecioneOUsurio.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -210,6 +211,12 @@ public class UserRemove extends Main {
 	}
 
 	private List<entidades.Usuario> getListagemUsuarios() {
-		return sistema.listarUsuarios();
+		ArrayList<entidades.Usuario> lista = new ArrayList<entidades.Usuario>();
+
+		for (Usuario usuario : sistema.listarUsuarios()) {
+			if (!usuario.getId().equals(idAdmin))
+				lista.add(usuario);
+		}
+		return lista;
 	}
 }
