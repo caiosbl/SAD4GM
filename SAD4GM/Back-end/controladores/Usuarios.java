@@ -183,23 +183,6 @@ public class Usuarios {
 		return status;
 	}
 
-	/**
-	 * Retorna as Informações de um Usuário.
-	 * 
-	 * @param id ID do Usuário a ter informações retornada.
-	 * @return Informações.
-	 */
-	public String getInfo(String id) {
-		String info;
-
-		try {
-			info = uTools.getInfo(id);
-		} catch (Exception e) {
-			info = e.getMessage();
-		}
-
-		return info;
-	}
 
 	/**
 	 * Retorna o Nome de um Usuário.

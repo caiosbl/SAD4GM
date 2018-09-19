@@ -95,9 +95,6 @@ public class Sistema {
 		return cUsuarios.setSenha(id, senha);
 	}
 
-	public String getInfoUsuario(String id) {
-		return cUsuarios.getInfo(id);
-	}
 
 	public String getNomeUsuario(String id) {
 		return cUsuarios.getNome(id);

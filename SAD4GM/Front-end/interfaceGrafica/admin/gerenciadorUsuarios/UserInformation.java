@@ -21,6 +21,7 @@ import javax.swing.JDesktopPane;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
@@ -51,6 +52,8 @@ public class UserInformation extends Main {
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @throws SQLException
 	 */
 	public UserInformation(String id, String idUsuario, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
@@ -143,54 +146,82 @@ public class UserInformation extends Main {
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
 		button.setBounds(492, 388, 78, 44);
 		desktopPane.add(button);
-		
+
 		JTextPane nomePane = new JTextPane();
 		nomePane.setText(sistema.getNomeUsuario(idUsuario));
 		nomePane.setEditable(false);
 		nomePane.setBounds(49, 166, 513, 33);
 		desktopPane.add(nomePane);
-		
+
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setForeground(Color.WHITE);
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNome.setBounds(272, 146, 46, 17);
 		desktopPane.add(lblNome);
-		
+
 		JTextPane idPane = new JTextPane();
 		idPane.setText(idUsuario);
 		idPane.setEditable(false);
 		idPane.setBounds(49, 229, 513, 33);
 		desktopPane.add(idPane);
-		
+
 		JLabel lblId = new JLabel("ID:");
 		lblId.setForeground(Color.WHITE);
 		lblId.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblId.setBounds(284, 210, 22, 17);
 		desktopPane.add(lblId);
-		
+
 		JTextPane auditorPane = new JTextPane();
 		auditorPane.setText(sistema.getNomeAuditor(idUsuario));
 		auditorPane.setEditable(false);
 		auditorPane.setBounds(49, 289, 513, 33);
 		desktopPane.add(auditorPane);
-		
+
 		JLabel lblAuditor = new JLabel("Auditor:");
 		lblAuditor.setForeground(Color.WHITE);
 		lblAuditor.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblAuditor.setBounds(272, 271, 57, 17);
 		desktopPane.add(lblAuditor);
-		
+
 		JLabel label_1 = new JLabel("VISUALIZAR");
 		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 24));
 		label_1.setBounds(67, 22, 151, 29);
 		desktopPane.add(label_1);
-		
+
 		JLabel label_2 = new JLabel("USUÁRIO");
 		label_2.setForeground(Color.WHITE);
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 24));
 		label_2.setBounds(88, 48, 114, 29);
 		desktopPane.add(label_2);
 
+		String statusUsuario;
+		try {
+			statusUsuario = getSituacaoUsuario(idUsuario);
+		} catch (SQLException e1) {
+			statusUsuario = "";
+		}
+
+		JTextPane statusUsuarioPane = new JTextPane();
+		statusUsuarioPane.setText(statusUsuario);
+		statusUsuarioPane.setEditable(false);
+		statusUsuarioPane.setBounds(49, 345, 513, 33);
+		desktopPane.add(statusUsuarioPane);
+
+		JLabel lblSituao = new JLabel("Situação:");
+		lblSituao.setForeground(Color.WHITE);
+		lblSituao.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblSituao.setBounds(270, 327, 64, 17);
+		desktopPane.add(lblSituao);
+
+	}
+
+	public String getSituacaoUsuario(String idUsuario) throws SQLException {
+		boolean situacaoUser = sistema.isUsuarioAtivo(idUsuario);
+
+		if (situacaoUser)
+			return "Ativo";
+		else
+			return "Inativo";
 	}
 }
