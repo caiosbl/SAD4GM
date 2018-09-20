@@ -23,6 +23,10 @@ import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetMachine;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetModoFalha;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetSubsistema;
 import interfaceGrafica.main.Main;
+import interfaceGrafica.usuario.entrada.Login;
+import interfaceGrafica.usuario.entrada.MyInfo;
+import interfaceGrafica.usuario.entrada.Options;
+import interfaceGrafica.usuario.gerenciadorMaquinas.ViewMachinesInfo;
 import interfaceGrafica.utils.RenderizarTree;
 import interfaceGrafica.utils.Tree;
 
@@ -37,6 +41,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JTree;
+import java.awt.Color;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -55,6 +60,8 @@ public class ViewMachinesEdit extends Main {
 	private String idAdmin;
 	private JTree tree;
 	private JDesktopPane desktopPane;
+	private JLabel lblEditar;
+	private JLabel lblDadosDeMquina;
 
 	/**
 	 * Launch the application.
@@ -80,11 +87,70 @@ public class ViewMachinesEdit extends Main {
 		desktopPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
+		
+		JButton homeBtn = new JButton("");
+		homeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Options options = new Options(id, getXLocation(), getYLocation());
+				dispose();
+				options.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				options.setVisible(true);
+				options.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		homeBtn.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/home-on.png")));
+		homeBtn.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/home-off.png")));
+		homeBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		homeBtn.setBackground(new Color(0, 0, 0, 0));
+		homeBtn.setBounds(349, 9, 62, 44);
+		desktopPane.add(homeBtn);
+		
+		JButton myDataBtn = new JButton("");
+		myDataBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyInfo myInfo = new MyInfo(id, getXLocation(), getYLocation());
+				dispose();
+				myInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				myInfo.setVisible(true);
+				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		myDataBtn.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/my-data-on.png")));
+		myDataBtn.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/my-data-off.png")));
+		myDataBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		myDataBtn.setBackground(new Color(0, 0, 0, 0));
+		myDataBtn.setBounds(404, 9, 119, 45);
+		desktopPane.add(myDataBtn);
+		
+		JButton logoutBtn = new JButton("");
+		logoutBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login login = new Login(getXLocation(), getYLocation());
+				dispose();
+				login.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				login.setVisible(true);
+				login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		logoutBtn.setSelectedIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/logout-on.png")));
+		logoutBtn.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/logout-off.png")));
+		logoutBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		logoutBtn.setBackground(new Color(0, 0, 0, 0));
+		logoutBtn.setBounds(499, 9, 119, 45);
+		desktopPane.add(logoutBtn);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/navbar.png")));
+		label.setBounds(350, 6, 256, 51);
+		desktopPane.add(label);
 
 		iniciaTree();
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(ViewMachinesEdit.class.getResource("/Resources/icon/voltabut.png")));
+		btnVoltar.setBackground(new Color(0, 0, 0, 0));
+		btnVoltar.setSelectedIcon(
+				new ImageIcon(ViewMachinesEdit.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setIcon(new ImageIcon(ViewMachinesEdit.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MachineManagementOptions mMoptions = new MachineManagementOptions(idAdmin, getXLocation(),
@@ -96,23 +162,26 @@ public class ViewMachinesEdit extends Main {
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnVoltar.setBounds(484, 418, 88, 29);
+		btnVoltar.setBounds(521, 408, 78, 44);
 		desktopPane.add(btnVoltar);
 
-		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(ViewMachinesEdit.class.getResource("/Resources/icon/sad4logosmall.png")));
-		logo.setBounds(29, 40, 205, 74);
-		desktopPane.add(logo);
+		lblEditar = new JLabel("EDITAR");
+		lblEditar.setForeground(Color.WHITE);
+		lblEditar.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblEditar.setBounds(88, 22, 93, 29);
+		desktopPane.add(lblEditar);
 
-		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(ViewMachinesEdit.class.getResource("/Resources/icon/editNameBanner.png")));
-		banner.setBounds(311, 21, 141, 92);
-		desktopPane.add(banner);
-
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(ViewMachinesEdit.class.getResource("/Resources/icon/top-select-item-edit.png")));
-		label.setBounds(70, 138, 460, 25);
-		desktopPane.add(label);
+		lblDadosDeMquina = new JLabel("DADOS DE MÁQUINA");
+		lblDadosDeMquina.setForeground(Color.WHITE);
+		lblDadosDeMquina.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblDadosDeMquina.setBounds(11, 46, 252, 29);
+		desktopPane.add(lblDadosDeMquina);
+		
+		JLabel lblSelecioneOItem = new JLabel("SELECIONE O ITEM QUE DESEJA EDITAR:");
+		lblSelecioneOItem.setForeground(Color.WHITE);
+		lblSelecioneOItem.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblSelecioneOItem.setBounds(126, 115, 353, 20);
+		desktopPane.add(lblSelecioneOItem);
 
 	}
 
@@ -197,7 +266,7 @@ public class ViewMachinesEdit extends Main {
 		tree.addTreeSelectionListener(tsl);
 
 		JScrollPane jSPane = new JScrollPane(tree);
-		jSPane.setBounds(67, 161, 465, 244);
+		jSPane.setBounds(13, 139, 581, 270);
 		desktopPane.add(jSPane);
 
 	}

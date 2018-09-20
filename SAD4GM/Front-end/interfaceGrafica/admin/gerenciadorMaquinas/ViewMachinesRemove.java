@@ -173,6 +173,12 @@ public class ViewMachinesRemove extends Main {
 		label.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/navbar.png")));
 		label.setBounds(350, 6, 256, 51);
 		desktopPane.add(label);
+		
+		JLabel lblSelecioneOItem = new JLabel("SELECIONE O ITEM QUE DESEJA REMOVER:");
+		lblSelecioneOItem.setForeground(Color.WHITE);
+		lblSelecioneOItem.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblSelecioneOItem.setBounds(126, 115, 353, 20);
+		desktopPane.add(lblSelecioneOItem);
 
 	}
 
