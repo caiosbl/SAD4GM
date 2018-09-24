@@ -95,7 +95,6 @@ public class Sistema {
 		return cUsuarios.setSenha(id, senha);
 	}
 
-
 	public String getNomeUsuario(String id) {
 		return cUsuarios.getNome(id);
 	}
@@ -294,8 +293,12 @@ public class Sistema {
 		return cMFalhas.getDescricao(chaveModoFalha);
 	}
 
-	public String setDescricaoModoFalha(String nome, int chaveModoFalha) {
-		return cMFalhas.setDescricao(nome, chaveModoFalha);
+	public String setNomeModoFalha(String nome, int chaveModoFalha) {
+		return cMFalhas.setNome(nome, chaveModoFalha);
+	}
+
+	public String setDescricaoModoFalha(String descricao, int chaveModoFalha) {
+		return cMFalhas.setDescricao(descricao, chaveModoFalha);
 	}
 
 	public String getNomeModoFalha(int chaveModoFalha) {

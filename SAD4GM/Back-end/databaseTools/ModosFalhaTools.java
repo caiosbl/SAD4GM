@@ -70,7 +70,7 @@ public class ModosFalhaTools extends DatabaseTools {
 		return descricao;
 
 	}
-	
+
 	public String getNomeModoFalha(int chaveModoFalha) throws SQLException {
 		abrirConexao();
 		String nome;
@@ -133,6 +133,15 @@ public class ModosFalhaTools extends DatabaseTools {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+	}
+
+	public void setNomeModoFalha(String nome, int chaveModoFalha) throws SQLException {
+		abrirConexao();
+		PreparedStatement state = con
+				.prepareStatement("UPDATE  maquinas.modo_falha SET nome = ? WHERE chave=" + chaveModoFalha);
+		state.setString(1, nome);
+		state.execute();
 
 	}
 }

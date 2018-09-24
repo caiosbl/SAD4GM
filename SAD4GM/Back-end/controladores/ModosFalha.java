@@ -96,4 +96,17 @@ public class ModosFalha {
 		return status;
 	}
 
+	public String setNome(String nome, int chaveModoFalha) {
+		String status;
+
+		try {
+			mFTools.setNomeModoFalha(nome, chaveModoFalha);
+			status = "Título atualizado com Sucesso!";
+		} catch (Exception e) {
+			status = "Falha ao Atualizar Título!";
+		}
+
+		return status;
+	}
+
 }
