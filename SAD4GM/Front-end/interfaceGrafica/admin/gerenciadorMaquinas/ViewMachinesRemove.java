@@ -41,6 +41,7 @@ import java.awt.SystemColor;
 import javax.swing.JTree;
 import java.awt.Color;
 
+
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
  * 
@@ -74,7 +75,6 @@ public class ViewMachinesRemove extends Main {
 		this.sistema = new Sistema();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
-		setResizable(false);
 		setBounds(xLocation, yLocation, 621, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

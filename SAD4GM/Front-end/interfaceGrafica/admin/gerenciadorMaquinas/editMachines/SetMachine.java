@@ -8,7 +8,11 @@ import javax.swing.border.EmptyBorder;
 
 import interfaceGrafica.admin.gerenciadorMaquinas.ViewMachinesEdit;
 import interfaceGrafica.main.Main;
-
+import interfaceGrafica.usuario.entrada.Login;
+import interfaceGrafica.usuario.entrada.MyInfo;
+import interfaceGrafica.usuario.entrada.Options;
+import interfaceGrafica.usuario.gerenciadorMaquinas.ViewComponente;
+import interfaceGrafica.usuario.gerenciadorMaquinas.ViewSubsistema;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -20,11 +24,11 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 
 import sistema.Sistema;
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -67,19 +71,19 @@ public class SetMachine extends Main {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		
 
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		desktopPane.setLayout(null);
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 137, 582, 12);
-		desktopPane.add(separator);
-
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/voltabut.png")));
-		btnVoltar.setBounds(490, 420, 90, 27);
+		btnVoltar.setSelectedIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/back-btn.png")));
+		btnVoltar.setBounds(510, 396, 78, 44);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ViewMachinesEdit viewMachinesEdit = new ViewMachinesEdit(idUsuario, getXLocation(), getYLocation());
@@ -92,44 +96,30 @@ public class SetMachine extends Main {
 		desktopPane.add(btnVoltar);
 
 		JTextPane nome = new JTextPane();
-		nome.setEditable(false);
 
-		nome.setBounds(184, 196, 264, 24);
+		nome.setBounds(55, 150, 518, 35);
 		nome.setText(sistema.getNomeMaquina(codigoMaquina));
 		desktopPane.add(nome);
 
 		JTextPane codigo = new JTextPane();
-		codigo.setEditable(false);
 
-		codigo.setBounds(184, 231, 264, 24);
+		codigo.setBounds(56, 210, 518, 35);
 		codigo.setText(codigoMaquina);
 		desktopPane.add(codigo);
 
 		JTextPane descricao = new JTextPane();
 		descricao.setText(sistema.getDescricaoMaquina(codigoMaquina));
-		descricao.setEditable(false);
 		descricao.setBounds(182, 267, 268, 92);
 
 		JScrollPane jsp = new JScrollPane(descricao);
 
-		jsp.setBounds(182, 267, 268, 92);
+		jsp.setBounds(55, 267, 521, 91);
 		desktopPane.add(jsp);
 
-		JButton btnEditar = new JButton("");
-		btnEditar.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/editbutton.png")));
-		btnEditar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				codigo.setEditable(true);
-				nome.setEditable(true);
-				descricao.setEditable(true);
-
-			}
-		});
-		btnEditar.setBounds(182, 364, 90, 28);
-		desktopPane.add(btnEditar);
-
 		JButton btnAtualizar = new JButton("");
-		btnAtualizar.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/atualizarbutton.png")));
+		btnAtualizar.setSelectedIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/update-selected.png")));
+		btnAtualizar.setBackground(new Color(0,0,0,0));
+		btnAtualizar.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/update.png")));
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -190,23 +180,95 @@ public class SetMachine extends Main {
 			}
 
 		});
-		btnAtualizar.setBounds(362, 364, 90, 28);
+		btnAtualizar.setBounds(45, 370, 124, 39);
 		desktopPane.add(btnAtualizar);
-
-		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/sad4logosmall.png")));
-		logo.setBounds(29, 40, 205, 74);
-		desktopPane.add(logo);
-
-		JLabel banner = new JLabel("");
-		banner.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/setMachineBanner.png")));
-		banner.setBounds(343, 28, 175, 86);
-		desktopPane.add(banner);
-
-		JLabel form = new JLabel("");
-		form.setIcon(new ImageIcon(SetMachine.class.getResource("/Resources/icon/formaSetMachine.png")));
-		form.setBounds(97, 182, 421, 226);
-		desktopPane.add(form);
+		
+		JButton homeBtn = new JButton("");
+		homeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Options options = new Options(idUser, getXLocation(), getYLocation());
+				dispose();
+				options.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				options.setVisible(true);
+				options.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		homeBtn.setSelectedIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/home-on.png")));
+		homeBtn.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/home-off.png")));
+		homeBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		homeBtn.setBackground(new Color(0, 0, 0, 0));
+		homeBtn.setBounds(349, 9, 62, 44);
+		desktopPane.add(homeBtn);
+		
+		JButton myDataBtn = new JButton("");
+		myDataBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyInfo myInfo = new MyInfo(idUser, getXLocation(), getYLocation());
+				dispose();
+				myInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				myInfo.setVisible(true);
+				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		myDataBtn.setSelectedIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/my-data-on.png")));
+		myDataBtn.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/my-data-off.png")));
+		myDataBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		myDataBtn.setBackground(new Color(0, 0, 0, 0));
+		myDataBtn.setBounds(404, 9, 119, 45);
+		desktopPane.add(myDataBtn);
+		
+		JButton logoutBtn = new JButton("");
+		logoutBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login login = new Login(getXLocation(), getYLocation());
+				dispose();
+				login.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				login.setVisible(true);
+				login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		logoutBtn.setSelectedIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/logout-on.png")));
+		logoutBtn.setIcon(new ImageIcon(ViewSubsistema.class.getResource("/Resources/icon/logout-off.png")));
+		logoutBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		logoutBtn.setBackground(new Color(0, 0, 0, 0));
+		logoutBtn.setBounds(499, 9, 119, 45);
+		desktopPane.add(logoutBtn);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/navbar.png")));
+		label.setBounds(350, 6, 256, 51);
+		desktopPane.add(label);
+		
+		
+		JLabel lblEditar = new JLabel("EDITAR");
+		lblEditar.setForeground(Color.WHITE);
+		lblEditar.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblEditar.setBounds(67, 22, 110, 29);
+		desktopPane.add(lblEditar);
+		
+		JLabel lblMquin = new JLabel("MÁQUINA");
+		lblMquin.setForeground(Color.WHITE);
+		lblMquin.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblMquin.setBounds(59, 48, 120, 29);
+		desktopPane.add(lblMquin);
+		
+		JLabel label_1 = new JLabel("Nome:");
+		label_1.setForeground(Color.WHITE);
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		label_1.setBounds(276, 129, 53, 20);
+		desktopPane.add(label_1);
+		
+		JLabel label_2 = new JLabel("Código:");
+		label_2.setForeground(Color.WHITE);
+		label_2.setFont(new Font("Tahoma", Font.BOLD, 16));
+		label_2.setBounds(274, 190, 62, 20);
+		desktopPane.add(label_2);
+		
+		JLabel lblDescrio = new JLabel("Descrição:");
+		lblDescrio.setForeground(Color.WHITE);
+		lblDescrio.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDescrio.setBounds(265, 247, 84, 20);
+		desktopPane.add(lblDescrio);
 
 	}
 
