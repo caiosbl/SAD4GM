@@ -91,12 +91,13 @@ public class SetComponente extends Main {
 		nome.setBounds(46, 190, 518, 35);
 		nome.setText(sistema.getNomeComponente(chaveComponente));
 		desktopPane.add(nome);
-
-		JTextPane funcaoPane = new JTextPane();
-		funcaoPane.setText(sistema.getFuncaoComponente(chaveComponente));
-		JScrollPane jPane = new JScrollPane(funcaoPane);
-		jPane.setBounds(44, 240, 521, 100);
+		JScrollPane jPane = new JScrollPane();
+		jPane.setBounds(44, 255, 521, 100);
 		desktopPane.add(jPane);
+		
+				JTextPane funcaoPane = new JTextPane();
+				jPane.setViewportView(funcaoPane);
+				funcaoPane.setText(sistema.getFuncaoComponente(chaveComponente));
 		
 		JButton homeBtn = new JButton("");
 		homeBtn.addActionListener(new ActionListener() {
@@ -182,7 +183,7 @@ public class SetComponente extends Main {
 
 		});
 
-		btnAtualizar.setBounds(36, 352, 124, 39);
+		btnAtualizar.setBounds(29, 367, 124, 39);
 		desktopPane.add(btnAtualizar);
 		
 		JLabel label_1 = new JLabel("EDITAR");
@@ -196,6 +197,18 @@ public class SetComponente extends Main {
 		lblComponente.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblComponente.setBounds(36, 46, 172, 29);
 		desktopPane.add(lblComponente);
+		
+		JLabel label_2 = new JLabel("Nome:");
+		label_2.setForeground(Color.WHITE);
+		label_2.setFont(new Font("Tahoma", Font.BOLD, 16));
+		label_2.setBounds(268, 168, 53, 20);
+		desktopPane.add(label_2);
+		
+		JLabel lblFuno = new JLabel("Função:");
+		lblFuno.setForeground(Color.WHITE);
+		lblFuno.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblFuno.setBounds(268, 235, 63, 20);
+		desktopPane.add(lblFuno);
 
 	}
 
