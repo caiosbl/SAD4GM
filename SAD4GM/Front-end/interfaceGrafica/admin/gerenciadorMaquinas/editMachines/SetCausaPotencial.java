@@ -152,7 +152,7 @@ public class SetCausaPotencial extends Main {
 		desktopPane.add(btnVoltar);
 
 		JButton btnAtualizar = new JButton("");
-		btnAtualizar.setSelectedIcon(new ImageIcon(SetCausaPotencial.class.getResource("/Resources/icon/return-selected.png")));
+		btnAtualizar.setSelectedIcon(new ImageIcon(SetCausaPotencial.class.getResource("/Resources/icon/update-selected.png")));
 		btnAtualizar.setBackground(new Color(0,0,0,0));
 		btnAtualizar.setIcon(new ImageIcon(SetCausaPotencial.class.getResource("/Resources/icon/update.png")));
 		btnAtualizar.addActionListener(new ActionListener() {
