@@ -102,7 +102,7 @@ public class ViewMachinesInfo extends Main {
 		JLabel lblSelecioneOItem = new JLabel("SELECIONE O ITEM QUE DESEJA VISUALIZAR:");
 		lblSelecioneOItem.setForeground(Color.WHITE);
 		lblSelecioneOItem.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblSelecioneOItem.setBounds(121, 117, 374, 20);
+		lblSelecioneOItem.setBounds(113, 110, 374, 20);
 		desktopPane.add(lblSelecioneOItem);
 		
 		JLabel lblVisualizar = new JLabel("VISUALIZAR");

@@ -46,7 +46,7 @@ public class RenderizarTree extends DefaultTreeCellRenderer implements TreeCellR
 		
 		// ->
 		else if (node.toString().equals("Causas Potenciais")) 
-			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/modosfalha.png")));
+			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/causapotenciais.png")));
 		
 		
 		else if (CLASS_TYPE == Maquina.class) 
@@ -65,7 +65,7 @@ public class RenderizarTree extends DefaultTreeCellRenderer implements TreeCellR
 			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/modofalha.png")));
 		// ->
 		else if(CLASS_TYPE == CausaPotencial.class)
-			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/modofalha.png")));
+			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/causapotencial.png")));
 
 		return this;
 	}
