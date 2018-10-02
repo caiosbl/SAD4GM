@@ -6,6 +6,7 @@ import java.util.Map;
 
 import controladores.CausasPotenciais;
 import controladores.Componentes;
+import controladores.Efeitos;
 import controladores.Falhas;
 import controladores.Maquinas;
 import controladores.ModosFalha;
@@ -13,6 +14,7 @@ import controladores.Subsistemas;
 import controladores.Usuarios;
 import databaseTools.CausaPotencialTools;
 import databaseTools.ComponenteTools;
+import databaseTools.EfeitosTools;
 import databaseTools.FalhaTools;
 import databaseTools.MaquinaTools;
 import databaseTools.ModosFalhaTools;
@@ -20,6 +22,7 @@ import databaseTools.SubsistemaTools;
 import databaseTools.UsuarioTools;
 import entidades.CausaPotencial;
 import entidades.Componente;
+import entidades.Efeito;
 import entidades.Falha;
 import entidades.Maquina;
 import entidades.ModoFalha;
@@ -40,6 +43,7 @@ public class Sistema {
 	private Falhas cFalhas;
 	private ModosFalha cMFalhas;
 	private CausasPotenciais cCPotenciais;
+	private Efeitos efeitos;
 
 	private UsuarioTools uTools;
 	private MaquinaTools mTools;
@@ -49,6 +53,7 @@ public class Sistema {
 	private FalhaTools fTools;
 	private ModosFalhaTools mFTools;
 	private CausaPotencialTools CPTools;
+	private EfeitosTools eTools;
 
 	public Sistema() {
 
@@ -59,6 +64,7 @@ public class Sistema {
 		this.fTools = new FalhaTools();
 		this.mFTools = new ModosFalhaTools();
 		this.CPTools = new CausaPotencialTools();
+		this.eTools = new EfeitosTools();
 
 		this.cUsuarios = new Usuarios(uTools);
 		this.cMaquinas = new Maquinas(mTools);
@@ -67,6 +73,7 @@ public class Sistema {
 		this.cFalhas = new Falhas(fTools);
 		this.cMFalhas = new ModosFalha(mFTools);
 		this.cCPotenciais = new CausasPotenciais(CPTools);
+		this.efeitos = new Efeitos(eTools);
 	}
 
 	// Funções de Usuário
@@ -338,5 +345,39 @@ public class Sistema {
 	public String getNomeCausaPotencial(int chaveCausaPotencial) {
 		return cCPotenciais.getNome(chaveCausaPotencial);
 	}
+	
+	// Funções de Efeitos
+
+		public String inserirEfeito(String nome, String descricao,double indiceSeveridade, int chaveModoFalha) {
+			return efeitos.inserir(nome, descricao, indiceSeveridade, chaveModoFalha);
+		}
+
+		public String removerEfeito(int chaveEfeito) {
+			return efeitos.remover(chaveEfeito);
+		}
+
+		public Map<String, Integer> getMapaEfeitos(int chaveModoFalha) {
+			return efeitos.getMapaEfeitos(chaveModoFalha);
+		}
+
+		public Map<Integer, Efeito> getEfeitosMap(int chaveModoFalha) {
+			return efeitos.getEfeitosMap(chaveModoFalha);
+		}
+
+		public String getDescricaoEfeito(int chaveEfeito) {
+			return efeitos.getDescricao(chaveEfeito);
+		}
+
+		public String setNomeEfeito(String nome, int chaveEfeito) {
+			return efeitos.setNome(nome, chaveEfeito);
+		}
+
+		public String setDescricaoEfeito(String descricao, int chaveEfeito) {
+			return efeitos.setDescricao(descricao, chaveEfeito);
+		}
+
+		public String getNomeEfeito(int chaveEfeito) {
+			return cCPotenciais.getNome(chaveEfeito);
+		}
 
 }

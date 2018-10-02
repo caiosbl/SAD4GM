@@ -16,12 +16,12 @@ public class Efeitos {
 		this.eTools = eTools;
 	}
 
-	public String inserir(String nome, String descricao, double indice_severidade, int chaveModoFalha) {
+	public String inserir(String nome, String descricao, double indiceSeveridade, int chaveModoFalha) {
 
 		String status;
 
 		try {
-			eTools.inserir(nome, descricao, chaveModoFalha, indice_severidade);
+			eTools.inserir(nome, descricao, chaveModoFalha, indiceSeveridade);
 			status = "Causa Potencial inserida com Sucesso!";
 		} catch (SQLException e) {
 			status = e.getMessage();
