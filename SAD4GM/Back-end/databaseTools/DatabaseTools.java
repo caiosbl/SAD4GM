@@ -221,6 +221,7 @@ public abstract class DatabaseTools {
 						"DESCRICAO LONG VARCHAR,\r\n" + 
 						"CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
 						"CHAVE_MODO_FALHA INTEGER NOT NULL,\r\n" + 
+						"INDICE_SEVERIDADE DOUBLE PRECISION, \r\n" +
 						"PRIMARY KEY (chave),\r\n" + 
 						"CONSTRAINT efeitos_chave_modo_falha_fkey FOREIGN KEY (CHAVE_MODO_FALHA)\r\n" + 
 						"REFERENCES MAQUINAS.MODO_FALHA(CHAVE) ON DELETE CASCADE\r\n" + 
