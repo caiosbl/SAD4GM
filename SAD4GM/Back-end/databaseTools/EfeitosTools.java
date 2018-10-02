@@ -73,7 +73,7 @@ public class EfeitosTools extends DatabaseTools {
 
 	}
 
-	public String getNomeCausaEfeito(int chaveEfeito) throws SQLException {
+	public String getNomeEfeito(int chaveEfeito) throws SQLException {
 		abrirConexao();
 		String nome;
 		PreparedStatement state = con.prepareStatement("SELECT nome FROM maquinas.efeito WHERE chave=" + chaveEfeito);
