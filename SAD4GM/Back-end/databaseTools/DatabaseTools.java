@@ -59,6 +59,7 @@ public abstract class DatabaseTools {
 			criarTabelaFalha(con);
 			criarTabelaModoFalha(con);
 			criarTabelaCausasPotenciais(con);
+			criarTabelaEfeitos(con);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -190,6 +191,7 @@ public abstract class DatabaseTools {
 				+ "NOME LONG VARCHAR, \r\n" + "DESCRICAO LONG VARCHAR,\r\n"
 				+ "CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n"
 				+ "CHAVE_FALHA INTEGER NOT NULL,\r\n" + "PRIMARY KEY(CHAVE),\r\n"
+				+ "INDICE_OCORRENCIA DOUBLE PRECISION, \r\n" + "INDICE_DETECCAO DOUBLE PRECISION, \r\n"
 				+ "CONSTRAINT modo_falha_chave_falha_fkey FOREIGN KEY (CHAVE_FALHA) REFERENCES MAQUINAS.FALHA(CHAVE) ON DELETE CASCADE\r\n"
 				+ ")");
 
@@ -198,16 +200,31 @@ public abstract class DatabaseTools {
 	}
 
 	private void criarTabelaCausasPotenciais(Connection con) throws SQLException {
+		PreparedStatement statement = con.prepareStatement("CREATE TABLE MAQUINAS.CAUSAS_POTENCIAIS (\r\n"
+				+ "						NOME VARCHAR(80),\r\n"
+				+ "						CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n"
+				+ "						DESCRICAO LONG VARCHAR, \r\n"
+				+ "						CHAVE_MODO_FALHA INTEGER NOT NULL,\r\n"
+				+ "						PRIMARY KEY (chave),\r\n"
+				+ "						CONSTRAINT causas_potenciais_chave_modo_falha_fkey FOREIGN KEY (CHAVE_MODO_FALHA)\r\n"
+				+ "						REFERENCES MAQUINAS.MODO_FALHA(CHAVE) ON DELETE CASCADE\r\n"
+				+ "						);");
+
+		statement.execute();
+		statement.close();
+	}
+
+	private void criarTabelaEfeitos(Connection con) throws SQLException {
 		PreparedStatement statement = con
-				.prepareStatement("CREATE TABLE MAQUINAS.CAUSAS_POTENCIAIS (\r\n" + 
-						"						NOME VARCHAR(80),\r\n" + 
-						"						CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
-						"						DESCRICAO LONG VARCHAR, \r\n" + 
-						"						CHAVE_MODO_FALHA INTEGER NOT NULL,\r\n" + 
-						"						PRIMARY KEY (chave),\r\n" + 
-						"						CONSTRAINT causas_potenciais_chave_modo_falha_fkey FOREIGN KEY (CHAVE_MODO_FALHA)\r\n" + 
-						"						REFERENCES MAQUINAS.MODO_FALHA(CHAVE) ON DELETE CASCADE\r\n" + 
-						"						);");
+				.prepareStatement("CREATE TABLE MAQUINAS.EFEITO(\r\n" + 
+						"NOME LONG VARCHAR,\r\n" + 
+						"DESCRICAO LONG VARCHAR,\r\n" + 
+						"CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
+						"CHAVE_MODO_FALHA INTEGER NOT NULL,\r\n" + 
+						"PRIMARY KEY (chave),\r\n" + 
+						"CONSTRAINT efeitos_chave_modo_falha_fkey FOREIGN KEY (CHAVE_MODO_FALHA)\r\n" + 
+						"REFERENCES MAQUINAS.MODO_FALHA(CHAVE) ON DELETE CASCADE\r\n" + 
+						");");
 
 		statement.execute();
 		statement.close();
