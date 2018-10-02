@@ -3,9 +3,9 @@ package controladores;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-import databaseTools.CausaPotencialTools;
+
 import databaseTools.EfeitosTools;
-import entidades.CausaPotencial;
+
 import entidades.Efeito;
 
 public class Efeitos {
