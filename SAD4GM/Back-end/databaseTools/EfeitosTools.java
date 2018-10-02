@@ -7,14 +7,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import entidades.CausaPotencial;
+import entidades.Efeito;
 
 public class EfeitosTools extends DatabaseTools {
 
-	public void inserir(String nome, String descricao, int chaveModoFalha) throws SQLException {
+	public void inserir(String nome, String descricao, int chaveModoFalha,double indiceSeveridade) throws SQLException {
 
 		try {
 
-			final String INSERIR = "INSERT INTO maquinas.efeito (nome,descricao,chave_modo_falha) VALUES (?,?,?)";
+			final String INSERIR = "INSERT INTO maquinas.efeito (nome,descricao,chave_modo_falha,indice_severidade) VALUES (?,?,?,?)";
 			abrirConexao();
 
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
@@ -22,6 +23,7 @@ public class EfeitosTools extends DatabaseTools {
 			stmt.setString(1, nome);
 			stmt.setString(2, descricao);
 			stmt.setInt(3, chaveModoFalha);
+			stmt.setDouble(4, indiceSeveridade);
 			stmt.execute();
 			stmt.close();
 
@@ -105,19 +107,19 @@ public class EfeitosTools extends DatabaseTools {
 		state.execute();
 	}
 
-	public Map<Integer, CausaPotencial> getEfeitosMap(int chaveModoFalha) throws SQLException {
+	public Map<Integer,Efeito> getEfeitosMap(int chaveModoFalha) throws SQLException {
 		abrirConexao();
 
-		Map<Integer, CausaPotencial> efeitos = new HashMap<>();
+		Map<Integer, Efeito> efeitos = new HashMap<>();
 
 		PreparedStatement state = con.prepareStatement(
 				"SELECT nome,descricao,chave FROM maquinas.efeito WHERE chave_modo_falha =" + chaveModoFalha);
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {
-			CausaPotencial causaPotencial = new CausaPotencial(resSet.getString(1), resSet.getString(2),
+			Efeito efeito = new Efeito(resSet.getString(1), resSet.getString(2),
 					resSet.getInt(3));
-			efeitos.put(causaPotencial.getChave(), causaPotencial);
+			efeitos.put(efeito.getChave(), efeito);
 		}
 
 		state.close();
