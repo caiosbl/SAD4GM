@@ -31,6 +31,7 @@ import java.awt.SystemColor;
 import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -98,7 +99,7 @@ public class InsertModoFalha extends Main {
 
 		JButton btnInserir = new JButton("");
 		btnInserir.setSelectedIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/patch/insert-on.png")));
-		btnInserir.setBounds(50, 351, 103, 21);
+		btnInserir.setBounds(56, 408, 103, 21);
 		btnInserir.setIcon(new ImageIcon(InsertModoFalha.class.getResource("/Resources/icon/patch/insert-off.png")));
 
 		btnInserir.addActionListener(new ActionListener() {
@@ -180,7 +181,7 @@ public class InsertModoFalha extends Main {
 		desktopPane.add(btnInserir);
 
 		JScrollPane jsp = new JScrollPane();
-		jsp.setBounds(47, 225, 511, 116);
+		jsp.setBounds(47, 170, 511, 116);
 		desktopPane.add(jsp);
 		
 				descricaoPane = new JTextPane();
@@ -188,7 +189,7 @@ public class InsertModoFalha extends Main {
 				descricaoPane.setEditable(true);
 
 		tituloField = new JTextField();
-		tituloField.setBounds(45, 160, 514, 34);
+		tituloField.setBounds(45, 110, 514, 34);
 		desktopPane.add(tituloField);
 		tituloField.setColumns(10);
 	
@@ -207,13 +208,49 @@ public class InsertModoFalha extends Main {
 		JLabel lblTtulo = new JLabel("Título:");
 		lblTtulo.setForeground(Color.WHITE);
 		lblTtulo.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblTtulo.setBounds(267, 139, 54, 20);
+		lblTtulo.setBounds(267, 90, 54, 20);
 		desktopPane.add(lblTtulo);
 		
 		JLabel lblDescrio = new JLabel("Descrição:");
 		lblDescrio.setForeground(Color.WHITE);
 		lblDescrio.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblDescrio.setBounds(257, 204, 84, 20);
+		lblDescrio.setBounds(257, 150, 84, 20);
 		desktopPane.add(lblDescrio);
+		
+		JLabel lblIndceOcorrncia = new JLabel("Indíce Ocorrência:");
+		lblIndceOcorrncia.setForeground(Color.WHITE);
+		lblIndceOcorrncia.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblIndceOcorrncia.setBounds(229, 287, 148, 20);
+		desktopPane.add(lblIndceOcorrncia);
+		
+		
+		String[] escalaOcorrencias = {
+				"Extremamente remoto, altamente improvável - 1",
+				"Remoto,improvável - 2",
+				"Pequena chance de ocorrências - 3",
+				"Pequeno número de ocorrências - 4",
+				"Espera-se um número ocasional de falhas - 5",
+				"Ocorrência moderada - 6",
+				"Ocorrência frequente - 7",
+				"Ocorrência elevada - 8",
+				"Ocorrência muito elevada - 9",
+				"Ocorrência certa - 10"};
+		
+		
+		
+		
+		JComboBox boxOcorrencias = new JComboBox(escalaOcorrencias);
+		boxOcorrencias.setBounds(50, 308, 508, 34);
+		desktopPane.add(boxOcorrencias);
+		
+		JLabel lblIndceDeteco = new JLabel("Indíce Detecção:");
+		lblIndceDeteco.setForeground(Color.WHITE);
+		lblIndceDeteco.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblIndceDeteco.setBounds(229, 341, 148, 20);
+		desktopPane.add(lblIndceDeteco);
+		
+		JComboBox boxDeteccao = new JComboBox();
+		boxDeteccao.setBounds(50, 362, 508, 34);
+		desktopPane.add(boxDeteccao);
 	}
 }
