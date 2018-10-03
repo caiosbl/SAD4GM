@@ -225,19 +225,31 @@ public class InsertModoFalha extends Main {
 		
 		
 		String[] escalaOcorrencias = {
-				"Extremamente remoto, altamente improvável - 1",
-				"Remoto,improvável - 2",
-				"Pequena chance de ocorrências - 3",
-				"Pequeno número de ocorrências - 4",
-				"Espera-se um número ocasional de falhas - 5",
-				"Ocorrência moderada - 6",
-				"Ocorrência frequente - 7",
-				"Ocorrência elevada - 8",
-				"Ocorrência muito elevada - 9",
-				"Ocorrência certa - 10"};
+				"1 - Extremamente remoto, altamente improvável",
+				"2 - Remoto, improvável",
+				"3 - Pequena chance de ocorrências",
+				"4 - Pequeno número de ocorrências",
+				"5 - Espera-se um número ocasional de falhas",
+				"6 - Ocorrência moderada",
+				"7 - Ocorrência frequente",
+				"8 - Ocorrência elevada",
+				"9 - Ocorrência muito elevada",
+				"10 -Ocorrência certa"};
 		
-		
-		
+		String[] escalaDeteccao = {
+				"1 - É quase certo que será detectado",
+				"2 - Probabilidade muito alta de detecção",
+				"3 - Alta probabilidade de detecção",
+				"4 - Chance moderada de detecção",
+				"5 - Chance média de detecção",
+				"6 - Alguma probabilidade de detecção",
+				"7 - Baixa probabilidade  de detecção",
+				"8 - Probabilidade muito baixa de detecção",
+				"9 - Probabilidade remota de detecção",
+				"10 -Detecção quase impossível"};
+				 
+				
+				
 		
 		JComboBox boxOcorrencias = new JComboBox(escalaOcorrencias);
 		boxOcorrencias.setBounds(50, 308, 508, 34);
@@ -249,7 +261,7 @@ public class InsertModoFalha extends Main {
 		lblIndceDeteco.setBounds(229, 341, 148, 20);
 		desktopPane.add(lblIndceDeteco);
 		
-		JComboBox boxDeteccao = new JComboBox();
+		JComboBox boxDeteccao = new JComboBox(escalaDeteccao);
 		boxDeteccao.setBounds(50, 362, 508, 34);
 		desktopPane.add(boxDeteccao);
 	}
