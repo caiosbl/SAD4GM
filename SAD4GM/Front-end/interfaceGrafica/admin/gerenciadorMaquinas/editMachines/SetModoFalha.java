@@ -49,7 +49,9 @@ public class SetModoFalha extends Main {
 	private String idUsuario;
 	private Sistema sistema = new Sistema();
 	private JTextField tituloField;
+	@SuppressWarnings("rawtypes")
 	private JComboBox boxOcorrencias;
+	@SuppressWarnings("rawtypes")
 	private JComboBox boxDeteccao;
 
 	/**
@@ -59,6 +61,7 @@ public class SetModoFalha extends Main {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SetModoFalha(String idUser, int xLocation, int yLocation, int chaveModoFalha) {
 		super(xLocation, yLocation);
 		this.idUsuario = idUser;
@@ -173,10 +176,12 @@ public class SetModoFalha extends Main {
 				}
 
 				else {
-					JOptionPane.showMessageDialog(null,
-							sistema.setDescricaoModoFalha(descricaoPane.getText().trim(), chaveModoFalha));
+
 					JOptionPane.showMessageDialog(null,
 							sistema.setNomeFalha(tituloField.getText().trim(), chaveModoFalha));
+					
+					JOptionPane.showMessageDialog(null,
+							sistema.setDescricaoModoFalha(descricaoPane.getText().trim(), chaveModoFalha));
 
 					JOptionPane.showMessageDialog(null,
 							sistema.setIndiceOcorrencia(boxOcorrencias.getSelectedIndex() + 1, chaveModoFalha));
@@ -247,11 +252,6 @@ public class SetModoFalha extends Main {
 		int indiceOcorrencia = (int) sistema.getIndiceOcorrenciaModoFalha(chaveModoFalha);
 		int indiceDeteccao = (int) sistema.getIndiceDeteccaosModoFalha(chaveModoFalha);
 
-		if (indiceOcorrencia >= 0)
-			boxOcorrencias.setSelectedIndex(indiceOcorrencia - 1);
-		if (indiceDeteccao >= 0)
-			boxDeteccao.setSelectedIndex(indiceOcorrencia - 1);
-
 		JLabel lblIndceDeteco = new JLabel("Indíce Detecção:");
 		lblIndceDeteco.setForeground(Color.WHITE);
 		lblIndceDeteco.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -261,6 +261,10 @@ public class SetModoFalha extends Main {
 		boxDeteccao = new JComboBox(escalaDeteccao);
 		boxDeteccao.setBounds(50, 362, 508, 34);
 		desktopPane.add(boxDeteccao);
+		if (indiceOcorrencia >= 1)
+			boxOcorrencias.setSelectedIndex(indiceOcorrencia - 1);
+		if (indiceDeteccao >= 1)
+			boxDeteccao.setSelectedIndex(indiceOcorrencia - 1);
 
 	}
 }

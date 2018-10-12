@@ -191,9 +191,37 @@ public class ViewModoFalha extends Main {
 		label_1.setBounds(223, 287, 148, 20);
 		desktopPane.add(label_1);
 
+		String[] escalaOcorrencias = { "Extremamente remoto, altamente improvável", "Remoto, improvável",
+				"Pequena chance de ocorrências", "Pequeno número de ocorrências",
+				"Espera-se um número ocasional de falhas", "Ocorrência moderada", "Ocorrência frequente",
+				"Ocorrência elevada", "Ocorrência muito elevada", "Ocorrência certa" };
+
+		String[] escalaDeteccao = { "É quase certo que será detectado", "Probabilidade muito alta de detecção",
+				"Alta probabilidade de detecção", "Chance moderada de detecção", "Chance média de detecção",
+				"Alguma probabilidade de detecção", "Baixa probabilidade  de detecção",
+				"Probabilidade muito baixa de detecção", "Probabilidade remota de detecção",
+				"Detecção quase impossível" };
+
 		indiceOcorrenciaField = new JTextField();
-		indiceOcorrenciaField.setText(String.valueOf(sistema.getIndiceOcorrenciaModoFalha(chaveModoFalha)));
+		double indiceOcorrencia = sistema.getIndiceOcorrenciaModoFalha(chaveModoFalha);
+		double indiceDeteccao = sistema.getIndiceDeteccaosModoFalha(chaveModoFalha);
+
+		String indiceOcorrenciaString;
+		String indiceDeteccaoString;
+
+		if (indiceOcorrencia >= 1)
+			indiceOcorrenciaString = indiceOcorrencia + " - " + escalaOcorrencias[(int) indiceOcorrencia - 1];
+		else
+			indiceOcorrenciaString = "Falha ao Obter Indíce de Ocorrência!";
+
+		if (indiceDeteccao >= 1)
+			indiceDeteccaoString = indiceDeteccao + " - " + escalaDeteccao[(int) indiceDeteccao - 1];
+		else
+			indiceDeteccaoString = "Falha ao Obter Indíce de Detecção!";
+
+		indiceOcorrenciaField.setText(indiceOcorrenciaString);
 		indiceOcorrenciaField.setEditable(false);
+
 		indiceOcorrenciaField.setColumns(10);
 		indiceOcorrenciaField.setBounds(35, 308, 547, 34);
 		desktopPane.add(indiceOcorrenciaField);
@@ -205,7 +233,7 @@ public class ViewModoFalha extends Main {
 		desktopPane.add(label_2);
 
 		indiceDeteccaoField = new JTextField();
-		indiceDeteccaoField.setText(String.valueOf(sistema.getIndiceDeteccaosModoFalha(chaveModoFalha)));
+		indiceDeteccaoField.setText(indiceDeteccaoString);
 		indiceDeteccaoField.setEditable(false);
 		indiceDeteccaoField.setColumns(10);
 		indiceDeteccaoField.setBounds(35, 362, 547, 34);

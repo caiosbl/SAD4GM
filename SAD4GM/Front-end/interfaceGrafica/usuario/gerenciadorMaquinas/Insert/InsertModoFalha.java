@@ -51,7 +51,9 @@ public class InsertModoFalha extends Main {
 	private Sistema sistema;
 	private JTextField tituloField;
 	private JLabel title;
+	@SuppressWarnings("rawtypes")
 	private JComboBox boxOcorrencias;
+	@SuppressWarnings("rawtypes")
 	private JComboBox boxDeteccao;
 
 	/**
@@ -64,6 +66,7 @@ public class InsertModoFalha extends Main {
 	 * @throws SQLException
 	 */
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public InsertModoFalha(String id, int xLocation, int yLocation, int chaveFalha) {
 		super(xLocation, yLocation);
 		sistema = new Sistema();
