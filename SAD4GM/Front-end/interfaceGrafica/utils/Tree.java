@@ -6,6 +6,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 import entidades.CausaPotencial;
 import entidades.Componente;
+import entidades.Efeito;
 import entidades.Falha;
 import entidades.Maquina;
 import entidades.ModoFalha;
@@ -86,16 +87,30 @@ public class Tree {
 				DefaultMutableTreeNode mFailNode = new DefaultMutableTreeNode(modoFalha);
 				modoFalhaNode.add(mFailNode);
 				iniciaRamoCausaPotencial(mFailNode, modoFalha, sistema);
+				iniciaRamoEfeitos(mFailNode, modoFalha, sistema);
 			}
 		}
 
 	}
 
-	private static void iniciaRamoCausaPotencial(DefaultMutableTreeNode failNode, ModoFalha modoFalha,
+	private static void iniciaRamoEfeitos(DefaultMutableTreeNode modoFalhaNode, ModoFalha modoFalha, Sistema sistema) {
+		DefaultMutableTreeNode efeitoNode = new DefaultMutableTreeNode("Efeitos");
+		if (!getModosFalhaMap(modoFalha.getChave(), sistema).isEmpty()) {
+			modoFalhaNode.add(efeitoNode);
+
+			for (Efeito efeito : getEfeitosMap(modoFalha.getChave(), sistema).values()) {
+				DefaultMutableTreeNode efecctNode = new DefaultMutableTreeNode(efeito);
+				efeitoNode.add(efecctNode);
+			}
+		}
+
+	}
+
+	private static void iniciaRamoCausaPotencial(DefaultMutableTreeNode modoFalhaNode, ModoFalha modoFalha,
 			Sistema sistema) {
 		DefaultMutableTreeNode causaPotencialNode = new DefaultMutableTreeNode("Causas Potenciais");
 		if (!getModosFalhaMap(modoFalha.getChave(), sistema).isEmpty()) {
-			failNode.add(causaPotencialNode);
+			modoFalhaNode.add(causaPotencialNode);
 
 			for (CausaPotencial causaPotencial : getCausasPotenciaisMap(modoFalha.getChave(), sistema).values()) {
 				DefaultMutableTreeNode cPotencialNode = new DefaultMutableTreeNode(causaPotencial);
@@ -107,6 +122,11 @@ public class Tree {
 
 	private static Map<Integer, CausaPotencial> getCausasPotenciaisMap(int chaveModoFalha, Sistema sistema) {
 		return sistema.getCausasPotenciaisMap(chaveModoFalha);
+
+	}
+
+	private static Map<Integer, Efeito> getEfeitosMap(int chaveModoFalha, Sistema sistema) {
+		return sistema.getEfeitosMap(chaveModoFalha);
 
 	}
 

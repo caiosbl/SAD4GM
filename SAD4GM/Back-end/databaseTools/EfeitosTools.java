@@ -5,8 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-
-import entidades.CausaPotencial;
 import entidades.Efeito;
 
 public class EfeitosTools extends DatabaseTools {
