@@ -15,12 +15,12 @@ public class ModosFalha {
 		this.mFTools = mFTools;
 	}
 
-	public String inserir(String nome, String descricao, int chaveFalha) {
+	public String inserir(String nome, String descricao, int chaveFalha,double indiceOcorrencia,double indiceDeteccao) {
 
 		String status;
 
 		try {
-			mFTools.inserir(nome, descricao, chaveFalha);
+			mFTools.inserir(nome, descricao, chaveFalha,indiceOcorrencia,indiceDeteccao);
 			status = "Modo de Falha inserido com Sucesso!";
 		} catch (SQLException e) {
 			status = e.getMessage();
@@ -82,6 +82,45 @@ public class ModosFalha {
 
 		return status;
 	}
+	
+	public String setNome(String nome, int chaveModoFalha) {
+		String status;
+
+		try {
+			mFTools.setNomeModoFalha(nome, chaveModoFalha);
+			status = "Título atualizado com Sucesso!";
+		} catch (Exception e) {
+			status = "Falha ao Atualizar Título!";
+		}
+
+		return status;
+	}
+	
+	public String setIndiceOcorrencia(double indiceOcorrencia, int chaveModoFalha) {
+		String status;
+
+		try {
+			mFTools.setIndiceOcorrencia(indiceOcorrencia, chaveModoFalha);
+			status = "Indíce de Ocorrência atualizado com Sucesso!";
+		} catch (Exception e) {
+			status = "Falha ao Atualizar Indíce de Ocorrência!";
+		}
+
+		return status;
+	}
+	
+	public String setIndiceDeteccao(double indiceDeteccao, int chaveModoFalha) {
+		String status;
+
+		try {
+			mFTools.setIndiceOcorrencia(indiceDeteccao, chaveModoFalha);
+			status = "Indíce de Detecção atualizado com Sucesso!";
+		} catch (Exception e) {
+			status = "Falha ao Atualizar Indíce de Detecção!";
+		}
+
+		return status;
+	}
 
 	public String remover(int chave) {
 		String status;
@@ -96,17 +135,6 @@ public class ModosFalha {
 		return status;
 	}
 
-	public String setNome(String nome, int chaveModoFalha) {
-		String status;
 
-		try {
-			mFTools.setNomeModoFalha(nome, chaveModoFalha);
-			status = "Título atualizado com Sucesso!";
-		} catch (Exception e) {
-			status = "Falha ao Atualizar Título!";
-		}
-
-		return status;
-	}
 
 }
