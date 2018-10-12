@@ -69,6 +69,28 @@ public class ModosFalha {
 		}
 		return nome;
 	}
+	
+	public double getIndiceOcorrencia(int chaveModoFalha) {
+		double indiceOcorrencia;
+
+		try {
+			indiceOcorrencia = mFTools.getIndiceOcorrencia(chaveModoFalha);
+		} catch (SQLException e) {
+			indiceOcorrencia = -1;
+		}
+		return indiceOcorrencia;
+	}
+	
+	public double getIndiceDeteccao(int chaveModoFalha) {
+		double indiceDeteccao;
+
+		try {
+			indiceDeteccao = mFTools.getIndiceDeteccao(chaveModoFalha);
+		} catch (SQLException e) {
+			indiceDeteccao = -1;
+		}
+		return indiceDeteccao;
+	}
 
 	public String setDescricao(String descricao, int chaveModoFalha) {
 		String status;

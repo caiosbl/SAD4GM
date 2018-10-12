@@ -280,8 +280,8 @@ public class Sistema {
 
 	// Funções de Modos de Falha
 
-	public String inserirModoFalha(String nome, String descricao, int chaveFalha) {
-		return cMFalhas.inserir(nome, descricao, chaveFalha);
+	public String inserirModoFalha(String nome, String descricao, int chaveFalha,double indiceOcorrencia,double indiceDeteccao) {
+		return cMFalhas.inserir(nome, descricao, chaveFalha,indiceOcorrencia,indiceDeteccao);
 	}
 
 	public String removerModoFalha(int chave) {
@@ -299,6 +299,18 @@ public class Sistema {
 	public String getDescricaoModoFalha(int chaveModoFalha) {
 		return cMFalhas.getDescricao(chaveModoFalha);
 	}
+	
+	public String getNomeModoFalha(int chaveModoFalha) {
+		return cMFalhas.getNome(chaveModoFalha);
+	}
+	
+	public double getIndiceOcorrenciaModoFalha(int chaveModoFalha) {
+		return cMFalhas.getIndiceOcorrencia(chaveModoFalha);
+	}
+	
+	public double getIndiceDeteccaosModoFalha(int chaveModoFalha) {
+		return cMFalhas.getIndiceDeteccao(chaveModoFalha);
+	}
 
 	public String setNomeModoFalha(String nome, int chaveModoFalha) {
 		return cMFalhas.setNome(nome, chaveModoFalha);
@@ -308,9 +320,7 @@ public class Sistema {
 		return cMFalhas.setDescricao(descricao, chaveModoFalha);
 	}
 
-	public String getNomeModoFalha(int chaveModoFalha) {
-		return cMFalhas.getNome(chaveModoFalha);
-	}
+
 
 	// Funções de Causas Potenciais
 

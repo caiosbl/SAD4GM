@@ -53,6 +53,45 @@ public class ModosFalhaTools extends DatabaseTools {
 		return modosFalha;
 
 	}
+	
+	public double getIndiceOcorrencia(int chaveModoFalha) throws SQLException {
+		abrirConexao();
+		double indiceOcorrencia;
+		PreparedStatement state = con
+				.prepareStatement("SELECT indice_ocorrencia FROM maquinas.modo_falha WHERE chave=" + chaveModoFalha);
+		ResultSet resSet = state.executeQuery();
+
+		if (resSet.next())
+			indiceOcorrencia = resSet.getDouble(1);
+		else
+			indiceOcorrencia = -1;
+
+		state.close();
+		fecharConexao();
+
+		return indiceOcorrencia;
+
+	}
+	
+	public double getIndiceDeteccao(int chaveModoFalha) throws SQLException {
+		abrirConexao();
+		double indiceDeteccao;
+		PreparedStatement state = con
+				.prepareStatement("SELECT indice_deteccao FROM maquinas.modo_falha WHERE chave=" + chaveModoFalha);
+		ResultSet resSet = state.executeQuery();
+
+		if (resSet.next())
+			indiceDeteccao = resSet.getDouble(1);
+		else
+			indiceDeteccao = -1;
+
+		state.close();
+		fecharConexao();
+
+		return indiceDeteccao;
+
+	}
+	
 
 	public String getDescricaoModoFalha(int chaveModoFalha) throws SQLException {
 		abrirConexao();

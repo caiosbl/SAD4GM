@@ -44,6 +44,8 @@ public class ViewModoFalha extends Main {
 	private String idAdmin;
 
 	private Sistema sistema = new Sistema();
+	private JTextField indiceOcorrenciaField;
+	private JTextField indiceDeteccaoField;
 
 	/**
 	 * Launch the application.
@@ -89,18 +91,18 @@ public class ViewModoFalha extends Main {
 		desktopPane.add(btnVoltar);
 
 		JScrollPane jsp = new JScrollPane();
-		jsp.setBounds(35, 239, 540, 116);
+		jsp.setBounds(35, 170, 540, 116);
 		desktopPane.add(jsp);
-		
-				JTextPane descricaoPane = new JTextPane();
-				jsp.setViewportView(descricaoPane);
-				descricaoPane.setText(sistema.getDescricaoModoFalha(chaveModoFalha));
-				descricaoPane.setEditable(false);
+
+		JTextPane descricaoPane = new JTextPane();
+		jsp.setViewportView(descricaoPane);
+		descricaoPane.setText(sistema.getDescricaoModoFalha(chaveModoFalha));
+		descricaoPane.setEditable(false);
 
 		JTextField tituloField = new JTextField();
 		tituloField.setEditable(false);
 		tituloField.setText(sistema.getNomeModoFalha(chaveModoFalha));
-		tituloField.setBounds(33, 169, 547, 34);
+		tituloField.setBounds(33, 110, 547, 34);
 		desktopPane.add(tituloField);
 		tituloField.setColumns(10);
 
@@ -170,18 +172,44 @@ public class ViewModoFalha extends Main {
 		lblModoDeFalha.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblModoDeFalha.setBounds(49, 47, 200, 29);
 		desktopPane.add(lblModoDeFalha);
-		
-		JLabel lblNome = new JLabel(" Nome:");
+
+		JLabel lblNome = new JLabel("Título:");
 		lblNome.setForeground(Color.WHITE);
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNome.setBounds(255, 146, 58, 20);
+		lblNome.setBounds(255, 90, 58, 20);
 		desktopPane.add(lblNome);
-		
+
 		JLabel lblDescrio = new JLabel("Descrição:");
 		lblDescrio.setForeground(Color.WHITE);
 		lblDescrio.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblDescrio.setBounds(248, 215, 84, 20);
+		lblDescrio.setBounds(248, 150, 84, 20);
 		desktopPane.add(lblDescrio);
+
+		JLabel label_1 = new JLabel("Indíce Ocorrência:");
+		label_1.setForeground(Color.WHITE);
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		label_1.setBounds(223, 287, 148, 20);
+		desktopPane.add(label_1);
+
+		indiceOcorrenciaField = new JTextField();
+		indiceOcorrenciaField.setText(String.valueOf(sistema.getIndiceOcorrenciaModoFalha(chaveModoFalha)));
+		indiceOcorrenciaField.setEditable(false);
+		indiceOcorrenciaField.setColumns(10);
+		indiceOcorrenciaField.setBounds(35, 308, 547, 34);
+		desktopPane.add(indiceOcorrenciaField);
+
+		JLabel label_2 = new JLabel("Indíce Detecção:");
+		label_2.setForeground(Color.WHITE);
+		label_2.setFont(new Font("Tahoma", Font.BOLD, 16));
+		label_2.setBounds(226, 344, 136, 20);
+		desktopPane.add(label_2);
+
+		indiceDeteccaoField = new JTextField();
+		indiceDeteccaoField.setText(String.valueOf(sistema.getIndiceDeteccaosModoFalha(chaveModoFalha)));
+		indiceDeteccaoField.setEditable(false);
+		indiceDeteccaoField.setColumns(10);
+		indiceDeteccaoField.setBounds(35, 362, 547, 34);
+		desktopPane.add(indiceDeteccaoField);
 
 	}
 }
