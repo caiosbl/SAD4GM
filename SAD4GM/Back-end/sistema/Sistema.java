@@ -311,6 +311,15 @@ public class Sistema {
 	public double getIndiceDeteccaosModoFalha(int chaveModoFalha) {
 		return cMFalhas.getIndiceDeteccao(chaveModoFalha);
 	}
+	
+	public String setIndiceOcorrencia(double indiceOcorrencia, int chaveModoFalha) {
+		return cMFalhas.setIndiceOcorrencia(indiceOcorrencia, chaveModoFalha);
+	}
+	
+	public String setIndiceDeteccao(double indiceDeteccao, int chaveModoFalha) {
+		return cMFalhas.setIndiceDeteccao(indiceDeteccao, chaveModoFalha);
+	}
+
 
 	public String setNomeModoFalha(String nome, int chaveModoFalha) {
 		return cMFalhas.setNome(nome, chaveModoFalha);

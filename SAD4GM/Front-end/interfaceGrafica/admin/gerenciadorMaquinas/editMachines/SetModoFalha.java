@@ -22,6 +22,8 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
@@ -47,6 +49,8 @@ public class SetModoFalha extends Main {
 	private String idUsuario;
 	private Sistema sistema = new Sistema();
 	private JTextField tituloField;
+	private JComboBox boxOcorrencias;
+	private JComboBox boxDeteccao;
 
 	/**
 	 * Launch the application.
@@ -77,9 +81,9 @@ public class SetModoFalha extends Main {
 		btnVoltar.setBackground(new Color(0, 0, 0, 0));
 		btnVoltar.setSelectedIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/return-selected.png")));
 		btnVoltar.setIcon(new ImageIcon(SetModoFalha.class.getResource("/Resources/icon/back-btn.png")));
-		btnVoltar.setBounds(503, 395, 78, 44);
+		btnVoltar.setBounds(521, 408, 78, 44);
 		JScrollPane jPane = new JScrollPane();
-		jPane.setBounds(47, 225, 511, 116);
+		jPane.setBounds(47, 170, 511, 116);
 		desktopPane.add(jPane);
 
 		JTextPane descricaoPane = new JTextPane();
@@ -174,19 +178,25 @@ public class SetModoFalha extends Main {
 					JOptionPane.showMessageDialog(null,
 							sistema.setNomeFalha(tituloField.getText().trim(), chaveModoFalha));
 
+					JOptionPane.showMessageDialog(null,
+							sistema.setIndiceOcorrencia(boxOcorrencias.getSelectedIndex() + 1, chaveModoFalha));
+
+					JOptionPane.showMessageDialog(null,
+							sistema.setIndiceDeteccao(boxDeteccao.getSelectedIndex() + 1, chaveModoFalha));
+
 				}
 
 			}
 
 		});
 
-		btnAtualizar.setBounds(35, 348, 124, 39);
+		btnAtualizar.setBounds(37, 408, 124, 39);
 		desktopPane.add(btnAtualizar);
 
 		tituloField = new JTextField();
 		tituloField.setText(sistema.getNomeModoFalha(chaveModoFalha));
 		tituloField.setColumns(10);
-		tituloField.setBounds(45, 160, 514, 34);
+		tituloField.setBounds(45, 110, 514, 34);
 		desktopPane.add(tituloField);
 
 		JLabel lblEditar = new JLabel("EDITAR");
@@ -204,14 +214,53 @@ public class SetModoFalha extends Main {
 		JLabel label_1 = new JLabel("Título:");
 		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 16));
-		label_1.setBounds(269, 142, 54, 20);
+		label_1.setBounds(269, 90, 54, 20);
 		desktopPane.add(label_1);
 
 		JLabel lblDescrio = new JLabel("Descrição:");
 		lblDescrio.setForeground(Color.WHITE);
 		lblDescrio.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblDescrio.setBounds(259, 206, 84, 20);
+		lblDescrio.setBounds(259, 150, 84, 20);
 		desktopPane.add(lblDescrio);
+
+		JLabel label_2 = new JLabel("Indíce Ocorrência:");
+		label_2.setForeground(Color.WHITE);
+		label_2.setFont(new Font("Tahoma", Font.BOLD, 16));
+		label_2.setBounds(229, 287, 148, 20);
+		desktopPane.add(label_2);
+
+		String[] escalaOcorrencias = { "1 - Extremamente remoto, altamente improvável", "2 - Remoto, improvável",
+				"3 - Pequena chance de ocorrências", "4 - Pequeno número de ocorrências",
+				"5 - Espera-se um número ocasional de falhas", "6 - Ocorrência moderada", "7 - Ocorrência frequente",
+				"8 - Ocorrência elevada", "9 - Ocorrência muito elevada", "10 -Ocorrência certa" };
+
+		String[] escalaDeteccao = { "1 - É quase certo que será detectado", "2 - Probabilidade muito alta de detecção",
+				"3 - Alta probabilidade de detecção", "4 - Chance moderada de detecção", "5 - Chance média de detecção",
+				"6 - Alguma probabilidade de detecção", "7 - Baixa probabilidade  de detecção",
+				"8 - Probabilidade muito baixa de detecção", "9 - Probabilidade remota de detecção",
+				"10 - Detecção quase impossível" };
+
+		boxOcorrencias = new JComboBox(escalaOcorrencias);
+		boxOcorrencias.setBounds(50, 308, 508, 34);
+		desktopPane.add(boxOcorrencias);
+
+		int indiceOcorrencia = (int) sistema.getIndiceOcorrenciaModoFalha(chaveModoFalha);
+		int indiceDeteccao = (int) sistema.getIndiceDeteccaosModoFalha(chaveModoFalha);
+
+		if (indiceOcorrencia >= 0)
+			boxOcorrencias.setSelectedIndex(indiceOcorrencia - 1);
+		if (indiceDeteccao >= 0)
+			boxDeteccao.setSelectedIndex(indiceOcorrencia - 1);
+
+		JLabel lblIndceDeteco = new JLabel("Indíce Detecção:");
+		lblIndceDeteco.setForeground(Color.WHITE);
+		lblIndceDeteco.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblIndceDeteco.setBounds(229, 341, 148, 20);
+		desktopPane.add(lblIndceDeteco);
+
+		boxDeteccao = new JComboBox(escalaDeteccao);
+		boxDeteccao.setBounds(50, 362, 508, 34);
+		desktopPane.add(boxDeteccao);
 
 	}
 }
