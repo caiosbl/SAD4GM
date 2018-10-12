@@ -10,11 +10,11 @@ import entidades.ModoFalha;
 
 public class ModosFalhaTools extends DatabaseTools {
 
-	public void inserir(String nome, String descricao, int chaveFalha) throws SQLException {
+	public void inserir(String nome, String descricao, int chaveFalha, double indiceOcorrencia, double indiceDeteccao ) throws SQLException {
 
 		try {
 
-			final String INSERIR = "INSERT INTO maquinas.modo_falha (nome,descricao,chave_falha) VALUES (?,?,?)";
+			final String INSERIR = "INSERT INTO maquinas.modo_falha (nome,descricao,chave_falha,indice_ocorrencia,indice_deteccao) VALUES (?,?,?,?,?)";
 			abrirConexao();
 
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
@@ -22,6 +22,8 @@ public class ModosFalhaTools extends DatabaseTools {
 			stmt.setString(1, nome);
 			stmt.setString(2, descricao);
 			stmt.setInt(3, chaveFalha);
+			stmt.setDouble(4, indiceOcorrencia);
+			stmt.setDouble(5, indiceDeteccao);
 			stmt.execute();
 			stmt.close();
 
@@ -89,15 +91,7 @@ public class ModosFalhaTools extends DatabaseTools {
 		return nome;
 
 	}
-
-	public void setDescricaoModoFalha(String descricao, int chaveModoFalha) throws SQLException {
-		abrirConexao();
-		PreparedStatement state = con
-				.prepareStatement("UPDATE  maquinas.modo_falha SET descricao = ? WHERE chave=" + chaveModoFalha);
-		state.setString(1, descricao);
-		state.execute();
-	}
-
+	
 	public Map<Integer, ModoFalha> getModosFalhaMap(int chaveFalha) throws SQLException {
 		abrirConexao();
 
@@ -118,6 +112,44 @@ public class ModosFalhaTools extends DatabaseTools {
 
 		return modosFalha;
 	}
+	
+
+	public void setDescricaoModoFalha(String descricao, int chaveModoFalha) throws SQLException {
+		abrirConexao();
+		PreparedStatement state = con
+				.prepareStatement("UPDATE  maquinas.modo_falha SET descricao = ? WHERE chave=" + chaveModoFalha);
+		state.setString(1, descricao);
+		state.execute();
+	}
+	
+	public void setNomeModoFalha(String nome, int chaveModoFalha) throws SQLException {
+		abrirConexao();
+		PreparedStatement state = con
+				.prepareStatement("UPDATE  maquinas.modo_falha SET nome = ? WHERE chave=" + chaveModoFalha);
+		state.setString(1, nome);
+		state.execute();
+
+	}
+	
+	public void setIndiceOcorrencia(double indiceOcorrencia, int chaveModoFalha) throws SQLException {
+		abrirConexao();
+		PreparedStatement state = con
+				.prepareStatement("UPDATE  maquinas.modo_falha SET indice_ocorrencia = ? WHERE chave=" + chaveModoFalha);
+		state.setDouble(1, indiceOcorrencia);
+		state.execute();
+
+	}
+	
+	public void setIndiceDeteccao(double indiceDeteccao, int chaveModoFalha) throws SQLException {
+		abrirConexao();
+		PreparedStatement state = con
+				.prepareStatement("UPDATE  maquinas.modo_falha SET indice_deteccao = ? WHERE chave=" + chaveModoFalha);
+		state.setDouble(1, indiceDeteccao);
+		state.execute();
+
+	}
+
+
 
 	public void deletar(int chave) throws SQLException {
 
@@ -136,12 +168,5 @@ public class ModosFalhaTools extends DatabaseTools {
 
 	}
 
-	public void setNomeModoFalha(String nome, int chaveModoFalha) throws SQLException {
-		abrirConexao();
-		PreparedStatement state = con
-				.prepareStatement("UPDATE  maquinas.modo_falha SET nome = ? WHERE chave=" + chaveModoFalha);
-		state.setString(1, nome);
-		state.execute();
 
-	}
 }

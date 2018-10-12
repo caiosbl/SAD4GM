@@ -246,7 +246,8 @@ public class InsertModoFalha extends Main {
 				"7 - Baixa probabilidade  de detecção",
 				"8 - Probabilidade muito baixa de detecção",
 				"9 - Probabilidade remota de detecção",
-				"10 -Detecção quase impossível"};
+				"10 - Detecção quase impossível"
+				};
 				 
 				
 				
