@@ -71,6 +71,17 @@ public class Efeitos {
 		return nome;
 	}
 
+	public double getIndiceSeveridade(int chaveEfeito) {
+		double indiceSeveridade;
+
+		try {
+			indiceSeveridade = eTools.getIndiceSeveridade(chaveEfeito);
+		} catch (SQLException e) {
+			indiceSeveridade = -1;
+		}
+		return indiceSeveridade;
+	}
+
 	public String setNome(String nome, int chaveEfeito) {
 		String status;
 
@@ -92,6 +103,19 @@ public class Efeitos {
 			status = "Descrição atualizada com Sucesso!";
 		} catch (Exception e) {
 			status = "Falha ao Atualizar Descrição!";
+		}
+
+		return status;
+	}
+
+	public String setIndiceSeveridade(double indiceSeveridade, int chaveEfeito) {
+		String status;
+
+		try {
+			eTools.setIndiceSeveridade(indiceSeveridade, chaveEfeito);
+			status = "Indíce de Severidade atualizado com Sucesso!";
+		} catch (Exception e) {
+			status = "Falha ao Atualizar Indíce de Severidade!";
 		}
 
 		return status;

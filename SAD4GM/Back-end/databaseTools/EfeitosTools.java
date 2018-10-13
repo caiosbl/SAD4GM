@@ -51,6 +51,28 @@ public class EfeitosTools extends DatabaseTools {
 		return subsistemas;
 
 	}
+	
+	public Map<Integer,Efeito> getEfeitosMap(int chaveModoFalha) throws SQLException {
+		abrirConexao();
+
+		Map<Integer, Efeito> efeitos = new HashMap<>();
+
+		PreparedStatement state = con.prepareStatement(
+				"SELECT nome,descricao,chave FROM maquinas.efeito WHERE chave_modo_falha =" + chaveModoFalha);
+		ResultSet resSet = state.executeQuery();
+
+		while (resSet.next()) {
+			Efeito efeito = new Efeito(resSet.getString(1), resSet.getString(2),
+					resSet.getInt(3));
+			efeitos.put(efeito.getChave(), efeito);
+		}
+
+		state.close();
+
+		fecharConexao();
+
+		return efeitos;
+	}
 
 	public String getDescricaoEfeito(int chaveEfeito) throws SQLException {
 		abrirConexao();
@@ -88,6 +110,26 @@ public class EfeitosTools extends DatabaseTools {
 		return nome;
 
 	}
+	
+	
+	public double getIndiceSeveridade(int chaveEfeito) throws SQLException {
+		abrirConexao();
+		double indiceSeveridade;
+		PreparedStatement state = con
+				.prepareStatement("SELECT indice_severidade FROM maquinas.efeito WHERE chave=" + chaveEfeito);
+		ResultSet resSet = state.executeQuery();
+
+		if (resSet.next())
+			indiceSeveridade = resSet.getDouble(1);
+		else
+			indiceSeveridade = -1;
+
+		state.close();
+		fecharConexao();
+
+		return indiceSeveridade;
+
+	}
 
 	public void setNomeEfeito(String nome, int chaveEfeito) throws SQLException {
 		abrirConexao();
@@ -104,28 +146,17 @@ public class EfeitosTools extends DatabaseTools {
 		state.setString(1, descricao);
 		state.execute();
 	}
-
-	public Map<Integer,Efeito> getEfeitosMap(int chaveModoFalha) throws SQLException {
+	
+	public void setIndiceSeveridade(double indiceSeveridade, int chaveEfeito) throws SQLException {
 		abrirConexao();
-
-		Map<Integer, Efeito> efeitos = new HashMap<>();
-
-		PreparedStatement state = con.prepareStatement(
-				"SELECT nome,descricao,chave FROM maquinas.efeito WHERE chave_modo_falha =" + chaveModoFalha);
-		ResultSet resSet = state.executeQuery();
-
-		while (resSet.next()) {
-			Efeito efeito = new Efeito(resSet.getString(1), resSet.getString(2),
-					resSet.getInt(3));
-			efeitos.put(efeito.getChave(), efeito);
-		}
-
-		state.close();
-
-		fecharConexao();
-
-		return efeitos;
+		PreparedStatement state = con
+				.prepareStatement("UPDATE  maquinas.efeito SET indice_severidade = ? WHERE chave=" + chaveEfeito);
+		state.setDouble(1, indiceSeveridade);
+		state.execute();
 	}
+
+
+	
 
 	public void deletar(int chave) throws SQLException {
 

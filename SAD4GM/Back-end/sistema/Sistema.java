@@ -280,8 +280,9 @@ public class Sistema {
 
 	// Funções de Modos de Falha
 
-	public String inserirModoFalha(String nome, String descricao, int chaveFalha,double indiceOcorrencia,double indiceDeteccao) {
-		return cMFalhas.inserir(nome, descricao, chaveFalha,indiceOcorrencia,indiceDeteccao);
+	public String inserirModoFalha(String nome, String descricao, int chaveFalha, double indiceOcorrencia,
+			double indiceDeteccao) {
+		return cMFalhas.inserir(nome, descricao, chaveFalha, indiceOcorrencia, indiceDeteccao);
 	}
 
 	public String removerModoFalha(int chave) {
@@ -299,28 +300,27 @@ public class Sistema {
 	public String getDescricaoModoFalha(int chaveModoFalha) {
 		return cMFalhas.getDescricao(chaveModoFalha);
 	}
-	
+
 	public String getNomeModoFalha(int chaveModoFalha) {
 		return cMFalhas.getNome(chaveModoFalha);
 	}
-	
+
 	public double getIndiceOcorrenciaModoFalha(int chaveModoFalha) {
 		return cMFalhas.getIndiceOcorrencia(chaveModoFalha);
-		
+
 	}
-	
+
 	public double getIndiceDeteccaosModoFalha(int chaveModoFalha) {
 		return cMFalhas.getIndiceDeteccao(chaveModoFalha);
 	}
-	
+
 	public String setIndiceOcorrencia(double indiceOcorrencia, int chaveModoFalha) {
 		return cMFalhas.setIndiceOcorrencia(indiceOcorrencia, chaveModoFalha);
 	}
-	
+
 	public String setIndiceDeteccao(double indiceDeteccao, int chaveModoFalha) {
 		return cMFalhas.setIndiceDeteccao(indiceDeteccao, chaveModoFalha);
 	}
-
 
 	public String setNomeModoFalha(String nome, int chaveModoFalha) {
 		return cMFalhas.setNome(nome, chaveModoFalha);
@@ -329,8 +329,6 @@ public class Sistema {
 	public String setDescricaoModoFalha(String descricao, int chaveModoFalha) {
 		return cMFalhas.setDescricao(descricao, chaveModoFalha);
 	}
-
-
 
 	// Funções de Causas Potenciais
 
@@ -365,39 +363,47 @@ public class Sistema {
 	public String getNomeCausaPotencial(int chaveCausaPotencial) {
 		return cCPotenciais.getNome(chaveCausaPotencial);
 	}
-	
+
 	// Funções de Efeitos
 
-		public String inserirEfeito(String nome, String descricao,double indiceSeveridade, int chaveModoFalha) {
-			return efeitos.inserir(nome, descricao, indiceSeveridade, chaveModoFalha);
-		}
+	public String inserirEfeito(String nome, String descricao, double indiceSeveridade, int chaveModoFalha) {
+		return efeitos.inserir(nome, descricao, indiceSeveridade, chaveModoFalha);
+	}
 
-		public String removerEfeito(int chaveEfeito) {
-			return efeitos.remover(chaveEfeito);
-		}
+	public String removerEfeito(int chaveEfeito) {
+		return efeitos.remover(chaveEfeito);
+	}
 
-		public Map<String, Integer> getMapaEfeitos(int chaveModoFalha) {
-			return efeitos.getMapaEfeitos(chaveModoFalha);
-		}
+	public Map<String, Integer> getMapaEfeitos(int chaveModoFalha) {
+		return efeitos.getMapaEfeitos(chaveModoFalha);
+	}
 
-		public Map<Integer, Efeito> getEfeitosMap(int chaveModoFalha) {
-			return efeitos.getEfeitosMap(chaveModoFalha);
-		}
+	public Map<Integer, Efeito> getEfeitosMap(int chaveModoFalha) {
+		return efeitos.getEfeitosMap(chaveModoFalha);
+	}
 
-		public String getDescricaoEfeito(int chaveEfeito) {
-			return efeitos.getDescricao(chaveEfeito);
-		}
+	public String getDescricaoEfeito(int chaveEfeito) {
+		return efeitos.getDescricao(chaveEfeito);
+	}
 
-		public String setNomeEfeito(String nome, int chaveEfeito) {
-			return efeitos.setNome(nome, chaveEfeito);
-		}
+	public String getNomeEfeito(int chaveEfeito) {
+		return efeitos.getNome(chaveEfeito);
+	}
 
-		public String setDescricaoEfeito(String descricao, int chaveEfeito) {
-			return efeitos.setDescricao(descricao, chaveEfeito);
-		}
+	public double getIndiceSeveridade(int chaveEfeito) {
+		return efeitos.getIndiceSeveridade(chaveEfeito);
+	}
 
-		public String getNomeEfeito(int chaveEfeito) {
-			return cCPotenciais.getNome(chaveEfeito);
-		}
+	public String setIndiceSeveridade(double indiceSeveridade, int chaveEfeito) {
+		return efeitos.setIndiceSeveridade(indiceSeveridade, chaveEfeito);
+	}
+
+	public String setNomeEfeito(String nome, int chaveEfeito) {
+		return efeitos.setNome(nome, chaveEfeito);
+	}
+
+	public String setDescricaoEfeito(String descricao, int chaveEfeito) {
+		return efeitos.setDescricao(descricao, chaveEfeito);
+	}
 
 }
