@@ -24,6 +24,7 @@ import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertModoFalha;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertSubsistema;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertCausaPotencial;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertComponente;
+import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertEfeito;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertFalha;
 import interfaceGrafica.utils.RenderizarTree;
 import interfaceGrafica.utils.Tree;
@@ -249,6 +250,18 @@ public class ViewMachinesInsert extends Main {
 					.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 			insertCausaPotencial.setVisible(true);
 			insertCausaPotencial.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+		}
+		
+		else if (node.toString().equals("Efeitos")) {
+			ModoFalha modoFalha = (ModoFalha) nodeParent.getUserObject();
+			InsertEfeito insertEfeito = new InsertEfeito(idAdmin, getXLocation(),
+					getYLocation(), modoFalha.getChave());
+			dispose();
+			insertEfeito
+					.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			insertEfeito.setVisible(true);
+			insertEfeito.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		}
 

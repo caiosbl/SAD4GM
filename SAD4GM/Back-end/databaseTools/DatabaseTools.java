@@ -208,7 +208,7 @@ public abstract class DatabaseTools {
 				+ "						PRIMARY KEY (chave),\r\n"
 				+ "						CONSTRAINT causas_potenciais_chave_modo_falha_fkey FOREIGN KEY (CHAVE_MODO_FALHA)\r\n"
 				+ "						REFERENCES MAQUINAS.MODO_FALHA(CHAVE) ON DELETE CASCADE\r\n"
-				+ "						);");
+				+ "						)");
 
 		statement.execute();
 		statement.close();
@@ -225,7 +225,7 @@ public abstract class DatabaseTools {
 						"PRIMARY KEY (chave),\r\n" + 
 						"CONSTRAINT efeitos_chave_modo_falha_fkey FOREIGN KEY (CHAVE_MODO_FALHA)\r\n" + 
 						"REFERENCES MAQUINAS.MODO_FALHA(CHAVE) ON DELETE CASCADE\r\n" + 
-						");");
+						")");
 
 		statement.execute();
 		statement.close();

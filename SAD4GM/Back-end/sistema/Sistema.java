@@ -306,6 +306,7 @@ public class Sistema {
 	
 	public double getIndiceOcorrenciaModoFalha(int chaveModoFalha) {
 		return cMFalhas.getIndiceOcorrencia(chaveModoFalha);
+		
 	}
 	
 	public double getIndiceDeteccaosModoFalha(int chaveModoFalha) {

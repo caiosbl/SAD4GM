@@ -33,10 +33,11 @@ public class Tree {
 	}
 
 	private static void iniciaRamoSubsistemas(DefaultMutableTreeNode maquinaNode, Maquina maquina, Sistema sistema) {
+
 		DefaultMutableTreeNode subsistemasNode = new DefaultMutableTreeNode("Subsistemas");
+		maquinaNode.add(subsistemasNode);
 
 		if (!getMapaSubsistemas(maquina.getChave(), sistema).isEmpty()) {
-			maquinaNode.add(subsistemasNode);
 
 			for (Subsistema subsistema : getMapaSubsistemas(maquina.getChave(), sistema).values()) {
 				DefaultMutableTreeNode subsNode = new DefaultMutableTreeNode(subsistema);
@@ -50,10 +51,9 @@ public class Tree {
 	private static void iniciaRamoComponentes(DefaultMutableTreeNode subsistemaNode, Subsistema subsistema,
 			Sistema sistema) {
 		DefaultMutableTreeNode componenteNode = new DefaultMutableTreeNode("Componentes");
+		subsistemaNode.add(componenteNode);
 
 		if (!getMapaComponentes(subsistema.getChave(), sistema).isEmpty()) {
-
-			subsistemaNode.add(componenteNode);
 
 			for (Componente componente : getMapaComponentes(subsistema.getChave(), sistema).values()) {
 				DefaultMutableTreeNode compNode = new DefaultMutableTreeNode(componente);
@@ -66,8 +66,8 @@ public class Tree {
 
 	private static void iniciaRamoFalha(DefaultMutableTreeNode componenteNode, Componente componente, Sistema sistema) {
 		DefaultMutableTreeNode falhaNode = new DefaultMutableTreeNode("Falhas");
+		componenteNode.add(falhaNode);
 		if (!getFalhasMap(componente.getChave(), sistema).isEmpty()) {
-			componenteNode.add(falhaNode);
 
 			for (Falha falha : getFalhasMap(componente.getChave(), sistema).values()) {
 				DefaultMutableTreeNode failNode = new DefaultMutableTreeNode(falha);
@@ -80,8 +80,8 @@ public class Tree {
 
 	private static void iniciaRamoModoFalha(DefaultMutableTreeNode failNode, Falha falha, Sistema sistema) {
 		DefaultMutableTreeNode modoFalhaNode = new DefaultMutableTreeNode("Modos de Falha");
+		failNode.add(modoFalhaNode);
 		if (!getModosFalhaMap(falha.getChave(), sistema).isEmpty()) {
-			failNode.add(modoFalhaNode);
 
 			for (ModoFalha modoFalha : getModosFalhaMap(falha.getChave(), sistema).values()) {
 				DefaultMutableTreeNode mFailNode = new DefaultMutableTreeNode(modoFalha);
@@ -95,8 +95,9 @@ public class Tree {
 
 	private static void iniciaRamoEfeitos(DefaultMutableTreeNode modoFalhaNode, ModoFalha modoFalha, Sistema sistema) {
 		DefaultMutableTreeNode efeitoNode = new DefaultMutableTreeNode("Efeitos");
+		modoFalhaNode.add(efeitoNode);
+
 		if (!getModosFalhaMap(modoFalha.getChave(), sistema).isEmpty()) {
-			modoFalhaNode.add(efeitoNode);
 
 			for (Efeito efeito : getEfeitosMap(modoFalha.getChave(), sistema).values()) {
 				DefaultMutableTreeNode efecctNode = new DefaultMutableTreeNode(efeito);
@@ -109,8 +110,8 @@ public class Tree {
 	private static void iniciaRamoCausaPotencial(DefaultMutableTreeNode modoFalhaNode, ModoFalha modoFalha,
 			Sistema sistema) {
 		DefaultMutableTreeNode causaPotencialNode = new DefaultMutableTreeNode("Causas Potenciais");
+		modoFalhaNode.add(causaPotencialNode);
 		if (!getModosFalhaMap(modoFalha.getChave(), sistema).isEmpty()) {
-			modoFalhaNode.add(causaPotencialNode);
 
 			for (CausaPotencial causaPotencial : getCausasPotenciaisMap(modoFalha.getChave(), sistema).values()) {
 				DefaultMutableTreeNode cPotencialNode = new DefaultMutableTreeNode(causaPotencial);

@@ -15,12 +15,13 @@ public class ModosFalha {
 		this.mFTools = mFTools;
 	}
 
-	public String inserir(String nome, String descricao, int chaveFalha,double indiceOcorrencia,double indiceDeteccao) {
+	public String inserir(String nome, String descricao, int chaveFalha, double indiceOcorrencia,
+			double indiceDeteccao) {
 
 		String status;
 
 		try {
-			mFTools.inserir(nome, descricao, chaveFalha,indiceOcorrencia,indiceDeteccao);
+			mFTools.inserir(nome, descricao, chaveFalha, indiceOcorrencia, indiceDeteccao);
 			status = "Modo de Falha inserido com Sucesso!";
 		} catch (SQLException e) {
 			status = e.getMessage();
@@ -42,8 +43,10 @@ public class ModosFalha {
 
 	public Map<Integer, ModoFalha> getModosFalhaMap(int chaveFalha) {
 		try {
+
 			return mFTools.getModosFalhaMap(chaveFalha);
 		} catch (SQLException e) {
+
 			return new HashMap<Integer, ModoFalha>();
 		}
 	}
@@ -69,7 +72,7 @@ public class ModosFalha {
 		}
 		return nome;
 	}
-	
+
 	public double getIndiceOcorrencia(int chaveModoFalha) {
 		double indiceOcorrencia;
 
@@ -80,7 +83,7 @@ public class ModosFalha {
 		}
 		return indiceOcorrencia;
 	}
-	
+
 	public double getIndiceDeteccao(int chaveModoFalha) {
 		double indiceDeteccao;
 
@@ -104,7 +107,7 @@ public class ModosFalha {
 
 		return status;
 	}
-	
+
 	public String setNome(String nome, int chaveModoFalha) {
 		String status;
 
@@ -117,7 +120,7 @@ public class ModosFalha {
 
 		return status;
 	}
-	
+
 	public String setIndiceOcorrencia(double indiceOcorrencia, int chaveModoFalha) {
 		String status;
 
@@ -130,7 +133,7 @@ public class ModosFalha {
 
 		return status;
 	}
-	
+
 	public String setIndiceDeteccao(double indiceDeteccao, int chaveModoFalha) {
 		String status;
 
@@ -156,7 +159,5 @@ public class ModosFalha {
 
 		return status;
 	}
-
-
 
 }
