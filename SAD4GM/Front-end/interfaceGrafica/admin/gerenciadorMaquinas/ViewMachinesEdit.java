@@ -12,12 +12,14 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 import entidades.CausaPotencial;
 import entidades.Componente;
+import entidades.Efeito;
 import entidades.Falha;
 import entidades.Maquina;
 import entidades.ModoFalha;
 import entidades.Subsistema;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetCausaPotencial;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetComponente;
+import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetEfeito;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetFalha;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetMachine;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetModoFalha;
@@ -247,6 +249,16 @@ public class ViewMachinesEdit extends Main {
 			vMCausaPotencial.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 			vMCausaPotencial.setVisible(true);
 			vMCausaPotencial.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		}
+		
+		else if (CLASS_TYPE == Efeito.class) {
+			Efeito efeito = (Efeito) node.getUserObject();
+			SetEfeito vEfeito = new SetEfeito(idAdmin, getXLocation(), getYLocation(),
+					efeito.getChave());
+			dispose();
+			vEfeito.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			vEfeito.setVisible(true);
+			vEfeito.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 
 	}

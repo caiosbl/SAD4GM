@@ -14,6 +14,7 @@ import javax.swing.tree.TreeModel;
 
 import entidades.CausaPotencial;
 import entidades.Componente;
+import entidades.Efeito;
 import entidades.Falha;
 import entidades.Maquina;
 import entidades.ModoFalha;
@@ -269,6 +270,19 @@ public class ViewMachinesRemove extends Main {
 				frame.dispose();
 				if (resposta == JOptionPane.YES_OPTION) {
 					JOptionPane.showMessageDialog(null, sistema.removerCausaPotencial(causaPotencial.getChave()));
+					atualizaTree();
+				}
+			}
+			
+			else if (CLASS_TYPE == Efeito.class) {
+				Efeito efeito = (Efeito) node.getUserObject();
+				JFrame frame = new JFrame();
+				int resposta = JOptionPane.showConfirmDialog(frame,
+						"Tem Certeza que Deseja remover o Efeito de Falha " + efeito.getNome() + " ?",
+						"Remover Efeito", JOptionPane.YES_NO_OPTION);
+				frame.dispose();
+				if (resposta == JOptionPane.YES_OPTION) {
+					JOptionPane.showMessageDialog(null, sistema.removerEfeito(efeito.getChave()));
 					atualizaTree();
 				}
 			}
