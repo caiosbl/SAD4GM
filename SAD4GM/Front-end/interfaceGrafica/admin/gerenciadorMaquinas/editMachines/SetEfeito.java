@@ -205,10 +205,10 @@ public class SetEfeito extends Main {
 		lblEditar.setBounds(67, 22, 110, 29);
 		desktopPane.add(lblEditar);
 
-		JLabel lblModoDeFalha = new JLabel("MODO DE FALHA");
+		JLabel lblModoDeFalha = new JLabel("EFEITO");
 		lblModoDeFalha.setForeground(Color.WHITE);
 		lblModoDeFalha.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblModoDeFalha.setBounds(24, 47, 200, 29);
+		lblModoDeFalha.setBounds(68, 47, 89, 29);
 		desktopPane.add(lblModoDeFalha);
 
 		JLabel label_1 = new JLabel("Título:");
