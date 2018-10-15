@@ -59,6 +59,7 @@ public abstract class DatabaseTools {
 			criarTabelaFalha(con);
 			criarTabelaModoFalha(con);
 			criarTabelaCausasPotenciais(con);
+			criarTabelaAcoesRecomendadas(con);
 			criarTabelaEfeitos(con);
 
 		} catch (Exception e) {
@@ -209,6 +210,20 @@ public abstract class DatabaseTools {
 				+ "						CONSTRAINT causas_potenciais_chave_modo_falha_fkey FOREIGN KEY (CHAVE_MODO_FALHA)\r\n"
 				+ "						REFERENCES MAQUINAS.MODO_FALHA(CHAVE) ON DELETE CASCADE\r\n"
 				+ "						)");
+
+		statement.execute();
+		statement.close();
+	}
+	private void criarTabelaAcoesRecomendadas(Connection con) throws SQLException {
+		PreparedStatement statement = con.prepareStatement("CREATE TABLE MAQUINAS.ACAO_RECOMENDADA(\r\n" + 
+				"NOME LONG VARCHAR,\r\n" + 
+				"DESCRICAO LONG VARCHAR,\r\n" + 
+				"CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
+				"CHAVE_CAUSA_POTENCIAL INTEGER NOT NULL,\r\n" + 
+				"PRIMARY KEY (CHAVE),\r\n" + 
+				"CONSTRAINT ACAO_RECOMENDADA_CAUSA_POTENCIAL_FKEY FOREIGN KEY (CHAVE_CAUSA_POTENCIAL) \r\n" + 
+				"REFERENCES MAQUINAS.CAUSAS_POTENCIAIS(CHAVE) ON DELETE CASCADE\r\n" + 
+				")");
 
 		statement.execute();
 		statement.close();
