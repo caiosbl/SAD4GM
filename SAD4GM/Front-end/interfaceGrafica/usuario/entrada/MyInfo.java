@@ -127,6 +127,7 @@ public class MyInfo extends Main {
 						idUsuario = userID.getText().trim();
 						sistema.setNomeUsuario(idUsuario, nome.getText().trim());
 						JOptionPane.showMessageDialog(null, "Dados atualizados com Sucesso!");
+						
 
 					}
 				} catch (Exception e1) {
@@ -142,7 +143,7 @@ public class MyInfo extends Main {
 		JButton homeBtn = new JButton("");
 		homeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Options options = new Options(id, getXLocation(), getYLocation());
+				Options options = new Options(idUsuario, getXLocation(), getYLocation());
 				dispose();
 				options.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				options.setVisible(true);
