@@ -10,6 +10,7 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import entidades.AcaoRecomendada;
 import entidades.CausaPotencial;
 import entidades.Componente;
 import entidades.Efeito;
@@ -17,6 +18,7 @@ import entidades.Falha;
 import entidades.Maquina;
 import entidades.ModoFalha;
 import entidades.Subsistema;
+import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetAcaoRecomendada;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetCausaPotencial;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetComponente;
 import interfaceGrafica.admin.gerenciadorMaquinas.editMachines.SetEfeito;
@@ -249,6 +251,16 @@ public class ViewMachinesEdit extends Main {
 			vMCausaPotencial.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 			vMCausaPotencial.setVisible(true);
 			vMCausaPotencial.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		}
+		
+		else if (CLASS_TYPE == AcaoRecomendada.class) {
+			AcaoRecomendada acaoRecomendada = (AcaoRecomendada) node.getUserObject();
+			SetAcaoRecomendada setAcaoRecomendada = new SetAcaoRecomendada(idAdmin, getXLocation(), getYLocation(),
+					acaoRecomendada.getChave());
+			dispose();
+			setAcaoRecomendada.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			setAcaoRecomendada.setVisible(true);
+			setAcaoRecomendada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 		
 		else if (CLASS_TYPE == Efeito.class) {
