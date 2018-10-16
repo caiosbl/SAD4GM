@@ -10,6 +10,7 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import entidades.CausaPotencial;
 import entidades.Componente;
 import entidades.Falha;
 import entidades.Maquina;
@@ -22,6 +23,7 @@ import interfaceGrafica.usuario.entrada.Options;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertMaquina;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertModoFalha;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertSubsistema;
+import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertAcaoRecomendada;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertCausaPotencial;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertComponente;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertEfeito;
@@ -92,8 +94,9 @@ public class ViewMachinesInsert extends Main {
 		iniciaTree();
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setSelectedIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/return-selected.png")));
-		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setSelectedIcon(
+				new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0, 0, 0, 0));
 		btnVoltar.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -107,25 +110,25 @@ public class ViewMachinesInsert extends Main {
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnVoltar.setBounds(503, 408, 78, 44);
 		desktopPane.add(btnVoltar);
-		
+
 		JLabel lblSelecioneOItem = new JLabel("SELECIONE O ITEM QUE DESEJA INSERIR:");
 		lblSelecioneOItem.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblSelecioneOItem.setForeground(Color.WHITE);
 		lblSelecioneOItem.setBounds(114, 88, 342, 20);
 		desktopPane.add(lblSelecioneOItem);
-		
+
 		JLabel lblInserir = new JLabel("INSERIR");
 		lblInserir.setForeground(Color.WHITE);
 		lblInserir.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblInserir.setBounds(99, 22, 107, 29);
 		desktopPane.add(lblInserir);
-		
+
 		JLabel lblD = new JLabel("DADOS DE MÁQUINA");
 		lblD.setForeground(Color.WHITE);
 		lblD.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblD.setBounds(33, 47, 252, 29);
 		desktopPane.add(lblD);
-		
+
 		JButton homeBtn = new JButton("");
 		homeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -142,9 +145,10 @@ public class ViewMachinesInsert extends Main {
 		homeBtn.setBackground(new Color(0, 0, 0, 0));
 		homeBtn.setBounds(349, 9, 62, 44);
 		desktopPane.add(homeBtn);
-		
+
 		JButton myDataBtn = new JButton("");
-		myDataBtn.setSelectedIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/my-data-on.png")));
+		myDataBtn
+				.setSelectedIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/my-data-on.png")));
 		myDataBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MyInfo myInfo = new MyInfo(id, getXLocation(), getYLocation());
@@ -159,7 +163,7 @@ public class ViewMachinesInsert extends Main {
 		myDataBtn.setBackground(new Color(0, 0, 0, 0));
 		myDataBtn.setBounds(404, 9, 119, 45);
 		desktopPane.add(myDataBtn);
-		
+
 		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -176,12 +180,12 @@ public class ViewMachinesInsert extends Main {
 		button.setBackground(new Color(0, 0, 0, 0));
 		button.setBounds(499, 9, 119, 45);
 		desktopPane.add(button);
-		
+
 		JLabel navbar = new JLabel("");
 		navbar.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/navbar.png")));
 		navbar.setBounds(350, 6, 256, 51);
 		desktopPane.add(navbar);
-		
+
 		JLabel lblMquina = new JLabel("[MÁQUINA | SUBSISTEMA | COMPONENTE | FALHA | MODO DE FALHA | CAUSA POTENCIAL]");
 		lblMquina.setForeground(Color.WHITE);
 		lblMquina.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -252,14 +256,24 @@ public class ViewMachinesInsert extends Main {
 			insertCausaPotencial.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		}
-		
+
+		else if (node.toString().equals("Ações Recomendadas")) {
+			CausaPotencial causaPotencial = (CausaPotencial) nodeParent.getUserObject();
+			InsertAcaoRecomendada insertCausaPotencial = new InsertAcaoRecomendada(idAdmin, getXLocation(),
+					getYLocation(), causaPotencial.getChave());
+			dispose();
+			insertCausaPotencial
+					.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			insertCausaPotencial.setVisible(true);
+			insertCausaPotencial.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+		}
+
 		else if (node.toString().equals("Efeitos")) {
 			ModoFalha modoFalha = (ModoFalha) nodeParent.getUserObject();
-			InsertEfeito insertEfeito = new InsertEfeito(idAdmin, getXLocation(),
-					getYLocation(), modoFalha.getChave());
+			InsertEfeito insertEfeito = new InsertEfeito(idAdmin, getXLocation(), getYLocation(), modoFalha.getChave());
 			dispose();
-			insertEfeito
-					.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			insertEfeito.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 			insertEfeito.setVisible(true);
 			insertEfeito.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -282,8 +296,8 @@ public class ViewMachinesInsert extends Main {
 		tree = new JTree(maquinaNode);
 		jSPane.setViewportView(tree);
 		tree.setCellRenderer(new RenderizarTree());
-		
-				tree.addTreeSelectionListener(tsl);
+
+		tree.addTreeSelectionListener(tsl);
 
 	}
 }
