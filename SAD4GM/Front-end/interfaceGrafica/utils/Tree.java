@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import entidades.AcaoRecomendada;
 import entidades.CausaPotencial;
 import entidades.Componente;
 import entidades.Efeito;
@@ -116,6 +117,22 @@ public class Tree {
 			for (CausaPotencial causaPotencial : getCausasPotenciaisMap(modoFalha.getChave(), sistema).values()) {
 				DefaultMutableTreeNode cPotencialNode = new DefaultMutableTreeNode(causaPotencial);
 				causaPotencialNode.add(cPotencialNode);
+				iniciaRamoAcaoRecomendada(cPotencialNode, causaPotencial, sistema);
+			}
+		}
+
+	}
+
+	private static void iniciaRamoAcaoRecomendada(DefaultMutableTreeNode causaPotencialNode,
+			CausaPotencial causaPotencial, Sistema sistema) {
+		DefaultMutableTreeNode acoesRecomendadasNode = new DefaultMutableTreeNode("Ações Recomendadas");
+		causaPotencialNode.add(acoesRecomendadasNode);
+		if (!getCausasPotenciaisMap(causaPotencial.getChave(), sistema).isEmpty()) {
+
+			for (AcaoRecomendada acaoRecomendada : getAcoesRecomendadasMap(causaPotencial.getChave(), sistema)
+					.values()) {
+				DefaultMutableTreeNode cPotencialNode = new DefaultMutableTreeNode(acaoRecomendada);
+				acoesRecomendadasNode.add(cPotencialNode);
 			}
 		}
 
@@ -123,6 +140,11 @@ public class Tree {
 
 	private static Map<Integer, CausaPotencial> getCausasPotenciaisMap(int chaveModoFalha, Sistema sistema) {
 		return sistema.getCausasPotenciaisMap(chaveModoFalha);
+
+	}
+
+	private static Map<Integer, AcaoRecomendada> getAcoesRecomendadasMap(int chaveCausaPotencial, Sistema sistema) {
+		return sistema.getAcoesRecomendadasMap(chaveCausaPotencial);
 
 	}
 
