@@ -10,6 +10,7 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import entidades.AcaoRecomendada;
 import entidades.CausaPotencial;
 import entidades.Componente;
 import entidades.Efeito;
@@ -239,6 +240,16 @@ public class ViewMachinesInfo extends Main {
 			vCPotencial.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 			vCPotencial.setVisible(true);
 			vCPotencial.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		}
+		
+		else if (CLASS_TYPE == AcaoRecomendada.class) {
+			AcaoRecomendada acaoRecomendada = (AcaoRecomendada) node.getUserObject();
+			ViewAcaoRecomendada vAcaoRecomendada = new ViewAcaoRecomendada(idAdmin, acaoRecomendada.getChave(), getXLocation(),
+					getYLocation());
+			dispose();
+			vAcaoRecomendada.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			vAcaoRecomendada.setVisible(true);
+			vAcaoRecomendada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 
 		else if (CLASS_TYPE == Efeito.class) {
