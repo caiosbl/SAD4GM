@@ -272,6 +272,7 @@ public class ViewMachinesInfo extends Main {
 				jTree1ValueChanged(evt);
 			}
 		};
+		
 		JScrollPane jSPane = new JScrollPane();
 		jSPane.setBounds(13, 139, 581, 270);
 		desktopPane.add(jSPane);

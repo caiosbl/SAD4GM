@@ -9,8 +9,10 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeCellRenderer;
 
+import entidades.AcaoRecomendada;
 import entidades.CausaPotencial;
 import entidades.Componente;
+import entidades.Efeito;
 import entidades.Falha;
 import entidades.Maquina;
 import entidades.ModoFalha;
@@ -44,9 +46,14 @@ public class RenderizarTree extends DefaultTreeCellRenderer implements TreeCellR
 		else if (node.toString().equals("Modos de Falha")) 
 			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/modosfalha.png")));
 		
-		// ->
 		else if (node.toString().equals("Causas Potenciais")) 
 			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/causapotenciais.png")));
+		
+		else if (node.toString().equals("Efeitos")) 
+			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/efeitos.png")));
+		else if (node.toString().equals("Ações Recomendadas")) 
+			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/acoes.png")));
+		
 		
 		
 		else if (CLASS_TYPE == Maquina.class) 
@@ -63,9 +70,14 @@ public class RenderizarTree extends DefaultTreeCellRenderer implements TreeCellR
 		
 		else if (CLASS_TYPE == ModoFalha.class) 
 			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/modofalha.png")));
-		// ->
+		
 		else if(CLASS_TYPE == CausaPotencial.class)
 			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/causapotencial.png")));
+		else if(CLASS_TYPE == AcaoRecomendada.class)
+			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/acao.png")));
+		
+		else if(CLASS_TYPE == Efeito.class)
+			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/efeito.png")));
 
 		return this;
 	}
