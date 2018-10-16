@@ -12,6 +12,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 
+import entidades.AcaoRecomendada;
 import entidades.CausaPotencial;
 import entidades.Componente;
 import entidades.Efeito;
@@ -41,7 +42,6 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JTree;
 import java.awt.Color;
-
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -90,8 +90,9 @@ public class ViewMachinesRemove extends Main {
 		iniciaTree();
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setSelectedIcon(new ImageIcon(ViewMachinesRemove.class.getResource("/Resources/icon/return-selected.png")));
-		btnVoltar.setBackground(new Color(0,0,0,0));
+		btnVoltar.setSelectedIcon(
+				new ImageIcon(ViewMachinesRemove.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0, 0, 0, 0));
 		btnVoltar.setIcon(new ImageIcon(ViewMachinesRemove.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -106,19 +107,19 @@ public class ViewMachinesRemove extends Main {
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnVoltar.setBounds(518, 411, 78, 44);
 		desktopPane.add(btnVoltar);
-		
+
 		JLabel lblRemover = new JLabel("REMOVER");
 		lblRemover.setForeground(Color.WHITE);
 		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblRemover.setBounds(67, 22, 119, 29);
 		desktopPane.add(lblRemover);
-		
+
 		JLabel lblDadosDeMquina = new JLabel("DADOS DE MÁQUINA");
 		lblDadosDeMquina.setForeground(Color.WHITE);
 		lblDadosDeMquina.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblDadosDeMquina.setBounds(13, 49, 252, 29);
 		desktopPane.add(lblDadosDeMquina);
-		
+
 		JButton homeBtn = new JButton("");
 		homeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -135,7 +136,7 @@ public class ViewMachinesRemove extends Main {
 		homeBtn.setBackground(new Color(0, 0, 0, 0));
 		homeBtn.setBounds(349, 9, 62, 44);
 		desktopPane.add(homeBtn);
-		
+
 		JButton myDataBtn = new JButton("");
 		myDataBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -152,7 +153,7 @@ public class ViewMachinesRemove extends Main {
 		myDataBtn.setBackground(new Color(0, 0, 0, 0));
 		myDataBtn.setBounds(404, 9, 119, 45);
 		desktopPane.add(myDataBtn);
-		
+
 		JButton logoutBtn = new JButton("");
 		logoutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -169,12 +170,12 @@ public class ViewMachinesRemove extends Main {
 		logoutBtn.setBackground(new Color(0, 0, 0, 0));
 		logoutBtn.setBounds(499, 9, 119, 45);
 		desktopPane.add(logoutBtn);
-		
+
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ViewMachinesInfo.class.getResource("/Resources/icon/navbar.png")));
 		label.setBounds(350, 6, 256, 51);
 		desktopPane.add(label);
-		
+
 		JLabel lblSelecioneOItem = new JLabel("SELECIONE O ITEM QUE DESEJA REMOVER:");
 		lblSelecioneOItem.setForeground(Color.WHITE);
 		lblSelecioneOItem.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -273,13 +274,26 @@ public class ViewMachinesRemove extends Main {
 					atualizaTree();
 				}
 			}
-			
+
+			else if (CLASS_TYPE == AcaoRecomendada.class) {
+				AcaoRecomendada acaoRecomendada = (AcaoRecomendada) node.getUserObject();
+				JFrame frame = new JFrame();
+				int resposta = JOptionPane.showConfirmDialog(frame,
+						"Tem Certeza que Deseja remover a Ação Recomendada " + acaoRecomendada.getNome() + " ?",
+						"Remover Ação Recomendada", JOptionPane.YES_NO_OPTION);
+				frame.dispose();
+				if (resposta == JOptionPane.YES_OPTION) {
+					JOptionPane.showMessageDialog(null, sistema.removerAcaoRecomendada(acaoRecomendada.getChave()));
+					atualizaTree();
+				}
+			}
+
 			else if (CLASS_TYPE == Efeito.class) {
 				Efeito efeito = (Efeito) node.getUserObject();
 				JFrame frame = new JFrame();
 				int resposta = JOptionPane.showConfirmDialog(frame,
-						"Tem Certeza que Deseja remover o Efeito de Falha " + efeito.getNome() + " ?",
-						"Remover Efeito", JOptionPane.YES_NO_OPTION);
+						"Tem Certeza que Deseja remover o Efeito de Falha " + efeito.getNome() + " ?", "Remover Efeito",
+						JOptionPane.YES_NO_OPTION);
 				frame.dispose();
 				if (resposta == JOptionPane.YES_OPTION) {
 					JOptionPane.showMessageDialog(null, sistema.removerEfeito(efeito.getChave()));
