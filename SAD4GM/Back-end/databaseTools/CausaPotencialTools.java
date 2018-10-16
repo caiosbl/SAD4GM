@@ -35,20 +35,20 @@ public class CausaPotencialTools extends DatabaseTools {
 
 	public Map<String, Integer> getMapaCausasPotenciais(int chaveModoFalha) throws SQLException {
 		abrirConexao();
-		Map<String, Integer> subsistemas = new HashMap<>();
+		Map<String, Integer> causasPotenciais = new HashMap<>();
 
 		PreparedStatement state = con.prepareStatement(
 				"SELECT descricao,chave FROM maquinas.causas_potenciais WHERE chave_modo_falha=" + chaveModoFalha);
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {
-			subsistemas.put(resSet.getString(1), resSet.getInt(2));
+			causasPotenciais.put(resSet.getString(1), resSet.getInt(2));
 		}
 		state.close();
 
 		fecharConexao();
 
-		return subsistemas;
+		return causasPotenciais;
 
 	}
 

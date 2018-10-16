@@ -3,6 +3,11 @@ package databaseTools;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
+import entidades.AcaoRecomendada;
+
 
 
 public class AcaoRecomendadaTools extends DatabaseTools {
@@ -30,6 +35,49 @@ public class AcaoRecomendadaTools extends DatabaseTools {
 
 	}
 
+
+	public Map<String, Integer> getMapaAcoesRecomendadas(int chaveCausaPotencial) throws SQLException {
+		abrirConexao();
+		Map<String, Integer> acoesRecomendadas = new HashMap<>();
+
+		PreparedStatement state = con.prepareStatement(
+				"SELECT descricao,chave FROM maquinas.acao_recomendada WHERE chave_causa_potencial=" + chaveCausaPotencial);
+		ResultSet resSet = state.executeQuery();
+
+		while (resSet.next()) {
+			acoesRecomendadas.put(resSet.getString(1), resSet.getInt(2));
+		}
+		state.close();
+
+		fecharConexao();
+
+		return acoesRecomendadas;
+
+	}
+	
+
+	public Map<Integer, AcaoRecomendada> getAcoesRecomendadasMap(int chaveCausaPotencial) throws SQLException {
+		abrirConexao();
+
+		Map<Integer, AcaoRecomendada> acoesRecomendadas = new HashMap<>();
+
+		PreparedStatement state = con
+				.prepareStatement("SELECT nome,descricao,chave FROM maquinas.acao_recomendada WHERE chave_causa_potencial ="
+						+ chaveCausaPotencial);
+		ResultSet resSet = state.executeQuery();
+
+		while (resSet.next()) {
+			AcaoRecomendada acaoRecomendada = new AcaoRecomendada(resSet.getString(1), resSet.getString(2),
+					resSet.getInt(3));
+			acoesRecomendadas.put(acaoRecomendada.getChave(), acaoRecomendada);
+		}
+
+		state.close();
+
+		fecharConexao();
+
+		return acoesRecomendadas;
+	}
 
 	public String getDescricao(int chaveAcaoRecomendada) throws SQLException {
 		abrirConexao();
