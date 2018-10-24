@@ -209,9 +209,15 @@ public class ViewModoFalha extends Main {
 		String indiceOcorrenciaString;
 		String indiceDeteccaoString;
 
-		if (indiceOcorrencia >= 1)
-			indiceOcorrenciaString = indiceOcorrencia + " - " + escalaOcorrencias[(int) indiceOcorrencia - 1];
-		else
+		if (indiceOcorrencia >= 1) {
+			int index;
+			if (indiceOcorrencia > 10)
+				index = 10;
+			else
+				index = (int) indiceOcorrencia;
+
+			indiceOcorrenciaString = indiceOcorrencia + " - " + escalaOcorrencias[index - 1];
+		} else
 			indiceOcorrenciaString = "Falha ao Obter Indíce de Ocorrência!";
 
 		if (indiceDeteccao >= 1)
