@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import entidades.AcaoRecomendada;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.entrada.Login;
 import interfaceGrafica.usuario.entrada.MyInfo;
@@ -25,10 +26,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
+
 import javax.swing.JList;
-import javax.swing.AbstractListModel;
+import javax.swing.ListSelectionModel;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -47,6 +47,7 @@ public class ViewAcoesRecomendadas extends Main {
 	private String idAdmin;
 
 	private Sistema sistema = new Sistema();
+	private JList<Object> lista;
 
 	/**
 	 * Launch the application.
@@ -73,8 +74,9 @@ public class ViewAcoesRecomendadas extends Main {
 		desktopPane.setLayout(null);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setBackground(new Color(0,0,0,0));
-		btnVoltar.setSelectedIcon(new ImageIcon(ViewAcoesRecomendadas.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0, 0, 0, 0));
+		btnVoltar.setSelectedIcon(
+				new ImageIcon(ViewAcoesRecomendadas.class.getResource("/Resources/icon/return-selected.png")));
 		btnVoltar.setIcon(new ImageIcon(ViewAcoesRecomendadas.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -89,7 +91,6 @@ public class ViewAcoesRecomendadas extends Main {
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnVoltar.setBounds(505, 408, 78, 44);
 		desktopPane.add(btnVoltar);
-		
 
 		JButton homeBtn = new JButton("");
 		homeBtn.addActionListener(new ActionListener() {
@@ -145,43 +146,59 @@ public class ViewAcoesRecomendadas extends Main {
 		navbar.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/navbar.png")));
 		navbar.setBounds(350, 6, 256, 51);
 		desktopPane.add(navbar);
-		
+
 		JLabel label = new JLabel("VISUALIZAR");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.BOLD, 24));
 		label.setBounds(77, 20, 151, 29);
 		desktopPane.add(label);
-		
+
 		JLabel lblCausaPotencial = new JLabel("AÇÕES RECOMENDADAS");
 		lblCausaPotencial.setForeground(Color.WHITE);
 		lblCausaPotencial.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblCausaPotencial.setBounds(19, 43, 291, 29);
 		desktopPane.add(lblCausaPotencial);
-		
-	
-		
-		JList lista = new JList();
-		JScrollPane jsPane = new JScrollPane(lista);
+
 		Object[] acoesRecomendas = sistema.getAcoesRecomendadasMap(chaveCausaPotencial).values().toArray();
-		
-		lista = new JList(new AbstractListModel() {
-			Object[] values = acoesRecomendas;
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
+
+		DefaultListModel<Object> model = new DefaultListModel<Object>();
+		lista = new JList<Object>(model);
+		lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		lista.setVisibleRowCount(12);
+
+		for (Object acaoRecomendada : acoesRecomendas) {
+			model.addElement(acaoRecomendada);
+		}
+
+		JScrollPane jSPane = new JScrollPane(lista);
+
+		jSPane.setBounds(33, 121, 535, 257);
+		desktopPane.add(jSPane);
+
+		JButton btnVisualizar = new JButton("Visualizar");
+		btnVisualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (lista.getSelectedIndex() >= 0) {
+					int chaveAcaoRecomendada = ((AcaoRecomendada) acoesRecomendas[lista.getSelectedIndex()]).getChave();
+					ViewAcaoRecomendada viewAcoesRecomendadas = new ViewAcaoRecomendada(idAdmin, chaveAcaoRecomendada,
+							xLocation, yLocation);
+					dispose();
+					viewAcoesRecomendadas
+							.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+					viewAcoesRecomendadas.setVisible(true);
+					viewAcoesRecomendadas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				}
 			}
 		});
-	
-		
-
-		lista.setBounds(34, 106, 535, 298);
-		desktopPane.add(lista);
-		
-		JButton btnVisualizar = new JButton("Visualizar");
-		btnVisualizar.setBounds(33, 408, 124, 44);
+		btnVisualizar.setBounds(30, 391, 124, 44);
 		desktopPane.add(btnVisualizar);
+
+		JLabel lblSelecioneAAo = new JLabel("SELECIONE A AÇÃO RECOMENDADA QUE DESEJA VISUALIZAR:");
+		lblSelecioneAAo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblSelecioneAAo.setForeground(Color.WHITE);
+		lblSelecioneAAo.setBounds(44, 99, 513, 20);
+		desktopPane.add(lblSelecioneAAo);
 
 	}
 }
