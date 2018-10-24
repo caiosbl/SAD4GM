@@ -52,7 +52,8 @@ public class ViewAcaoRecomendada extends Main {
 	/**
 	 * Create the frame.
 	 */
-	public ViewAcaoRecomendada(String id, int chaveAcaoRecomendada, int xLocation, int yLocation) {
+	public ViewAcaoRecomendada(String id, int chaveAcaoRecomendada, int chaveCausaPotencial, int xLocation,
+			int yLocation, boolean fromListAcoes) {
 		super(xLocation, yLocation);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,17 +71,31 @@ public class ViewAcaoRecomendada extends Main {
 		desktopPane.setLayout(null);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar.setBackground(new Color(0,0,0,0));
-		btnVoltar.setSelectedIcon(new ImageIcon(ViewAcaoRecomendada.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setBackground(new Color(0, 0, 0, 0));
+		btnVoltar.setSelectedIcon(
+				new ImageIcon(ViewAcaoRecomendada.class.getResource("/Resources/icon/return-selected.png")));
 		btnVoltar.setIcon(new ImageIcon(ViewAcaoRecomendada.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewMachinesInfo information = new ViewMachinesInfo(idAdmin, getXLocation(), getYLocation());
 
-				dispose();
-				information.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				information.setVisible(true);
-				information.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				if (fromListAcoes) {
+					ViewAcoesRecomendadas viewAcoesRecomendadas = new ViewAcoesRecomendadas(idAdmin,
+							chaveCausaPotencial, xLocation, yLocation);
+					dispose();
+					viewAcoesRecomendadas
+							.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+					viewAcoesRecomendadas.setVisible(true);
+					viewAcoesRecomendadas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				}
+
+				else {
+					ViewMachinesInfo information = new ViewMachinesInfo(idAdmin, getXLocation(), getYLocation());
+					dispose();
+					information
+							.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+					information.setVisible(true);
+					information.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				}
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -90,12 +105,11 @@ public class ViewAcaoRecomendada extends Main {
 		JScrollPane jsp = new JScrollPane();
 		jsp.setBounds(35, 226, 534, 116);
 		desktopPane.add(jsp);
-		
-				JTextPane descricaoPane = new JTextPane();
-				jsp.setViewportView(descricaoPane);
-				descricaoPane.setText(sistema.getDescricaoAcaoRecomendada(chaveAcaoRecomendada));
-				descricaoPane.setEditable(false);
-		
+
+		JTextPane descricaoPane = new JTextPane();
+		jsp.setViewportView(descricaoPane);
+		descricaoPane.setText(sistema.getDescricaoAcaoRecomendada(chaveAcaoRecomendada));
+		descricaoPane.setEditable(false);
 
 		JTextField tituloField = new JTextField();
 		tituloField.setEditable(false);
@@ -103,7 +117,6 @@ public class ViewAcaoRecomendada extends Main {
 		tituloField.setBounds(35, 170, 534, 34);
 		desktopPane.add(tituloField);
 		tituloField.setColumns(10);
-		
 
 		JButton homeBtn = new JButton("");
 		homeBtn.addActionListener(new ActionListener() {
@@ -159,25 +172,25 @@ public class ViewAcaoRecomendada extends Main {
 		navbar.setIcon(new ImageIcon(ViewComponente.class.getResource("/Resources/icon/navbar.png")));
 		navbar.setBounds(350, 6, 256, 51);
 		desktopPane.add(navbar);
-		
+
 		JLabel label = new JLabel("VISUALIZAR");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.BOLD, 24));
 		label.setBounds(77, 20, 151, 29);
 		desktopPane.add(label);
-		
+
 		JLabel lblCausaPotencial = new JLabel("AÇÃO RECOMENDADA");
 		lblCausaPotencial.setForeground(Color.WHITE);
 		lblCausaPotencial.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblCausaPotencial.setBounds(29, 43, 262, 29);
 		desktopPane.add(lblCausaPotencial);
-		
+
 		JLabel label_1 = new JLabel("Nome:");
 		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 16));
 		label_1.setBounds(264, 150, 53, 20);
 		desktopPane.add(label_1);
-		
+
 		JLabel lblDescrio = new JLabel("Descrição:");
 		lblDescrio.setForeground(Color.WHITE);
 		lblDescrio.setFont(new Font("Tahoma", Font.BOLD, 16));

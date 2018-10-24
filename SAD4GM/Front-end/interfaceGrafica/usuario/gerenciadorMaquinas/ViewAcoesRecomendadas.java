@@ -181,8 +181,7 @@ public class ViewAcoesRecomendadas extends Main {
 
 				if (lista.getSelectedIndex() >= 0) {
 					int chaveAcaoRecomendada = ((AcaoRecomendada) acoesRecomendas[lista.getSelectedIndex()]).getChave();
-					ViewAcaoRecomendada viewAcoesRecomendadas = new ViewAcaoRecomendada(idAdmin, chaveAcaoRecomendada,
-							xLocation, yLocation);
+					ViewAcaoRecomendada viewAcoesRecomendadas = new ViewAcaoRecomendada(idAdmin, chaveAcaoRecomendada, chaveCausaPotencial, xLocation, yLocation, true);
 					dispose();
 					viewAcoesRecomendadas
 							.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());

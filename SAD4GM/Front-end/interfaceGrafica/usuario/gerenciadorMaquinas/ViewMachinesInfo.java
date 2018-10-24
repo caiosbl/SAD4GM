@@ -244,8 +244,8 @@ public class ViewMachinesInfo extends Main {
 		
 		else if (CLASS_TYPE == AcaoRecomendada.class) {
 			AcaoRecomendada acaoRecomendada = (AcaoRecomendada) node.getUserObject();
-			ViewAcaoRecomendada vAcaoRecomendada = new ViewAcaoRecomendada(idAdmin, acaoRecomendada.getChave(), getXLocation(),
-					getYLocation());
+			ViewAcaoRecomendada vAcaoRecomendada = new ViewAcaoRecomendada(idAdmin, acaoRecomendada.getChave(),((CausaPotencial)((DefaultMutableTreeNode) node.getParent().getParent()).getUserObject()).getChave(), getXLocation(),
+					getYLocation(),false);
 			dispose();
 			vAcaoRecomendada.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 			vAcaoRecomendada.setVisible(true);
