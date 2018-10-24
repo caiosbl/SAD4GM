@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -26,6 +27,8 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -34,7 +37,7 @@ import javax.swing.JTextPane;
  *
  */
 
-public class ViewCausaPotencial extends Main {
+public class ViewAcoesRecomendadas extends Main {
 
 	/**
 	 * 
@@ -52,7 +55,7 @@ public class ViewCausaPotencial extends Main {
 	/**
 	 * Create the frame.
 	 */
-	public ViewCausaPotencial(String id, int chaveCausaPotencial, int xLocation, int yLocation) {
+	public ViewAcoesRecomendadas(String id, int chaveCausaPotencial, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,8 +74,8 @@ public class ViewCausaPotencial extends Main {
 
 		JButton btnVoltar = new JButton("");
 		btnVoltar.setBackground(new Color(0,0,0,0));
-		btnVoltar.setSelectedIcon(new ImageIcon(ViewCausaPotencial.class.getResource("/Resources/icon/return-selected.png")));
-		btnVoltar.setIcon(new ImageIcon(ViewCausaPotencial.class.getResource("/Resources/icon/back-btn.png")));
+		btnVoltar.setSelectedIcon(new ImageIcon(ViewAcoesRecomendadas.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setIcon(new ImageIcon(ViewAcoesRecomendadas.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ViewMachinesInfo information = new ViewMachinesInfo(idAdmin, getXLocation(), getYLocation());
@@ -84,25 +87,8 @@ public class ViewCausaPotencial extends Main {
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnVoltar.setBounds(495, 409, 78, 44);
+		btnVoltar.setBounds(505, 408, 78, 44);
 		desktopPane.add(btnVoltar);
-
-		JScrollPane jsp = new JScrollPane();
-		jsp.setBounds(35, 226, 534, 116);
-		desktopPane.add(jsp);
-		
-				JTextPane descricaoPane = new JTextPane();
-				jsp.setViewportView(descricaoPane);
-				descricaoPane.setText(sistema.getDescricaoCausaPotencial(chaveCausaPotencial));
-				descricaoPane.setEditable(false);
-		
-
-		JTextField tituloField = new JTextField();
-		tituloField.setEditable(false);
-		tituloField.setText(sistema.getNomeCausaPotencial(chaveCausaPotencial));
-		tituloField.setBounds(35, 170, 534, 34);
-		desktopPane.add(tituloField);
-		tituloField.setColumns(10);
 		
 
 		JButton homeBtn = new JButton("");
@@ -163,39 +149,39 @@ public class ViewCausaPotencial extends Main {
 		JLabel label = new JLabel("VISUALIZAR");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.BOLD, 24));
-		label.setBounds(67, 22, 151, 29);
+		label.setBounds(77, 20, 151, 29);
 		desktopPane.add(label);
 		
-		JLabel lblCausaPotencial = new JLabel("CAUSA POTENCIAL");
+		JLabel lblCausaPotencial = new JLabel("AÇÕES RECOMENDADAS");
 		lblCausaPotencial.setForeground(Color.WHITE);
 		lblCausaPotencial.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblCausaPotencial.setBounds(29, 43, 229, 29);
+		lblCausaPotencial.setBounds(19, 43, 291, 29);
 		desktopPane.add(lblCausaPotencial);
 		
-		JLabel label_1 = new JLabel("Nome:");
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 16));
-		label_1.setBounds(264, 150, 53, 20);
-		desktopPane.add(label_1);
+	
 		
-		JLabel lblDescrio = new JLabel("Descrição:");
-		lblDescrio.setForeground(Color.WHITE);
-		lblDescrio.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblDescrio.setBounds(255, 205, 84, 20);
-		desktopPane.add(lblDescrio);
+		JList lista = new JList();
+		JScrollPane jsPane = new JScrollPane(lista);
+		Object[] acoesRecomendas = sistema.getAcoesRecomendadasMap(chaveCausaPotencial).values().toArray();
 		
-		JButton btnNewButton = new JButton("Visualizar Ações Recomendadas");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ViewAcoesRecomendadas viewAcoesRecomendadas = new ViewAcoesRecomendadas(idAdmin, chaveCausaPotencial, xLocation, yLocation);;
-				dispose();
-				viewAcoesRecomendadas.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				viewAcoesRecomendadas.setVisible(true);
-				viewAcoesRecomendadas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		lista = new JList(new AbstractListModel() {
+			Object[] values = acoesRecomendas;
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
 			}
 		});
-		btnNewButton.setBounds(35, 369, 210, 42);
-		desktopPane.add(btnNewButton);
+	
+		
+
+		lista.setBounds(34, 106, 535, 298);
+		desktopPane.add(lista);
+		
+		JButton btnVisualizar = new JButton("Visualizar");
+		btnVisualizar.setBounds(33, 408, 124, 44);
+		desktopPane.add(btnVisualizar);
 
 	}
 }
