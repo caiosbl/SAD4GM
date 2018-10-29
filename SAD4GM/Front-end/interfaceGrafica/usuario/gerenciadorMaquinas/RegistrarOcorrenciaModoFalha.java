@@ -7,8 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-
-
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.entrada.Login;
 import interfaceGrafica.usuario.entrada.MyInfo;
@@ -17,6 +15,7 @@ import sistema.Sistema;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 
@@ -51,8 +50,23 @@ public class RegistrarOcorrenciaModoFalha extends Main {
 	private JComboBox componentesBox;
 	private JComboBox falhasBox;
 	private JComboBox modosDeFalhaBox;
-	private Sistema sistema = new Sistema();
 
+	private Object[] arrayMaquinas;
+	private Object[] arraySubsistemas;
+	private Object[] arrayComponentes;
+	private Object[] arrayFalhas;
+	private Object[] arrayModosDeFalha;
+
+	private Map<String, Integer> mapaMaquinas;
+	private Map<String, Integer> mapaSubsistemas;
+	private Map<String, Integer> mapaComponentes;
+	private Map<String, Integer> mapaFalhas;
+	private Map<String, Integer> mapaModosFalha;
+
+	private int chaveModoFalha;
+
+	private Sistema sistema = new Sistema();
+	private JTextField ocorrenciaField;
 
 	/**
 	 * Launch the application.
@@ -63,6 +77,7 @@ public class RegistrarOcorrenciaModoFalha extends Main {
 	 */
 	public RegistrarOcorrenciaModoFalha(String id, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
+		this.chaveModoFalha = -1;
 		this.idAdmin = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -80,9 +95,10 @@ public class RegistrarOcorrenciaModoFalha extends Main {
 
 		JButton btnVoltar = new JButton("");
 		btnVoltar.setBackground(new Color(0, 0, 0, 0));
+		btnVoltar.setSelectedIcon(
+				new ImageIcon(RegistrarOcorrenciaModoFalha.class.getResource("/Resources/icon/return-selected.png")));
 		btnVoltar
-				.setSelectedIcon(new ImageIcon(RegistrarOcorrenciaModoFalha.class.getResource("/Resources/icon/return-selected.png")));
-		btnVoltar.setIcon(new ImageIcon(RegistrarOcorrenciaModoFalha.class.getResource("/Resources/icon/back-btn.png")));
+				.setIcon(new ImageIcon(RegistrarOcorrenciaModoFalha.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Options information = new Options(id, xLocation, yLocation);
@@ -163,74 +179,173 @@ public class RegistrarOcorrenciaModoFalha extends Main {
 		lblModoDeFalha.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblModoDeFalha.setBounds(73, 35, 200, 29);
 		desktopPane.add(lblModoDeFalha);
-		
-		
-		Map<String,Integer> mapaMaquinas = sistema.getMapaMaquinas();
-		Object[] arrayMaquinas = mapaMaquinas.keySet().toArray();
-		
-	maquinasBox = new JComboBox(arrayMaquinas);
+
+		mapaMaquinas = sistema.getMapaMaquinas();
+		arrayMaquinas = mapaMaquinas.keySet().toArray();
+
+		maquinasBox = new JComboBox(arrayMaquinas);
 		maquinasBox.setBounds(73, 91, 450, 41);
-		
-		maquinasBox.addActionListener(new ActionListener () {
-		    public void actionPerformed(ActionEvent e) {
-		       if (maquinasBox.getSelectedIndex() != -1) {
-		    	   int chaveMaquina = mapaMaquinas.get(arrayMaquinas[maquinasBox.getSelectedIndex()]);
-		    	   subsistemasBox.setModel(new DefaultComboBoxModel<>(sistema.getMapaSubsistemas(chaveMaquina).keySet().toArray()));
-		    	  
-		       }
-		    }
+		maquinasBox.setSelectedIndex(-1);
+
+		maquinasBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (maquinasBox.getSelectedIndex() != -1) {
+					int chaveMaquina = mapaMaquinas.get(arrayMaquinas[maquinasBox.getSelectedIndex()]);
+					mapaSubsistemas = sistema.getMapaSubsistemas(chaveMaquina);
+					arraySubsistemas = mapaSubsistemas.keySet().toArray();
+					subsistemasBox.setModel(new DefaultComboBoxModel<>(arraySubsistemas));
+					subsistemasBox.setSelectedIndex(-1);
+
+				}
+			}
 		});
-		
-		
-		
+
 		desktopPane.add(maquinasBox);
-		
+
 		JLabel lblMquina = new JLabel("Máquina:");
 		lblMquina.setForeground(Color.WHITE);
 		lblMquina.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblMquina.setBounds(245, 76, 75, 20);
 		desktopPane.add(lblMquina);
-		
+
 		subsistemasBox = new JComboBox();
 		subsistemasBox.setBounds(73, 145, 450, 41);
+
+		subsistemasBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (subsistemasBox.getSelectedIndex() != -1) {
+					int chaveSubsistema = mapaSubsistemas.get(arraySubsistemas[subsistemasBox.getSelectedIndex()]);
+					mapaComponentes = sistema.getMapaComponentes(chaveSubsistema);
+					arrayComponentes = mapaComponentes.keySet().toArray();
+					componentesBox.setModel(new DefaultComboBoxModel<>(arrayComponentes));
+					componentesBox.setSelectedIndex(-1);
+
+				}
+			}
+		});
 		desktopPane.add(subsistemasBox);
-		
+
 		JLabel lblSubsistema = new JLabel("Subsistema:");
 		lblSubsistema.setForeground(Color.WHITE);
 		lblSubsistema.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblSubsistema.setBounds(232, 128, 99, 20);
 		desktopPane.add(lblSubsistema);
-		
+
 		componentesBox = new JComboBox();
 		componentesBox.setBounds(73, 200, 450, 41);
+		componentesBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (componentesBox.getSelectedIndex() != -1) {
+					int chaveComponente = mapaComponentes.get(arrayComponentes[componentesBox.getSelectedIndex()]);
+					mapaFalhas = sistema.getMapaFalhas(chaveComponente);
+					arrayFalhas = mapaFalhas.keySet().toArray();
+					falhasBox.setModel(new DefaultComboBoxModel<>(arrayFalhas));
+					falhasBox.setSelectedIndex(-1);
+
+				}
+			}
+		});
 		desktopPane.add(componentesBox);
-		
+
 		JLabel lblComponente = new JLabel("Componente:");
 		lblComponente.setForeground(Color.WHITE);
 		lblComponente.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblComponente.setBounds(232, 183, 109, 20);
 		desktopPane.add(lblComponente);
-		
+
 		JLabel lblFalha = new JLabel("Falha:");
 		lblFalha.setForeground(Color.WHITE);
 		lblFalha.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblFalha.setBounds(267, 240, 50, 20);
 		desktopPane.add(lblFalha);
-		
-	    falhasBox = new JComboBox();
+
+		falhasBox = new JComboBox();
 		falhasBox.setBounds(73, 258, 450, 41);
+		falhasBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (falhasBox.getSelectedIndex() != -1) {
+					int chaveFalha = mapaFalhas.get(arrayFalhas[falhasBox.getSelectedIndex()]);
+					mapaModosFalha = sistema.getMapaModosFalha(chaveFalha);
+					arrayModosDeFalha = sistema.getMapaModosFalha(chaveFalha).keySet().toArray();
+					modosDeFalhaBox.setModel(new DefaultComboBoxModel<>(arrayModosDeFalha));
+					modosDeFalhaBox.setSelectedIndex(-1);
+
+				}
+			}
+		});
 		desktopPane.add(falhasBox);
-		
+
 		JLabel lblModoDeFalha_1 = new JLabel("Modo de Falha:");
 		lblModoDeFalha_1.setForeground(Color.WHITE);
 		lblModoDeFalha_1.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblModoDeFalha_1.setBounds(232, 297, 124, 20);
+
 		desktopPane.add(lblModoDeFalha_1);
-		
-	    modosDeFalhaBox = new JComboBox();
+
+		modosDeFalhaBox = new JComboBox();
 		modosDeFalhaBox.setBounds(73, 315, 450, 41);
+		modosDeFalhaBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (modosDeFalhaBox.getSelectedIndex() != -1) {
+					chaveModoFalha = mapaModosFalha.get(arrayModosDeFalha[modosDeFalhaBox.getSelectedIndex()]);
+					atualizaIndiceOcorrencia(chaveModoFalha);
+
+				}
+			}
+		});
 		desktopPane.add(modosDeFalhaBox);
 
+		JLabel lblI = new JLabel("Indíce de Ocorrência:");
+		lblI.setForeground(Color.WHITE);
+		lblI.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblI.setBounds(126, 368, 147, 17);
+		desktopPane.add(lblI);
 
+		ocorrenciaField = new JTextField();
+		ocorrenciaField.setEditable(false);
+		ocorrenciaField.setBounds(126, 387, 144, 32);
+		desktopPane.add(ocorrenciaField);
+		ocorrenciaField.setColumns(10);
+
+		JButton btnRegistarOcorrncia = new JButton("Registar Ocorrência");
+		btnRegistarOcorrncia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (checaBoxs() && chaveModoFalha >= 0 ) {
+					JOptionPane.showMessageDialog(null, sistema.registrarOcorrenciaModoFalha(chaveModoFalha));
+
+					atualizaIndiceOcorrencia(chaveModoFalha);
+				}
+			}
+		});
+		btnRegistarOcorrncia.setBounds(325, 387, 138, 28);
+		desktopPane.add(btnRegistarOcorrncia);
+
+	}
+
+	private void atualizaIndiceOcorrencia(int chaveModoFalha) {
+		this.ocorrenciaField.setText(String.valueOf(sistema.getIndiceOcorrenciaModoFalha(chaveModoFalha)));
+	}
+
+	private boolean checaBoxs() {
+		if (maquinasBox.getSelectedIndex() == -1) {
+			JOptionPane.showMessageDialog(null, "Por favor selecione uma Máquina!");
+			return false;
+
+		} else if (subsistemasBox.getSelectedIndex() == -1) {
+			JOptionPane.showMessageDialog(null, "Por favor selecione um Subsistema!");
+			return false;
+		} else if (componentesBox.getSelectedIndex() == -1) {
+			JOptionPane.showMessageDialog(null, "Por favor selecione um Componente!");
+			return false;
+		} else if (falhasBox.getSelectedIndex() == -1) {
+			JOptionPane.showMessageDialog(null, "Por favor selecione uma Falha!");
+			return false;
+		} else if (modosDeFalhaBox.getSelectedIndex() == -1) {
+			JOptionPane.showMessageDialog(null, "Por favor selecione um Modo de Falha!");
+			return false;
+
+		} else
+			return true;
 	}
 }
