@@ -335,6 +335,10 @@ public class Sistema {
 	public String setDescricaoModoFalha(String descricao, int chaveModoFalha) {
 		return cMFalhas.setDescricao(descricao, chaveModoFalha);
 	}
+	
+	public String registrarOcorrenciaModoFalha(int chaveModoFalha) {
+		return cMFalhas.registrarOcorrencia(chaveModoFalha);
+	}
 
 	// Funções de Causas Potenciais
 
@@ -370,7 +374,7 @@ public class Sistema {
 		return cCPotenciais.getNome(chaveCausaPotencial);
 	}
 
-	// Funções de Efeitos
+	// Funções de Ações Recomendadas
 
 	public String inserirAcaoRecomendada(String nome, String descricao, int chaveCausaPotencial) {
 		return cARecomendadas.inserir(nome, descricao,chaveCausaPotencial);

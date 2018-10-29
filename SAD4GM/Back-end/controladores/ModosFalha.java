@@ -159,5 +159,19 @@ public class ModosFalha {
 
 		return status;
 	}
+	
+	public String registrarOcorrencia(int chave) {
+		String status;
+		
+		try {
+			mFTools.registrarOcorrencia(chave);
+			status = "Ocorrência Registrada com Sucesso!";
+		} catch (SQLException e) {
+			status = e.getMessage();
+		
+		}
+		
+		return status;
+	}
 
 }

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import interfaceGrafica.admin.gerenciadorMaquinas.MachineManagementOptions;
 import interfaceGrafica.admin.gerenciadorUsuarios.UserManagementOptions;
 import interfaceGrafica.main.Main;
+import interfaceGrafica.usuario.gerenciadorMaquinas.RegistrarOcorrenciaModoFalha;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewMachinesInfo;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewMachinesInsert;
 import sistema.Sistema;
@@ -212,6 +213,19 @@ public class Options extends Main {
 		navbar2.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/navbar.png")));
 		navbar2.setBounds(359, 40, 256, 51);
 		desktopPane.add(navbar);
+		
+		JButton btnRegistrarOcorrncia = new JButton("Registrar Ocorrência");
+		btnRegistrarOcorrncia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrarOcorrenciaModoFalha registarOcorrencia = new RegistrarOcorrenciaModoFalha(id, xLocation, yLocation);
+				dispose();
+				registarOcorrencia.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				registarOcorrencia.setVisible(true);
+				registarOcorrencia.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		btnRegistrarOcorrncia.setBounds(244, 364, 142, 28);
+		desktopPane.add(btnRegistrarOcorrncia);
 		desktopPane2.add(navbar2);
 
 		//
