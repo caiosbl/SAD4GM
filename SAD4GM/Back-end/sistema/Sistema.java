@@ -438,6 +438,10 @@ public class Sistema {
 	public double getIndiceSeveridade(int chaveEfeito) {
 		return cEfeitos.getIndiceSeveridade(chaveEfeito);
 	}
+	
+	public double getIndiceSeveridadePorFalha(int chaveModoFalha) throws SQLException {
+		return cEfeitos.getIndiceSeveridadePorFalha(chaveModoFalha);
+	}
 
 	public String setIndiceSeveridade(double indiceSeveridade, int chaveEfeito) {
 		return cEfeitos.setIndiceSeveridade(indiceSeveridade, chaveEfeito);
@@ -450,6 +454,7 @@ public class Sistema {
 	public String setDescricaoEfeito(String descricao, int chaveEfeito) {
 		return cEfeitos.setDescricao(descricao, chaveEfeito);
 	}
+	
 	
 	
 	public boolean hasEfeito() throws SQLException {

@@ -82,6 +82,10 @@ public class Efeitos {
 		return indiceSeveridade;
 	}
 
+	public double getIndiceSeveridadePorFalha(int chaveModoFalha) throws SQLException {
+		return eTools.getIndiceSeveridadePorFalha(chaveModoFalha);
+	}
+
 	public String setNome(String nome, int chaveEfeito) {
 		String status;
 
@@ -134,7 +138,6 @@ public class Efeitos {
 		return status;
 	}
 
-	
 	public boolean hasEfeito() throws SQLException {
 		return eTools.hasEfeito();
 	}
