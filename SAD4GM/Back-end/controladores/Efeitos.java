@@ -134,4 +134,8 @@ public class Efeitos {
 		return status;
 	}
 
+	
+	public boolean hasEfeito() throws SQLException {
+		return eTools.hasEfeito();
+	}
 }

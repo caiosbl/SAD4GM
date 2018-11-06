@@ -452,5 +452,9 @@ public class Sistema {
 	}
 	
 	
+	public boolean hasEfeito() throws SQLException {
+		return cEfeitos.hasEfeito();
+	}
+	
 
 }

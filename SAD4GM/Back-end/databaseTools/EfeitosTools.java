@@ -154,6 +154,35 @@ public class EfeitosTools extends DatabaseTools {
 		state.setDouble(1, indiceSeveridade);
 		state.execute();
 	}
+	
+	
+	public boolean hasEfeito() throws SQLException {
+		abrirConexao();
+	
+		
+		try {
+			PreparedStatement state = con
+					.prepareStatement("SELECT indice_severidade FROM maquinas.efeito");
+			ResultSet resSet = state.executeQuery();
+
+			if (resSet.next()) {
+				state.close();
+				fecharConexao();
+				return true;
+			}
+			else {
+				state.close();
+				fecharConexao();
+				return false;
+			}
+
+			
+		} catch (SQLException e) {
+			throw new SQLException("Falha na Conexão com Banco de Dados!");
+		}
+		
+		
+	}
 
 
 	

@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
@@ -34,7 +35,6 @@ import java.awt.SystemColor;
 import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
-
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -54,7 +54,7 @@ public class InsertEfeito extends Main {
 	private Sistema sistema;
 	private JTextField tituloField;
 	private JLabel title;
-	private JComboBox<Object>boxSeveridade;
+	private JComboBox<Object> boxSeveridade;
 
 	/**
 	 * Launch the application.
@@ -66,7 +66,6 @@ public class InsertEfeito extends Main {
 	 * @throws SQLException
 	 */
 
-	
 	public InsertEfeito(String id, int xLocation, int yLocation, int chaveModoFalha) {
 		super(xLocation, yLocation);
 		sistema = new Sistema();
@@ -111,18 +110,33 @@ public class InsertEfeito extends Main {
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				String descricao = new String(descricaoPane.getText().trim());
-				String titulo = new String(tituloField.getText().trim());
+				try {
+					if (!sistema.hasEfeito()) {
 
-				if (isEmpty(titulo))
-					JOptionPane.showMessageDialog(null, "Título Inválido!");
-				else if (isEmpty(descricao))
-					JOptionPane.showMessageDialog(null, "Descrição Inválida!");
+						String descricao = new String(descricaoPane.getText().trim());
+						String titulo = new String(tituloField.getText().trim());
 
-				else {
-					double indiceSeveridade = boxSeveridade.getSelectedIndex() + 1;
-					JOptionPane.showMessageDialog(null,
-							sistema.inserirEfeito(titulo, descricao, indiceSeveridade, chaveModoFalha));
+						if (isEmpty(titulo))
+							JOptionPane.showMessageDialog(null, "Título Inválido!");
+						else if (isEmpty(descricao))
+							JOptionPane.showMessageDialog(null, "Descrição Inválida!");
+
+						else {
+							double indiceSeveridade = boxSeveridade.getSelectedIndex() + 1;
+							JOptionPane.showMessageDialog(null,
+									sistema.inserirEfeito(titulo, descricao, indiceSeveridade, chaveModoFalha));
+
+						}
+
+					}
+
+					else
+						JOptionPane.showMessageDialog(null, "O Modo de Falha já possui um Efeito cadastrado!");
+
+				}
+
+				catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "Falha na Conexão com o Banco de Dados!");
 
 				}
 
@@ -231,12 +245,12 @@ public class InsertEfeito extends Main {
 		lblIndceSeveridade.setBounds(229, 287, 152, 20);
 		desktopPane.add(lblIndceSeveridade);
 
-		Object[] escalaSeveridade = {1,2,4,5,6,7,8,9,10};
+		Object[] escalaSeveridade = { 1, 2, 4, 5, 6, 7, 8, 9, 10 };
 
 		boxSeveridade = new JComboBox<Object>(escalaSeveridade);
 		boxSeveridade.setBounds(50, 308, 508, 51);
 		desktopPane.add(boxSeveridade);
-		
+
 		JButton btnEscala = new JButton("Ver Escala de Severidade");
 		btnEscala.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

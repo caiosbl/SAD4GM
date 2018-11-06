@@ -74,13 +74,15 @@ public class Options extends Main {
 		usuarioPane.add(desktopPane, BorderLayout.CENTER);
 
 		JButton btnInserirMaquina = new JButton("");
-		btnInserirMaquina.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/patch/insert-machine-on.png")));
-		btnInserirMaquina.setBackground(new Color(0, 0,0, 0));
-		btnInserirMaquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/patch/insert-machine-off.png")));
-	
+		btnInserirMaquina.setSelectedIcon(
+				new ImageIcon(Options.class.getResource("/Resources/icon/patch/insert-machine-on.png")));
+		btnInserirMaquina.setBackground(new Color(0, 0, 0, 0));
+		btnInserirMaquina
+				.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/patch/insert-machine-off.png")));
+
 		btnInserirMaquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ViewMachinesInsert insertMaquina =  new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
+				ViewMachinesInsert insertMaquina = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
 				dispose();
 				insertMaquina
 						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
@@ -88,30 +90,30 @@ public class Options extends Main {
 				insertMaquina.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		
+
 		JButton homeBtn = new JButton("");
 		homeBtn.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/home-on.png")));
 		homeBtn.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/home-off.png")));
-		homeBtn.setBackground(new Color(0,0,0,0));
+		homeBtn.setBackground(new Color(0, 0, 0, 0));
 		homeBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
 		homeBtn.setBounds(360, 43, 62, 44);
 		desktopPane.add(homeBtn);
-	
-		
+
 		JButton homeBtn2 = new JButton("");
 		homeBtn2.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/home-on.png")));
 		homeBtn2.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/home-off.png")));
-		homeBtn2.setBackground(new Color(0,0,0,0));
+		homeBtn2.setBackground(new Color(0, 0, 0, 0));
 		homeBtn2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		homeBtn2.setBounds(360, 43, 62, 44);
-		
+
 		desktopPane2.add(homeBtn2);
 		btnInserirMaquina.setBounds(111, 163, 150, 189);
 		desktopPane.add(btnInserirMaquina);
 
 		JButton btnMinhasInformacoes = new JButton("");
-		btnMinhasInformacoes.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/my-data-on.png")));
-		btnMinhasInformacoes.setBackground(new Color(0,0,0,0));
+		btnMinhasInformacoes
+				.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/my-data-on.png")));
+		btnMinhasInformacoes.setBackground(new Color(0, 0, 0, 0));
 		btnMinhasInformacoes.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/my-data-off.png")));
 		btnMinhasInformacoes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -125,10 +127,11 @@ public class Options extends Main {
 		});
 		btnMinhasInformacoes.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnMinhasInformacoes.setBounds(408, 43, 119, 45);
-		
+
 		JButton btnMinhasInformacoes2 = new JButton("");
-		btnMinhasInformacoes2.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/my-data-on.png")));
-		btnMinhasInformacoes2.setBackground(new Color(0,0,0,0));
+		btnMinhasInformacoes2
+				.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/my-data-on.png")));
+		btnMinhasInformacoes2.setBackground(new Color(0, 0, 0, 0));
 		btnMinhasInformacoes2.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/my-data-off.png")));
 		btnMinhasInformacoes2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -142,12 +145,12 @@ public class Options extends Main {
 		});
 		btnMinhasInformacoes2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnMinhasInformacoes2.setBounds(408, 43, 119, 45);
-		
+
 		desktopPane.add(btnMinhasInformacoes);
 		desktopPane2.add(btnMinhasInformacoes2);
 
 		JButton btnLogout = new JButton("");
-		btnLogout.setBackground(new Color(0,0,0,0));
+		btnLogout.setBackground(new Color(0, 0, 0, 0));
 		btnLogout.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logout-on.png")));
 		btnLogout.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logout-off.png")));
 		btnLogout.addActionListener(new ActionListener() {
@@ -160,10 +163,9 @@ public class Options extends Main {
 		});
 		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnLogout.setBounds(510, 43, 100, 45);
-		
 
 		JButton btnLogout2 = new JButton("");
-		btnLogout2.setBackground(new Color(0,0,0,0));
+		btnLogout2.setBackground(new Color(0, 0, 0, 0));
 		btnLogout2.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logout-on.png")));
 		btnLogout2.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/logout-off.png")));
 		btnLogout2.addActionListener(new ActionListener() {
@@ -184,8 +186,9 @@ public class Options extends Main {
 		desktopPane.add(separator);
 
 		JButton btnVerUmaMquina = new JButton("");
-		btnVerUmaMquina.setBackground(new Color(0, 0, 0,0));
-		btnVerUmaMquina.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/patch/view-machine-offff.png")));
+		btnVerUmaMquina.setBackground(new Color(0, 0, 0, 0));
+		btnVerUmaMquina.setSelectedIcon(
+				new ImageIcon(Options.class.getResource("/Resources/icon/patch/view-machine-offff.png")));
 		btnVerUmaMquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/patch/view-machine-on.png")));
 		btnVerUmaMquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -204,28 +207,45 @@ public class Options extends Main {
 		logo.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/sad4logosmall.png")));
 		logo.setBounds(29, 40, 205, 74);
 		desktopPane.add(logo);
-		
+
 		JLabel navbar = new JLabel("");
 		navbar.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/navbar.png")));
 		navbar.setBounds(359, 40, 256, 51);
-		
+
 		JLabel navbar2 = new JLabel("");
 		navbar2.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/navbar.png")));
 		navbar2.setBounds(359, 40, 256, 51);
 		desktopPane.add(navbar);
-		
+
 		JButton btnRegistrarOcorrncia = new JButton("Registrar Ocorrência");
 		btnRegistrarOcorrncia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegistrarOcorrenciaModoFalha registarOcorrencia = new RegistrarOcorrenciaModoFalha(id, xLocation, yLocation);
+				RegistrarOcorrenciaModoFalha registarOcorrencia = new RegistrarOcorrenciaModoFalha(id, xLocation,
+						yLocation);
 				dispose();
-				registarOcorrencia.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				registarOcorrencia
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				registarOcorrencia.setVisible(true);
 				registarOcorrencia.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnRegistrarOcorrncia.setBounds(244, 364, 142, 28);
 		desktopPane.add(btnRegistrarOcorrncia);
+
+		JButton btnVerGrafico = new JButton("Ver Grafico");
+		btnVerGrafico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				PlotGrafico registarOcorrencia = new PlotGrafico(id, xLocation, yLocation);
+				dispose();
+				registarOcorrencia
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				registarOcorrencia.setVisible(true);
+				registarOcorrencia.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		btnVerGrafico.setBounds(452, 380, 89, 23);
+		desktopPane.add(btnVerGrafico);
 		desktopPane2.add(navbar2);
 
 		//
@@ -236,14 +256,15 @@ public class Options extends Main {
 		adminPane.setLayout(new BorderLayout(0, 0));
 		// setContentPane(adminPane);
 
-	
 		desktopPane2.setBackground(SystemColor.inactiveCaption);
 		adminPane.add(desktopPane2, BorderLayout.CENTER);
 
 		JButton btnGerenciarUsurios = new JButton("");
-		btnGerenciarUsurios.setBackground(new Color(0,0,0,0));
-		btnGerenciarUsurios.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/gerenciador-users-button-on_.png")));
-		btnGerenciarUsurios.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/gerenciador-users-button-off_.png")));
+		btnGerenciarUsurios.setBackground(new Color(0, 0, 0, 0));
+		btnGerenciarUsurios.setSelectedIcon(
+				new ImageIcon(Options.class.getResource("/Resources/icon/gerenciador-users-button-on_.png")));
+		btnGerenciarUsurios
+				.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/gerenciador-users-button-off_.png")));
 		btnGerenciarUsurios.setBounds(29, 192, 269, 129);
 		btnGerenciarUsurios.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnGerenciarUsurios.addActionListener(new ActionListener() {
@@ -253,6 +274,7 @@ public class Options extends Main {
 				dispose();
 				admUserOptions
 						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				admUserOptions.pack();
 				admUserOptions.setVisible(true);
 				admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
@@ -261,9 +283,11 @@ public class Options extends Main {
 		desktopPane2.add(btnGerenciarUsurios);
 
 		JButton btnGerenciarMquinas = new JButton("");
-		btnGerenciarMquinas.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/gerenciador-maquinas-on.png")));
-		btnGerenciarMquinas.setBackground(new Color(0,0,0,0));
-		btnGerenciarMquinas.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/gerenciador-maquinas-off.png")));
+		btnGerenciarMquinas.setSelectedIcon(
+				new ImageIcon(Options.class.getResource("/Resources/icon/gerenciador-maquinas-on.png")));
+		btnGerenciarMquinas.setBackground(new Color(0, 0, 0, 0));
+		btnGerenciarMquinas
+				.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/gerenciador-maquinas-off.png")));
 		btnGerenciarMquinas.setBounds(300, 192, 271, 132);
 		btnGerenciarMquinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
