@@ -3,6 +3,7 @@ package databaseTools;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,6 +55,61 @@ public class ModosFalhaTools extends DatabaseTools {
 		return modosFalha;
 
 	}
+	
+	public Map<String, Integer> getMapaModosFalhaPorMaquina(int chaveMaquina) throws SQLException {
+		
+		SubsistemaTools sTools = new SubsistemaTools();
+		ComponenteTools cTools = new ComponenteTools();
+		FalhaTools fTools = new FalhaTools();
+		
+		Map<String, Integer> mapaSubsistemas = sTools.getMapaSubsistemas(chaveMaquina);
+		
+		Integer[] SubsistemasKeys = (Integer[]) mapaSubsistemas.values().toArray();
+		
+		ArrayList<Integer> componentesKeys = new ArrayList<Integer>();
+		
+		ArrayList<Integer> falhasKeys = new ArrayList<Integer>();
+		
+		for (Integer chaveSubsistema: SubsistemasKeys) {
+			Map<String, Integer> mapaComponente = cTools.getMapaComponentes(chaveSubsistema);
+			
+			for(Integer chaveComponente: mapaComponente.values()) {
+				componentesKeys.add(chaveComponente);
+			}
+			
+		}
+		
+		for(Integer chaveComponente: componentesKeys) {
+			Map<String, Integer> mapaFalha = fTools.getMapaFalhas(chaveComponente);
+			
+			for(Integer chaveFalha: mapaFalha.values()) {
+				falhasKeys.add(chaveFalha);
+			}
+			
+		}
+		
+		
+
+		Map<String, Integer> modosFalha = new HashMap<>();
+		
+		
+		for (Integer chaveFalha: falhasKeys) {
+			Map<String, Integer> mapaModoFalha = getMapaModosFalha(chaveFalha);
+			
+			for (String key: mapaModoFalha.keySet()) {
+				modosFalha.put(key, mapaModoFalha.get(key));
+			}
+			
+		}
+		
+		
+		
+		
+		
+		return modosFalha;
+	
+	}
+	
 
 	public double getIndiceOcorrencia(int chaveModoFalha) throws SQLException {
 		abrirConexao();

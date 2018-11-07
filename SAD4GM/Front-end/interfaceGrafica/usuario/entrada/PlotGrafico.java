@@ -30,6 +30,9 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DatasetUtilities;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
+import org.jfree.data.xy.DefaultXYDataset;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.util.Rotation;
 
 import sistema.Sistema;
@@ -138,7 +141,7 @@ public class PlotGrafico extends Main {
 		lblDados.setBounds(58, 50, 85, 29);
 		desktopPane.add(lblDados);
 
-		CategoryDataset dataset = createDataset();
+		XYDataset dataset = createDataset();
 
 		JFreeChart chart = createChart(dataset);
 
@@ -156,24 +159,24 @@ public class PlotGrafico extends Main {
 	/**
 	 * Creates a sample dataset
 	 */
-	private CategoryDataset createDataset() {
-		final double[][] data = new double[][] { { 1.0, 4.0, 3.0, 5.0, 5.0, 7.0, 7.0, 9.0 },
-				{ 5.0, 7.0, 6.0, 12.0, 4.0, 4.0, 2.0, 1.0 }, { 4.0, 3.0, 2.0, 3.0, 6.0, 3.0, 4.0, 3.0 } };
-
-		final CategoryDataset dataset = DatasetUtilities.createCategoryDataset("Falha 1 ", "Teste ", data);
-		return dataset;
+	private XYDataset createDataset() {
+		 final XYSeriesCollection dataset = new XYSeriesCollection( );   
+		
+		 
+		 
+		 return dataset;
 
 	}
 
 	/**
 	 * Creates a chart
 	 */
-	public JFreeChart createChart(CategoryDataset dataset) {
+	public JFreeChart createChart(XYDataset dataset) {
 
 		final JFreeChart chart = ChartFactory.createStackedAreaChart("Ocorrências de Falhas", // chart title
 				"Severidade", // domain axis label
 				"Ocorrência", // range axis label
-				dataset, // data
+				(CategoryDataset) dataset, // data
 				PlotOrientation.VERTICAL, // orientation
 				true, // include legend
 				true, false);
@@ -195,7 +198,7 @@ public class PlotGrafico extends Main {
 		rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
 
 		final CategoryItemRenderer renderer = plot.getRenderer();
-		renderer.setItemLabelsVisible(true);
+	
 
 		return chart;
 
