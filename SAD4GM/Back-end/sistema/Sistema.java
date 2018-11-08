@@ -304,7 +304,7 @@ public class Sistema {
 		return cMFalhas.getModosFalhaMap(chaveFalha);
 	}
 	
-	public Map<String, Integer> getMapaFalhasPorMaquina(int chaveMaquina) throws SQLException {
+	public Map<String, Integer> getMapaModosFalhaPorMaquina(int chaveMaquina) throws SQLException {
 		return cMFalhas.getMapaModosFalhaPorMaquina(chaveMaquina);
 	}
 
@@ -462,8 +462,8 @@ public class Sistema {
 	
 	
 	
-	public boolean hasEfeito() throws SQLException {
-		return cEfeitos.hasEfeito();
+	public boolean hasEfeito(int chaveModoFalha) throws SQLException {
+		return cEfeitos.hasEfeito(chaveModoFalha);
 	}
 	
 

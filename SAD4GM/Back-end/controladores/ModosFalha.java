@@ -45,7 +45,8 @@ public class ModosFalha {
 
 		try {
 			return mFTools.getMapaModosFalhaPorMaquina(chaveMaquina);
-		} catch (SQLException e) {
+		} catch (Exception e) {
+	
 			throw new SQLException("Falha na Conexão com o Banco de Dados!");
 		}
 

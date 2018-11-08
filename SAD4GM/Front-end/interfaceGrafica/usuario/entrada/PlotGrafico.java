@@ -1,5 +1,6 @@
 package interfaceGrafica.usuario.entrada;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JFrame;
@@ -10,10 +11,16 @@ import interfaceGrafica.usuario.gerenciadorMaquinas.ViewComponente;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewSubsistema;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+
+import javax.management.RuntimeErrorException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
@@ -25,13 +32,16 @@ import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.category.CategoryItemRenderer;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DatasetUtilities;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 import org.jfree.data.xy.DefaultXYDataset;
 import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.util.Rotation;
 
@@ -141,31 +151,51 @@ public class PlotGrafico extends Main {
 		lblDados.setBounds(58, 50, 85, 29);
 		desktopPane.add(lblDados);
 
-		XYDataset dataset = createDataset();
+		XYDataset dataset;
+		try {
+			dataset = createDataset();
+			JFreeChart chart = createChart(dataset);
 
-		JFreeChart chart = createChart(dataset);
+			// based on the dataset we create the chart
 
-		// based on the dataset we create the chart
+			// we put the chart into a panel
+			ChartPanel chartPanel = new ChartPanel(chart);
+			// default size
+			chartPanel.setBounds(37, 91, 531, 317);
 
-		// we put the chart into a panel
-		ChartPanel chartPanel = new ChartPanel(chart);
-		// default size
-		chartPanel.setBounds(37, 91, 531, 317);
+			desktopPane.add(chartPanel);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Falha na Conexão com o Banco de Dados!");
+		}
 
-		desktopPane.add(chartPanel);
+		
 
 	}
 
 	/**
 	 * Creates a sample dataset
+	 * 
+	 * @throws SQLException
 	 */
-	private XYDataset createDataset() {
-		 final XYSeriesCollection dataset = new XYSeriesCollection( );   
-		
-		 
-		 
-		 return dataset;
+	private XYDataset createDataset() throws SQLException {
+		final XYSeriesCollection dataset = new XYSeriesCollection();
 
+		try {
+			Map<String, Integer> mapaModosFalhas = sistema.getMapaModosFalhaPorMaquina(1);
+
+			for (String nomeModoFalha : mapaModosFalhas.keySet()) {
+				int chaveModoFalha = mapaModosFalhas.get(nomeModoFalha);
+				double indiceOcorrencia = sistema.getIndiceOcorrenciaModoFalha(chaveModoFalha);
+				double indiceSeveridade = sistema.getIndiceSeveridadePorFalha(chaveModoFalha);
+				XYSeries modoFalha = new XYSeries(nomeModoFalha);
+				modoFalha.add(indiceSeveridade, indiceOcorrencia);
+				dataset.addSeries(modoFalha);
+			}
+		} catch (Exception e) {
+			throw new RuntimeErrorException(null, "Falha na Conexão com o Banco de Dados!");
+		}
+		return dataset;
 	}
 
 	/**
@@ -173,32 +203,25 @@ public class PlotGrafico extends Main {
 	 */
 	public JFreeChart createChart(XYDataset dataset) {
 
-		final JFreeChart chart = ChartFactory.createStackedAreaChart("Ocorrências de Falhas", // chart title
+		final JFreeChart chart = ChartFactory.createXYLineChart("Ocorrências de Falhas", // chart title
 				"Severidade", // domain axis label
 				"Ocorrência", // range axis label
-				(CategoryDataset) dataset, // data
+				 dataset, // data
 				PlotOrientation.VERTICAL, // orientation
 				true, // include legend
 				true, false);
 
-		chart.setBackgroundPaint(Color.white);
+		chart.setBackgroundPaint(new Color(0,0,0,0));
 
-		final CategoryPlot plot = (CategoryPlot) chart.getPlot();
-		plot.setForegroundAlpha(0.5f);
-		plot.setBackgroundPaint(Color.lightGray);
-		plot.setDomainGridlinePaint(Color.white);
-		plot.setRangeGridlinePaint(Color.white);
-
-		final CategoryAxis domainAxis = plot.getDomainAxis();
-		domainAxis.setLowerMargin(0.0);
-		domainAxis.setUpperMargin(0.0);
-
-		// change the auto tick unit selection to integer units only...
-		final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-		rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-
-		final CategoryItemRenderer renderer = plot.getRenderer();
-	
+		 final XYPlot plot = chart.getXYPlot( );
+		 XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
+	      renderer.setSeriesPaint( 0 , Color.RED );
+	      renderer.setSeriesPaint( 1 , Color.GREEN );
+	      renderer.setSeriesPaint( 2 , Color.YELLOW );
+	      renderer.setSeriesStroke( 0 , new BasicStroke( 4.0f ) );
+	      renderer.setSeriesStroke( 1 , new BasicStroke( 3.0f ) );
+	      renderer.setSeriesStroke( 2 , new BasicStroke( 2.0f ) );
+	      plot.setRenderer( renderer ); 
 
 		return chart;
 

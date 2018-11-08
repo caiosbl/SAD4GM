@@ -42,7 +42,7 @@ public class ModosFalhaTools extends DatabaseTools {
 		Map<String, Integer> modosFalha = new HashMap<>();
 
 		PreparedStatement state = con
-				.prepareStatement("SELECT descricao,chave FROM maquinas.modo_falha WHERE chave_falha=" + chaveFalha);
+				.prepareStatement("SELECT nome,chave FROM maquinas.modo_falha WHERE chave_falha=" + chaveFalha);
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {
@@ -55,61 +55,50 @@ public class ModosFalhaTools extends DatabaseTools {
 		return modosFalha;
 
 	}
-	
+
 	public Map<String, Integer> getMapaModosFalhaPorMaquina(int chaveMaquina) throws SQLException {
-		
 		SubsistemaTools sTools = new SubsistemaTools();
 		ComponenteTools cTools = new ComponenteTools();
 		FalhaTools fTools = new FalhaTools();
-		
+
 		Map<String, Integer> mapaSubsistemas = sTools.getMapaSubsistemas(chaveMaquina);
-		
-		Integer[] SubsistemasKeys = (Integer[]) mapaSubsistemas.values().toArray();
-		
+		Object[] SubsistemasKeys = mapaSubsistemas.values().toArray();
 		ArrayList<Integer> componentesKeys = new ArrayList<Integer>();
-		
 		ArrayList<Integer> falhasKeys = new ArrayList<Integer>();
-		
-		for (Integer chaveSubsistema: SubsistemasKeys) {
-			Map<String, Integer> mapaComponente = cTools.getMapaComponentes(chaveSubsistema);
-			
-			for(Integer chaveComponente: mapaComponente.values()) {
+
+		for (Object chaveSubsistema : SubsistemasKeys) {
+			Map<String, Integer> mapaComponente = cTools.getMapaComponentes((int) chaveSubsistema);
+
+			for (Integer chaveComponente : mapaComponente.values()) {
 				componentesKeys.add(chaveComponente);
 			}
-			
+
 		}
-		
-		for(Integer chaveComponente: componentesKeys) {
+
+		for (Integer chaveComponente : componentesKeys) {
 			Map<String, Integer> mapaFalha = fTools.getMapaFalhas(chaveComponente);
-			
-			for(Integer chaveFalha: mapaFalha.values()) {
+
+			for (Integer chaveFalha : mapaFalha.values()) {
 				falhasKeys.add(chaveFalha);
 			}
-			
+
 		}
-		
-		
 
 		Map<String, Integer> modosFalha = new HashMap<>();
-		
-		
-		for (Integer chaveFalha: falhasKeys) {
+
+		for (Integer chaveFalha : falhasKeys) {
 			Map<String, Integer> mapaModoFalha = getMapaModosFalha(chaveFalha);
-			
-			for (String key: mapaModoFalha.keySet()) {
+
+			for (String key : mapaModoFalha.keySet()) {
+
 				modosFalha.put(key, mapaModoFalha.get(key));
 			}
-			
+
 		}
-		
-		
-		
-		
-		
+
 		return modosFalha;
-	
+
 	}
-	
 
 	public double getIndiceOcorrencia(int chaveModoFalha) throws SQLException {
 		abrirConexao();

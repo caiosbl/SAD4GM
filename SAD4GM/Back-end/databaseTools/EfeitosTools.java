@@ -140,16 +140,14 @@ public class EfeitosTools extends DatabaseTools {
 		if (resSet.next())
 			indiceSeveridade = resSet.getDouble(1);
 		else {
-			state.close();
-			fecharConexao();
-			throw new SQLException("Falha na Conexão com Banco de Dados");
+
+			indiceSeveridade = 0;
 		}
 		state.close();
 		fecharConexao();
 		return indiceSeveridade;
 	}
 
-	
 	public void setNomeEfeito(String nome, int chaveEfeito) throws SQLException {
 		abrirConexao();
 		PreparedStatement state = con
@@ -174,11 +172,11 @@ public class EfeitosTools extends DatabaseTools {
 		state.execute();
 	}
 
-	public boolean hasEfeito() throws SQLException {
+	public boolean hasEfeito(int chaveModoFalha) throws SQLException {
 		abrirConexao();
 
 		try {
-			PreparedStatement state = con.prepareStatement("SELECT indice_severidade FROM maquinas.efeito");
+			PreparedStatement state = con.prepareStatement("SELECT indice_severidade FROM maquinas.efeito WHERE chave_modo_falha=" + chaveModoFalha);
 			ResultSet resSet = state.executeQuery();
 
 			if (resSet.next()) {

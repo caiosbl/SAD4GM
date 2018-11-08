@@ -111,7 +111,7 @@ public class InsertEfeito extends Main {
 			public void actionPerformed(ActionEvent arg0) {
 
 				try {
-					if (!sistema.hasEfeito()) {
+					if (!sistema.hasEfeito(chaveModoFalha)) {
 
 						String descricao = new String(descricaoPane.getText().trim());
 						String titulo = new String(tituloField.getText().trim());
