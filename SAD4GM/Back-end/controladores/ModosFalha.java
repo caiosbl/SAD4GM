@@ -40,6 +40,16 @@ public class ModosFalha {
 		}
 
 	}
+	
+	public Map<String, Integer> getMapaModosFalhaPorMaquina(int chaveMaquina) throws SQLException {
+
+		try {
+			return mFTools.getMapaModosFalhaPorMaquina(chaveMaquina);
+		} catch (SQLException e) {
+			throw new SQLException("Falha na Conexão com o Banco de Dados!");
+		}
+
+	}
 
 	public Map<Integer, ModoFalha> getModosFalhaMap(int chaveFalha) {
 		try {

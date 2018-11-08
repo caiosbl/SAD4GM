@@ -264,6 +264,7 @@ public class Sistema {
 		return cFalhas.getMapaFalhas(chaveComponente);
 	}
 
+
 	public Map<Integer, Falha> getFalhasMap(int chaveComponente) {
 		return cFalhas.getFalhasMap(chaveComponente);
 	}
@@ -301,6 +302,10 @@ public class Sistema {
 
 	public Map<Integer, ModoFalha> getModosFalhaMap(int chaveFalha) {
 		return cMFalhas.getModosFalhaMap(chaveFalha);
+	}
+	
+	public Map<String, Integer> getMapaFalhasPorMaquina(int chaveMaquina) throws SQLException {
+		return cMFalhas.getMapaModosFalhaPorMaquina(chaveMaquina);
 	}
 
 	public String getDescricaoModoFalha(int chaveModoFalha) {
