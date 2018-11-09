@@ -235,13 +235,11 @@ public class Options extends Main {
 		JButton btnVerGrafico = new JButton("Ver Grafico");
 		btnVerGrafico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				PlotGrafico registarOcorrencia = new PlotGrafico(id, xLocation, yLocation);
+				PlotGrafico plot = new PlotGrafico(idUsuario,getXLocation(),getYLocation());
+				plot.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				dispose();
-				registarOcorrencia
-						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				registarOcorrencia.setVisible(true);
-				registarOcorrencia.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				plot.setVisible(true);
+				plot.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		btnVerGrafico.setBounds(452, 380, 89, 23);
@@ -274,7 +272,6 @@ public class Options extends Main {
 				dispose();
 				admUserOptions
 						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				admUserOptions.pack();
 				admUserOptions.setVisible(true);
 				admUserOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}

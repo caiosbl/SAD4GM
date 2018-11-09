@@ -1,6 +1,5 @@
 package interfaceGrafica.usuario.entrada;
 
-import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JFrame;
@@ -9,41 +8,22 @@ import javax.swing.border.EmptyBorder;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewComponente;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewSubsistema;
+import interfaceGrafica.utils.PlotGraficoXY;
+import interfaceGrafica.utils.RankingRPN;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 
-import javax.management.RuntimeErrorException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PiePlot3D;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.category.CategoryItemRenderer;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.general.DatasetUtilities;
-import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
-import org.jfree.data.xy.DefaultXYDataset;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-import org.jfree.util.Rotation;
 
 import sistema.Sistema;
 
@@ -61,7 +41,11 @@ public class PlotGrafico extends Main {
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
 	private String idUsuario;
-	private Sistema sistema = new Sistema();
+	private Sistema sistema;
+
+	private Map<String, Integer> mapaMaquinas;
+	private JComboBox<Object> maquinasBox;
+	private Object[] arrayMaquinas;
 
 	/**
 	 * Launch the application.
@@ -72,6 +56,7 @@ public class PlotGrafico extends Main {
 	 */
 	public PlotGrafico(String id, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
+		this.sistema = new Sistema();
 		this.idUsuario = id;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("SAD4GM");
@@ -139,92 +124,57 @@ public class PlotGrafico extends Main {
 		label.setBounds(350, 6, 256, 51);
 		desktopPane.add(label);
 
-		JLabel lblMeus = new JLabel("MEUS");
+		JLabel lblMeus = new JLabel("VISUALIZAR");
 		lblMeus.setForeground(Color.WHITE);
 		lblMeus.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblMeus.setBounds(67, 22, 69, 29);
+		lblMeus.setBounds(67, 22, 151, 29);
 		desktopPane.add(lblMeus);
 
-		JLabel lblDados = new JLabel("DADOS");
+		JLabel lblDados = new JLabel("RELATÓRIOS");
 		lblDados.setForeground(Color.WHITE);
 		lblDados.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblDados.setBounds(58, 50, 85, 29);
+		lblDados.setBounds(65, 49, 157, 29);
 		desktopPane.add(lblDados);
 
-		XYDataset dataset;
-		try {
-			dataset = createDataset();
-			JFreeChart chart = createChart(dataset);
-
-			// based on the dataset we create the chart
-
-			// we put the chart into a panel
-			ChartPanel chartPanel = new ChartPanel(chart);
-			// default size
-			chartPanel.setBounds(37, 91, 531, 317);
-
-			desktopPane.add(chartPanel);
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Falha na Conexão com o Banco de Dados!");
-		}
-
-		
-
-	}
-
-	/**
-	 * Creates a sample dataset
-	 * 
-	 * @throws SQLException
-	 */
-	private XYDataset createDataset() throws SQLException {
-		final XYSeriesCollection dataset = new XYSeriesCollection();
-
-		try {
-			Map<String, Integer> mapaModosFalhas = sistema.getMapaModosFalhaPorMaquina(1);
-
-			for (String nomeModoFalha : mapaModosFalhas.keySet()) {
-				int chaveModoFalha = mapaModosFalhas.get(nomeModoFalha);
-				double indiceOcorrencia = sistema.getIndiceOcorrenciaModoFalha(chaveModoFalha);
-				double indiceSeveridade = sistema.getIndiceSeveridadePorFalha(chaveModoFalha);
-				XYSeries modoFalha = new XYSeries(nomeModoFalha);
-				modoFalha.add(indiceSeveridade, indiceOcorrencia);
-				dataset.addSeries(modoFalha);
+		JButton btnNewButton = new JButton("Gráfico XY");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PlotGraficoXY plot = new PlotGraficoXY(mapaMaquinas.get(arrayMaquinas[maquinasBox.getSelectedIndex()]));
+				plot.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				plot.setVisible(true);
+				plot.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
-		} catch (Exception e) {
-			throw new RuntimeErrorException(null, "Falha na Conexão com o Banco de Dados!");
-		}
-		return dataset;
+		});
+		btnNewButton.setBounds(67, 233, 151, 62);
+		desktopPane.add(btnNewButton);
+
+		JButton btnRankingRpn = new JButton("Ranking RPN");
+		btnRankingRpn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RankingRPN plot = new RankingRPN(mapaMaquinas.get(arrayMaquinas[maquinasBox.getSelectedIndex()]));
+				plot.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				plot.setVisible(true);
+				plot.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		btnRankingRpn.setBounds(230, 233, 151, 62);
+		desktopPane.add(btnRankingRpn);
+
+		JButton btnGrficoPareto = new JButton("Gráfico Pareto");
+		btnGrficoPareto.setBounds(393, 233, 151, 62);
+		desktopPane.add(btnGrficoPareto);
+
+		mapaMaquinas = sistema.getMapaMaquinas();
+		arrayMaquinas = mapaMaquinas.keySet().toArray();
+		maquinasBox = new JComboBox<Object>(arrayMaquinas);
+		maquinasBox.setBounds(73, 159, 450, 41);
+		desktopPane.add(maquinasBox);
+		
+		JLabel lblSelecioneUmaMquina = new JLabel("SELECIONE UMA MÁQUINA:");
+		lblSelecioneUmaMquina.setForeground(Color.WHITE);
+		lblSelecioneUmaMquina.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblSelecioneUmaMquina.setBounds(185, 138, 226, 20);
+		desktopPane.add(lblSelecioneUmaMquina);
+
 	}
-
-	/**
-	 * Creates a chart
-	 */
-	public JFreeChart createChart(XYDataset dataset) {
-
-		final JFreeChart chart = ChartFactory.createXYLineChart("Ocorrências de Falhas", // chart title
-				"Severidade", // domain axis label
-				"Ocorrência", // range axis label
-				 dataset, // data
-				PlotOrientation.VERTICAL, // orientation
-				true, // include legend
-				true, false);
-
-		chart.setBackgroundPaint(new Color(0,0,0,0));
-
-		 final XYPlot plot = chart.getXYPlot( );
-		 XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
-	      renderer.setSeriesPaint( 0 , Color.RED );
-	      renderer.setSeriesPaint( 1 , Color.GREEN );
-	      renderer.setSeriesPaint( 2 , Color.YELLOW );
-	      renderer.setSeriesStroke( 0 , new BasicStroke( 4.0f ) );
-	      renderer.setSeriesStroke( 1 , new BasicStroke( 3.0f ) );
-	      renderer.setSeriesStroke( 2 , new BasicStroke( 2.0f ) );
-	      plot.setRenderer( renderer ); 
-
-		return chart;
-
-	}
-
 }

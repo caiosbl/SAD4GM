@@ -35,8 +35,8 @@ public class EscalaSeveridade extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		Object[][] linhas = { { 1, "Efeito não percebido pelo Cliente." }, { 2,
-				"Efeito bastante insignificante, percebido pelo cliente; entretanto, não faz com que o cliente busque o serviço." },
+		Object[][] linhas = { { 1, "Efeito não percebido pelo Cliente." },
+				{ 2, "Efeito bastante insignificante, percebido pelo cliente; entretanto, não faz com que o cliente busque o serviço." },
 				{ 3, "Efeito insignificante, que pertuba o cliente, mas não faz com que procure o serviço." },
 				{ 4, "Efeito bastante insignificante, mas pertuba o cliente, fazendo com que procure o serviço." },
 				{ 5, "Efeito menor, incoveniente para o cliente; entretanto, não faz com que o cliente procure o serviço." },
@@ -45,10 +45,10 @@ public class EscalaSeveridade extends JDialog {
 				{ 8, "Efeito significativo, resultando em falha grave; entretanto,  não coloca a segurança do cliente em risco e não resulta em custo significativo da falha." },
 				{ 9, "Efeito crítico que provoca a insatisfação do cliente, interrompe as funções do projeto, gera custo significativo da falha e impõe um leve risco de segurança (não ameaça a vida nem provoca incapacidade permanente) ao cliente." },
 				{ 10, "Perigoso, ameaça a vida ou pode provocar a incapacidade permanente ou outro custo significativo da falha que coloca em risco a continuidade operacional da organização." } };
+		
 		Object[] nomesColunas = { "Indíce" + "", "Descrição" };
 
 		table = new JTable(linhas, nomesColunas);
-
 		table.setBackground(SystemColor.inactiveCaptionBorder);
 		table.setShowVerticalLines(true);
 		table.setShowHorizontalLines(true);

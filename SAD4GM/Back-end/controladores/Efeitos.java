@@ -22,7 +22,7 @@ public class Efeitos {
 
 		try {
 			eTools.inserir(nome, descricao, chaveModoFalha, indiceSeveridade);
-			status = "Causa Potencial inserida com Sucesso!";
+			status = "Efeito inserido com Sucesso!";
 		} catch (SQLException e) {
 			status = e.getMessage();
 		}

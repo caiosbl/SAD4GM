@@ -12,6 +12,10 @@ public class ModoFalha {
 		this.descricao = descricao;
 		this.chave = chave;
 	}
+	
+	public ModoFalha(String nome, int indiceOcorrencia,int indiceSeveridade) {
+		
+	}
 
 	public String getNome() {
 		return nome;
