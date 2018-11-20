@@ -98,7 +98,7 @@ public class Tree {
 		DefaultMutableTreeNode efeitoNode = new DefaultMutableTreeNode("Efeitos");
 		modoFalhaNode.add(efeitoNode);
 
-		if (!getModosFalhaMap(modoFalha.getChave(), sistema).isEmpty()) {
+		if (!getEfeitosMap(modoFalha.getChave(), sistema).isEmpty()) {
 
 			for (Efeito efeito : getEfeitosMap(modoFalha.getChave(), sistema).values()) {
 				DefaultMutableTreeNode efecctNode = new DefaultMutableTreeNode(efeito);
@@ -112,7 +112,7 @@ public class Tree {
 			Sistema sistema) {
 		DefaultMutableTreeNode causaPotencialNode = new DefaultMutableTreeNode("Causas Potenciais");
 		modoFalhaNode.add(causaPotencialNode);
-		if (!getModosFalhaMap(modoFalha.getChave(), sistema).isEmpty()) {
+		if (!getCausasPotenciaisMap(modoFalha.getChave(), sistema).isEmpty()) {
 
 			for (CausaPotencial causaPotencial : getCausasPotenciaisMap(modoFalha.getChave(), sistema).values()) {
 				DefaultMutableTreeNode cPotencialNode = new DefaultMutableTreeNode(causaPotencial);
@@ -127,7 +127,7 @@ public class Tree {
 			CausaPotencial causaPotencial, Sistema sistema) {
 		DefaultMutableTreeNode acoesRecomendadasNode = new DefaultMutableTreeNode("Ações Recomendadas");
 		causaPotencialNode.add(acoesRecomendadasNode);
-		if (!getCausasPotenciaisMap(causaPotencial.getChave(), sistema).isEmpty()) {
+		if (!getAcoesRecomendadasMap(causaPotencial.getChave(), sistema).isEmpty()) {
 
 			for (AcaoRecomendada acaoRecomendada : getAcoesRecomendadasMap(causaPotencial.getChave(), sistema)
 					.values()) {
