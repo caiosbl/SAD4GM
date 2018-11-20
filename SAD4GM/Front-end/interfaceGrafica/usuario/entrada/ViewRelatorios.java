@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewComponente;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewSubsistema;
+import interfaceGrafica.utils.PlotGraficoPareto;
 import interfaceGrafica.utils.PlotGraficoXY;
 import interfaceGrafica.utils.RankingRPN;
 
@@ -33,7 +34,7 @@ import sistema.Sistema;
  * @author caiosbl
  *
  */
-public class PlotGrafico extends Main {
+public class ViewRelatorios extends Main {
 
 	/**
 	 * 
@@ -54,7 +55,7 @@ public class PlotGrafico extends Main {
 	/**
 	 * Create the frame.
 	 */
-	public PlotGrafico(String id, int xLocation, int yLocation) {
+	public ViewRelatorios(String id, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
 		this.sistema = new Sistema();
 		this.idUsuario = id;
@@ -161,6 +162,15 @@ public class PlotGrafico extends Main {
 		desktopPane.add(btnRankingRpn);
 
 		JButton btnGrficoPareto = new JButton("Gráfico Pareto");
+		btnGrficoPareto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PlotGraficoPareto plot = new PlotGraficoPareto(
+						mapaMaquinas.get(arrayMaquinas[maquinasBox.getSelectedIndex()]));
+				plot.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				plot.setVisible(true);
+				plot.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnGrficoPareto.setBounds(393, 233, 151, 62);
 		desktopPane.add(btnGrficoPareto);
 
@@ -169,7 +179,7 @@ public class PlotGrafico extends Main {
 		maquinasBox = new JComboBox<Object>(arrayMaquinas);
 		maquinasBox.setBounds(73, 159, 450, 41);
 		desktopPane.add(maquinasBox);
-		
+
 		JLabel lblSelecioneUmaMquina = new JLabel("SELECIONE UMA MÁQUINA:");
 		lblSelecioneUmaMquina.setForeground(Color.WHITE);
 		lblSelecioneUmaMquina.setFont(new Font("Tahoma", Font.BOLD, 16));

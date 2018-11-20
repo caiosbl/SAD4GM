@@ -11,6 +11,9 @@ import javax.swing.border.EmptyBorder;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+
+import org.jfree.chart.axis.ValueAxis;
+
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
@@ -108,10 +111,13 @@ public class PlotGraficoXY extends JDialog {
 				PlotOrientation.VERTICAL, // orientation
 				true, // include legend
 				true, false);
-		
-		
 
 		final XYPlot plot = chart.getXYPlot();
+
+		final ValueAxis domainAxis = plot.getDomainAxis();
+		domainAxis.setLowerMargin(0.02);
+		domainAxis.setUpperMargin(0.02);
+
 		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
 		plot.setRenderer(renderer);
 

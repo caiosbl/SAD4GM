@@ -235,7 +235,7 @@ public class Options extends Main {
 		JButton btnVerGrafico = new JButton("Ver Grafico");
 		btnVerGrafico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PlotGrafico plot = new PlotGrafico(idUsuario,getXLocation(),getYLocation());
+				ViewRelatorios plot = new ViewRelatorios(idUsuario,getXLocation(),getYLocation());
 				plot.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				dispose();
 				plot.setVisible(true);
