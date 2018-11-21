@@ -78,7 +78,7 @@ public class OrigemCausaTools extends DatabaseTools {
 		state.execute();
 	}
 
-	public Map<Integer, Origem> getCausasPotenciaisMap(int chaveCausaPotencial) throws SQLException {
+	public Map<Integer, Origem> getOrigemCausasMap(int chaveCausaPotencial) throws SQLException {
 		abrirConexao();
 
 		Map<Integer, Origem> origens = new HashMap<>();
