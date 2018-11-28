@@ -16,6 +16,7 @@ import entidades.Efeito;
 import entidades.Falha;
 import entidades.Maquina;
 import entidades.ModoFalha;
+import entidades.Origem;
 import entidades.Subsistema;
 
 
@@ -53,6 +54,8 @@ public class RenderizarTree extends DefaultTreeCellRenderer implements TreeCellR
 			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/efeitos.png")));
 		else if (node.toString().equals("Ações Recomendadas")) 
 			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/acoes.png")));
+		else if (node.toString().equals("Origens de Causa")) 
+			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/origens.png")));
 		
 		
 		
@@ -78,6 +81,11 @@ public class RenderizarTree extends DefaultTreeCellRenderer implements TreeCellR
 		
 		else if(CLASS_TYPE == Efeito.class)
 			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/efeito.png")));
+		else if(CLASS_TYPE == Origem.class)
+			setIcon(new ImageIcon(RenderizarTree.class.getResource("/Resources/icon/tree/origem.png")));
+		
+		
+		
 
 		return this;
 	}
