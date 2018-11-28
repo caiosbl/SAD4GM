@@ -11,6 +11,7 @@ import entidades.Efeito;
 import entidades.Falha;
 import entidades.Maquina;
 import entidades.ModoFalha;
+import entidades.Origem;
 import entidades.Subsistema;
 import sistema.Sistema;
 
@@ -118,9 +119,23 @@ public class Tree {
 				DefaultMutableTreeNode cPotencialNode = new DefaultMutableTreeNode(causaPotencial);
 				causaPotencialNode.add(cPotencialNode);
 				iniciaRamoAcaoRecomendada(cPotencialNode, causaPotencial, sistema);
+				iniciaRamoOrigemCausa(cPotencialNode, causaPotencial, sistema);
 			}
 		}
 
+	}
+
+	private static void iniciaRamoOrigemCausa(DefaultMutableTreeNode causaPotencialNode, CausaPotencial causaPotencial,
+			Sistema sistema) {
+		DefaultMutableTreeNode origemCausaNode = new DefaultMutableTreeNode("Origens de Causa");
+		causaPotencialNode.add(origemCausaNode);
+		if (!getOrigemMap(causaPotencial.getChave(), sistema).isEmpty()) {
+			for (Origem origem : getOrigemMap(causaPotencial.getChave(), sistema).values()) {
+				DefaultMutableTreeNode origemNode = new DefaultMutableTreeNode(origem);
+				origemCausaNode.add(origemNode);
+			}
+
+		}
 	}
 
 	private static void iniciaRamoAcaoRecomendada(DefaultMutableTreeNode causaPotencialNode,
@@ -171,6 +186,10 @@ public class Tree {
 
 	private static Map<Integer, ModoFalha> getModosFalhaMap(int chaveFalha, Sistema sistema) {
 		return sistema.getModosFalhaMap(chaveFalha);
+	}
+
+	private static Map<Integer, Origem> getOrigemMap(int chaveCausaPotencial, Sistema sistema) {
+		return sistema.getOrigemMap(chaveCausaPotencial);
 	}
 
 }
