@@ -61,7 +61,7 @@ public class InsertOrigem extends Main {
 	 * @throws SQLException
 	 */
 
-	public InsertOrigem(String id, int xLocation, int yLocation, int chaveMaquina) {
+	public InsertOrigem(String id, int xLocation, int yLocation, int chaveCausaPotencial) {
 		super(xLocation, yLocation);
 		sistema = new Sistema();
 		this.idUsuario = id;
@@ -166,7 +166,7 @@ public class InsertOrigem extends Main {
 				if (isEmpty(nome))
 					JOptionPane.showMessageDialog(null, "Nome Inválido");
 				else {
-					String status = sistema.inserirSubsistema(nome, chaveMaquina);
+					String status = sistema.inserirOrigem(nome, chaveCausaPotencial);
 					JOptionPane.showMessageDialog(null, status);
 
 				}
@@ -186,13 +186,13 @@ public class InsertOrigem extends Main {
 		insertTitle = new JLabel("INSERIR");
 		insertTitle.setForeground(Color.WHITE);
 		insertTitle.setFont(new Font("Tahoma", Font.BOLD, 24));
-		insertTitle.setBounds(67, 22, 110, 29);
+		insertTitle.setBounds(75, 24, 110, 29);
 		desktopPane.add(insertTitle);
 		
-		JLabel lblSubsistema = new JLabel("SUBSISTEMA");
+		JLabel lblSubsistema = new JLabel("ORIGEM DE CAUSA");
 		lblSubsistema.setForeground(Color.WHITE);
 		lblSubsistema.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblSubsistema.setBounds(47, 47, 158, 29);
+		lblSubsistema.setBounds(22, 47, 229, 29);
 		desktopPane.add(lblSubsistema);
 		
 		JLabel label_1 = new JLabel("Nome:");
