@@ -17,6 +17,7 @@ import entidades.Efeito;
 import entidades.Falha;
 import entidades.Maquina;
 import entidades.ModoFalha;
+import entidades.Origem;
 import entidades.Subsistema;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.entrada.Login;
@@ -259,6 +260,15 @@ public class ViewMachinesInfo extends Main {
 			vEfeito.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 			vEfeito.setVisible(true);
 			vEfeito.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		}
+		
+		else if (CLASS_TYPE == Origem.class) {
+			Origem  origem = (Origem) node.getUserObject();
+			ViewOrigemCausa vOrigem = new ViewOrigemCausa(idAdmin, origem.getChave(), getXLocation(), getYLocation());
+			dispose();
+			vOrigem.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			vOrigem.setVisible(true);
+			vOrigem.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 
 	}
