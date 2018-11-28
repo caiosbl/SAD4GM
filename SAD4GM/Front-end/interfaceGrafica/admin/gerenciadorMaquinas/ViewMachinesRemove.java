@@ -19,6 +19,7 @@ import entidades.Efeito;
 import entidades.Falha;
 import entidades.Maquina;
 import entidades.ModoFalha;
+import entidades.Origem;
 import entidades.Subsistema;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.entrada.Login;
@@ -297,6 +298,19 @@ public class ViewMachinesRemove extends Main {
 				frame.dispose();
 				if (resposta == JOptionPane.YES_OPTION) {
 					JOptionPane.showMessageDialog(null, sistema.removerEfeito(efeito.getChave()));
+					atualizaTree();
+				}
+			}
+
+			else if (CLASS_TYPE == Origem.class) {
+				Origem origem = (Origem) node.getUserObject();
+				JFrame frame = new JFrame();
+				int resposta = JOptionPane.showConfirmDialog(frame,
+						"Tem Certeza que Deseja remover a Origem de Causa " + origem.getNome() + " ?",
+						"Remover Origem de Causa", JOptionPane.YES_NO_OPTION);
+				frame.dispose();
+				if (resposta == JOptionPane.YES_OPTION) {
+					JOptionPane.showMessageDialog(null, sistema.removerOrigem(origem.getChave()));
 					atualizaTree();
 				}
 			}
