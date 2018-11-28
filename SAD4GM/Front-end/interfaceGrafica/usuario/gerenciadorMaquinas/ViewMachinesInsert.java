@@ -15,6 +15,7 @@ import entidades.Componente;
 import entidades.Falha;
 import entidades.Maquina;
 import entidades.ModoFalha;
+import entidades.Origem;
 import entidades.Subsistema;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.entrada.Login;
@@ -22,6 +23,7 @@ import interfaceGrafica.usuario.entrada.MyInfo;
 import interfaceGrafica.usuario.entrada.Options;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertMaquina;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertModoFalha;
+import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertOrigem;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertSubsistema;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertAcaoRecomendada;
 import interfaceGrafica.usuario.gerenciadorMaquinas.Insert.InsertCausaPotencial;
@@ -278,6 +280,17 @@ public class ViewMachinesInsert extends Main {
 			insertEfeito.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		}
+		
+		else if (node.toString().equals("Origens de Causa")) {
+			Origem origem = (Origem) nodeParent.getUserObject();
+			InsertOrigem insertEfeito = new InsertOrigem(idAdmin, getXLocation(), getYLocation(),origem.getChave());
+			dispose();
+			insertEfeito.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+			insertEfeito.setVisible(true);
+			insertEfeito.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+		}
+		
 
 	}
 
