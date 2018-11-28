@@ -11,6 +11,7 @@ import controladores.Efeitos;
 import controladores.Falhas;
 import controladores.Maquinas;
 import controladores.ModosFalha;
+import controladores.OrigemCausas;
 import controladores.Subsistemas;
 import controladores.Usuarios;
 import databaseTools.AcaoRecomendadaTools;
@@ -20,6 +21,7 @@ import databaseTools.EfeitosTools;
 import databaseTools.FalhaTools;
 import databaseTools.MaquinaTools;
 import databaseTools.ModosFalhaTools;
+import databaseTools.OrigemCausaTools;
 import databaseTools.SubsistemaTools;
 import databaseTools.UsuarioTools;
 import entidades.AcaoRecomendada;
@@ -29,6 +31,7 @@ import entidades.Efeito;
 import entidades.Falha;
 import entidades.Maquina;
 import entidades.ModoFalha;
+import entidades.Origem;
 import entidades.Subsistema;
 
 /**
@@ -48,6 +51,8 @@ public class Sistema {
 	private CausasPotenciais cCPotenciais;
 	private Efeitos cEfeitos;
 	private AcoesRecomendadas cARecomendadas;
+	private OrigemCausas cOrigem;
+	
 
 	private UsuarioTools uTools;
 	private MaquinaTools mTools;
@@ -58,6 +63,7 @@ public class Sistema {
 	private CausaPotencialTools CPTools;
 	private EfeitosTools eTools;
 	private AcaoRecomendadaTools aRTools;
+	private OrigemCausaTools oTools;
 
 	public Sistema() {
 
@@ -70,6 +76,7 @@ public class Sistema {
 		this.CPTools = new CausaPotencialTools();
 		this.eTools = new EfeitosTools();
 		this.aRTools = new AcaoRecomendadaTools();
+		this.oTools = new OrigemCausaTools();
 
 		this.cUsuarios = new Usuarios(uTools);
 		this.cMaquinas = new Maquinas(mTools);
@@ -80,6 +87,7 @@ public class Sistema {
 		this.cCPotenciais = new CausasPotenciais(CPTools);
 		this.cEfeitos = new Efeitos(eTools);
 		this.cARecomendadas = new AcoesRecomendadas(aRTools);
+		this.cOrigem = new OrigemCausas(oTools);
 	}
 
 	// Funções de Usuário
@@ -414,6 +422,31 @@ public class Sistema {
 		return cARecomendadas.setDescricao(descricao, chaveAcaoRecomendada);
 	}
 	
+	// Função de Origem de Causas
+	
+	public String inserirOrigem(String nome, int chaveCausaPotencial) {
+		return cOrigem.inserir(nome, chaveCausaPotencial);
+	}
+	
+	public String removerOrigem(int chaveOrigem) {
+		return cOrigem.remover(chaveOrigem);
+	}
+	
+	public Map<String,Integer> getMapaOrigem(int chaveCausaPotencial){
+		return cOrigem.getMapaOrigemCausas(chaveCausaPotencial);
+	}
+	
+	public Map<Integer,Origem> getOrigemMap(int chaveCausaPotencial){
+		return cOrigem.getOrigemCausasMap(chaveCausaPotencial);
+	}
+	
+	public String getNomeOrigem(int chaveOrigem) {
+		return cOrigem.getNome(chaveOrigem);
+	}
+	
+	public String setNomeOrigem(String nome, int chaveOrigem) {
+		return cOrigem.setNome(nome, chaveOrigem);
+	}
 	// Função de Efeitos
 	
 	public String inserirEfeito(String nome, String descricao, double indiceSeveridade, int chaveModoFalha) {
@@ -459,8 +492,6 @@ public class Sistema {
 	public String setDescricaoEfeito(String descricao, int chaveEfeito) {
 		return cEfeitos.setDescricao(descricao, chaveEfeito);
 	}
-	
-	
 	
 	public boolean hasEfeito(int chaveModoFalha) throws SQLException {
 		return cEfeitos.hasEfeito(chaveModoFalha);

@@ -41,7 +41,7 @@ public class OrigemCausas {
 
 	}
 
-	public Map<Integer, Origem> getCausasPotenciaisMap(int chaveCausaPotencial) {
+	public Map<Integer, Origem> getOrigemCausasMap(int chaveCausaPotencial) {
 		try {
 			return origemTools.getOrigemCausasMap(chaveCausaPotencial);
 		} catch (SQLException e) {
