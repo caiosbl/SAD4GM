@@ -282,8 +282,8 @@ public class ViewMachinesInsert extends Main {
 		}
 		
 		else if (node.toString().equals("Origens de Causa")) {
-			Origem origem = (Origem) nodeParent.getUserObject();
-			InsertOrigem insertEfeito = new InsertOrigem(idAdmin, getXLocation(), getYLocation(),origem.getChave());
+			CausaPotencial causaPotencial = (CausaPotencial) nodeParent.getUserObject();
+			InsertOrigem insertEfeito = new InsertOrigem(idAdmin, getXLocation(), getYLocation(),causaPotencial.getChave());
 			dispose();
 			insertEfeito.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 			insertEfeito.setVisible(true);

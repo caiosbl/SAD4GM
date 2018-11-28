@@ -27,6 +27,7 @@ public class OrigemCausaTools extends DatabaseTools {
 			fecharConexao();
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new SQLException("Falha na Conexão com o Banco de Dados!");
 		}
 
