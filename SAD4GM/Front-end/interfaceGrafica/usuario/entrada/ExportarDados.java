@@ -12,6 +12,7 @@ import org.apache.commons.io.FilenameUtils;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewComponente;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewSubsistema;
+import interfaceGrafica.utils.GerarPlanilhaComponentes;
 import interfaceGrafica.utils.GerarPlanilhaRankingModosFalha;
 import interfaceGrafica.utils.RankingRPN;
 
@@ -176,11 +177,29 @@ public class ExportarDados extends Main {
 		JButton btnRankingRpn = new JButton("Componentes");
 		btnRankingRpn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RankingRPN plot = new RankingRPN(mapaMaquinas.get(arrayMaquinas[maquinasBox.getSelectedIndex()]));
-				plot.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
-				plot.setVisible(true);
-				plot.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				int chaveMaquina = mapaMaquinas.get(arrayMaquinas[maquinasBox.getSelectedIndex()]);
+				String nomeMaquina = String.valueOf(arrayMaquinas[maquinasBox.getSelectedIndex()]);
+				
+				JFileChooser fc = new JFileChooser();
+				fc.setDialogTitle("Salvar Planilha de Modos de Falha");
+				fc.setAcceptAllFileFilterUsed(false);
+				fc.setSelectedFile(new File("componentesMaquina.xls"));
+				fc.setFileFilter(new FileNameExtensionFilter("Planilhas do excel (*.xls)", "xls"));
+
+				if (fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+					File diretorio = fc.getSelectedFile();
+
+					if (FilenameUtils.getExtension(diretorio.getName()).equalsIgnoreCase("xls"))
+						new GerarPlanilhaComponentes(nomeMaquina, chaveMaquina, diretorio);
+					else {
+						diretorio = new File(diretorio.getParentFile(),
+								FilenameUtils.getBaseName(diretorio.getName()) + ".xls");
+						new GerarPlanilhaComponentes(nomeMaquina, chaveMaquina, diretorio);
+					}
+				} else
+					JOptionPane.showMessageDialog(null, "Você não deu um nome ao Arquivo!");
 			}
+			
 		});
 		btnRankingRpn.setBounds(311, 233, 151, 62);
 		desktopPane.add(btnRankingRpn);
