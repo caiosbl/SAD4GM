@@ -1,10 +1,8 @@
 package interfaceGrafica.usuario.entrada;
 
 import java.awt.BorderLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import interfaceGrafica.admin.gerenciadorMaquinas.MachineManagementOptions;
 import interfaceGrafica.admin.gerenciadorUsuarios.UserManagementOptions;
 import interfaceGrafica.main.Main;
@@ -12,7 +10,6 @@ import interfaceGrafica.usuario.gerenciadorMaquinas.RegistrarOcorrenciaModoFalha
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewMachinesInfo;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewMachinesInsert;
 import sistema.Sistema;
-
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -44,13 +41,6 @@ public class Options extends Main {
 	private Sistema sistema;
 	private JTabbedPane tabbedPane;
 
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
 	public Options(String id, int xLocation, int yLocation) {
 		super(xLocation, yLocation);
 		this.idUsuario = id;
@@ -235,7 +225,7 @@ public class Options extends Main {
 		JButton btnVerGrafico = new JButton("Ver Grafico");
 		btnVerGrafico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewRelatorios plot = new ViewRelatorios(idUsuario,getXLocation(),getYLocation());
+				ViewRelatorios plot = new ViewRelatorios(idUsuario, getXLocation(), getYLocation());
 				plot.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				dispose();
 				plot.setVisible(true);
@@ -244,6 +234,21 @@ public class Options extends Main {
 		});
 		btnVerGrafico.setBounds(452, 380, 89, 23);
 		desktopPane.add(btnVerGrafico);
+
+		JButton btnExportarPlanilha = new JButton("Exportar Planilha");
+		btnExportarPlanilha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ExportarDados exportarDados = new ExportarDados(id, xLocation, yLocation);
+				dispose();
+				exportarDados
+						.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				exportarDados.setVisible(true);
+				exportarDados.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+			}
+		});
+		btnExportarPlanilha.setBounds(45, 368, 142, 28);
+		desktopPane.add(btnExportarPlanilha);
 		desktopPane2.add(navbar2);
 
 		//

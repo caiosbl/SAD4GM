@@ -149,7 +149,7 @@ public class ModosFalha {
 		String status;
 
 		try {
-			mFTools.setIndiceOcorrencia(indiceDeteccao, chaveModoFalha);
+			mFTools.setIndiceDeteccao(indiceDeteccao, chaveModoFalha);
 			status = "Indíce de Detecção atualizado com Sucesso!";
 		} catch (Exception e) {
 			status = "Falha ao Atualizar Indíce de Detecção!";

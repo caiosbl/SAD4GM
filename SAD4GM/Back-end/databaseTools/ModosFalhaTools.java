@@ -203,6 +203,7 @@ public class ModosFalhaTools extends DatabaseTools {
 				.prepareStatement("UPDATE  maquinas.modo_falha SET descricao = ? WHERE chave=" + chaveModoFalha);
 		state.setString(1, descricao);
 		state.execute();
+		fecharConexao();
 	}
 
 	public void setNomeModoFalha(String nome, int chaveModoFalha) throws SQLException {
@@ -211,6 +212,7 @@ public class ModosFalhaTools extends DatabaseTools {
 				.prepareStatement("UPDATE  maquinas.modo_falha SET nome = ? WHERE chave=" + chaveModoFalha);
 		state.setString(1, nome);
 		state.execute();
+		fecharConexao();
 
 	}
 
@@ -220,6 +222,7 @@ public class ModosFalhaTools extends DatabaseTools {
 				"UPDATE  maquinas.modo_falha SET indice_ocorrencia = ? WHERE chave=" + chaveModoFalha);
 		state.setDouble(1, indiceOcorrencia);
 		state.execute();
+		fecharConexao();
 
 	}
 
@@ -229,6 +232,7 @@ public class ModosFalhaTools extends DatabaseTools {
 				.prepareStatement("UPDATE  maquinas.modo_falha SET indice_deteccao = ? WHERE chave=" + chaveModoFalha);
 		state.setDouble(1, indiceDeteccao);
 		state.execute();
+		fecharConexao();
 
 	}
 
@@ -271,6 +275,8 @@ public class ModosFalhaTools extends DatabaseTools {
 			state4.close();
 
 		}
+		
+		fecharConexao();
 
 	}
 
