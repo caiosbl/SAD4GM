@@ -113,6 +113,11 @@ public class InsertComponente extends Main {
 					JOptionPane.showMessageDialog(null, "Função Inválida");
 				else {
 					JOptionPane.showMessageDialog(null, sistema.inserirComponente(nome, chaveSubsistema, funcao));
+					ViewMachinesInsert insert = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
+					dispose();
+					insert.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+					insert.setVisible(true);
+					insert.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 				}
 

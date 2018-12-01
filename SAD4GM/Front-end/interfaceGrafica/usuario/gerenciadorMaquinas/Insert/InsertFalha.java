@@ -173,6 +173,12 @@ public class InsertFalha extends Main {
 					JOptionPane.showMessageDialog(null, "Descrição Inválida!");
 				else {
 					JOptionPane.showMessageDialog(null, sistema.inserirFalha(nome, descricao, chaveComponente));
+					
+					ViewMachinesInsert insert = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
+					dispose();
+					insert.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+					insert.setVisible(true);
+					insert.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 				}
 

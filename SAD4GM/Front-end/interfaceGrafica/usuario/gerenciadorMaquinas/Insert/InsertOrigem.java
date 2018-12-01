@@ -168,6 +168,11 @@ public class InsertOrigem extends Main {
 				else {
 					String status = sistema.inserirOrigem(nome, chaveCausaPotencial);
 					JOptionPane.showMessageDialog(null, status);
+					ViewMachinesInsert insert = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
+					dispose();
+					insert.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+					insert.setVisible(true);
+					insert.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 				}
 

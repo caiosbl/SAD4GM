@@ -131,11 +131,11 @@ public class InsertMaquina extends Main {
 					else {
 						sistema.adicionaMaquina(nome, codigo, descricao, idUsuario);
 						JOptionPane.showMessageDialog(null, "Máquina cadastrada com sucesso!");
-						Options userOptions = new Options(idUsuario, getXLocation(), getYLocation());
-
+						ViewMachinesInsert insert = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
 						dispose();
-						userOptions.setVisible(true);
-						userOptions.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						insert.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+						insert.setVisible(true);
+						insert.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Falha na conexão com o Banco de Dados!");

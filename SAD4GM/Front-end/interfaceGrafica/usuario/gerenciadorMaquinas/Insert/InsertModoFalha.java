@@ -125,6 +125,11 @@ public class InsertModoFalha extends Main {
 					double indiceDeteccao = boxDeteccao.getSelectedIndex() + 1;
 					JOptionPane.showMessageDialog(null,
 							sistema.inserirModoFalha(titulo, descricao, chaveFalha, indiceOcorrencia, indiceDeteccao));
+					ViewMachinesInsert insert = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
+					dispose();
+					insert.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+					insert.setVisible(true);
+					insert.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 				}
 
