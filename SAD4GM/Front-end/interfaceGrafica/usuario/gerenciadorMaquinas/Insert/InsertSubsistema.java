@@ -160,6 +160,7 @@ public class InsertSubsistema extends Main {
 		btnInserir.setBounds(425, 227, 132, 34);
 
 		btnInserir.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent arg0) {
 				String nome = new String(name.getText().trim());
 

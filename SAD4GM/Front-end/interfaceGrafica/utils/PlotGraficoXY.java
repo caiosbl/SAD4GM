@@ -45,7 +45,7 @@ public class PlotGraficoXY extends JDialog {
 		this.sistema = new Sistema();
 		this.chaveMaquina = chaveMaquina;
 
-		setTitle("Gráfico XY - SAD4GM");
+		setTitle("Matriz de Risco - SAD4GM");
 
 		setBounds(100, 100, 900, 500);
 		getContentPane().setLayout(new BorderLayout());
@@ -104,7 +104,7 @@ public class PlotGraficoXY extends JDialog {
 	 */
 	public JFreeChart createChart(XYDataset dataset) {
 
-		final JFreeChart chart = ChartFactory.createXYLineChart("Ocorrências de Falhas", // chart title
+		final JFreeChart chart = ChartFactory.createXYLineChart("Matriz de Risco", // chart title
 				"Severidade", // domain axis label
 				"Ocorrência", // range axis label
 				dataset, // data

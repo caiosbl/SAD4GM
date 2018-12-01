@@ -109,8 +109,7 @@ public class InsertComponente extends Main {
 
 				if (isEmpty(nome))
 					JOptionPane.showMessageDialog(null, "Nome Inválido");
-				else if (isEmpty(funcao))
-					JOptionPane.showMessageDialog(null, "Função Inválida");
+
 				else {
 					JOptionPane.showMessageDialog(null, sistema.inserirComponente(nome, chaveSubsistema, funcao));
 					ViewMachinesInsert insert = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());

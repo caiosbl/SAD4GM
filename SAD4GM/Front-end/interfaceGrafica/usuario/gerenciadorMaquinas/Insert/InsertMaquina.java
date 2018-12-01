@@ -136,6 +136,7 @@ public class InsertMaquina extends Main {
 						insert.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 						insert.setVisible(true);
 						insert.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						
 					}
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Falha na conexão com o Banco de Dados!");

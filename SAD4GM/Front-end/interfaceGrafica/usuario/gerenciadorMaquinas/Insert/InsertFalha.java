@@ -169,8 +169,7 @@ public class InsertFalha extends Main {
 
 				if (isEmpty(nome))
 					JOptionPane.showMessageDialog(null, "Nome Inválido!");
-				else if (isEmpty(descricao))
-					JOptionPane.showMessageDialog(null, "Descrição Inválida!");
+	
 				else {
 					JOptionPane.showMessageDialog(null, sistema.inserirFalha(nome, descricao, chaveComponente));
 					

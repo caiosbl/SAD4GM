@@ -99,7 +99,7 @@ public abstract class DatabaseTools {
 		String senhaDefault = encriptarSenha("rootdesides");
 
 		PreparedStatement statement = con.prepareStatement(
-				"INSERT INTO sad4gm.usuario (admin,ativo,auditor,senha,id,nome) VALUES (1,1,'Fernando',?,'admin','Caio')");
+				"INSERT INTO sad4gm.usuario (admin,ativo,auditor,senha,id,nome) VALUES (1,1,'Default',?,'admin','Admin')");
 
 		statement.setString(1, senhaDefault);
 		statement.execute();
@@ -204,7 +204,7 @@ public abstract class DatabaseTools {
 
 	private void criarTabelaCausasPotenciais(Connection con) throws SQLException {
 		PreparedStatement statement = con.prepareStatement("CREATE TABLE MAQUINAS.CAUSAS_POTENCIAIS (\r\n"
-				+ "						NOME VARCHAR(80),\r\n"
+				+ "						NOME LONG VARCHAR,\r\n"
 				+ "						CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n"
 				+ "						DESCRICAO LONG VARCHAR, \r\n"
 				+ "						CHAVE_MODO_FALHA INTEGER NOT NULL,\r\n"
@@ -219,7 +219,7 @@ public abstract class DatabaseTools {
 	
 	private void criarTabelaOrigemCausas(Connection con) throws SQLException {
 		PreparedStatement statement = con.prepareStatement("CREATE TABLE MAQUINAS.ORIGEM_CAUSA (\r\n"
-				+ "						NOME VARCHAR(80),\r\n"
+				+ "						NOME LONG VARCHAR,\r\n"
 				+ "						CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n"
 				+ "						CHAVE_CAUSA INTEGER NOT NULL,\r\n"
 				+ "						PRIMARY KEY (chave),\r\n"

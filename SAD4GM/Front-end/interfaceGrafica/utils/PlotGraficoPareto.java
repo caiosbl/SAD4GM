@@ -17,7 +17,7 @@ import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.DatasetRenderingOrder;
 import org.jfree.chart.plot.PlotOrientation;
-
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 
 import org.jfree.data.DataUtilities;
@@ -113,7 +113,7 @@ public class PlotGraficoPareto extends JDialog {
 
 		data.sortByValues(SortOrder.DESCENDING);
 		final KeyedValues cumulative = DataUtilities.getCumulativePercentages(data);
-		final CategoryDataset dataset = DatasetUtilities.createCategoryDataset("Modos de Falha", data);
+		final CategoryDataset dataset = DatasetUtilities.createCategoryDataset("Modo de Falha", data);
 
 		return new Object[] { dataset, cumulative };
 	}
@@ -130,22 +130,20 @@ public class PlotGraficoPareto extends JDialog {
 				PlotOrientation.VERTICAL, true, // include legend
 				true, false);
 
-		
 		chart.setBackgroundPaint(new Color(0xBBBBDD));
 
-		
 		final CategoryPlot plot = chart.getCategoryPlot();
 		final CategoryAxis domainAxis = plot.getDomainAxis();
+		BarRenderer br = (BarRenderer) plot.getRenderer();
+		br.setMaximumBarWidth(.10);
+
 		domainAxis.setLowerMargin(0.01);
 		domainAxis.setUpperMargin(0.01);
-		
 
-	
 		final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
 		rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
 
 		final LineAndShapeRenderer renderer2 = new LineAndShapeRenderer();
-		
 
 		final CategoryDataset dataset2 = DatasetUtilities.createCategoryDataset("Acumulativo", cumulative);
 		final NumberAxis axis2 = new NumberAxis("Porcentagem");
@@ -155,7 +153,7 @@ public class PlotGraficoPareto extends JDialog {
 		plot.setRenderer(1, renderer2);
 		plot.mapDatasetToRangeAxis(1, 1);
 		plot.setDatasetRenderingOrder(DatasetRenderingOrder.REVERSE);
-	
+
 		return chart;
 
 	}

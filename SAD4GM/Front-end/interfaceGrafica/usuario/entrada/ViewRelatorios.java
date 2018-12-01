@@ -137,7 +137,7 @@ public class ViewRelatorios extends Main {
 		lblDados.setBounds(65, 49, 157, 29);
 		desktopPane.add(lblDados);
 
-		JButton btnNewButton = new JButton("Gráfico XY");
+		JButton btnNewButton = new JButton("Matriz de Risco");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PlotGraficoXY plot = new PlotGraficoXY(mapaMaquinas.get(arrayMaquinas[maquinasBox.getSelectedIndex()]));

@@ -166,8 +166,7 @@ public class InsertAcaoRecomendada extends Main {
 
 				if (isEmpty(titulo))
 					JOptionPane.showMessageDialog(null, "Título Inválido!");
-				else if (isEmpty(descricao))
-					JOptionPane.showMessageDialog(null, "Descrição Inválida!");
+			
 
 				else {
 					JOptionPane.showMessageDialog(null,
