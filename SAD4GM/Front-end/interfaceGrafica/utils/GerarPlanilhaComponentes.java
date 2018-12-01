@@ -62,6 +62,7 @@ public class GerarPlanilhaComponentes {
 		backgroundStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
 		backgroundStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 		backgroundStyle.setFillBackgroundColor(IndexedColors.RED.getIndex());
+	
 
 		return backgroundStyle;
 	}

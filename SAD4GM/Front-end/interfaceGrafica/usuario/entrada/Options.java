@@ -65,10 +65,10 @@ public class Options extends Main {
 
 		JButton btnInserirMaquina = new JButton("");
 		btnInserirMaquina.setSelectedIcon(
-				new ImageIcon(Options.class.getResource("/Resources/icon/patch/insert-machine-on.png")));
+				new ImageIcon(Options.class.getResource("/Resources/icon/insert-data-on.png")));
 		btnInserirMaquina.setBackground(new Color(0, 0, 0, 0));
 		btnInserirMaquina
-				.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/patch/insert-machine-off.png")));
+				.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/insert-data.png")));
 
 		btnInserirMaquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -97,7 +97,7 @@ public class Options extends Main {
 		homeBtn2.setBounds(360, 43, 62, 44);
 
 		desktopPane2.add(homeBtn2);
-		btnInserirMaquina.setBounds(111, 163, 150, 189);
+		btnInserirMaquina.setBounds(-3, 161, 150, 189);
 		desktopPane.add(btnInserirMaquina);
 
 		JButton btnMinhasInformacoes = new JButton("");
@@ -178,8 +178,8 @@ public class Options extends Main {
 		JButton btnVerUmaMquina = new JButton("");
 		btnVerUmaMquina.setBackground(new Color(0, 0, 0, 0));
 		btnVerUmaMquina.setSelectedIcon(
-				new ImageIcon(Options.class.getResource("/Resources/icon/patch/view-machine-offff.png")));
-		btnVerUmaMquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/patch/view-machine-on.png")));
+				new ImageIcon(Options.class.getResource("/Resources/icon/view-data-on.png")));
+		btnVerUmaMquina.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/view-data-off.png")));
 		btnVerUmaMquina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ViewMachinesInfo verMaquina = new ViewMachinesInfo(id, xLocation, yLocation);
@@ -190,7 +190,7 @@ public class Options extends Main {
 			}
 		});
 		btnVerUmaMquina.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnVerUmaMquina.setBounds(360, 156, 150, 189);
+		btnVerUmaMquina.setBounds(114, 161, 150, 189);
 		desktopPane.add(btnVerUmaMquina);
 
 		JLabel logo = new JLabel("");
@@ -207,7 +207,10 @@ public class Options extends Main {
 		navbar2.setBounds(359, 40, 256, 51);
 		desktopPane.add(navbar);
 
-		JButton btnRegistrarOcorrncia = new JButton("Registrar Ocorrência");
+		JButton btnRegistrarOcorrncia = new JButton("");
+		btnRegistrarOcorrncia.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/registar-ocorrencia-on.png")));
+		btnRegistrarOcorrncia.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/registar-ocorrencia-off.png")));
+		btnRegistrarOcorrncia.setBackground(new Color(0,0,0,0));
 		btnRegistrarOcorrncia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegistrarOcorrenciaModoFalha registarOcorrencia = new RegistrarOcorrenciaModoFalha(id, xLocation,
@@ -219,10 +222,13 @@ public class Options extends Main {
 				registarOcorrencia.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnRegistrarOcorrncia.setBounds(244, 364, 142, 28);
+		btnRegistrarOcorrncia.setBounds(473, 161, 142, 183);
 		desktopPane.add(btnRegistrarOcorrncia);
 
-		JButton btnVerGrafico = new JButton("Ver Grafico");
+		JButton btnVerGrafico = new JButton("");
+		btnVerGrafico.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/view-relatorios-on.png")));
+		btnVerGrafico.setBackground(new Color(0,0,0,0));
+		btnVerGrafico.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/view-relatorios-off.png")));
 		btnVerGrafico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ViewRelatorios plot = new ViewRelatorios(idUsuario, getXLocation(), getYLocation());
@@ -232,10 +238,13 @@ public class Options extends Main {
 				plot.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnVerGrafico.setBounds(452, 380, 89, 23);
+		btnVerGrafico.setBounds(236, 161, 142, 181);
 		desktopPane.add(btnVerGrafico);
 
-		JButton btnExportarPlanilha = new JButton("Exportar Planilha");
+		JButton btnExportarPlanilha = new JButton("");
+		btnExportarPlanilha.setSelectedIcon(new ImageIcon(Options.class.getResource("/Resources/icon/export-relatorios-on.png")));
+		btnExportarPlanilha.setIcon(new ImageIcon(Options.class.getResource("/Resources/icon/export-relatorios-off.png")));
+		btnExportarPlanilha.setBackground(new Color(0,0,0,0));
 		btnExportarPlanilha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ExportarDados exportarDados = new ExportarDados(id, xLocation, yLocation);
@@ -247,7 +256,7 @@ public class Options extends Main {
 
 			}
 		});
-		btnExportarPlanilha.setBounds(45, 368, 142, 28);
+		btnExportarPlanilha.setBounds(354, 161, 142, 181);
 		desktopPane.add(btnExportarPlanilha);
 		desktopPane2.add(navbar2);
 
