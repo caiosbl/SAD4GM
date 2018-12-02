@@ -36,20 +36,20 @@ public class EfeitosTools extends DatabaseTools {
 
 	public Map<String, Integer> getMapaEfeitos(int chaveModoFalha) throws SQLException {
 		abrirConexao();
-		Map<String, Integer> subsistemas = new HashMap<>();
+		Map<String, Integer> efeitos = new HashMap<>();
 
 		PreparedStatement state = con.prepareStatement(
-				"SELECT descricao,chave FROM maquinas.efeito WHERE chave_modo_falha=" + chaveModoFalha);
+				"SELECT nome,chave FROM maquinas.efeito WHERE chave_modo_falha=" + chaveModoFalha);
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {
-			subsistemas.put(resSet.getString(1), resSet.getInt(2));
+			efeitos.put(resSet.getString(1), resSet.getInt(2));
 		}
 		state.close();
 
 		fecharConexao();
 
-		return subsistemas;
+		return efeitos;
 
 	}
 

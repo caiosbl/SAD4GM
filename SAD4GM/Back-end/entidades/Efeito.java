@@ -15,7 +15,7 @@ public class Efeito {
 	}
 
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 
 	public void setNome(String nome) {
@@ -39,7 +39,7 @@ public class Efeito {
 	}
 
 	public int getChave() {
-		return chave;
+		return this.chave;
 	}
 
 	public void setChave(int chave) {
@@ -48,7 +48,7 @@ public class Efeito {
 
 	@Override
 	public String toString() {
-		return nome;
+		return this.nome;
 	}
 
 }

@@ -38,7 +38,7 @@ public class CausaPotencialTools extends DatabaseTools {
 		Map<String, Integer> causasPotenciais = new HashMap<>();
 
 		PreparedStatement state = con.prepareStatement(
-				"SELECT descricao,chave FROM maquinas.causas_potenciais WHERE chave_modo_falha=" + chaveModoFalha);
+				"SELECT nome,chave FROM maquinas.causas_potenciais WHERE chave_modo_falha=" + chaveModoFalha);
 		ResultSet resSet = state.executeQuery();
 
 		while (resSet.next()) {

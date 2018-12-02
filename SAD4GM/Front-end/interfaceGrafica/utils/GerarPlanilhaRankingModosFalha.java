@@ -13,10 +13,11 @@ import javax.swing.JOptionPane;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 
@@ -56,13 +57,27 @@ public class GerarPlanilhaRankingModosFalha {
 	
 	
 	private CellStyle getBackgroundStyle() {
-		  CellStyle backgroundStyle = workbook.createCellStyle();
+		CellStyle backgroundStyle = workbook.createCellStyle();
+		Font headFont = workbook.createFont();
 
-		  backgroundStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex()); 
-		  backgroundStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		  backgroundStyle.setFillBackgroundColor(IndexedColors.RED.getIndex());
-		    
-		    return backgroundStyle;
+		backgroundStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+		backgroundStyle.setBorderLeft(BorderStyle.THIN);
+		backgroundStyle.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+		backgroundStyle.setBorderRight(BorderStyle.THIN);
+		backgroundStyle.setRightBorderColor(IndexedColors.BLACK.getIndex());
+		backgroundStyle.setBorderTop(BorderStyle.THIN);
+		backgroundStyle.setTopBorderColor(IndexedColors.BLACK.getIndex());
+		backgroundStyle.setBorderBottom(BorderStyle.THIN);
+		backgroundStyle.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+
+		headFont.setBold(true);
+		headFont.setColor(IndexedColors.BLACK.getIndex());
+		backgroundStyle.setFont(headFont);
+		headFont.setColor(Font.COLOR_NORMAL);
+
+		backgroundStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+		return backgroundStyle;
 	}
 	
 	

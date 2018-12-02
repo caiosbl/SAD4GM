@@ -12,10 +12,11 @@ import javax.swing.JOptionPane;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 
@@ -40,14 +41,14 @@ public class GerarPlanilhaComponentes {
 	public GerarPlanilhaComponentes(String nomeMaquina, int chaveMaquina, File file) {
 		this.file = file;
 		workbook = new HSSFWorkbook();
-		sheetMaquina = workbook.createSheet("Componentes do" + nomeMaquina);
+		sheetMaquina = workbook.createSheet("Componentes do " + nomeMaquina);
 		this.chaveMaquina = chaveMaquina;
 		sistema = new Sistema();
 		try {
 			gerarPlanilha();
-			for(int i = 0; i <= 21; i++)
+			for (int i = 0; i <= 100; i++)
 				sheetMaquina.autoSizeColumn(i);
-
+		
 			salvarArquivo();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Falha na Conexão com o Banco de Dados!");
@@ -56,316 +57,283 @@ public class GerarPlanilhaComponentes {
 
 	}
 
-	private CellStyle getBackgroundStyle() {
+	private CellStyle getBackgroundHeaderStyle() {
 		CellStyle backgroundStyle = workbook.createCellStyle();
+		Font headFont = workbook.createFont();
 
-		backgroundStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+		backgroundStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+		backgroundStyle.setBorderLeft(BorderStyle.THIN);
+		backgroundStyle.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+		backgroundStyle.setBorderRight(BorderStyle.THIN);
+		backgroundStyle.setRightBorderColor(IndexedColors.BLACK.getIndex());
+		backgroundStyle.setBorderTop(BorderStyle.THIN);
+		backgroundStyle.setTopBorderColor(IndexedColors.BLACK.getIndex());
+		backgroundStyle.setBorderBottom(BorderStyle.THIN);
+		backgroundStyle.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+
+		headFont.setBold(true);
+		headFont.setColor(IndexedColors.BLACK.getIndex());
+		backgroundStyle.setFont(headFont);
+		headFont.setColor(Font.COLOR_NORMAL);
+
 		backgroundStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		backgroundStyle.setFillBackgroundColor(IndexedColors.RED.getIndex());
-	
 
 		return backgroundStyle;
 	}
-	
-	
+
+	private CellStyle getBackgroundBodyStyle() {
+		CellStyle backgroundStyle = workbook.createCellStyle();
+
+
+		return backgroundStyle;
+	}
 
 	private void gerarPlanilha() throws SQLException {
 
-		int rowNumSub = 0;
+		int rowNum = 0;
 
-		Row rowHeader = sheetMaquina.createRow(rowNumSub++);
+		Row rowHeader = sheetMaquina.createRow(rowNum++);
 
 		// Headers
-
-		Cell subsistemaIdHeader = rowHeader.createCell(0);
-		subsistemaIdHeader.setCellStyle(getBackgroundStyle());
-		subsistemaIdHeader.setCellValue("ID");
+		Cell idSubsistemaHeader = rowHeader.createCell(0);
+		idSubsistemaHeader.setCellStyle(getBackgroundHeaderStyle());
+		idSubsistemaHeader.setCellValue("ID1");
 
 		Cell subsistemaHeader = rowHeader.createCell(1);
-		subsistemaHeader.setCellStyle(getBackgroundStyle());
-		subsistemaHeader.setCellValue("SUBSISTEMA");
+		subsistemaHeader.setCellStyle(getBackgroundHeaderStyle());
+		subsistemaHeader.setCellValue("Subsistema");
+
+		Cell idComponenteHeader = rowHeader.createCell(2);
+		idComponenteHeader.setCellStyle(getBackgroundHeaderStyle());
+		idComponenteHeader.setCellValue("ID2");
+
+		Cell componenteHeader = rowHeader.createCell(3);
+		componenteHeader.setCellStyle(getBackgroundHeaderStyle());
+		componenteHeader.setCellValue("Componente");
+
+		Cell idFalhaHeader = rowHeader.createCell(4);
+		idFalhaHeader.setCellStyle(getBackgroundHeaderStyle());
+		idFalhaHeader.setCellValue("ID3");
+
+		Cell falhaHeader = rowHeader.createCell(5);
+		falhaHeader.setCellStyle(getBackgroundHeaderStyle());
+		falhaHeader.setCellValue("Falha");
+
+		Cell idModoFalhaHeader = rowHeader.createCell(6);
+		idModoFalhaHeader.setCellStyle(getBackgroundHeaderStyle());
+		idModoFalhaHeader.setCellValue("ID4");
+
+		Cell modoFalhaHeader = rowHeader.createCell(7);
+		modoFalhaHeader.setCellStyle(getBackgroundHeaderStyle());
+		modoFalhaHeader.setCellValue("Modo de Falha");
+		
+		Cell indiceOcorrenciaHeader = rowHeader.createCell(8);
+		indiceOcorrenciaHeader.setCellStyle(getBackgroundHeaderStyle());
+		indiceOcorrenciaHeader.setCellValue("Indíce de Ocorrência");
+		
+		Cell indiceSeveridadeHeader = rowHeader.createCell(9);
+		indiceSeveridadeHeader.setCellStyle(getBackgroundHeaderStyle());
+		indiceSeveridadeHeader.setCellValue("Indíce de Severidade");
+		
+
+		Cell rpn = rowHeader.createCell(10);
+		rpn.setCellStyle(getBackgroundHeaderStyle());
+		rpn.setCellValue("RPN");
+
+		Cell idCausaPotencialHeader = rowHeader.createCell(11);
+		idCausaPotencialHeader.setCellStyle(getBackgroundHeaderStyle());
+		idCausaPotencialHeader.setCellValue("ID5");
+
+		Cell causaPotencialHeader = rowHeader.createCell(12);
+		causaPotencialHeader.setCellStyle(getBackgroundHeaderStyle());
+		causaPotencialHeader.setCellValue("Causa Potencial");
+
+		Cell idOrigemCausaHeader = rowHeader.createCell(13);
+		idOrigemCausaHeader.setCellStyle(getBackgroundHeaderStyle());
+		idOrigemCausaHeader.setCellValue("ID6");
+
+		Cell origemCausaHeader = rowHeader.createCell(14);
+		origemCausaHeader.setCellStyle(getBackgroundHeaderStyle());
+		origemCausaHeader.setCellValue("Origem de Causa");
+
+		Cell idCausaHeader = rowHeader.createCell(15);
+		idCausaHeader.setCellStyle(getBackgroundHeaderStyle());
+		idCausaHeader.setCellValue("ID7");
+
+		Cell efeitoHeader = rowHeader.createCell(16);
+		efeitoHeader.setCellStyle(getBackgroundHeaderStyle());
+		efeitoHeader.setCellValue("Efeito de Modo de Falha");
 
 		ArrayList<DataComponentes> data = getData();
 
 		for (DataComponentes dataC : data) {
 
+			int rowNumComponentes = rowNum;
+
+			rowHeader = sheetMaquina.createRow(rowNum++);
 			Subsistema subsistema = dataC.getSubsistema();
+			ArrayList<Componente> componentes = dataC.getComponentes();
 
-			if (sheetMaquina.getLastRowNum() < rowNumSub)
-				rowHeader = sheetMaquina.createRow(rowNumSub++);
-			else
-				rowHeader = sheetMaquina.getRow(rowNumSub++);
-
-			Cell subsistemaId = rowHeader.createCell(0);
-
-			subsistemaId.setCellValue(subsistema.getChave());
+			Cell idSubsistema = rowHeader.createCell(0);
+			idSubsistema.setCellStyle(getBackgroundBodyStyle());
+			idSubsistema.setCellValue(subsistema.getChave());
 
 			Cell subsistemaCell = rowHeader.createCell(1);
-
+			subsistemaCell.setCellStyle(getBackgroundBodyStyle());
 			subsistemaCell.setCellValue(subsistema.getNome());
 
-		}
-
-		int rowNumComponentes = 0;
-		rowHeader = sheetMaquina.getRow(rowNumComponentes++);
-
-		Cell componenteIdSubHeader = rowHeader.createCell(3);
-		componenteIdSubHeader.setCellValue("ID SUBSISTEMA");
-		componenteIdSubHeader.setCellStyle(getBackgroundStyle());
-
-		Cell componenteIdHeader = rowHeader.createCell(4);
-		componenteIdHeader.setCellValue("ID");
-		componenteIdHeader.setCellStyle(getBackgroundStyle());
-
-		Cell componenteHeader = rowHeader.createCell(5);
-		componenteHeader.setCellStyle(getBackgroundStyle());
-		componenteHeader.setCellValue("COMPONENTE");
-
-		for (DataComponentes dataC : data) {
-
-			Subsistema subsistema = dataC.getSubsistema();
-
-			for (Componente componente : dataC.getComponentes()) {
+			for (Componente comp : componentes) {
 				if (sheetMaquina.getLastRowNum() < rowNumComponentes)
 					rowHeader = sheetMaquina.createRow(rowNumComponentes++);
 				else
 					rowHeader = sheetMaquina.getRow(rowNumComponentes++);
 
-				Cell componenteIdSubCell = rowHeader.createCell(3);
-				componenteIdSubCell.setCellValue(subsistema.getChave());
+				Cell idComponente = rowHeader.createCell(2);
+				idComponente.setCellStyle(getBackgroundBodyStyle());
+				idComponente.setCellValue(comp.getChave());
 
-				Cell componenteIdCell = rowHeader.createCell(4);
-				componenteIdCell.setCellValue(componente.getChave());
+				Cell componenteCell = rowHeader.createCell(3);
+				componenteCell.setCellStyle(getBackgroundBodyStyle());
+				componenteCell.setCellValue(comp.getNome());
 
-				Cell componenteCell = rowHeader.createCell(5);
-				componenteCell.setCellValue(componente.getNome());
+				int rowNumFalha = rowNumComponentes - 1;
 
-			}
+				for (Falha falha : comp.getFalhas()) {
 
-		}
+					if (sheetMaquina.getLastRowNum() < rowNumFalha) {
+						rowHeader = sheetMaquina.createRow(rowNumFalha++);
+						rowNumComponentes++;
 
-		int rowNumFail = 0;
+					} else {
+						rowHeader = sheetMaquina.getRow(rowNumFalha++);
 
-		rowHeader = sheetMaquina.getRow(rowNumFail++);
+					}
 
-		Cell falhaIdCompHeader = rowHeader.createCell(7);
-		falhaIdCompHeader.setCellValue("ID COMPONENTE");
-		falhaIdCompHeader.setCellStyle(getBackgroundStyle());
+					Cell idFalha = rowHeader.createCell(4);
+					idFalha.setCellStyle(getBackgroundBodyStyle());
+					idFalha.setCellValue(falha.getChave());
 
-		Cell falhaIdHeader = rowHeader.createCell(8);
-		falhaIdHeader.setCellValue("ID");
-		falhaIdHeader.setCellStyle(getBackgroundStyle());
-
-		Cell falhaHeader = rowHeader.createCell(9);
-		falhaHeader.setCellStyle(getBackgroundStyle());
-		falhaHeader.setCellValue("FALHA");
-
-		for (DataComponentes dataC : data) {
-
-			for (Componente componente : dataC.getComponentes()) {
-				for (Falha falha : componente.getFalhas()) {
-					if (sheetMaquina.getLastRowNum() < rowNumFail)
-						rowHeader = sheetMaquina.createRow(rowNumFail++);
-					else
-						rowHeader = sheetMaquina.getRow(rowNumFail++);
-
-					Cell falhaIdCompCell = rowHeader.createCell(7);
-					falhaIdCompCell.setCellValue(componente.getChave());
-
-					Cell falhaIdCell = rowHeader.createCell(8);
-					falhaIdCell.setCellValue(falha.getChave());
-
-					Cell falhaCell = rowHeader.createCell(9);
+					Cell falhaCell = rowHeader.createCell(5);
+					falhaCell.setCellStyle(getBackgroundBodyStyle());
 					falhaCell.setCellValue(falha.getNome());
-				}
 
-			}
+					int rowNumModoFalha = rowNumFalha - 1;
 
-		}
+					for (ModoFalha mFalha : falha.getModoFalha()) {
 
-		int rowNumModoFalha = 0;
-
-		rowHeader = sheetMaquina.getRow(rowNumModoFalha++);
-
-		Cell modoFalhaIdFalhaHeader = rowHeader.createCell(11);
-		modoFalhaIdFalhaHeader.setCellValue("ID FALHA");
-		modoFalhaIdFalhaHeader.setCellStyle(getBackgroundStyle());
-
-		Cell modoFalhaIdHeader = rowHeader.createCell(12);
-		modoFalhaIdHeader.setCellValue("ID");
-		modoFalhaIdHeader.setCellStyle(getBackgroundStyle());
-
-		Cell modoFalhaHeader = rowHeader.createCell(13);
-		modoFalhaHeader.setCellStyle(getBackgroundStyle());
-		modoFalhaHeader.setCellValue("MODO DE FALHA");
-
-		for (DataComponentes dataC : data) {
-
-			for (Componente componente : dataC.getComponentes()) {
-				for (Falha falha : componente.getFalhas()) {
-
-					for (ModoFalha modoFalha : falha.getModoFalha()) {
-
-						if (sheetMaquina.getLastRowNum() < rowNumModoFalha)
+						if (sheetMaquina.getLastRowNum() < rowNumModoFalha) {
 							rowHeader = sheetMaquina.createRow(rowNumModoFalha++);
+							rowNumFalha++;
+							rowNumComponentes++;
 
-						else
+						} else {
 							rowHeader = sheetMaquina.getRow(rowNumModoFalha++);
 
-						Cell modoFalhaIdFalhaCell = rowHeader.createCell(11);
-						modoFalhaIdFalhaCell.setCellValue(falha.getChave());
-
-						Cell modoFalhaIdCell = rowHeader.createCell(12);
-						modoFalhaIdCell.setCellValue(modoFalha.getChave());
-
-						Cell modoFalhaCell = rowHeader.createCell(13);
-						modoFalhaCell.setCellValue(modoFalha.getNome());
-					}
-
-				}
-
-			}
-
-		}
-
-		int rowNumEfeito = 0;
-
-		rowHeader = sheetMaquina.getRow(rowNumEfeito++);
-
-		Cell efeitoIdModoFalhaHeader = rowHeader.createCell(15);
-		efeitoIdModoFalhaHeader.setCellValue("ID MODO DE FALHA");
-		efeitoIdModoFalhaHeader.setCellStyle(getBackgroundStyle());
-
-		Cell efeitoIdHeader = rowHeader.createCell(16);
-		efeitoIdHeader.setCellValue("ID");
-		efeitoIdHeader.setCellStyle(getBackgroundStyle());
-
-		Cell efeitoHeader = rowHeader.createCell(17);
-		efeitoHeader.setCellStyle(getBackgroundStyle());
-		efeitoHeader.setCellValue("EFEITO");
-
-		for (DataComponentes dataC : data) {
-
-			for (Componente componente : dataC.getComponentes()) {
-				for (Falha falha : componente.getFalhas()) {
-
-					for (ModoFalha modoFalha : falha.getModoFalha()) {
-
-						for (Efeito efeito : modoFalha.getEfeitos()) {
-
-							if (sheetMaquina.getLastRowNum() < rowNumEfeito)
-								rowHeader = sheetMaquina.createRow(rowNumEfeito++);
-
-							else
-								rowHeader = sheetMaquina.getRow(rowNumEfeito++);
-
-							Cell efeitoIdModoFalhaCell = rowHeader.createCell(15);
-							efeitoIdModoFalhaCell.setCellValue(modoFalha.getChave());
-
-							Cell efeitoIdCell = rowHeader.createCell(16);
-							efeitoIdCell.setCellValue(efeito.getChave());
-
-							Cell efeitoCell = rowHeader.createCell(17);
-							efeitoCell.setCellValue(efeito.getNome());
 						}
-					}
+						
+						 int indiceOcorrencia = (int) sistema.getIndiceOcorrenciaModoFalha(mFalha.getChave());
+						 int indiceSeveridade = (int) sistema.getIndiceSeveridadePorFalha(mFalha.getChave());
+						 int rpnValue = indiceOcorrencia * indiceSeveridade;
 
-				}
+						Cell idModoFalha = rowHeader.createCell(6);
+						idModoFalha.setCellStyle(getBackgroundBodyStyle());
+						idModoFalha.setCellValue(mFalha.getChave());
 
-			}
+						Cell modoFalhaCell = rowHeader.createCell(7);
+						modoFalhaCell.setCellStyle(getBackgroundBodyStyle());
+						modoFalhaCell.setCellValue(mFalha.getNome());
+						
+						Cell indiceOcorrenciaCell = rowHeader.createCell(8);
+						indiceOcorrenciaCell.setCellStyle(getBackgroundBodyStyle());
+						indiceOcorrenciaCell.setCellValue(indiceOcorrencia);
+						
+						Cell indiceSeveridadeCell = rowHeader.createCell(9);
+						indiceSeveridadeCell.setCellStyle(getBackgroundBodyStyle());
+						indiceSeveridadeCell.setCellValue(indiceSeveridade);
+						
+						Cell rpnCell = rowHeader.createCell(10);
+						rpnCell.setCellStyle(getBackgroundBodyStyle());
+						rpnCell.setCellValue(rpnValue);
 
-		}
+						int rowNumEfeito = rowNumModoFalha - 1;
+						int rowNumCausa = rowNumModoFalha - 1;
 
-		int rowNumCausaPotencial = 0;
+						for (CausaPotencial causa : mFalha.getCausasPotencias()) {
 
-		rowHeader = sheetMaquina.getRow(rowNumCausaPotencial++);
+							if (sheetMaquina.getLastRowNum() < rowNumCausa) {
+								rowHeader = sheetMaquina.createRow(rowNumCausa++);
+								rowNumModoFalha++;
+								rowNumFalha++;
+								rowNumComponentes++;
 
-		Cell causaIdModoFalhaHeader = rowHeader.createCell(15);
-		causaIdModoFalhaHeader.setCellValue("ID MODO DE FALHA");
-		causaIdModoFalhaHeader.setCellStyle(getBackgroundStyle());
+							} else {
+								rowHeader = sheetMaquina.getRow(rowNumCausa++);
 
-		Cell causaIdHeader = rowHeader.createCell(16);
-		causaIdHeader.setCellValue("ID");
-		causaIdHeader.setCellStyle(getBackgroundStyle());
+							}
 
-		Cell causaHeader = rowHeader.createCell(17);
-		causaHeader.setCellStyle(getBackgroundStyle());
-		causaHeader.setCellValue("CAUSA POTENCIAL");
+							Cell idCausa = rowHeader.createCell(11);
+							idCausa.setCellStyle(getBackgroundBodyStyle());
+							idCausa.setCellValue(causa.getChave());
 
-		for (DataComponentes dataC : data) {
+							Cell causaCell = rowHeader.createCell(12);
+							causaCell.setCellStyle(getBackgroundBodyStyle());
+							causaCell.setCellValue(causa.getNome());
 
-			for (Componente componente : dataC.getComponentes()) {
-				for (Falha falha : componente.getFalhas()) {
+							int rowOrigens = rowNumCausa - 1;
+							for (Origem origem : causa.getOrigens()) {
+								if (sheetMaquina.getLastRowNum() < rowOrigens) {
+									rowHeader = sheetMaquina.createRow(rowOrigens++);
+									rowNumModoFalha++;
+									rowNumFalha++;
+									rowNumComponentes++;
+									rowNumCausa++;
 
-					for (ModoFalha modoFalha : falha.getModoFalha()) {
+								} else {
+									rowHeader = sheetMaquina.getRow(rowOrigens++);
 
-						for (CausaPotencial causaPotencial : modoFalha.getCausasPotencias()) {
+								}
 
-							if (sheetMaquina.getLastRowNum() < rowNumCausaPotencial)
-								rowHeader = sheetMaquina.createRow(rowNumCausaPotencial++);
+								Cell idOrigem = rowHeader.createCell(13);
+								idOrigem.setCellStyle(getBackgroundBodyStyle());
+								idOrigem.setCellValue(origem.getChave());
 
-							else
-								rowHeader = sheetMaquina.getRow(rowNumCausaPotencial++);
-
-							Cell causaIdModoFalhaCell = rowHeader.createCell(15);
-							causaIdModoFalhaCell.setCellValue(modoFalha.getChave());
-
-							Cell causaIdCell = rowHeader.createCell(16);
-							causaIdCell.setCellValue(causaPotencial.getChave());
-
-							Cell causaCell = rowHeader.createCell(17);
-							causaCell.setCellValue(causaPotencial.getNome());
-						}
-					}
-
-				}
-
-			}
-
-		}
-
-		int rowNumOrigem = 0;
-
-		rowHeader = sheetMaquina.getRow(rowNumOrigem++);
-
-		Cell origemIdCausaHeader = rowHeader.createCell(19);
-		origemIdCausaHeader.setCellValue("ID CAUSA POTENCIAL");
-		origemIdCausaHeader.setCellStyle(getBackgroundStyle());
-
-		Cell origemIdHeader = rowHeader.createCell(20);
-		origemIdHeader.setCellValue("ID");
-		origemIdHeader.setCellStyle(getBackgroundStyle());
-
-		Cell origemHeader = rowHeader.createCell(21);
-		origemHeader.setCellStyle(getBackgroundStyle());
-		origemHeader.setCellValue("ORIGEM DE CAUSA POTENCIAL");
-
-		for (DataComponentes dataC : data) {
-
-			for (Componente componente : dataC.getComponentes()) {
-				for (Falha falha : componente.getFalhas()) {
-					for (ModoFalha modoFalha : falha.getModoFalha()) {
-						for (CausaPotencial causaPotencial : modoFalha.getCausasPotencias()) {
-							for (Origem origem : causaPotencial.getOrigens()) {
-								if (sheetMaquina.getLastRowNum() < rowNumOrigem)
-									rowHeader = sheetMaquina.createRow(rowNumOrigem++);
-								else
-									rowHeader = sheetMaquina.getRow(rowNumOrigem++);
-
-								Cell origemIdCausaCell = rowHeader.createCell(19);
-								origemIdCausaCell.setCellValue(causaPotencial.getChave());
-								Cell origemIdCell = rowHeader.createCell(20);
-								origemIdCell.setCellValue(origem.getChave());
-								Cell origemCell = rowHeader.createCell(21);
+								Cell origemCell = rowHeader.createCell(14);
+								origemCell.setCellStyle(getBackgroundBodyStyle());
 								origemCell.setCellValue(origem.getNome());
 							}
+
 						}
+
+						for (Efeito efeito : mFalha.getEfeitos()) {
+
+							if (sheetMaquina.getLastRowNum() < rowNumEfeito) {
+								rowHeader = sheetMaquina.createRow(rowNumEfeito++);
+								rowNumModoFalha++;
+								rowNumFalha++;
+								rowNumComponentes++;
+
+							} else {
+								rowHeader = sheetMaquina.getRow(rowNumEfeito++);
+
+							}
+
+							Cell idEfeito = rowHeader.createCell(15);
+							idEfeito.setCellStyle(getBackgroundBodyStyle());
+							idEfeito.setCellValue(efeito.getChave());
+
+							Cell efeitoCell = rowHeader.createCell(16);
+							efeitoCell.setCellStyle(getBackgroundBodyStyle());
+							efeitoCell.setCellValue(efeito.getNome());
+
+						}
+
 					}
 
 				}
 
 			}
 
+			rowNum = rowNumComponentes;
 		}
 
 	}
