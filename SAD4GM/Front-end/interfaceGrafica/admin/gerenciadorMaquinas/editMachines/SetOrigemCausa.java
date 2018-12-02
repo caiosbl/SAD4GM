@@ -73,8 +73,8 @@ public class SetOrigemCausa extends Main {
 		desktopPane.setLayout(null);
 
 		JButton btnVoltar = new JButton("");
-		btnVoltar
-				.setSelectedIcon(new ImageIcon(SetOrigemCausa.class.getResource("/Resources/icon/return-selected.png")));
+		btnVoltar.setSelectedIcon(
+				new ImageIcon(SetOrigemCausa.class.getResource("/Resources/icon/return-selected.png")));
 		btnVoltar.setBackground(new Color(0, 0, 0, 0));
 		btnVoltar.setIcon(new ImageIcon(SetOrigemCausa.class.getResource("/Resources/icon/back-btn.png")));
 		btnVoltar.setBounds(499, 388, 78, 44);
@@ -96,14 +96,19 @@ public class SetOrigemCausa extends Main {
 		desktopPane.add(nome);
 
 		JButton btnAtualizar = new JButton("");
-		btnAtualizar
-				.setSelectedIcon(new ImageIcon(SetOrigemCausa.class.getResource("/Resources/icon/update-selected.png")));
+		btnAtualizar.setSelectedIcon(
+				new ImageIcon(SetOrigemCausa.class.getResource("/Resources/icon/update-selected.png")));
 		btnAtualizar.setBackground(new Color(0, 0, 0, 0));
 		btnAtualizar.setIcon(new ImageIcon(SetOrigemCausa.class.getResource("/Resources/icon/update.png")));
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				JOptionPane.showMessageDialog(null, sistema.setNomeOrigem(nome.getText().trim(), chaveOrigemCausa));
+				if (isEmpty(nome.getText().trim())) {
+					JOptionPane.showMessageDialog(null, "Título Inválido!");
+				}
+
+				else
+					JOptionPane.showMessageDialog(null, sistema.setNomeOrigem(nome.getText().trim(), chaveOrigemCausa));
 
 			}
 

@@ -27,7 +27,7 @@ import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
+
 import javax.swing.JComboBox;
 
 /**
@@ -44,12 +44,13 @@ public class RegistrarOcorrenciaModoFalha extends Main {
 	 */
 	private static final long serialVersionUID = -1728238218376528571L;
 	private JPanel contentPane;
+	@SuppressWarnings("unused")
 	private String idAdmin;
-	private JComboBox maquinasBox;
-	private JComboBox subsistemasBox;
-	private JComboBox componentesBox;
-	private JComboBox falhasBox;
-	private JComboBox modosDeFalhaBox;
+	private JComboBox<Object> maquinasBox;
+	private JComboBox<Object> subsistemasBox;
+	private JComboBox<Object> componentesBox;
+	private JComboBox<Object> falhasBox;
+	private JComboBox<Object> modosDeFalhaBox;
 
 	private Object[] arrayMaquinas;
 	private Object[] arraySubsistemas;
@@ -183,7 +184,7 @@ public class RegistrarOcorrenciaModoFalha extends Main {
 		mapaMaquinas = sistema.getMapaMaquinas();
 		arrayMaquinas = mapaMaquinas.keySet().toArray();
 
-		maquinasBox = new JComboBox(arrayMaquinas);
+		maquinasBox = new JComboBox<Object>(arrayMaquinas);
 		maquinasBox.setBounds(73, 91, 450, 41);
 		maquinasBox.setSelectedIndex(-1);
 
@@ -208,7 +209,7 @@ public class RegistrarOcorrenciaModoFalha extends Main {
 		lblMquina.setBounds(245, 76, 75, 20);
 		desktopPane.add(lblMquina);
 
-		subsistemasBox = new JComboBox();
+		subsistemasBox = new JComboBox<Object>();
 		subsistemasBox.setBounds(73, 145, 450, 41);
 
 		subsistemasBox.addActionListener(new ActionListener() {
@@ -231,7 +232,7 @@ public class RegistrarOcorrenciaModoFalha extends Main {
 		lblSubsistema.setBounds(232, 128, 99, 20);
 		desktopPane.add(lblSubsistema);
 
-		componentesBox = new JComboBox();
+		componentesBox = new JComboBox<Object>();
 		componentesBox.setBounds(73, 200, 450, 41);
 		componentesBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -259,7 +260,7 @@ public class RegistrarOcorrenciaModoFalha extends Main {
 		lblFalha.setBounds(267, 240, 50, 20);
 		desktopPane.add(lblFalha);
 
-		falhasBox = new JComboBox();
+		falhasBox = new JComboBox<Object>();
 		falhasBox.setBounds(73, 258, 450, 41);
 		falhasBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -282,7 +283,7 @@ public class RegistrarOcorrenciaModoFalha extends Main {
 
 		desktopPane.add(lblModoDeFalha_1);
 
-		modosDeFalhaBox = new JComboBox();
+		modosDeFalhaBox = new JComboBox<Object>();
 		modosDeFalhaBox.setBounds(73, 315, 450, 41);
 		modosDeFalhaBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

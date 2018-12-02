@@ -1,11 +1,14 @@
 package databaseTools;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+
 
 /**
  * UNIVERSIDADE FEDERAL DE CAMPINA GRANDE - LABORATÓRIO DESIDES SISTEMA SAD4GM
@@ -62,11 +65,96 @@ public abstract class DatabaseTools {
 			criarTabelaOrigemCausas(con);
 			criarTabelaAcoesRecomendadas(con);
 			criarTabelaEfeitos(con);
+			carregarDados();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+	}
+
+	private void carregarDados() throws SQLException, IOException {
+
+
+		// Cria um lista para receber os inserts do arquivo
+		String[] list = lerArquivoSQL();
+
+		try {
+			PreparedStatement stmt = null;
+		
+			for (String s : list) {
+	
+				stmt = con.prepareStatement(s);
+				stmt.execute();
+			}
+			
+			stmt.close();
+			// faz o insert em lote no banco pelo método executeBatch()
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private String[] lerArquivoSQL() {
+		String[] lista = {
+				"INSERT INTO MAQUINAS.MAQUINA( NOME, DATA_INSERCAO, CODIGO, DESCRICAO, CHAVE_USUARIO) VALUES ( 'Transformador', '2018-12-01', 1, 'Sistema Transformador', 1 )",
+				"INSERT INTO MAQUINAS.SUBSISTEMA( NOME,  CHAVE_MAQUINA ) VALUES ( 'Parte Ativa', 1 )",
+				"INSERT INTO MAQUINAS.SUBSISTEMA( NOME,  CHAVE_MAQUINA ) VALUES ( 'Relés', 1 )",
+				"INSERT INTO MAQUINAS.SUBSISTEMA( NOME,  CHAVE_MAQUINA ) VALUES ( 'Buchas e Comutadores', 1)",
+				"INSERT INTO MAQUINAS.SUBSISTEMA( NOME, CHAVE_MAQUINA ) VALUES ( 'Sistema de Resfriamento', 1 )",
+				"INSERT INTO MAQUINAS.COMPONENTE( NOME,  CHAVE_SUBSISTEMA, FUNCAO ) VALUES ( 'Núcleo', 1, '' )",
+				"INSERT INTO MAQUINAS.COMPONENTE( NOME,  CHAVE_SUBSISTEMA, FUNCAO ) VALUES ( 'Sistema de Isolamento', 1, '' )",
+				"INSERT INTO MAQUINAS.FALHA( NOME, DESCRICAO, CHAVE_COMPONENTE ) VALUES ( 'Degradação da isolação (óleo e papel isolante)', 'Ruptura total ou redução significativa da suportabilidade da isolação', 2 )",
+				"INSERT INTO MAQUINAS.MODO_FALHA( NOME, DESCRICAO, CHAVE_FALHA, INDICE_OCORRENCIA, INDICE_DETECCAO) VALUES ( 'Envelhecimento natural da isolação', '', 1, 1.0, 1.0)",
+				"INSERT INTO MAQUINAS.MODO_FALHA( NOME, DESCRICAO, CHAVE_FALHA, INDICE_OCORRENCIA, INDICE_DETECCAO) VALUES ( 'Sobreaquecimento do sistema de isolação', '', 1, 1.0, 1.0)",
+				"INSERT INTO MAQUINAS.MODO_FALHA( NOME, DESCRICAO,  CHAVE_FALHA, INDICE_OCORRENCIA, INDICE_DETECCAO) VALUES ( 'Rompimento  do dielétrico (modelo de falha cataléctica) ou degradação do dielétrico (modelo de falha de degradação)', '', 1, 1.0, 1.0)",
+				"INSERT INTO MAQUINAS.MODO_FALHA( NOME, DESCRICAO,  CHAVE_FALHA, INDICE_OCORRENCIA, INDICE_DETECCAO) VALUES ( 'Contaminação do sitema de isolação (óleo e papel) por umidade, oxigênio e outros poluentes', '', 1, 1.0, 1.0)",
+				"INSERT INTO MAQUINAS.MODO_FALHA( NOME, DESCRICAO,  CHAVE_FALHA, INDICE_OCORRENCIA, INDICE_DETECCAO) VALUES ( 'Eletrização estática do óleo', '', 1, 1.0, 1.0)",
+				"INSERT INTO MAQUINAS.MODO_FALHA( NOME, DESCRICAO,  CHAVE_FALHA, INDICE_OCORRENCIA, INDICE_DETECCAO) VALUES ( 'Formação de bolhas no óleo', '', 1, 1.0, 1.0) ",
+				"INSERT INTO MAQUINAS.MODO_FALHA( NOME, DESCRICAO,  CHAVE_FALHA, INDICE_OCORRENCIA, INDICE_DETECCAO) VALUES ( 'Degradação da isolação das bobinas', '', 1, 1.0, 1.0 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Causas não controláveis', '', 1 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Sobretensão no núcleo',  '', 2 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Correntes harmônicas no enrolamento', '', 2 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Elevação da corrente de carga', '', 2 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Deslocamento ou deformação da geometria das bobinas do enrolamento',  '', 2 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Temperatura ambiente elevada','', 2 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Deficiências na isolação dos parafusos passantes que atravessam pelas lâminas do núcleo, ferragens e jugo', '', 2 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Tensão Transitória Rápida (com frente de onda muito rápida)', '', 2 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Sobretensões Ressonantes: tensões transitórias oriundas do sistema elétrico', '', 3 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Tensão Transitória Rápida (com frente de onda muito rápida)','', 3 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Falha no sistema de resfriamento','', 4 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Defeito das gaxetas de vedação','', 4 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Corrosão do tanque principal','', 4 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Corrosão do tanque auxiliar','', 4 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Defeito da vedação','', 4 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Defeitos em bombas do sistema de resfriamento','', 4 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Ruptura das membranas dos tubos de expansão', '', 4 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Porosidade da borracha que compõe a membrana (ou bolsa) do sistema de preservação','', 4 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Vazamento de água para o tanque principal','', 4 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Desgaste das engrenagens das bombas do sistema de resfriamento','', 4 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Desgastes dos contatos da chave seletora do comutador de derivações em carga','', 4 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Vazamento de óleo do cilindro da chave desviadora do comutador de tape','', 4 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Sobreaquecimento no sistema de isolação','', 5 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Envelhecimento do óleo','', 5 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Elevação do nível de gases no óleo','', 6 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Sobreaquecimento do sistema de isolação','', 6 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Contaminação do sistema de isolação (óleo e papel) por umidade, oxigênio e poluentes','', 6 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Variações bruscas da pressão atmosférica','', 6 )",
+				"INSERT INTO MAQUINAS.CAUSAS_POTENCIAIS( NOME,  DESCRICAO, CHAVE_MODO_FALHA ) VALUES ( 'Vibração do núcleo','', 7 )",
+				"INSERT INTO MAQUINAS.ORIGEM_CAUSA( NOME,  CHAVE_CAUSA ) VALUES ( 'Operação em sobrecarga', 4)",
+				"INSERT INTO MAQUINAS.ORIGEM_CAUSA( NOME,  CHAVE_CAUSA ) VALUES ( 'Elevadas Correntes de Curto-Circuito', 5 )",
+				"INSERT INTO MAQUINAS.ORIGEM_CAUSA( NOME,  CHAVE_CAUSA ) VALUES ( 'Origem externa: descargas atomosféricas',  8 )",
+				"INSERT INTO MAQUINAS.ORIGEM_CAUSA( NOME,  CHAVE_CAUSA ) VALUES ( 'Origem interna: faltas no sistema ou operações de manobra', 8 )",
+				"INSERT INTO MAQUINAS.ORIGEM_CAUSA( NOME,  CHAVE_CAUSA ) VALUES ( 'Origem externa: descargas atomosféricas', 9)",
+				"INSERT INTO MAQUINAS.ORIGEM_CAUSA( NOME,  CHAVE_CAUSA ) VALUES ( 'Origem interna: faltas no sistema ou operações de manobra',  9 )",
+				"INSERT INTO MAQUINAS.ORIGEM_CAUSA( NOME,  CHAVE_CAUSA ) VALUES ( 'Causas Desconhecidas',  9 )",
+				"INSERT INTO MAQUINAS.ORIGEM_CAUSA( NOME,  CHAVE_CAUSA ) VALUES ( 'Origem externa: descargas atomosféricas',  10 )",
+				"INSERT INTO MAQUINAS.ORIGEM_CAUSA( NOME,  CHAVE_CAUSA ) VALUES ( 'Origem interna: faltas no sistema ou operações de manobra',  10 )"
+		};
+
+		return lista;
 	}
 
 	/**
@@ -216,7 +304,7 @@ public abstract class DatabaseTools {
 		statement.execute();
 		statement.close();
 	}
-	
+
 	private void criarTabelaOrigemCausas(Connection con) throws SQLException {
 		PreparedStatement statement = con.prepareStatement("CREATE TABLE MAQUINAS.ORIGEM_CAUSA (\r\n"
 				+ "						NOME LONG VARCHAR,\r\n"
@@ -230,34 +318,27 @@ public abstract class DatabaseTools {
 		statement.execute();
 		statement.close();
 	}
-	
+
 	private void criarTabelaAcoesRecomendadas(Connection con) throws SQLException {
-		PreparedStatement statement = con.prepareStatement("CREATE TABLE MAQUINAS.ACAO_RECOMENDADA(\r\n" + 
-				"NOME LONG VARCHAR,\r\n" + 
-				"DESCRICAO LONG VARCHAR,\r\n" + 
-				"CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
-				"CHAVE_CAUSA_POTENCIAL INTEGER NOT NULL,\r\n" + 
-				"PRIMARY KEY (CHAVE),\r\n" + 
-				"CONSTRAINT ACAO_RECOMENDADA_CAUSA_POTENCIAL_FKEY FOREIGN KEY (CHAVE_CAUSA_POTENCIAL) \r\n" + 
-				"REFERENCES MAQUINAS.CAUSAS_POTENCIAIS(CHAVE) ON DELETE CASCADE\r\n" + 
-				")");
+		PreparedStatement statement = con.prepareStatement(
+				"CREATE TABLE MAQUINAS.ACAO_RECOMENDADA(\r\n" + "NOME LONG VARCHAR,\r\n" + "DESCRICAO LONG VARCHAR,\r\n"
+						+ "CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n"
+						+ "CHAVE_CAUSA_POTENCIAL INTEGER NOT NULL,\r\n" + "PRIMARY KEY (CHAVE),\r\n"
+						+ "CONSTRAINT ACAO_RECOMENDADA_CAUSA_POTENCIAL_FKEY FOREIGN KEY (CHAVE_CAUSA_POTENCIAL) \r\n"
+						+ "REFERENCES MAQUINAS.CAUSAS_POTENCIAIS(CHAVE) ON DELETE CASCADE\r\n" + ")");
 
 		statement.execute();
 		statement.close();
 	}
 
 	private void criarTabelaEfeitos(Connection con) throws SQLException {
-		PreparedStatement statement = con
-				.prepareStatement("CREATE TABLE MAQUINAS.EFEITO(\r\n" + 
-						"NOME LONG VARCHAR,\r\n" + 
-						"DESCRICAO LONG VARCHAR,\r\n" + 
-						"CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n" + 
-						"CHAVE_MODO_FALHA INTEGER NOT NULL,\r\n" + 
-						"INDICE_SEVERIDADE DOUBLE PRECISION, \r\n" +
-						"PRIMARY KEY (chave),\r\n" + 
-						"CONSTRAINT efeitos_chave_modo_falha_fkey FOREIGN KEY (CHAVE_MODO_FALHA)\r\n" + 
-						"REFERENCES MAQUINAS.MODO_FALHA(CHAVE) ON DELETE CASCADE\r\n" + 
-						")");
+		PreparedStatement statement = con.prepareStatement(
+				"CREATE TABLE MAQUINAS.EFEITO(\r\n" + "NOME LONG VARCHAR,\r\n" + "DESCRICAO LONG VARCHAR,\r\n"
+						+ "CHAVE INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),\r\n"
+						+ "CHAVE_MODO_FALHA INTEGER NOT NULL,\r\n" + "INDICE_SEVERIDADE DOUBLE PRECISION, \r\n"
+						+ "PRIMARY KEY (chave),\r\n"
+						+ "CONSTRAINT efeitos_chave_modo_falha_fkey FOREIGN KEY (CHAVE_MODO_FALHA)\r\n"
+						+ "REFERENCES MAQUINAS.MODO_FALHA(CHAVE) ON DELETE CASCADE\r\n" + ")");
 
 		statement.execute();
 		statement.close();

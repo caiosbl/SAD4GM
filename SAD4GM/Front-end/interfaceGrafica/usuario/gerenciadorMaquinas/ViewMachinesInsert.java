@@ -15,7 +15,6 @@ import entidades.Componente;
 import entidades.Falha;
 import entidades.Maquina;
 import entidades.ModoFalha;
-import entidades.Origem;
 import entidades.Subsistema;
 import interfaceGrafica.main.Main;
 import interfaceGrafica.usuario.entrada.Login;

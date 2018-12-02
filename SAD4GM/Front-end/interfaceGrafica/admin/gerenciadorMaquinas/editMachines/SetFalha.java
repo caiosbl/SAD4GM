@@ -165,9 +165,6 @@ public class SetFalha extends Main {
 				if (isEmpty(nome.getText().trim())) {
 					nome.setText(sistema.getNomeFalha(chaveFalha));
 					JOptionPane.showMessageDialog(null, "Nome Inválido!");
-				} else if (isEmpty(descricaoPane.getText().trim())) {
-					descricaoPane.setText(sistema.getDescricaoFalha(chaveFalha));
-					JOptionPane.showMessageDialog(null, "Descrição Inválida");
 				}
 
 				else {

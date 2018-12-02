@@ -103,7 +103,11 @@ public class SetSubsistema extends Main {
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				JOptionPane.showMessageDialog(null, sistema.setNomeSubsistema(nome.getText().trim(), chaveSubsistema));
+				if (isEmpty(nome.getText().trim()))
+					JOptionPane.showMessageDialog(null, "Título Inválido!");
+				else
+					JOptionPane.showMessageDialog(null,
+							sistema.setNomeSubsistema(nome.getText().trim(), chaveSubsistema));
 
 			}
 

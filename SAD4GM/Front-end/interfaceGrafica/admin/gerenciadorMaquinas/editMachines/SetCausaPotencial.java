@@ -164,10 +164,6 @@ public class SetCausaPotencial extends Main {
 					JOptionPane.showMessageDialog(null, "Nome Inválido");
 				}
 
-				else if (isEmpty(descricaoPane.getText().trim())) {
-					descricaoPane.setText(sistema.getDescricaoCausaPotencial(chaveCausaPotencial));
-					JOptionPane.showMessageDialog(null, "Descrição Inválida");
-				}
 
 				else {
 

@@ -166,10 +166,7 @@ public class SetComponente extends Main {
 				if (isEmpty(nome.getText().trim())) {
 					nome.setText(sistema.getNomeComponente(chaveComponente));
 					JOptionPane.showMessageDialog(null, "Nome Inválido!");
-				} else if (isEmpty(funcaoPane.getText().trim())) {
-					funcaoPane.setText(sistema.getFuncaoComponente(chaveComponente));
-					JOptionPane.showMessageDialog(null, "Função Inválida");
-				}
+				} 
 
 				else {
 

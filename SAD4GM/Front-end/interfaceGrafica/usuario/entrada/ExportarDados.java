@@ -14,7 +14,6 @@ import interfaceGrafica.usuario.gerenciadorMaquinas.ViewComponente;
 import interfaceGrafica.usuario.gerenciadorMaquinas.ViewSubsistema;
 import interfaceGrafica.utils.GerarPlanilhaComponentes;
 import interfaceGrafica.utils.GerarPlanilhaRankingModosFalha;
-import interfaceGrafica.utils.RankingRPN;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JFileChooser;
@@ -100,6 +99,11 @@ public class ExportarDados extends Main {
 		JButton myDataBtn = new JButton("");
 		myDataBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MyInfo myInfo = new MyInfo(id, getXLocation(), getYLocation());
+				dispose();
+				myInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				myInfo.setVisible(true);
+				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 			}
 		});
@@ -147,28 +151,33 @@ public class ExportarDados extends Main {
 		JButton btnNewButton = new JButton(" Modos de Falha");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				int chaveMaquina = mapaMaquinas.get(arrayMaquinas[maquinasBox.getSelectedIndex()]);
-				String nomeMaquina = String.valueOf(arrayMaquinas[maquinasBox.getSelectedIndex()]);
-				
-				JFileChooser fc = new JFileChooser();
-				fc.setDialogTitle("Salvar Planilha de Modos de Falha");
-				fc.setAcceptAllFileFilterUsed(false);
-				fc.setSelectedFile(new File("modosFalha.xls"));
-				fc.setFileFilter(new FileNameExtensionFilter("Planilhas do excel (*.xls)", "xls"));
 
-				if (fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-					File diretorio = fc.getSelectedFile();
+				if (maquinasBox.getSelectedIndex() == -1)
+					avisoSelecioneMaquina();
+				else {
 
-					if (FilenameUtils.getExtension(diretorio.getName()).equalsIgnoreCase("xls"))
-						new GerarPlanilhaRankingModosFalha(nomeMaquina, chaveMaquina, diretorio);
-					else {
-						diretorio = new File(diretorio.getParentFile(),
-								FilenameUtils.getBaseName(diretorio.getName()) + ".xls");
-						new GerarPlanilhaRankingModosFalha(nomeMaquina, chaveMaquina, diretorio);
-					}
-				} else
-					JOptionPane.showMessageDialog(null, "Você não deu um nome ao Arquivo!");
+					int chaveMaquina = mapaMaquinas.get(arrayMaquinas[maquinasBox.getSelectedIndex()]);
+					String nomeMaquina = String.valueOf(arrayMaquinas[maquinasBox.getSelectedIndex()]);
+
+					JFileChooser fc = new JFileChooser();
+					fc.setDialogTitle("Salvar Planilha de Modos de Falha");
+					fc.setAcceptAllFileFilterUsed(false);
+					fc.setSelectedFile(new File("modosFalha.xls"));
+					fc.setFileFilter(new FileNameExtensionFilter("Planilhas do excel (*.xls)", "xls"));
+
+					if (fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+						File diretorio = fc.getSelectedFile();
+
+						if (FilenameUtils.getExtension(diretorio.getName()).equalsIgnoreCase("xls"))
+							new GerarPlanilhaRankingModosFalha(nomeMaquina, chaveMaquina, diretorio);
+						else {
+							diretorio = new File(diretorio.getParentFile(),
+									FilenameUtils.getBaseName(diretorio.getName()) + ".xls");
+							new GerarPlanilhaRankingModosFalha(nomeMaquina, chaveMaquina, diretorio);
+						}
+					} else
+						JOptionPane.showMessageDialog(null, "Você não deu um nome ao Arquivo!");
+				}
 			}
 		});
 		btnNewButton.setBounds(148, 233, 151, 62);
@@ -177,29 +186,34 @@ public class ExportarDados extends Main {
 		JButton btnRankingRpn = new JButton("Componentes");
 		btnRankingRpn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int chaveMaquina = mapaMaquinas.get(arrayMaquinas[maquinasBox.getSelectedIndex()]);
-				String nomeMaquina = String.valueOf(arrayMaquinas[maquinasBox.getSelectedIndex()]);
-				
-				JFileChooser fc = new JFileChooser();
-				fc.setDialogTitle("Salvar Planilha de Modos de Falha");
-				fc.setAcceptAllFileFilterUsed(false);
-				fc.setSelectedFile(new File("componentesMaquina.xls"));
-				fc.setFileFilter(new FileNameExtensionFilter("Planilhas do excel (*.xls)", "xls"));
 
-				if (fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-					File diretorio = fc.getSelectedFile();
+				if (maquinasBox.getSelectedIndex() == -1)
+					avisoSelecioneMaquina();
+				else {
+					int chaveMaquina = mapaMaquinas.get(arrayMaquinas[maquinasBox.getSelectedIndex()]);
+					String nomeMaquina = String.valueOf(arrayMaquinas[maquinasBox.getSelectedIndex()]);
 
-					if (FilenameUtils.getExtension(diretorio.getName()).equalsIgnoreCase("xls"))
-						new GerarPlanilhaComponentes(nomeMaquina, chaveMaquina, diretorio);
-					else {
-						diretorio = new File(diretorio.getParentFile(),
-								FilenameUtils.getBaseName(diretorio.getName()) + ".xls");
-						new GerarPlanilhaComponentes(nomeMaquina, chaveMaquina, diretorio);
-					}
-				} else
-					JOptionPane.showMessageDialog(null, "Você não deu um nome ao Arquivo!");
+					JFileChooser fc = new JFileChooser();
+					fc.setDialogTitle("Salvar Planilha de Modos de Falha");
+					fc.setAcceptAllFileFilterUsed(false);
+					fc.setSelectedFile(new File("componentesMaquina.xls"));
+					fc.setFileFilter(new FileNameExtensionFilter("Planilhas do excel (*.xls)", "xls"));
+
+					if (fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+						File diretorio = fc.getSelectedFile();
+
+						if (FilenameUtils.getExtension(diretorio.getName()).equalsIgnoreCase("xls"))
+							new GerarPlanilhaComponentes(nomeMaquina, chaveMaquina, diretorio);
+						else {
+							diretorio = new File(diretorio.getParentFile(),
+									FilenameUtils.getBaseName(diretorio.getName()) + ".xls");
+							new GerarPlanilhaComponentes(nomeMaquina, chaveMaquina, diretorio);
+						}
+					} else
+						JOptionPane.showMessageDialog(null, "Você não deu um nome ao Arquivo!");
+				}
 			}
-			
+
 		});
 		btnRankingRpn.setBounds(311, 233, 151, 62);
 		desktopPane.add(btnRankingRpn);
@@ -216,5 +230,9 @@ public class ExportarDados extends Main {
 		lblSelecioneUmaMquina.setBounds(185, 138, 226, 20);
 		desktopPane.add(lblSelecioneUmaMquina);
 
+	}
+
+	private void avisoSelecioneMaquina() {
+		JOptionPane.showMessageDialog(null, "Por favor selecione uma Máquina");
 	}
 }

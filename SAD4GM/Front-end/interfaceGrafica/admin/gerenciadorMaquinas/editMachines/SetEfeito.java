@@ -168,10 +168,7 @@ public class SetEfeito extends Main {
 				if (isEmpty(descricaoPane.getText().trim())) {
 					descricaoPane.setText(sistema.getDescricaoModoFalha(chaveEfeito));
 					JOptionPane.showMessageDialog(null, "Descrição Inválida");
-				} else if (isEmpty(tituloField.getText().trim())) {
-					tituloField.setText(sistema.getNomeModoFalha(chaveEfeito));
-					JOptionPane.showMessageDialog(null, "Título Inválido");
-				}
+				} 
 
 				else {
 

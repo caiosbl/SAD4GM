@@ -167,10 +167,7 @@ public class SetModoFalha extends Main {
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (isEmpty(descricaoPane.getText().trim())) {
-					descricaoPane.setText(sistema.getDescricaoModoFalha(chaveModoFalha));
-					JOptionPane.showMessageDialog(null, "Descrição Inválida");
-				} else if (isEmpty(tituloField.getText().trim())) {
+			if (isEmpty(tituloField.getText().trim())) {
 					tituloField.setText(sistema.getNomeModoFalha(chaveModoFalha));
 					JOptionPane.showMessageDialog(null, "Título Inválido");
 				}

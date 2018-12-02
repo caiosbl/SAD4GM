@@ -14,6 +14,7 @@ import interfaceGrafica.utils.RankingRPN;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 
@@ -93,6 +94,11 @@ public class ViewRelatorios extends Main {
 		JButton myDataBtn = new JButton("");
 		myDataBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MyInfo myInfo = new MyInfo(id, getXLocation(), getYLocation());
+				dispose();
+				myInfo.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
+				myInfo.setVisible(true);
+				myInfo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 			}
 		});
@@ -140,10 +146,14 @@ public class ViewRelatorios extends Main {
 		JButton btnNewButton = new JButton("Matriz de Risco");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(maquinasBox.getSelectedIndex() == -1)
+					avisoSelecioneMaquina();
+				else {
 				PlotGraficoXY plot = new PlotGraficoXY(mapaMaquinas.get(arrayMaquinas[maquinasBox.getSelectedIndex()]));
 				plot.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				plot.setVisible(true);
 				plot.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				}
 			}
 		});
 		btnNewButton.setBounds(67, 233, 151, 62);
@@ -152,10 +162,14 @@ public class ViewRelatorios extends Main {
 		JButton btnRankingRpn = new JButton("Ranking RPN");
 		btnRankingRpn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(maquinasBox.getSelectedIndex() == -1)
+					avisoSelecioneMaquina();
+				else {
 				RankingRPN plot = new RankingRPN(mapaMaquinas.get(arrayMaquinas[maquinasBox.getSelectedIndex()]));
 				plot.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				plot.setVisible(true);
 				plot.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				}
 			}
 		});
 		btnRankingRpn.setBounds(230, 233, 151, 62);
@@ -164,12 +178,15 @@ public class ViewRelatorios extends Main {
 		JButton btnGrficoPareto = new JButton("Gráfico Pareto");
 		btnGrficoPareto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(maquinasBox.getSelectedIndex() == -1)
+					avisoSelecioneMaquina();
+				else {
 				PlotGraficoPareto plot = new PlotGraficoPareto(
 						mapaMaquinas.get(arrayMaquinas[maquinasBox.getSelectedIndex()]));
 				plot.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
 				plot.setVisible(true);
 				plot.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
+			}}
 		});
 		btnGrficoPareto.setBounds(393, 233, 151, 62);
 		desktopPane.add(btnGrficoPareto);
@@ -186,5 +203,9 @@ public class ViewRelatorios extends Main {
 		lblSelecioneUmaMquina.setBounds(185, 138, 226, 20);
 		desktopPane.add(lblSelecioneUmaMquina);
 
+	}
+	
+	private void avisoSelecioneMaquina() {
+		JOptionPane.showMessageDialog(null, "Por favor selecione uma Máquina");
 	}
 }
