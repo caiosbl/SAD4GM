@@ -52,7 +52,6 @@ public class Sistema {
 	private Efeitos cEfeitos;
 	private AcoesRecomendadas cARecomendadas;
 	private OrigemCausas cOrigem;
-	
 
 	private UsuarioTools uTools;
 	private MaquinaTools mTools;
@@ -272,7 +271,6 @@ public class Sistema {
 		return cFalhas.getMapaFalhas(chaveComponente);
 	}
 
-
 	public Map<Integer, Falha> getFalhasMap(int chaveComponente) {
 		return cFalhas.getFalhasMap(chaveComponente);
 	}
@@ -296,8 +294,8 @@ public class Sistema {
 	// Funções de Modos de Falha
 
 	public String inserirModoFalha(String nome, String descricao, int chaveFalha, double indiceOcorrencia,
-			double indiceDeteccao) {
-		return cMFalhas.inserir(nome, descricao, chaveFalha, indiceOcorrencia, indiceDeteccao);
+			double indiceDeteccao, int numeroOcorrencias) {
+		return cMFalhas.inserir(nome, descricao, chaveFalha, indiceOcorrencia, indiceDeteccao, numeroOcorrencias);
 	}
 
 	public String removerModoFalha(int chave) {
@@ -311,7 +309,7 @@ public class Sistema {
 	public Map<Integer, ModoFalha> getModosFalhaMap(int chaveFalha) {
 		return cMFalhas.getModosFalhaMap(chaveFalha);
 	}
-	
+
 	public Map<String, Integer> getMapaModosFalhaPorMaquina(int chaveMaquina) throws SQLException {
 		return cMFalhas.getMapaModosFalhaPorMaquina(chaveMaquina);
 	}
@@ -348,7 +346,7 @@ public class Sistema {
 	public String setDescricaoModoFalha(String descricao, int chaveModoFalha) {
 		return cMFalhas.setDescricao(descricao, chaveModoFalha);
 	}
-	
+
 	public String registrarOcorrenciaModoFalha(int chaveModoFalha) {
 		return cMFalhas.registrarOcorrencia(chaveModoFalha);
 	}
@@ -390,7 +388,7 @@ public class Sistema {
 	// Funções de Ações Recomendadas
 
 	public String inserirAcaoRecomendada(String nome, String descricao, int chaveCausaPotencial) {
-		return cARecomendadas.inserir(nome, descricao,chaveCausaPotencial);
+		return cARecomendadas.inserir(nome, descricao, chaveCausaPotencial);
 	}
 
 	public String removerAcaoRecomendada(int chaveAcaoRecomendada) {
@@ -413,7 +411,6 @@ public class Sistema {
 		return cARecomendadas.getNome(chaveAcaoRecomendada);
 	}
 
-	
 	public String setNomeAcaoRecomendada(String nome, int chaveAcaoRecomendada) {
 		return cARecomendadas.setNome(nome, chaveAcaoRecomendada);
 	}
@@ -421,34 +418,34 @@ public class Sistema {
 	public String setDescricaoAcaoRecomendada(String descricao, int chaveAcaoRecomendada) {
 		return cARecomendadas.setDescricao(descricao, chaveAcaoRecomendada);
 	}
-	
+
 	// Função de Origem de Causas
-	
+
 	public String inserirOrigem(String nome, int chaveCausaPotencial) {
 		return cOrigem.inserir(nome, chaveCausaPotencial);
 	}
-	
+
 	public String removerOrigem(int chaveOrigem) {
 		return cOrigem.remover(chaveOrigem);
 	}
-	
-	public Map<String,Integer> getMapaOrigem(int chaveCausaPotencial){
+
+	public Map<String, Integer> getMapaOrigem(int chaveCausaPotencial) {
 		return cOrigem.getMapaOrigemCausas(chaveCausaPotencial);
 	}
-	
-	public Map<Integer,Origem> getOrigemMap(int chaveCausaPotencial){
+
+	public Map<Integer, Origem> getOrigemMap(int chaveCausaPotencial) {
 		return cOrigem.getOrigemCausasMap(chaveCausaPotencial);
 	}
-	
+
 	public String getNomeOrigem(int chaveOrigem) {
 		return cOrigem.getNome(chaveOrigem);
 	}
-	
+
 	public String setNomeOrigem(String nome, int chaveOrigem) {
 		return cOrigem.setNome(nome, chaveOrigem);
 	}
 	// Função de Efeitos
-	
+
 	public String inserirEfeito(String nome, String descricao, double indiceSeveridade, int chaveModoFalha) {
 		return cEfeitos.inserir(nome, descricao, indiceSeveridade, chaveModoFalha);
 	}
@@ -476,7 +473,7 @@ public class Sistema {
 	public double getIndiceSeveridade(int chaveEfeito) {
 		return cEfeitos.getIndiceSeveridade(chaveEfeito);
 	}
-	
+
 	public double getIndiceSeveridadePorFalha(int chaveModoFalha) throws SQLException {
 		return cEfeitos.getIndiceSeveridadePorFalha(chaveModoFalha);
 	}
@@ -492,10 +489,9 @@ public class Sistema {
 	public String setDescricaoEfeito(String descricao, int chaveEfeito) {
 		return cEfeitos.setDescricao(descricao, chaveEfeito);
 	}
-	
+
 	public boolean hasEfeito(int chaveModoFalha) throws SQLException {
 		return cEfeitos.hasEfeito(chaveModoFalha);
 	}
-	
 
 }
