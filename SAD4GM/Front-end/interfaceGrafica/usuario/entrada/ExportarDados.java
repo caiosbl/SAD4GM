@@ -142,10 +142,10 @@ public class ExportarDados extends Main {
 		lblMeus.setBounds(67, 22, 151, 29);
 		desktopPane.add(lblMeus);
 
-		JLabel lblDados = new JLabel("DADOS");
+		JLabel lblDados = new JLabel("RELATÓRIOS");
 		lblDados.setForeground(Color.WHITE);
 		lblDados.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblDados.setBounds(86, 49, 85, 29);
+		lblDados.setBounds(52, 51, 157, 29);
 		desktopPane.add(lblDados);
 
 		JButton btnNewButton = new JButton(" Modos de Falha");

@@ -115,7 +115,7 @@ public class ViewMachinesInsert extends Main {
 		JLabel lblSelecioneOItem = new JLabel("SELECIONE O ITEM QUE DESEJA INSERIR:");
 		lblSelecioneOItem.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblSelecioneOItem.setForeground(Color.WHITE);
-		lblSelecioneOItem.setBounds(114, 88, 342, 20);
+		lblSelecioneOItem.setBounds(120, 101, 342, 20);
 		desktopPane.add(lblSelecioneOItem);
 
 		JLabel lblInserir = new JLabel("INSERIR");
@@ -186,12 +186,6 @@ public class ViewMachinesInsert extends Main {
 		navbar.setIcon(new ImageIcon(ViewMachinesInsert.class.getResource("/Resources/icon/navbar.png")));
 		navbar.setBounds(350, 6, 256, 51);
 		desktopPane.add(navbar);
-
-		JLabel lblMquina = new JLabel("[MÁQUINA | SUBSISTEMA | COMPONENTE | FALHA | MODO DE FALHA | CAUSA POTENCIAL]");
-		lblMquina.setForeground(Color.WHITE);
-		lblMquina.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblMquina.setBounds(17, 107, 577, 16);
-		desktopPane.add(lblMquina);
 
 	}
 
