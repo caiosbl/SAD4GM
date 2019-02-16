@@ -289,17 +289,17 @@ public class RegistrarOcorrenciaModoFalha extends Main {
 			public void actionPerformed(ActionEvent e) {
 				if (modosDeFalhaBox.getSelectedIndex() != -1) {
 					chaveModoFalha = mapaModosFalha.get(arrayModosDeFalha[modosDeFalhaBox.getSelectedIndex()]);
-					atualizaIndiceOcorrencia(chaveModoFalha);
+					atualizaNumeroOcorrencias(chaveModoFalha);
 
 				}
 			}
 		});
 		desktopPane.add(modosDeFalhaBox);
 
-		JLabel lblI = new JLabel("Indíce de Ocorrência:");
+		JLabel lblI = new JLabel("Número de Ocorrências:");
 		lblI.setForeground(Color.WHITE);
 		lblI.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblI.setBounds(126, 368, 147, 17);
+		lblI.setBounds(114, 368, 167, 17);
 		desktopPane.add(lblI);
 
 		ocorrenciaField = new JTextField();
@@ -315,7 +315,7 @@ public class RegistrarOcorrenciaModoFalha extends Main {
 				if (checaBoxs() && chaveModoFalha >= 0 ) {
 					JOptionPane.showMessageDialog(null, sistema.registrarOcorrenciaModoFalha(chaveModoFalha));
 
-					atualizaIndiceOcorrencia(chaveModoFalha);
+					atualizaNumeroOcorrencias(chaveModoFalha);
 				}
 			}
 		});
@@ -324,8 +324,8 @@ public class RegistrarOcorrenciaModoFalha extends Main {
 
 	}
 
-	private void atualizaIndiceOcorrencia(int chaveModoFalha) {
-		this.ocorrenciaField.setText(String.valueOf(sistema.getIndiceOcorrenciaModoFalha(chaveModoFalha)));
+	private void atualizaNumeroOcorrencias(int chaveModoFalha) {
+		this.ocorrenciaField.setText(String.valueOf(sistema.getNumeroOcorrencias(chaveModoFalha)));
 	}
 
 	private boolean checaBoxs() {

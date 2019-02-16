@@ -258,14 +258,30 @@ public class ModosFalhaTools extends DatabaseTools {
 	}
 
 	public void registrarOcorrencia(int chaveModoFalha) throws SQLException {
+		int numeroOcorrencias = 0;
+		
+		
 		abrirConexao();
+		
+		
+		PreparedStatement state2 = con
+				.prepareStatement("SELECT numero_ocorrencias FROM maquinas.modo_falha WHERE chave=" + chaveModoFalha);
+		ResultSet resSet = state2.executeQuery();
+		
+		if (resSet.next())
+			numeroOcorrencias = resSet.getInt(1);
+		
+		state2.close();
 
+		
 		PreparedStatement state = con.prepareStatement(
-				"UPDATE  maquinas.modo_falha SET numero_ocorrencias = numero_ocorrencias + 1 WHERE chave="
+				"UPDATE  maquinas.modo_falha SET numero_ocorrencias = " + numeroOcorrencias + "+ 1 WHERE chave="
 						+ chaveModoFalha);
 
 		state.execute();
 		state.close();
+		
+		
 
 		fecharConexao();
 
