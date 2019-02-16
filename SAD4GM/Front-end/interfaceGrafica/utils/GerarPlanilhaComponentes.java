@@ -131,36 +131,40 @@ public class GerarPlanilhaComponentes {
 		indiceOcorrenciaHeader.setCellStyle(getBackgroundHeaderStyle());
 		indiceOcorrenciaHeader.setCellValue("Indíce de Ocorrência");
 		
-		Cell indiceSeveridadeHeader = rowHeader.createCell(9);
+		Cell numeroOcorrenciasHeader = rowHeader.createCell(9);
+		numeroOcorrenciasHeader.setCellStyle(getBackgroundHeaderStyle());
+		numeroOcorrenciasHeader.setCellValue("Número de Ocorrências");
+		
+		Cell indiceSeveridadeHeader = rowHeader.createCell(10);
 		indiceSeveridadeHeader.setCellStyle(getBackgroundHeaderStyle());
 		indiceSeveridadeHeader.setCellValue("Indíce de Severidade");
 		
 
-		Cell rpn = rowHeader.createCell(10);
+		Cell rpn = rowHeader.createCell(11);
 		rpn.setCellStyle(getBackgroundHeaderStyle());
 		rpn.setCellValue("RPN");
 
-		Cell idCausaPotencialHeader = rowHeader.createCell(11);
+		Cell idCausaPotencialHeader = rowHeader.createCell(12);
 		idCausaPotencialHeader.setCellStyle(getBackgroundHeaderStyle());
 		idCausaPotencialHeader.setCellValue("ID5");
 
-		Cell causaPotencialHeader = rowHeader.createCell(12);
+		Cell causaPotencialHeader = rowHeader.createCell(13);
 		causaPotencialHeader.setCellStyle(getBackgroundHeaderStyle());
 		causaPotencialHeader.setCellValue("Causa Potencial");
 
-		Cell idOrigemCausaHeader = rowHeader.createCell(13);
+		Cell idOrigemCausaHeader = rowHeader.createCell(14);
 		idOrigemCausaHeader.setCellStyle(getBackgroundHeaderStyle());
 		idOrigemCausaHeader.setCellValue("ID6");
 
-		Cell origemCausaHeader = rowHeader.createCell(14);
+		Cell origemCausaHeader = rowHeader.createCell(15);
 		origemCausaHeader.setCellStyle(getBackgroundHeaderStyle());
 		origemCausaHeader.setCellValue("Origem de Causa");
 
-		Cell idCausaHeader = rowHeader.createCell(15);
+		Cell idCausaHeader = rowHeader.createCell(16);
 		idCausaHeader.setCellStyle(getBackgroundHeaderStyle());
 		idCausaHeader.setCellValue("ID7");
 
-		Cell efeitoHeader = rowHeader.createCell(16);
+		Cell efeitoHeader = rowHeader.createCell(17);
 		efeitoHeader.setCellStyle(getBackgroundHeaderStyle());
 		efeitoHeader.setCellValue("Efeito de Modo de Falha");
 
@@ -233,6 +237,7 @@ public class GerarPlanilhaComponentes {
 						
 						 int indiceOcorrencia = (int) sistema.getIndiceOcorrenciaModoFalha(mFalha.getChave());
 						 int indiceSeveridade = (int) sistema.getIndiceSeveridadePorFalha(mFalha.getChave());
+						 int numeroOcorrencias = sistema.getNumeroOcorrencias(mFalha.getChave());
 						 int rpnValue = indiceOcorrencia * indiceSeveridade;
 
 						Cell idModoFalha = rowHeader.createCell(6);
@@ -247,11 +252,15 @@ public class GerarPlanilhaComponentes {
 						indiceOcorrenciaCell.setCellStyle(getBackgroundBodyStyle());
 						indiceOcorrenciaCell.setCellValue(indiceOcorrencia);
 						
-						Cell indiceSeveridadeCell = rowHeader.createCell(9);
+						Cell numeroOcorrenciasCell = rowHeader.createCell(9);
+						numeroOcorrenciasCell.setCellStyle(getBackgroundBodyStyle());
+						numeroOcorrenciasCell.setCellValue(numeroOcorrencias);
+						
+						Cell indiceSeveridadeCell = rowHeader.createCell(10);
 						indiceSeveridadeCell.setCellStyle(getBackgroundBodyStyle());
 						indiceSeveridadeCell.setCellValue(indiceSeveridade);
 						
-						Cell rpnCell = rowHeader.createCell(10);
+						Cell rpnCell = rowHeader.createCell(11);
 						rpnCell.setCellStyle(getBackgroundBodyStyle());
 						rpnCell.setCellValue(rpnValue);
 
@@ -271,11 +280,11 @@ public class GerarPlanilhaComponentes {
 
 							}
 
-							Cell idCausa = rowHeader.createCell(11);
+							Cell idCausa = rowHeader.createCell(12);
 							idCausa.setCellStyle(getBackgroundBodyStyle());
 							idCausa.setCellValue(causa.getChave());
 
-							Cell causaCell = rowHeader.createCell(12);
+							Cell causaCell = rowHeader.createCell(13);
 							causaCell.setCellStyle(getBackgroundBodyStyle());
 							causaCell.setCellValue(causa.getNome());
 
@@ -293,11 +302,11 @@ public class GerarPlanilhaComponentes {
 
 								}
 
-								Cell idOrigem = rowHeader.createCell(13);
+								Cell idOrigem = rowHeader.createCell(14);
 								idOrigem.setCellStyle(getBackgroundBodyStyle());
 								idOrigem.setCellValue(origem.getChave());
 
-								Cell origemCell = rowHeader.createCell(14);
+								Cell origemCell = rowHeader.createCell(15);
 								origemCell.setCellStyle(getBackgroundBodyStyle());
 								origemCell.setCellValue(origem.getNome());
 							}
@@ -317,11 +326,11 @@ public class GerarPlanilhaComponentes {
 
 							}
 
-							Cell idEfeito = rowHeader.createCell(15);
+							Cell idEfeito = rowHeader.createCell(16);
 							idEfeito.setCellStyle(getBackgroundBodyStyle());
 							idEfeito.setCellValue(efeito.getChave());
 
-							Cell efeitoCell = rowHeader.createCell(16);
+							Cell efeitoCell = rowHeader.createCell(17);
 							efeitoCell.setCellStyle(getBackgroundBodyStyle());
 							efeitoCell.setCellValue(efeito.getNome());
 
