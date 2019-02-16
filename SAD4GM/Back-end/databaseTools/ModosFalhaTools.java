@@ -11,8 +11,8 @@ import entidades.ModoFalha;
 
 public class ModosFalhaTools extends DatabaseTools {
 
-	public void inserir(String nome, String descricao, int chaveFalha, double indiceOcorrencia,double indiceDeteccao, int numeroOcorrencias)
-			throws SQLException {
+	public void inserir(String nome, String descricao, int chaveFalha, double indiceOcorrencia, double indiceDeteccao,
+			int numeroOcorrencias) throws SQLException {
 
 		try {
 
@@ -120,7 +120,7 @@ public class ModosFalhaTools extends DatabaseTools {
 		return indiceOcorrencia;
 
 	}
-	
+
 	public int getNumeroOcorrencias(int chaveModoFalha) throws SQLException {
 		abrirConexao();
 		int numeroOcorrencias;
@@ -260,43 +260,13 @@ public class ModosFalhaTools extends DatabaseTools {
 	public void registrarOcorrencia(int chaveModoFalha) throws SQLException {
 		abrirConexao();
 
-		boolean indiceFromEscala;
-		int indiceOcorrencia;
 		PreparedStatement state = con.prepareStatement(
-				"SELECT indice_from_escala,indice_ocorrencia FROM maquinas.modo_falha WHERE chave=" + chaveModoFalha);
-		ResultSet resSet = state.executeQuery();
+				"UPDATE  maquinas.modo_falha SET numero_ocorrencias = numero_ocorrencias + 1 WHERE chave="
+						+ chaveModoFalha);
 
-		if (resSet.next()) {
-			indiceFromEscala = resSet.getBoolean(1);
-			indiceOcorrencia = (int) resSet.getDouble(2);
-		} else
-			throw new SQLException("Falha ao Registrar Ocorrência");
-
+		state.execute();
 		state.close();
 
-		if (indiceFromEscala) {
-			PreparedStatement state2 = con.prepareStatement(
-					"UPDATE  maquinas.modo_falha SET indice_ocorrencia = ? WHERE chave=" + chaveModoFalha);
-			state2.setDouble(1, 1);
-			state2.execute();
-			state2.close();
-
-			PreparedStatement state3 = con.prepareStatement(
-					"UPDATE  maquinas.modo_falha SET indice_from_escala = ? WHERE chave=" + chaveModoFalha);
-			state3.setBoolean(1, false);
-			state3.execute();
-			state3.close();
-		}
-
-		else {
-			PreparedStatement state4 = con.prepareStatement(
-					"UPDATE  maquinas.modo_falha SET indice_ocorrencia = ? WHERE chave=" + chaveModoFalha);
-			state4.setDouble(1, indiceOcorrencia + 1);
-			state4.execute();
-			state4.close();
-
-		}
-		
 		fecharConexao();
 
 	}
