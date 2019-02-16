@@ -94,6 +94,17 @@ public class ModosFalha {
 		}
 		return indiceOcorrencia;
 	}
+	
+	public int  getNumeroOcorrencias(int chaveModoFalha) {
+		int numeroOcorrencias;
+
+		try {
+			numeroOcorrencias = mFTools.getNumeroOcorrencias(chaveModoFalha);
+		} catch (SQLException e) {
+			numeroOcorrencias = -1;
+		}
+		return numeroOcorrencias;
+	}
 
 	public double getIndiceDeteccao(int chaveModoFalha) {
 		double indiceDeteccao;
