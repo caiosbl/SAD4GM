@@ -11,12 +11,13 @@ import entidades.ModoFalha;
 
 public class ModosFalhaTools extends DatabaseTools {
 
-	public void inserir(String nome, String descricao, int chaveFalha, double indiceOcorrencia, double indiceDeteccao)
+	public void inserir(String nome, String descricao, int chaveFalha, double indiceOcorrencia,double indiceDeteccao, int numeroOcorrencias)
 			throws SQLException {
 
 		try {
 
-			final String INSERIR = "INSERT INTO maquinas.modo_falha (nome,descricao,chave_falha,indice_ocorrencia,indice_deteccao) VALUES (?,?,?,?,?)";
+			final String INSERIR = "INSERT INTO maquinas.modo_falha (nome,descricao,chave_falha,indice_ocorrencia,"
+					+ "indice_deteccao,numero_ocorrencias) VALUES (?,?,?,?,?,?)";
 			abrirConexao();
 
 			PreparedStatement stmt = con.prepareStatement(INSERIR);
@@ -26,6 +27,7 @@ public class ModosFalhaTools extends DatabaseTools {
 			stmt.setInt(3, chaveFalha);
 			stmt.setDouble(4, indiceOcorrencia);
 			stmt.setDouble(5, indiceDeteccao);
+			stmt.setInt(6, numeroOcorrencias);
 			stmt.execute();
 			stmt.close();
 
@@ -116,6 +118,25 @@ public class ModosFalhaTools extends DatabaseTools {
 		fecharConexao();
 
 		return indiceOcorrencia;
+
+	}
+	
+	public int getNumeroOcorrencias(int chaveModoFalha) throws SQLException {
+		abrirConexao();
+		int numeroOcorrencias;
+		PreparedStatement state = con
+				.prepareStatement("SELECT numero_ocorrencias FROM maquinas.modo_falha WHERE chave=" + chaveModoFalha);
+		ResultSet resSet = state.executeQuery();
+
+		if (resSet.next())
+			numeroOcorrencias = resSet.getInt(1);
+		else
+			numeroOcorrencias = -1;
+
+		state.close();
+		fecharConexao();
+
+		return numeroOcorrencias;
 
 	}
 
