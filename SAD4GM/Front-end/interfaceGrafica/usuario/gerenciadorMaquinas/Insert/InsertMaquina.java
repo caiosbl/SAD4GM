@@ -131,6 +131,7 @@ public class InsertMaquina extends Main {
 					else {
 						sistema.adicionaMaquina(nome, codigo, descricao, idUsuario);
 						JOptionPane.showMessageDialog(null, "Máquina cadastrada com sucesso!");
+						
 						ViewMachinesInsert insert = new ViewMachinesInsert(idUsuario, getXLocation(), getYLocation());
 						dispose();
 						insert.setIconImage(new ImageIcon(getClass().getResource("/Resources/icon/icon.png")).getImage());
