@@ -101,9 +101,6 @@ public abstract class DatabaseTools {
 		String[] lista = {
 				"INSERT INTO MAQUINAS.MAQUINA( NOME, DATA_INSERCAO, CODIGO, DESCRICAO, CHAVE_USUARIO) VALUES ( 'Transformador', '2018-12-01', 1, 'Sistema Transformador', 1 )",
 				"INSERT INTO MAQUINAS.SUBSISTEMA( NOME,  CHAVE_MAQUINA ) VALUES ( 'Parte Ativa', 1 )",
-				"INSERT INTO MAQUINAS.SUBSISTEMA( NOME,  CHAVE_MAQUINA ) VALUES ( 'Relés', 1 )",
-				"INSERT INTO MAQUINAS.SUBSISTEMA( NOME,  CHAVE_MAQUINA ) VALUES ( 'Buchas e Comutadores', 1)",
-				"INSERT INTO MAQUINAS.SUBSISTEMA( NOME, CHAVE_MAQUINA ) VALUES ( 'Sistema de Resfriamento', 1 )",
 				"INSERT INTO MAQUINAS.COMPONENTE( NOME,  CHAVE_SUBSISTEMA, FUNCAO ) VALUES ( 'Núcleo', 1, '' )",
 				"INSERT INTO MAQUINAS.COMPONENTE( NOME,  CHAVE_SUBSISTEMA, FUNCAO ) VALUES ( 'Sistema de Isolamento', 1, '' )",
 				"INSERT INTO MAQUINAS.FALHA( NOME, DESCRICAO, CHAVE_COMPONENTE ) VALUES ( 'Degradação da isolação (óleo e papel isolante)', 'Ruptura total ou redução significativa da suportabilidade da isolação', 2 )",

@@ -190,9 +190,12 @@ public class ViewMachinesInsert extends Main {
 	}
 
 	private void jTree1ValueChanged(TreeSelectionEvent tse) {
+		
+		
 
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode) tse.getNewLeadSelectionPath().getLastPathComponent();
 		DefaultMutableTreeNode nodeParent = (DefaultMutableTreeNode) node.getParent();
+		
 
 		if (node.toString().equals("Máquinas")) {
 			InsertMaquina insertMaquina = new InsertMaquina(idAdmin, getXLocation(), getYLocation());
@@ -211,8 +214,8 @@ public class ViewMachinesInsert extends Main {
 			insertSub.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 
-		else if (node.toString().equals("Componentes")) {
-			Subsistema subsistema = (Subsistema) nodeParent.getUserObject();
+		else if (node.getParent().toString().equals("Subsistemas")) {
+			Subsistema subsistema = (Subsistema) node.getUserObject();
 			InsertComponente insertComp = new InsertComponente(idAdmin, getXLocation(), getYLocation(),
 					subsistema.getChave());
 			dispose();
