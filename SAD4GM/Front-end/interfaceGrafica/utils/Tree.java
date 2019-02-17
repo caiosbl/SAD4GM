@@ -52,14 +52,12 @@ public class Tree {
 
 	private static void iniciaRamoComponentes(DefaultMutableTreeNode subsistemaNode, Subsistema subsistema,
 			Sistema sistema) {
-		DefaultMutableTreeNode componenteNode = new DefaultMutableTreeNode("Componentes");
-		subsistemaNode.add(componenteNode);
 
 		if (!getMapaComponentes(subsistema.getChave(), sistema).isEmpty()) {
 
 			for (Componente componente : getMapaComponentes(subsistema.getChave(), sistema).values()) {
 				DefaultMutableTreeNode compNode = new DefaultMutableTreeNode(componente);
-				componenteNode.add(compNode);
+				subsistemaNode.add(compNode);
 				iniciaRamoFalha(compNode, componente, sistema);
 			}
 		}
