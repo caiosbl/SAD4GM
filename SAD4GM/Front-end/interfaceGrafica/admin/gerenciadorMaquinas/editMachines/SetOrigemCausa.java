@@ -92,7 +92,7 @@ public class SetOrigemCausa extends Main {
 		JTextPane nome = new JTextPane();
 
 		nome.setBounds(46, 202, 518, 35);
-		nome.setText(sistema.getNomeSubsistema(chaveOrigemCausa));
+		nome.setText(sistema.getNomeOrigem(chaveOrigemCausa));
 		desktopPane.add(nome);
 
 		JButton btnAtualizar = new JButton("");
